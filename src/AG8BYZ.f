@@ -261,7 +261,7 @@ C     .. External Subroutines ..
       EXTERNAL           MB3OYZ, XERBLA, ZCOPY, ZLAIC1, ZLAPMT, ZLARFG,
      $                   ZLARTG, ZLASET, ZLATZM, ZROT, ZSWAP, ZUNMQR
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCONJG, INT, MAX, MIN, SQRT
+      INTRINSIC          ABS, DBLE, CONJG, INT, MAX, MIN, SQRT
 C     .. Executable Statements ..
 C
 C     Test the input parameters.
@@ -394,7 +394,7 @@ C
             CALL ZLARFG( RO+1, ABCD(IROW,ICOL), ABCD(IROW+1,ICOL), 1,
      $                   TC )
             CALL ZLATZM( 'L', RO+1, MNR-ICOL, ABCD(IROW+1,ICOL), 1,
-     $                   DCONJG( TC ), ABCD(IROW,ICOL+1),
+     $                   CONJG( TC ), ABCD(IROW,ICOL+1),
      $                   ABCD(IROW+1,ICOL+1), LDABCD, ZWORK )
             CALL ZCOPY( PR-ICOL, DUM, 0, ABCD(IROW+1,ICOL), 1 )
    20    CONTINUE

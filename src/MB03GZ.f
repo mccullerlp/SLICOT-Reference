@@ -104,18 +104,18 @@ C     .. External Subroutines ..
       EXTERNAL           ZLARTG
 C
 C     .. Intrinsic Functions ..
-      INTRINSIC          DBLE, DCONJG
+      INTRINSIC          DBLE, CONJG
 C
 C     .. Executable Statements ..
 C
 C     Computations.
 C
-      G = TWO*DBLE( H11*DCONJG( Z11 )*Z22 )
-      D = Z22*DCONJG( Z11 )*H12 +
-     $      ( DCONJG( Z22 )*Z12 - DCONJG( Z12 )*Z22 )*DCONJG( H11 )
+      G = TWO*DBLE( H11*CONJG( Z11 )*Z22 )
+      D = Z22*CONJG( Z11 )*H12 +
+     $      ( CONJG( Z22 )*Z12 - CONJG( Z12 )*Z22 )*CONJG( H11 )
       CALL ZLARTG( D, G, CO1, SI1, TMP )
-      D =  Z11*CO1 - Z12*DCONJG( SI1 )
-      G = -Z22*DCONJG( SI1 )
+      D =  Z11*CO1 - Z12*CONJG( SI1 )
+      G = -Z22*CONJG( SI1 )
       CALL ZLARTG( D, G, CO2, SI2, TMP )
       SI2 = -SI2
 C

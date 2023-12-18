@@ -194,7 +194,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL           XERBLA, ZLAIC1, ZLARF, ZLARFG, ZSCAL, ZSWAP
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DCONJG, MAX, MIN, SQRT
+      INTRINSIC          ABS, CONJG, MAX, MIN, SQRT
 C     ..
 C     .. Executable Statements ..
 C
@@ -313,7 +313,7 @@ C
                      AII = A( I, I )
                      A( I, I ) = CONE
                      CALL ZLARF( 'Left', M-I+1, N-I, A( I, I ), 1,
-     $                           DCONJG( TAU( I ) ), A( I, I+1 ), LDA,
+     $                           CONJG( TAU( I ) ), A( I, I+1 ), LDA,
      $                           ZWORK( 2*N+1 ) )
                      A( I, I ) = AII
                   END IF

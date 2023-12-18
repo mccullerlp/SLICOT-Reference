@@ -112,7 +112,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL          XERBLA, ZLARTG, ZROT
 C     .. Intrinsic Functions ..
-      INTRINSIC         DCONJG, MAX
+      INTRINSIC         CONJG, MAX
 C     .. Executable Statements ..
 C
       UNITE = LSAME( JOBE, 'I' )
@@ -154,9 +154,9 @@ C
      $               )
             IF ( UNITE ) THEN
                CALL ZROT( N1, DCBA(1,K), 1, DCBA(1,K+1), 1, CS,
-     $                    DCONJG( SN ) )
+     $                    CONJG( SN ) )
             ELSE
-               E(K,K-1)   = DCONJG( SN )*E(K-1,K-1)
+               E(K,K-1)   = CONJG( SN )*E(K-1,K-1)
                E(K-1,K-1) =           CS*E(K-1,K-1)
                CALL ZROT( N-K+1, E(K-1,K), LDE, E(K,K), LDE, CS, SN )
                IF ( E(K,K-1).NE.ZERO ) THEN
@@ -164,9 +164,9 @@ C
                   E(K,K)   = TEMP
                   E(K,K-1) = ZERO
                   CALL ZROT( K-1, E(1,K-1), 1, E(1,K), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                   CALL ZROT( N1, DCBA(1,K), 1, DCBA(1,K+1), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                END IF
             END IF
          END IF

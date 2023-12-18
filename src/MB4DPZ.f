@@ -300,7 +300,7 @@ C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DSCAL, MA02NZ, XERBLA, ZDSCAL,
      $                   ZSWAP
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCONJG, DIMAG, INT, LOG10, MAX, MIN,
+      INTRINSIC          ABS, DBLE, CONJG, DIMAG, INT, LOG10, MAX, MIN,
      $                   SIGN, SQRT
 C
 C     .. Executable Statements ..
@@ -479,7 +479,7 @@ C
                IF( N.GT.I ) THEN
                   CALL ZSWAP( N-I, A(I,I+1), LDA, DE(I+1,I), 1 )
                   DO 120 J = I+1, N
-                     A( I,J) = DCONJG( A(I,J) )
+                     A( I,J) = CONJG( A(I,J) )
                      DE(J,I) = DCMPLX( -DBLE( DE(J,I) ),
      $                                 DIMAG( DE(J,I) ) )
   120             CONTINUE
@@ -489,12 +489,12 @@ C
                IF( N.GT.I ) THEN
                   CALL ZSWAP( N-I, A(I+1,I), 1, DE(I,I+2), LDDE )
                   DO 130 J = I+1, N
-                     A( J,I)   = DCONJG( A(J,I) )
+                     A( J,I)   = CONJG( A(J,I) )
                      DE(I,J+1) = DCMPLX( -DBLE( DE(I,J+1) ),
      $                                   DIMAG( DE(I,J+1) ) )
   130             CONTINUE
                END IF
-               A(I,I)    = DCONJG( A(I,I) )
+               A(I,I)    = CONJG( A(I,I) )
                T         =  DE(I,I)
                DE(I,I)   = -DE(I,I+1)
                DE(I,I+1) = -T
@@ -504,7 +504,7 @@ C
                IF( N.GT.I ) THEN
                   CALL ZSWAP( N-I, C(I,I+1), LDC, VW(I+1,I), 1 )
                   DO 140 J = I+1, N
-                     VW(J,I) = DCONJG( VW(J,I) )
+                     VW(J,I) = CONJG( VW(J,I) )
                      C( I,J) = DCMPLX( -DBLE( C(I,J) ),
      $                                 DIMAG( C(I,J) ) )
   140             CONTINUE
@@ -514,12 +514,12 @@ C
                IF( N.GT.I ) THEN
                   CALL ZSWAP( N-I, C(I+1,I), 1, VW(I,I+2), LDVW )
                   DO 150 J = I+1, N
-                     VW(I,J+1) = DCONJG( VW(I,J+1) )
+                     VW(I,J+1) = CONJG( VW(I,J+1) )
                      C( J,I)   = DCMPLX( -DBLE( C(J,I) ),
      $                                   DIMAG( C(J,I) ) )
   150             CONTINUE
                END IF
-               C(I,I)    = -DCONJG( C(I,I) )
+               C(I,I)    = -CONJG( C(I,I) )
                T         =  VW(I,I)
                VW(I,I)   = -VW(I,I+1)
                VW(I,I+1) = -T

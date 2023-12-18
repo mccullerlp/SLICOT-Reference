@@ -85,7 +85,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL           ZSWAP
 C     ..Intrinsic Functions..
-      INTRINSIC          DBLE, DCMPLX, DCONJG, DIMAG
+      INTRINSIC          DBLE, DCMPLX, CONJG, DIMAG
 C
 C     .. Executable Statements ..
 C
@@ -124,10 +124,10 @@ C
 C
             IF( LSAME( SKEW, 'N' ) ) THEN
 C
-               A(L,K) = DCONJG( A(L,K) )
+               A(L,K) = CONJG( A(L,K) )
                DO 20 I = K+1, L-1
-                  T      = DCONJG( A(L,I) )
-                  A(L,I) = DCONJG( A(I,K) )
+                  T      = CONJG( A(L,I) )
+                  A(L,I) = CONJG( A(I,K) )
                   A(I,K) = T
    20          CONTINUE
 C
@@ -172,10 +172,10 @@ C
 C
             IF( LSAME( SKEW, 'N' ) ) THEN
 C
-               A(K,L) = DCONJG( A(K,L) )
+               A(K,L) = CONJG( A(K,L) )
                DO 50 I = K+1, L-1
-                  T      = DCONJG( A(I,L) )
-                  A(I,L) = DCONJG( A(K,I) )
+                  T      = CONJG( A(I,L) )
+                  A(I,L) = CONJG( A(K,I) )
                   A(K,I) = T
    50          CONTINUE
 C

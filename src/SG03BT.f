@@ -236,7 +236,7 @@ C     .. External Subroutines ..
       EXTERNAL          DLABAD, MA02EZ, XERBLA, ZAXPY, ZCOPY, ZDSCAL,
      $                  ZLACGV, ZLARTG, ZLASCL, ZLATRS, ZROT, ZTRMV
 C     .. Intrinsic Functions ..
-      INTRINSIC         DBLE, DCMPLX, DCONJG, MAX, SQRT
+      INTRINSIC         DBLE, DCMPLX, CONJG, MAX, SQRT
 C     .. Executable Statements ..
 C
 C     Decode input parameter.
@@ -343,7 +343,7 @@ C
                I = UPT
 C
                DO 10 J = KL1, N
-                  ZWORK(I) = -DCMPLX( M2  )*DCONJG( B(KL,J) ) -
+                  ZWORK(I) = -DCMPLX( M2  )*CONJG( B(KL,J) ) -
      $                        DCMPLX( UII )*ZWORK(I)
                   I = I + 1
    10          CONTINUE
@@ -370,7 +370,7 @@ C
 C
 C              Restore the diagonal of A22.
 C
-               A(KL,KL) = DCONJG( A(KL,KL) )
+               A(KL,KL) = CONJG( A(KL,KL) )
                CALL ZCOPY( N-KL, ZWORK(APT+KL-1), 1, A(KL1,KL1), LDA+1 )
 C
 C              STEP III: Form the right hand side matrix
@@ -388,7 +388,7 @@ C
                I = WPT
 C
                DO 40 J = KL1, N
-                  ZWORK(I) = DCONJG( B(KL,J) ) - M2*ZWORK(I)
+                  ZWORK(I) = CONJG( B(KL,J) ) - M2*ZWORK(I)
                   I = I + 1
    40          CONTINUE
 C
@@ -469,7 +469,7 @@ C
 C
             IF ( KL.GT.1 ) THEN
 C
-               M1 = DCONJG( A(KL,KL) )/DBLE( E(KL,KL) )
+               M1 = CONJG( A(KL,KL) )/DBLE( E(KL,KL) )
                M2 =     SQTWO*( DELTA1/DBLE( E(KL,KL) ) )
 C
 C              STEP II: Compute U(1:KL,KL) by solving a linear system
@@ -538,12 +538,12 @@ C                       (                        )
 C
                DO 100 I = KL1, 1, -1
                   X = B(I,I)
-                  Z = DCONJG( B(I,KL) )
+                  Z = CONJG( B(I,KL) )
                   CALL ZLARTG( X, Z, C, S, R )
                   B(I,I) = R
                   IF ( I.GT.1 )
      $               CALL ZROT( I-1, B(1,I), 1, B(1,KL), 1,  C,
-     $                          DCONJG( S ) )
+     $                          CONJG( S ) )
   100          CONTINUE
 C
 C              Make main diagonal elements of B(1:KL-1,1:KL-1) positive.

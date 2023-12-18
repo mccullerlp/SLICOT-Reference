@@ -234,7 +234,7 @@ C     .. External Subroutines ..
       EXTERNAL          DLABAD, MA01BZ, XERBLA, ZLARNV, ZLARTG, ZLASET,
      $                  ZROT, ZSCAL
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DBLE, DCMPLX, DCONJG, INT, LOG, MAX, MIN,
+      INTRINSIC         ABS, DBLE, DCMPLX, CONJG, INT, LOG, MAX, MIN,
      $                  MOD
 C
 C     .. Executable Statements ..
@@ -463,7 +463,7 @@ C
             IF ( WANTQ ) THEN
                DO 110  J = JLO, ILAST - 1
                   CALL ZROT( N, Q(1,J,1), 1, Q(1,J+1,1), 1, DWORK(J),
-     $                       DCONJG( ZWORK(J) ) )
+     $                       CONJG( ZWORK(J) ) )
   110          CONTINUE
             END IF
 C
@@ -477,7 +477,7 @@ C
                         CS = DWORK(J)
                         CALL ZROT( J+2-IFRSTM, A(IFRSTM,J,L), 1,
      $                             A(IFRSTM,J+1,L), 1, CS,
-     $                             DCONJG( SN ) )
+     $                             CONJG( SN ) )
 C
 C                       Check for deflation.
 C
@@ -540,7 +540,7 @@ C
                IF ( WANTQ ) THEN
                   DO 140  J = JLO, ILAST - 1
                      CALL ZROT( N, Q(1,J,L), 1, Q(1,J+1,L), 1, DWORK(J),
-     $                          DCONJG( ZWORK(J) ) )
+     $                          CONJG( ZWORK(J) ) )
   140             CONTINUE
                END IF
   150       CONTINUE
@@ -553,7 +553,7 @@ C
                CS = DWORK(J)
                SN = ZWORK(J)
                CALL ZROT( J+2-IFRSTM, A(IFRSTM,J,1), 1,
-     $                    A(IFRSTM,J+1,1), 1, CS, DCONJG( SN ) )
+     $                    A(IFRSTM,J+1,1), 1, CS, CONJG( SN ) )
                IF ( SN.EQ.CZERO )
      $            ZITER = 1
   160       CONTINUE
@@ -594,7 +594,7 @@ C
          IF ( WANTQ ) THEN
             DO 190  J = JLO, JDEF - 1
                CALL ZROT( N, Q(1,J,1), 1, Q(1,J+1,1), 1, DWORK(J),
-     $                    DCONJG( ZWORK(J) ) )
+     $                    CONJG( ZWORK(J) ) )
   190       CONTINUE
          END IF
 C
@@ -612,7 +612,7 @@ C
                DO 200  J = JLO, NTRA
                   CALL ZROT( J+2-IFRSTM, A(IFRSTM,J,L), 1,
      $                       A(IFRSTM,J+1,L), 1, DWORK(J),
-     $                       DCONJG( ZWORK(J) ) )
+     $                       CONJG( ZWORK(J) ) )
                   TEMP = A(J,J,L)
                   CALL ZLARTG( TEMP, A(J+1,J,L), CS, SN, A(J,J,L) )
                   A(J+1,J,L) = CZERO
@@ -637,7 +637,7 @@ C
             IF ( WANTQ ) THEN
                DO 220  J = JLO, NTRA
                   CALL ZROT( N, Q(1,J,L), 1, Q(1,J+1,L), 1, DWORK(J),
-     $                       DCONJG( ZWORK(J) ) )
+     $                       CONJG( ZWORK(J) ) )
   220          CONTINUE
             END IF
   230    CONTINUE
@@ -647,7 +647,7 @@ C        Hessenberg factor.
 C
          DO 240  J = JLO, JDEF - 2
             CALL ZROT( J+2-IFRSTM, A(IFRSTM,J,1), 1, A(IFRSTM,J+1,1),
-     $                 1, DWORK(J), DCONJG( ZWORK(J) ) )
+     $                 1, DWORK(J), CONJG( ZWORK(J) ) )
   240    CONTINUE
 C
 C        Do an unshifted periodic QZ step.
@@ -664,7 +664,7 @@ C
          IF ( WANTQ ) THEN
             DO 260  J = ILAST, JDEF + 1, -1
                CALL ZROT( N, Q(1,J-1,2), 1, Q(1,J,2),
-     $                    1, DWORK(J), DCONJG( ZWORK(J) ) )
+     $                    1, DWORK(J), CONJG( ZWORK(J) ) )
   260       CONTINUE
          END IF
 C
@@ -681,7 +681,7 @@ C
                   CS = DWORK(J)
                   SN = ZWORK(J)
                   CALL ZROT( J+1-IFRSTM, A(IFRSTM,J-1,L), 1,
-     $                       A(IFRSTM,J,L), 1, CS, DCONJG( SN ) )
+     $                       A(IFRSTM,J,L), 1, CS, CONJG( SN ) )
                   TEMP = A(J-1,J-1,L)
                   CALL ZLARTG( TEMP, A(J,J-1,L), CS, SN, A(J-1,J-1,L) )
                   A(J,J-1,L) = CZERO
@@ -711,7 +711,7 @@ C
                END IF
                DO 290  J = ILAST, NTRA, -1
                   CALL ZROT( N, Q(1,J-1,LN), 1, Q(1,J,LN), 1, DWORK(J),
-     $                       DCONJG( ZWORK(J) ) )
+     $                       CONJG( ZWORK(J) ) )
   290          CONTINUE
             END IF
   300    CONTINUE
@@ -752,7 +752,7 @@ C
                END IF
                IF ( WANTQ ) THEN
                   CALL ZROT( N, Q(1,J,LN), 1, Q(1,J+1,LN), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                END IF
                DO 330  L = 1, K - 1
                   IF ( LN.EQ.1 ) THEN
@@ -778,7 +778,7 @@ C
                      SN = -SN
                   ELSE
                      CALL ZROT( J-IFRSTM+2, A(IFRSTM,J,LN), 1,
-     $                          A(IFRSTM,J+1,LN), 1, CS, DCONJG( SN ) )
+     $                          A(IFRSTM,J+1,LN), 1, CS, CONJG( SN ) )
                      TEMP = A(J,J,LN)
                      CALL ZLARTG( TEMP, A(J+1,J,LN), CS, SN, A(J,J,LN) )
                      A(J+1,J,LN) = CZERO
@@ -790,11 +790,11 @@ C
      $               LN = 1
                   IF ( WANTQ ) THEN
                      CALL ZROT( N, Q(1,J,LN), 1, Q(1,J+1,LN), 1, CS,
-     $                          DCONJG( SN ) )
+     $                          CONJG( SN ) )
                   END IF
   330          CONTINUE
                CALL ZROT( J-IFRSTM+1, A(IFRSTM,J,LDEF), 1,
-     $                    A(IFRSTM,J+1,LDEF), 1, CS, DCONJG( SN ) )
+     $                    A(IFRSTM,J+1,LDEF), 1, CS, CONJG( SN ) )
   340       CONTINUE
 C
 C           Deflate the last element in the Hessenberg matrix.
@@ -808,12 +808,12 @@ C
             SN = -SN
             IF ( WANTQ ) THEN
                CALL ZROT( N, Q(1,J-1,2), 1, Q(1,J,2), 1, CS,
-     $                    DCONJG( SN ) )
+     $                    CONJG( SN ) )
             END IF
             DO 350  L = 2, LDEF - 1
                IF ( S(L).EQ.-1 ) THEN
                   CALL ZROT( J+1-IFRSTM, A(IFRSTM,J-1,L), 1,
-     $                       A(IFRSTM,J,L), 1, CS, DCONJG( SN ) )
+     $                       A(IFRSTM,J,L), 1, CS, CONJG( SN ) )
                   TEMP = A(J-1,J-1,L)
                   CALL ZLARTG( TEMP, A(J,J-1,L), CS, SN,
      $                         A(J-1,J-1,L) )
@@ -838,11 +838,11 @@ C
                      LN = L + 1
                   END IF
                   CALL ZROT( N, Q(1,J-1,LN), 1, Q(1,J,LN), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                END IF
   350       CONTINUE
             CALL ZROT( J+1-IFRSTM, A(IFRSTM,J-1,LDEF), 1,
-     $                 A(IFRSTM,J,LDEF), 1, CS, DCONJG( SN ) )
+     $                 A(IFRSTM,J,LDEF), 1, CS, CONJG( SN ) )
          ELSE
 C
 C           Chase the zero upwards to the first position.
@@ -858,13 +858,13 @@ C
                SN = -SN
                IF ( WANTQ ) THEN
                   CALL ZROT( N, Q(1,J-1,LDEF), 1, Q(1,J,LDEF), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                END IF
                LN = LDEF - 1
                DO 360  L = 1, K - 1
                   IF ( LN.EQ.1 ) THEN
                      CALL ZROT( J-IFRSTM+2, A(IFRSTM,J-1,LN), 1,
-     $                          A(IFRSTM,J,LN), 1, CS, DCONJG( SN ) )
+     $                          A(IFRSTM,J,LN), 1, CS, CONJG( SN ) )
                      TEMP = A(J,J-1,LN)
                      CALL ZLARTG( TEMP, A(J+1,J-1,LN), CS, SN,
      $                            A(J,J-1,LN) )
@@ -884,7 +884,7 @@ C
                      SN = -SN
                   ELSE
                      CALL ZROT( J-IFRSTM+1, A(IFRSTM,J-1,LN), 1,
-     $                          A(IFRSTM,J,LN), 1, CS, DCONJG( SN ) )
+     $                          A(IFRSTM,J,LN), 1, CS, CONJG( SN ) )
                      TEMP = A(J-1,J-1,LN)
                      CALL ZLARTG( TEMP, A(J,J-1,LN), CS, SN,
      $                            A(J-1,J-1,LN) )
@@ -894,7 +894,7 @@ C
                   END IF
                   IF ( WANTQ ) THEN
                      CALL ZROT( N, Q(1,J-1,LN), 1, Q(1,J,LN), 1, CS,
-     $                          DCONJG( SN ) )
+     $                          CONJG( SN ) )
                   END IF
                   LN = LN - 1
                   IF ( LN.LE.0 )
@@ -914,12 +914,12 @@ C
      $                 LDA1, CS, SN )
             IF ( WANTQ ) THEN
                CALL ZROT( N, Q(1,J,1), 1, Q(1,J+1,1), 1, CS,
-     $                    DCONJG( SN ) )
+     $                    CONJG( SN ) )
             END IF
             DO 380  L = K, LDEF + 1, -1
                IF ( S(L).EQ.1 ) THEN
                   CALL ZROT( J+2-IFRSTM, A(IFRSTM,J,L), 1,
-     $                       A(IFRSTM,J+1,L), 1, CS, DCONJG( SN ) )
+     $                       A(IFRSTM,J+1,L), 1, CS, CONJG( SN ) )
                   TEMP = A(J,J,L)
                   CALL ZLARTG( TEMP, A(J+1,J,L), CS, SN, A(J,J,L) )
                   A(J+1,J,L) = CZERO
@@ -938,7 +938,7 @@ C
                END IF
                IF ( WANTQ ) THEN
                   CALL ZROT( N, Q(1,J,L), 1, Q(1,J+1,L), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                END IF
   380       CONTINUE
             CALL ZROT( ILASTM-J, A(J,J+1,LDEF), LDA1, A(J+1,J+1,LDEF),
@@ -1002,17 +1002,17 @@ C
             DO 410  L = K, 2, -1
                IF ( S(L).EQ.1 ) THEN
                   CALL ZLARTG( A(IFIRST,IFIRST,L)*CS,
-     $                         A(ILAST,ILAST,L)*DCONJG( SN ),
+     $                         A(ILAST,ILAST,L)*CONJG( SN ),
      $                         CS, SN, TEMP )
                ELSE
                   CALL ZLARTG( A(ILAST,ILAST,L)*CS,
-     $                         -A(IFIRST,IFIRST,L)*DCONJG( SN ),
+     $                         -A(IFIRST,IFIRST,L)*CONJG( SN ),
      $                         CS, SN, TEMP )
                   SN = -SN
                END IF
   410       CONTINUE
             CALL ZLARTG( A(IFIRST,IFIRST,1)*CS
-     $                   -A(ILAST,ILAST,1)*DCONJG( SN ),
+     $                   -A(ILAST,ILAST,1)*CONJG( SN ),
      $                   A(IFIRST+1,IFIRST,1)*CS, CS, SN, TEMP )
          END IF
 C
@@ -1033,7 +1033,7 @@ C
      $                 CS, SN )
             IF ( WANTQ ) THEN
                CALL ZROT( N, Q(1,J,1), 1, Q(1,J+1,1), 1, CS,
-     $                    DCONJG( SN ) )
+     $                    CONJG( SN ) )
             END IF
 C
 C           Propagate rotation through AK, ..., A2 to A1.
@@ -1041,7 +1041,7 @@ C
             DO 420  L = K, 2, -1
                IF ( S(L).EQ.1 ) THEN
                   CALL ZROT( J+2-IFRSTM, A(IFRSTM,J,L), 1,
-     $                       A(IFRSTM,J+1,L), 1, CS, DCONJG( SN ) )
+     $                       A(IFRSTM,J+1,L), 1, CS, CONJG( SN ) )
                   TEMP = A(J,J,L)
                   CALL ZLARTG( TEMP, A(J+1,J,L), CS, SN, A(J,J,L) )
                   A(J+1,J,L) = CZERO
@@ -1059,11 +1059,11 @@ C
                END IF
                IF ( WANTQ ) THEN
                   CALL ZROT( N, Q(1,J,L), 1, Q(1,J+1,L), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                END IF
   420       CONTINUE
             CALL ZROT( MIN( J+2, ILASTM )-IFRSTM+1, A(IFRSTM,J,1), 1,
-     $                 A(IFRSTM,J+1,1), 1, CS, DCONJG( SN ) )
+     $                 A(IFRSTM,J+1,1), 1, CS, CONJG( SN ) )
   430    CONTINUE
 C
 C        End of iteration loop.
@@ -1095,7 +1095,7 @@ C
                DO 480  J = 1, N
                   ABST = ABS( A(J,J,L) )
                   IF ( ABST.GT.SAFMIN ) THEN
-                     TEMP = DCONJG( A(J,J,L) / ABST )
+                     TEMP = CONJG( A(J,J,L) / ABST )
                      A(J,J,L ) = ABST
                      IF ( J.LT.N )
      $                  CALL ZSCAL( N-J, TEMP, A(J,J+1,L), LDA1 )
@@ -1108,23 +1108,23 @@ C
                DO 490  J = 1, N
                   ABST = ABS( A(J,J,L) )
                   IF ( ABST.GT.SAFMIN ) THEN
-                     TEMP = DCONJG( A(J,J,L) / ABST )
+                     TEMP = CONJG( A(J,J,L) / ABST )
                      A(J,J,L ) = ABST
                      CALL ZSCAL( J-1, TEMP, A(1,J,L), 1 )
                   ELSE
                      TEMP = CONE
                   END IF
-                  ZWORK(J) = DCONJG( TEMP )
+                  ZWORK(J) = CONJG( TEMP )
   490          CONTINUE
             END IF
             IF ( WANTQ ) THEN
                DO 500  J = 1, N
-                  CALL ZSCAL( N, DCONJG( ZWORK(J) ), Q(1,J,L), 1 )
+                  CALL ZSCAL( N, CONJG( ZWORK(J) ), Q(1,J,L), 1 )
   500          CONTINUE
             END IF
             IF ( S(L-1).EQ.1 )  THEN
                DO 510  J = 1, N
-                  CALL ZSCAL( J, DCONJG( ZWORK(J) ), A(1,J,L-1), 1 )
+                  CALL ZSCAL( J, CONJG( ZWORK(J) ), A(1,J,L-1), 1 )
   510          CONTINUE
             ELSE
                DO 520  J = 1, N

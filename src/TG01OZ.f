@@ -165,7 +165,7 @@ C     .. External Subroutines ..
       EXTERNAL          TG01OB, XERBLA, ZCOPY, ZGEQRF, ZLARF, ZLARFG,
      $                  ZLASET, ZSWAP, ZUNMQR
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DCMPLX, DCONJG, INT, MAX, MIN
+      INTRINSIC         ABS, DCMPLX, CONJG, INT, MAX, MIN
 C     .. Executable Statements ..
 C
       DESCR = LSAME( JOBE, 'G' )
@@ -294,7 +294,7 @@ C
                G = G*DCBA(I+1,I)
                DCBA(I+1,I) = CONE
                CALL ZLARF( 'Left',  NZ, NZ, DCBA(I+1,I), 1,
-     $                      DCONJG( TAU ), DCBA(I+1,I+1), LDDCBA,
+     $                      CONJG( TAU ), DCBA(I+1,I+1), LDDCBA,
      $                      ZWORK )
                CALL ZLARF( 'Right', NC, NZ, DCBA(I+1,I), 1, TAU,
      $                      DCBA(I,I+1), LDDCBA, ZWORK )

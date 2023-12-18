@@ -90,12 +90,12 @@ C     .. External Subroutines ..
       EXTERNAL           ZLARTG
 C
 C     .. Intrinsic Functions ..
-      INTRINSIC          DBLE, DCONJG
+      INTRINSIC          DBLE, CONJG
 C
 C     .. Executable Statements ..
 C
-      G = TWO*DBLE( H11*DCONJG( S11 ) )
-      CALL ZLARTG( DCONJG( S11 )*H12 + S12*DCONJG( H11 ), G, CO, SI,
+      G = TWO*DBLE( H11*CONJG( S11 ) )
+      CALL ZLARTG( CONJG( S11 )*H12 + S12*CONJG( H11 ), G, CO, SI,
      $             TMP )
 C
       RETURN

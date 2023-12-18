@@ -148,7 +148,7 @@ C     .. External Subroutines ..
       EXTERNAL          MA02EZ, XERBLA, ZCOPY, ZGEMM, ZGEMV, ZGEQRF,
      $                  ZLACGV, ZLACPY, ZLASET, ZTRMM
 C     .. Intrinsic Functions ..
-      INTRINSIC         DBLE, DCONJG, INT, MAX, MIN
+      INTRINSIC         DBLE, CONJG, INT, MAX, MIN
 C
 C     .. Executable Statements ..
 C
@@ -416,7 +416,7 @@ C
             IF ( LUPLO ) THEN
 C
                IF ( .NOT.LTRAN ) THEN
-                  TEMP = DCONJG( ALPHA )
+                  TEMP = CONJG( ALPHA )
 C
                   DO 50 I = 1, M
                      CALL ZCOPY(  M-I+1, T(I,I), LDT, ZWORK, 1 )
@@ -435,7 +435,7 @@ C
    60             CONTINUE
 C
                ELSE
-                  TEMP = DCONJG( ALPHA )
+                  TEMP = CONJG( ALPHA )
 C
                   DO 70 I = 1, M
                      CALL ZCOPY(  I, T(I,1), LDT, ZWORK, 1 )
@@ -450,7 +450,7 @@ C
             ELSE
 C
                IF ( .NOT.LTRAN ) THEN
-                  TEMP = DCONJG( ALPHA )
+                  TEMP = CONJG( ALPHA )
 C
                   DO 80 I = 1, M
                      CALL ZCOPY(  I, T(I,1), LDT, ZWORK, 1 )
@@ -469,7 +469,7 @@ C
    90             CONTINUE
 C
                ELSE
-                  TEMP = DCONJG( ALPHA )
+                  TEMP = CONJG( ALPHA )
 C
                   DO 100 I = 1, M
                      CALL ZCOPY(  M-I+1, T(I,I), 1, ZWORK, 1 )

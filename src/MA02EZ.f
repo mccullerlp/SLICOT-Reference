@@ -72,7 +72,7 @@ C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME
 C     ..Intrinsic Functions..
-      INTRINSIC          DBLE, DCONJG, DIMAG
+      INTRINSIC          DBLE, CONJG, DIMAG
 C
 C     .. Executable Statements ..
 C
@@ -108,7 +108,7 @@ C
 C
                DO 60 I = 1, N
                   DO 50 J = I, N
-                     A(I,J) = DCONJG( A(J,I) )
+                     A(I,J) = CONJG( A(J,I) )
    50             CONTINUE
    60          CONTINUE
 C
@@ -117,7 +117,7 @@ C
                DO 80 I = 1, N
                   A(I,I) = DBLE( A(I,I) )
                   DO 70 J = I+1, N
-                     A(I,J) = DCONJG( A(J,I) )
+                     A(I,J) = CONJG( A(J,I) )
    70             CONTINUE
    80          CONTINUE
 C
@@ -126,7 +126,7 @@ C
                DO 100 I = 1, N
                   A(I,I) = DIMAG( A(I,I) )
                   DO 90 J = I+1, N
-                     A(I,J) = -DCONJG( A(J,I) )
+                     A(I,J) = -CONJG( A(J,I) )
    90             CONTINUE
   100          CONTINUE
 C
@@ -164,7 +164,7 @@ C
 C
                DO 160 I = 1, N
                   DO 150 J = I, N
-                     A(J,I) = DCONJG( A(I,J) )
+                     A(J,I) = CONJG( A(I,J) )
   150             CONTINUE
   160          CONTINUE
 C
@@ -173,7 +173,7 @@ C
                DO 180 I = 1, N
                   A(I,I) = DBLE( A(I,I) )
                   DO 170 J = I+1, N
-                     A(J,I) = DCONJG( A(I,J) )
+                     A(J,I) = CONJG( A(I,J) )
   170             CONTINUE
   180          CONTINUE
 C
@@ -182,7 +182,7 @@ C
                DO 200 I = 1, N
                   A(I,I) = DIMAG( A(I,I) )
                   DO 190 J = I+1, N
-                     A(J,I) = -DCONJG( A(I,J) )
+                     A(J,I) = -CONJG( A(I,J) )
   190             CONTINUE
   200          CONTINUE
 C

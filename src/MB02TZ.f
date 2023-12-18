@@ -114,7 +114,7 @@ C     .. External Subroutines ..
       EXTERNAL           XERBLA, ZDRSCL, ZLACON, ZLATRS
 C     ..
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCONJG, DIMAG, MAX
+      INTRINSIC          ABS, DBLE, CONJG, DIMAG, MAX
 C     ..
 C     .. Statement Functions ..
       DOUBLE PRECISION   CABS1
@@ -196,7 +196,7 @@ C           Multiply by inv(L').
 C
             DO 30 J = N - 1, 1, -1
                ZWORK( J ) = ZWORK( J ) -
-     $                      DCONJG( H( J+1, J ) ) * ZWORK( J+1 )
+     $                      CONJG( H( J+1, J ) ) * ZWORK( J+1 )
                JP = IPIV( J )
                IF( JP.NE.J ) THEN
                   T = ZWORK( JP )

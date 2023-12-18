@@ -169,7 +169,7 @@ C     .. External Subroutines ..
      $                  ZLARTG, ZLASCL, ZLATRS, ZROT, ZSCAL, ZSWAP,
      $                  ZTRMV
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DBLE, DCONJG, MAX, SQRT
+      INTRINSIC         ABS, DBLE, CONJG, MAX, SQRT
 C     .. Executable Statements ..
 C
       INFO = 0
@@ -269,7 +269,7 @@ C
 C
 C              Form the right-hand side in ZWORK( 1 ),..., ZWORK( n-k ).
 C
-               Z = DCONJG( S(K,K) )
+               Z = CONJG( S(K,K) )
                CALL ZCOPY( KSZ, R(K,KP1), LDR, ZWORK, 1 )
                CALL ZSCAL( KSZ, -ALPHA, ZWORK, 1 )
                IF ( DISCR ) THEN
@@ -460,7 +460,7 @@ C
 C              Form the right-hand side in ZWORK( 1 ),...,
 C              ZWORK( k - 1 ).
 C
-               Z = DCONJG( S(K,K) )
+               Z = CONJG( S(K,K) )
                CALL ZCOPY( KSZ, R(1,K), 1, ZWORK, 1 )
                CALL ZSCAL( KSZ, -ALPHA, ZWORK, 1 )
                IF ( DISCR ) THEN
@@ -562,12 +562,12 @@ C                       (                      )
 C
                DO 130 I = KSZ, 1, -1
                   X = R(I,I)
-                  Z = DCONJG( ZWORK(I) )
+                  Z = CONJG( ZWORK(I) )
                   CALL ZLARTG( X, Z, C, SN, TMP )
                   R(I,I) = TMP
                   IF ( I.GT.1 )
      $               CALL ZROT( I-1, R(1,I), 1, ZWORK, 1,  C,
-     $                          DCONJG( SN ) )
+     $                          CONJG( SN ) )
   130          CONTINUE
 C
 C              Make main diagonal elements of  R(1:K-1,1:K-1)  positive.

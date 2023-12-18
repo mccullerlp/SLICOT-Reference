@@ -230,7 +230,7 @@ C     .. External Subroutines ..
       EXTERNAL           MB03DZ, MB03HZ, XERBLA, ZGEQRF, ZLASET, ZROT
 C
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCONJG, DIMAG, MAX, MIN, MOD
+      INTRINSIC          ABS, DBLE, CONJG, DIMAG, MAX, MIN, MOD
 C
 C     .. Executable Statements ..
 C
@@ -327,11 +327,11 @@ C              Update A and D.
 C
                CALL ZROT( J, A( 1, J+1 ), 1, A( 1, J ), 1, CO1, SI1 )
                A( J, J )     = CO2*A( J, J ) +
-     $                         SI2*A( J+1, J+1 )*DCONJG( SI1 )
+     $                         SI2*A( J+1, J+1 )*CONJG( SI1 )
                A( J+1, J+1 ) = CO1*A( J+1, J+1 )
 C
-               CJF = -DCONJG( D( J, J+1 ) )
-               TMP = CO2*CJF - DCONJG( SI2 )*D( J+1, J+1 )
+               CJF = -CONJG( D( J, J+1 ) )
+               TMP = CO2*CJF - CONJG( SI2 )*D( J+1, J+1 )
                CALL ZROT( J, D( 1, J+1 ), 1, D( 1, J ), 1, CO2, SI2 )
                D( J, J )     = CO2*D( J, J )     - SI2*TMP
                D( J+1, J+1 ) = CO2*D( J+1, J+1 ) + SI2*CJF
@@ -340,11 +340,11 @@ C              Update B and F.
 C
                CALL ZROT( J, B( 1, J+1 ), 1, B( 1, J ), 1, CO1, SI1 )
                B( J, J )     = CO2*B( J, J ) +
-     $                         SI2*B( J+1, J+1 )*DCONJG( SI1 )
+     $                         SI2*B( J+1, J+1 )*CONJG( SI1 )
                B( J+1, J+1 ) = CO1*B( J+1, J+1 )
 C
-               CJF = DCONJG( F( J, J+1 ) )
-               TMP = CO2*CJF - DCONJG( SI2 )*F( J+1, J+1 )
+               CJF = CONJG( F( J, J+1 ) )
+               TMP = CO2*CJF - CONJG( SI2 )*F( J+1, J+1 )
                CALL ZROT( J, F( 1, J+1 ), 1, F( 1, J ), 1, CO2, SI2 )
                F( J, J )     = CO2*F( J, J )     - SI2*TMP
                F( J+1, J+1 ) = CO2*F( J+1, J+1 ) + SI2*CJF
@@ -524,13 +524,13 @@ C              Update A and D.
 C
                CALL ZROT( J, A( 1, J+1 ), 1, A( 1, J ), 1, CO1, SI1 )
                A( J, J )     = CO2*A( J, J ) +
-     $                         SI2*A( J+1, J+1 )*DCONJG( SI1 )
+     $                         SI2*A( J+1, J+1 )*CONJG( SI1 )
                A( J+1, J+1 ) = CO1*A( J+1, J+1 )
                CALL ZROT( MP-J-1, A( J, J+1 ), LDA, A( J+1, J+1 ), LDA,
      $                    CO2, -SI2 )
 C
-               CJF = -DCONJG( D( J, J+1 ) )
-               TMP = CO2*CJF - DCONJG( SI2 )*D( J+1, J+1 )
+               CJF = -CONJG( D( J, J+1 ) )
+               TMP = CO2*CJF - CONJG( SI2 )*D( J+1, J+1 )
                CALL ZROT( J, D( 1, J+1 ), 1, D( 1, J ), 1, CO2, SI2 )
                D( J, J )     = CO2*D( J, J )     - SI2*TMP
                D( J+1, J+1 ) = CO2*D( J+1, J+1 ) + SI2*CJF
@@ -541,13 +541,13 @@ C              Update B and F.
 C
                CALL ZROT( J, B( 1, J+1 ), 1, B( 1, J ), 1, CO1, SI1 )
                B( J, J )     = CO2*B( J, J ) +
-     $                         SI2*B( J+1, J+1 )*DCONJG( SI1 )
+     $                         SI2*B( J+1, J+1 )*CONJG( SI1 )
                B( J+1, J+1 ) = CO1*B( J+1, J+1 )
                CALL ZROT( MP-J-1, B( J, J+1 ), LDB, B( J+1, J+1 ), LDB,
      $                    CO2, -SI2 )
 C
-               CJF = DCONJG( F( J, J+1 ) )
-               TMP = CO2*CJF - DCONJG( SI2 )*F( J+1, J+1 )
+               CJF = CONJG( F( J, J+1 ) )
+               TMP = CO2*CJF - CONJG( SI2 )*F( J+1, J+1 )
                CALL ZROT( J, F( 1, J+1 ), 1, F( 1, J ), 1, CO2, SI2 )
                F( J, J )     = CO2*F( J, J )     - SI2*TMP
                F( J+1, J+1 ) = CO2*F( J+1, J+1 ) + SI2*CJF
@@ -644,17 +644,17 @@ C
 C
 C        Update A and D.
 C
-         TMP = DCONJG( A( M, M ) )
+         TMP = CONJG( A( M, M ) )
          CALL ZROT( M, D( 1, M ), 1, A( 1, M ), 1, CO1, SI1 )
-         A( M, M ) = A( M, M )*CO1 + TMP*DCONJG( SI1 )**2
-         D( M, M ) = D( M, M )*CO1 - TMP*DCONJG( SI1 )*CO1
+         A( M, M ) = A( M, M )*CO1 + TMP*CONJG( SI1 )**2
+         D( M, M ) = D( M, M )*CO1 - TMP*CONJG( SI1 )*CO1
 C
 C        Update B and F.
 C
-         TMP = -DCONJG( B( M, M ) )
+         TMP = -CONJG( B( M, M ) )
          CALL ZROT( M, F( 1, M ), 1, B( 1, M ), 1, CO1, SI1 )
-         B( M, M ) = B( M, M )*CO1 + TMP*DCONJG( SI1 )**2
-         F( M, M ) = F( M, M )*CO1 - TMP*DCONJG( SI1 )*CO1
+         B( M, M ) = B( M, M )*CO1 + TMP*CONJG( SI1 )**2
+         F( M, M ) = F( M, M )*CO1 - TMP*CONJG( SI1 )*CO1
 C
          IF( LCMPQ ) THEN
 C
@@ -682,11 +682,11 @@ C           Update A and D.
 C
             CALL ZROT( J, A( 1, J+1 ), 1, A( 1, J ), 1, CO1, SI1 )
             A( J, J )     = CO2*A( J, J ) +
-     $                      SI2*A( J+1, J+1 )*DCONJG( SI1 )
+     $                      SI2*A( J+1, J+1 )*CONJG( SI1 )
             A( J+1, J+1 ) = CO1*A( J+1, J+1 )
 C
-            CJF = -DCONJG( D( J, J+1 ) )
-            TMP = CO2*CJF - DCONJG( SI2 )*D( J+1, J+1 )
+            CJF = -CONJG( D( J, J+1 ) )
+            TMP = CO2*CJF - CONJG( SI2 )*D( J+1, J+1 )
             CALL ZROT( J, D( 1, J+1 ), 1, D( 1, J ), 1, CO2, SI2 )
             D( J, J )     = CO2*D( J, J )     - SI2*TMP
             D( J+1, J+1 ) = CO2*D( J+1, J+1 ) + SI2*CJF
@@ -695,11 +695,11 @@ C           Update B and F.
 C
             CALL ZROT( J, B( 1, J+1 ), 1, B( 1, J ), 1, CO1, SI1 )
             B( J, J )     = CO2*B( J, J ) +
-     $                      SI2*B( J+1, J+1 )*DCONJG( SI1 )
+     $                      SI2*B( J+1, J+1 )*CONJG( SI1 )
             B( J+1, J+1 ) = CO1*B( J+1, J+1 )
 C
-            CJF = DCONJG( F( J, J+1 ) )
-            TMP = CO2*CJF - DCONJG( SI2 )*F( J+1, J+1 )
+            CJF = CONJG( F( J, J+1 ) )
+            TMP = CO2*CJF - CONJG( SI2 )*F( J+1, J+1 )
             CALL ZROT( J, F( 1, J+1 ), 1, F( 1, J ), 1, CO2, SI2 )
             F( J, J )     = CO2*F( J, J )     - SI2*TMP
             F( J+1, J+1 ) = CO2*F( J+1, J+1 ) + SI2*CJF

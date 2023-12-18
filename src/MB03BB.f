@@ -122,7 +122,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL          DLADIV, ZLARTG, ZROT
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DCMPLX, DCONJG, DBLE, DIMAG, DREAL, INT,
+      INTRINSIC         ABS, DCMPLX, CONJG, DBLE, DIMAG, DREAL, INT,
      $                  LOG, MAX, MIN, MOD, SQRT
 C
 C     .. Executable Statements ..
@@ -196,9 +196,9 @@ C
                Z(2,3) = DCMPLX( DWORK(PDW+5), DWORK(PDW+6) )
                Z(3,3) = DCMPLX( DWORK(PDW+7), DWORK(PDW+8) )
                IF ( S(AMAP(I)).EQ.SINV ) THEN
-                  CALL ZROT( 3, Z(1,1), 1, Z(1,3), 1, CST, DCONJG( SNT )
+                  CALL ZROT( 3, Z(1,1), 1, Z(1,3), 1, CST, CONJG( SNT )
      $                      )
-                  CALL ZROT( 3, Z(1,1), 1, Z(1,2), 1, CS,  DCONJG( SN )
+                  CALL ZROT( 3, Z(1,1), 1, Z(1,2), 1, CS,  CONJG( SN )
      $                      )
                   CALL ZLARTG( Z(1,1), Z(3,1), CST, SNT, TEMP )
                   CALL ZLARTG( TEMP, Z(2,1), CS, SN, TEMP )
@@ -208,7 +208,7 @@ C
                   TEMP = Z(3,3)
                   CALL ZLARTG( TEMP, Z(3,1), CST, SNT, Z(3,3) )
                   SNT = -SNT
-                  CALL ZROT( 2, Z(1,1), 1, Z(1,3), 1, CST, DCONJG( SNT )
+                  CALL ZROT( 2, Z(1,1), 1, Z(1,3), 1, CST, CONJG( SNT )
      $                      )
                   TEMP = Z(2,2)
                   CALL ZLARTG( TEMP, Z(2,1), CS, SN, Z(2,2) )
@@ -223,8 +223,8 @@ C
             Z(2,2) =  CZERO
             Z(1,3) = -DCMPLX( DWORK(PDW+7), DWORK(PDW+8) )
             Z(2,3) =  CZERO
-            CALL ZROT( 2, Z(1,1), 1, Z(1,3), 1, CST, DCONJG( SNT ) )
-            CALL ZROT( 2, Z(1,1), 1, Z(1,2), 1, CS,  DCONJG( SN ) )
+            CALL ZROT( 2, Z(1,1), 1, Z(1,3), 1, CST, CONJG( SNT ) )
+            CALL ZROT( 2, Z(1,1), 1, Z(1,2), 1, CS,  CONJG( SN ) )
             CALL ZLARTG( Z(1,1), Z(2,1), CS, SN, TEMP )
          END IF
          CST = CS
@@ -238,7 +238,7 @@ C
             T(1,2) = DCMPLX( DWORK(PDW+5), DWORK(PDW+6) )
             T(2,2) = DCMPLX( DWORK(PDW+7), DWORK(PDW+8) )
             IF ( S(AMAP(I)).EQ.SINV) THEN
-               CALL ZROT( 2, T(1,1), 1, T(1,2), 1, CS, DCONJG( SN ) )
+               CALL ZROT( 2, T(1,1), 1, T(1,2), 1, CS, CONJG( SN ) )
                TEMP = T(1,1)
                CALL ZLARTG( TEMP, T(2,1), CS, SN, T(1,1) )
                T(2,1) = CZERO
@@ -249,7 +249,7 @@ C
                CALL ZLARTG( TEMP, T(2,1), CS, SN, T(2,2) )
                T(2,1) = CZERO
                SN = -SN
-               CALL ZROT( 1, T(1,1), 1, T(1,2), 1, CS, DCONJG( SN ) )
+               CALL ZROT( 1, T(1,1), 1, T(1,2), 1, CS, CONJG( SN ) )
             END IF
             DWORK(PDW+1) = DREAL( T(1,1) )
             DWORK(PDW+2) = DIMAG( T(1,1) )
@@ -267,7 +267,7 @@ C
          T(1,2) = DCMPLX( DWORK(PDW+5), DWORK(PDW+6) )
          T(2,2) = DCMPLX( DWORK(PDW+7), DWORK(PDW+8) )
          CALL ZROT( 2, T(1,1), 2, T(2,1), 2, CST, SNT )
-         CALL ZROT( 2, T(1,1), 1, T(1,2), 1, CS, DCONJG( SN ) )
+         CALL ZROT( 2, T(1,1), 1, T(1,2), 1, CS, CONJG( SN ) )
          DWORK(PDW+1) = DREAL( T(1,1) )
          DWORK(PDW+2) = DIMAG( T(1,1) )
          DWORK(PDW+3) = DREAL( T(2,1) )

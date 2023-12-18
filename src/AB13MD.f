@@ -206,7 +206,7 @@ C     .. External Subroutines ..
      $                   ZLASCL
 C     ..
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCMPLX, DCONJG, DIMAG, DREAL, INT,
+      INTRINSIC          ABS, DBLE, DCMPLX, CONJG, DIMAG, DREAL, INT,
      $                   LOG, MAX, SQRT
 C     ..
 C     .. Executable Statements ..
@@ -609,9 +609,9 @@ C
                   TEMPIJ = ZWORK( IZ3+I+(J-1)*N )
                   TEMPJI = ZWORK( IZ3+J+(I-1)*N )
                   ZWORK( IZ4+I+(J-1)*N ) = CIMAG*( TEMPIJ -
-     $                                             DCONJG( TEMPJI ) )
+     $                                             CONJG( TEMPJI ) )
                   ZWORK( IZ4+J+(I-1)*N ) = CIMAG*( TEMPJI -
-     $                                             DCONJG( TEMPIJ ) )
+     $                                             CONJG( TEMPIJ ) )
   330          CONTINUE
   340       CONTINUE
 C
@@ -1261,7 +1261,7 @@ C
                DO 940 J = 1, N
                   DO 930 I = 1, N
                      ZWORK( IZ23+I+(J-1)*N ) =
-     $                              DCONJG( ZWORK( IZ22+J+(I-1)*N ) )
+     $                              CONJG( ZWORK( IZ22+J+(I-1)*N ) )
   930             CONTINUE
   940          CONTINUE
                CALL ZGEMV( 'C', N*N, K, CONE, ZWORK( IZ20+1 ), N*N,
@@ -1269,7 +1269,7 @@ C
      $                     1 )
                DO 950 J = 1, K
                   DWORK( IW11+K+(J-1)*MT ) =
-     $                               DREAL( DCONJG( ZWORK( IZ24+J ) ) )
+     $                               DREAL( CONJG( ZWORK( IZ24+J ) ) )
   950          CONTINUE
   960       CONTINUE
             DO 970 I = 1, M-1
@@ -1452,7 +1452,7 @@ C
          DO 1280 J = 1, N
             DO 1270 I = 1, N
                ZWORK( IZ21+I+(J-1)*N ) = DCMPLX( DWORK( IW24+I ) )*
-     $                                 DCONJG( ZWORK( IZ17+J+(I-1)*N ) )
+     $                                 CONJG( ZWORK( IZ17+J+(I-1)*N ) )
  1270       CONTINUE
  1280    CONTINUE
          CALL ZGEMV( 'C', N*N, MT, CONE, ZWORK( IZ20+1 ), N*N,

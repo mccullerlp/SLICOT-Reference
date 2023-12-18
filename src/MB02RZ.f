@@ -100,7 +100,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL           XERBLA, ZAXPY, ZSWAP, ZTRSM
 C     .. Intrinsic Functions ..
-      INTRINSIC          DCONJG, MAX
+      INTRINSIC          CONJG, MAX
 C     .. Executable Statements ..
 C
 C     Test the input parameters.
@@ -184,7 +184,7 @@ C
 C        Solve L**H * X = B, overwriting B with X.
 C
          DO 30 J = N - 1, 1, -1
-            CALL ZAXPY( NRHS, -DCONJG( H( J+1, J ) ), B( J+1, 1 ), LDB,
+            CALL ZAXPY( NRHS, -CONJG( H( J+1, J ) ), B( J+1, 1 ), LDB,
      $                  B( J, 1 ), LDB )
             JP = IPIV( J )
             IF( JP.NE.J )

@@ -67,7 +67,7 @@ C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME
 C     .. Intrinsic Functions ..
-      INTRINSIC          DCONJG, MIN
+      INTRINSIC          CONJG, MIN
 C
 C     .. Executable Statements ..
 C
@@ -95,19 +95,19 @@ C
          IF( LSAME( JOB, 'U' ) ) THEN
             DO 80 J = 1, N
                DO 70 I = 1, MIN( J, M )
-                  B(J,I) = DCONJG( A(I,J) )
+                  B(J,I) = CONJG( A(I,J) )
    70          CONTINUE
    80       CONTINUE
          ELSE IF( LSAME( JOB, 'L' ) ) THEN
             DO 100 J = 1, N
                DO 90 I = J, M
-                  B(J,I) = DCONJG( A(I,J) )
+                  B(J,I) = CONJG( A(I,J) )
    90          CONTINUE
   100       CONTINUE
          ELSE
             DO 120 J = 1, N
                DO 110 I = 1, M
-                  B(J,I) = DCONJG( A(I,J) )
+                  B(J,I) = CONJG( A(I,J) )
   110          CONTINUE
   120       CONTINUE
          END IF

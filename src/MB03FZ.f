@@ -390,7 +390,7 @@ C     .. External Subroutines ..
      $                   ZLACPY, ZSCAL, ZUNGQR
 C
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCMPLX, DCONJG, DIMAG, INT, MAX,
+      INTRINSIC          ABS, DBLE, DCMPLX, CONJG, DIMAG, INT, MAX,
      $                   MIN, MOD, SQRT
 C
 C     .. Executable Statements ..
@@ -814,10 +814,10 @@ C
             CALL ZLACPY( 'Upper', 2, 2, Z( J, J ), LDZ, ZWORK( IZ11 ),
      $                   2 )
             ZWORK( IZ11+1 ) = CZERO
-            ZWORK( IZ22 )   = DCONJG( C( J, J ) )
+            ZWORK( IZ22 )   = CONJG( C( J, J ) )
             ZWORK( IZ22+1 ) = CZERO
-            ZWORK( IZ22+2 ) = DCONJG( C( J+1, J ) )
-            ZWORK( IZ22+3 ) = DCONJG( C( J+1, J+1 ) )
+            ZWORK( IZ22+2 ) = CONJG( C( J+1, J ) )
+            ZWORK( IZ22+3 ) = CONJG( C( J+1, J+1 ) )
 C
             CALL MB03BZ( 'Schur form', 'Initialize', 3, 2, 1, 2, IWORK,
      $                   ZWORK( IB ), 2, 2, ZWORK( IQ2 ), 2, 2,
@@ -856,10 +856,10 @@ C
 C
 C           Similarly, update C.
 C
-            C( J,   J   ) = DCONJG( ZWORK( IZ22 ) )
-            C( J+1, J   ) = DCONJG( ZWORK( IZ22+2 ) )
+            C( J,   J   ) = CONJG( ZWORK( IZ22 ) )
+            C( J+1, J   ) = CONJG( ZWORK( IZ22+2 ) )
             C( J,   J+1 ) = CZERO
-            C( J+1, J+1 ) = DCONJG( ZWORK( IZ22+3 ) )
+            C( J+1, J+1 ) = CONJG( ZWORK( IZ22+3 ) )
             CALL ZGEMM(  'No Transpose', 'No Transpose', N-J-1, 2, 2,
      $                   CONE, C( JP2, J ), LDC, ZWORK( IQ2 ), 2, CZERO,
      $                   ZWORK( IWRK ), NJ1 )

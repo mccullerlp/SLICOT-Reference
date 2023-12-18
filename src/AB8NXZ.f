@@ -187,7 +187,7 @@ C     .. External Subroutines ..
       EXTERNAL          MB3OYZ, MB3PYZ, XERBLA, ZLAPMT, ZLARFG, ZLASET,
      $                  ZLATZM, ZUNMQR, ZUNMRQ
 C     .. Intrinsic Functions ..
-      INTRINSIC         DCONJG, INT, MAX, MIN
+      INTRINSIC         CONJG, INT, MAX, MIN
 C     .. Executable Statements ..
 C
       NP   = N + P
@@ -299,7 +299,7 @@ C
                CALL ZLARFG( RO+1, ABCD(IROW,I1), ABCD(IROW+1,I1), 1,
      $                      TC )
                CALL ZLATZM( 'L', RO+1, MNU-I1, ABCD(IROW+1,I1), 1,
-     $                      DCONJG( TC ), ABCD(IROW,I1+1),
+     $                      CONJG( TC ), ABCD(IROW,I1+1),
      $                      ABCD(IROW+1,I1+1), LDABCD, ZWORK )
                IROW = IROW + 1
    40       CONTINUE

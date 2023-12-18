@@ -179,7 +179,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL          XERBLA, ZLACPY, ZLARTG, ZLASET, ZROT
 C     .. Intrinsic Functions ..
-      INTRINSIC         DCONJG, MAX
+      INTRINSIC         CONJG, MAX
 C     .. Executable Statements ..
 C
       UNITE = LSAME( JOBE,  'I' )
@@ -247,11 +247,11 @@ C
             B(K)   = ZERO
             CALL ZROT( N, A(K-1,1), LDA, A(K,1), LDA, CS, SN )
             IF ( WITHQ )
-     $         CALL ZROT( N, Q(1,K-1), 1, Q(1,K), 1, CS, DCONJG( SN ) )
+     $         CALL ZROT( N, Q(1,K-1), 1, Q(1,K), 1, CS, CONJG( SN ) )
             IF ( UNITE ) THEN
-               CALL ZROT( N, A(1,K-1), 1, A(1,K), 1, CS, DCONJG( SN ) )
+               CALL ZROT( N, A(1,K-1), 1, A(1,K), 1, CS, CONJG( SN ) )
                IF ( WITHC ) THEN
-                  TEMP  = C(IC)*DCONJG( SN ) + C(IC-INCC)*CS
+                  TEMP  = C(IC)*CONJG( SN ) + C(IC-INCC)*CS
                   C(IC) = C(IC)*CS           - C(IC-INCC)*SN
                   IC    = IC - INCC
                   C(IC) = TEMP
@@ -263,33 +263,33 @@ C
      $                            LDZ )
                   ELSE
                      CALL ZROT( N, Z(1,K-1), 1, Z(1,K), 1, CS,
-     $                          DCONJG( SN ) )
+     $                          CONJG( SN ) )
                   END IF
                END IF
             ELSE
-               E(K,K-1)   = DCONJG( SN )*E(K-1,K-1)
+               E(K,K-1)   = CONJG( SN )*E(K-1,K-1)
                E(K-1,K-1) =           CS*E(K-1,K-1)
                CALL ZROT( N-K+1, E(K-1,K), LDE, E(K,K), LDE, CS, SN )
                IF ( E(K,K-1).NE.ZERO ) THEN
                   CALL ZLARTG( E(K,K), E(K,K-1), CS, SN, TEMP )
                   E(K,K)     = TEMP
                   E(K,K-1)   = ZERO
-                  TEMP       = E(K-1,K)*DCONJG( SN ) + E(K-1,K-1)*CS
+                  TEMP       = E(K-1,K)*CONJG( SN ) + E(K-1,K-1)*CS
                   E(K-1,K)   = E(K-1,K)*CS - E(K-1,K-1)*SN
                   E(K-1,K-1) = TEMP
                   CALL ZROT( K-2, E(1,K-1), 1, E(1,K), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                   CALL ZROT( N,   A(1,K-1), 1, A(1,K), 1, CS,
-     $                       DCONJG( SN ) )
+     $                       CONJG( SN ) )
                   IF ( WITHC ) THEN
-                     TEMP  = C(IC)*DCONJG( SN ) + C(IC-INCC)*CS
+                     TEMP  = C(IC)*CONJG( SN ) + C(IC-INCC)*CS
                      C(IC) = C(IC)*CS           - C(IC-INCC)*SN
                      IC    = IC - INCC
                      C(IC) = TEMP
                   END IF
                   IF ( WITHZ )
      $               CALL ZROT( N, Z(1,K-1), 1, Z(1,K), 1, CS,
-     $                          DCONJG( SN ) )
+     $                          CONJG( SN ) )
                END IF
             END IF
          END IF

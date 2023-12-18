@@ -143,7 +143,7 @@ C     .. Local Scalars ..
 C     .. External Subroutines ..
       EXTERNAL          XERBLA, ZGEQRF, ZLARF, ZLARFG, ZUNMQR
 C     .. Intrinsic Functions ..
-      INTRINSIC         DCONJG, INT, MAX, MIN
+      INTRINSIC         CONJG, INT, MAX, MIN
 C     .. Executable Statements ..
 C
 C     Test the input scalar arguments.
@@ -224,10 +224,10 @@ C
             A(I,I) = ONE
 C
             IF ( I.LT.M ) CALL ZLARF( 'Left', N-P, M-I, A(I,I), 1,
-     $                                DCONJG( TAU(I) ), A(I,I+1), LDA,
+     $                                CONJG( TAU(I) ), A(I,I+1), LDA,
      $                                ZWORK )
             IF ( L.GT.0 ) CALL ZLARF( 'Left', N-P, L, A(I,I), 1,
-     $                                DCONJG( TAU(I) ), B(I,1), LDB,
+     $                                CONJG( TAU(I) ), B(I,1), LDB,
      $                                ZWORK )
 C
             A(I,I) = FIRST

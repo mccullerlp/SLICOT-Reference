@@ -256,7 +256,7 @@ C     .. External Subroutines ..
      $                  ZLACGV, ZLARFG, ZLARTG, ZLASCL, ZLATRS, ZROT,
      $                  ZSCAL, ZSTEIN, ZTRMV
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DBLE, DCMPLX, DCONJG, MAX, SQRT
+      INTRINSIC         ABS, DBLE, DCMPLX, CONJG, MAX, SQRT
 C     .. Executable Statements ..
 C
 C     Decode input parameter.
@@ -376,7 +376,7 @@ C
 C
                DO 10 J = KL1, N
                   ZWORK(I) = DCMPLX( UII )*ZWORK(I) -
-     $                       DCMPLX( M2  )*DCONJG( B(KL,J) )
+     $                       DCMPLX( M2  )*CONJG( B(KL,J) )
                   I = I + 1
    10          CONTINUE
 C
@@ -402,7 +402,7 @@ C
 C
 C              Restore the diagonal of A22.
 C
-               A(KL,KL) = DCONJG( A(KL,KL) )
+               A(KL,KL) = CONJG( A(KL,KL) )
                CALL ZCOPY( N-KL, ZWORK(APT+KL-1), 1, A(KL1,KL1), LDA+1 )
 C
 C              STEP III: Form the right hand side matrix
@@ -414,7 +414,7 @@ C              Compute auxiliary matrices M3 and Y. The factorization
 C              M3 = M3C * M3C**H is found by solving the special
 C              symmetric eigenvalue problem. (D is the diagonal of M3.)
 C
-               M3(1,2) = -M2*DCONJG( M1 )
+               M3(1,2) = -M2*CONJG( M1 )
 C
                X = M3(1,2)
                CALL ZLARFG( 1, X, M3(1,2), 1, Z )
@@ -439,7 +439,7 @@ C
      $                      ZWORK(WPT), 1 )
                CALL ZSCAL(  N-KL, M3C(2,1), ZWORK(WPT), 1 )
                CALL ZLACGV( N-KL, ZWORK(WPT), 1 )
-               CALL ZAXPY(  N-KL, DCONJG( M3C(1,1) ), B(KL,KL1), LDB,
+               CALL ZAXPY(  N-KL, CONJG( M3C(1,1) ), B(KL,KL1), LDB,
      $                      ZWORK(WPT), 1 )
 C
 C              Overwrite B(KL+1:N,KL+1:N) with the triangular matrix
@@ -521,7 +521,7 @@ C
 C
             IF ( KL.GT.1 ) THEN
 C
-               M1 = DCONJG( A(KL,KL) )/DBLE( E(KL,KL) )
+               M1 = CONJG( A(KL,KL) )/DBLE( E(KL,KL) )
                M2 =             DELTA1/DBLE( E(KL,KL) )
 C
 C              STEP II: Compute U(1:KL,KL) by solving a linear system
@@ -575,7 +575,7 @@ C              Compute auxiliary matrices M3 and Y. The factorization
 C              M3 = M3C * M3C**H is found by solving the special
 C              symmetric eigenvalue problem. (D is the diagonal of M3.)
 C
-               M3(1,2) = -M2*DCONJG( M1 )
+               M3(1,2) = -M2*CONJG( M1 )
 C
                X = M3(1,2)
                CALL ZLARFG( 1, X, M3(1,2), 1, Z )
