@@ -300,8 +300,8 @@ C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DSCAL, MA02NZ, XERBLA, ZDSCAL,
      $                   ZSWAP
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, CONJG, DIMAG, INT, LOG10, MAX, MIN,
-     $                   SIGN, SQRT
+      INTRINSIC          ABS, DBLE, CONJG, INT, LOG10, MAX, MIN,
+     $     SIGN, SQRT, IMAGPART
 C
 C     .. Executable Statements ..
 C
@@ -389,7 +389,7 @@ C           WHILE ( I.LE.N .AND. ILO.EQ.ILOOLD )
                      GOTO 20
                   END IF
    50          CONTINUE
-               IF( DIMAG( DE(I,I) ).NE.ZERO ) THEN
+               IF( IMAGPART( DE(I,I) ).NE.ZERO ) THEN
                   I = I + 1
                   GOTO 20
                END IF
@@ -453,7 +453,7 @@ C           WHILE ( I.LE.N .AND. ILO.EQ.ILOOLD )
                      GOTO 70
                   END IF
   100          CONTINUE
-               IF( DIMAG( DE(I,I+1) ).NE.ZERO ) THEN
+               IF( IMAGPART( DE(I,I+1) ).NE.ZERO ) THEN
                   I = I + 1
                   GOTO 70
                END IF
@@ -481,7 +481,7 @@ C
                   DO 120 J = I+1, N
                      A( I,J) = CONJG( A(I,J) )
                      DE(J,I) = DCMPLX( -DBLE( DE(J,I) ),
-     $                                 DIMAG( DE(J,I) ) )
+     $                                 IMAGPART( DE(J,I) ) )
   120             CONTINUE
                END IF
                CALL ZSWAP( I-1, A(1,I), 1, DE(1,I+1), 1 )
@@ -491,7 +491,7 @@ C
                   DO 130 J = I+1, N
                      A( J,I)   = CONJG( A(J,I) )
                      DE(I,J+1) = DCMPLX( -DBLE( DE(I,J+1) ),
-     $                                   DIMAG( DE(I,J+1) ) )
+     $                                   IMAGPART( DE(I,J+1) ) )
   130             CONTINUE
                END IF
                A(I,I)    = CONJG( A(I,I) )
@@ -506,7 +506,7 @@ C
                   DO 140 J = I+1, N
                      VW(J,I) = CONJG( VW(J,I) )
                      C( I,J) = DCMPLX( -DBLE( C(I,J) ),
-     $                                 DIMAG( C(I,J) ) )
+     $                                 IMAGPART( C(I,J) ) )
   140             CONTINUE
                END IF
                CALL ZSWAP( I-1, C(1,I), 1, VW(1,I+1), 1 )
@@ -516,7 +516,7 @@ C
                   DO 150 J = I+1, N
                      VW(I,J+1) = CONJG( VW(I,J+1) )
                      C( J,I)   = DCMPLX( -DBLE( C(J,I) ),
-     $                                   DIMAG( C(J,I) ) )
+     $                                   IMAGPART( C(J,I) ) )
   150             CONTINUE
                END IF
                C(I,I)    = -CONJG( C(I,I) )

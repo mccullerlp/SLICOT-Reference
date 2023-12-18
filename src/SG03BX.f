@@ -194,7 +194,7 @@ C     .. External Subroutines ..
       EXTERNAL          DLABAD, DLADIV, DLAG2, DLASV2, SG03BR, ZLARFG,
      $                  ZSTEIN
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DBLE, DCMPLX, DIMAG, MAX, MIN, SQRT
+      INTRINSIC         ABS, DBLE, DCMPLX, IMAGPART, MAX, MIN, SQRT
 C
 C     Decode input parameters.
 C
@@ -680,7 +680,7 @@ C
             END IF
 C
             V  =  DBLE( M3C(1,1) )*( ONE - DBLE( ZS ) )
-            W  = -DBLE( M3C(1,1) )*DIMAG( ZS )
+            W  = -DBLE( M3C(1,1) )*IMAGPART( ZS )
             T  =  DBLE( M3C(2,1) )
             YR =  V*BR12 + W*BI12 + T*XR
             YI =  V*BI12 - W*BR12 + T*XI

@@ -158,7 +158,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL          DLABAD, ZGEMV
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DBLE, DIMAG, MAX
+      INTRINSIC         ABS, DBLE, IMAGPART, MAX
 C     .. Executable Statements ..
 C
 C     For efficiency reasons, this routine does not check the input
@@ -211,13 +211,13 @@ C
                C11 = C11 + ZDOTU( M-K, A(K,K1), LDA, C(K1,L), 1 )
             ENDIF
             A11  = B( L, L ) - A( K, K )
-            AA11 = ABS( DBLE( A11 ) ) + ABS( DIMAG( A11 ) )
+            AA11 = ABS( DBLE( A11 ) ) + ABS( IMAGPART( A11 ) )
             IF( AA11.LE.SMIN ) THEN
                A11  = SMIN
                AA11 = SMIN
                INFO = 2
             END IF
-            AC11 = ABS( DBLE( C11 ) ) + ABS( DIMAG( C11 ) )
+            AC11 = ABS( DBLE( C11 ) ) + ABS( IMAGPART( C11 ) )
             IF( AA11.LT.ONE .AND. AC11.GT.ONE ) THEN
                IF( AC11.GT.BIGNUM*AA11 ) THEN
                   INFO = 1

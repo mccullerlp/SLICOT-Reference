@@ -206,8 +206,8 @@ C     .. External Subroutines ..
      $                   ZLASCL
 C     ..
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCMPLX, CONJG, DIMAG, DREAL, INT,
-     $                   LOG, MAX, SQRT
+      INTRINSIC          ABS, DBLE, DCMPLX, CONJG, IMAGPART, INT,
+     $                   LOG, MAX, SQRT, REALPART
 C     ..
 C     .. Executable Statements ..
 C
@@ -293,7 +293,7 @@ C
 C
 C           1-by-1 real block.
 C
-            IF( DIMAG( Z( 1, 1 ) ).NE.ZERO ) THEN
+            IF( IMAGPART( Z( 1, 1 ) ).NE.ZERO ) THEN
                BOUND = ZERO
             ELSE
                BOUND = ABS( DBLE( Z( 1, 1 ) ) )
@@ -696,11 +696,11 @@ C
          END IF
          LZA = INT( ZWORK( IZWRK+1 ) )
          LZAMAX = MAX( LZA, LZAMAX )
-         E = DREAL( ZWORK( IZ12+1 ) )
+         E = REALPART( ZWORK( IZ12+1 ) )
          IF( N.GT.1 ) THEN
             DO 440 I = 2, N
-               IF( DREAL( ZWORK( IZ12+I ) ).GT.E )
-     $                                   E = DREAL( ZWORK( IZ12+I ) )
+               IF( REALPART( ZWORK( IZ12+I ) ).GT.E )
+     $                                   E = REALPART( ZWORK( IZ12+I ) )
   440       CONTINUE
          END IF
 C
@@ -781,11 +781,11 @@ C
             END IF
             LZA = INT( ZWORK( IZWRK+1 ) )
             LZAMAX = MAX( LZA, LZAMAX )
-            EMAX = DREAL( ZWORK( IZ14+1 ) )
+            EMAX = REALPART( ZWORK( IZ14+1 ) )
             IF( N.GT.1 ) THEN
                DO 510 I = 2, N
-                  IF( DREAL( ZWORK( IZ14+I ) ).GT.EMAX )
-     $               EMAX = DREAL( ZWORK( IZ14+I ) )
+                  IF( REALPART( ZWORK( IZ14+I ) ).GT.EMAX )
+     $               EMAX = REALPART( ZWORK( IZ14+I ) )
   510          CONTINUE
             END IF
             IF( EMAX.LE.ZERO ) THEN
@@ -923,7 +923,7 @@ C
             DO 590 I = 1, 2*MT
                PROD = PROD*DWORK( IW25+I )
   590       CONTINUE
-            TEMP = DREAL( DETF )
+            TEMP = REALPART( DETF )
             IF( TEMP.LT.EPS ) TEMP = EPS
             PHI = -LOG( TEMP ) - LOG( PROD )
 C
@@ -948,7 +948,7 @@ C
   630          CONTINUE
             END IF
             DO 640 I = 1, MT
-               DWORK( IW26+I ) = -DREAL( ZWORK( IZ19+I ) ) -
+               DWORK( IW26+I ) = -REALPART( ZWORK( IZ19+I ) ) -
      $                                                   DWORK( IW26+I )
   640       CONTINUE
 C
@@ -1099,15 +1099,15 @@ C
                END IF
                LZA = INT( ZWORK( IZWRK+1 ) )
                LZAMAX = MAX( LZA, LZAMAX )
-               EMIN = DREAL( ZWORK( IZ16+1 ) )
+               EMIN = REALPART( ZWORK( IZ16+1 ) )
                IF( N.GT.1 ) THEN
                   DO 740 I = 2, N
-                     IF( DREAL( ZWORK( IZ16+I ) ).LT.EMIN )
-     $                  EMIN = DREAL( ZWORK( IZ16+I ) )
+                     IF( REALPART( ZWORK( IZ16+I ) ).LT.EMIN )
+     $                  EMIN = REALPART( ZWORK( IZ16+I ) )
   740             CONTINUE
                END IF
                DO 750 I = 1, N
-                  DWORK( IW30+I ) = DREAL( ZWORK( IZ16+I ) )
+                  DWORK( IW30+I ) = REALPART( ZWORK( IZ16+I ) )
   750          CONTINUE
                DO 760 I = 1, M-1
                   DWORK( IW30+N+I ) = DWORK( IW22+I ) - BETA
@@ -1219,7 +1219,7 @@ C
             DO 880 I = 1, 2*MT
                PROD = PROD*DWORK( IW25+I )
   880       CONTINUE
-            TEMP = DREAL( DETF )
+            TEMP = REALPART( DETF )
             IF( TEMP.LT.EPS ) TEMP = EPS
             PHI = -LOG( TEMP ) - LOG( PROD )
 C
@@ -1244,7 +1244,7 @@ C
   920          CONTINUE
             END IF
             DO 925 I = 1, MT
-               DWORK( IW26+I ) = -DREAL( ZWORK( IZ19+I ) ) -
+               DWORK( IW26+I ) = -REALPART( ZWORK( IZ19+I ) ) -
      $                                                 DWORK( IW26+I )
   925       CONTINUE
 C
@@ -1269,7 +1269,7 @@ C
      $                     1 )
                DO 950 J = 1, K
                   DWORK( IW11+K+(J-1)*MT ) =
-     $                               DREAL( CONJG( ZWORK( IZ24+J ) ) )
+     $                        REALPART( CONJG( ZWORK( IZ24+J ) ) )
   950          CONTINUE
   960       CONTINUE
             DO 970 I = 1, M-1
@@ -1388,7 +1388,7 @@ C
             LZA = INT( ZWORK( IZWRK+1 ) )
             LZAMAX = MAX( LZA, LZAMAX )
             DO 1190 I = 1, N
-               DWORK( IW30+I ) = DREAL( ZWORK( IZ16+I ) )
+               DWORK( IW30+I ) = REALPART( ZWORK( IZ16+I ) )
  1190       CONTINUE
             DO 1200 I = 1, M-1
                DWORK( IW30+N+I ) = DWORK( IW22+I ) - BETA
@@ -1458,7 +1458,7 @@ C
          CALL ZGEMV( 'C', N*N, MT, CONE, ZWORK( IZ20+1 ), N*N,
      $               ZWORK( IZ21+1 ), 1, CZERO, ZWORK( IZ24+1 ), 1 )
          DO 1300 I = 1, MT
-            DWORK( IW32+I ) = DREAL( ZWORK( IZ24+I ) )
+            DWORK( IW32+I ) = REALPART( ZWORK( IZ24+I ) )
  1300    CONTINUE
 C
 C        Compute h1.
@@ -1535,11 +1535,11 @@ C
          END IF
          LZA = INT( ZWORK( IZWRK+1 ) )
          LZAMAX = MAX( LZA, LZAMAX )
-         EMIN = DREAL( ZWORK( IZ16+1 ) )
+         EMIN = REALPART( ZWORK( IZ16+1 ) )
          IF( N.GT.1 ) THEN
             DO 1350 I = 2, N
-               IF( DREAL( ZWORK( IZ16+I ) ).LT.EMIN )
-     $            EMIN = DREAL( ZWORK( IZ16+I ) )
+               IF( REALPART( ZWORK( IZ16+I ) ).LT.EMIN )
+     $            EMIN = REALPART( ZWORK( IZ16+I ) )
  1350       CONTINUE
          END IF
          POS = .TRUE.
@@ -1625,11 +1625,11 @@ C
             END IF
             LZA = INT( ZWORK( IZWRK+1 ) )
             LZAMAX = MAX( LZA, LZAMAX )
-            EMIN = DREAL( ZWORK( IZ16+1 ) )
+            EMIN = REALPART( ZWORK( IZ16+1 ) )
             IF( N.GT.1 ) THEN
                DO 1450 I = 2, N
-                  IF( DREAL( ZWORK( IZ16+I ) ).LT.EMIN )
-     $               EMIN = DREAL( ZWORK( IZ16+I ) )
+                  IF( REALPART( ZWORK( IZ16+I ) ).LT.EMIN )
+     $               EMIN = REALPART( ZWORK( IZ16+I ) )
  1450          CONTINUE
             END IF
             POS = .TRUE.
@@ -1708,11 +1708,11 @@ C
          END IF
          LZA = INT( ZWORK( IZWRK+1 ) )
          LZAMAX = MAX( LZA, LZAMAX )
-         EMIN = DREAL( ZWORK( IZ16+1 ) )
+         EMIN = REALPART( ZWORK( IZ16+1 ) )
          IF( N.GT.1 ) THEN
             DO 1540 I = 2, N
-               IF( DREAL( ZWORK( IZ16+I ) ).LT.EMIN )
-     $            EMIN = DREAL( ZWORK( IZ16+I ) )
+               IF( REALPART( ZWORK( IZ16+I ) ).LT.EMIN )
+     $            EMIN = REALPART( ZWORK( IZ16+I ) )
  1540       CONTINUE
          END IF
          POS = .TRUE.

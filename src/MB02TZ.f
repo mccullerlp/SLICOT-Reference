@@ -114,13 +114,13 @@ C     .. External Subroutines ..
       EXTERNAL           XERBLA, ZDRSCL, ZLACON, ZLATRS
 C     ..
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, CONJG, DIMAG, MAX
+      INTRINSIC          ABS, DBLE, CONJG, IMAGPART, MAX
 C     ..
 C     .. Statement Functions ..
       DOUBLE PRECISION   CABS1
 C     ..
 C     .. Statement Function definitions ..
-      CABS1( ZDUM ) = ABS( DBLE( ZDUM ) ) + ABS( DIMAG( ZDUM ) )
+      CABS1( ZDUM ) = ABS( DBLE( ZDUM ) ) + ABS( IMAGPART( ZDUM ) )
 C     ..
 C     .. Executable Statements ..
 C

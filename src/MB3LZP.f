@@ -345,8 +345,8 @@ C     .. External Subroutines ..
      $                   ZLACPY, ZSCAL, ZUNGQR
 C
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCMPLX, DIMAG, INT, MAX, MIN, MOD,
-     $                   SQRT
+      INTRINSIC          ABS, DBLE, DCMPLX, INT, MAX, MIN, MOD,
+     $     SQRT, IMAGPART
 C
 C     .. Executable Statements ..
 C
@@ -510,7 +510,7 @@ C
    10    CONTINUE
 C
          DO 20 I = 1, M
-            DWORK( IW ) =  DIMAG( A( I, J ) )
+            DWORK( IW ) =  IMAGPART( A( I, J ) )
             DWORK( IS ) = -DWORK( IW )
             IW = IW + 1
             IS = IS + 1
@@ -531,7 +531,7 @@ C
          IW = IW + J - 1
          IS = IW
          DO 50 I = J, M
-            DWORK( IW ) = DIMAG( DE( I, J ) )
+            DWORK( IW ) = IMAGPART( DE( I, J ) )
             DWORK( IS ) = DWORK( IW )
             IW = IW + 1
             IS = IS + N
@@ -544,7 +544,7 @@ C
          IS = I1
          I1 = I1 + 1
          DO 70 I = 1, J - 1
-            DWORK( IW ) = -DIMAG( DE( I, J ) )
+            DWORK( IW ) = -IMAGPART( DE( I, J ) )
             DWORK( IS ) =  DWORK( IW )
             IW = IW + 1
             IS = IS + N
@@ -560,7 +560,7 @@ C
       DO 110 J = 1, M
          IW1 = IW
          DO 90 I = 1, M
-            DWORK( IW ) = -DIMAG( B( I, J ) )
+            DWORK( IW ) = -IMAGPART( B( I, J ) )
             IW = IW + 1
    90    CONTINUE
 C
@@ -579,7 +579,7 @@ C
       IW = IFG
       DO 140 J = 1, M + 1
          DO 120 I = 1, M
-            DWORK( IW ) = -DIMAG( FG( I, J ) )
+            DWORK( IW ) = -IMAGPART( FG( I, J ) )
             IW = IW + 1
   120    CONTINUE
 C

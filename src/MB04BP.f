@@ -403,8 +403,8 @@ C     .. External Subroutines ..
      $                   MB04BD, XERBLA
 C
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCMPLX, DIMAG, INT, MAX, MIN, MOD,
-     $                   SQRT
+      INTRINSIC          ABS, DBLE, DCMPLX, INT, MAX, MIN, MOD,
+     $     SQRT, IMAGPART
 C
 C     .. Executable Statements ..
 C
@@ -1461,7 +1461,7 @@ C
                   I11 = I11 + 1
                END IF
                EIG = SQRT( DCMPLX( ALPHAR( I ), ALPHAI( I ) ) )
-               ALPHAR( I ) = DIMAG( EIG )
+               ALPHAR( I ) = IMAGPART( EIG )
                ALPHAI( I ) = DBLE(  EIG )
                IF( ALPHAR( I ).LT.ZERO )
      $             ALPHAR( I ) = -ALPHAR( I )

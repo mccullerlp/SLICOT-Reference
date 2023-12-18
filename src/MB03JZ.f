@@ -215,7 +215,7 @@ C     .. External Subroutines ..
       EXTERNAL           MB03DZ, MB03HZ, XERBLA, ZLASET, ZROT
 C
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, CONJG, DIMAG, MAX, MIN, MOD
+      INTRINSIC          ABS, DBLE, CONJG, IMAGPART, MAX, MIN, MOD
 C
 C     .. Executable Statements ..
 C
@@ -283,7 +283,7 @@ C     I. Reorder the eigenvalues with negative real parts to the top.
 C
       DO 20 K = 1, M
          IF( DBLE(  A( K, K ) )*DBLE(  B( K, K ) ) +
-     $       DIMAG( A( K, K ) )*DIMAG( B( K, K ) ).LT.
+     $       IMAGPART( A( K, K ) )*IMAGPART( B( K, K ) ).LT.
      $       -ABS(  A( K, K ) )*ABS(   B( K, K ) )*EPS ) THEN
 C
             DO 10 J = K - 1, MM + 1, -1
@@ -345,7 +345,7 @@ C     II. Reorder the eigenvalues with positive real parts to the bottom.
 C
       DO 40 K = M, MM + 1, -1
          IF( DBLE(  A( K, K ) )*DBLE(  B( K, K ) ) +
-     $       DIMAG( A( K, K ) )*DIMAG( B( K, K ) ).GT.
+     $       IMAGPART( A( K, K ) )*IMAGPART( B( K, K ) ).GT.
      $       ABS(   A( K, K ) )*ABS(   B( K, K ) )*EPS ) THEN
 C
             DO 30 J = K, MP - 2

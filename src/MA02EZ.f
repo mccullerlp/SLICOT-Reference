@@ -72,7 +72,7 @@ C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME
 C     ..Intrinsic Functions..
-      INTRINSIC          DBLE, CONJG, DIMAG
+      INTRINSIC          DBLE, CONJG, IMAGPART
 C
 C     .. Executable Statements ..
 C
@@ -124,7 +124,7 @@ C
             ELSE
 C
                DO 100 I = 1, N
-                  A(I,I) = DIMAG( A(I,I) )
+                  A(I,I) = IMAGPART( A(I,I) )
                   DO 90 J = I+1, N
                      A(I,J) = -CONJG( A(J,I) )
    90             CONTINUE
@@ -180,7 +180,7 @@ C
             ELSE
 C
                DO 200 I = 1, N
-                  A(I,I) = DIMAG( A(I,I) )
+                  A(I,I) = IMAGPART( A(I,I) )
                   DO 190 J = I+1, N
                      A(J,I) = -CONJG( A(I,J) )
   190             CONTINUE

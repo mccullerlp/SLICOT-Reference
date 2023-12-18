@@ -114,7 +114,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL           DLASSQ, ZLASSQ
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DIMAG, MAX, SQRT
+      INTRINSIC          ABS, DBLE, IMAGPART, MAX, SQRT
 C
 C     .. Executable Statements ..
 C
@@ -132,11 +132,11 @@ C
             DO 10  I = 1, J-2
                VALUE = MAX( VALUE, ABS( QG(I,J) ) )
    10       CONTINUE
-            VALUE = MAX( VALUE, ABS( DIMAG( QG(J,J) ) ) )
+            VALUE = MAX( VALUE, ABS( IMAGPART( QG(J,J) ) ) )
             DO 20  I = J+1, N
                VALUE = MAX( VALUE, ABS( QG(I,J) ) )
    20       CONTINUE
-            VALUE = MAX( VALUE, ABS( DIMAG( QG(J,J+1) ) ) )
+            VALUE = MAX( VALUE, ABS( IMAGPART( QG(J,J+1) ) ) )
    30    CONTINUE
          DO 40  I = 1, N-1
             VALUE = MAX( VALUE, ABS( QG(I,N+1) ) )
@@ -183,7 +183,7 @@ C
 C
 C        Compute the maximal absolute column sum.
 C
-         SUM = DWORK(N+1) + ABS( DIMAG( QG(1,1) ) )
+         SUM = DWORK(N+1) + ABS( IMAGPART( QG(1,1) ) )
          DO 120 I = 2, N
             TEMP = ABS( QG(I,1) )
             SUM  = SUM + TEMP
@@ -196,8 +196,8 @@ C
                DWORK(I) = DWORK(I) + TEMP
                DWORK(J-1) = DWORK(J-1) + TEMP
   130       CONTINUE
-            DWORK(J-1) = DWORK(J-1) + ABS( DIMAG( QG(J-1,J) ) )
-            SUM = DWORK(N+J) + ABS( DIMAG( QG(J,J) ) )
+            DWORK(J-1) = DWORK(J-1) + ABS( IMAGPART( QG(J-1,J) ) )
+            SUM = DWORK(N+J) + ABS( IMAGPART( QG(J,J) ) )
             DO 140 I = J+1, N
                TEMP = ABS( QG(I,J) )
                SUM  = SUM + TEMP
@@ -210,7 +210,7 @@ C
             DWORK(I) = DWORK(I) + TEMP
             DWORK(N) = DWORK(N) + TEMP
   160    CONTINUE
-         DWORK(N) = DWORK(N) + ABS( DIMAG( QG(N,N+1) ) )
+         DWORK(N) = DWORK(N) + ABS( IMAGPART( QG(N,N+1) ) )
          DO 170 I = 1, N
             VALUE = MAX( VALUE, DWORK(I) )
   170    CONTINUE
@@ -282,26 +282,26 @@ C
 C
 C        Add normF(G) and normF(Q).
 C
-         DSCL = ABS( DIMAG( QG(1,1) ) )
+         DSCL = ABS( IMAGPART( QG(1,1) ) )
          DSUM = ONE
          IF ( N.GT.1 ) THEN
             CALL ZLASSQ( N-1, QG(2,1), 1, SCALE, SUM )
-            DUM(1) = DIMAG( QG(1,2) )
-            DUM(2) = DIMAG( QG(2,2) )
+            DUM(1) = IMAGPART( QG(1,2) )
+            DUM(2) = IMAGPART( QG(2,2) )
             CALL DLASSQ( 2, DUM, 1, DSCL, DSUM )
          END IF
          IF ( N.GT.2 )
      $      CALL ZLASSQ( N-2, QG(3,2), 1, SCALE, SUM )
          DO 280 J = 3, N
             CALL ZLASSQ( J-2, QG(1,J), 1, SCALE, SUM )
-            DUM(1) = DIMAG( QG(J-1,J) )
-            DUM(2) = DIMAG( QG(J,  J) )
+            DUM(1) = IMAGPART( QG(J-1,J) )
+            DUM(2) = IMAGPART( QG(J,  J) )
             CALL DLASSQ(   2, DUM,       1, DSCL, DSUM )
             CALL ZLASSQ( N-J, QG(J+1,J), 1, SCALE, SUM )
   280    CONTINUE
          IF ( N.GT.1 )
      $      CALL ZLASSQ( N-1, QG(1,N+1), 1, SCALE, SUM )
-         DUM(1) = DIMAG( QG(N,N+1) )
+         DUM(1) = IMAGPART( QG(N,N+1) )
          CALL DLASSQ( 1, DUM, 1, DSCL, DSUM )
          VALUE = DLAPY2( SQRT( TWO )*SCALE*SQRT( SUM ),
      $                   DSCL*SQRT( DSUM ) )

@@ -201,13 +201,13 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DSCAL, XERBLA, ZDSCAL
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DIMAG, INT, LOG10, MAX, MIN, SIGN
+      INTRINSIC          ABS, DBLE, IMAGPART, INT, LOG10, MAX, MIN, SIGN
 C     ..
 C     .. Statement Functions ..
       DOUBLE PRECISION   CABS1
 C     ..
 C     .. Statement Function definitions ..
-      CABS1( CDUM ) = ABS( DBLE( CDUM ) ) + ABS( DIMAG( CDUM ) )
+      CABS1( CDUM ) = ABS( DBLE( CDUM ) ) + ABS( IMAGPART( CDUM ) )
 C
 C     .. Executable Statements ..
 C

@@ -122,8 +122,8 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL          DLADIV, ZLARTG, ZROT
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DCMPLX, CONJG, DBLE, DIMAG, DREAL, INT,
-     $                  LOG, MAX, MIN, MOD, SQRT
+      INTRINSIC         ABS, DCMPLX, CONJG, DBLE, IMAGPART, INT,
+     $                  LOG, MAX, MIN, MOD, SQRT, REALPART
 C
 C     .. Executable Statements ..
 C
@@ -251,14 +251,14 @@ C
                SN = -SN
                CALL ZROT( 1, T(1,1), 1, T(1,2), 1, CS, CONJG( SN ) )
             END IF
-            DWORK(PDW+1) = DREAL( T(1,1) )
-            DWORK(PDW+2) = DIMAG( T(1,1) )
-            DWORK(PDW+3) = DREAL( T(2,1) )
-            DWORK(PDW+4) = DIMAG( T(2,1) )
-            DWORK(PDW+5) = DREAL( T(1,2) )
-            DWORK(PDW+6) = DIMAG( T(1,2) )
-            DWORK(PDW+7) = DREAL( T(2,2) )
-            DWORK(PDW+8) = DIMAG( T(2,2) )
+            DWORK(PDW+1) = REALPART( T(1,1) )
+            DWORK(PDW+2) = IMAGPART( T(1,1) )
+            DWORK(PDW+3) = REALPART( T(2,1) )
+            DWORK(PDW+4) = IMAGPART( T(2,1) )
+            DWORK(PDW+5) = REALPART( T(1,2) )
+            DWORK(PDW+6) = IMAGPART( T(1,2) )
+            DWORK(PDW+7) = REALPART( T(2,2) )
+            DWORK(PDW+8) = IMAGPART( T(2,2) )
    30    CONTINUE
 C
          PDW = 0
@@ -268,14 +268,14 @@ C
          T(2,2) = DCMPLX( DWORK(PDW+7), DWORK(PDW+8) )
          CALL ZROT( 2, T(1,1), 2, T(2,1), 2, CST, SNT )
          CALL ZROT( 2, T(1,1), 1, T(1,2), 1, CS, CONJG( SN ) )
-         DWORK(PDW+1) = DREAL( T(1,1) )
-         DWORK(PDW+2) = DIMAG( T(1,1) )
-         DWORK(PDW+3) = DREAL( T(2,1) )
-         DWORK(PDW+4) = DIMAG( T(2,1) )
-         DWORK(PDW+5) = DREAL( T(1,2) )
-         DWORK(PDW+6) = DIMAG( T(1,2) )
-         DWORK(PDW+7) = DREAL( T(2,2) )
-         DWORK(PDW+8) = DIMAG( T(2,2) )
+         DWORK(PDW+1) = REALPART( T(1,1) )
+         DWORK(PDW+2) = IMAGPART( T(1,1) )
+         DWORK(PDW+3) = REALPART( T(2,1) )
+         DWORK(PDW+4) = IMAGPART( T(2,1) )
+         DWORK(PDW+5) = REALPART( T(1,2) )
+         DWORK(PDW+6) = IMAGPART( T(1,2) )
+         DWORK(PDW+7) = REALPART( T(2,2) )
+         DWORK(PDW+8) = IMAGPART( T(2,2) )
    40 CONTINUE
 C
 C     Not converged. Set INFO = 1, but continue. 

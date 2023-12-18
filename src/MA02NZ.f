@@ -85,7 +85,7 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL           ZSWAP
 C     ..Intrinsic Functions..
-      INTRINSIC          DBLE, DCMPLX, CONJG, DIMAG
+      INTRINSIC          DBLE, DCMPLX, CONJG, IMAGPART
 C
 C     .. Executable Statements ..
 C
@@ -133,10 +133,10 @@ C
 C
             ELSE
 C
-               A(L,K) = DCMPLX( -DBLE( A(L,K) ), DIMAG( A(L,K) ) )
+               A(L,K) = DCMPLX( -DBLE( A(L,K) ), IMAGPART( A(L,K) ) )
                DO 30 I = K+1, L-1
-                  T      = DCMPLX( -DBLE( A(L,I) ), DIMAG( A(L,I) ) )
-                  A(L,I) = DCMPLX( -DBLE( A(I,K) ), DIMAG( A(I,K) ) )
+                  T      = DCMPLX( -DBLE( A(L,I) ), IMAGPART( A(L,I) ) )
+                  A(L,I) = DCMPLX( -DBLE( A(I,K) ), IMAGPART( A(I,K) ) )
                   A(I,K) = T
    30          CONTINUE
 C
@@ -181,10 +181,10 @@ C
 C
             ELSE
 C
-               A(K,L) = DCMPLX( -DBLE( A(K,L) ), DIMAG( A(K,L) ) )
+               A(K,L) = DCMPLX( -DBLE( A(K,L) ), IMAGPART( A(K,L) ) )
                DO 60 I = K+1, L-1
-                  T      = DCMPLX( -DBLE( A(I,L) ), DIMAG( A(I,L) ) )
-                  A(I,L) = DCMPLX( -DBLE( A(K,I) ), DIMAG( A(K,I) ) )
+                  T      = DCMPLX( -DBLE( A(I,L) ), IMAGPART( A(I,L) ) )
+                  A(I,L) = DCMPLX( -DBLE( A(K,I) ), IMAGPART( A(K,I) ) )
                   A(K,I) = T
    60          CONTINUE
 C

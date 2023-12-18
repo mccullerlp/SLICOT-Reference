@@ -96,7 +96,7 @@ C     .. External Subroutines ..
       EXTERNAL           ZLASSQ
 C     ..
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DIMAG, MAX, SQRT
+      INTRINSIC          ABS, IMAGPART, MAX, SQRT
 C     ..
 C     .. Executable Statements ..
 C
@@ -112,11 +112,11 @@ C
                DO 10 I = 1, J-1
                   VALUE = MAX( VALUE, ABS( A( I, J ) ) )
    10          CONTINUE
-               VALUE = MAX( VALUE, ABS( DIMAG( A( J, J ) ) ) )
+               VALUE = MAX( VALUE, ABS( IMAGPART( A( J, J ) ) ) )
    20       CONTINUE
          ELSE
             DO 40 J = 1, N
-               VALUE = MAX( VALUE, ABS( DIMAG( A( J, J ) ) ) )
+               VALUE = MAX( VALUE, ABS( IMAGPART( A( J, J ) ) ) )
                DO 30 I = J+1, N
                   VALUE = MAX( VALUE, ABS( A( I, J ) ) )
    30          CONTINUE
@@ -137,7 +137,7 @@ C
                   SUM  = SUM + ABSA
                   DWORK( I ) = DWORK( I ) + ABSA
    50          CONTINUE
-               DWORK( J ) = SUM +  ABS( DIMAG( A( J, J ) ) )
+               DWORK( J ) = SUM +  ABS( IMAGPART( A( J, J ) ) )
    60       CONTINUE
             DO 70 I = 1, N
                VALUE = MAX( VALUE, DWORK( I ) )
@@ -147,7 +147,7 @@ C
                DWORK( I ) = ZERO
    80       CONTINUE
             DO 100 J = 1, N
-               SUM = DWORK( J ) + ABS( DIMAG( A( J, J ) ) ) 
+               SUM = DWORK( J ) + ABS( IMAGPART( A( J, J ) ) ) 
                DO 90 I = J+1, N
                   ABSA = ABS( A( I, J ) )
                   SUM  = SUM + ABSA
@@ -175,8 +175,8 @@ C
          END IF
          SUM = TWO*SUM
          DO 130 I = 1, N
-            IF( DIMAG( A( I, I ) ).NE.ZERO ) THEN
-               ABSA = ABS( DIMAG( A( I, I ) ) )
+            IF( IMAGPART( A( I, I ) ).NE.ZERO ) THEN
+               ABSA = ABS( IMAGPART( A( I, I ) ) )
                IF( SCALE.LT.ABSA ) THEN
                   SUM   = ONE + SUM*( SCALE / ABSA )**2
                   SCALE = ABSA

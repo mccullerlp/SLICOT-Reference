@@ -130,12 +130,12 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL          XERBLA, ZDRSCL, ZDSCAL, ZSWAP
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, DBLE, DIMAG, MAX, MIN
+      INTRINSIC         ABS, DBLE, IMAGPART, MAX, MIN
 C     .. Statement Functions ..
       DOUBLE PRECISION  CABS1
 C     ..
 C     .. Statement Function definitions ..
-      CABS1( CDUM ) = ABS( DBLE( CDUM ) ) + ABS( DIMAG( CDUM ) )
+      CABS1( CDUM ) = ABS( DBLE( CDUM ) ) + ABS( IMAGPART( CDUM ) )
 C
 C     .. Executable Statements ..
 C
@@ -193,28 +193,28 @@ C           WHILE ( I.LE.N .AND. ILO.EQ.ILOOLD )
             IF ( I.LE.N .AND. ILO.EQ.ILOOLD ) THEN
                DO 40  J = ILO, I-1
                   IF (  DBLE( A(J,I) ).NE.ZERO .OR.
-     $                 DIMAG( A(J,I) ).NE.ZERO ) THEN
+     $                 IMAGPART( A(J,I) ).NE.ZERO ) THEN
                      I = I + 1
                      GO TO 30
                   END IF
    40          CONTINUE
                DO 50  J = I+1, N
                   IF (  DBLE( A(J,I) ).NE.ZERO .OR.
-     $                 DIMAG( A(J,I) ).NE.ZERO ) THEN
+     $                 IMAGPART( A(J,I) ).NE.ZERO ) THEN
                      I = I + 1
                      GO TO 30
                   END IF
    50          CONTINUE
                DO 60  J = ILO, I
                   IF (  DBLE( QG(I,J) ).NE.ZERO .OR.
-     $                 DIMAG( QG(I,J) ).NE.ZERO ) THEN
+     $                 IMAGPART( QG(I,J) ).NE.ZERO ) THEN
                      I = I + 1
                      GO TO 30
                   END IF
    60          CONTINUE
                DO 70  J = I+1, N
                   IF (  DBLE( QG(J,I) ).NE.ZERO .OR.
-     $                 DIMAG( QG(J,I) ).NE.ZERO ) THEN
+     $                 IMAGPART( QG(J,I) ).NE.ZERO ) THEN
                      I = I + 1
                      GO TO 30
                   END IF
@@ -250,28 +250,28 @@ C           WHILE ( I.LE.N .AND. ILO.EQ.ILOOLD )
             IF ( I.LE.N .AND. ILO.EQ.ILOOLD ) THEN
                DO 90  J = ILO, I-1
                   IF (  DBLE( A(I,J) ).NE.ZERO .OR.
-     $                 DIMAG( A(I,J) ).NE.ZERO ) THEN
+     $                 IMAGPART( A(I,J) ).NE.ZERO ) THEN
                      I = I + 1
                      GO TO 80
                   END IF
    90          CONTINUE
                DO 100  J = I+1, N
                   IF (  DBLE( A(I,J) ).NE.ZERO .OR.
-     $                 DIMAG( A(I,J) ).NE.ZERO ) THEN
+     $                 IMAGPART( A(I,J) ).NE.ZERO ) THEN
                      I = I + 1
                      GO TO 80
                   END IF
   100          CONTINUE
                DO 110  J = ILO, I
                   IF (  DBLE( QG(J,I+1) ).NE.ZERO .OR.
-     $                 DIMAG( QG(J,I+1) ).NE.ZERO ) THEN
+     $                 IMAGPART( QG(J,I+1) ).NE.ZERO ) THEN
                      I = I + 1
                      GO TO 80
                   END IF
   110          CONTINUE
                DO 120  J = I+1, N
                   IF (  DBLE( QG(I,J+1) ).NE.ZERO .OR.
-     $                 DIMAG( QG(I,J+1) ).NE.ZERO ) THEN
+     $                 IMAGPART( QG(I,J+1) ).NE.ZERO ) THEN
                      I = I + 1
                      GO TO 80
                   END IF

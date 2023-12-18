@@ -221,8 +221,8 @@ C     .. External Subroutines ..
      $                   SB10ZP, XERBLA
 C     ..
 C     .. Intrinsic Functions ..
-      INTRINSIC          ACOS, ATAN, COS, DBLE, DCMPLX, DIMAG, EXP, LOG,
-     $                   MAX, MIN, SIN, SQRT
+      INTRINSIC          ACOS, ATAN, COS, DBLE, DCMPLX, EXP, LOG,
+     $     MAX, MIN, SIN, SQRT, IMAGPART
 C
 C     Test input parameters and workspace.
 C
@@ -543,7 +543,7 @@ C
                DWORK(2*(I-1)*LENDAT+K) =
      $            DBLE( ZWORK(IWA0+(I-1)*LENDAT+K-1) )
                DWORK((2*I-1)*LENDAT+K) =
-     $            DIMAG( ZWORK(IWA0+(I-1)*LENDAT+K-1) )
+     $            IMAGPART( ZWORK(IWA0+(I-1)*LENDAT+K-1) )
   230       CONTINUE
   240    CONTINUE
 C
@@ -552,7 +552,7 @@ C
                DWORK(2*N1*LENDAT+2*(I-1)*LENDAT+K) =
      $            DBLE( ZWORK(IWAB+(I-1)*LENDAT+K-1) )
                DWORK(2*N1*LENDAT+(2*I-1)*LENDAT+K) =
-     $            DIMAG( ZWORK(IWAB+(I-1)*LENDAT+K-1) )
+     $            IMAGPART( ZWORK(IWAB+(I-1)*LENDAT+K-1) )
   250       CONTINUE
   260    CONTINUE
 C
@@ -560,7 +560,7 @@ C        Constructing BX.
 C
          DO 270 K = 1, LENDAT
             DWORK(IWBX+K-1) = DBLE( ZWORK(IWBP+K-1) )
-            DWORK(IWBX+LENDAT+K-1) = DIMAG( ZWORK(IWBP+K-1) )
+            DWORK(IWBX+LENDAT+K-1) = IMAGPART( ZWORK(IWBP+K-1) )
   270    CONTINUE
 C
 C        Estimating X.
@@ -645,7 +645,7 @@ C
             DWORK(K) = ONE
             DWORK(K+LENDAT) = ZERO
             DWORK(IWBMAT+K-1) = DBLE( ZWORK(K) )
-            DWORK(IWBMAT+LENDAT+K-1) = DIMAG( ZWORK(K) )
+            DWORK(IWBMAT+LENDAT+K-1) = IMAGPART( ZWORK(K) )
   310    CONTINUE
 C
 C        Estimating D matrix.

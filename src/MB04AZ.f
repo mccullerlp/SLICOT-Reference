@@ -400,7 +400,7 @@ C     .. External Subroutines ..
      $                   ZGEMM, ZGEQRF, ZLACPY, ZSCAL
 C
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCMPLX, CONJG, DIMAG, INT, MAX,
+      INTRINSIC          ABS, DBLE, DCMPLX, CONJG, IMAGPART, INT, MAX,
      $                   MIN, MOD
 C
 C     .. Executable Statements ..
@@ -575,7 +575,7 @@ C
    10    CONTINUE
 C
          DO 20 I = 1, M
-            DWORK( IW ) =  DIMAG( Z( I, J ) )
+            DWORK( IW ) =  IMAGPART( Z( I, J ) )
             DWORK( IS ) = -DWORK( IW )
             IW = IW + 1
             IS = IS + 1
@@ -590,7 +590,7 @@ C
    30    CONTINUE
 C
          DO 40 I = M + 1, N
-            DWORK( IW ) =  DIMAG( Z( I, J ) )
+            DWORK( IW ) =  IMAGPART( Z( I, J ) )
             DWORK( IS ) = -DWORK( IW )
             IW = IW + 1
             IS = IS + 1
@@ -612,7 +612,7 @@ C
       DO 80 J = 1, M
          IW1 = IW
          DO 60 I = 1, M
-            DWORK( IW ) = -DIMAG( B( I, J ) )
+            DWORK( IW ) = -IMAGPART( B( I, J ) )
             IW = IW + 1
    60    CONTINUE
 C
@@ -631,7 +631,7 @@ C
       IW = IFG
       DO 110 J = 1, M + 1
          DO 90 I = 1, M
-            DWORK( IW ) = -DIMAG( FG( I, J ) )
+            DWORK( IW ) = -IMAGPART( FG( I, J ) )
             IW = IW + 1
    90    CONTINUE
 C

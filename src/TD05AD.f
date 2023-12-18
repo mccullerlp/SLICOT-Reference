@@ -127,8 +127,8 @@ C     .. External Functions ..
 C     .. External Subroutines ..
       EXTERNAL          XERBLA
 C     .. Intrinsic Functions ..
-      INTRINSIC         ABS, ATAN, DBLE, DCMPLX, DIMAG, LOG10, MAX, MOD,
-     $                  SIGN
+      INTRINSIC         ABS, ATAN, DBLE, DCMPLX, LOG10, MAX, MOD,
+     $     SIGN, IMAGPART
 C     .. Executable Statements ..
 C
       INFO = 0
@@ -249,7 +249,7 @@ C
          ZTEMP =
      $      ZLADIV( DCMPLX( TREAL, TIMAG ), DCMPLX( BREAL, BIMAG ) )
          VALR = DBLE(  ZTEMP )*WC**IPHASE
-         VALI = DIMAG( ZTEMP )*WC**IPHASE
+         VALI = IMAGPART( ZTEMP )*WC**IPHASE
 C
          IF ( .NOT.LOUTPU ) THEN
 C

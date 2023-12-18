@@ -180,13 +180,13 @@ C     .. External Subroutines ..
       EXTERNAL           XERBLA, ZDSCAL
 C     ..
 C     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DIMAG, MAX, MIN
+      INTRINSIC          ABS, DBLE, IMAGPART, MAX, MIN
 C     ..
 C     .. Statement Functions ..
       DOUBLE PRECISION   CABS1
 C     ..
 C     .. Statement Function definitions ..
-      CABS1( CDUM ) = ABS( DBLE( CDUM ) ) + ABS( DIMAG( CDUM ) )
+      CABS1( CDUM ) = ABS( DBLE( CDUM ) ) + ABS( IMAGPART( CDUM ) )
 C     ..
 C     .. Executable Statements ..
 C

@@ -88,7 +88,7 @@ C     .. External Functions ..
       EXTERNAL           LSAME
 C     ..
 C     .. Intrinsic Functions ..
-      INTRINSIC          DBLE, DIMAG
+      INTRINSIC          DBLE, IMAGPART
 C     ..
 C     .. Executable Statements ..
 C
@@ -115,7 +115,7 @@ C        WHILE ( I.LE.M ) DO
      $            GO TO 10
    30       CONTINUE
             IF( ISSKEW ) THEN
-               IF( DIMAG( DE( I, I ) ).NE.ZERO )
+               IF( IMAGPART( DE( I, I ) ).NE.ZERO )
      $            GO TO 10
             ELSE
                IF( DBLE( DE( I, I ) ).NE.ZERO )
@@ -148,7 +148,7 @@ C        WHILE ( I.LE.M ) DO
      $            GO TO 50
    70       CONTINUE
             IF( ISSKEW ) THEN
-               IF( DIMAG( DE( I, I+1 ) ).NE.ZERO )
+               IF( IMAGPART( DE( I, I+1 ) ).NE.ZERO )
      $            GO TO 50
             ELSE
                IF( DBLE( DE( I, I+1 ) ).NE.ZERO )
