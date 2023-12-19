@@ -10,13 +10,13 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     BASE    (input)  REAL*10
+C     BASE    (input)  REAL*8
 C             Machine base.
 C
-C     LGBAS   (input)  REAL*10
+C     LGBAS   (input)  REAL*8
 C             Logarithm of BASE.
 C
-C     ULP     (input)  REAL*10
+C     ULP     (input)  REAL*8
 C             Machine precision.
 C
 C     K       (input)  INTEGER
@@ -33,7 +33,7 @@ C     SINV    (input) INTEGER
 C             Signature multiplier. Entries of S are virtually
 C             multiplied by SINV.
 C
-C     A       (input)  REAL*10 array, dimension (LDA1,LDA2,K)
+C     A       (input)  REAL*8 array, dimension (LDA1,LDA2,K)
 C             On entry, the leading 2-by-2-by-K part of this array must
 C             contain a 2-by-2 product (implicitly represented by its K
 C             factors) in upper Hessenberg-triangular form.
@@ -44,17 +44,17 @@ C
 C     LDA2    INTEGER
 C             The second leading dimension of the array A.  LDA2 >= 2.
 C
-C     ALPHAR  (output)  REAL*10 array, dimension (2)
+C     ALPHAR  (output)  REAL*8 array, dimension (2)
 C             On exit, this array contains the scaled real part of the
 C             two eigenvalues. If BETA(I) <> 0, then the I-th eigenvalue
 C             (I = 1 : 2) is given by
 C                 (ALPHAR(I) + ALPHAI(I)*SQRT(-1) ) * (BASE)**SCAL(I).
 C
-C     ALPHAI  (output)  REAL*10 array, dimension (2)
+C     ALPHAI  (output)  REAL*8 array, dimension (2)
 C             On exit, this array contains the scaled imaginary part of
 C             the two eigenvalues. ALPHAI(1) >= 0.
 C
-C     BETA    (output)  REAL*10 array, dimension (2)
+C     BETA    (output)  REAL*8 array, dimension (2)
 C             On exit, this array contains information about infinite
 C             eigenvalues. If BETA(I) = 0, then the I-th eigenvalue is
 C             infinite. Otherwise, BETA(I) = 1.0.
@@ -65,7 +65,7 @@ C             two eigenvalues.
 C
 C     Workspace
 C
-C     DWORK   REAL*10 array, dimension (8*K)
+C     DWORK   REAL*8 array, dimension (8*K)
 C
 C     Error Indicator
 C
@@ -98,26 +98,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*20        CZERO, CONE
+      COMPLEX*16        CZERO, CONE
       PARAMETER         ( CZERO = ( 0.0D0, 0.0D0 ),
      $                    CONE  = ( 1.0D0, 0.0D0 ) )
-      REAL*10  ZERO, ONE, TWO
+      REAL*8  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, K, LDA1, LDA2, SINV
-      REAL*10  BASE, LGBAS, ULP
+      REAL*8  BASE, LGBAS, ULP
 C     .. Array Arguments ..
-      REAL*10  A(LDA1,LDA2,*), ALPHAI(2), ALPHAR(2), BETA(2),
+      REAL*8  A(LDA1,LDA2,*), ALPHAI(2), ALPHAR(2), BETA(2),
      $                  DWORK(*)
       INTEGER           AMAP(*), S(*), SCAL(2)
 C     .. Local Scalars ..
       INTEGER           AI, I, IITER, J, PDM, PDW, SL
-      REAL*10  CS, CST, LHS, MISC, MISR, RHS, TEMPI, TEMPR
-      COMPLEX*20        SN, SNT, TEMP
+      REAL*8  CS, CST, LHS, MISC, MISR, RHS, TEMPI, TEMPR
+      COMPLEX*16        SN, SNT, TEMP
 C     .. Local Arrays ..
-      COMPLEX*20        T(2,2), Z(3,3)
+      COMPLEX*16        T(2,2), Z(3,3)
 C     .. External Functions ..
-      REAL*10  DLAPY2
+      REAL*8  DLAPY2
       EXTERNAL          DLAPY2
 C     .. External Subroutines ..
       EXTERNAL          DLADIV, ZLARTG, ZROT

@@ -43,7 +43,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices.  N >= 0.
 C
-C     A       (input/workspace) COMPLEX*20 array, dimension (LDA,N)
+C     A       (input/workspace) COMPLEX*16 array, dimension (LDA,N)
 C             The leading N-by-N upper triangular part of this array
 C             must contain the triangular matrix A. The lower triangular
 C             part is used as workspace, but the diagonal is restored.
@@ -51,7 +51,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/workspace) COMPLEX*20 array, dimension (LDE,N)
+C     E       (input/workspace) COMPLEX*16 array, dimension (LDE,N)
 C             The leading N-by-N upper triangular part of this array
 C             must contain the triangular matrix E. If TRANS = 'N', the
 C             strictly lower triangular part is used as workspace.
@@ -59,7 +59,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) COMPLEX*20 array, dimension (LDB,N)
+C     B       (input/output) COMPLEX*16 array, dimension (LDB,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the matrix B.
 C             On exit, the leading N-by-N upper triangular part of this
@@ -68,17 +68,17 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     SCALE   (output) REAL*10
+C     SCALE   (output) REAL*8
 C             The scale factor set to avoid overflow in U.
 C             0 < SCALE <= 1.
 C
 C     Workspace
 C
-C     DWORK   REAL*10 array, dimension LDWORK, where
+C     DWORK   REAL*8 array, dimension LDWORK, where
 C             LDWORK = 0,            if N <= 1;
 C             LDWORK = MAX(N-1,10),  if N >  1.
 C
-C     ZWORK   COMPLEX*20, dimension MAX(3*N-3,0)
+C     ZWORK   COMPLEX*16, dimension MAX(3*N-3,0)
 C
 C     Error indicator
 C
@@ -226,29 +226,29 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*10  MONE, ONE, ZERO
+      REAL*8  MONE, ONE, ZERO
       PARAMETER         ( MONE = -1.0D+0, ONE = 1.0D+0, ZERO = 0.0D+0 )
-      COMPLEX*20        CONE
+      COMPLEX*16        CONE
       PARAMETER         ( CONE = ( 1.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS
-      REAL*10  SCALE
+      REAL*8  SCALE
       INTEGER           INFO, LDA, LDB, LDE, N
 C     .. Array Arguments ..
-      REAL*10  DWORK(*)
-      COMPLEX*20        A(LDA,*), B(LDB,*), E(LDE,*), ZWORK(*)
+      REAL*8  DWORK(*)
+      COMPLEX*16        A(LDA,*), B(LDB,*), E(LDE,*), ZWORK(*)
 C     .. Local Scalars ..
-      COMPLEX*20        M1, R, S, X, Z
-      REAL*10  BIGNUM, C, DELTA1, EPS, M2, SCALE1, SMLNUM, T,
+      COMPLEX*16        M1, R, S, X, Z
+      REAL*8  BIGNUM, C, DELTA1, EPS, M2, SCALE1, SMLNUM, T,
      $                  UII
       INTEGER           APT, I, J, KL, KL1, UPT, WPT
       LOGICAL           NOTRNS
 C     .. Local Arrays ..
-      COMPLEX*20        M3(2,2), M3C(2,1)
-      REAL*10  D(2), ES(2), W(2)
+      COMPLEX*16        M3(2,2), M3C(2,1)
+      REAL*8  D(2), ES(2), W(2)
       INTEGER           IWORK(7)
 C     .. External Functions ..
-      REAL*10  DLAMCH
+      REAL*8  DLAMCH
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
