@@ -25,17 +25,17 @@ C             DB >= 0.
 C             On exit, if B(DB+1) = 0.0 on entry, then DB contains the
 C             index of the highest power of x for which B(DB+1) <> 0.0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (DA+1)
+C     A       (input) REAL*16 array, dimension (DA+1)
 C             This array must contain the coefficients of the
 C             numerator polynomial A(x) in increasing powers of x
 C             unless DA = -1 on entry, in which case A(x) is taken
 C             to be the zero polynomial.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (DB+1)
+C     B       (input) REAL*16 array, dimension (DB+1)
 C             This array must contain the coefficients of the
 C             denominator polynomial B(x) in increasing powers of x.
 C
-C     RQ      (output) DOUBLE PRECISION array, dimension (DA+1)
+C     RQ      (output) REAL*16 array, dimension (DA+1)
 C             If DA < DB on exit, then this array contains the
 C             coefficients of the remainder polynomial R(x) in
 C             increasing powers of x; Q(x) is the zero polynomial.
@@ -121,15 +121,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DA, DB, INFO, IWARN
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(*), B(*), RQ(*)
+      REAL*16  A(*), B(*), RQ(*)
 C     .. Local Scalars ..
       INTEGER           N
-      DOUBLE PRECISION  Q
+      REAL*16  Q
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, XERBLA
 C     .. Executable Statements ..

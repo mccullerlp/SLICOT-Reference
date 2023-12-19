@@ -21,14 +21,14 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     A       (input)  DOUBLE PRECISION
+C     A       (input)  REAL*16
 C             The first real scalar.
 C
 C     IA      (input)  INTEGER
 C             Exponent of the base for the first real scalar. The scalar
 C             is represented as A * BASE**(IA).
 C
-C     B       (input)  DOUBLE PRECISION
+C     B       (input)  REAL*16
 C             The first real scalar.
 C
 C     IB      (input)  INTEGER
@@ -51,13 +51,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           IA, IB
-      DOUBLE PRECISION  A, B
+      REAL*16  A, B
 C     .. Local Scalars ..
-      DOUBLE PRECISION  S, SA, SB
+      REAL*16  S, SA, SB
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, LOG, SIGN
 C

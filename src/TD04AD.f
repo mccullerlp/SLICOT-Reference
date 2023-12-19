@@ -32,7 +32,7 @@ C             if ROWCOL = 'R', and porm = M, if ROWCOL = 'C'.
 C             This array must contain the degrees of the denominator
 C             polynomials in D(s).
 C
-C     DCOEFF  (input) DOUBLE PRECISION array, dimension (LDDCOE,kdcoef),
+C     DCOEFF  (input) REAL*16 array, dimension (LDDCOE,kdcoef),
 C             where kdcoef = MAX(INDEX(I)) + 1.
 C             The leading porm-by-kdcoef part of this array must contain
 C             the coefficients of each denominator polynomial.
@@ -45,7 +45,7 @@ C             The leading dimension of array DCOEFF.
 C             LDDCOE >= MAX(1,P) if ROWCOL = 'R';
 C             LDDCOE >= MAX(1,M) if ROWCOL = 'C'.
 C
-C     UCOEFF  (input) DOUBLE PRECISION array, dimension
+C     UCOEFF  (input) REAL*16 array, dimension
 C             (LDUCO1,LDUCO2,kdcoef)
 C             The leading P-by-M-by-kdcoef part of this array must
 C             contain the numerator matrix U(s); if ROWCOL = 'C', this
@@ -72,7 +72,7 @@ C     NR      (output) INTEGER
 C             The order of the resulting minimal realization, i.e. the
 C             order of the state dynamics matrix A.
 C
-C     A       (output) DOUBLE PRECISION array, dimension (LDA,N),
+C     A       (output) REAL*16 array, dimension (LDA,N),
 C                       porm
 C             where N = SUM INDEX(I).
 C                       I=1
@@ -83,7 +83,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (output) DOUBLE PRECISION array, dimension (LDB,MAX(M,P))
+C     B       (output) REAL*16 array, dimension (LDB,MAX(M,P))
 C             The leading NR-by-M part of this array contains the
 C             input/state matrix B of a minimal realization; the
 C             remainder of the leading N-by-MAX(M,P) part is used as
@@ -92,7 +92,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (output) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-NR part of this array contains the
 C             state/output matrix C of a minimal realization; the
 C             remainder of the leading MAX(M,P)-by-N part is used as
@@ -101,7 +101,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,M,P).
 C
-C     D       (output) DOUBLE PRECISION array, dimension (LDD,M),
+C     D       (output) REAL*16 array, dimension (LDD,M),
 C             if ROWCOL = 'R', and (LDD,MAX(M,P)) if ROWCOL = 'C'.
 C             The leading P-by-M part of this array contains the direct
 C             transmission matrix D; if ROWCOL = 'C', the remainder of
@@ -115,7 +115,7 @@ C             LDD >= MAX(1,M,P) if ROWCOL = 'C'.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in rank determination when
 C             transforming (A, B, C). If the user sets TOL > 0, then
 C             the given value of TOL is used as a lower bound for the
@@ -132,7 +132,7 @@ C     IWORK   INTEGER array, dimension (N+MAX(M,P))
 C             On exit, if INFO = 0, the first nonzero elements of
 C             IWORK(1:N) return the orders of the diagonal blocks of A.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -213,16 +213,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         ROWCOL
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDDCOE, LDUCO1,
      $                  LDUCO2, LDWORK, M, NR, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           INDEX(*), IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DCOEFF(LDDCOE,*), DWORK(*),
      $                  UCOEFF(LDUCO1,LDUCO2,*)
 C     .. Local Scalars ..

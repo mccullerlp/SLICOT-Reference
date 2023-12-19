@@ -34,7 +34,7 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C             ( LDA, N )
 C             On entry with JOBQR = 'Q', the leading M by N part of this
 C             array must contain the given matrix A.
@@ -64,7 +64,7 @@ C             On exit with JOBQR = 'Q', if JPVT(i) = k, then the i-th
 C             column of A*P was the k-th column of A.
 C             Array JPVT is not referenced when JOBQR = 'N'.
 C
-C     RCOND   (input) DOUBLE PRECISION
+C     RCOND   (input) REAL*16
 C             RCOND is used to determine the effective rank of A, which
 C             is defined as the order of the largest leading triangular
 C             submatrix R11 in the QR factorization with pivoting of A,
@@ -73,7 +73,7 @@ C             RCOND >= 0.
 C             NOTE that when SVLMAX > 0, the estimated rank could be
 C             less than that defined above (see SVLMAX).
 C
-C     SVLMAX  (input) DOUBLE PRECISION
+C     SVLMAX  (input) REAL*16
 C             If A is a submatrix of another matrix B, and the rank
 C             decision should be related to that matrix, then SVLMAX
 C             should be an estimate of the largest singular value of B
@@ -81,7 +81,7 @@ C             (for instance, the Frobenius norm of B).  If this is not
 C             the case, the input value SVLMAX = 0 should work.
 C             SVLMAX >= 0.
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension ( MIN( M, N ) )
+C     TAU     (output) REAL*16 array, dimension ( MIN( M, N ) )
 C             On exit with JOBQR = 'Q', the leading min(M,N) elements of
 C             TAU contain the scalar factors of the elementary
 C             reflectors.
@@ -91,7 +91,7 @@ C     RANK    (output) INTEGER
 C             The effective (estimated) rank of A, i.e. the order of
 C             the submatrix R11.
 C
-C     SVAL    (output) DOUBLE PRECISION array, dimension ( 3 )
+C     SVAL    (output) REAL*16 array, dimension ( 3 )
 C             The estimates of some of the singular values of the
 C             triangular factor R:
 C             SVAL(1): largest singular value of R(1:RANK,1:RANK);
@@ -112,7 +112,7 @@ C             number of R(1:RANK,1:RANK).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension ( LDWORK )
+C     DWORK   REAL*16 array, dimension ( LDWORK )
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -162,19 +162,19 @@ C
 C     .. Parameters ..
       INTEGER            IMAX, IMIN
       PARAMETER          ( IMAX = 1, IMIN = 2 )
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          JOBQR
       INTEGER            INFO, LDA, LDWORK, M, N, RANK
-      DOUBLE PRECISION   RCOND, SVLMAX
+      REAL*16   RCOND, SVLMAX
 C     .. Array Arguments ..
       INTEGER            JPVT( * )
-      DOUBLE PRECISION   A( LDA, * ), SVAL( 3 ), TAU( * ), DWORK( * )
+      REAL*16   A( LDA, * ), SVAL( 3 ), TAU( * ), DWORK( * )
 C     .. Local Scalars ..
       LOGICAL            LJOBQR, LQUERY
       INTEGER            I, ISMAX, ISMIN, MAXWRK, MINWRK, MN
-      DOUBLE PRECISION   C1, C2, S1, S2, SMAX, SMAXPR, SMIN, SMINPR
+      REAL*16   C1, C2, S1, S2, SMAX, SMAXPR, SMIN, SMINPR
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME

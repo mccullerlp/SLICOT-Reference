@@ -61,7 +61,7 @@ C     M       (input) INTEGER
 C             The number of rows of the matrix op(B).  M >= 0.
 C             If M = 0, A is unchanged on exit, and Q and W are not set.
 C
-C     A       (input/output) COMPLEX*16 array, dimension (LDA,N)
+C     A       (input/output) COMPLEX*32 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A. If FACT = 'F', then A contains
 C             an upper triangular matrix S in Schur form; the elements
@@ -73,7 +73,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     Q       (input or output) COMPLEX*16 array, dimension (LDQ,N)
+C     Q       (input or output) COMPLEX*32 array, dimension (LDQ,N)
 C             On entry, if FACT = 'F', then the leading N-by-N part of
 C             this array must contain the unitary matrix Q of the Schur
 C             factorization of A.
@@ -85,7 +85,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     B       (input/output) COMPLEX*16 array, dimension (LDB,N)
+C     B       (input/output) COMPLEX*32 array, dimension (LDB,N)
 C             if TRANS = 'N', and dimension (LDB,max(M,N)), if
 C             TRANS = 'C'.
 C             On entry, if TRANS = 'N', the leading M-by-N part of this
@@ -104,19 +104,19 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N,M), if TRANS = 'N';
 C             LDB >= MAX(1,N),   if TRANS = 'C'.
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
-C     W       (output) COMPLEX*16 array, dimension (N)
+C     W       (output) COMPLEX*32 array, dimension (N)
 C             If INFO >= 0 and INFO <= 3, W contains the eigenvalues of
 C             the matrix A.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (N)
+C     DWORK   REAL*16 array, dimension (N)
 C
-C     ZWORK   COMPLEX*16 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
 C             On exit, if INFO = 0 or INFO = 1, ZWORK(1) returns the
 C             optimal value of LZWORK.
 C             On exit, if INFO = -16, ZWORK(1) returns the minimum value
@@ -305,20 +305,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16        CZERO, CONE
+      COMPLEX*32        CZERO, CONE
       PARAMETER         ( CZERO = ( 0.0D0, 0.0D0 ),
      $                    CONE  = ( 1.0D0, 0.0D0 ) )
-      DOUBLE PRECISION  ZERO, ONE, P95
+      REAL*16  ZERO, ONE, P95
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, P95 = 0.95D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, TRANS
       INTEGER           INFO, LDA, LDB, LDQ, LZWORK, M, N
-      DOUBLE PRECISION  SCALE
+      REAL*16  SCALE
 C     .. Array Arguments ..
-      COMPLEX*16        A(LDA,*), B(LDB,*), Q(LDQ,*), W(*), ZWORK(*)
-      DOUBLE PRECISION  DWORK(*)
+      COMPLEX*32        A(LDA,*), B(LDB,*), Q(LDQ,*), W(*), ZWORK(*)
+      REAL*16  DWORK(*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  BIGNMS, BIGNUM, EMAX, EPS, MA, MATO, MB, MBTO,
+      REAL*16  BIGNMS, BIGNUM, EMAX, EPS, MA, MATO, MB, MBTO,
      $                  MN, MX, SAFMIN, SMLNUM, T, TMP
       INTEGER           BL, I, IFAIL, INFORM, ITAU, J, JWORK, K, L,
      $                  MAXMN, MINMN, MINWRK, NC, NM, NR, SDIM, WRKOPT
@@ -328,7 +328,7 @@ C     .. Local Arrays ..
       LOGICAL           BWORK(1)
 C     .. External Functions ..
       LOGICAL           LSAME, MA02HZ, SELECT
-      DOUBLE PRECISION  DLAMCH, ZLANGE, ZLANTR
+      REAL*16  DLAMCH, ZLANGE, ZLANTR
       EXTERNAL          DLAMCH, LSAME, MA02HZ, SELECT, ZLANGE, ZLANTR
 C     .. External Subroutines ..
       EXTERNAL          DLABAD, MB01UZ, SB03OS, XERBLA, ZCOPY, ZDSCAL,

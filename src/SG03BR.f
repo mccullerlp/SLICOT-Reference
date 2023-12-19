@@ -15,13 +15,13 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     XR, XI, (input) DOUBLE PRECISION
-C     YR, YI  (input) DOUBLE PRECISION
+C     XR, XI, (input) REAL*16
+C     YR, YI  (input) REAL*16
 C             The given real scalars XR, XI, YR, YI.
 C
-C     C,      (output) DOUBLE PRECISION
-C     SR, SI, (output) DOUBLE PRECISION
-C     ZR, ZI  (output) DOUBLE PRECISION
+C     C,      (output) REAL*16
+C     SR, SI, (output) REAL*16
+C     ZR, ZI  (output) REAL*16
 C             The computed real scalars C, SR, SI, ZR, ZI defining the
 C             complex Givens rotation and Z = ZR+ZI*I.
 C
@@ -46,19 +46,19 @@ C
 C     ******************************************************************
 C
 C      .. Parameters ..
-       DOUBLE PRECISION  ONE, TWO, ZERO
+       REAL*16  ONE, TWO, ZERO
        PARAMETER         ( ONE = 1.0D+0, TWO = 2.0D+0, ZERO = 0.0D+0 )
 C      .. Scalar Arguments ..
-       DOUBLE PRECISION  C, SI, SR, XI, XR, YI, YR, ZI, ZR
+       REAL*16  C, SI, SR, XI, XR, YI, YR, ZI, ZR
 C     .. Local Scalars ..
       INTEGER            COUNT, I
-      DOUBLE PRECISION   D, DI, DR, EPS, SAFMIN, SAFMN2, SAFMX2, SCALE,
+      REAL*16   D, DI, DR, EPS, SAFMIN, SAFMN2, SAFMX2, SCALE,
      $                   TI, TR, X2, X2S, XIS, XRS, Y2, Y2S, YIS, YRS
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAMCH, DLAPY2
+      REAL*16   DLAMCH, DLAPY2
       EXTERNAL           DLAMCH, DLAPY2
 C      .. Intrinsic Functions ..
-       DOUBLE PRECISION  ABS, INT, LOG, MAX, SQRT
+       REAL*16  ABS, INT, LOG, MAX, SQRT
 C
 C     Do not check input parameters for errors.
 C

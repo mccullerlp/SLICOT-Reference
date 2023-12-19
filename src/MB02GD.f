@@ -60,7 +60,7 @@ C     S       (input)  INTEGER
 C             The number of block rows / columns of the Cholesky factor
 C             to compute.  0 <= S <= N - P.
 C
-C     T       (input/output)  DOUBLE PRECISION array, dimension
+C     T       (input/output)  REAL*16 array, dimension
 C             (LDT,(NL+1)*K) / (LDT,K)
 C             On entry, if P = 0, the leading K-by-(NL+1)*K /
 C             (NL+1)*K-by-K part of this array must contain the first
@@ -76,7 +76,7 @@ C     LDT     INTEGER
 C             The leading dimension of the array T.
 C             LDT >= MAX(1,K) / MAX(1,(NL+1)*K).
 C
-C     RB      (input/output)  DOUBLE PRECISION array, dimension
+C     RB      (input/output)  REAL*16 array, dimension
 C             (LDRB,MIN(P+NL+S,N)*K) / (LDRB,MIN(P+S,N)*K)
 C             On entry, if TYPET = 'R'  and  TRIU = 'N'  and  P > 0,
 C             the leading (NL+1)*K-by-MIN(NL,N-P)*K part of this array
@@ -114,7 +114,7 @@ C             if TRIU = 'T',   LDRB >= NL*K+1.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -13,  DWORK(1)  returns the minimum
@@ -182,13 +182,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRIU, TYPET
       INTEGER           INFO, K, LDRB, LDT, LDWORK, N, NL, P, S
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(LDWORK), RB(LDRB,*), T(LDT,*)
+      REAL*16  DWORK(LDWORK), RB(LDRB,*), T(LDT,*)
 C     .. Local Scalars ..
       CHARACTER         STRUCT
       LOGICAL           ISROW, LQUERY, LTRI
@@ -197,7 +197,7 @@ C     .. Local Scalars ..
      $                  WRKOPT
 C     .. Local Arrays ..
       INTEGER           IPVT(1)
-      DOUBLE PRECISION  DUM(1)
+      REAL*16  DUM(1)
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           ILAENV

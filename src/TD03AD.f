@@ -53,7 +53,7 @@ C             polynomial vectors over denominator polynomials;
 C             pormd = M if the transfer matrix T(s) is given as column
 C             polynomial vectors over denominator polynomials.
 C
-C     DCOEFF  (input) DOUBLE PRECISION array, dimension (LDDCOE,kdcoef),
+C     DCOEFF  (input) REAL*16 array, dimension (LDDCOE,kdcoef),
 C             where kdcoef = MAX(INDEXD(I)) + 1.
 C             The leading pormd-by-kdcoef part of this array must
 C             contain the coefficients of each denominator polynomial.
@@ -66,7 +66,7 @@ C             The leading dimension of array DCOEFF.
 C             LDDCOE >= MAX(1,P), if ROWCOL = 'R';
 C             LDDCOE >= MAX(1,M), if ROWCOL = 'C'.
 C
-C     UCOEFF  (input) DOUBLE PRECISION array, dimension
+C     UCOEFF  (input) REAL*16 array, dimension
 C             (LDUCO1,LDUCO2,kdcoef)
 C             The leading P-by-M-by-kdcoef part of this array must
 C             contain the coefficients of the numerator matrix U(s);
@@ -96,7 +96,7 @@ C     NR      (output) INTEGER
 C             The order of the resulting minimal realization, i.e. the
 C             order of the state dynamics matrix A.
 C
-C     A       (output) DOUBLE PRECISION array, dimension (LDA,N),
+C     A       (output) REAL*16 array, dimension (LDA,N),
 C                      pormd
 C             where N = SUM INDEXD(I)
 C                       I=1
@@ -106,7 +106,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (output) DOUBLE PRECISION array, dimension (LDB,MAX(M,P))
+C     B       (output) REAL*16 array, dimension (LDB,MAX(M,P))
 C             The leading NR-by-M part of this array contains the
 C             input/state matrix B; the remainder of the leading
 C             N-by-MAX(M,P) part is used as internal workspace.
@@ -114,7 +114,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (output) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-NR part of this array contains the
 C             state/output matrix C; the remainder of the leading
 C             MAX(M,P)-by-N part is used as internal workspace.
@@ -122,7 +122,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,M,P).
 C
-C     D       (output) DOUBLE PRECISION array, dimension (LDD,MAX(M,P))
+C     D       (output) REAL*16 array, dimension (LDD,MAX(M,P))
 C             The leading P-by-M part of this array contains the direct
 C             transmission matrix D; the remainder of the leading
 C             MAX(M,P)-by-MAX(M,P) part is used as internal workspace.
@@ -141,7 +141,7 @@ C             representation is requested.
 C             These elements are ordered so that
 C             INDEXP(1) >= INDEXP(2) >= ... >= INDEXP(pormp).
 C
-C     PCOEFF  (output) DOUBLE PRECISION array, dimension
+C     PCOEFF  (output) REAL*16 array, dimension
 C             (LDPCO1,LDPCO2,N+1)
 C             The leading pormp-by-pormp-by-kpcoef part of this array
 C             contains the coefficients of the denominator matrix P(s),
@@ -164,7 +164,7 @@ C             The second dimension of array PCOEFF.
 C             LDPCO2 >= MAX(1,P), if ROWCOL = 'R';
 C             LDPCO2 >= MAX(1,M), if ROWCOL = 'C'.
 C
-C     QCOEFF  (output) DOUBLE PRECISION array, dimension
+C     QCOEFF  (output) REAL*16 array, dimension
 C             (LDQCO1,LDQCO2,N+1)
 C             The leading pormp-by-pormd-by-kpcoef part of this array
 C             contains the coefficients of the numerator matrix Q(s).
@@ -184,7 +184,7 @@ C                                      where MP = M, if ROWCOL = 'R';
 C                                            MP = P, if ROWCOL = 'C'.
 C             If LERI = 'R', LDQCO2 >= MAX(1,M,P).
 C
-C     VCOEFF  (output) DOUBLE PRECISION array, dimension
+C     VCOEFF  (output) REAL*16 array, dimension
 C             (LDVCO1,LDVCO2,N+1)
 C             The leading pormp-by-NR-by-kpcoef part of this array
 C             contains the coefficients of the intermediate matrix
@@ -200,7 +200,7 @@ C             The second dimension of array VCOEFF.  LDVCO2 >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in rank determination when
 C             transforming (A, B, C). If the user sets TOL > 0, then
 C             the given value of TOL is used as a lower bound for the
@@ -217,7 +217,7 @@ C     IWORK   INTEGER array, dimension (N+MAX(M,P))
 C             On exit, if INFO = 0, the first nonzero elements of
 C             IWORK(1:N) return the orders of the diagonal blocks of A.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -305,17 +305,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         EQUIL, LERI, ROWCOL
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDDCOE, LDPCO1,
      $                  LDPCO2, LDQCO1, LDQCO2, LDUCO1, LDUCO2, LDVCO1,
      $                  LDVCO2, LDWORK, M, NR, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           INDEXD(*), INDEXP(*), IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DCOEFF(LDDCOE,*), DWORK(*),
      $                  PCOEFF(LDPCO1,LDPCO2,*),
      $                  QCOEFF(LDQCO1,LDQCO2,*),

@@ -19,19 +19,19 @@ C
 C     DP      (input) INTEGER
 C             The degree of the polynomial P(x).  DP >= 0.
 C
-C     P       (input) DOUBLE PRECISION array, dimension (DP+1)
+C     P       (input) REAL*16 array, dimension (DP+1)
 C             This array must contain the coefficients of P(x) in
 C             increasing powers of x.
 C
-C     U1      (input) DOUBLE PRECISION
+C     U1      (input) REAL*16
 C             The value of the constant term of the quadratic
 C             polynomial B(x).
 C
-C     U2      (input) DOUBLE PRECISION
+C     U2      (input) REAL*16
 C             The value of the coefficient of x of the quadratic
 C             polynomial B(x).
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (DP+1)
+C     Q       (output) REAL*16 array, dimension (DP+1)
 C             If DP >= 1 on entry, then elements Q(1) and Q(2) contain
 C             the coefficients q(1) and q(2), respectively, of the
 C             remainder polynomial R(x), and the next (DP-1) elements
@@ -96,12 +96,12 @@ C     ******************************************************************
 C
 C     .. Scalar Arguments ..
       INTEGER           DP, INFO
-      DOUBLE PRECISION  U1, U2
+      REAL*16  U1, U2
 C     .. Array Arguments ..
-      DOUBLE PRECISION  P(*), Q(*)
+      REAL*16  P(*), Q(*)
 C     .. Local Scalars ..
       INTEGER           I, N
-      DOUBLE PRECISION  A, B, C
+      REAL*16  A, B, C
 C     .. External Subroutines ..
       EXTERNAL          XERBLA
 C     .. Executable Statements ..

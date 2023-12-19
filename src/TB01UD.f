@@ -64,7 +64,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs, or of rows of C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading NCONT-by-NCONT part contains the
@@ -77,7 +77,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading NCONT-by-M part of this array
@@ -88,7 +88,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -108,7 +108,7 @@ C     NBLK    (output) INTEGER array, dimension (N)
 C             The leading INDCON elements of this array contain the
 C             the orders of the diagonal blocks of Acont.
 C
-C     Z       (output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (output) REAL*16 array, dimension (LDZ,N)
 C             If JOBZ = 'I', then the leading N-by-N part of this
 C             array contains the matrix of accumulated orthogonal
 C             similarity transformations which reduces the given system
@@ -126,13 +126,13 @@ C     LDZ     INTEGER
 C             The leading dimension of array Z. If JOBZ = 'I' or
 C             JOBZ = 'F', LDZ >= MAX(1,N); if JOBZ = 'N', LDZ >= 1.
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension (N)
+C     TAU     (output) REAL*16 array, dimension (N)
 C             The elements of TAU contain the scalar factors of the
 C             elementary reflectors used in the reduction of B and A.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in rank determination when
 C             transforming (A, B). If the user sets TOL > 0, then
 C             the given value of TOL is used as a lower bound for the
@@ -149,7 +149,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -227,27 +227,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBZ
       INTEGER           INDCON, INFO, LDA, LDB, LDC, LDWORK, LDZ, M, N,
      $                  NCONT, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), TAU(*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), TAU(*),
      $                  Z(LDZ,*)
       INTEGER           IWORK(*), NBLK(*)
 C     .. Local Scalars ..
       LOGICAL           LJOBF, LJOBI, LJOBZ
       INTEGER           IQR, ITAU, J, MCRT, NBL, NCRT, NI, NJ, RANK,
      $                  WRKOPT
-      DOUBLE PRECISION  ANORM, BNORM, FNRM, TOLDEF
+      REAL*16  ANORM, BNORM, FNRM, TOLDEF
 C     .. Local Arrays ..
-      DOUBLE PRECISION  SVAL(3)
+      REAL*16  SVAL(3)
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DLACPY, DLAPMT, DLASET, DORGQR, DORMQR,

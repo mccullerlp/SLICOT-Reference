@@ -63,7 +63,7 @@ C             if ORDSEL = 'A', NR is the sum of NU and the number of
 C             Hankel singular values greater than
 C             MAX(TOL1,NS*EPS*HNORM(As,Bs,Cs)).
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             Specifies the ALPHA-stability boundary for the eigenvalues
 C             of the state dynamics matrix A. For a continuous-time
 C             system (DICO = 'C'), ALPHA <= 0 is the boundary value for
@@ -72,7 +72,7 @@ C             system (DICO = 'D'), 0 <= ALPHA <= 1 represents the
 C             boundary value for the moduli of eigenvalues.
 C             The ALPHA-stability domain does not include the boundary.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, if INFO = 0, the leading NR-by-NR part of this
@@ -90,7 +90,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -100,7 +100,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -110,7 +110,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the original input/output matrix D.
 C             On exit, if INFO = 0, the leading P-by-M part of this
@@ -123,7 +123,7 @@ C
 C     NS      (output) INTEGER
 C             The dimension of the ALPHA-stable subsystem.
 C
-C     HSV     (output) DOUBLE PRECISION array, dimension (N)
+C     HSV     (output) REAL*16 array, dimension (N)
 C             If INFO = 0, the leading NS elements of HSV contain the
 C             Hankel singular values of the ALPHA-stable part of the
 C             original system ordered decreasingly.
@@ -131,7 +131,7 @@ C             HSV(1) is the Hankel norm of the ALPHA-stable subsystem.
 C
 C     Tolerances
 C
-C     TOL1    DOUBLE PRECISION
+C     TOL1    REAL*16
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of reduced system.
 C             For model reduction, the recommended value is
@@ -147,7 +147,7 @@ C             This value is appropriate to compute a minimal realization
 C             of the ALPHA-stable part.
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C
-C     TOL2    DOUBLE PRECISION
+C     TOL2    REAL*16
 C             The tolerance for determining the order of a minimal
 C             realization of the ALPHA-stable part of the given system.
 C             The recommended value is TOL2 = NS*EPS*HNORM(As,Bs,Cs).
@@ -162,7 +162,7 @@ C             LIWORK = MAX(1,N,M), if DICO = 'D'.
 C             On exit, if INFO = 0, IWORK(1) contains NMIN, the order of
 C             the computed minimal realization.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -292,24 +292,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  C100, ONE, ZERO
+      REAL*16  C100, ONE, ZERO
       PARAMETER         ( C100 = 100.0D0, ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDD, LDWORK,
      $                  M, N, NR, NS, P
-      DOUBLE PRECISION  ALPHA, TOL1, TOL2
+      REAL*16  ALPHA, TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), HSV(*)
 C     .. Local Scalars ..
       LOGICAL           DISCR, FIXORD
       INTEGER           IERR, IWARNL, KI, KL, KU, KW, NRA, NU, NU1
-      DOUBLE PRECISION  ALPWRK, MAXRED, WRKOPT
+      REAL*16  ALPWRK, MAXRED, WRKOPT
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB09CX, TB01ID, TB01KD, XERBLA

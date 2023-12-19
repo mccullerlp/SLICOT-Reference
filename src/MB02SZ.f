@@ -12,7 +12,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix H.  N >= 0.
 C
-C     H       (input/output) COMPLEX*16 array, dimension (LDH,N)
+C     H       (input/output) COMPLEX*32 array, dimension (LDH,N)
 C             On entry, the n-by-n upper Hessenberg matrix to be
 C             factored.
 C             On exit, the factors L and U from the factorization
@@ -74,17 +74,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16        ZERO
+      COMPLEX*32        ZERO
       PARAMETER         ( ZERO = ( 0.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDH, N
 C     .. Array Arguments ..
       INTEGER           IPIV(*)
-      COMPLEX*16        H(LDH,*)
+      COMPLEX*32        H(LDH,*)
 C     .. Local Scalars ..
       INTEGER           J, JP
 C     .. External Functions ..
-      DOUBLE PRECISION  DCABS1
+      REAL*16  DCABS1
       EXTERNAL          DCABS1
 C     .. External Subroutines ..
       EXTERNAL          XERBLA, ZAXPY, ZSWAP

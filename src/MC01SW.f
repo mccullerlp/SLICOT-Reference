@@ -12,13 +12,13 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     A       (input) DOUBLE PRECISION
+C     A       (input) REAL*16
 C             The number whose mantissa and exponent are required.
 C
 C     B       (input) INTEGER
 C             The base of the floating-point arithmetic.
 C
-C     M       (output) DOUBLE PRECISION
+C     M       (output) REAL*16
 C             The mantissa of the floating-point representation of A.
 C
 C     E       (output) INTEGER
@@ -40,13 +40,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           B, E
-      DOUBLE PRECISION  A, M
+      REAL*16  A, M
 C     .. Local Scalars ..
-      DOUBLE PRECISION  DB
+      REAL*16  DB
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, DBLE
 C     .. Executable Statements ..

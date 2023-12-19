@@ -30,7 +30,7 @@ C
 C     N      (input) INTEGER
 C            The number of columns of the matrix A.  N >= 0.
 C
-C     A      (input) COMPLEX*16 array, dimension (LDA,N)
+C     A      (input) COMPLEX*32 array, dimension (LDA,N)
 C            The m-by-n matrix A.  If JOB = 'U', only the upper
 C            triangle or trapezoid is accessed; if JOB = 'L', only the
 C            lower triangle or trapezoid is accessed.
@@ -38,7 +38,7 @@ C
 C     LDA    INTEGER
 C            The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     B      (output) COMPLEX*16 array, dimension (LDB,M)
+C     B      (output) COMPLEX*32 array, dimension (LDB,M)
 C            B = A' in the locations specified by JOB, where ' denotes
 C            the transpose or conjugate transpose operation, as
 C            as specified by TRANS.
@@ -60,7 +60,7 @@ C     .. Scalar Arguments ..
       CHARACTER          JOB, TRANS
       INTEGER            LDA, LDB, M, N
 C     .. Array Arguments ..
-      COMPLEX*16         A(LDA,*), B(LDB,*)
+      COMPLEX*32         A(LDA,*), B(LDB,*)
 C     .. Local Scalars ..
       INTEGER            I, J
 C     .. External Functions ..

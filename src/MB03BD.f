@@ -115,7 +115,7 @@ C             The leading K elements of this array must contain the
 C             signatures of the factors. Each entry in S must be either
 C             1 or -1.
 C
-C     A       (input/output)  DOUBLE PRECISION array, dimension
+C     A       (input/output)  REAL*16 array, dimension
 C                             (LDA1,LDA2,K)
 C             On entry, the leading N-by-N-by-K part of this array
 C             must contain the factors in upper Hessenberg-triangular
@@ -144,7 +144,7 @@ C     LDA2    INTEGER
 C             The second leading dimension of the array A.
 C             LDA2 >= MAX(1,N).
 C
-C     Q       (input/output)  DOUBLE PRECISION array, dimension
+C     Q       (input/output)  REAL*16 array, dimension
 C                             (LDQ1,LDQ2,K)
 C             On entry, if COMPQ = 'U', the leading N-by-N-by-K part
 C             of this array must contain the initial orthogonal factors
@@ -169,7 +169,7 @@ C     LDQ2    INTEGER
 C             The second leading dimension of the array Q.  LDQ2 >= 1,
 C             and, if COMPQ <> 'N', LDQ2 >= MAX(1,N).
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
 C             On exit, if INFO = 0, the leading N elements of this array
 C             contain the scaled real parts of the eigenvalues of the
 C             matrix product A. The i-th eigenvalue of A is given by
@@ -179,12 +179,12 @@ C
 C             where BASE is the machine base (often 2.0). Complex
 C             conjugate eigenvalues appear in consecutive locations.
 C
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
 C             On exit, if INFO = 0, the leading N elements of this array
 C             contain the scaled imaginary parts of the eigenvalues
 C             of A.
 C
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             On exit, if INFO = 0, the leading N elements of this array
 C             contain indicators for infinite eigenvalues. That is, if
 C             BETA(I) = 0.0, then the i-th eigenvalue is infinite.
@@ -213,7 +213,7 @@ C
 C     LIWORK  INTEGER
 C             The length of the array IWORK.  LIWORK  >= 2*K+N.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK,
 C             and DWORK(2), ..., DWORK(1+K) contain the Frobenius norms
 C             of the factors of the formal matrix product used by the
@@ -302,7 +302,7 @@ C     .. iterations before switching from explicit to implicit shifts...
 C
       INTEGER           MCOUNT, NITER
       PARAMETER         ( MCOUNT = 1, NITER = 10 )
-      DOUBLE PRECISION  ZERO, ONE, TEN
+      REAL*16  ZERO, ONE, TEN
       PARAMETER         ( ZERO = 0.0D+0, ONE = 1.0D+0, TEN = 1.0D+1 )
 C     .. Scalar Arguments ..
       CHARACTER         COMPQ, DEFL, JOB
@@ -310,10 +310,10 @@ C     .. Scalar Arguments ..
      $                  LDQ2, LDWORK, LIWORK, N
 C     .. Array Arguments ..
       INTEGER           IWORK(*), QIND(*), S(*), SCAL(*)
-      DOUBLE PRECISION  A(LDA1,LDA2,*), ALPHAI(*), ALPHAR(*), BETA(*),
+      REAL*16  A(LDA1,LDA2,*), ALPHAI(*), ALPHAR(*), BETA(*),
      $                  DWORK(*), Q(LDQ1,LDQ2,*)
 C     .. Local Arrays ..
-      DOUBLE PRECISION  MACPAR(5)
+      REAL*16  MACPAR(5)
 C     .. Local Scalars ..
       LOGICAL           ADEFL, ISINF, LCMPQ, LINIQ, LPARQ, LSCHR, LSVD
       CHARACTER         SHFT
@@ -321,14 +321,14 @@ C     .. Local Scalars ..
      $                  IITER, ILAST, ILASTM, IN, IO, J, J1, JDEF,
      $                  JITER, JLO, L, LDEF, LM, MAXIT, NTRA, OPTDW,
      $                  OPTIW, QI, SINV, TITER, ZITER
-      DOUBLE PRECISION  A1, A2, A3, A4, BASE, CS, CS1, CS2, LGBAS, NRM,
+      REAL*16  A1, A2, A3, A4, BASE, CS, CS1, CS2, LGBAS, NRM,
      $                  SAFMAX, SAFMIN, SDET, SMLNUM, SN, SN1, SN2,
      $                  SVMN, TEMP, TEMP2, TOL, TOLL, ULP, W1, W2
 C     .. Workspace Pointers ..
       INTEGER           MAPA, MAPH, MAPQ, PDW, PFREE, PNORM
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANHS, DLAPY2, DLAPY3
+      REAL*16  DLAMCH, DLANHS, DLAPY2, DLAPY3
       EXTERNAL          DLAMCH, DLANHS, DLAPY2, DLAPY3, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DLABAD, DLADIV, DLARTG, DLAS2, DLASET, DROT,

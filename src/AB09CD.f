@@ -59,7 +59,7 @@ C             in HSV(1));
 C             if ORDSEL = 'A', NR is equal to the number of Hankel
 C             singular values greater than MAX(TOL1,N*EPS*HNORM(A,B,C)).
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, if INFO = 0, the leading NR-by-NR part of this
@@ -69,7 +69,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -79,7 +79,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -89,7 +89,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the original input/output matrix D.
 C             On exit, if INFO = 0, the leading P-by-M part of this
@@ -99,14 +99,14 @@ C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     HSV     (output) DOUBLE PRECISION array, dimension (N)
+C     HSV     (output) REAL*16 array, dimension (N)
 C             If INFO = 0, it contains the Hankel singular values of
 C             the original system ordered decreasingly. HSV(1) is the
 C             Hankel norm of the system.
 C
 C     Tolerances
 C
-C     TOL1    DOUBLE PRECISION
+C     TOL1    REAL*16
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of reduced system.
 C             For model reduction, the recommended value is
@@ -119,7 +119,7 @@ C             machine precision (see LAPACK Library Routine DLAMCH).
 C             This value is used by default if TOL1 <= 0 on entry.
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C
-C     TOL2    DOUBLE PRECISION
+C     TOL2    REAL*16
 C             The tolerance for determining the order of a minimal
 C             realization of the given system. The recommended value is
 C             TOL2 = N*EPS*HNORM(A,B,C). This value is used by default
@@ -134,7 +134,7 @@ C             LIWORK = MAX(1,N,M), if DICO = 'D'.
 C             On exit, if INFO = 0, IWORK(1) contains NMIN, the order of
 C             the computed minimal realization.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -234,21 +234,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, C100
+      REAL*16  ZERO, ONE, C100
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, C100 = 100.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDD, LDWORK,
      $                  M, N, NR, P
-      DOUBLE PRECISION  TOL1, TOL2
+      REAL*16  TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), HSV(*)
 C     .. Local Scalars ..
       LOGICAL           FIXORD
       INTEGER           IERR, KI, KL, KT, KW
-      DOUBLE PRECISION  MAXRED, WRKOPT
+      REAL*16  MAXRED, WRKOPT
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

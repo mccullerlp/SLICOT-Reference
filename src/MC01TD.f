@@ -28,7 +28,7 @@ C             On entry, the degree of the polynomial P(x).  DP >= 0.
 C             On exit, if P(DP+1) = 0.0 on entry, then DP contains the
 C             index of the highest power of x for which P(DP+1) <> 0.0.
 C
-C     P       (input) DOUBLE PRECISION array, dimension (DP+1)
+C     P       (input) REAL*16 array, dimension (DP+1)
 C             This array must contain the coefficients of P(x) in
 C             increasing powers of x.
 C
@@ -44,7 +44,7 @@ C             circle if DICO = 'D' (see also NUMERICAL ASPECTS).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (2*DP+2)
+C     DWORK   REAL*16 array, dimension (2*DP+2)
 C             The leading (DP+1) elements of DWORK contain the Routh
 C             coefficients, if DICO = 'C', or the constant terms of
 C             the Schur-Cohn transforms, if DICO = 'D'.
@@ -137,18 +137,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO
       LOGICAL           STABLE
       INTEGER           DP, INFO, IWARN, NZ
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(*), P(*)
+      REAL*16  DWORK(*), P(*)
 C     .. Local Scalars ..
       LOGICAL           DICOC
       INTEGER           I, K, K1, K2, SIGNUM
-      DOUBLE PRECISION  ALPHA, P1, PK1
+      REAL*16  ALPHA, P1, PK1
 C     .. External Functions ..
       INTEGER           IDAMAX
       LOGICAL           LSAME

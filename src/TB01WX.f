@@ -31,7 +31,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs, or of rows of C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -41,7 +41,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -50,7 +50,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -59,7 +59,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     U       (input/output) DOUBLE PRECISION array, dimension (LDU,*)
+C     U       (input/output) REAL*16 array, dimension (LDU,*)
 C             On entry, if COMPU = 'U', the leading N-by-N part of this
 C             array must contain the given matrix U1. Otherwise, this
 C             array need not be set on input.
@@ -75,7 +75,7 @@ C             LDU >= max(1,N), if COMPU <> 'N'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -127,13 +127,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION ZERO, ONE
+      REAL*16 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        COMPU
       INTEGER          INFO, LDA, LDB, LDC, LDU, LDWORK, M, N, P
 C     .. Array Arguments ..
-      DOUBLE PRECISION A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), U(LDU,*)
+      REAL*16 A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), U(LDU,*)
 C     .. Local Scalars ..
       LOGICAL          ILU, LQUERY
       INTEGER          ICOMPU, ITAU, JWORK, MINWRK, WRKOPT

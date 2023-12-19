@@ -15,7 +15,7 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the m-by-n matrix A.
 C             On exit,
 C             if m <= n, the upper triangle of the subarray
@@ -37,12 +37,12 @@ C             the i-th row of A is a free row.
 C             On exit, if JPVT(i) = k, then the i-th row of P*A
 C             was the k-th row of A.
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension (min(M,N))
+C     TAU     (output) REAL*16 array, dimension (min(M,N))
 C             The scalar factors of the elementary reflectors.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (3*M)
+C     DWORK   REAL*16 array, dimension (3*M)
 C
 C     Error Indicator
 C
@@ -98,7 +98,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -106,15 +106,15 @@ C     .. Scalar Arguments ..
 C     ..
 C     .. Array Arguments ..
       INTEGER            JPVT( * )
-      DOUBLE PRECISION   A( LDA, * ), DWORK( * ), TAU( * )
+      REAL*16   A( LDA, * ), DWORK( * ), TAU( * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            I, ITEMP, J, K, MA, MKI, NFREE, NKI, PVT
-      DOUBLE PRECISION   AII, TEMP, TEMP2, TOLZ
+      REAL*16   AII, TEMP, TEMP2, TOLZ
 C     ..
 C     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DLAMCH, DNRM2
+      REAL*16   DLAMCH, DNRM2
       EXTERNAL           DLAMCH, DNRM2, IDAMAX
 C     ..
 C     .. External Subroutines ..

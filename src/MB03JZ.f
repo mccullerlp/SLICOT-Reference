@@ -49,7 +49,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bH.  N >= 0, even.
 C
-C     A       (input/output) COMPLEX*16 array, dimension (LDA, N/2)
+C     A       (input/output) COMPLEX*32 array, dimension (LDA, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular matrix A.
 C             On exit, the leading  N/2-by-N/2 part of this array
@@ -60,7 +60,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1, N/2).
 C
-C     D       (input/output) COMPLEX*16 array, dimension (LDD, N/2)
+C     D       (input/output) COMPLEX*32 array, dimension (LDD, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular part of the skew-Hermitian
 C             matrix D.
@@ -72,7 +72,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1, N/2).
 C
-C     B       (input/output) COMPLEX*16 array, dimension (LDB, N/2)
+C     B       (input/output) COMPLEX*32 array, dimension (LDB, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular matrix B.
 C             On exit, the leading  N/2-by-N/2 part of this array
@@ -83,7 +83,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N/2).
 C
-C     F       (input/output) COMPLEX*16 array, dimension (LDF, N/2)
+C     F       (input/output) COMPLEX*32 array, dimension (LDF, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular part of the Hermitian matrix
 C             F.
@@ -95,7 +95,7 @@ C
 C     LDF     INTEGER
 C             The leading dimension of the array F.  LDF >= MAX(1, N/2).
 C
-C     Q       (input/output) COMPLEX*16 array, dimension (LDQ, N)
+C     Q       (input/output) COMPLEX*32 array, dimension (LDQ, N)
 C             On entry, if COMPQ = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q0, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -116,7 +116,7 @@ C             negative real part.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance used to decide the sign of the eigenvalues.
 C             If the user sets TOL > 0, then the given value of TOL is
 C             used. If the user sets TOL <= 0, then an implicitly
@@ -185,30 +185,30 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, TEN
+      REAL*16   ZERO, TEN
       PARAMETER          ( ZERO = 0.0D+0, TEN = 1.0D+1 )
-      COMPLEX*16         CZERO, CONE
+      COMPLEX*32         CZERO, CONE
       PARAMETER          ( CZERO = ( 0.0D+0, 0.0D+0 ), CONE = ( 1.0D+0,
      $                     0.0D+0 ) )
 C
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ
       INTEGER            INFO, LDA, LDB, LDD, LDF, LDQ, N, NEIG
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C
 C     .. Array Arguments ..
-      COMPLEX*16         A( LDA, * ), B( LDB, * ), D( LDD, * ),
+      COMPLEX*32         A( LDA, * ), B( LDB, * ), D( LDD, * ),
      $                   F( LDF, * ), Q( LDQ, * ) 
 C
 C     .. Local Scalars ..
       LOGICAL            LCMPQ, LINIQ, LUPDQ
       INTEGER            IUPD, J, K, M, MM, MP, UPDS
-      DOUBLE PRECISION   CO1, CO2, EPS
-      COMPLEX*16         CJF, SI1, SI2, TMP
+      REAL*16   CO1, CO2, EPS
+      COMPLEX*32         CJF, SI1, SI2, TMP
 C
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C
 C     .. External Subroutines ..

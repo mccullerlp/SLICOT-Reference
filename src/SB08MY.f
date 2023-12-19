@@ -12,15 +12,15 @@ C
 C     DA      (input) INTEGER
 C             The degree of the polynomials A(s) and B(s).  DA >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (DA+1)
+C     A       (input) REAL*16 array, dimension (DA+1)
 C             This array must contain the coefficients of the polynomial
 C             A(s) in increasing powers of s.
 C
-C     B       (output) DOUBLE PRECISION array, dimension (DA+1)
+C     B       (output) REAL*16 array, dimension (DA+1)
 C             This array contains the coefficients of the polynomial
 C             B(s) in increasing powers of s**2.
 C
-C     EPSB    (input/output) DOUBLE PRECISION
+C     EPSB    (input/output) REAL*16
 C             On entry, EPSB must contain the machine precision (see
 C             LAPACK Library routine DLAMCH).
 C             On exit, EPSB contains an updated value, using a norm
@@ -42,17 +42,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO, THREE
+      REAL*16  ZERO, ONE, TWO, THREE
       PARAMETER         ( ZERO  = 0.0D0, ONE = 1.0D0, TWO=2.0D0,
      $                    THREE = 3.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DA
-      DOUBLE PRECISION  EPSB
+      REAL*16  EPSB
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(*), B(*)
+      REAL*16  A(*), B(*)
 C     .. Local Scalars ..
       INTEGER           I, K
-      DOUBLE PRECISION  MAXSA, SA, SABS, SIGNI, SIGNK, TERM
+      REAL*16  MAXSA, SA, SABS, SIGNI, SIGNK, TERM
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, MAX, MIN
 C     .. Executable Statements ..

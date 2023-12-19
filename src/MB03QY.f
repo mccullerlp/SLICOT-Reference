@@ -19,7 +19,7 @@ C
 C     L       (input) INTEGER
 C             Specifies the position of the block.  1 <= L < N.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper quasi-triangular matrix A whose
 C             selected 2-by-2 diagonal block is to be processed.
@@ -31,7 +31,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= N.
 C
-C     U       (input/output) DOUBLE PRECISION array, dimension (LDU,N)
+C     U       (input/output) REAL*16 array, dimension (LDU,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain a transformation matrix U.
 C             On exit, the leading N-by-N part of this array contains
@@ -41,7 +41,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= N.
 C
-C     E1, E2  (output) DOUBLE PRECISION
+C     E1, E2  (output) REAL*16
 C             E1 and E2 contain either the real eigenvalues or the real
 C             and positive imaginary parts, respectively, of the complex
 C             eigenvalues of the selected 2-by-2 diagonal block of A.
@@ -87,16 +87,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION ZERO
+      REAL*16 ZERO
       PARAMETER        ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER          INFO, L, LDA, LDU, N
-      DOUBLE PRECISION E1, E2
+      REAL*16 E1, E2
 C     .. Array Arguments ..
-      DOUBLE PRECISION A(LDA,*), U(LDU,*)
+      REAL*16 A(LDA,*), U(LDU,*)
 C     .. Local Scalars ..
       INTEGER          L1
-      DOUBLE PRECISION EW1, EW2, CS, SN
+      REAL*16 EW1, EW2, CS, SN
 C     .. External Subroutines ..
       EXTERNAL         DLANV2, DROT, XERBLA
 C     .. Executable Statements ..

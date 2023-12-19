@@ -53,7 +53,7 @@ C     P       (input) INTEGER
 C             The dimension of output vector, i.e. the number of rows
 C             of the matrices C and D.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A. The matrix A must not
 C             have controllable eigenvalues on the imaginary axis, if
@@ -68,7 +68,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix.
 C             On exit, the leading NQ-by-M part of this array contains
@@ -80,7 +80,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-NQ part of this array contains
@@ -90,7 +90,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the input/output matrix.
 C             On exit, the leading P-by-M part of this array contains
@@ -111,7 +111,7 @@ C             Generally, NR is the number of controllable eigenvalues
 C             of A outside the stability region (the number of modified
 C             eigenvalues).
 C
-C     CR      (output) DOUBLE PRECISION array, dimension (LDCR,N)
+C     CR      (output) REAL*16 array, dimension (LDCR,N)
 C             The leading M-by-NQ part of this array contains the
 C             leading M-by-NQ part of the feedback matrix F*Z, which
 C             reflects the eigenvalues of A lying outside the stable
@@ -124,7 +124,7 @@ C
 C     LDCR    INTEGER
 C             The leading dimension of array CR.  LDCR >= MAX(1,M).
 C
-C     DR      (output) DOUBLE PRECISION array, dimension (LDDR,M)
+C     DR      (output) REAL*16 array, dimension (LDDR,M)
 C             The leading M-by-M part of this array contains the upper
 C             triangular matrix V of order M representing the
 C             input/output matrix of the denominator factor R.
@@ -134,7 +134,7 @@ C             The leading dimension of array DR.  LDDR >= MAX(1,M).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The absolute tolerance level below which the elements of
 C             B are considered zero (used for controllability tests).
 C             If the user sets TOL <= 0, then an implicitly computed,
@@ -145,7 +145,7 @@ C             the 1-norm of B.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -214,26 +214,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, TEN, ZERO
+      REAL*16  ONE, TEN, ZERO
       PARAMETER         ( ONE = 1.0D0, TEN = 1.0D1, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDCR, LDD, LDDR,
      $                  LDWORK, M, N, NQ, NR, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), CR(LDCR,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), CR(LDCR,*),
      $                  D(LDD,*), DR(LDDR,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           DISCR
       INTEGER           I, IB, IB1, J, K, KFI, KV, KW, KWI, KWR, KZ, L,
      $                  L1, NB, NCUR, NFP, NLOW, NSUP
-      DOUBLE PRECISION  ALPHA, BNORM, CS, PR, RMAX, SM, SN, TOLER,
+      REAL*16  ALPHA, BNORM, CS, PR, RMAX, SM, SN, TOLER,
      $                  WRKOPT, X, Y
 C     .. Local Arrays ..
-      DOUBLE PRECISION  Z(4,4)
+      REAL*16  Z(4,4)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..

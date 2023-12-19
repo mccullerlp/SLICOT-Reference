@@ -76,7 +76,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bH.  N >= 0, even.
 C
-C     A       (input/output) COMPLEX*16 array, dimension (LDA, N)
+C     A       (input/output) COMPLEX*32 array, dimension (LDA, N)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix A.
 C             On exit, if COMPQ = 'C', the leading N-by-N part of this
@@ -88,7 +88,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1, N).
 C
-C     DE      (input/output) COMPLEX*16 array, dimension (LDDE, N)
+C     DE      (input/output) COMPLEX*32 array, dimension (LDDE, N)
 C             On entry, the leading N/2-by-N/2 lower triangular part of
 C             this array must contain the lower triangular part of the
 C             skew-Hermitian matrix E, and the N/2-by-N/2 upper
@@ -104,7 +104,7 @@ C
 C     LDDE    INTEGER
 C             The leading dimension of the array DE.  LDDE >= MAX(1, N).
 C
-C     B       (input/output) COMPLEX*16 array, dimension (LDB, N)
+C     B       (input/output) COMPLEX*32 array, dimension (LDB, N)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix B.
 C             On exit, if COMPQ = 'C', the leading N-by-N part of this
@@ -117,7 +117,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N).
 C
-C     FG      (input/output) COMPLEX*16 array, dimension (LDFG, N)
+C     FG      (input/output) COMPLEX*32 array, dimension (LDFG, N)
 C             On entry, the leading N/2-by-N/2 lower triangular part of
 C             this array must contain the lower triangular part of the
 C             Hermitian matrix G, and the N/2-by-N/2 upper triangular
@@ -138,7 +138,7 @@ C     NEIG    (output) INTEGER
 C             If COMPQ = 'C', the number of eigenvalues in aS - bH with
 C             strictly negative real part.
 C
-C     Q       (output) COMPLEX*16 array, dimension (LDQ, 2*N)
+C     Q       (output) COMPLEX*32 array, dimension (LDQ, 2*N)
 C             On exit, if COMPQ = 'C', the leading N-by-NEIG part of
 C             this array contains an orthonormal basis of the right
 C             deflating subspace corresponding to the eigenvalues of the
@@ -151,16 +151,16 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,           if COMPQ = 'N';
 C             LDQ >= MAX(1, 2*N), if COMPQ = 'C'.
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
 C             The real parts of each scalar alpha defining an eigenvalue
 C             of the pencil aS - bH.
 C
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
 C             The imaginary parts of each scalar alpha defining an
 C             eigenvalue of the pencil aS - bH.
 C             If ALPHAI(j) is zero, then the j-th eigenvalue is real.
 C
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             The scalars beta that define the eigenvalues of the pencil
 C             aS - bH.
 C             Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
@@ -172,7 +172,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N+1)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C             On exit, if INFO = -20, DWORK(1) returns the minimum value
 C             of LDWORK.
@@ -189,7 +189,7 @@ C             DWORK array, returns this value as the first entry of
 C             the DWORK array, and no error message related to LDWORK
 C             is issued by XERBLA.
 C
-C     ZWORK   COMPLEX*16 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal LZWORK.
 C             On exit, if INFO = -22, ZWORK(1) returns the minimum value
 C             of LZWORK.
@@ -305,9 +305,9 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE
+      REAL*16   ONE
       PARAMETER          ( ONE = 1.0D+0 )
-      COMPLEX*16         CZERO, CONE, CIMAG
+      COMPLEX*32         CZERO, CONE, CIMAG
       PARAMETER          ( CZERO = ( 0.0D+0, 0.0D+0 ),
      $                      CONE = ( 1.0D+0, 0.0D+0 ),
      $                     CIMAG = ( 0.0D+0, 1.0D+0 ) )
@@ -320,8 +320,8 @@ C
 C     .. Array Arguments ..
       LOGICAL            BWORK( * )
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   ALPHAI( * ), ALPHAR( * ), BETA( * ), DWORK( * )
-      COMPLEX*16         A( LDA, * ), B( LDB, * ), DE( LDDE, * ),
+      REAL*16   ALPHAI( * ), ALPHAR( * ), BETA( * ), DWORK( * )
+      COMPLEX*32         A( LDA, * ), B( LDB, * ), DE( LDDE, * ),
      $                   FG( LDFG, * ), Q( LDQ, * ), ZWORK( * )
 C
 C     .. Local Scalars ..
@@ -331,12 +331,12 @@ C     .. Local Scalars ..
      $                   ITAU, IW, IW1, IWA, IWRK, J, J1, J2, JM1, JP2,
      $                   M, MINDB, MINDW, MINZW, N2, NB, NBL, NC, NN,
      $                   OPTDW, OPTZW
-      DOUBLE PRECISION   EPS, NRMB, TOL
-      COMPLEX*16         TMP
+      REAL*16   EPS, NRMB, TOL
+      COMPLEX*32         TMP
 C
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C
 C     .. External Subroutines ..

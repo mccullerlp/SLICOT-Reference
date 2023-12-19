@@ -9,10 +9,10 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     REIG    (input) DOUBLE PRECISION
+C     REIG    (input) REAL*16
 C             The real part of the current eigenvalue considered.
 C
-C     IEIG    (input) DOUBLE PRECISION
+C     IEIG    (input) REAL*16
 C             The imaginary part of the current eigenvalue considered.
 C
 C     METHOD
@@ -45,12 +45,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION  IEIG, REIG
+      REAL*16  IEIG, REIG
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAPY2
+      REAL*16   DLAPY2
       EXTERNAL           DLAPY2
 C     .. Executable Statements ..
 C

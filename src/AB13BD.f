@@ -1,4 +1,4 @@
-      DOUBLE PRECISION FUNCTION AB13BD( DICO, JOBN, N, M, P, A, LDA,
+      REAL*16 FUNCTION AB13BD( DICO, JOBN, N, M, P, A, LDA,
      $                                  B, LDB, C, LDC, D, LDD, NQ, TOL,
      $                                  DWORK, LDWORK, IWARN, INFO)
 C
@@ -12,7 +12,7 @@ C     must be stable.
 C
 C     FUNCTION VALUE
 C
-C     AB13BD   DOUBLE PRECISION
+C     AB13BD   REAL*16
 C              The H2-norm of G, if JOBN = 'H', or the L2-norm of G,
 C              if JOBN = 'L' (if INFO = 0).
 C
@@ -45,7 +45,7 @@ C     P       (input) INTEGER
 C             The number of rows of the matrices C and D.
 C             P represents the dimension of output vector.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix of the system.
 C             On exit, the leading NQ-by-NQ part of this array contains
@@ -56,7 +56,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix of the system.
 C             On exit, the leading NQ-by-M part of this array contains
@@ -67,7 +67,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix of the system.
 C             On exit, the leading P-by-NQ part of this array contains
@@ -78,7 +78,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the input/output matrix of the system.
 C             If DICO = 'C', D must be a null matrix.
@@ -99,7 +99,7 @@ C             uncontrollable unstable eigenvalues.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The absolute tolerance level below which the elements of
 C             B are considered zero (used for controllability tests).
 C             If the user sets TOL <= 0, then an implicitly computed,
@@ -110,7 +110,7 @@ C             the 1-norm of B.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -216,22 +216,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, ZERO
+      REAL*16  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, JOBN
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDD, LDWORK, M,
      $                  N, NQ, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), DWORK(*)
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           DISCR
       INTEGER           KCR, KDR, KRW, KTAU, KU, MXNP, NR
-      DOUBLE PRECISION  S2NORM, SCALE, WRKOPT
+      REAL*16  S2NORM, SCALE, WRKOPT
 C     .. External functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLANGE, DLAPY2
+      REAL*16  DLANGE, DLAPY2
       EXTERNAL          DLANGE, DLAPY2, LSAME
 C     .. External subroutines ..
       EXTERNAL          DLACPY, DTRMM, SB03OU, SB08DD, XERBLA

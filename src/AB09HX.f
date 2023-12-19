@@ -79,7 +79,7 @@ C             (see LAPACK Library Routine DLAMCH);
 C             if ORDSEL = 'A', NR is equal to the number of Hankel
 C             singular values greater than MAX(TOL1,N*EPS).
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A in a real Schur
 C             canonical form.
@@ -90,7 +90,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -100,7 +100,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -110,7 +110,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the original input/output matrix D.
 C             On exit, if INFO = 0, the leading P-by-M part of this
@@ -120,12 +120,12 @@ C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     HSV     (output) DOUBLE PRECISION array, dimension (N)
+C     HSV     (output) REAL*16 array, dimension (N)
 C             If INFO = 0, it contains the Hankel singular values,
 C             ordered decreasingly, of the phase system. All singular
 C             values are less than or equal to 1.
 C
-C     T       (output) DOUBLE PRECISION array, dimension (LDT,N)
+C     T       (output) REAL*16 array, dimension (LDT,N)
 C             If INFO = 0 and NR > 0, the leading N-by-NR part of this
 C             array contains the right truncation matrix T in (1), for
 C             the B&T approach, or in (2), for the SPA approach.
@@ -133,7 +133,7 @@ C
 C     LDT     INTEGER
 C             The leading dimension of array T.  LDT >= MAX(1,N).
 C
-C     TI      (output) DOUBLE PRECISION array, dimension (LDTI,N)
+C     TI      (output) REAL*16 array, dimension (LDTI,N)
 C             If INFO = 0 and NR > 0, the leading NR-by-N part of this
 C             array contains the left truncation matrix TI in (1), for
 C             the B&T approach, or in (2), for the SPA approach.
@@ -143,7 +143,7 @@ C             The leading dimension of array TI.  LDTI >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL1    DOUBLE PRECISION
+C     TOL1    REAL*16
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of reduced system.
 C             For model reduction, the recommended value lies in the
@@ -153,7 +153,7 @@ C             TOL1 = N*EPS, where EPS is the machine
 C             precision (see LAPACK Library Routine DLAMCH).
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C
-C     TOL2    DOUBLE PRECISION
+C     TOL2    REAL*16
 C             The tolerance for determining the order of a minimal
 C             realization of the phase system (see METHOD) corresponding
 C             to the given system.
@@ -167,7 +167,7 @@ C     IWORK   INTEGER array, dimension (MAX(1,2*N))
 C             On exit with INFO = 0, IWORK(1) contains the order of the
 C             minimal realization of the system.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK and DWORK(2) contains RCOND, the reciprocal
 C             condition number of the U11 matrix from the expression
@@ -302,27 +302,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, TWO, ZERO
+      REAL*16  ONE, TWO, ZERO
       PARAMETER         ( ONE = 1.0D0, TWO = 2.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, JOB, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDD, LDT, LDTI,
      $                  LDWORK, M, N, NR, P
-      DOUBLE PRECISION  TOL1, TOL2
+      REAL*16  TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), HSV(*), T(LDT,*), TI(LDTI,*)
       LOGICAL           BWORK(*)
 C     .. Local Scalars ..
       LOGICAL           BAL, BTA, DISCR, FIXORD, SPA
       INTEGER           IERR, IJ, J, K, KTAU, KU, KV, KW, LDW, LW,
      $                  NMINR, NR1, NS, WRKOPT
-      DOUBLE PRECISION  ATOL, RCOND, RICOND, SCALEC, SCALEO, TEMP,
+      REAL*16  ATOL, RCOND, RICOND, SCALEC, SCALEO, TEMP,
      $                  TOLDEF
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB04MD, AB09DD, AB09HY, DGEMM, DGEMV, DGEQRF,

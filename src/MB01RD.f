@@ -41,16 +41,16 @@ C     N       (input) INTEGER
 C             The order of the matrix X and the number of columns of the
 C             the matrix op( A ).  N >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry, except when R is identified with X in
 C             the call (which is possible only in this case).
 C
-C     BETA    (input) DOUBLE PRECISION
+C     BETA    (input) REAL*16
 C             The scalar beta. When beta is zero then A and X are not
 C             referenced.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,M)
+C     R       (input/output) REAL*16 array, dimension (LDR,M)
 C             On entry with UPLO = 'U', the leading M-by-M upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix R; the strictly
@@ -72,7 +72,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,M).
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,k)
+C     A       (input) REAL*16 array, dimension (LDA,k)
 C             where k is N when TRANS = 'N' and is M when TRANS = 'T' or
 C             TRANS = 'C'.
 C             On entry with TRANS = 'N', the leading M-by-N part of this
@@ -85,7 +85,7 @@ C             The leading dimension of array A.  LDA >= MAX(1,l),
 C             where l is M when TRANS = 'N' and is N when TRANS = 'T' or
 C             TRANS = 'C'.
 C
-C     X       (input/output) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (input/output) REAL*16 array, dimension (LDX,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix X and the strictly
@@ -102,7 +102,7 @@ C             The leading dimension of array X.  LDX >= MAX(1,N).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, the leading M-by-N part of this
 C             array (with the leading dimension MAX(1,M)) returns the
 C             matrix product beta*op( A )*T, where T is the triangular
@@ -173,14 +173,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, HALF
+      REAL*16  ZERO, ONE, HALF
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, HALF = 0.5D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS, UPLO
       INTEGER           INFO, LDA, LDR, LDWORK, LDX, M, N
-      DOUBLE PRECISION  ALPHA, BETA
+      REAL*16  ALPHA, BETA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), R(LDR,*), X(LDX,*)
+      REAL*16  A(LDA,*), DWORK(*), R(LDR,*), X(LDX,*)
 C     .. Local Scalars ..
       CHARACTER*12      NTRAN
       LOGICAL           LTRANS, LUPLO

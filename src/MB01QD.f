@@ -44,8 +44,8 @@ C     KU      (input) INTEGER
 C             The upper bandwidth of A.  Referenced only if TYPE = 'B',
 C             'Q' or 'Z'.
 C
-C     CFROM   (input) DOUBLE PRECISION
-C     CTO     (input) DOUBLE PRECISION
+C     CFROM   (input) REAL*16
+C     CTO     (input) REAL*16
 C             The matrix A is multiplied by CTO/CFROM. A(I,J) is
 C             computed without over/underflow if the final result
 C             CTO*A(I,J)/CFROM can be represented without over/
@@ -62,7 +62,7 @@ C             i-th diagonal block of matrix A.  The sum of the values
 C             NROWS(i),  for  i = 1: NBL,  should be equal to min(M,N).
 C             The array  NROWS  is not referenced if NBL = 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             The matrix to be multiplied by CTO/CFROM.  See TYPE for
 C             the storage type.
 C
@@ -90,27 +90,27 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          TYPE
       INTEGER            INFO, KL, KU, LDA, M, N, NBL
-      DOUBLE PRECISION   CFROM, CTO
+      REAL*16   CFROM, CTO
 C     ..
 C     .. Array Arguments ..
       INTEGER            NROWS ( * )
-      DOUBLE PRECISION   A( LDA, * )
+      REAL*16   A( LDA, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            DONE, NOBLC
       INTEGER            I, IFIN, ITYPE, J, JFIN, JINI, K, K1, K2, K3,
      $                   K4
-      DOUBLE PRECISION   BIGNUM, CFROM1, CFROMC, CTO1, CTOC, MUL, SMLNUM
+      REAL*16   BIGNUM, CFROM1, CFROMC, CTO1, CTOC, MUL, SMLNUM
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           LSAME, DLAMCH
 C     ..
 C     .. Intrinsic Functions ..

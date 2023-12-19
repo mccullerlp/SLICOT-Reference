@@ -24,34 +24,34 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     Z11     (input) COMPLEX*16
+C     Z11     (input) COMPLEX*32
 C             Upper left element of the non-trivial factor Z in the
 C             factorization of S.
 C
-C     Z12     (input) COMPLEX*16
+C     Z12     (input) COMPLEX*32
 C             Upper right element of the non-trivial factor Z in the
 C             factorization of S.
 C
-C     Z22     (input) COMPLEX*16
+C     Z22     (input) COMPLEX*32
 C             Lower right element of the non-trivial factor Z in the
 C             factorization of S.
 C
-C     H11     (input) COMPLEX*16
+C     H11     (input) COMPLEX*32
 C             Upper left element of the Hamiltonian matrix H.
 C
-C     H12     (input) COMPLEX*16
+C     H12     (input) COMPLEX*32
 C             Upper right element of the Hamiltonian matrix H.
 C
-C     CO1     (output) DOUBLE PRECISION
+C     CO1     (output) REAL*16
 C             Upper left element of Q.
 C
-C     SI1     (output) COMPLEX*16
+C     SI1     (output) COMPLEX*32
 C             Upper right element of Q.
 C
-C     CO2     (output) DOUBLE PRECISION
+C     CO2     (output) REAL*16
 C             Upper left element of U.
 C
-C     SI2     (output) COMPLEX*16
+C     SI2     (output) COMPLEX*32
 C             Upper right element of U.
 C
 C     METHOD
@@ -90,15 +90,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   TWO
+      REAL*16   TWO
       PARAMETER          ( TWO = 2.0D+0 )
 C
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION   CO1, CO2
-      COMPLEX*16         H11, H12, SI1, SI2, Z11, Z12, Z22
+      REAL*16   CO1, CO2
+      COMPLEX*32         H11, H12, SI1, SI2, Z11, Z12, Z22
 C
 C     .. Local Scalars ..
-      COMPLEX*16         D, G, TMP
+      COMPLEX*32         D, G, TMP
 C
 C     .. External Subroutines ..
       EXTERNAL           ZLARTG

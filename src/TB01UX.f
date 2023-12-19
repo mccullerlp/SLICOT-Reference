@@ -61,7 +61,7 @@ C     P       (input) INTEGER
 C             The dimension of system output vector; also the number of
 C             rows of the matrix C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N state matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -80,7 +80,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C             (LDB,MAX(M,P))
 C             On entry, the leading N-by-M part of this array must
 C             contain the N-by-M input matrix B.
@@ -92,7 +92,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N) if M > 0 or  P > 0;
 C             LDB >= 1        if M = 0 and P = 0.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -110,7 +110,7 @@ C             The leading dimension of the array C.
 C             LDC >= MAX(1,M,P) if N > 0;
 C             LDC >= 1          if N = 0.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,*)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,*)
 C             If COMPZ = 'N': Z is not referenced.
 C             If COMPZ = 'I': on entry, Z need not be set;
 C                             on exit, the leading N-by-N part of this
@@ -141,7 +141,7 @@ C             form (1).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in rank determinations when
 C             transforming the pair (A,C). If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -157,7 +157,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (P)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (N+MAX(1, N, 3*P, M))
+C     DWORK   REAL*16 array, dimension (N+MAX(1, N, 3*P, M))
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -208,22 +208,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE
+      REAL*16   ONE
       PARAMETER          ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPZ
       INTEGER            INFO, LDA, LDB, LDC, LDZ, M, N, NLBLCK, NOBSV,
      $                   P
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C     .. Array Arguments ..
       INTEGER            CTAU( * ), IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, *  ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, *  ),
      $                   DWORK( * ), Z( LDZ, * )
 C     .. Local Scalars ..
       LOGICAL            ILZ
       INTEGER            LBA, LDWORK
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM(1)
+      REAL*16   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

@@ -63,7 +63,7 @@ C              -1/2
 C             R    .  P >= 0.
 C              i+1
 C
-C     SINV    (input/output) DOUBLE PRECISION array, dimension
+C     SINV    (input/output) REAL*16 array, dimension
 C             (LDSINV,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C                                 -1
@@ -85,7 +85,7 @@ C
 C     LDSINV  INTEGER
 C             The leading dimension of array SINV.  LDSINV >= MAX(1,N).
 C
-C     AINV    (input) DOUBLE PRECISION array, dimension (LDAINV,N)
+C     AINV    (input) REAL*16 array, dimension (LDAINV,N)
 C                                                                 -1
 C             The leading N-by-N part of this array must contain A  ,
 C                                                                 i
@@ -95,7 +95,7 @@ C
 C     LDAINV  INTEGER
 C             The leading dimension of array AINV.  LDAINV >= MAX(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain B ,
 C                                                      -1         i
 C             the input weight matrix (or the product A  B  if
@@ -105,7 +105,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     RINV    (input) DOUBLE PRECISION array, dimension (LDRINV,*)
+C     RINV    (input) REAL*16 array, dimension (LDRINV,*)
 C             If MULTRC = 'N', then the leading P-by-P upper triangular
 C                                              -1/2
 C             part of this array must contain R    , the inverse of the
@@ -124,7 +124,7 @@ C             The leading dimension of array RINV.
 C             LDRINV >= MAX(1,P) if MULTRC = 'N';
 C             LDRINV >= 1        if MULTRC = 'P'.
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain C   ,
 C                                                       -1/2      i+1
 C             the output weight matrix (or the product R    C    if
@@ -134,7 +134,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     QINV    (input/output) DOUBLE PRECISION array, dimension
+C     QINV    (input/output) REAL*16 array, dimension
 C             (LDQINV,M)
 C             On entry, the leading M-by-M upper triangular part of this
 C                                 -1/2
@@ -155,7 +155,7 @@ C
 C     LDQINV  INTEGER
 C             The leading dimension of array QINV.  LDQINV >= MAX(1,M).
 C
-C     X       (input/output) DOUBLE PRECISION array, dimension (N)
+C     X       (input/output) REAL*16 array, dimension (N)
 C             On entry, this array must contain X , the estimated
 C                                                i
 C             filtered state at instant i.
@@ -168,7 +168,7 @@ C                                  -1
 C             this array contains S   X   .
 C                                  i+1 i+1
 C
-C     RINVY   (input) DOUBLE PRECISION array, dimension (P)
+C     RINVY   (input) REAL*16 array, dimension (P)
 C                                      -1/2
 C             This array must contain R    Y   , the product of the
 C                                      i+1  i+1
@@ -178,19 +178,19 @@ C                                      i+1
 C             vector Y    at instant i+1.
 C                     i+1
 C
-C     Z       (input) DOUBLE PRECISION array, dimension (M)
+C     Z       (input) REAL*16 array, dimension (M)
 C             This array must contain Z , the mean value of the state
 C                                      i
 C             process noise at instant i.
 C
-C     E       (output) DOUBLE PRECISION array, dimension (P)
+C     E       (output) REAL*16 array, dimension (P)
 C             This array contains E   , the estimated error at instant
 C                                  i+1
 C             i+1.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             If JOBX = 'X', then TOL is used to test for near
 C                                        -1
 C             singularity of the matrix S   . If the user sets
@@ -211,7 +211,7 @@ C     IWORK   INTEGER array, dimension (LIWORK)
 C             where LIWORK = N if JOBX = 'X',
 C             and   LIWORK = 1 otherwise.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.  If INFO = 0 and JOBX = 'X', DWORK(2) returns
 C             an estimate of the reciprocal of the condition number
@@ -328,26 +328,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO
+      REAL*16  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBX, MULTAB, MULTRC
       INTEGER           INFO, LDAINV, LDB, LDC, LDQINV, LDRINV, LDSINV,
      $                  LDWORK, M, N, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  AINV(LDAINV,*), B(LDB,*), C(LDC,*), DWORK(*),
+      REAL*16  AINV(LDAINV,*), B(LDB,*), C(LDC,*), DWORK(*),
      $                  E(*), QINV(LDQINV,*), RINV(LDRINV,*), RINVY(*),
      $                  SINV(LDSINV,*), X(*), Z(*)
 C     .. Local Scalars ..
       LOGICAL           LJOBX, LMULTA, LMULTR
       INTEGER           I, I12, I13, I21, I23, IJ, ITAU, JWORK, LDW, M1,
      $                  N1, NP, WRKOPT
-      DOUBLE PRECISION  RCOND
+      REAL*16  RCOND
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       EXTERNAL          DDOT, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMM, DGEQRF, DLACPY, DORMQR,

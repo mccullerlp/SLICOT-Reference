@@ -10,13 +10,13 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     XR      (input) DOUBLE PRECISION
-C     XI      (input) DOUBLE PRECISION
+C     XR      (input) REAL*16
+C     XI      (input) REAL*16
 C             These scalars define the real and imaginary part of the
 C             complex number of which the square root is sought.
 C
-C     YR      (output) DOUBLE PRECISION
-C     YI      (output) DOUBLE PRECISION
+C     YR      (output) REAL*16
+C     YI      (output) REAL*16
 C             These scalars define the real and imaginary part of the
 C             complex square root.
 C
@@ -44,17 +44,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, HALF
+      REAL*16  ZERO, HALF
       PARAMETER         ( ZERO = 0.0D0, HALF = 1.0D0/2.0D0 )
 C     ..
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION  XR, XI, YR, YI
+      REAL*16  XR, XI, YR, YI
 C     ..
 C     .. Local Scalars ..
-      DOUBLE PRECISION  S
+      REAL*16  S
 C     ..
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAPY2
+      REAL*16  DLAPY2
       EXTERNAL          DLAPY2
 C
 C     .. Intrinsic functions ..

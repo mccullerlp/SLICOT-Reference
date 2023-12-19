@@ -32,7 +32,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices H, X, E, and P.  N >= 0.
 C
-C     H       (input) DOUBLE PRECISION array, dimension (LDH,N)
+C     H       (input) REAL*16 array, dimension (LDH,N)
 C             On entry, the leading N-by-N upper Hessenberg part of this
 C             array must contain the upper Hessenberg matrix H.
 C             The remaining part of this array is not referenced.
@@ -40,7 +40,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of the array H.  LDH >= MAX(1,N).
 C
-C     X       (input) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (input) REAL*16 array, dimension (LDX,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix X and the strictly
@@ -53,7 +53,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= MAX(1,N).
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix E.
 C             The remaining part of this array is not referenced.
@@ -61,7 +61,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,N).
 C
-C     P       (output) DOUBLE PRECISION array, dimension (LDP,N)
+C     P       (output) REAL*16 array, dimension (LDP,N)
 C             On exit, the leading N-by-N part of this array contains
 C             the computed matrix P  = H*X*E', if TRANS = 'N', or
 C             the computed matrix P' = E'*X*H, if TRANS = 'T'.
@@ -102,13 +102,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDE, LDH, LDP, LDX, N
       CHARACTER         TRANS, UPLO
 C     .. Array Arguments ..
-      DOUBLE PRECISION  E(LDE,*), H(LDH,*), P(LDP,*), X(LDX,*)
+      REAL*16  E(LDE,*), H(LDH,*), P(LDP,*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           LTRANS, LUPLO
       CHARACTER         SIDE

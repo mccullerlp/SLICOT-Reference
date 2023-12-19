@@ -28,21 +28,21 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 1.
 C
-C     DPAR    (input) DOUBLE PRECISION array, dimension (LDPAR)
+C     DPAR    (input) REAL*16 array, dimension (LDPAR)
 C             The real parameters needed for solving the problem.
 C             The entry DPAR(1) must contain the real scalar c.
 C
 C     LDPAR   (input) INTEGER
 C             The length of the array DPAR.  LDPAR >= 1.
 C
-C     J       (input) DOUBLE PRECISION array, dimension (LDJ,N)
+C     J       (input) REAL*16 array, dimension (LDJ,N)
 C             The leading M-by-N part of this array must contain the
 C             Jacobian matrix J.
 C
 C     LDJ     INTEGER
 C             The leading dimension of the array J.  LDJ >= MAX(1,M).
 C
-C     X       (input/output) DOUBLE PRECISION array, dimension
+C     X       (input/output) REAL*16 array, dimension
 C             (1+(N-1)*abs(INCX))
 C             On entry, this incremented array must contain the
 C             vector x.
@@ -54,7 +54,7 @@ C             The increment for the elements of X.  INCX <> 0.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= M.
@@ -88,16 +88,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INCX, INFO, LDJ, LDPAR, LDWORK, LIPAR, N
 C     .. Array Arguments ..
       INTEGER           IPAR(*)
-      DOUBLE PRECISION  DPAR(*), DWORK(*), J(LDJ,*), X(*)
+      REAL*16  DPAR(*), DWORK(*), J(LDJ,*), X(*)
 C     .. Local Scalars ..
       INTEGER           M
-      DOUBLE PRECISION  C
+      REAL*16  C
 C     .. External Subroutines ..
       EXTERNAL          DGEMV, DSCAL, XERBLA
 C     .. Intrinsic Functions ..

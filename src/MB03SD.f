@@ -42,7 +42,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, G, and Q.  N >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             upper left block A' of the square-reduced Hamiltonian
 C             matrix H' in (1), as produced by SLICOT Library routine
@@ -51,7 +51,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     QG      (input) DOUBLE PRECISION array, dimension (LDQG,N+1)
+C     QG      (input) REAL*16 array, dimension (LDQG,N+1)
 C             The leading N-by-N lower triangular part of this array
 C             must contain the lower triangle of the lower left
 C             symmetric block Q' of the square-reduced Hamiltonian
@@ -66,8 +66,8 @@ C
 C     LDQG    INTEGER
 C             The leading dimension of the array QG.  LDQG >= MAX(1,N).
 C
-C     WR      (output) DOUBLE PRECISION array, dimension (N)
-C     WI      (output) DOUBLE PRECISION array, dimension (N)
+C     WR      (output) REAL*16 array, dimension (N)
+C     WI      (output) REAL*16 array, dimension (N)
 C             The arrays WR and WI contain the real and imaginary parts,
 C             respectively, of the N eigenvalues of H' with non-negative
 C             real part.  The remaining N eigenvalues are the negatives
@@ -85,7 +85,7 @@ C             pairs.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -163,7 +163,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -171,16 +171,16 @@ C     .. Scalar Arguments ..
       CHARACTER         JOBSCL
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), QG(LDQG,*), WI(*), WR(*)
+      REAL*16  A(LDA,*), DWORK(*), QG(LDQG,*), WI(*), WR(*)
 C     ..
 C     .. Local Scalars ..
-      DOUBLE PRECISION  SWAP, X, Y
+      REAL*16  SWAP, X, Y
       INTEGER           BL, CHUNK, I, IGNORE, IHI, ILO, J, JW, JWORK, M,
      $                  N2
       LOGICAL           BLAS3, BLOCK, SCALE, SORTED
 C     ..
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUMMY(1)
+      REAL*16  DUMMY(1)
 C     ..
 C     .. External Functions ..
       LOGICAL           LSAME

@@ -36,7 +36,7 @@ C
 C     DA      (input) INTEGER
 C             The degree of the polynomials A(z) and E(z).  DA >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (DA+1)
+C     A       (input/output) REAL*16 array, dimension (DA+1)
 C             On entry, if ACONA = 'A', this array must contain the
 C             coefficients of the polynomial A(z) in increasing powers
 C             of z, and if ACONA = 'B', this array must contain the
@@ -49,18 +49,18 @@ C             polynomial B(z) in eqation (1). Specifically, A(i)
 C             contains b   ,  for i = 1,2,...DA+1.
 C                       i-1
 C
-C     RES     (output) DOUBLE PRECISION
+C     RES     (output) REAL*16
 C             An estimate of the accuracy with which the coefficients of
 C             the polynomial E(z) have been computed (see also METHOD
 C             and NUMERICAL ASPECTS).
 C
-C     E       (output) DOUBLE PRECISION array, dimension (DA+1)
+C     E       (output) REAL*16 array, dimension (DA+1)
 C             The coefficients of the spectral factor E(z) in increasing
 C             powers of z.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= 5*DA+5.
@@ -175,19 +175,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, HALF, ONE, TWO
+      REAL*16  ZERO, HALF, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, HALF = 0.5D0, ONE = 1.0D0,
      $                    TWO  = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         ACONA
       INTEGER           DA, INFO, LDWORK
-      DOUBLE PRECISION  RES
+      REAL*16  RES
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(*), DWORK(*), E(*)
+      REAL*16  A(*), DWORK(*), E(*)
 C     .. Local Scalars ..
       LOGICAL           CONV, HURWTZ, LACONA
       INTEGER           I, J, K, LALPHA, LAMBDA, LETA, LQ, LRO, NC, NCK
-      DOUBLE PRECISION  A0, RES0, S, SA0, TOLQ, W
+      REAL*16  A0, RES0, S, SA0, TOLQ, W
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           IDAMAX

@@ -15,7 +15,7 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     M       (input) DOUBLE PRECISION
+C     M       (input) REAL*16
 C             The mantissa of the floating-point representation of A.
 C
 C     E       (input) INTEGER
@@ -24,7 +24,7 @@ C
 C     B       (input) INTEGER
 C             The base of the floating-point arithmetic.
 C
-C     A       (output) DOUBLE PRECISION
+C     A       (output) REAL*16
 C             The value of M * B**E.
 C
 C     OVFLOW  (output) LOGICAL
@@ -48,17 +48,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           OVFLOW
       INTEGER           B, E
-      DOUBLE PRECISION  A, M
+      REAL*16  A, M
 C     .. Local Scalars ..
       INTEGER           EMAX, EMIN, ET, EXPON
-      DOUBLE PRECISION  BASE, MT
+      REAL*16  BASE, MT
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       EXTERNAL          DLAMCH
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, MOD

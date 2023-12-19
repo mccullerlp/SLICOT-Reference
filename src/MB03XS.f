@@ -45,7 +45,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -54,7 +54,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     QG      (input/output) DOUBLE PRECISION array, dimension
+C     QG      (input/output) REAL*16 array, dimension
 C                            (LDQG,N+1)
 C             On entry, the leading N-by-N+1 part of this array must
 C             contain in columns 1:N the strictly lower triangular part
@@ -71,7 +71,7 @@ C
 C     LDQG    INTEGER
 C             The leading dimension of the array QG.  LDQG >= MAX(1,N).
 C
-C     U1      (output) DOUBLE PRECISION array, dimension (LDU1,N)
+C     U1      (output) REAL*16 array, dimension (LDU1,N)
 C             On exit, if JOBU = 'U', the leading N-by-N part of this
 C             array contains the matrix U1.
 C             If JOBU = 'N', this array is not referenced.
@@ -81,7 +81,7 @@ C             The leading dimension of the array U1.
 C             LDU1 >= MAX(1,N),  if JOBU = 'U';
 C             LDU1 >= 1,         if JOBU = 'N'.
 C
-C     U2      (output) DOUBLE PRECISION array, dimension (LDU2,N)
+C     U2      (output) REAL*16 array, dimension (LDU2,N)
 C             On exit, if JOBU = 'U', the leading N-by-N part of this
 C             array contains the matrix U2.
 C             If JOBU = 'N', this array is not referenced.
@@ -91,8 +91,8 @@ C             The leading dimension of the array U2.
 C             LDU2 >= MAX(1,N),  if JOBU = 'U';
 C             LDU2 >= 1,         if JOBU = 'N'.
 C
-C     WR      (output) DOUBLE PRECISION array, dimension (N)
-C     WI      (output) DOUBLE PRECISION array, dimension (N)
+C     WR      (output) REAL*16 array, dimension (N)
+C     WI      (output) REAL*16 array, dimension (N)
 C             The real and imaginary parts, respectively, of the
 C             eigenvalues of Aout, which are half of the eigenvalues
 C             of W. The eigenvalues are stored in the same order as on
@@ -102,7 +102,7 @@ C             and WI(i+1) = -WI(i).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal value
 C             of LDWORK.
 C             On exit, if  INFO = -14,  DWORK(1)  returns the minimum
@@ -182,22 +182,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBU
       INTEGER           INFO, LDA, LDQG, LDU1, LDU2, LDWORK, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), QG(LDQG,*), U1(LDU1,*),
+      REAL*16  A(LDA,*), DWORK(*), QG(LDQG,*), U1(LDU1,*),
      $                  U2(LDU2,*), WI(*), WR(*)
 C     .. Local Scalars ..
       LOGICAL           COMPU, LQUERY, SCALEW
       INTEGER           I, I1, I2, IERR, ILO, INXT, NN, PBAL, PCS, PDV,
      $                  PDW, PHO, PTAU, WRKMIN, WRKOPT
-      DOUBLE PRECISION  BIGNUM, CSCALE, EPS, SMLNUM, WNRM
+      REAL*16  BIGNUM, CSCALE, EPS, SMLNUM, WNRM
 C     .. External Function ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, MA02ID
+      REAL*16  DLAMCH, MA02ID
       EXTERNAL          DLAMCH, LSAME, MA02ID
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DHSEQR, DLABAD, DLACPY, DLASCL, DLASET,

@@ -37,11 +37,11 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrices A and B.  N >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar alpha. When alpha is zero then H is not
 C             referenced and A need not be set before entry.
 C
-C     H       (input) DOUBLE PRECISION array, dimension (LDH,k)
+C     H       (input) REAL*16 array, dimension (LDH,k)
 C             where k is M when SIDE = 'L' and is N when SIDE = 'R'.
 C             On entry with SIDE = 'L', the leading M-by-M upper
 C             Hessenberg part of this array must contain the upper
@@ -57,14 +57,14 @@ C     LDH     INTEGER
 C             The leading dimension of the array H.  LDH >= max(1,k),
 C             where k is M when SIDE = 'L' and is N when SIDE = 'R'.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading M-by-N part of this array must contain the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     B       (output) DOUBLE PRECISION array, dimension (LDB,N)
+C     B       (output) REAL*16 array, dimension (LDB,N)
 C             The leading M-by-N part of this array contains the
 C             computed product.
 C
@@ -100,14 +100,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SIDE, TRANS
       INTEGER           INFO, LDA, LDB, LDH, M, N
-      DOUBLE PRECISION  ALPHA
+      REAL*16  ALPHA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), H(LDH,*)
+      REAL*16  A(LDA,*), B(LDB,*), H(LDH,*)
 C     .. Local Scalars ..
       LOGICAL           LSIDE, LTRANS
       INTEGER           I, J

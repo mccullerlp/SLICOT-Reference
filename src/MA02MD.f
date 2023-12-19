@@ -1,4 +1,4 @@
-      DOUBLE PRECISION FUNCTION MA02MD( NORM, UPLO, N, A, LDA, DWORK )
+      REAL*16 FUNCTION MA02MD( NORM, UPLO, N, A, LDA, DWORK )
 C
 C     PURPOSE
 C
@@ -11,7 +11,7 @@ C     to the one norm.
 C
 C     FUNCTION VALUE
 C
-C     MA02MD  DOUBLE PRECISION
+C     MA02MD  REAL*16
 C             The computed norm.
 C
 C     ARGUMENTS
@@ -37,7 +37,7 @@ C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.  When N = 0, MA02MD is
 C             set to zero.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The skew-symmetric matrix A.  If UPLO = 'U', the leading
 C             N-by-N strictly upper triangular part of A contains the
 C             strictly upper triangular part of the matrix A, and the
@@ -53,7 +53,7 @@ C             The leading dimension of the array A.  LDA >= max(1,N).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (MAX(1,LDWORK)),
+C     DWORK   REAL*16 array, dimension (MAX(1,LDWORK)),
 C             where LDWORK >= N when NORM = 'I' or '1' or 'O';
 C             otherwise, DWORK is not referenced.
 C
@@ -73,7 +73,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE, TWO, ZERO
+      REAL*16   ONE, TWO, ZERO
       PARAMETER          ( ONE = 1.0D+0, TWO = 2.0D+0, ZERO = 0.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -81,11 +81,11 @@ C     .. Scalar Arguments ..
       INTEGER            LDA, N
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), DWORK( * )
+      REAL*16   A( LDA, * ), DWORK( * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            I, J
-      DOUBLE PRECISION   ABSA, SCALE, SUM, VALUE
+      REAL*16   ABSA, SCALE, SUM, VALUE
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME

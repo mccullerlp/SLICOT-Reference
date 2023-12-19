@@ -37,16 +37,16 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices R, H, E, and X.  N >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry, except when R is identified with X in
 C             the call.
 C
-C     BETA    (input) DOUBLE PRECISION
+C     BETA    (input) REAL*16
 C             The scalar beta. When beta is zero then H and X are not
 C             referenced.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,N)
+C     R       (input/output) REAL*16 array, dimension (LDR,N)
 C             On entry with UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix R.
@@ -63,7 +63,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     H       (input) DOUBLE PRECISION array, dimension (LDH,N)
+C     H       (input) REAL*16 array, dimension (LDH,N)
 C             On entry, the leading N-by-N upper Hessenberg part of this
 C             array must contain the upper Hessenberg matrix H.
 C             If TRANS = 'N', the entries 3, 4,..., N of the first
@@ -73,7 +73,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of array H.  LDH >= MAX(1,N).
 C
-C     X       (input) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (input) REAL*16 array, dimension (LDX,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix X and the strictly
@@ -88,7 +88,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= MAX(1,N).
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix E.
 C             The remaining part of this array is not referenced.
@@ -98,7 +98,7 @@ C             The leading dimension of array E.  LDE >= MAX(1,N).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             This array is not referenced when beta = 0, or N = 0.
 C
 C     LDWORK  The length of the array DWORK.
@@ -161,15 +161,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO, HALF
+      REAL*16  ZERO, ONE, TWO, HALF
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                  HALF = 0.5D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS, UPLO
       INTEGER           INFO, LDE, LDH, LDR, LDWORK, LDX, N
-      DOUBLE PRECISION  ALPHA, BETA
+      REAL*16  ALPHA, BETA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(*), E(LDE,*), H(LDH,*), R(LDR,*), X(LDX,*)
+      REAL*16  DWORK(*), E(LDE,*), H(LDH,*), R(LDR,*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           LTRANS, LUPLO
       INTEGER           I, J, J1

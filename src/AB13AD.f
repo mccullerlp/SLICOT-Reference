@@ -1,4 +1,4 @@
-      DOUBLE PRECISION FUNCTION AB13AD( DICO, EQUIL, N, M, P, ALPHA, A,
+      REAL*16 FUNCTION AB13AD( DICO, EQUIL, N, M, P, ALPHA, A,
      $                                  LDA, B, LDB, C, LDC, NS, HSV,
      $                                  DWORK, LDWORK, INFO )
 C
@@ -9,7 +9,7 @@ C     transfer-function matrix G of the state-space system (A,B,C).
 C
 C     FUNCTION VALUE
 C
-C     AB13AD  DOUBLE PRECISION
+C     AB13AD  REAL*16
 C             The Hankel-norm of the ALPHA-stable projection of G
 C             (if INFO = 0).
 C
@@ -40,7 +40,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             Specifies the ALPHA-stability boundary for the eigenvalues
 C             of the state dynamics matrix A. For a continuous-time
 C             system (DICO = 'C'), ALPHA <= 0 is the boundary value for
@@ -50,7 +50,7 @@ C             boundary value for the moduli of eigenvalues.
 C             The ALPHA-stability domain does not include the boundary
 C             (see the Note below).
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, if INFO = 0, the leading N-by-N part of this
@@ -69,7 +69,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading N-by-M part of this
@@ -79,7 +79,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-N part of this
@@ -92,7 +92,7 @@ C
 C     NS      (output) INTEGER
 C             The dimension of the ALPHA-stable subsystem.
 C
-C     HSV     (output) DOUBLE PRECISION array, dimension (N)
+C     HSV     (output) REAL*16 array, dimension (N)
 C             If INFO = 0, the leading NS elements of HSV contain the
 C             Hankel singular values of the ALPHA-stable part of the
 C             original system ordered decreasingly.
@@ -100,7 +100,7 @@ C             HSV(1) is the Hankel norm of the ALPHA-stable subsystem.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -188,21 +188,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  C100, ONE, ZERO
+      REAL*16  C100, ONE, ZERO
       PARAMETER         ( C100 = 100.0D0, ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL
       INTEGER           INFO, LDA, LDB, LDC, LDWORK, M, N, NS, P
-      DOUBLE PRECISION  ALPHA
+      REAL*16  ALPHA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*)
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*)
 C     .. Local Scalars ..
       LOGICAL           DISCR
       INTEGER           IERR, KT, KW, KW1, KW2
-      DOUBLE PRECISION  ALPWRK, MAXRED, WRKOPT
+      REAL*16  ALPWRK, MAXRED, WRKOPT
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  AB13AX, DLAMCH
+      REAL*16  AB13AX, DLAMCH
       EXTERNAL          AB13AX, DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          TB01ID, TB01KD, XERBLA

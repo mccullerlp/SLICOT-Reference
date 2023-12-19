@@ -35,7 +35,7 @@ C
 C     L       (input) INTEGER
 C             The number of system outputs.  L >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the system state matrix A, assumed to be stable.
 C             On exit, the leading N-by-N part of this array contains
@@ -45,7 +45,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the system input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -55,7 +55,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the system output matrix C.
 C             On exit, the leading L-by-N part of this array contains
@@ -65,21 +65,21 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,L).
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             The leading L-by-M part of this array must contain the
 C             system input/output matrix D.
 C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,L).
 C
-C     X0      (input/output) DOUBLE PRECISION array, dimension (N)
+C     X0      (input/output) REAL*16 array, dimension (N)
 C             On entry, this array must contain the initial state of the
 C             system, x0.
 C             On exit, this array contains the transformed initial state
 C             of the system, corresponding to the output normal form
 C             with parameter vector THETA.
 C
-C     THETA   (output) DOUBLE PRECISION array, dimension (LTHETA)
+C     THETA   (output) REAL*16 array, dimension (LTHETA)
 C             The leading N*(L+M+1)+L*M part of this array contains the
 C             parameter vector that defines a system (A, B, C, D, x0)
 C             which is equivalent up to a similarity transformation to
@@ -95,7 +95,7 @@ C             The length of array THETA.  LTHETA >= N*(L+M+1)+L*M.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -162,7 +162,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO, HALF
+      REAL*16  ZERO, ONE, TWO, HALF
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                    HALF = 0.5D0 )
 C     .. Scalar Arguments ..
@@ -170,16 +170,16 @@ C     .. Scalar Arguments ..
       INTEGER           INFO, L, LDA, LDB, LDC, LDD, LDWORK, LTHETA, M,
      $                  N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), THETA(*), X0(*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  PIBY2, RI, SCALE, TI
+      REAL*16  PIBY2, RI, SCALE, TI
       INTEGER           CA, I, IA, IN, IQ, IR, IT, ITAU, IU, IWI, IWR,
      $                  J, JWORK, K, LDCA, LDT, WRKOPT
       LOGICAL           LAPPLY
 C     .. External Functions ..
       EXTERNAL          DNRM2, LSAME
-      DOUBLE PRECISION  DNRM2
+      REAL*16  DNRM2
       LOGICAL           LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMM, DGEMV, DGEQRF, DGER,

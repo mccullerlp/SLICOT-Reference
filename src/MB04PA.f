@@ -57,7 +57,7 @@ C
 C     NB      (input) INTEGER
 C             The number of columns/rows to be reduced.  N > NB >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading (K+N)-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading (K+N)-by-N part of this array
@@ -68,7 +68,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,K+N).
 C
-C     QG      (input/output) DOUBLE PRECISION array, dimension
+C     QG      (input/output) REAL*16 array, dimension
 C                            (LDQG,N+1)
 C             On entry, the leading N+K-by-N+1 part of this array must
 C             contain in the bottom left part the lower triangular part
@@ -85,46 +85,46 @@ C
 C     LDQG    INTEGER
 C             The leading dimension of the array QG. LDQG >= MAX(1,N+K).
 C
-C     XA      (output) DOUBLE PRECISION array, dimension (LDXA,2*NB)
+C     XA      (output) REAL*16 array, dimension (LDXA,2*NB)
 C             On exit, the leading N-by-(2*NB) part of this array
 C             contains the matrix XA.
 C
 C     LDXA    INTEGER
 C             The leading dimension of the array XA.  LDXA >= MAX(1,N).
 C
-C     XG      (output) DOUBLE PRECISION array, dimension (LDXG,2*NB)
+C     XG      (output) REAL*16 array, dimension (LDXG,2*NB)
 C             On exit, the leading (K+N)-by-(2*NB) part of this array
 C             contains the matrix XG.
 C
 C     LDXG    INTEGER
 C             The leading dimension of the array XG. LDXG >= MAX(1,K+N).
 C
-C     XQ      (output) DOUBLE PRECISION array, dimension (LDXQ,2*NB)
+C     XQ      (output) REAL*16 array, dimension (LDXQ,2*NB)
 C             On exit, the leading N-by-(2*NB) part of this array
 C             contains the matrix XQ.
 C
 C     LDXQ    INTEGER
 C             The leading dimension of the array XQ.  LDXQ >= MAX(1,N).
 C
-C     YA      (output) DOUBLE PRECISION array, dimension (LDYA,2*NB)
+C     YA      (output) REAL*16 array, dimension (LDYA,2*NB)
 C             On exit, the leading (K+N)-by-(2*NB) part of this array
 C             contains the matrix YA.
 C
 C     LDYA    INTEGER
 C             The leading dimension of the array YA. LDYA >= MAX(1,K+N).
 C
-C     CS      (output) DOUBLE PRECISION array, dimension (2*NB)
+C     CS      (output) REAL*16 array, dimension (2*NB)
 C             On exit, the first 2*NB elements of this array contain the
 C             cosines and sines of the symplectic Givens rotations used
 C             to compute the reduction.
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension (NB)
+C     TAU     (output) REAL*16 array, dimension (NB)
 C             On exit, the first NB elements of this array contain the
 C             scalar factors of some of the elementary reflectors.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (3*NB)
+C     DWORK   REAL*16 array, dimension (3*NB)
 C
 C     METHOD
 C
@@ -176,19 +176,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, HALF
+      REAL*16  ZERO, ONE, HALF
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, HALF = 0.5D+0 )
 C     .. Scalar Arguments ..
       LOGICAL           LHAM
       INTEGER           K, LDA, LDQG, LDXA, LDXG, LDXQ, LDYA, N, NB
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), CS(*), DWORK(*), QG(LDQG,*), TAU(*),
+      REAL*16  A(LDA,*), CS(*), DWORK(*), QG(LDQG,*), TAU(*),
      $                  XA(LDXA,*), XG(LDXG,*), XQ(LDXQ,*), YA(LDYA,*)
 C     .. Local Scalars ..
       INTEGER           I, J, NB1, NB2
-      DOUBLE PRECISION  AKI, ALPHA, C, S, TAUQ, TEMP, TTEMP
+      REAL*16  AKI, ALPHA, C, S, TAUQ, TEMP, TTEMP
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       EXTERNAL          DDOT
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DGEMV, DLARFG, DLARTG, DROT, DSCAL,

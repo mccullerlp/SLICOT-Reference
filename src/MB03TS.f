@@ -44,7 +44,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A. N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper quasi-triangular matrix A, in Schur
 C             canonical form.
@@ -54,7 +54,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     G       (input/output) DOUBLE PRECISION array, dimension (LDG,N)
+C     G       (input/output) REAL*16 array, dimension (LDG,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper triangular part of the symmetric
 C             matrix G, if ISHAM = .TRUE., or the strictly upper
@@ -68,7 +68,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= MAX(1,N).
 C
-C     U1      (input/output) DOUBLE PRECISION array, dimension (LDU1,N)
+C     U1      (input/output) REAL*16 array, dimension (LDU1,N)
 C             On entry, if WANTU = .TRUE., the leading N-by-N part of
 C             this array must contain the matrix U1.
 C             On exit, if WANTU = .TRUE., the leading N-by-N part of
@@ -82,7 +82,7 @@ C             The leading dimension of the array U1.
 C             LDU1 >= MAX(1,N),  if WANTU = .TRUE.;
 C             LDU1 >= 1,         otherwise.
 C
-C     U2      (input/output) DOUBLE PRECISION array, dimension (LDU2,N)
+C     U2      (input/output) REAL*16 array, dimension (LDU2,N)
 C             On entry, if WANTU = .TRUE., the leading N-by-N part of
 C             this array must contain the matrix U2.
 C             On exit, if WANTU = .TRUE., the leading N-by-N part of
@@ -111,7 +111,7 @@ C             The order of the second block A22. N2 = 0, 1 or 2.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (N)
+C     DWORK   REAL*16 array, dimension (N)
 C
 C     Error Indicator
 C
@@ -143,7 +143,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, HALF, ONE, TWO, THIRTY, FORTY
+      REAL*16   ZERO, HALF, ONE, TWO, THIRTY, FORTY
       PARAMETER          ( ZERO  = 0.0D+0, HALF = 0.5D+0, ONE = 1.0D+0,
      $                     TWO   = 2.0D+0, THIRTY = 3.0D+1,
      $                     FORTY = 4.0D+1 )
@@ -153,18 +153,18 @@ C     .. Scalar Arguments ..
       LOGICAL            ISHAM, WANTU
       INTEGER            INFO, J1, LDA, LDG, LDU1, LDU2, N, N1, N2
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*), DWORK(*), G(LDG,*), U1(LDU1,*),
+      REAL*16   A(LDA,*), DWORK(*), G(LDG,*), U1(LDU1,*),
      $                   U2(LDU2,*)
 C     .. Local Scalars ..
       LOGICAL            LBLK
       INTEGER            IERR, J2, J3, J4, K, ND
-      DOUBLE PRECISION   A11, A22, A33, CS, DNORM, EPS, SCALE, SMLNUM,
+      REAL*16   A11, A22, A33, CS, DNORM, EPS, SCALE, SMLNUM,
      $                   SN, TAU, TAU1, TAU2, TEMP, THRESH, WI1, WI2,
      $                   WR1, WR2, XNORM
 C     .. Local Arrays ..
-      DOUBLE PRECISION   D(LDD,4), V(3), V1(3), V2(3), X(LDX,2)
+      REAL*16   D(LDD,4), V(3), V1(3), V2(3), X(LDX,2)
 C     .. External Functions ..
-      DOUBLE PRECISION   DDOT, DLAMCH, DLANGE
+      REAL*16   DDOT, DLAMCH, DLANGE
       EXTERNAL           DDOT, DLAMCH, DLANGE
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DLACPY, DLANV2, DLARFG, DLARFX, DLARTG,

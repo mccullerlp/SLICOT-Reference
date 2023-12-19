@@ -121,7 +121,7 @@ C             if ORDSEL = 'A', NR is the sum of NU and the number of
 C             Hankel singular values greater than
 C             MAX(TOL1,NS*EPS*HNORM(As,Bs,Cs)).
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             Specifies the ALPHA-stability boundary for the eigenvalues
 C             of the state dynamics matrix A. For a continuous-time
 C             system (DICO = 'C'), ALPHA <= 0 is the boundary value for
@@ -130,7 +130,7 @@ C             system (DICO = 'D'), 0 <= ALPHA <= 1 represents the
 C             boundary value for the moduli of eigenvalues.
 C             The ALPHA-stability domain does not include the boundary.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, if INFO = 0, the leading NR-by-NR part of this
@@ -148,7 +148,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -158,7 +158,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -168,7 +168,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the original input/output matrix D.
 C             On exit, if INFO = 0, the leading P-by-M part of this
@@ -178,7 +178,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     AV      (input/output) DOUBLE PRECISION array, dimension (LDAV,NV)
+C     AV      (input/output) REAL*16 array, dimension (LDAV,NV)
 C             On entry, if JOBV <> 'N', the leading NV-by-NV part of
 C             this array must contain the state matrix AV of a state
 C             space realization of the left frequency weighting V.
@@ -192,7 +192,7 @@ C             The leading dimension of the array AV.
 C             LDAV >= MAX(1,NV), if JOBV <> 'N';
 C             LDAV >= 1,         if JOBV =  'N'.
 C
-C     BV      (input/output) DOUBLE PRECISION array, dimension (LDBV,P)
+C     BV      (input/output) REAL*16 array, dimension (LDBV,P)
 C             On entry, if JOBV <> 'N', the leading NV-by-P part of
 C             this array must contain the input matrix BV of a state
 C             space realization of the left frequency weighting V.
@@ -206,7 +206,7 @@ C             The leading dimension of the array BV.
 C             LDBV >= MAX(1,NV), if JOBV <> 'N';
 C             LDBV >= 1,         if JOBV =  'N'.
 C
-C     CV      (input/output) DOUBLE PRECISION array, dimension (LDCV,NV)
+C     CV      (input/output) REAL*16 array, dimension (LDCV,NV)
 C             On entry, if JOBV <> 'N', the leading P-by-NV part of
 C             this array must contain the output matrix CV of a state
 C             space realization of the left frequency weighting V.
@@ -220,7 +220,7 @@ C             The leading dimension of the array CV.
 C             LDCV >= MAX(1,P), if JOBV <> 'N';
 C             LDCV >= 1,        if JOBV =  'N'.
 C
-C     DV      (input) DOUBLE PRECISION array, dimension (LDDV,P)
+C     DV      (input) REAL*16 array, dimension (LDDV,P)
 C             If JOBV <> 'N', the leading P-by-P part of this array
 C             must contain the feedthrough matrix DV of a state space
 C             realization of the left frequency weighting V.
@@ -231,7 +231,7 @@ C             The leading dimension of the array DV.
 C             LDDV >= MAX(1,P), if JOBV <> 'N';
 C             LDDV >= 1,        if JOBV =  'N'.
 C
-C     AW      (input/output) DOUBLE PRECISION array, dimension (LDAW,NW)
+C     AW      (input/output) REAL*16 array, dimension (LDAW,NW)
 C             On entry, if JOBW <> 'N', the leading NW-by-NW part of
 C             this array must contain the state matrix AW of a state
 C             space realization of the right frequency weighting W.
@@ -245,7 +245,7 @@ C             The leading dimension of the array AW.
 C             LDAW >= MAX(1,NW), if JOBW <> 'N';
 C             LDAW >= 1,         if JOBW =  'N'.
 C
-C     BW      (input/output) DOUBLE PRECISION array, dimension (LDBW,M)
+C     BW      (input/output) REAL*16 array, dimension (LDBW,M)
 C             On entry, if JOBW <> 'N', the leading NW-by-M part of
 C             this array must contain the input matrix BW of a state
 C             space realization of the right frequency weighting W.
@@ -259,7 +259,7 @@ C             The leading dimension of the array BW.
 C             LDBW >= MAX(1,NW), if JOBW <> 'N';
 C             LDBW >= 1,         if JOBW =  'N'.
 C
-C     CW      (input/output) DOUBLE PRECISION array, dimension (LDCW,NW)
+C     CW      (input/output) REAL*16 array, dimension (LDCW,NW)
 C             On entry, if JOBW <> 'N', the leading M-by-NW part of
 C             this array must contain the output matrix CW of a state
 C             space realization of the right frequency weighting W.
@@ -273,7 +273,7 @@ C             The leading dimension of the array CW.
 C             LDCW >= MAX(1,M), if JOBW <> 'N';
 C             LDCW >= 1,        if JOBW =  'N'.
 C
-C     DW      (input) DOUBLE PRECISION array, dimension (LDDW,M)
+C     DW      (input) REAL*16 array, dimension (LDDW,M)
 C             If JOBW <> 'N', the leading M-by-M part of this array
 C             must contain the feedthrough matrix DW of a state space
 C             realization of the right frequency weighting W.
@@ -287,7 +287,7 @@ C
 C     NS      (output) INTEGER
 C             The dimension of the ALPHA-stable subsystem.
 C
-C     HSV     (output) DOUBLE PRECISION array, dimension (N)
+C     HSV     (output) REAL*16 array, dimension (N)
 C             If INFO = 0, the leading NS elements of this array contain
 C             the Hankel singular values, ordered decreasingly, of the
 C             projection G1s of op(V)*G1*op(W) (see METHOD), where G1
@@ -295,7 +295,7 @@ C             is the ALPHA-stable part of the original system.
 C
 C     Tolerances
 C
-C     TOL1    DOUBLE PRECISION
+C     TOL1    REAL*16
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of reduced system.
 C             For model reduction, the recommended value is
@@ -310,7 +310,7 @@ C             precision (see LAPACK Library Routine DLAMCH).
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C             TOL1 < 1.
 C
-C     TOL2    DOUBLE PRECISION
+C     TOL2    REAL*16
 C             The tolerance for determining the order of a minimal
 C             realization of the ALPHA-stable part of the given system.
 C             The recommended value is TOL2 = NS*EPS*HNORM(G1s).
@@ -328,7 +328,7 @@ C                c = MAX(2*P,NV+P+N+6,2*NV+P+2), if JOBV <> 'N',
 C                d = 0,                          if JOBW =  'N',
 C                d = MAX(2*M,NW+M+N+6,2*NW+M+2), if JOBW <> 'N'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -546,7 +546,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  C100, ONE, P0001, ZERO
+      REAL*16  C100, ONE, P0001, ZERO
       PARAMETER         ( C100 = 100.0D0, ONE = 1.0D0, P0001 = 0.0001D0,
      $                    ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
@@ -554,10 +554,10 @@ C     .. Scalar Arguments ..
       INTEGER           INFO, IWARN, LDA, LDAV, LDAW, LDB, LDBV, LDBW,
      $                  LDC, LDCV, LDCW, LDD, LDDV, LDDW, LDWORK, M, N,
      $                  NR, NS, NV, NW, P
-      DOUBLE PRECISION  ALPHA, TOL1, TOL2
+      REAL*16  ALPHA, TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), AV(LDAV,*), AW(LDAW,*),
+      REAL*16  A(LDA,*), AV(LDAV,*), AW(LDAW,*),
      $                  B(LDB,*), BV(LDBV,*), BW(LDBW,*),
      $                  C(LDC,*), CV(LDCV,*), CW(LDCW,*),
      $                  D(LDD,*), DV(LDDV,*), DW(LDDW,*), DWORK(*),
@@ -569,12 +569,12 @@ C     .. Local Scalars ..
       INTEGER           IERR, IWARNL, KAV, KAW, KBV, KBW, KCV, KCW, KDV,
      $                  KDW, KEV, KEW, KI, KL, KU, KW, LDABV, LDABW,
      $                  LDCDV, LDCDW, LW, NRA, NU, NU1, NVP, NWM, RANK
-      DOUBLE PRECISION  ALPWRK, MAXRED, RCOND, SQREPS, TOL, WRKOPT
+      REAL*16  ALPWRK, MAXRED, RCOND, SQREPS, TOL, WRKOPT
 C     .. Local Arrays ..
-      DOUBLE PRECISION  TEMP(1)
+      REAL*16  TEMP(1)
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB07ND, AB08MD, AB09CX, AB09JV, AB09JW, AG07BD,

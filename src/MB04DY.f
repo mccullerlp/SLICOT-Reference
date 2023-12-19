@@ -47,7 +47,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, G, and Q.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On input, if JOBSCL <> 'N', the leading N-by-N part of
 C             this array must contain the upper left block A of the
 C             Hamiltonian matrix H in (1).
@@ -62,7 +62,7 @@ C             The leading dimension of the array A.
 C             LDA >= MAX(1,N), if JOBSCL <> 'N';
 C             LDA >= 1,        if JOBSCL =  'N'.
 C
-C     QG      (input/output) DOUBLE PRECISION array, dimension
+C     QG      (input/output) REAL*16 array, dimension
 C             (LDQG,N+1)
 C             On input, if JOBSCL <> 'N', the leading N-by-N lower
 C             triangular part of this array must contain the lower
@@ -88,7 +88,7 @@ C             The leading dimension of the array QG.
 C             LDQG >= MAX(1,N), if JOBSCL <> 'N';
 C             LDQG >= 1,        if JOBSCL =  'N'.
 C
-C     D       (output) DOUBLE PRECISION array, dimension (nd)
+C     D       (output) REAL*16 array, dimension (nd)
 C             If JOBSCL = 'S', then nd = N and D contains the diagonal
 C             elements of the diagonal scaling matrix in (2).
 C             If JOBSCL = '1' or 'O', then nd = 1 and D(1) is set to tau
@@ -98,7 +98,7 @@ C             If JOBSCL = 'N', this array is not referenced.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (N)
+C     DWORK   REAL*16 array, dimension (N)
 C             If JOBSCL = 'N', this array is not referenced.
 C
 C     Error Indicator
@@ -174,7 +174,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C
 C     .. Scalar Arguments ..
@@ -182,16 +182,16 @@ C     .. Scalar Arguments ..
       CHARACTER         JOBSCL
 C    ..
 C    .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), D(*), DWORK(*), QG(LDQG,*)
+      REAL*16  A(LDA,*), D(*), DWORK(*), QG(LDQG,*)
 C     ..
 C     .. Local Scalars ..
-      DOUBLE PRECISION  ANRM, BASE, EPS, GNRM, OFL, QNRM,
+      REAL*16  ANRM, BASE, EPS, GNRM, OFL, QNRM,
      $                  RHO, SFMAX, SFMIN, TAU, UFL, Y
       INTEGER           I, IERR, IHI, ILO, J
       LOGICAL           NONE, NORM, SYMP
 C     ..
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, DLANGE, DLANSY
+      REAL*16  DLAMCH, DLANGE, DLANSY
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, DLANGE, DLANSY, LSAME
 C     ..

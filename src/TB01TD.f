@@ -21,7 +21,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -30,7 +30,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -39,7 +39,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -48,7 +48,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the original direct transmission matrix D.
 C             On exit, the leading P-by-M part of this array contains
@@ -63,13 +63,13 @@ C
 C     IGH     (output) INTEGER
 C             The index of the upper end of the balanced submatrix of A.
 C
-C     SCSTAT  (output) DOUBLE PRECISION array, dimension (N)
+C     SCSTAT  (output) REAL*16 array, dimension (N)
 C             This array contains the information defining the
 C             similarity transformations used to permute and balance
 C             the state dynamics matrix A, as returned from the LAPACK
 C             library routine DGEBAL.
 C
-C     SCIN    (output) DOUBLE PRECISION array, dimension (M)
+C     SCIN    (output) REAL*16 array, dimension (M)
 C             Contains the scalars used to scale the system inputs so
 C             that the columns of the final matrix B have norms roughly
 C             equal to the column sums of the balanced matrix A
@@ -78,7 +78,7 @@ C             The j-th input of the balanced state-space representation
 C             is SCIN(j)*(j-th column of the permuted and balanced
 C             input/state matrix B).
 C
-C     SCOUT   (output) DOUBLE PRECISION array, dimension (P)
+C     SCOUT   (output) REAL*16 array, dimension (P)
 C             Contains the scalars used to scale the system outputs so
 C             that the rows of the final matrix C have norms roughly
 C             equal to the row sum of the balanced matrix A.
@@ -88,7 +88,7 @@ C             state/ouput matrix C).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (N)
+C     DWORK   REAL*16 array, dimension (N)
 C
 C     Error Indicator
 C
@@ -164,18 +164,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           IGH, INFO, LDA, LDB, LDC, LDD, LOW, M, N, P
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), SCIN(*), SCOUT(*), SCSTAT(*)
 C     .. Local Scalars ..
       INTEGER           I, J, K, KNEW, KOLD
-      DOUBLE PRECISION  ACNORM, ARNORM, SCALE
+      REAL*16  ACNORM, ARNORM, SCALE
 C     .. External Functions ..
-      DOUBLE PRECISION  DLANGE
+      REAL*16  DLANGE
       EXTERNAL          DLANGE
 C     .. External Subroutines ..
       EXTERNAL          DGEBAL, DSCAL, DSWAP, TB01TY, XERBLA

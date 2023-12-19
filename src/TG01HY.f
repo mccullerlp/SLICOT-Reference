@@ -103,7 +103,7 @@ C     LBE     (input) INTEGER
 C             The number of nonzero sub-diagonals of the submatrix E1.
 C             MAX(0,N1-1) >= LBE >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the L-by-N state matrix A in the partitioned form
 C
@@ -126,7 +126,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the L-by-N descriptor matrix E in the partitioned
 C             form
@@ -149,7 +149,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the L-by-M input matrix B in the partitioned form
 C
@@ -172,7 +172,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,L).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -181,7 +181,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,L)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,L)
 C             If COMPQ = 'N': Q is not referenced.
 C             If COMPQ = 'I': on entry, Q need not be set;
 C                             on exit, the leading L-by-L part of this
@@ -200,7 +200,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,        if COMPQ = 'N';
 C             LDQ >= MAX(1,L), if COMPQ = 'U' or 'I'.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
 C             If COMPZ = 'N': Z is not referenced.
 C             If COMPZ = 'I': on entry, Z need not be set;
 C                             on exit, the leading N-by-N part of this
@@ -235,7 +235,7 @@ C             the full row rank block Ai,i-1 in the staircase form (1).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in rank determinations when
 C             transforming (A-lambda*E, B). If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -251,7 +251,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -318,16 +318,16 @@ C
 C     .. Parameters ..
       INTEGER            IMAX, IMIN
       PARAMETER          ( IMAX = 1, IMIN = 2 )
-      DOUBLE PRECISION   ONE, ZERO
+      REAL*16   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ
       INTEGER            INFO, L, LBE, LDA, LDB, LDC, LDE, LDQ, LDWORK,
      $                   LDZ, M, N, N1, NR, NRBLCK, P
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C     .. Array Arguments ..
       INTEGER            IWORK( * ), RTAU( * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK( * ), E( LDE, * ), Q( LDQ, * ),
      $                   Z( LDZ, * )
 C     .. Local Scalars ..
@@ -336,12 +336,12 @@ C     .. Local Scalars ..
      $                   IROW, ISMAX, ISMIN, J, JB, K, KB, LB, MAXWRK,
      $                   MINWRK, MN, NB, NF, NI, NR1, NX, RANK, SR,
      $                   TAUIM1
-      DOUBLE PRECISION   C1, C2, CO, RCOND, S1, S2, SI, SMAX, SMAXPR,
+      REAL*16   C1, C2, CO, RCOND, S1, S2, SI, SMAX, SMAXPR,
      $                   SMIN, SMINPR, SVMA, SVMR, T, TOLZ, TT
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX, ILAENV
-      DOUBLE PRECISION   DLAMCH, DLANGE, DNRM2
+      REAL*16   DLAMCH, DLANGE, DNRM2
       EXTERNAL           DLAMCH, DLANGE, DNRM2, IDAMAX, ILAENV,
      $                   LSAME
 C     .. External Subroutines ..

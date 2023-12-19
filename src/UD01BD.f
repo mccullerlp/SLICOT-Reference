@@ -25,7 +25,7 @@ C     NIN     (input) INTEGER
 C             The input channel from which the elements of P(s) are
 C             read.  NIN >= 0.
 C
-C     P       (output) DOUBLE PRECISION array, dimension
+C     P       (output) REAL*16 array, dimension
 C             (LDP1,LDP2,DP+1)
 C             The leading MP-by-NP-by-(DP+1) part of this array contains
 C             the coefficients of the matrix polynomial P(s).
@@ -77,7 +77,7 @@ C
 C     .. Scalar Arguments ..
       INTEGER           DP, INFO, LDP1, LDP2, MP, NP, NIN
 C     .. Array Arguments ..
-      DOUBLE PRECISION  P(LDP1,LDP2,*)
+      REAL*16  P(LDP1,LDP2,*)
 C     .. Local Scalars ..
       INTEGER           I, J, K
 C     .. External Subroutines ..

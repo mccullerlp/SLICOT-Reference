@@ -19,24 +19,24 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     BETA    (output) DOUBLE PRECISION
+C     BETA    (output) REAL*16
 C             The computed value of beta(A), which actually is an upper
 C             bound.
 C
-C     OMEGA   (output) DOUBLE PRECISION
+C     OMEGA   (output) REAL*16
 C             The value of w such that the smallest singular value of
 C             (A - jwI) equals beta(A).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             Specifies the accuracy with which beta(A) is to be
 C             calculated. (See the Numerical Aspects section below.)
 C             If the user sets TOL to be less than EPS, where EPS is the
@@ -45,7 +45,7 @@ C             then the tolerance is taken to be EPS.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C             If DWORK(1) is not needed, the first 2*N*N entries of
@@ -56,7 +56,7 @@ C             The length of the array DWORK.
 C             LDWORK >= MAX( 1, 3*N*(N+2) ).
 C             For optimum performance LDWORK should be larger.
 C
-C     CWORK   COMPLEX*16 array, dimension (LCWORK)
+C     CWORK   COMPLEX*32 array, dimension (LCWORK)
 C             On exit, if INFO = 0, CWORK(1) returns the optimal value
 C             of LCWORK.
 C             If CWORK(1) is not needed, the first N*N entries of
@@ -144,26 +144,26 @@ C
 C     .. Parameters ..
       INTEGER           MAXIT
       PARAMETER         ( MAXIT = 50 )
-      DOUBLE PRECISION  ZERO, ONE, TWO
+      REAL*16  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
-      COMPLEX*16        CONE
+      COMPLEX*32        CONE
       PARAMETER         ( CONE = ( 1.0D0, 0.0D0 ) )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LCWORK, LDA, LDWORK, N
-      DOUBLE PRECISION  BETA, OMEGA, TOL
+      REAL*16  BETA, OMEGA, TOL
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), DWORK(*)
-      COMPLEX*16        CWORK(*)
+      REAL*16  A(LDA,*), DWORK(*)
+      COMPLEX*32        CWORK(*)
 C     .. Local Scalars ..
       INTEGER           I, IA2, IAA, IGF, IHI, ILO, ITNUM, IWI, IWK,
      $                  IWR, JWORK, KOM, LBEST, MINWRK, N2
-      DOUBLE PRECISION  EPS, LOW, OM, OM1, OM2, SFMN, SIGMA, SV, TAU,
+      REAL*16  EPS, LOW, OM, OM1, OM2, SFMN, SIGMA, SV, TAU,
      $                  TEMP, TOL1
       LOGICAL           SUFWRK
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUMMY(1), DUMMY2(1,1)
+      REAL*16  DUMMY(1), DUMMY2(1,1)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, DLANGE, MB03NY
+      REAL*16  DLAMCH, DLANGE, MB03NY
       EXTERNAL          DLAMCH, DLANGE, MB03NY
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEBAL, DGEMM, DHSEQR, DLACPY, DSYMM,

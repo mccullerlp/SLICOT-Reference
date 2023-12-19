@@ -44,7 +44,7 @@ C     SINV    (input) INTEGER
 C             Signature multiplier. Entries of S are virtually
 C             multiplied by SINV.
 C
-C     A       (input/output)  DOUBLE PRECISION array, dimension
+C     A       (input/output)  REAL*16 array, dimension
 C                             (LDA1,LDA2,K)
 C             On entry, the leading 2-by-2-by-K part of this array must
 C             contain a 2-by-2 product (implicitly represented by its K
@@ -59,7 +59,7 @@ C
 C     LDA2    INTEGER
 C             The second leading dimension of the array A.  LDA2 >= 2.
 C
-C     MACPAR  (input)  DOUBLE PRECISION array, dimension (5)
+C     MACPAR  (input)  REAL*16 array, dimension (5)
 C             Machine parameters:
 C             MACPAR(1)  overflow threshold,         DLAMCH( 'O' );
 C             MACPAR(2)  underflow threshold,        DLAMCH( 'U' );
@@ -67,17 +67,17 @@ C             MACPAR(3)  safe minimum,               DLAMCH( 'S' );
 C             MACPAR(4)  relative machine precision, DLAMCH( 'E' );
 C             MACPAR(5)  base of the machine,        DLAMCH( 'B' ).
 C
-C     CV      (output)  DOUBLE PRECISION array, dimension (K)
+C     CV      (output)  REAL*16 array, dimension (K)
 C             On exit, the first K elements of this array contain the
 C             cosines of the Givens rotations.
 C
-C     SV      (output)  DOUBLE PRECISION array, dimension (K)
+C     SV      (output)  REAL*16 array, dimension (K)
 C             On exit, the first K elements of this array contain the
 C             sines of the Givens rotations.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (3*(K-1))
+C     DWORK   REAL*16 array, dimension (3*(K-1))
 C
 C     METHOD
 C
@@ -110,18 +110,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, HALF, TWO
+      REAL*16  ZERO, ONE, HALF, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, HALF = 0.5D0,
      $                    TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           K, LDA1, LDA2, SINV
 C     .. Array Arguments ..
       INTEGER           AMAP(*), S(*)
-      DOUBLE PRECISION  A(LDA1,LDA2,*), CV(*), DWORK(*), MACPAR(*),
+      REAL*16  A(LDA1,LDA2,*), CV(*), DWORK(*), MACPAR(*),
      $                  SV(*)
 C     .. Local Scalars ..
       INTEGER           AI, I, PW, SCL
-      DOUBLE PRECISION  A11, A12, A22, B11, B12, B22, BASE, CC, CL, CR,
+      REAL*16  A11, A12, A22, B11, B12, B22, BASE, CC, CL, CR,
      $                  EPS, MX, MX2, RMAX, RMIN, RMNS, RMXS, S11, S22,
      $                  SC, SFMN, SL, SR, SSMAX, SSMIN, T11, T12, T22,
      $                  TEMP, TWOS

@@ -41,16 +41,16 @@ C     N       (input) INTEGER
 C             The order of the matrix X and the number of columns of the
 C             matrix op( A ).  N >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry, except when R is identified with X in
 C             the call.
 C
-C     BETA    (input) DOUBLE PRECISION
+C     BETA    (input) REAL*16
 C             The scalar beta. When beta is zero or N <= 1, or M <= 1,
 C             then A and X are not referenced.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,M)
+C     R       (input/output) REAL*16 array, dimension (LDR,M)
 C             On entry with UPLO = 'U', the leading M-by-M strictly
 C             upper triangular part of this array must contain the
 C             strictly upper triangular part of the skew-symmetric
@@ -68,7 +68,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of the array R.  LDR >= MAX(1,M).
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,k)
+C     A       (input) REAL*16 array, dimension (LDA,k)
 C             where k is N when TRANS = 'N' and is M when TRANS = 'T' or
 C             TRANS = 'C'.
 C             On entry with TRANS = 'N', the leading M-by-N part of this
@@ -81,7 +81,7 @@ C             The leading dimension of the array A.  LDA >= MAX(1,k),
 C             where k is M when TRANS = 'N' and is N when TRANS = 'T' or
 C             TRANS = 'C'.
 C
-C     X       (input or input/output) DOUBLE PRECISION array, dimension
+C     X       (input or input/output) REAL*16 array, dimension
 C             (LDX,K), where K = N, if UPLO = 'U' or  LDWORK >= M*(N-1),
 C                  or K = MAX(N,M), if UPLO = 'L' and LDWORK <  M*(N-1).
 C             On entry, if UPLO = 'U', the leading N-by-N strictly upper
@@ -102,7 +102,7 @@ C             LDX >= MAX(1,N,M), if UPLO = 'U' and LDWORK <  M*(N-1).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             This array is not referenced when beta = 0, or M <= 1, or
 C             N <= 1.
 C
@@ -166,14 +166,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS, UPLO
       INTEGER           INFO, LDA, LDR, LDWORK, LDX, M, N
-      DOUBLE PRECISION  ALPHA, BETA
+      REAL*16  ALPHA, BETA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), R(LDR,*), X(LDX,*)
+      REAL*16  A(LDA,*), DWORK(*), R(LDR,*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           LTRANS, NOTTRA, UPPER
       INTEGER           I, J, M2

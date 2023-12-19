@@ -22,11 +22,11 @@ C     N       (input) INTEGER
 C             The order of the matrix B and the number of columns of the
 C             matrices C and X.  N >= 0.
 C
-C     PMAX    (input) DOUBLE PRECISION
+C     PMAX    (input) REAL*16
 C             An upper bound for the absolute value of the elements of X
 C             (see METHOD).
 C
-C     A       (input) COMPLEX*16 array, dimension (LDA,M)
+C     A       (input) COMPLEX*32 array, dimension (LDA,M)
 C             The leading M-by-M upper triangular part of this array
 C             must contain the matrix A of the Sylvester equation.
 C             The elements below the diagonal are not referenced.
@@ -34,7 +34,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     B       (input) COMPLEX*16 array, dimension (LDB,N)
+C     B       (input) COMPLEX*32 array, dimension (LDB,N)
 C             The leading N-by-N upper triangular part of this array
 C             must contain the matrix B of the Sylvester equation.
 C             The elements below the diagonal are not referenced.
@@ -42,7 +42,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) COMPLEX*16 array, dimension (LDC,N)
+C     C       (input/output) COMPLEX*32 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix C of the Sylvester equation.
 C             On exit, if INFO = 0, the leading M-by-N part of this
@@ -136,24 +136,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D+0 )
-      COMPLEX*16        CONE
+      COMPLEX*32        CONE
       PARAMETER         ( CONE = ( 1.0D0, 0.0D0 ) )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, M, N
-      DOUBLE PRECISION  PMAX
+      REAL*16  PMAX
 C     .. Array Arguments ..
-      COMPLEX*16        A(LDA,*), B(LDB,*), C(LDC,*)
+      COMPLEX*32        A(LDA,*), B(LDB,*), C(LDC,*)
 C     .. Local Scalars ..
       INTEGER           K, K1, L, LM1
-      DOUBLE PRECISION  AA11, AC11, BIGNUM, EPS, SMIN, SMLNUM
-      COMPLEX*16        A11, C11, X11
+      REAL*16  AA11, AC11, BIGNUM, EPS, SMIN, SMLNUM
+      COMPLEX*32        A11, C11, X11
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUM( 1 )
+      REAL*16  DUM( 1 )
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, ZLANTR
-      COMPLEX*16        ZDOTU,  ZLADIV
+      REAL*16  DLAMCH, ZLANTR
+      COMPLEX*32        ZDOTU,  ZLADIV
       EXTERNAL          DLAMCH, ZDOTU, ZLADIV, ZLANTR
 C     .. External Subroutines ..
       EXTERNAL          DLABAD, ZGEMV

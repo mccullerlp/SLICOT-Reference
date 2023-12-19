@@ -29,10 +29,10 @@ C             The specified order of the diagonal Pade approximant.
 C             In the absence of further information NDIAG should
 C             be set to 9.  NDIAG should not exceed 15.  NDIAG >= 1.
 C
-C     DELTA   (input) DOUBLE PRECISION
+C     DELTA   (input) REAL*16
 C             The scalar value delta of the problem.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On input, the leading N-by-N part of this array must
 C             contain the matrix A of the problem. (This is not needed
 C             if DELTA = 0.)
@@ -54,7 +54,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -130,7 +130,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, HALF, ONE, TWO, FOUR, EIGHT, TEN, TWELVE,
+      REAL*16  ZERO, HALF, ONE, TWO, FOUR, EIGHT, TEN, TWELVE,
      $                  NINTEN, TWO4, FOUR7, TWOHND
       PARAMETER         ( ZERO = 0.0D0,    HALF = 0.5D0,   ONE = 1.0D0,
      $                    TWO  = 2.0D0,    FOUR = 4.0D0, EIGHT = 8.0D0,
@@ -141,23 +141,23 @@ C     .. Scalar Arguments ..
       CHARACTER         BALANC
       INTEGER           IDIG, INFO, IWARN, LDA, LDWORK, MDIG, N,
      $                  NDIAG
-      DOUBLE PRECISION  DELTA
+      REAL*16  DELTA
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), DWORK(*)
+      REAL*16  A(LDA,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LBALS
       CHARACTER         ACTBAL
       INTEGER           BASE, I, IFAIL, IJ, IK, IM1, J, JWORA1, JWORA2,
      $                  JWORA3, JWORV1, JWORV2, K, M, MPOWER, NDAGM1,
      $                  NDAGM2, NDEC, NDECM1
-      DOUBLE PRECISION  ANORM, AVGEV, BD, BIG, EABS, EAVGEV, EMNORM,
+      REAL*16  ANORM, AVGEV, BD, BIG, EABS, EAVGEV, EMNORM,
      $                  EPS, FACTOR, FN, GN, MAXRED, OVRTH2, OVRTHR, P,
      $                  RERL, RERR, S, SD2, SIZE, SMALL, SS, SUM2D,
      $                  TEMP, TMP1, TR, U, UNDERF, VAR, VAREPS, XN
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DASUM, DLAMCH, DLANGE, DNRM2
+      REAL*16  DASUM, DLAMCH, DLANGE, DNRM2
       EXTERNAL          DASUM, DLAMCH, DLANGE, DNRM2, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEMM, DGEMV, DGETRF, DGETRS, DLACPY,

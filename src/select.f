@@ -4,7 +4,7 @@ C     PURPOSE
 C
 C     Void logical function for DGEES.
 C
-      DOUBLE PRECISION  PAR1, PAR2
+      REAL*16  PAR1, PAR2
 C
       SELECT = .TRUE.
       RETURN

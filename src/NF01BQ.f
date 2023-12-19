@@ -96,7 +96,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 4.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR, NC)
+C     R       (input/output) REAL*16 array, dimension (LDR, NC)
 C             where NC = N if BN <= 1, and NC = BSN+ST, if BN > 1.
 C             On entry, the leading N-by-NC part of this array must
 C             contain the (compressed) representation (Rc) of the upper
@@ -121,11 +121,11 @@ C             This array must define the permutation matrix P such that
 C             J*P = Q*R. Column j of P is column IPVT(j) of the identity
 C             matrix.
 C
-C     DIAG    (input) DOUBLE PRECISION array, dimension (N)
+C     DIAG    (input) REAL*16 array, dimension (N)
 C             This array must contain the diagonal elements of the
 C             matrix D.
 C
-C     QTB     (input) DOUBLE PRECISION array, dimension (N)
+C     QTB     (input) REAL*16 array, dimension (N)
 C             This array must contain the first n elements of the
 C             vector Q'*b.
 C
@@ -140,13 +140,13 @@ C             On exit, if COND = 'E' or 'N' and N > 0, this array
 C             contains the numerical ranks of the submatrices S_k,
 C             k = 1:l(+1), estimated according to the value of COND.
 C
-C     X       (output) DOUBLE PRECISION array, dimension (N)
+C     X       (output) REAL*16 array, dimension (N)
 C             This array contains the least squares solution of the
 C             system J*x = b, D*x = 0.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             If COND = 'E', the tolerance to be used for finding the
 C             ranks of the submatrices S_k. If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -160,7 +160,7 @@ C             This parameter is not relevant if COND = 'U' or 'N'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, the first N elements of this array contain the
 C             diagonal elements of the upper triangular matrix S, and
 C             the next N elements contain the solution z.
@@ -235,17 +235,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COND
       INTEGER           INFO, LDR, LDWORK, LIPAR, N
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IPAR(*), IPVT(*), RANKS(*)
-      DOUBLE PRECISION  DIAG(*), DWORK(*), QTB(*), R(LDR,*), X(*)
+      REAL*16  DIAG(*), DWORK(*), QTB(*), R(LDR,*), X(*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  QTBPJ
+      REAL*16  QTBPJ
       INTEGER           BN, BSM, BSN, I, IB, IBSN, IS, ITC, ITR, J,
      $                  JW, K, KF, L, NC, NTHS, ST
       LOGICAL           ECOND

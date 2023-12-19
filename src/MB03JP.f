@@ -50,7 +50,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bH.  N >= 0, even.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C                            (LDA, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular matrix A. The elements of the
@@ -61,7 +61,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1, N/2).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension
+C     D       (input/output) REAL*16 array, dimension
 C                           (LDD, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular part of the skew-symmetric
@@ -76,7 +76,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1, N/2).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C                            (LDB, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper quasi-triangular matrix B.
@@ -89,7 +89,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N/2).
 C
-C     F       (input/output) DOUBLE PRECISION array, dimension
+C     F       (input/output) REAL*16 array, dimension
 C                           (LDF, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular part of the symmetric matrix
@@ -104,7 +104,7 @@ C
 C     LDF     INTEGER
 C             The leading dimension of the array F.  LDF >= MAX(1, N/2).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ, N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ, N)
 C             On entry, if COMPQ = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q0, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -132,7 +132,7 @@ C     LIWORK  INTEGER
 C             The dimension of the array IWORK.
 C             LIWORK >= 3*N-3.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The dimension of the array DWORK.
@@ -213,7 +213,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, HALF, TEN
+      REAL*16   ZERO, ONE, HALF, TEN
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, HALF = 0.5D+0,
      $                     TEN = 1.0D+1 )
 C
@@ -224,7 +224,7 @@ C     .. Scalar Arguments ..
 C
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), D( LDD, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), D( LDD, * ),
      $                   DWORK( * ),  F( LDF, * ), Q( LDQ, * )
 C
 C     .. Local Scalars ..
@@ -236,15 +236,15 @@ C     .. Local Scalars ..
      $                   IWRK3, IWRK4, IWRK5, J, JE, JS, K, LDW, M, M1,
      $                   MM, MP, NB, NC, NCOL, NP2, NROWS, OPTDW, R,
      $                   SDIM, UPDS
-      DOUBLE PRECISION   A2, D1, D2, D3, F2, NRMA, NRMB, PREC, Q11, Q12,
+      REAL*16   A2, D1, D2, D3, F2, NRMA, NRMB, PREC, Q11, Q12,
      $                   Q21, Q22, TMP, TOL
 C
 C     .. Local Arrays ..
-      DOUBLE PRECISION   PAR( 2 )
+      REAL*16   PAR( 2 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DDOT, DLAMCH, DLANHS, DLANTR
+      REAL*16   DDOT, DLAMCH, DLANHS, DLANTR
       EXTERNAL           DDOT, DLAMCH, DLANHS, DLANTR, LSAME
 C
 C     .. External Subroutines ..

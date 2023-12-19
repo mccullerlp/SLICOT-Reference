@@ -60,7 +60,7 @@ C             in the generator as returned by MB02CU.  0 <= RNK <= K.
 C             If TYPEG = 'C' or 'R', the value of this parameter is
 C             irrelevant.
 C
-C     A1      (input)  DOUBLE PRECISION array, dimension
+C     A1      (input)  REAL*16 array, dimension
 C             (LDA1, K)
 C             On entry, if TYPEG = 'D', the leading K-by-K part of this
 C             array must contain the matrix A1 as returned by MB02CU.
@@ -71,7 +71,7 @@ C             The leading dimension of the array A1.
 C             If TYPEG = 'D',                   LDA1 >= MAX(1,K);
 C             if TYPEG = 'C'  or  TYPEG = 'R',  LDA1 >= 1.
 C
-C     A2      (input)  DOUBLE PRECISION array,
+C     A2      (input)  REAL*16 array,
 C             if TYPEG = 'D'  or  TYPEG = 'C',  dimension (LDA2, P-K);
 C             if TYPEG = 'R',                   dimension (LDA2, K).
 C             On entry, if TYPEG = 'D'  or  TYPEG = 'C', the leading
@@ -88,7 +88,7 @@ C             If P > K and (TYPEG = 'D' or TYPEG = 'C'),
 C                                        LDA2 >= MAX(1,K);
 C             if P > K and TYPEG = 'R',  LDA2 >= P-K.
 C
-C     B       (input)  DOUBLE PRECISION array,
+C     B       (input)  REAL*16 array,
 C             if TYPEG = 'D'  or  TYPEG = 'C',  dimension (LDB, Q);
 C             if TYPEG = 'R',                   dimension (LDB, K).
 C             On entry, if TYPEG = 'D'  or  TYPEG = 'C', the leading
@@ -104,7 +104,7 @@ C             If Q > 0 and (TYPEG = 'D' or TYPEG = 'C'),
 C                                        LDB >= MAX(1,K);
 C             if Q > 0 and TYPEG = 'R',  LDB >= Q.
 C
-C     F1      (input/output)  DOUBLE PRECISION array,
+C     F1      (input/output)  REAL*16 array,
 C             if TYPEG = 'D'  or  TYPEG = 'C',  dimension (LDF1, K);
 C             if TYPEG = 'R',                   dimension (LDF1, N).
 C             On entry, if TYPEG = 'D'  or  TYPEG = 'C', the leading
@@ -125,7 +125,7 @@ C             The leading dimension of the array F1.
 C             If TYPEG = 'D'  or  TYPEG = 'C',   LDF1 >= MAX(1,N);
 C             if TYPEG = 'R',                    LDF1 >= MAX(1,K).
 C
-C     F2      (input/output)  DOUBLE PRECISION array,
+C     F2      (input/output)  REAL*16 array,
 C             if TYPEG = 'D'  or  TYPEG = 'C',  dimension (LDF2, P-K);
 C             if TYPEG = 'R',                   dimension (LDF2, N).
 C             On entry, if TYPEG = 'D'  or  TYPEG = 'C', the leading
@@ -148,7 +148,7 @@ C             If P > K and (TYPEG = 'D' or TYPEG = 'C'),
 C                                        LDF2 >= MAX(1,N);
 C             if P > K and TYPEG = 'R',  LDF2 >= P-K.
 C
-C     G       (input/output)  DOUBLE PRECISION array,
+C     G       (input/output)  REAL*16 array,
 C             if TYPEG = 'D'  or  TYPEG = 'C',  dimension (LDG, Q);
 C             if TYPEG = 'R',                   dimension (LDG, N).
 C             On entry, if TYPEG = 'D'  or  TYPEG = 'C', the leading
@@ -170,7 +170,7 @@ C             If Q > 0 and (TYPEG = 'D' or TYPEG = 'C'),
 C                                        LDG >= MAX(1,N);
 C             if Q > 0 and TYPEG = 'R',  LDG >= Q.
 C
-C     CS      (input)  DOUBLE PRECISION array, dimension (x)
+C     CS      (input)  REAL*16 array, dimension (x)
 C             If TYPEG = 'D' and P = K,                   x = 3*K;
 C             If TYPEG = 'D' and P > K,                   x = 5*K;
 C             If (TYPEG = 'C' or TYPEG = 'R') and P = K,  x = 4*K;
@@ -182,7 +182,7 @@ C             returned by MB02CU.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = -23,  DWORK(1) returns the minimum
 C             value of LDWORK.
 C
@@ -228,19 +228,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          STRUCG, TYPEG
       INTEGER            INFO, K, LDA1, LDA2, LDB, LDF1, LDF2, LDG,
      $                   LDWORK, N, NB, P, Q, RNK
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A1(LDA1,*), A2(LDA2,*), B(LDB,*), CS(*),
+      REAL*16   A1(LDA1,*), A2(LDA2,*), B(LDB,*), CS(*),
      $                   DWORK(*), F1(LDF1,*), F2(LDF2,*), G(LDG,*)
 C     .. Local Scalars ..
       INTEGER            COL2, I, IB, J, JJ, LEN, NBL, POS, PST2,
      $                   WRKMIN
-      DOUBLE PRECISION   ALPHA, BETA, C, S, TAU, TEMP
+      REAL*16   ALPHA, BETA, C, S, TAU, TEMP
       LOGICAL            LRDEF, LTRI, LCOL
 C     .. External Functions ..
       LOGICAL            LSAME

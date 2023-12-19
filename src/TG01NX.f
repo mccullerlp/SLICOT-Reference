@@ -46,7 +46,7 @@ C             The dimension of the leading diagonal blocks of (A,E)
 C             having generalized eigenvalues distinct from those of the
 C             trailing diagonal block.  0 <= NDIM <= N.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N state matrix A in a real Schur form.
 C             On exit, the leading N-by-N part of this array contains
@@ -57,7 +57,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N descriptor matrix E in upper triangular
 C             form.
@@ -69,7 +69,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the N-by-M input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -79,7 +79,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -89,7 +89,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
 C             On entry, the leading N-by-N part of this array contains
 C             Q1, the orthogonal left transformation matrix Q used to
 C             reduce the pair (A,E) to the generalized real Schur form.
@@ -100,7 +100,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
 C             On entry, the leading N-by-N part of this array contains
 C             the orthogonal right transformation matrix Z1 used to
 C             reduce the pair (A,E) to the generalized real Schur form.
@@ -171,7 +171,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE, ZERO
+      REAL*16   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          JOBT
@@ -179,14 +179,14 @@ C     .. Scalar Arguments ..
      $                   P
 C     .. Array Arguments ..
       INTEGER            IWORK(*)
-      DOUBLE PRECISION   A(LDA,*), B(LDB,*), C(LDC,*), E(LDE,*),
+      REAL*16   A(LDA,*), B(LDB,*), C(LDC,*), E(LDE,*),
      $                   Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL            TRINV
-      DOUBLE PRECISION   DIF, SCALE
+      REAL*16   DIF, SCALE
       INTEGER            I, N1, N11, N2
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM(1)
+      REAL*16   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

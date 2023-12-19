@@ -1,4 +1,4 @@
-      DOUBLE PRECISION FUNCTION AB13DX( DICO, JOBE, JOBD, N, M, P,
+      REAL*16 FUNCTION AB13DX( DICO, JOBE, JOBD, N, M, P,
      $                                  OMEGA, A, LDA, E, LDE, B, LDB,
      $                                  C, LDC, D, LDD, IWORK, DWORK,
      $                                  LDWORK, CWORK, LCWORK, INFO )
@@ -22,7 +22,7 @@ C     in (generalized) Hessenberg form.
 C
 C     FUNCTION VALUE
 C
-C     AB13DX   DOUBLE PRECISION
+C     AB13DX   REAL*16
 C              The maximum singular value of G(lambda).
 C
 C     ARGUMENTS
@@ -57,11 +57,11 @@ C
 C     P       (input) INTEGER
 C             The row size of the matrix C.  P >= 0.
 C
-C     OMEGA   (input) DOUBLE PRECISION
+C     OMEGA   (input) REAL*16
 C             The frequency value for which the calculations should be
 C             done.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N upper Hessenberg part of this
 C             array must contain the state dynamics matrix A in upper
 C             Hessenberg form. The elements below the subdiagonal are
@@ -77,7 +77,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input) REAL*16 array, dimension (LDE,N)
 C             If JOBE = 'G', the leading N-by-N upper triangular part of
 C             this array must contain the upper triangular descriptor
 C             matrix E of the system. The elements of the strict lower
@@ -90,7 +90,7 @@ C             The leading dimension of the array E.
 C             LDE >= MAX(1,N), if JOBE = 'G';
 C             LDE >= 1,        if JOBE = 'I'.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the system input matrix B.
 C             On exit, if M > 0, P > 0, OMEGA = 0, DICO = 'C', B <> 0,
@@ -101,14 +101,14 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             system output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, if JOBD = 'D', the leading P-by-M part of this
 C             array must contain the direct transmission matrix D.
 C             On exit, if (N = 0, or B = 0, or C = 0) and JOBD = 'D',
@@ -131,7 +131,7 @@ C             This array contains the pivot indices in the LU
 C             factorization of the matrix lambda*E - A; for 1 <= i <= N,
 C             row i of the matrix was interchanged with row IWORK(i).
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal value
 C             of LDWORK, and DWORK(2), ..., DWORK(MIN(P,M)) contain the
 C             singular values of G(lambda), except for the first one,
@@ -155,7 +155,7 @@ C                         or MIN(P,M) = 0;
 C             LDW2 = 6*MIN(P,M), otherwise.
 C             For good performance, LDWORK must generally be larger.
 C
-C     CWORK   COMPLEX*16 array, dimension (LCWORK)
+C     CWORK   COMPLEX*32 array, dimension (LCWORK)
 C             On exit, if INFO = 0, CWORK(1) contains the optimal
 C             LCWORK.
 C
@@ -202,20 +202,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16         CONE
+      COMPLEX*32         CONE
       PARAMETER          ( CONE = ( 1.0D0, 0.0D0 ) )
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          DICO, JOBD, JOBE
       INTEGER            INFO, LCWORK, LDA, LDB, LDC, LDD, LDE, LDWORK,
      $                   M, N, P
-      DOUBLE PRECISION   OMEGA
+      REAL*16   OMEGA
 C     ..
 C     .. Array Arguments ..
-      COMPLEX*16         CWORK(  * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      COMPLEX*32         CWORK(  * )
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   D( LDD, * ), DWORK(  * ), E( LDE, * )
       INTEGER            IWORK(  * )
 C     ..
@@ -223,10 +223,10 @@ C     .. Local Scalars ..
       LOGICAL            DISCR, FULLE, NODYN, SPECL, WITHD
       INTEGER            I, ICB, ICC, ICD, ICWK, ID, IERR, IS, IWRK, J,
      $                   MAXWRK, MINCWR, MINPM, MINWRK
-      DOUBLE PRECISION   BNORM, CNORM, LAMBDI, LAMBDR, UPD
+      REAL*16   BNORM, CNORM, LAMBDI, LAMBDR, UPD
 C
 C     .. External Functions ..
-      DOUBLE PRECISION   DLANGE
+      REAL*16   DLANGE
       LOGICAL            LSAME
       EXTERNAL           DLANGE, LSAME
 C     ..

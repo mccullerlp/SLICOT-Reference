@@ -84,7 +84,7 @@ C
 C     N       (input) INTEGER
 C             Order of the pencil aS - bH.  N >= 0, even.
 C
-C     Z       (input/output) COMPLEX*16 array, dimension (LDZ, N)
+C     Z       (input/output) COMPLEX*32 array, dimension (LDZ, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the non-trivial factor Z in the factorization
 C                    H  T
@@ -100,7 +100,7 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1, N).
 C
-C     B       (input/output) COMPLEX*16 array, dimension (LDB, K), where
+C     B       (input/output) COMPLEX*32 array, dimension (LDB, K), where
 C             K = N, if JOB = 'T', and K = M, if JOB = 'E'.
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix B.
@@ -115,7 +115,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1, M), if JOB = 'E';
 C             LDB >= MAX(1, N), if JOB = 'T'.
 C
-C     FG      (input/output) COMPLEX*16 array, dimension (LDFG, P),
+C     FG      (input/output) COMPLEX*32 array, dimension (LDFG, P),
 C             where P = MAX(M+1,N), if JOB = 'T', and
 C                   P = M+1,        if JOB = 'E'.
 C             On entry, the leading N/2-by-N/2 lower triangular part of
@@ -137,7 +137,7 @@ C             The leading dimension of the array FG.
 C             LDFG >= MAX(1, M), if JOB = 'E';
 C             LDFG >= MAX(1, N), if JOB = 'T'.
 C
-C     D       (output) COMPLEX*16 array, dimension (LDD, N)
+C     D       (output) COMPLEX*32 array, dimension (LDD, N)
 C             If JOB = 'T', the leading N-by-N part of this array
 C             contains the matrix BD in (3) (see also METHOD).
 C             If JOB = 'E', this array is not referenced.
@@ -147,7 +147,7 @@ C             The leading dimension of the array D.
 C             LDD >= 1,         if JOB = 'E';
 C             LDD >= MAX(1, N), if JOB = 'T'.
 C
-C     C       (output) COMPLEX*16 array, dimension (LDC, N)
+C     C       (output) COMPLEX*32 array, dimension (LDC, N)
 C             If JOB = 'T', the leading N-by-N part of this array
 C             contains the lower triangular matrix BC in (3) (see also
 C             METHOD). The part over the first superdiagonal is not set.
@@ -158,7 +158,7 @@ C             The leading dimension of the array C.
 C             LDC >= 1,         if JOB = 'E';
 C             LDC >= MAX(1, N), if JOB = 'T'.
 C
-C     Q       (output) COMPLEX*16 array, dimension (LDQ, 2*N)
+C     Q       (output) COMPLEX*32 array, dimension (LDQ, 2*N)
 C             On exit, if COMPQ = 'C' and JOB = 'T', then the leading
 C             2*N-by-2*N part of this array contains the unitary
 C             transformation matrix Q.
@@ -172,7 +172,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,           if COMPQ = 'N';
 C             LDQ >= MAX(1, 2*N), if COMPQ = 'C'.
 C
-C     U       (output) COMPLEX*16 array, dimension (LDU, 2*N)
+C     U       (output) COMPLEX*32 array, dimension (LDU, 2*N)
 C             On exit, if COMPU = 'C' and JOB = 'T', then the leading
 C             N-by-2*N part of this array contains the leading N-by-2*N
 C             part of the unitary symplectic transformation matrix U.
@@ -186,16 +186,16 @@ C             The leading dimension of the array U.
 C             LDU >= 1,         if COMPU = 'N';
 C             LDU >= MAX(1, N), if COMPU = 'C'.
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
 C             The real parts of each scalar alpha defining an eigenvalue
 C             of the pencil aS - bH.
 C
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
 C             The imaginary parts of each scalar alpha defining an
 C             eigenvalue of the pencil aS - bH.
 C             If ALPHAI(j) is zero, then the j-th eigenvalue is real.
 C
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             The scalars beta that define the eigenvalues of the pencil
 C             aS - bH.
 C             Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
@@ -230,7 +230,7 @@ C
 C     LIWORK  INTEGER
 C             The dimension of the array IWORK.  LIWORK >= 2*N+9.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = 3, DWORK(1) returns the
 C             optimal LDWORK, and DWORK(2), ..., DWORK(4) contain the
 C             Frobenius norms of the factors of the formal matrix
@@ -265,7 +265,7 @@ C             DWORK array, returns this value as the first entry of
 C             the DWORK array, and no error message related to LDWORK
 C             is issued by XERBLA.
 C
-C     ZWORK   COMPLEX*16 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal LZWORK.
 C             On exit, if INFO = -27, ZWORK(1) returns the minimum
 C             value of LZWORK.
@@ -357,9 +357,9 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, FOUR
+      REAL*16   ZERO, ONE, FOUR
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, FOUR = 4.0D+0 )
-      COMPLEX*16         CZERO, CONE, CIMAG
+      COMPLEX*32         CZERO, CONE, CIMAG
       PARAMETER          ( CZERO = ( 0.0D+0, 0.0D+0 ),
      $                      CONE = ( 1.0D+0, 0.0D+0 ),
      $                     CIMAG = ( 0.0D+0, 1.0D+0 ) )
@@ -372,8 +372,8 @@ C
 C     .. Array Arguments ..
       LOGICAL            BWORK( * )
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   ALPHAI( * ), ALPHAR( * ), BETA( * ), DWORK( * )
-      COMPLEX*16         B( LDB, * ), C( LDC, * ), D( LDD, * ),
+      REAL*16   ALPHAI( * ), ALPHAR( * ), BETA( * ), DWORK( * )
+      COMPLEX*32         B( LDB, * ), C( LDC, * ), D( LDD, * ),
      $                   FG( LDFG, * ), Q( LDQ, * ), U( LDU, * ),
      $                   Z( LDZ, * ), ZWORK( * )
 C
@@ -384,15 +384,15 @@ C     .. Local Scalars ..
      $                   IW, IW1, IWRK, IZ11, IZ22, J, J1, J2, J3, JM1,
      $                   JP2, K, M, MINDB, MINDW, MINZW, N2, NB, NC,
      $                   NJ1, NN, OPTDW, OPTZW
-      DOUBLE PRECISION   EPS, NRMB
-      COMPLEX*16         TMP
+      REAL*16   EPS, NRMB
+      COMPLEX*32         TMP
 C
 C     .. Local Arrays ..
       INTEGER            DWORKZ( 2 ), IWORKZ( 5 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C
 C     .. External Subroutines ..

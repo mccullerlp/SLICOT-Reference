@@ -22,22 +22,22 @@ C
 C     N       (input) INTEGER
 C             The order of the bidiagonal matrix J.  N >= 0.
 C
-C     THETA   (input) DOUBLE PRECISION
+C     THETA   (input) REAL*16
 C             Given bound.
 C             Note: If THETA < 0.0 on entry, then MB03ND is set to 0
 C                   as the singular values of J are non-negative.
 C
-C     Q2      (input) DOUBLE PRECISION array, dimension (N)
+C     Q2      (input) REAL*16 array, dimension (N)
 C             This array must contain the squares of the diagonal
 C             elements q(1),q(2),...,q(N) of the bidiagonal matrix J.
 C             That is, Q2(i) = J(i,i)**2 for i = 1,2,...,N.
 C
-C     E2      (input) DOUBLE PRECISION array, dimension (N-1)
+C     E2      (input) REAL*16 array, dimension (N-1)
 C             This array must contain the squares of the superdiagonal
 C             elements e(1),e(2),...,e(N-1) of the bidiagonal matrix J.
 C             That is, E2(k) = J(k,k+1)**2 for k = 1,2,...,N-1.
 C
-C     PIVMIN  (input) DOUBLE PRECISION
+C     PIVMIN  (input) REAL*16
 C             The minimum absolute value of a "pivot" in the Sturm
 C             sequence loop.
 C             PIVMIN >= max( max( |q(i)|, |e(k)| )**2*sf_min, sf_min ),
@@ -140,16 +140,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, N
-      DOUBLE PRECISION  PIVMIN, THETA
+      REAL*16  PIVMIN, THETA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  E2(*), Q2(*)
+      REAL*16  E2(*), Q2(*)
 C     .. Local Scalars ..
       INTEGER           J, NUMEIG
-      DOUBLE PRECISION  R, T
+      REAL*16  R, T
 C     .. External Subroutines ..
       EXTERNAL          XERBLA
 C     .. Intrinsic Functions ..

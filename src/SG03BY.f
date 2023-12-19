@@ -15,13 +15,13 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     XR, XI, (input) DOUBLE PRECISION
-C     YR, YI  (input) DOUBLE PRECISION
+C     XR, XI, (input) REAL*16
+C     YR, YI  (input) REAL*16
 C             The given real scalars XR, XI, YR, YI.
 C
-C     CR, CI, (output) DOUBLE PRECISION
-C     SR, SI, (output) DOUBLE PRECISION
-C     Z       (output) DOUBLE PRECISION
+C     CR, CI, (output) REAL*16
+C     SR, SI, (output) REAL*16
+C     Z       (output) REAL*16
 C             The computed real scalars CR, CI, SR, SI, Z, defining the
 C             complex Givens rotation and Z.
 C
@@ -45,12 +45,12 @@ C
 C     ******************************************************************
 C
 C      .. Parameters ..
-       DOUBLE PRECISION  ONE, ZERO
+       REAL*16  ONE, ZERO
        PARAMETER         ( ONE = 1.0D+0, ZERO = 0.0D+0 )
 C      .. Scalar Arguments ..
-       DOUBLE PRECISION  CI, CR, SI, SR, XI, XR, YI, YR, Z
+       REAL*16  CI, CR, SI, SR, XI, XR, YI, YR, Z
 C      .. Intrinsic Functions ..
-       DOUBLE PRECISION  ABS, MAX, SQRT
+       REAL*16  ABS, MAX, SQRT
 C      .. Executable Statements ..
 C
        Z = MAX( ABS( XR ), ABS( XI ), ABS( YR ), ABS( YI ) )

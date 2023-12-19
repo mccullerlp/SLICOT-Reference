@@ -34,7 +34,7 @@ C
 C     N       (input) INTEGER
 C             The order of matrices A and B.  N >= 0.
 C
-C     THRESH  (input) DOUBLE PRECISION
+C     THRESH  (input) REAL*16
 C             If JOB = 'S' or JOB = 'B', and THRESH >= 0, threshold
 C             value for magnitude of the elements to be considered in
 C             the scaling process: elements with magnitude less than or
@@ -68,7 +68,7 @@ C             at most VALUE. VALUE should be a power of 10.
 C             If JOB = 'N' or JOB = 'P', the value of THRESH is
 C             irrelevant.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -79,7 +79,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB, N)
+C     B       (input/output) REAL*16 array, dimension (LDB, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix B.
 C             On exit, the leading N-by-N part of this array contains
@@ -98,7 +98,7 @@ C             A(i,j) = 0 and B(i,j) = 0 if i > j and
 C             j = 1,...,ILO-1 or i = IHI+1,...,N.
 C             If JOB = 'N' or 'S', ILO = 1 and IHI = N.
 C
-C     LSCALE  (output) DOUBLE PRECISION array, dimension (N)
+C     LSCALE  (output) REAL*16 array, dimension (N)
 C             Details of the permutations and scaling factors applied
 C             to the left side of A and B.  If P(j) is the index of the
 C             row interchanged with row j, and D(j) is the scaling
@@ -109,7 +109,7 @@ C                         = P(j)    for j = IHI+1,...,N.
 C             The order in which the interchanges are made is N to
 C             IHI+1, then 1 to ILO-1.
 C
-C     RSCALE  (output) DOUBLE PRECISION array, dimension (N)
+C     RSCALE  (output) REAL*16 array, dimension (N)
 C             Details of the permutations and scaling factors applied
 C             to the right side of A and B.  If P(j) is the index of the
 C             column interchanged with column j, and D(j) is the scaling
@@ -122,7 +122,7 @@ C             IHI+1, then 1 to ILO-1.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK) where
+C     DWORK   REAL*16 array, dimension (LDWORK) where
 C             LDWORK = 0,   if  JOB = 'N' or JOB = 'P', or N = 0;
 C             LDWORK = 6*N, if (JOB = 'S' or JOB = 'B') and THRESH >= 0;
 C             LDWORK = 8*N, if (JOB = 'S' or JOB = 'B') and THRESH <  0.
@@ -210,17 +210,17 @@ C
 C  *********************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   HALF, ONE, TEN, THREE, ZERO
+      REAL*16   HALF, ONE, TEN, THREE, ZERO
       PARAMETER          ( HALF  = 0.5D+0, ONE  = 1.0D+0, TEN = 1.0D+1,
      $                     THREE = 3.0D+0, ZERO = 0.0D+0 )
-      DOUBLE PRECISION   MXGAIN, SCLFAC
+      REAL*16   MXGAIN, SCLFAC
       PARAMETER          ( MXGAIN = 1.0D+2, SCLFAC = 1.0D+1 )
 C     .. Scalar Arguments ..
       CHARACTER          JOB
       INTEGER            IHI, ILO, INFO, IWARN, LDA, LDB, N
-      DOUBLE PRECISION   THRESH
+      REAL*16   THRESH
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*), B(LDB,*), DWORK(*), LSCALE(*),
+      REAL*16   A(LDA,*), B(LDB,*), DWORK(*), LSCALE(*),
      $                   RSCALE(*)
 C     .. Local Scalars ..
       LOGICAL            EVNORM, LOOP, LPERM, LSCAL, STORMN
@@ -228,18 +228,18 @@ C     .. Local Scalars ..
      $                   J, JC, JP1, K, KOUNT, KS, KW1, KW2, KW3, KW4,
      $                   KW5, KW6, KW7, L, LM1, LRAB, LSFMAX, LSFMIN, M,
      $                   NR, NRP2
-      DOUBLE PRECISION   AB, ALPHA, BASL, BETA, CAB, CMAX, COEF, COEF2,
+      REAL*16   AB, ALPHA, BASL, BETA, CAB, CMAX, COEF, COEF2,
      $                   COEF5, COR, DENOM, EPS, EW, EWC, GAMMA, GAP,
      $                   MINPRO, MINRAT, MN, MX, MXCOND, MXNORM, MXS,
      $                   NA, NA0, NAS, NB, NB0, NBS, PGAMMA, PROD, RAB,
      $                   RATIO, SFMAX, SFMIN, SUM, T, TA, TB, TC, TH,
      $                   TH0, THS
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM(1)
+      REAL*16   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DDOT, DLAMCH, DLANGE
+      REAL*16   DDOT, DLAMCH, DLANGE
       EXTERNAL           DDOT, DLAMCH, DLANGE, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DSCAL, DSWAP, XERBLA

@@ -81,7 +81,7 @@ C             columns of the matrices C, F, R and L.  N >= 0.
 C             No computations are performed if N = 0 or M = 0, but SCALE
 C             and DIF (if JOB <> 'N') are set to 1.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,M)
+C     A       (input/output) REAL*16 array, dimension (LDA,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain the coefficient matrix A of the equation; A must
 C             be in upper quasi-triangular form if REDUCE = 'B' or 'N'.
@@ -91,7 +91,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,N)
+C     B       (input/output) REAL*16 array, dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the coefficient matrix B of the equation; B must
 C             be in upper quasi-triangular form if REDUCE = 'A' or 'N'.
@@ -101,7 +101,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right-hand side matrix C of the first equation
 C             in (1) or (2).
@@ -114,7 +114,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,M).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain the coefficient matrix D of the equation; D must
 C             be in upper triangular form if REDUCE = 'B' or 'N'.
@@ -124,7 +124,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,M).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the coefficient matrix E of the equation; E must
 C             be in upper triangular form if REDUCE = 'A' or 'N'.
@@ -134,7 +134,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,N).
 C
-C     F       (input/output) DOUBLE PRECISION array, dimension (LDF,N)
+C     F       (input/output) REAL*16 array, dimension (LDF,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right-hand side matrix F of the second
 C             equation in (1) or (2).
@@ -147,7 +147,7 @@ C
 C     LDF     INTEGER
 C             The leading dimension of array F.  LDF >= MAX(1,M).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scaling factor in (1) or (2). If 0 < SCALE < 1, C and
 C             F hold the solutions R and L, respectively, to a slightly
 C             perturbed system, but the computed generalized (real)
@@ -158,7 +158,7 @@ C             If SCALE = 0, C and F hold the solutions R and L,
 C             respectively, to the homogeneous system with C = F = 0.
 C             Normally, SCALE = 1.
 C
-C     DIF     (output) DOUBLE PRECISION
+C     DIF     (output) REAL*16
 C             If TRANS = 'N' and JOBD <> 'N', then DIF contains the
 C             value of the Dif estimator, which is an upper bound of
 C                                                    -1
@@ -166,7 +166,7 @@ C             Dif[(A,D),(B,E)] = sigma_min(Z) = 1/||Z  ||, in either the
 C             one-norm, or Frobenius norm, respectively (see METHOD).
 C             Otherwise, DIF is not referenced.
 C
-C     P       (output) DOUBLE PRECISION array, dimension (LDP,*)
+C     P       (output) REAL*16 array, dimension (LDP,*)
 C             If REDUCE = 'R' or 'A', then the leading M-by-M part of
 C             this array contains the (left) transformation matrix used
 C             to reduce (A,D) to generalized Schur form.
@@ -179,7 +179,7 @@ C             The leading dimension of array P.
 C             LDP >= MAX(1,M) if REDUCE = 'R' or 'A',
 C             LDP >= 1        if REDUCE = 'B' or 'N'.
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ,*)
+C     Q       (output) REAL*16 array, dimension (LDQ,*)
 C             If REDUCE = 'R' or 'A', then the leading M-by-M part of
 C             this array contains the (right) transformation matrix used
 C             to reduce (A,D) to generalized Schur form.
@@ -192,7 +192,7 @@ C             The leading dimension of array Q.
 C             LDQ >= MAX(1,M) if REDUCE = 'R' or 'A',
 C             LDQ >= 1        if REDUCE = 'B' or 'N'.
 C
-C     U       (output) DOUBLE PRECISION array, dimension (LDU,*)
+C     U       (output) REAL*16 array, dimension (LDU,*)
 C             If REDUCE = 'R' or 'B', then the leading N-by-N part of
 C             this array contains the (left) transformation matrix used
 C             to reduce (B,E) to generalized Schur form.
@@ -205,7 +205,7 @@ C             The leading dimension of array U.
 C             LDU >= MAX(1,N) if REDUCE = 'R' or 'B',
 C             LDU >= 1        if REDUCE = 'A' or 'N'.
 C
-C     V       (output) DOUBLE PRECISION array, dimension (LDV,*)
+C     V       (output) REAL*16 array, dimension (LDV,*)
 C             If REDUCE = 'R' or 'B', then the leading N-by-N part of
 C             this array contains the (right) transformation matrix used
 C             to reduce (B,E) to generalized Schur form.
@@ -222,7 +222,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M+N+6)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -381,16 +381,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBD, REDUCE, TRANS
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDE, LDF, LDP, LDQ,
      $                  LDU, LDV, LDWORK, M, N
-      DOUBLE PRECISION  DIF, SCALE
+      REAL*16  DIF, SCALE
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), E(LDE,*), F(LDF,*), P(LDP,*),
      $                  Q(LDQ,*), U(LDU,*), V(LDV,*)
 C     .. Local Scalars ..

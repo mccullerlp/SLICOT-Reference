@@ -51,7 +51,7 @@ C             The dimension of the descriptor state vector; also the
 C             order of square matrices A and E, the number of rows of
 C             matrix B, and the number of columns of matrix C.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -60,7 +60,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,*)
+C     E       (input/output) REAL*16 array, dimension (LDE,*)
 C             On entry, if JOBE = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the descriptor matrix E. The lower
@@ -77,14 +77,14 @@ C             The leading dimension of the array E.
 C             LDE >= MAX(1,N), if JOBE = 'U';
 C             LDE >= 1,        if JOBE = 'I'.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (N)
+C     B       (input/output) REAL*16 array, dimension (N)
 C             On entry, the leading N part of this array must contain
 C             the original input matrix B.
 C             On exit, the leading N part of this array contains the
 C             transformed input matrix Q'*B with all elements but the
 C             first set to zero.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension
+C     C       (input/output) REAL*16 array, dimension
 C             ((N-1)*INCC+1)
 C             On entry, if COMPC = 'C', the elements 1, INCC+1, ...,
 C             (N-1)*INCC+1 of this array must contain the original
@@ -99,7 +99,7 @@ C             If COMPC = 'C', the increment between successive values
 C             of C.  INCC > 0.
 C             If COMPC = 'N', INCC is not used.
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,*)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,*)
 C             On entry, if COMPQ = 'U', the leading N-by-N part of this
 C             array must contain the given matrix Q1. Otherwise, this
 C             array need not be set on input.
@@ -113,7 +113,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,        if COMPQ =  'N';
 C             LDQ >= max(1,N), if COMPQ <> 'N'.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,*)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,*)
 C             On entry, if COMPZ = 'U', the leading N-by-N part of this
 C             array must contain the given matrix Z1. Otherwise, this
 C             array need not be set on input.
@@ -158,19 +158,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, ZERO
+      REAL*16  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COMPC, COMPQ, COMPZ, JOBE
       INTEGER           INCC, INFO, LDA, LDE, LDQ, LDZ, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(*), C(*), E(LDE,*), Q(LDQ,*),
+      REAL*16  A(LDA,*), B(*), C(*), E(LDE,*), Q(LDQ,*),
      $                  Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL           LINIQ, LINIZ, LUPDQ, LUPDZ, UNITE, WITHC, WITHQ,
      $                  WITHZ
       INTEGER           IC, K
-      DOUBLE PRECISION  CS, SN, TEMP
+      REAL*16  CS, SN, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

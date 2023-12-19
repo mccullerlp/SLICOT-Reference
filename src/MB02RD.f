@@ -26,7 +26,7 @@ C     NRHS    (input) INTEGER
 C             The number of right hand sides, i.e., the number of
 C             columns of the matrix B.  NRHS >= 0.
 C
-C     H       (input) DOUBLE PRECISION array, dimension (LDH,N)
+C     H       (input) REAL*16 array, dimension (LDH,N)
 C             The factors L and U from the factorization H = P*L*U
 C             as computed by MB02SD.
 C
@@ -37,7 +37,7 @@ C     IPIV    (input) INTEGER array, dimension (N)
 C             The pivot indices from MB02SD; for 1<=i<=N, row i of the
 C             matrix was interchanged with row IPIV(i).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C             (LDB,NRHS)
 C             On entry, the right hand side matrix B.
 C             On exit, the solution matrix X.
@@ -83,7 +83,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE
+      REAL*16   ONE
       PARAMETER          ( ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          TRANS
@@ -91,7 +91,7 @@ C     .. Scalar Arguments ..
 C     ..
 C     .. Array Arguments ..
       INTEGER            IPIV( * )
-      DOUBLE PRECISION   B( LDB, * ), H( LDH, * )
+      REAL*16   B( LDB, * ), H( LDH, * )
 C     .. Local Scalars ..
       LOGICAL            NOTRAN
       INTEGER            J, JP

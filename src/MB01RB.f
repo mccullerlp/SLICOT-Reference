@@ -58,15 +58,15 @@ C             columns of the matrix op( A ), for SIDE = 'L', or the
 C             number of rows of the matrix op( A ) and the number of
 C             columns of the matrix B, for SIDE = 'R'.  N >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry.
 C
-C     BETA    (input) DOUBLE PRECISION
+C     BETA    (input) REAL*16
 C             The scalar beta. When beta is zero then A and B are not
 C             referenced.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,M)
+C     R       (input/output) REAL*16 array, dimension (LDR,M)
 C             On entry with UPLO = 'U', the leading M-by-M upper
 C             triangular part of this array must contain the upper
 C             triangular part of the matrix R; the strictly lower
@@ -84,7 +84,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,M).
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,k), where
+C     A       (input) REAL*16 array, dimension (LDA,k), where
 C             k = N  when  SIDE = 'L', and TRANS =  'N', or
 C                          SIDE = 'R', and TRANS <> 'T';
 C             k = M  when  SIDE = 'R', and TRANS = 'N', or
@@ -105,7 +105,7 @@ C                          SIDE = 'R', and TRANS <> 'T';
 C             l = N  when  SIDE = 'R', and TRANS =  'N', or
 C                          SIDE = 'L', and TRANS <> 'T'.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,p), where
+C     B       (input) REAL*16 array, dimension (LDB,p), where
 C             p = M  when  SIDE = 'L';
 C             p = N  when  SIDE = 'R'.
 C             On entry, the leading N-by-M part, if SIDE = 'L', or
@@ -154,7 +154,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C                       NBS is a value used to switch from small to
 C                       large block sizes. 
@@ -169,14 +169,14 @@ C                       used when SIDE and TRANS have other values.
 C     .. Scalar Arguments ..
       CHARACTER         SIDE, TRANS, UPLO
       INTEGER           INFO, LDA, LDB, LDR, M, N
-      DOUBLE PRECISION  ALPHA, BETA
+      REAL*16  ALPHA, BETA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), R(LDR,*)
+      REAL*16  A(LDA,*), B(LDB,*), R(LDR,*)
 C     .. Local Scalars ..
       LOGICAL           LSIDE, LTRANS, LUPLO
       INTEGER           I, IB, J, JB, MN, MX, N1, N2, NB, NBMIN, NX
 C     .. Local Arrays ..
-      DOUBLE PRECISION  D(1)
+      REAL*16  D(1)
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           ILAENV

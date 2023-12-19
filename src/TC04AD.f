@@ -40,7 +40,7 @@ C             maximum degree of the polynomials in the I-th column of
 C             the denominator matrix P(s) of the given right polynomial
 C             matrix representation.
 C
-C     PCOEFF  (input) DOUBLE PRECISION array, dimension
+C     PCOEFF  (input) REAL*16 array, dimension
 C             (LDPCO1,LDPCO2,kpcoef), where kpcoef = MAX(INDEX(I)) + 1.
 C             If LERI = 'L' then porm = P, otherwise porm = M.
 C             The leading porm-by-porm-by-kpcoef part of this array must
@@ -63,7 +63,7 @@ C             The second dimension of array PCOEFF.
 C             LDPCO2 >= MAX(1,P) if LERI = 'L',
 C             LDPCO2 >= MAX(1,M) if LERI = 'R'.
 C
-C     QCOEFF  (input) DOUBLE PRECISION array, dimension
+C     QCOEFF  (input) REAL*16 array, dimension
 C             (LDQCO1,LDQCO2,kpcoef)
 C             If LERI = 'L' then porp = M, otherwise porp = P.
 C             The leading porm-by-porp-by-kpcoef part of this array must
@@ -88,21 +88,21 @@ C                          porm
 C             That is, N = SUM INDEX(I).
 C                          I=1
 C
-C     RCOND   (output) DOUBLE PRECISION
+C     RCOND   (output) REAL*16
 C             The estimated reciprocal of the condition number of the
 C             leading row (if LERI = 'L') or the leading column (if
 C             LERI = 'R') coefficient matrix of P(s).
 C             If RCOND is nearly zero, P(s) is nearly row or column
 C             non-proper.
 C
-C     A       (output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (output) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array contains the state
 C             dynamics matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (output) DOUBLE PRECISION array, dimension (LDB,MAX(M,P))
+C     B       (output) REAL*16 array, dimension (LDB,MAX(M,P))
 C             The leading N-by-M part of this array contains the
 C             input/state matrix B; the remainder of the leading
 C             N-by-MAX(M,P) part is used as internal workspace.
@@ -110,7 +110,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (output) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array contains the
 C             state/output matrix C; the remainder of the leading
 C             MAX(M,P)-by-N part is used as internal workspace.
@@ -118,7 +118,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,M,P).
 C
-C     D       (output) DOUBLE PRECISION array, dimension (LDD,MAX(M,P))
+C     D       (output) REAL*16 array, dimension (LDD,MAX(M,P))
 C             The leading P-by-M part of this array contains the direct
 C             transmission matrix D; the remainder of the leading
 C             MAX(M,P)-by-MAX(M,P) part is used as internal workspace.
@@ -130,7 +130,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*MAX(M,P))
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -208,16 +208,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         LERI
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDPCO1, LDPCO2,
      $                  LDQCO1, LDQCO2, LDWORK, M, N, P
-      DOUBLE PRECISION  RCOND
+      REAL*16  RCOND
 C     .. Array Arguments ..
       INTEGER           INDEX(*), IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), PCOEFF(LDPCO1,LDPCO2,*),
      $                  QCOEFF(LDQCO1,LDQCO2,*)
 C     .. Local Scalars ..
@@ -225,10 +225,10 @@ C     .. Local Scalars ..
       INTEGER           I, IA, IBIAS, J, JA, JC, JW, JWORK, LDW, K,
      $                  KPCOEF, KSTOP, MAXIND, MINDEX, MWORK, PWORK,
      $                  WRKOPT
-      DOUBLE PRECISION  DWNORM
+      REAL*16  DWNORM
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          LSAME, DLAMCH, DLANGE
 C     .. External Subroutines ..
       EXTERNAL          AB07MD, DCOPY, DGECON, DGEMM, DGETRF, DGETRI,

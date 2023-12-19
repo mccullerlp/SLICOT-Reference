@@ -53,11 +53,11 @@ C             If UPLO = 'U' or UPLO = 'T' and INFO = 0, or UPLO = 'L'
 C             and INFO <> 0, N1 and N2 are exchanged on exit; otherwise,
 C             N2 is unchanged on exit.
 C
-C     PREC    (input) DOUBLE PRECISION
+C     PREC    (input) REAL*16
 C             The machine precision, (relative machine precision)*base.
 C             See the LAPACK Library routine DLAMCH.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C                (LDA, N1+N2)
 C             On entry, the leading (N1+N2)-by-(N1+N2) part of this
 C             array must contain the matrix A of the pencil aA - bB.
@@ -71,7 +71,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= N1+N2.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C                (LDB, N1+N2)
 C             On entry, the leading (N1+N2)-by-(N1+N2) part of this
 C             array must contain the matrix B of the pencil aA - bB.
@@ -84,14 +84,14 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= N1+N2.
 C
-C     Q1      (output) DOUBLE PRECISION array, dimension (LDQ1, N1+N2)
+C     Q1      (output) REAL*16 array, dimension (LDQ1, N1+N2)
 C             The leading (N1+N2)-by-(N1+N2) part of this array contains
 C             the first orthogonal transformation matrix.
 C
 C     LDQ1    INTEGER
 C             The leading dimension of the array Q1.  LDQ1 >= N1+N2.
 C
-C     Q2      (output) DOUBLE PRECISION array, dimension (LDQ2, N1+N2)
+C     Q2      (output) REAL*16 array, dimension (LDQ2, N1+N2)
 C             The leading (N1+N2)-by-(N1+N2) part of this array contains
 C             the second orthogonal transformation matrix.
 C
@@ -100,7 +100,7 @@ C             The leading dimension of the array Q2.  LDQ2 >= N1+N2.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             If N1+N2 = 2 then DWORK is not referenced.
 C
 C     LDWORK  INTEGER
@@ -164,34 +164,34 @@ C     Block triangular pencil, eigenvalue exchange.
 C
 C     ******************************************************************
 C
-      DOUBLE PRECISION   ZERO, ONE, TEN, HUND
+      REAL*16   ZERO, ONE, TEN, HUND
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TEN = 1.0D+1,
      $                     HUND = 1.0D+2 )
 C
 C     .. Scalar Arguments ..
       CHARACTER          UPLO
       INTEGER            INFO, LDA, LDB, LDQ1, LDQ2, LDWORK, N1, N2
-      DOUBLE PRECISION   PREC
+      REAL*16   PREC
 C
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), DWORK( * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), DWORK( * ),
      $                   Q1( LDQ1, * ), Q2( LDQ2, * )
 C
 C     .. Local Scalars ..
       LOGICAL            AEVINF, EVINF, LTRIU, LUPLO
       INTEGER            CNT, EVSEL, I, IAEV, IDUM, IEVS, ITMP, J, M
-      DOUBLE PRECISION   A11, A22, ABSAEV, ABSEV, ADIF, B11, B22, CO,
+      REAL*16   A11, A22, ABSAEV, ABSEV, ADIF, B11, B22, CO,
      $                   CO1, E, G, MX, NRA, NRB, SFMIN, SI, SI1, TMP,
      $                   TOL, TOLB
 C
 C     .. Local Arrays ..
       LOGICAL            BWORK( 1 ), OUT( 2 ), SLCT( 4 )
       INTEGER            IDM( 2 )
-      DOUBLE PRECISION   AS( 2, 2 ), BS( 2, 2 ), DUM( 8 )
+      REAL*16   AS( 2, 2 ), BS( 2, 2 ), DUM( 8 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME,  SB02OW
-      DOUBLE PRECISION   DLAMCH, DLANGE, DLANHS
+      REAL*16   DLAMCH, DLANGE, DLANHS
       EXTERNAL           DLAMCH, DLANGE, DLANHS, LSAME, SB02OW
 C
 C     .. External Subroutines ..

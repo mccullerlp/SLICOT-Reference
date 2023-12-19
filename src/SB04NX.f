@@ -26,19 +26,19 @@ C
 C     M       (input) INTEGER
 C             The order of the matrix A.  M >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,M)
+C     A       (input) REAL*16 array, dimension (LDA,M)
 C             The leading M-by-M part of this array must contain a
 C             matrix A in Hessenberg form.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     LAMBD1, (input) DOUBLE PRECISION
+C     LAMBD1, (input) REAL*16
 C     LAMBD2, These variables must contain the 2-by-2 block to be added
 C     LAMBD3, to the diagonal blocks of A.
 C     LAMBD4
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (2*M)
+C     D       (input/output) REAL*16 array, dimension (2*M)
 C             On entry, this array must contain the two right-hand
 C             side vectors of the Hessenberg system, stored row-wise.
 C             On exit, if INFO = 0, this array contains the two solution
@@ -46,7 +46,7 @@ C             vectors of the Hessenberg system, stored row-wise.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used to test for near singularity of
 C             the triangular factor R of the Hessenberg matrix. A matrix
 C             whose estimated condition number is less than 1/TOL is
@@ -56,7 +56,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*M)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDDWOR,2*M+3)
+C     DWORK   REAL*16 array, dimension (LDDWOR,2*M+3)
 C             The leading 2*M-by-2*M part of this array is used for
 C             computing the triangular factor of the QR decomposition
 C             of the Hessenberg matrix. The remaining 6*M elements are
@@ -111,19 +111,19 @@ C     Sylvester equation.
 C
 C     ******************************************************************
 C
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         RC, UL
       INTEGER           INFO, LDA, LDDWOR, M
-      DOUBLE PRECISION  LAMBD1, LAMBD2, LAMBD3, LAMBD4, TOL
+      REAL*16  LAMBD1, LAMBD2, LAMBD3, LAMBD4, TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), D(*), DWORK(LDDWOR,*)
+      REAL*16  A(LDA,*), D(*), DWORK(LDDWOR,*)
 C     .. Local Scalars ..
       CHARACTER         TRANS
       INTEGER           J, J1, J2, M2, MJ, ML
-      DOUBLE PRECISION  C, R, RCOND, S
+      REAL*16  C, R, RCOND, S
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

@@ -114,7 +114,7 @@ C             either SELECT(j) or SELECT(j+1) or both must be set to
 C             .TRUE.; a complex conjugate pair of eigenvalues must be
 C             either both included in the cluster or both excluded.
 C
-C     T       (input/output) DOUBLE PRECISION array, dimension (*)
+C     T       (input/output) REAL*16 array, dimension (*)
 C             On entry, this array must contain at position IXT(k) the
 C             matrix T_k, which is at least N(k+1)-by-N(k), if S(k) = 1,
 C             or at least N(k)-by-N(k+1), if S(k) = -1, in periodic
@@ -132,7 +132,7 @@ C     IXT     INTEGER array, dimension (K)
 C             Start indices of the matrices T_k in the one-dimensional
 C             array T.
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (*)
+C     Q       (input/output) REAL*16 array, dimension (*)
 C             On entry, this array must contain at position IXQ(k) a
 C             matrix Q_k of size at least N(k)-by-N(k), provided that
 C             COMPQ = 'U', or COMPQ = 'W' and WHICHQ(k) = 2.
@@ -161,7 +161,7 @@ C             reordered to the top of T22_k.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance parameter c. The weak and strong stability
 C             tests performed for checking the reordering use a
 C             threshold computed by the formula  MAX(c*EPS*NRM, SMLNUM),
@@ -177,7 +177,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (4*K)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C
 C     LDWORK  INTEGER
@@ -234,19 +234,19 @@ C
 C     ******************************************************************
 C
 C .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ, STRONG
       INTEGER            INFO, K, KSCHUR, LDWORK, M, NC
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C     ..
 C     .. Array Arguments ..
       LOGICAL            SELECT( * )
       INTEGER            IWORK( * ), IXQ( * ), IXT( * ), LDQ( * ),
      $                   LDT( * ), N( * ), NI( * ), S( * ), WHICHQ( * )
-      DOUBLE PRECISION   DWORK( * ), Q( * ), T( * )
+      REAL*16   DWORK( * ), Q( * ), T( * )
 C     ..
 C     .. Local Scalars ..
       CHARACTER          COMPQC
@@ -255,11 +255,11 @@ C     .. Local Scalars ..
      $                   MNWORK, NKP1, SUMD
 C     ..
 C     .. Local Arrays ..
-      DOUBLE PRECISION   TOLA( 3 )
+      REAL*16   TOLA( 3 )
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C     ..
 C     .. External Subroutines ..

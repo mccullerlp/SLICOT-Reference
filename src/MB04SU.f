@@ -25,7 +25,7 @@ C
 C     N       (input) INTEGER
 C             The number of columns of A and B. N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading M-by-N part of this array contains
@@ -36,7 +36,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,M).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,N)
+C     B       (input/output) REAL*16 array, dimension (LDB,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix B.
 C             On exit, the leading M-by-N part of this array contains
@@ -47,19 +47,19 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,M).
 C
-C     CS      (output) DOUBLE PRECISION array, dimension (2 * min(M,N))
+C     CS      (output) REAL*16 array, dimension (2 * min(M,N))
 C             On exit, the first 2*min(M,N) elements of this array
 C             contain the cosines and sines of the symplectic Givens
 C             rotations used to compute the symplectic QR decomposition.
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension (min(M,N))
+C     TAU     (output) REAL*16 array, dimension (min(M,N))
 C             On exit, the first min(M,N) elements of this array
 C             contain the scalar factors of some of the elementary
 C             reflectors.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -10,  DWORK(1)  returns the minimum
@@ -142,15 +142,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDWORK, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), CS(*), DWORK(*), TAU(*)
+      REAL*16  A(LDA,*), B(LDB,*), CS(*), DWORK(*), TAU(*)
 C     .. Local Scalars ..
       INTEGER           I, K
-      DOUBLE PRECISION  ALPHA, NU, TEMP
+      REAL*16  ALPHA, NU, TEMP
 C     .. External Subroutines ..
       EXTERNAL          DLARF, DLARFG, DLARTG, DROT, XERBLA
 C     .. Intrinsic Functions ..

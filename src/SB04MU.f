@@ -22,21 +22,21 @@ C     IND     (input) INTEGER
 C             IND and IND - 1 specify the indices of the columns in C
 C             to be computed.  IND > 1.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,M)
+C     A       (input) REAL*16 array, dimension (LDA,M)
 C             The leading M-by-M part of this array must contain an
 C             upper Hessenberg matrix.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,N)
+C     B       (input) REAL*16 array, dimension (LDB,N)
 C             The leading N-by-N part of this array must contain a
 C             matrix in real Schur form.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the coefficient matrix C of the equation.
 C             On exit, the leading M-by-N part of this array contains
@@ -47,7 +47,7 @@ C             The leading dimension of array C.  LDC >= MAX(1,M).
 C
 C     Workspace
 C
-C     D       DOUBLE PRECISION array, dimension (2*M*M+7*M)
+C     D       REAL*16 array, dimension (2*M*M+7*M)
 C
 C     IPR     INTEGER array, dimension (4*M)
 C
@@ -91,16 +91,16 @@ C     Sylvester equation.
 C
 C     ******************************************************************
 C
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, IND, LDA, LDB, LDC, M, N
 C     .. Array Arguments ..
       INTEGER           IPR(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(*)
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(*)
 C     .. Local Scalars ..
       INTEGER           I, I2, IND1, J, K, K1, K2, M2
-      DOUBLE PRECISION  TEMP
+      REAL*16  TEMP
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, SB04MR
 C     .. Intrinsic Functions ..

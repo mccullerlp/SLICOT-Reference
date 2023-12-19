@@ -47,7 +47,7 @@ C     KU      (input) INTEGER
 C             The upper bandwidth of A.  Referenced only if TYPE = 'B',
 C             'Q' or 'Z'.
 C
-C     ANRM    (input) DOUBLE PRECISION
+C     ANRM    (input) REAL*16
 C             The norm of the initial matrix A.  ANRM >= 0.
 C             When  ANRM = 0  then an immediate return is effected.
 C             ANRM should be preserved between the call of the routine
@@ -65,7 +65,7 @@ C             NROWS(i),  for  i = 1: NBL,  should be equal to min(M,N).
 C             The elements of the array  NROWS  are not referenced if
 C             NBL = 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading M by N part of this array must
 C             contain the matrix to be scaled/unscaled.
 C             On exit, the leading M by N part of A will contain
@@ -106,22 +106,22 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          SCUN, TYPE
       INTEGER            INFO, KL, KU, LDA, M, MN, N, NBL
-      DOUBLE PRECISION   ANRM
+      REAL*16   ANRM
 C     .. Array Arguments ..
       INTEGER            NROWS ( * )
-      DOUBLE PRECISION   A( LDA, * )
+      REAL*16   A( LDA, * )
 C     .. Local Scalars ..
       LOGICAL            LSCALE
       INTEGER            I, ISUM, ITYPE
-      DOUBLE PRECISION   BIGNUM, SMLNUM
+      REAL*16   BIGNUM, SMLNUM
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C     ..
 C     .. External Subroutines ..

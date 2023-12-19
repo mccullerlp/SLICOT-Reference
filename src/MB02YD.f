@@ -49,7 +49,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix R.  N >= 0.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR, N)
+C     R       (input/output) REAL*16 array, dimension (LDR, N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix R.
 C             On exit, the full upper triangle is unaltered, and the
@@ -64,11 +64,11 @@ C             This array must define the permutation matrix P such that
 C             A*P = Q*R. Column j of P is column IPVT(j) of the identity
 C             matrix.
 C
-C     DIAG    (input) DOUBLE PRECISION array, dimension (N)
+C     DIAG    (input) REAL*16 array, dimension (N)
 C             This array must contain the diagonal elements of the
 C             matrix D.
 C
-C     QTB     (input) DOUBLE PRECISION array, dimension (N)
+C     QTB     (input) REAL*16 array, dimension (N)
 C             This array must contain the first n elements of the
 C             vector Q'*b.
 C
@@ -79,13 +79,13 @@ C             On exit, if COND = 'E' or 'N', this parameter contains
 C             the numerical rank of the matrix S, estimated according
 C             to the value of COND.
 C
-C     X       (output) DOUBLE PRECISION array, dimension (N)
+C     X       (output) REAL*16 array, dimension (N)
 C             This array contains the least squares solution of the
 C             system A*x = b, D*x = 0.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             If COND = 'E', the tolerance to be used for finding the
 C             rank of the matrix S. If the user sets TOL > 0, then the
 C             given value of TOL is used as a lower bound for the
@@ -99,7 +99,7 @@ C             This parameter is not relevant if COND = 'U' or 'N'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, the first N elements of this array contain the
 C             diagonal elements of the upper triangular matrix S, and
 C             the next N elements contain the solution z.
@@ -156,23 +156,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, SVLMAX
+      REAL*16  ZERO, SVLMAX
       PARAMETER         ( ZERO = 0.0D0, SVLMAX = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COND
       INTEGER           INFO, LDR, LDWORK, N, RANK
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IPVT(*)
-      DOUBLE PRECISION  DIAG(*), DWORK(*), QTB(*), R(LDR,*), X(*)
+      REAL*16  DIAG(*), DWORK(*), QTB(*), R(LDR,*), X(*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  CS, QTBPJ, SN, TEMP, TOLDEF
+      REAL*16  CS, QTBPJ, SN, TEMP, TOLDEF
       INTEGER           I, J, K, L
       LOGICAL           ECOND, NCOND, UCOND
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUM(3)
+      REAL*16  DUM(3)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..

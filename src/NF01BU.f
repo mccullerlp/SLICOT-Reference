@@ -57,14 +57,14 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 4.
 C
-C     DPAR    (input) DOUBLE PRECISION array, dimension (LDPAR)
+C     DPAR    (input) REAL*16 array, dimension (LDPAR)
 C             The real parameters needed for solving the problem.
 C             The entry DPAR(1) must contain the real scalar c.
 C
 C     LDPAR   (input) INTEGER
 C             The length of the array DPAR.  LDPAR >= 1.
 C
-C     J       (input) DOUBLE PRECISION array, dimension (LDJ, NC)
+C     J       (input) REAL*16 array, dimension (LDJ, NC)
 C             where NC = N if BN <= 1, and NC = BSN+ST, if BN > 1.
 C             The leading NR-by-NC part of this array must contain
 C             the (compressed) representation (Jc) of the Jacobian
@@ -74,7 +74,7 @@ C
 C     LDJ     (input) INTEGER
 C             The leading dimension of array J.  LDJ >= MAX(1,NR).
 C
-C     JTJ     (output) DOUBLE PRECISION array,
+C     JTJ     (output) REAL*16 array,
 C                      dimension (LDJTJ,N),    if STOR = 'F',
 C                      dimension (N*(N+1)/2),  if STOR = 'P'.
 C             The leading N-by-N (if STOR = 'F'), or N*(N+1)/2 (if
@@ -91,7 +91,7 @@ C             LDJTJ >= 1,        if STOR = 'P'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             Currently, this array is not used.
 C
 C     LDWORK  INTEGER
@@ -126,21 +126,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         STOR, UPLO
       INTEGER           INFO, LDJ, LDJTJ, LDPAR, LDWORK, LIPAR, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DPAR(*), DWORK(*), J(LDJ,*), JTJ(*)
+      REAL*16  DPAR(*), DWORK(*), J(LDJ,*), JTJ(*)
       INTEGER           IPAR(*)
 C     .. Local Scalars ..
       LOGICAL           FULL, UPPER
       INTEGER           BN, BSM, BSN, I1, IBSM, IBSN, II, JL, K, M,
      $                  NBSN, NTHS, ST
-      DOUBLE PRECISION  C
+      REAL*16  C
 C     .. Local Arrays ..
-      DOUBLE PRECISION  TMP(1)
+      REAL*16  TMP(1)
       INTEGER           ITMP(1)
 C     .. External Functions ..
       LOGICAL           LSAME

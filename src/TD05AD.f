@@ -31,28 +31,28 @@ C
 C     MP1     (input) INTEGER
 C             The order of the numerator + 1, i.e. M + 1.  MP1 >= 1.
 C
-C     W       (input) DOUBLE PRECISION
+C     W       (input) REAL*16
 C             The frequency value W for which the transfer function is
 C             to be evaluated.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (NP1)
+C     A       (input) REAL*16 array, dimension (NP1)
 C             This array must contain the vector of denominator
 C             coefficients in ascending order of powers. That is, A(i)
 C             must contain the coefficient of (jW)**(i-1) for i = 1,
 C             2,...,NP1.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (MP1)
+C     B       (input) REAL*16 array, dimension (MP1)
 C             This array must contain the vector of numerator
 C             coefficients in ascending order of powers. That is, B(i)
 C             must contain the coefficient of (jW)**(i-1) for i = 1,
 C             2,...,MP1.
 C
-C     VALR    (output) DOUBLE PRECISION
+C     VALR    (output) REAL*16
 C             If OUTPUT = 'C', VALR contains the real part of G(jW).
 C             If OUTPUT = 'P', VALR contains the magnitude of G(jW)
 C                              in dBs.
 C
-C     VALI    (output) DOUBLE PRECISION
+C     VALI    (output) REAL*16
 C             If OUTPUT = 'C', VALI contains the imaginary part of
 C                              G(jW).
 C             If OUTPUT = 'P', VALI contains the phase of G(jW) in
@@ -104,25 +104,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, EIGHT, TWENTY, NINETY, ONE80, THRE60
+      REAL*16  ZERO, ONE, EIGHT, TWENTY, NINETY, ONE80, THRE60
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, EIGHT=8.0D0,
      $                    TWENTY=20.0D0, NINETY=90.0D0, ONE80 = 180.0D0,
      $                    THRE60=360.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         OUTPUT, UNITF
       INTEGER           INFO, MP1, NP1
-      DOUBLE PRECISION  VALI, VALR, W
+      REAL*16  VALI, VALR, W
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(*), B(*)
+      REAL*16  A(*), B(*)
 C     .. Local Scalars ..
       LOGICAL           LOUTPU, LUNITF
       INTEGER           I, IPHASE, M, M2, N, N2, NPZERO, NZZERO
-      DOUBLE PRECISION  BIMAG, BREAL, G, TIMAG, TREAL, TWOPI, W2, WC
-      COMPLEX*16        ZTEMP
+      REAL*16  BIMAG, BREAL, G, TIMAG, TREAL, TWOPI, W2, WC
+      COMPLEX*32        ZTEMP
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAPY2
-      COMPLEX*16        ZLADIV
+      REAL*16  DLAPY2
+      COMPLEX*32        ZLADIV
       EXTERNAL          DLAPY2, LSAME, ZLADIV
 C     .. External Subroutines ..
       EXTERNAL          XERBLA

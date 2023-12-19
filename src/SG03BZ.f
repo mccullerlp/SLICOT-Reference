@@ -73,7 +73,7 @@ C             The number of rows in the matrix op(B).  M >= 0.
 C             If M = 0, A and E are unchanged on exit, and Q, Z, ALPHA
 C             and BETA are not set.
 C
-C     A       (input/output) COMPLEX*16 array, dimension (LDA,N)
+C     A       (input/output) COMPLEX*32 array, dimension (LDA,N)
 C             On entry, if FACT = 'F', then the leading N-by-N upper
 C             triangular part of this array must contain the generalized
 C             Schur factor A_s of the matrix A (see definition (3) in
@@ -91,7 +91,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) COMPLEX*16 array, dimension (LDE,N)
+C     E       (input/output) COMPLEX*32 array, dimension (LDE,N)
 C             On entry, if FACT = 'F', then the leading N-by-N upper
 C             triangular part of this array must contain the generalized
 C             Schur factor E_s of the matrix E (see definition (4) in
@@ -109,7 +109,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     Q       (input/output) COMPLEX*16 array, dimension (LDQ,N)
+C     Q       (input/output) COMPLEX*32 array, dimension (LDQ,N)
 C             On entry, if FACT = 'F', then the leading N-by-N part of
 C             this array must contain the unitary matrix Q from the
 C             generalized Schur factorization (see definitions (3) and
@@ -124,7 +124,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     Z       (input/output) COMPLEX*16 array, dimension (LDZ,N)
+C     Z       (input/output) COMPLEX*32 array, dimension (LDZ,N)
 C             On entry, if FACT = 'F', then the leading N-by-N part of
 C             this array must contain the unitary matrix Z from the
 C             generalized Schur factorization (see definitions (3) and
@@ -139,7 +139,7 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1,N).
 C
-C     B       (input/output) COMPLEX*16 array, dimension (LDB,N1)
+C     B       (input/output) COMPLEX*32 array, dimension (LDB,N1)
 C             On entry, if TRANS = 'C', the leading N-by-M part of this
 C             array must contain the matrix B and N1 >= MAX(M,N).
 C             If TRANS = 'N', the leading M-by-N part of this array
@@ -154,11 +154,11 @@ C             The leading dimension of the array B.
 C             If TRANS = 'C',  LDB >= MAX(1,N).
 C             If TRANS = 'N',  LDB >= MAX(1,M,N).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor set to avoid overflow in U.
 C             0 < SCALE <= 1.
 C
-C     ALPHA   (output) COMPLEX*16 arrays, dimension (N)
+C     ALPHA   (output) COMPLEX*32 arrays, dimension (N)
 C     BETA    If INFO = 0, 5, 6, or 7, then ALPHA(j)/BETA(j),
 C             j = 1, ... , N, are the eigenvalues of the matrix pencil
 C             A - lambda * E (the diagonals of the complex Schur form).
@@ -169,14 +169,14 @@ C             usually comparable with norm(B).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK), where
+C     DWORK   REAL*16 array, dimension (LDWORK), where
 C             LDWORK = 0,           if MIN(M,N) = 0 or
 C                                      FACT = 'F' and N <= 1; else,
 C             LDWORK = N-1,         if FACT = 'F' and DICO = 'C';
 C             LDWORK = MAX(N-1,10), if FACT = 'F' and DICO = 'D';
 C             LDWORK = 8*N,         if FACT = 'N'.
 C
-C     ZWORK   COMPLEX*16 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal value
 C             of LZWORK.
 C             On exit, if INFO = -21, ZWORK(1) returns the minimum value
@@ -439,21 +439,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  MONE, ONE, ZERO
+      REAL*16  MONE, ONE, ZERO
       PARAMETER         ( MONE = -1.0D+0, ONE = 1.0D+0, ZERO = 0.0D+0 )
-      COMPLEX*16        CONE, CZERO
+      COMPLEX*32        CONE, CZERO
       PARAMETER         ( CONE  = ( 1.0D+0, 0.0D+0 ),
      $                    CZERO = ( 0.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION  SCALE
+      REAL*16  SCALE
       INTEGER           INFO, LDA, LDB, LDE, LDQ, LDZ, LZWORK, M, N
       CHARACTER         DICO, FACT, TRANS
 C     .. Array Arguments ..
-      COMPLEX*16        A(LDA,*), ALPHA(*), B(LDB,*), BETA(*), E(LDE,*),
+      COMPLEX*32        A(LDA,*), ALPHA(*), B(LDB,*), BETA(*), E(LDE,*),
      $                  Q(LDQ,*), Z(LDZ,*), ZWORK(*)
-      DOUBLE PRECISION  DWORK(*)
+      REAL*16  DWORK(*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  BIGNMS, BIGNUM, EPS, MA, MATO, MB, MBTO, ME,
+      REAL*16  BIGNMS, BIGNUM, EPS, MA, MATO, MB, MBTO, ME,
      $                  METO, MN, MX, SMLNUM, T, TMP
       INTEGER           BL, I, INFO1, J, K, L, MAXMN, MINMN, MINWRK, NC,
      $                  NR, OPTWRK
@@ -462,7 +462,7 @@ C     .. Local Scalars ..
 C     .. Local Arrays ..
       LOGICAL           BWORK(1)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, ZLANGE, ZLANTR
+      REAL*16  DLAMCH, ZLANGE, ZLANTR
       LOGICAL           DELCTG, LSAME, MA02HZ
       EXTERNAL          DELCTG, DLAMCH, LSAME, MA02HZ, ZLANGE, ZLANTR
 C     .. External Subroutines ..

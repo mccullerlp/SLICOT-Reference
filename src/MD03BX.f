@@ -23,10 +23,10 @@ C     N       (input) INTEGER
 C             The number of columns of the Jacobian matrix J.
 C             M >= N >= 0.
 C
-C     FNORM   (input) DOUBLE PRECISION
+C     FNORM   (input) REAL*16
 C             The Euclidean norm of the vector e.  FNORM >= 0.
 C
-C     J       (input/output) DOUBLE PRECISION array, dimension (LDJ, N)
+C     J       (input/output) REAL*16 array, dimension (LDJ, N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the Jacobian matrix J.
 C             On exit, the leading N-by-N upper triangular part of this
@@ -41,15 +41,15 @@ C             The leading dimension of array J.
 C             On entry, LDJ >= MAX(1,M).
 C             On exit,  LDJ >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (M)
+C     E       (input/output) REAL*16 array, dimension (M)
 C             On entry, this array must contain the error vector e.
 C             On exit, this array contains the updated vector Q'*e.
 C
-C     JNORMS  (output) DOUBLE PRECISION array, dimension (N)
+C     JNORMS  (output) REAL*16 array, dimension (N)
 C             This array contains the Euclidean norms of the columns of
 C             the Jacobian matrix, considered in the initial order.
 C
-C     GNORM   (output) DOUBLE PRECISION
+C     GNORM   (output) REAL*16
 C             If FNORM > 0, the 1-norm of the scaled vector
 C             J'*Q'*e/FNORM, with each element i further divided by
 C             JNORMS(i) (if JNORMS(i) is nonzero).
@@ -62,7 +62,7 @@ C             matrix.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -101,19 +101,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDJ, LDWORK, M, N
-      DOUBLE PRECISION  FNORM, GNORM
+      REAL*16  FNORM, GNORM
 C     .. Array Arguments ..
       INTEGER           IPVT(*)
-      DOUBLE PRECISION  DWORK(*), E(*), J(*), JNORMS(*)
+      REAL*16  DWORK(*), E(*), J(*), JNORMS(*)
 C     .. Local Scalars ..
       INTEGER           I, ITAU, JWORK, L, WRKOPT
-      DOUBLE PRECISION  SUM
+      REAL*16  SUM
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT, DNRM2
+      REAL*16  DDOT, DNRM2
       EXTERNAL          DDOT, DNRM2
 C     .. External Subroutines ..
       EXTERNAL          DGEQP3, DLACPY, DORMQR, XERBLA

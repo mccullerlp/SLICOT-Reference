@@ -30,24 +30,24 @@ C     Theorem relation.
 C
 C     ******************************************************************
 C
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDDCOE, LDUCO1,
      $                  LDUCO2, LDWORK, MWORK, N, N1, NCONT, PWORK
-      DOUBLE PRECISION  TOL1, TOL2
+      REAL*16  TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           INDEXD(*), IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), AT(N1,*), B(LDB,*), C(LDC,*),
+      REAL*16  A(LDA,*), AT(N1,*), B(LDB,*), C(LDC,*),
      $                  D(LDD,*), DCOEFF(LDDCOE,*), DWORK(*),
      $                  UCOEFF(LDUCO1,LDUCO2,*), TAU(*)
 C     .. Local Scalars ..
       INTEGER           I, IB, IBI, IC, INDCON, IS, IV, IVMIN1, IWPLUS,
      $                  IZ, J, JWORK, K, L, LWORK, MAXM, NMINL, NPLUS,
      $                  WRKOPT
-      DOUBLE PRECISION  TEMP
+      REAL*16  TEMP
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       EXTERNAL          DDOT
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DSCAL, TB01UD, TB01ZD

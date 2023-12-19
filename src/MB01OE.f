@@ -36,15 +36,15 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices R, E, and H.  N >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry.
 C
-C     BETA    (input) DOUBLE PRECISION
+C     BETA    (input) REAL*16
 C             The scalar beta. When beta is zero then E and H are not
 C             referenced.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,N)
+C     R       (input/output) REAL*16 array, dimension (LDR,N)
 C             On entry with UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix R.
@@ -61,7 +61,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     H       (input) DOUBLE PRECISION array, dimension (LDH,N)
+C     H       (input) REAL*16 array, dimension (LDH,N)
 C             On entry, the leading N-by-N upper Hessenberg part of this
 C             array must contain the upper Hessenberg matrix H.
 C             The remaining part of this array is not referenced.
@@ -69,7 +69,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of array H.  LDH >= MAX(1,N).
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix E.
 C             The remaining part of this array is not referenced.
@@ -101,27 +101,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO
+      REAL*16  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     ..
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION  ALPHA, BETA
+      REAL*16  ALPHA, BETA
       INTEGER           LDE, LDH, LDR, N
       CHARACTER         TRANS, UPLO
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION  E(LDE,*), H(LDH,*), R(LDR,*)
+      REAL*16  E(LDE,*), H(LDH,*), R(LDR,*)
 C     ..
 C     .. Local Scalars ..
-      DOUBLE PRECISION  BETA2, TEMP
+      REAL*16  BETA2, TEMP
       INTEGER           I, INFO, J, J1
       LOGICAL           LTRANS, UPPER
 C     ..
 C     .. Local Arrays ..
-      DOUBLE PRECISION  TMP(1)
+      REAL*16  TMP(1)
 C     ..
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       LOGICAL           LSAME
       EXTERNAL          DDOT, LSAME
 C     ..

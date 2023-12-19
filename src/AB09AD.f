@@ -65,7 +65,7 @@ C             in HSV(1));
 C             if ORDSEL = 'A', NR is equal to the number of Hankel
 C             singular values greater than MAX(TOL,N*EPS*HNORM(A,B,C)).
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, if INFO = 0, the leading NR-by-NR part of this
@@ -75,7 +75,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -85,7 +85,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -95,14 +95,14 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     HSV     (output) DOUBLE PRECISION array, dimension (N)
+C     HSV     (output) REAL*16 array, dimension (N)
 C             If INFO = 0, it contains the Hankel singular values of
 C             the original system ordered decreasingly. HSV(1) is the
 C             Hankel norm of the system.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             If ORDSEL = 'A', TOL contains the tolerance for
 C             determining the order of reduced system.
 C             For model reduction, the recommended value is
@@ -121,7 +121,7 @@ C     IWORK   INTEGER array, dimension (LIWORK)
 C             LIWORK = 0, if JOB = 'B';
 C             LIWORK = N, if JOB = 'N'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -223,19 +223,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, C100
+      REAL*16  ONE, C100
       PARAMETER         ( ONE = 1.0D0, C100 = 100.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL, JOB, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDWORK, M, N, NR, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*)
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*)
 C     .. Local Scalars ..
       LOGICAL           FIXORD
       INTEGER           IERR, KI, KR, KT, KTI, KW, NN
-      DOUBLE PRECISION  MAXRED, WRKOPT
+      REAL*16  MAXRED, WRKOPT
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

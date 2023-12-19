@@ -44,49 +44,49 @@ C     NMEAS   (input) INTEGER
 C             The number of measurements (NP2).  NP >= NMEAS >= 0.
 C             M-NCON >= NMEAS.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading NP-by-N part of this array must contain the
 C             system output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             The leading NP-by-M part of this array must contain the
 C             system input/output matrix D.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     AK      (input) DOUBLE PRECISION array, dimension (LDAK,N)
+C     AK      (input) REAL*16 array, dimension (LDAK,N)
 C             The leading N-by-N part of this array must contain the
 C             controller state matrix AK.
 C
 C     LDAK    INTEGER
 C             The leading dimension of the array AK.  LDAK >= max(1,N).
 C
-C     BK      (input) DOUBLE PRECISION array, dimension (LDBK,NMEAS)
+C     BK      (input) REAL*16 array, dimension (LDBK,NMEAS)
 C             The leading N-by-NMEAS part of this array must contain the
 C             controller input matrix BK.
 C
 C     LDBK    INTEGER
 C             The leading dimension of the array BK.  LDBK >= max(1,N).
 C
-C     CK      (input) DOUBLE PRECISION array, dimension (LDCK,N)
+C     CK      (input) REAL*16 array, dimension (LDCK,N)
 C             The leading NCON-by-N part of this array must contain the
 C             controller output matrix CK.
 C
@@ -94,7 +94,7 @@ C     LDCK    INTEGER
 C             The leading dimension of the array CK.
 C             LDCK >= max(1,NCON).
 C
-C     DK      (input) DOUBLE PRECISION array, dimension (LDDK,NMEAS)
+C     DK      (input) REAL*16 array, dimension (LDDK,NMEAS)
 C             The leading NCON-by-NMEAS part of this array must contain
 C             the controller input/output matrix DK.
 C
@@ -102,7 +102,7 @@ C     LDDK    INTEGER
 C             The leading dimension of the array DK.
 C             LDDK >= max(1,NCON).
 C
-C     AC      (output) DOUBLE PRECISION array, dimension (LDAC,2*N)
+C     AC      (output) REAL*16 array, dimension (LDAC,2*N)
 C             The leading 2*N-by-2*N part of this array contains the
 C             closed-loop system state matrix AC.
 C
@@ -110,7 +110,7 @@ C     LDAC    INTEGER
 C             The leading dimension of the array AC.
 C             LDAC >= max(1,2*N).
 C
-C     BC      (output) DOUBLE PRECISION array, dimension (LDBC,M-NCON)
+C     BC      (output) REAL*16 array, dimension (LDBC,M-NCON)
 C             The leading 2*N-by-(M-NCON) part of this array contains
 C             the closed-loop system input matrix BC.
 C
@@ -118,7 +118,7 @@ C     LDBC    INTEGER
 C             The leading dimension of the array BC.
 C             LDBC >= max(1,2*N).
 C
-C     CC      (output) DOUBLE PRECISION array, dimension (LDCC,2*N)
+C     CC      (output) REAL*16 array, dimension (LDCC,2*N)
 C             The leading (NP-NMEAS)-by-2*N part of this array contains
 C             the closed-loop system output matrix CC.
 C
@@ -126,7 +126,7 @@ C     LDCC    INTEGER
 C             The leading dimension of the array CC.
 C             LDCC >= max(1,NP-NMEAS).
 C
-C     DC      (output) DOUBLE PRECISION array, dimension (LDDC,M-NCON)
+C     DC      (output) REAL*16 array, dimension (LDDC,M-NCON)
 C             The leading (NP-NMEAS)-by-(M-NCON) part of this array
 C             contains the closed-loop system input/output matrix DC.
 C
@@ -138,7 +138,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*max(NCON,NMEAS))
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal
 C             LDWORK.
 C
@@ -190,7 +190,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C
 C     .. Scalar Arguments ..
@@ -200,7 +200,7 @@ C     .. Scalar Arguments ..
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), AC( LDAC, * ), AK( LDAK, * ),
+      REAL*16   A( LDA, * ), AC( LDAC, * ), AK( LDAK, * ),
      $                   B( LDB, * ), BC( LDBC, * ), BK( LDBK, * ),
      $                   C( LDC, * ), CC( LDCC, * ), CK( LDCK, * ),
      $                   D( LDD, * ), DC( LDDC, * ), DK( LDDK, * ),
@@ -209,10 +209,10 @@ C     ..
 C     .. Local Scalars ..
       INTEGER            INFO2, IW2, IW3, IW4, IW5, IW6, IW7, IW8, IWRK,
      $                   LWAMAX, M1, M2, MINWRK, N2, NP1, NP2
-      DOUBLE PRECISION   ANORM, EPS, RCOND
+      REAL*16   ANORM, EPS, RCOND
 C     ..
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAMCH, DLANGE
+      REAL*16   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE
 C     ..
 C     .. External Subroutines ..

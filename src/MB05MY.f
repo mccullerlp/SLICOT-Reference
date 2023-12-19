@@ -32,7 +32,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the given matrix A.
 C             On exit, the leading N-by-N upper quasi-triangular part of
@@ -41,15 +41,15 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= max(1,N).
 C
-C     WR      (output) DOUBLE PRECISION array, dimension (N)
-C     WI      (output) DOUBLE PRECISION array, dimension (N)
+C     WR      (output) REAL*16 array, dimension (N)
+C     WI      (output) REAL*16 array, dimension (N)
 C             WR and WI contain the real and imaginary parts,
 C             respectively, of the computed eigenvalues. Complex
 C             conjugate pairs of eigenvalues appear consecutively
 C             with the eigenvalue having the positive imaginary part
 C             first.
 C
-C     R       (output) DOUBLE PRECISION array, dimension (LDR,N)
+C     R       (output) REAL*16 array, dimension (LDR,N)
 C             The leading N-by-N upper triangular part of this array
 C             contains the matrix of right eigenvectors R, in the same
 C             order as their eigenvalues. The real and imaginary parts
@@ -62,7 +62,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= max(1,N).
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (output) REAL*16 array, dimension (LDQ,N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal matrix Q which has reduced A to real Schur
 C             form.
@@ -72,7 +72,7 @@ C             The leading dimension of array Q.  LDQ >= MAX(1,N).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C             If BALANC = 'S' and LDWORK > 0, DWORK(2),...,DWORK(N+1)
 C             return the scaling factors used for balancing.
@@ -133,29 +133,29 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         BALANC
       INTEGER           INFO, LDA, LDQ, LDR, LDWORK, N
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A( LDA, * ), DWORK( * ), Q( LDQ, * ),
+      REAL*16  A( LDA, * ), DWORK( * ), Q( LDQ, * ),
      $                  R( LDR, * ), WI( * ), WR( * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL           LQUERY, SCALE, SCALEA
       INTEGER           IBAL, IERR, IHI, ILO, ITAU, JWORK, K, MAXWRK,
      $                  MINWRK, NOUT
-      DOUBLE PRECISION  ANRM, BIGNUM, CSCALE, EPS, SMLNUM
+      REAL*16  ANRM, BIGNUM, CSCALE, EPS, SMLNUM
 C     ..
 C     .. Local Arrays ..
       LOGICAL           SELECT( 1 )
-      DOUBLE PRECISION  DUM( 1 )
+      REAL*16  DUM( 1 )
 C     ..
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     ..
 C     .. External Subroutines ..

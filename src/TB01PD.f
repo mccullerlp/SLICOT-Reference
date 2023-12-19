@@ -40,7 +40,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.   P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading NR-by-NR part of this array contains
@@ -52,7 +52,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M),
+C     B       (input/output) REAL*16 array, dimension (LDB,M),
 C             if JOB = 'C', or (LDB,MAX(M,P)), otherwise.
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B; if JOB = 'M',
@@ -69,7 +69,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C; if JOB = 'M',
 C             or JOB = 'O', the remainder of the leading MAX(M,P)-by-N
@@ -95,7 +95,7 @@ C             JOB = 'M', JOB = 'C', or JOB = 'O'.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in rank determination when
 C             transforming (A, B, C). If the user sets TOL > 0, then
 C             the given value of TOL is used as a lower bound for the
@@ -112,7 +112,7 @@ C     IWORK   INTEGER array, dimension (N+MAX(M,P))
 C             On exit, if INFO = 0, the first nonzero elements of
 C             IWORK(1:N) return the orders of the diagonal blocks of A.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -174,20 +174,20 @@ C
 C     .. Parameters ..
       INTEGER           LDIZ
       PARAMETER         ( LDIZ = 1 )
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         EQUIL, JOB
       INTEGER           INFO, LDA, LDB, LDC, LDWORK, M, N, NR, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*)
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LEQUIL, LNJOBC, LNJOBO
       INTEGER           I, INDCON, ITAU, IZ, JWORK, KL, MAXMP, NCONT,
      $                  WRKOPT
-      DOUBLE PRECISION  MAXRED
+      REAL*16  MAXRED
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

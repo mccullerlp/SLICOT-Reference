@@ -26,7 +26,7 @@ C
 C     N       (input) INTEGER
 C             The order of the triangular matrices U or L.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular matrix U.
@@ -77,7 +77,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -85,7 +85,7 @@ C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, N
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * )
+      REAL*16   A( LDA, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            UPPER

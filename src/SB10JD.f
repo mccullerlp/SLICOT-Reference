@@ -26,7 +26,7 @@ C
 C     NP      (input) INTEGER
 C             The row size of the matrix C.  NP >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state matrix A of the descriptor system.
 C             On exit, the leading NSYS-by-NSYS part of this array
@@ -35,7 +35,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B of the descriptor system.
 C             On exit, the leading NSYS-by-M part of this array
@@ -44,7 +44,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading NP-by-N part of this array must
 C             contain the output matrix C of the descriptor system.
 C             On exit, the leading NP-by-NSYS part of this array
@@ -53,7 +53,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading NP-by-M part of this array must
 C             contain the matrix D of the descriptor system.
 C             On exit, the leading NP-by-M part of this array contains
@@ -62,7 +62,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix E of the descriptor system.
 C             On exit, this array contains no useful information.
@@ -75,7 +75,7 @@ C             The order of the converted state-space system.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal value
 C             of LDWORK.
 C
@@ -119,7 +119,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -127,16 +127,16 @@ C     .. Scalar Arguments ..
      $                   NP, NSYS
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   D( LDD, * ), DWORK( * ),  E( LDE, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            I, IA12, IA21, IB2, IC2, INFO2, IS, ISA, IU,
      $                   IV, IWRK, J, K, LWA, LWAMAX, MINWRK, NS1
-      DOUBLE PRECISION   EPS, SCALE, TOL
+      REAL*16   EPS, SCALE, TOL
 C     ..
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH
 C     ..
 C     .. External Subroutines ..

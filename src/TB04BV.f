@@ -49,7 +49,7 @@ C
 C     LDIGD   INTEGER
 C             The leading dimension of array IGD.  LDIGD >= max(1,P).
 C
-C     GN      (input/output) DOUBLE PRECISION array, dimension (P*M*MD)
+C     GN      (input/output) REAL*16 array, dimension (P*M*MD)
 C             On entry, this array must contain the coefficients of the
 C             numerator polynomials, Num(i,j), of the transfer function
 C             matrix G. The polynomials are stored in a column-wise
@@ -64,13 +64,13 @@ C             On exit, this array contains the coefficients of the
 C             numerator polynomials of the strictly proper part G0 of
 C             the transfer function matrix G, stored similarly.
 C
-C     GD      (input) DOUBLE PRECISION array, dimension (P*M*MD)
+C     GD      (input) REAL*16 array, dimension (P*M*MD)
 C             This array must contain the coefficients of the
 C             denominator polynomials, Den(i,j), of the transfer
 C             function matrix G. The polynomials are stored as for the
 C             numerator polynomials.
 C
-C     D       (output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (output) REAL*16 array, dimension (LDD,M)
 C             The leading P-by-M part of this array contains the
 C             matrix D.
 C
@@ -79,7 +79,7 @@ C             The leading dimension of array D.  LDD >= max(1,P).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in determining the degrees of
 C             the numerators Num0(i,j) of the strictly proper part of
 C             the transfer function matrix G. If the user sets TOL > 0,
@@ -130,23 +130,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO
+      REAL*16   ZERO
       PARAMETER          ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          ORDER
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
       INTEGER            INFO, LDD, LDIGD, LDIGN, M, MD, P
 C     .. Array Arguments ..
-      DOUBLE PRECISION   D(LDD,*), GD(*), GN(*)
+      REAL*16   D(LDD,*), GD(*), GN(*)
       INTEGER            IGD(LDIGD,*), IGN(LDIGN,*)
 C     .. Local Scalars ..
       LOGICAL            ASCEND
       INTEGER            I, II, J, K, KK, KM, ND, NN
-      DOUBLE PRECISION   DIJ, EPS, TOLDEF
+      REAL*16   DIJ, EPS, TOLDEF
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, XERBLA

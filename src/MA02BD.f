@@ -29,7 +29,7 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the given matrix whose rows and/or columns are to
 C             be permuted.
@@ -56,7 +56,7 @@ C     .. Scalar Arguments ..
       CHARACTER          SIDE
       INTEGER            LDA, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*)
+      REAL*16   A(LDA,*)
 C     .. Local Scalars ..
       LOGICAL            BSIDES
       INTEGER            I, J, K, M2, N2

@@ -69,7 +69,7 @@ C     P       (input) INTEGER
 C             The dimension of descriptor system output vector; also the
 C             number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state matrix A.
 C             On exit, the leading NR-by-NR part of this array contains
@@ -91,7 +91,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original descriptor matrix E.
 C             On exit, the leading NR-by-NR part of this array contains
@@ -110,7 +110,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M),
+C     B       (input/output) REAL*16 array, dimension (LDB,M),
 C             if JOB = 'C', or (LDB,MAX(M,P)), otherwise.
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input matrix B; if JOB = 'I',
@@ -127,7 +127,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original output matrix C; if JOB = 'I',
 C             or JOB = 'O', the remainder of the leading MAX(M,P)-by-N
@@ -170,7 +170,7 @@ C                            in the first INFRED(7) elements of IWORK.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION array, dimension 3
+C     TOL     REAL*16 array, dimension 3
 C             TOL(1) is the tolerance to be used in rank determinations
 C             when transforming (A-lambda*E,B,C). If the user sets
 C             TOL(1) > 0, then the given value of TOL(1) is used as a
@@ -205,7 +205,7 @@ C             On exit, if INFO = 0, the leading INFRED(7) elements of
 C             IWORK contain the orders of the diagonal blocks of
 C             Ar-lambda*Er.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -317,7 +317,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, ZERO, TEN, TOLRC
+      REAL*16  ONE, ZERO, TEN, TOLRC
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0, TEN = 10.0D0,
      $                    TOLRC = 1.0D-10 )
 C     .. Scalar Arguments ..
@@ -325,7 +325,7 @@ C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, LDE, LDWORK, M, N, NR, P
 C     .. Array Arguments ..
       INTEGER           INFRED(*), IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
      $                  E(LDE,*), TOL(*)
 C     .. Local Scalars ..
       CHARACTER         JOBQ, JOBZ
@@ -336,14 +336,14 @@ C     .. Local Scalars ..
      $                  LBE, LBES, LDQ, LDZ, LWA, LWB, LWC, LWE, M1,
      $                  MAXMP, MAXWRK, MINWRK, N1, NB, NBLCK, NC, NN,
      $                  NX, P1
-      DOUBLE PRECISION  ANORM, ENORM, RCOND, T, TL, TT, TZER
+      REAL*16  ANORM, ENORM, RCOND, T, TL, TT, TZER
 C     .. Local Arrays ..
       LOGICAL           BWORK(1)
-      DOUBLE PRECISION  DUM(1)
+      REAL*16  DUM(1)
 C     .. External Functions ..
       LOGICAL           DELCTG, LSAME
       INTEGER           ILAENV
-      DOUBLE PRECISION  DLAMCH, DLANGE, DLAPY2
+      REAL*16  DLAMCH, DLANGE, DLAPY2
       EXTERNAL          DELCTG, DLAMCH, DLANGE, DLAPY2, ILAENV, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DGECON, DGEQRF, DGETRF, DGGES, DLACPY, DLARF,

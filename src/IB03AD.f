@@ -121,7 +121,7 @@ C             results could be printed by modifying the corresponding
 C             FCN routine (NF01BA and/or NF01BB). If NPRINT <= 0, no
 C             special calls of FCN with IFLAG = 0 are made.
 C
-C     U       (input) DOUBLE PRECISION array, dimension (LDU, M)
+C     U       (input) REAL*16 array, dimension (LDU, M)
 C             The leading NSMP-by-M part of this array must contain the
 C             set of input samples,
 C             U = ( U(1,1),...,U(1,M); ...; U(NSMP,1),...,U(NSMP,M) ).
@@ -129,7 +129,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= MAX(1,NSMP).
 C
-C     Y       (input) DOUBLE PRECISION array, dimension (LDY, L)
+C     Y       (input) REAL*16 array, dimension (LDY, L)
 C             The leading NSMP-by-L part of this array must contain the
 C             set of output samples,
 C             Y = ( Y(1,1),...,Y(1,L); ...; Y(NSMP,1),...,Y(NSMP,L) ).
@@ -137,7 +137,7 @@ C
 C     LDY     INTEGER
 C             The leading dimension of array Y.  LDY >= MAX(1,NSMP).
 C
-C     X       (input/output) DOUBLE PRECISION array dimension (LX)
+C     X       (input/output) REAL*16 array dimension (LX)
 C             On entry, if INIT = 'L', the leading (NN*(L+2) + 1)*L part
 C             of this array must contain the initial parameters for
 C             the nonlinear part of the system.
@@ -169,7 +169,7 @@ C             is unchanged.
 C
 C     Tolerances
 C
-C     TOL1    DOUBLE PRECISION
+C     TOL1    REAL*16
 C             If INIT = 'S' or 'B' and TOL1 >= 0, TOL1 is the tolerance
 C             which measures the relative error desired in the sum of
 C             squares, for the initialization step of nonlinear part.
@@ -184,7 +184,7 @@ C             instead TOL1, where EPS is the machine precision
 C             (see LAPACK Library routine DLAMCH).
 C             This parameter is ignored if INIT is 'N' or 'L'.
 C
-C     TOL2    DOUBLE PRECISION
+C     TOL2    REAL*16
 C             If TOL2 >= 0, TOL2 is the tolerance which measures the
 C             relative error desired in the sum of squares, for the
 C             whole optimization process. Termination occurs when the
@@ -214,7 +214,7 @@ C             specifies how many locations of DWORK contain reciprocal
 C             condition number estimates (see below); otherwise,
 C             IWORK(3) = 0.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On entry, if desired, and if INIT = 'S' or 'B', the
 C             entries DWORK(1:4) are set to initialize the random
 C             numbers generator for the nonlinear part parameters (see
@@ -406,7 +406,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     The upper triangular part is used in MD03AD;
       CHARACTER         UPLO
@@ -427,19 +427,19 @@ C     The following two parameters are used in the call of IB01CD;
       PARAMETER         ( COMUSE = 'Use B, D',
      $                    JOBXD  = 'D also' )
 C     TOLN controls the estimated order in IB01AD (default value);
-      DOUBLE PRECISION  TOLN
+      REAL*16  TOLN
       PARAMETER         ( TOLN = -1.0D0 )
 C     RCOND controls the rank decisions in IB01AD, IB01BD, and IB01CD
 C     (default);
-      DOUBLE PRECISION  RCOND
+      REAL*16  RCOND
       PARAMETER         ( RCOND = -1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         ALG, INIT, STOR
       INTEGER           INFO, ITMAX1, ITMAX2, IWARN, L, LDU, LDWORK,
      $                  LDY, LX, M, N, NN, NOBR, NPRINT, NSMP
-      DOUBLE PRECISION  TOL1, TOL2
+      REAL*16  TOL1, TOL2
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(*), U(LDU, *), X(*), Y(LDY, *)
+      REAL*16  DWORK(*), U(LDU, *), X(*), Y(LDY, *)
       INTEGER           IWORK(*)
 C     .. Local Scalars ..
       INTEGER           AC, BD, BSN, I, IA, IB, IK, INFOL, IQ, IR,
@@ -451,7 +451,7 @@ C     .. Local Scalars ..
 C     .. Local Arrays ..
       LOGICAL           BWORK(1)
       INTEGER           IPAR(7)
-      DOUBLE PRECISION  RCND(16), SEED(4), WORK(5)
+      REAL*16  RCND(16), SEED(4), WORK(5)
 C     .. External Functions ..
       EXTERNAL          LSAME
       LOGICAL           LSAME

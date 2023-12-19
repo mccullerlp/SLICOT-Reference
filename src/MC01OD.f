@@ -13,14 +13,14 @@ C     K       (input) INTEGER
 C             The number of zeros (and hence the degree) of P(x).
 C             K >= 0.
 C
-C     REZ     (input) DOUBLE PRECISION array, dimension (K)
-C     IMZ     (input) DOUBLE PRECISION array, dimension (K)
+C     REZ     (input) REAL*16 array, dimension (K)
+C     IMZ     (input) REAL*16 array, dimension (K)
 C             The real and imaginary parts of the i-th zero of P(x)
 C             must be stored in REZ(i) and IMZ(i), respectively, where
 C             i = 1, 2, ..., K. The zeros may be supplied in any order.
 C
-C     REP     (output) DOUBLE PRECISION array, dimension (K+1)
-C     IMP     (output) DOUBLE PRECISION array, dimension (K+1)
+C     REP     (output) REAL*16 array, dimension (K+1)
+C     IMP     (output) REAL*16 array, dimension (K+1)
 C             These arrays contain the real and imaginary parts,
 C             respectively, of the coefficients of P(x) in increasing
 C             powers of x. If K = 0, then REP(1) is set to one and
@@ -28,7 +28,7 @@ C             IMP(1) is set to zero.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (2*K+2)
+C     DWORK   REAL*16 array, dimension (2*K+2)
 C             If K = 0, this array is not referenced.
 C
 C     Error Indicator
@@ -68,15 +68,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, K
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(*), IMP(*), IMZ(*), REP(*), REZ(*)
+      REAL*16  DWORK(*), IMP(*), IMZ(*), REP(*), REZ(*)
 C     .. Local Scalars ..
       INTEGER           I, K2
-      DOUBLE PRECISION  U, V
+      REAL*16  U, V
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, XERBLA
 C     .. Executable Statements ..

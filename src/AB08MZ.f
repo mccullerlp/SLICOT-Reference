@@ -28,28 +28,28 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     A       (input) COMPLEX*16 array, dimension (LDA,N)
+C     A       (input) COMPLEX*32 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state dynamics matrix A of the system.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) COMPLEX*16 array, dimension (LDB,M)
+C     B       (input) COMPLEX*32 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input/state matrix B of the system.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) COMPLEX*16 array, dimension (LDC,N)
+C     C       (input) COMPLEX*32 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             state/output matrix C of the system.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) COMPLEX*16 array, dimension (LDD,M)
+C     D       (input) COMPLEX*32 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             direct transmission matrix D of the system.
 C
@@ -61,7 +61,7 @@ C             The normal rank of the transfer-function matrix.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -76,9 +76,9 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*N+MAX(M,P)+1)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (2*MAX(M,P))
+C     DWORK   REAL*16 array, dimension (2*MAX(M,P))
 C
-C     ZWORK   COMPLEX*16 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal value
 C             of LZWORK.
 C
@@ -144,24 +144,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         EQUIL
       INTEGER           INFO, LDA, LDB, LDC, LDD, LZWORK, M, N, P, RANK
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      COMPLEX*16        A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), ZWORK(*)
-      DOUBLE PRECISION  DWORK(*)
+      COMPLEX*32        A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), ZWORK(*)
+      REAL*16  DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LEQUIL, LQUERY
       INTEGER           I, KW, MU, NINFZ, NKROL, NM, NP, NU, RO,
      $                  SIGMA, WRKOPT
-      DOUBLE PRECISION  MAXRED, SVLMAX, THRESH, TOLER
+      REAL*16  MAXRED, SVLMAX, THRESH, TOLER
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, ZLANGE
+      REAL*16  DLAMCH, ZLANGE
       EXTERNAL          DLAMCH, LSAME, ZLANGE
 C     .. External Subroutines ..
       EXTERNAL          AB8NXZ, TB01IZ, XERBLA, ZLACPY

@@ -68,7 +68,7 @@ C             NEX1 = 6, NEX2 = 9, NEX3 = 2, NEX4 = 4.
 C             1 <= NR(1) <= 4;
 C             1 <= NR(2) <= NEXi , where i = NR(1).
 C
-C     DPAR    (input/output) DOUBLE PRECISION array, dimension (7)
+C     DPAR    (input/output) REAL*16 array, dimension (7)
 C             Double precision parameter vector. For explanation of the
 C             parameters see [1].
 C             DPAR(1)           : defines the parameters
@@ -200,12 +200,12 @@ C             On input, this is the name of a data file supplied by the
 C             user.
 C             In the current version, only Example 4.4 allows a
 C             user-defined data file. This file must contain
-C             consecutively DOUBLE PRECISION vectors mu, delta, gamma,
+C             consecutively REAL*16 vectors mu, delta, gamma,
 C             and kappa. The length of these vectors is determined by
 C             the input value for IPAR(1).
 C             If on entry, IPAR(1) = L, then mu and delta must each
-C             contain L DOUBLE PRECISION values, and gamma and kappa
-C             must each contain L-1 DOUBLE PRECISION values.
+C             contain L REAL*16 values, and gamma and kappa
+C             must each contain L-1 REAL*16 values.
 C             On output, this string contains short information about
 C             the chosen example.
 C
@@ -239,14 +239,14 @@ C     P       (output) INTEGER
 C             The number of rows in the matrix C (or the dimension of
 C             the output space of the underlying dynamical system).
 C
-C     A       (output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (output) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array contains the
 C             coefficient matrix A of the CARE.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= N.
 C
-C     B       (output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (output) REAL*16 array, dimension (LDB,M)
 C             If (BPAR(1) = .FALSE.), then the leading N-by-M part of
 C             this array contains the matrix B of the factored form (I)
 C             of G. Otherwise, B is used as workspace.
@@ -254,7 +254,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= N.
 C
-C     C       (output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (output) REAL*16 array, dimension (LDC,N)
 C             If (BPAR(4) = .FALSE.), then the leading P-by-N part of
 C             this array contains the matrix C of the factored form (II)
 C             of Q. Otherwise, C is used as workspace.
@@ -266,7 +266,7 @@ C             i.e., the output value of IPAR(3). (For all examples,
 C             P <= N, where N equals the output value of the argument
 C             IPAR(1), i.e., LDC >= LDA is always safe.)
 C
-C     G       (output) DOUBLE PRECISION array, dimension (NG)
+C     G       (output) REAL*16 array, dimension (NG)
 C             If (BPAR(2) = .TRUE.)  then NG = LDG*N.
 C             If (BPAR(2) = .FALSE.) then NG = N*(N+1)/2.
 C             If (BPAR(1) = .TRUE.), then array G contains the
@@ -283,7 +283,7 @@ C             array with leading dimension LDG. If packed symmetric
 C             storage mode is used, then LDG is not referenced.
 C             LDG >= N if BPAR(2) = .TRUE..
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (NQ)
+C     Q       (output) REAL*16 array, dimension (NQ)
 C             If (BPAR(5) = .TRUE.)  then NQ = LDQ*N.
 C             If (BPAR(5) = .FALSE.) then NQ = N*(N+1)/2.
 C             If (BPAR(4) = .TRUE.), then array Q contains the
@@ -300,7 +300,7 @@ C             array with leading dimension LDQ. If packed symmetric
 C             storage mode is used, then LDQ is not referenced.
 C             LDQ >= N if BPAR(5) = .TRUE..
 C
-C     X       (output) DOUBLE PRECISION array, dimension (LDX,IPAR(1))
+C     X       (output) REAL*16 array, dimension (LDX,IPAR(1))
 C             If an exact solution is available (NR = 1.1, 1.2, 2.1,
 C             2.3-2.6, 3.2), then the leading N-by-N part of this array
 C             contains the solution matrix X in conventional storage
@@ -312,7 +312,7 @@ C             LDX >= N if NR = 1.1, 1.2, 2.1, 2.3-2.6, 3.2.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -380,7 +380,7 @@ C     . # of examples available , # of examples with fixed size. .
       INTEGER          NEX1, NEX2, NEX3, NEX4, NMAX
       PARAMETER        ( NMAX = 9, NEX1 = 6, NEX2 = 9, NEX3 = 2,
      1                   NEX4 = 4 )
-      DOUBLE PRECISION ZERO, ONE, TWO, THREE, FOUR, PI
+      REAL*16 ZERO, ONE, TWO, THREE, FOUR, PI
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      1                   THREE = 3.0D0, FOUR = 4.0D0,
      2                   PI = .3141592653589793D1 )
@@ -392,7 +392,7 @@ C     .. Scalar Arguments ..
 C
 C     .. Array Arguments ..
       INTEGER          IPAR(4), NR(2)
-      DOUBLE PRECISION A(LDA,*), B(LDB,*), C(LDC,*), DPAR(*), DWORK(*),
+      REAL*16 A(LDA,*), B(LDB,*), C(LDC,*), DPAR(*), DWORK(*),
      1                 G(*), Q(*), X(LDX,*)
       CHARACTER        CHPAR*(*)
       LOGICAL          BPAR(6), VEC(9)
@@ -400,21 +400,21 @@ C
 C     .. Local Scalars ..
       INTEGER          GDIMM, I, IOS, ISYMM, J, K, L, MSYMM, NSYMM, POS,
      1                 PSYMM, QDIMM
-      DOUBLE PRECISION APPIND, B1, B2, C1, C2, SUM, TEMP, TTEMP
+      REAL*16 APPIND, B1, B2, C1, C2, SUM, TEMP, TTEMP
 C
 C     ..Local Arrays ..
       INTEGER          MDEF(2,NMAX), NDEF(4,NMAX), NEX(4), PDEF(2,NMAX)
-      DOUBLE PRECISION PARDEF(4,NMAX)
+      REAL*16 PARDEF(4,NMAX)
       CHARACTER        IDENT*4
       CHARACTER*255    NOTES(4,NMAX)
 C
 C     .. External Functions ..
 C     . BLAS .
-      DOUBLE PRECISION DDOT
+      REAL*16 DDOT
       EXTERNAL         DDOT
 C     . LAPACK .
       LOGICAL          LSAME
-      DOUBLE PRECISION DLAPY2
+      REAL*16 DLAPY2
       EXTERNAL         LSAME, DLAPY2
 C
 C     .. External Subroutines ..

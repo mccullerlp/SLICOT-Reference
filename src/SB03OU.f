@@ -52,7 +52,7 @@ C
 C     M       (input) INTEGER
 C             The number of rows in matrix op(B).  M >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N upper Hessenberg part of this array
 C             must contain a real Schur form matrix S. The elements
 C             below the upper Hessenberg part of the array A are not
@@ -63,7 +63,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,N)
+C     B       (input/output) REAL*16 array, dimension (LDB,N)
 C             if LTRANS = .FALSE., and dimension (LDB,M), if
 C             LTRANS = .TRUE..
 C             On entry, if LTRANS = .FALSE., the leading M-by-N part of
@@ -95,11 +95,11 @@ C             The leading dimension of array B.
 C             LDB >= MAX(1,M), if LTRANS = .FALSE.,
 C             LDB >= MAX(1,N), if LTRANS = .TRUE..
 C
-C     TAU     (output) DOUBLE PRECISION array of dimension (MIN(N,M))
+C     TAU     (output) REAL*16 array of dimension (MIN(N,M))
 C             This array contains the scalar factors of the elementary
 C             reflectors defining the matrix P.
 C
-C     U       (output) DOUBLE PRECISION array of dimension (LDU,N)
+C     U       (output) REAL*16 array of dimension (LDU,N)
 C             The leading N-by-N upper triangular part of this array
 C             contains the Cholesky factor of the solution matrix X of
 C             the problem, X = op(U)'*op(U).
@@ -110,13 +110,13 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= MAX(1,N).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, or INFO = 1, DWORK(1) returns the
 C             optimal value of LDWORK.
 C
@@ -248,14 +248,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           DISCR, LTRANS
       INTEGER           INFO, LDA, LDB, LDU, LDWORK, M, N
-      DOUBLE PRECISION  SCALE
+      REAL*16  SCALE
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), DWORK(*), TAU(*), U(LDU,*)
+      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), TAU(*), U(LDU,*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I, J, K, L, MINWRK, MN, WRKOPT

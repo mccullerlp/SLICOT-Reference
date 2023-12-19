@@ -156,7 +156,7 @@ C     P       (input) INTEGER
 C             The dimension of descriptor system output vector; also the
 C             number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N state matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -186,7 +186,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N descriptor matrix E.
 C             On exit, the leading N-by-N part of this array contains
@@ -216,7 +216,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C             (LDB,MAX(M,P))
 C             On entry, the leading N-by-M part of this array must
 C             contain the N-by-M input matrix B.
@@ -227,7 +227,7 @@ C     LDB     INTEGER
 C             The leading dimension of array B.
 C             LDB >= MAX(1,N) if M > 0 or LDB >= 1 if M = 0.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -246,7 +246,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,M,P).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
 C             If COMPQ = 'N': Q is not referenced.
 C             If COMPQ = 'I': on entry, Q need not be set;
 C                             on exit, the leading N-by-N part of this
@@ -266,7 +266,7 @@ C             The leading dimension of array Q.
 C             LDQ >= 1,        if COMPQ = 'N';
 C             LDQ >= MAX(1,N), if COMPQ = 'U' or 'I'.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
 C             If COMPZ = 'N': Z is not referenced.
 C             If COMPZ = 'I': on entry, Z need not be set;
 C                             on exit, the leading N-by-N part of this
@@ -318,7 +318,7 @@ C             for JOBOBS = 'F', respectively.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in rank determinations when
 C             transforming (A'-lambda*E',C')'. If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -334,7 +334,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (P)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (MAX(N,2*P))
+C     DWORK   REAL*16 array, dimension (MAX(N,2*P))
 C
 C     Error Indicator
 C
@@ -384,16 +384,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE
+      REAL*16   ONE
       PARAMETER          ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ, JOBOBS
       INTEGER            INFO, LDA, LDB, LDC, LDE, LDQ, LDZ,
      $                   M, N, NIUOBS, NLBLCK, NOBSV, P
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C     .. Array Arguments ..
       INTEGER            CTAU( * ), IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, *  ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, *  ),
      $                   DWORK( * ), E( LDE, * ), Q( LDQ, * ),
      $                   Z( LDZ, * )
 C     .. Local Scalars ..
@@ -401,7 +401,7 @@ C     .. Local Scalars ..
       LOGICAL            FINOBS, ILQ, ILZ, INFOBS
       INTEGER            I, ICOMPQ, ICOMPZ, LBA, LBE, NR
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM(1)
+      REAL*16   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

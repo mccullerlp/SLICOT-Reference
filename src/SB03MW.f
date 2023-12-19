@@ -27,14 +27,14 @@ C             = .FALSE.:  The lower triangular part.
 C
 C     Input/Output Parameters
 C
-C     T       (input) DOUBLE PRECISION array, dimension (LDT,2)
+C     T       (input) REAL*16 array, dimension (LDT,2)
 C             The leading 2-by-2 part of this array must contain the
 C             matrix T.
 C
 C     LDT     INTEGER
 C             The leading dimension of array T.  LDT >= 2.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,2)
+C     B       (input) REAL*16 array, dimension (LDB,2)
 C             On entry with LUPPER = .TRUE., the leading 2-by-2 upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix B and the strictly
@@ -47,11 +47,11 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= 2.
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor. SCALE is chosen less than or equal to 1
 C             to prevent the solution overflowing.
 C
-C     X       (output) DOUBLE PRECISION array, dimension (LDX,2)
+C     X       (output) REAL*16 array, dimension (LDX,2)
 C             On exit with LUPPER = .TRUE., the leading 2-by-2 upper
 C             triangular part of this array contains the upper
 C             triangular part of the symmetric solution matrix X and the
@@ -66,7 +66,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= 2.
 C
-C     XNORM   (output) DOUBLE PRECISION
+C     XNORM   (output) REAL*16
 C             The infinity-norm of the solution.
 C
 C     Error Indicator
@@ -114,28 +114,28 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO, FOUR
+      REAL*16   ZERO, ONE, TWO, FOUR
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0,
      $                     FOUR = 4.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       LOGICAL            LTRAN, LUPPER
       INTEGER            INFO, LDB, LDT, LDX
-      DOUBLE PRECISION   SCALE, XNORM
+      REAL*16   SCALE, XNORM
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   B( LDB, * ), T( LDT, * ), X( LDX, * )
+      REAL*16   B( LDB, * ), T( LDT, * ), X( LDX, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            I, IP, IPSV, J, JP, JPSV, K
-      DOUBLE PRECISION   EPS, SMIN, SMLNUM, TEMP, XMAX
+      REAL*16   EPS, SMIN, SMLNUM, TEMP, XMAX
 C     ..
 C     .. Local Arrays ..
       INTEGER            JPIV( 3 )
-      DOUBLE PRECISION   BTMP( 3 ), T9( 3, 3 ), TMP( 3 )
+      REAL*16   BTMP( 3 ), T9( 3, 3 ), TMP( 3 )
 C     ..
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH
 C     ..
 C     .. External Subroutines ..

@@ -23,7 +23,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs, or of rows of C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -33,7 +33,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original descriptor matrix E.
 C             On exit, the leading N-by-N part of this array contains
@@ -43,7 +43,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -52,7 +52,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -61,7 +61,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (output) REAL*16 array, dimension (LDQ,N)
 C             The leading N-by-N part of this array contains the left
 C             orthogonal transformation matrix used to reduce (A,E) to
 C             the real generalized Schur form.
@@ -71,7 +71,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of array Q.  LDQ >= max(1,N).
 C
-C     Z       (output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (output) REAL*16 array, dimension (LDZ,N)
 C             The leading N-by-N part of this array contains the right
 C             orthogonal transformation matrix used to reduce (A,E) to
 C             the real generalized Schur form.
@@ -81,9 +81,9 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of array Z.  LDZ >= max(1,N).
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             On exit, if INFO = 0, (ALPHAR(j) + ALPHAI(j)*i)/BETA(j),
 C             j=1,...,N, will be the generalized eigenvalues.
 C             ALPHAR(j) + ALPHAI(j)*i, and BETA(j), j=1,...,N, are the
@@ -97,7 +97,7 @@ C             complex conjugate pair, with ALPHAI(j+1) negative.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -143,13 +143,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, LDE, LDQ, LDWORK, LDZ,
      $                  M, N, P
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
+      REAL*16  A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
      $                  BETA(*),  C(LDC,*),  DWORK(*),  E(LDE,*),
      $                  Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..

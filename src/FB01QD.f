@@ -51,7 +51,7 @@ C              1/2
 C             R   .  P >= 0.
 C              i
 C
-C     S       (input/output) DOUBLE PRECISION array, dimension (LDS,N)
+C     S       (input/output) REAL*16 array, dimension (LDS,N)
 C             On entry, the leading N-by-N lower triangular part of this
 C             array must contain S   , the square root (left Cholesky
 C                                 i-1
@@ -66,7 +66,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,N).
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain A ,
 C                                                                 i
 C             the state transition matrix of the discrete system at
@@ -75,7 +75,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain B ,
 C                                                        1/2      i
 C             the input weight matrix (or the product B Q    if
@@ -85,7 +85,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     Q       (input) DOUBLE PRECISION array, dimension (LDQ,*)
+C     Q       (input) REAL*16 array, dimension (LDQ,*)
 C             If MULTBQ = 'N', then the leading M-by-M lower triangular
 C                                              1/2
 C             part of this array must contain Q   , the square root
@@ -103,7 +103,7 @@ C             The leading dimension of array Q.
 C             LDQ >= MAX(1,M) if MULTBQ = 'N';
 C             LDQ >= 1        if MULTBQ = 'P'.
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain C , the
 C                                                                 i
 C             output weight matrix of the discrete system at instant i.
@@ -111,7 +111,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,P)
+C     R       (input/output) REAL*16 array, dimension (LDR,P)
 C             On entry, the leading P-by-P lower triangular part of this
 C                                 1/2
 C             array must contain R   , the square root (left Cholesky
@@ -130,7 +130,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,P).
 C
-C     K       (output) DOUBLE PRECISION array, dimension (LDK,P)
+C     K       (output) REAL*16 array, dimension (LDK,P)
 C             If JOBK = 'K', and INFO = 0, then the leading N-by-P part
 C             of this array contains K , the Kalman filter gain matrix
 C                                     i
@@ -148,7 +148,7 @@ C             The leading dimension of array K.   LDK >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             If JOBK = 'K', then TOL is used to test for near
 C                                               1/2
 C             singularity of the matrix (RINOV )   . If the user sets
@@ -169,7 +169,7 @@ C     IWORK   INTEGER array, dimension (LIWORK),
 C             where LIWORK = P if JOBK = 'K',
 C             and   LIWORK = 1 otherwise.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.  If INFO = 0 and JOBK = 'K', DWORK(2) returns
 C             an estimate of the reciprocal of the condition number
@@ -279,21 +279,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, TWO
+      REAL*16  ONE, TWO
       PARAMETER         ( ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBK, MULTBQ
       INTEGER           INFO, LDA, LDB, LDC, LDK, LDQ, LDR, LDS, LDWORK,
      $                  M, N, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
      $                  K(LDK,*), Q(LDQ,*), R(LDR,*), S(LDS,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBK, LMULTB
       INTEGER           I12, ITAU, JWORK, N1, PN, WRKOPT
-      DOUBLE PRECISION  RCOND
+      REAL*16  RCOND
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

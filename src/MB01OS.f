@@ -25,7 +25,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices H, X, and P.  N >= 0.
 C
-C     H       (input) DOUBLE PRECISION array, dimension (LDH,N)
+C     H       (input) REAL*16 array, dimension (LDH,N)
 C             On entry, the leading N-by-N upper Hessenberg part of this
 C             array must contain the upper Hessenberg matrix H.
 C             The remaining part of this array is not referenced.
@@ -33,7 +33,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of the array H.  LDH >= MAX(1,N).
 C
-C     X       (input) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (input) REAL*16 array, dimension (LDX,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix X and the strictly
@@ -46,7 +46,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= MAX(1,N).
 C
-C     P       (output) DOUBLE PRECISION array, dimension (LDP,N)
+C     P       (output) REAL*16 array, dimension (LDP,N)
 C             On exit, the leading N-by-N part of this array contains
 C             the computed matrix P.
 C
@@ -92,21 +92,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS, UPLO
       INTEGER           INFO, LDH, LDP, LDX, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  H(LDH,*), P(LDP,*), X(LDX,*)
+      REAL*16  H(LDH,*), P(LDP,*), X(LDX,*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  TEMP
+      REAL*16  TEMP
       INTEGER           I, J, J3
       LOGICAL           LTRANS, LUPLO
 C     .. Local Arrays ..
-      DOUBLE PRECISION  TMP(1)
+      REAL*16  TMP(1)
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       LOGICAL           LSAME
       EXTERNAL          DDOT, LSAME
 C     .. External Subroutines ..

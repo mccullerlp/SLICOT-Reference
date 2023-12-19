@@ -30,7 +30,7 @@ C     M       (input) INTEGER
 C             The number of columns of the matrices B and V, and also
 C             the number of rows of the matrix F.  M >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix A whose eigenvalues must have positive
 C             real parts if DISCR = .FALSE. or moduli greater than unity
@@ -39,14 +39,14 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= N.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= N.
 C
-C     F       (output) DOUBLE PRECISION array, dimension (LDF,N)
+C     F       (output) REAL*16 array, dimension (LDF,N)
 C             The leading M-by-N part of this array contains the state-
 C             feedback matrix F which assigns one eigenvalue (if N = 1)
 C             or two eigenvalues (if N = 2) of the matrix A + B*F in
@@ -57,7 +57,7 @@ C
 C     LDF     INTEGER
 C             The leading dimension of array F.  LDF >= MAX(1,M).
 C
-C     V       (output) DOUBLE PRECISION array, dimension (LDV,M)
+C     V       (output) REAL*16 array, dimension (LDV,M)
 C             The leading M-by-M upper triangular part of this array
 C             contains the input/output matrix V of the resulting inner
 C             system in upper triangular form.
@@ -94,20 +94,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, TWO, ZERO
+      REAL*16  ONE, TWO, ZERO
       PARAMETER         ( ONE = 1.0D0, TWO = 2.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           DISCR
       INTEGER           INFO, LDA, LDB, LDF, LDV, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), F(LDF,*), V(LDV,*)
+      REAL*16  A(LDA,*), B(LDB,*), F(LDF,*), V(LDV,*)
 C     .. Local Scalars ..
       INTEGER           I
-      DOUBLE PRECISION  CS, R11, R12, R22, SCALE, SN, TEMP
+      REAL*16  CS, R11, R12, R22, SCALE, SN, TEMP
 C     .. Local Arrays ..
-      DOUBLE PRECISION  AT(2,2), DUMMY(2,2), U(2,2)
+      REAL*16  AT(2,2), DUMMY(2,2), U(2,2)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAPY2, DLAPY3
+      REAL*16  DLAPY2, DLAPY3
       EXTERNAL          DLAPY2, DLAPY3
 C     .. External Subroutines ..
       EXTERNAL          DLARFG, DLASET, DLATZM, DROTG, DTRTRI, MA02AD,

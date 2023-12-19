@@ -62,7 +62,7 @@ C             the submatrix
 C             U([ilo+1:m m+ilo+1:2*m], [ilo+1:m m+ilo+1:2*m]).
 C             1 <= ILO <= M+1.
 C
-C     V       (input) DOUBLE PRECISION array, dimension (LDV,M)
+C     V       (input) REAL*16 array, dimension (LDV,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain in its columns the vectors which define the
 C             elementary reflectors H(i).
@@ -70,7 +70,7 @@ C
 C     LDV     INTEGER
 C             The leading dimension of the array V.  LDV >= MAX(1,M).
 C
-C     W       (input) DOUBLE PRECISION array, dimension (LDW,M)
+C     W       (input) REAL*16 array, dimension (LDW,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain in its columns the vectors which define the
 C             elementary reflectors F(i).
@@ -78,7 +78,7 @@ C
 C     LDW     INTEGER
 C             The leading dimension of the array W.  LDW >= MAX(1,M).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension
+C     C       (input/output) REAL*16 array, dimension
 C                     (LDC,N) if TRANC = 'N',
 C                     (LDC,M) if TRANC = 'T' or TRANC = 'C'.
 C             On entry with TRANC = 'N', the leading M-by-N part of this
@@ -97,7 +97,7 @@ C             The leading dimension of the array C.
 C             LDC >= MAX(1,M),  if TRANC = 'N';
 C             LDC >= MAX(1,N),  if TRANC = 'T' or TRANC = 'C'.
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension
+C     D       (input/output) REAL*16 array, dimension
 C                     (LDD,N) if TRAND = 'N',
 C                     (LDD,M) if TRAND = 'T' or TRAND = 'C'.
 C             On entry with TRAND = 'N', the leading M-by-N part of this
@@ -116,19 +116,19 @@ C             The leading dimension of the array D.
 C             LDD >= MAX(1,M),  if TRAND = 'N';
 C             LDD >= MAX(1,N),  if TRAND = 'T' or TRAND = 'C'.
 C
-C     CS      (input) DOUBLE PRECISION array, dimension (2*N-2)
+C     CS      (input) REAL*16 array, dimension (2*N-2)
 C             On entry, the first 2*N-2 elements of this array must
 C             contain the cosines and sines of the symplectic Givens
 C             rotations G(i), as returned by MB04PU or MB04RU.
 C
-C     TAU     (input) DOUBLE PRECISION array, dimension (N-1)
+C     TAU     (input) REAL*16 array, dimension (N-1)
 C             On entry, the first N-1 elements of this array must
 C             contain the scalar factors of the elementary reflectors
 C             F(i), as returned by MB04PU or MB04RU.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal value
 C             of LDWORK.
 C             On exit, if  INFO = -18,  DWORK(1)  returns the minimum
@@ -166,13 +166,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANC, TRAND, TRANU
       INTEGER           ILO, INFO, LDC, LDD, LDV, LDW, LDWORK, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  C(LDC,*), CS(*), D(LDD,*), DWORK(*), TAU(*),
+      REAL*16  C(LDC,*), CS(*), D(LDD,*), DWORK(*), TAU(*),
      $                  V(LDV,*), W(LDW,*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY, LTRC, LTRD, LTRU

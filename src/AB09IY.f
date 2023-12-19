@@ -97,17 +97,17 @@ C             The number of columns of the matrices BW and DW.  MW >= 0.
 C             MW represents the dimension of the input vector of the
 C             system with the transfer-function matrix W.
 C
-C     ALPHAC  (input) DOUBLE PRECISION
+C     ALPHAC  (input) REAL*16
 C             Combination method parameter for defining the
 C             frequency-weighted controllability Grammian (see METHOD);
 C             ABS(ALPHAC) <= 1.
 C
-C     ALPHAO  (input) DOUBLE PRECISION
+C     ALPHAO  (input) REAL*16
 C             Combination method parameter for defining the
 C             frequency-weighted observability Grammian (see METHOD);
 C             ABS(ALPHAO) <= 1.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must
 C             contain the state matrix A (of the system with the
 C             transfer-function matrix G) in a real Schur form.
@@ -115,21 +115,21 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input/state matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             state/output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     AV      (input) DOUBLE PRECISION array, dimension (LDAV,NV)
+C     AV      (input) REAL*16 array, dimension (LDAV,NV)
 C             If WEIGHT = 'L' or 'B', the leading NV-by-NV part of this
 C             array must contain the state matrix AV (of the system with
 C             the transfer-function matrix V) in a real Schur form.
@@ -140,7 +140,7 @@ C             The leading dimension of array AV.
 C             LDAV >= MAX(1,NV), if WEIGHT = 'L' or 'B';
 C             LDAV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     BV      (input) DOUBLE PRECISION array, dimension (LDBV,P)
+C     BV      (input) REAL*16 array, dimension (LDBV,P)
 C             If WEIGHT = 'L' or 'B', the leading NV-by-P part of this
 C             array must contain the input matrix BV of the system with
 C             the transfer-function matrix V.
@@ -151,7 +151,7 @@ C             The leading dimension of array BV.
 C             LDBV >= MAX(1,NV), if WEIGHT = 'L' or 'B';
 C             LDBV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     CV      (input) DOUBLE PRECISION array, dimension (LDCV,NV)
+C     CV      (input) REAL*16 array, dimension (LDCV,NV)
 C             If WEIGHT = 'L' or 'B', the leading PV-by-NV part of this
 C             array must contain the output matrix CV of the system with
 C             the transfer-function matrix V.
@@ -162,7 +162,7 @@ C             The leading dimension of array CV.
 C             LDCV >= MAX(1,PV), if WEIGHT = 'L' or 'B';
 C             LDCV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     DV      (input) DOUBLE PRECISION array, dimension (LDDV,P)
+C     DV      (input) REAL*16 array, dimension (LDDV,P)
 C             If WEIGHT = 'L' or 'B', the leading PV-by-P part of this
 C             array must contain the feedthrough matrix DV of the system
 C             with the transfer-function matrix V.
@@ -173,7 +173,7 @@ C             The leading dimension of array DV.
 C             LDDV >= MAX(1,PV), if WEIGHT = 'L' or 'B';
 C             LDDV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     AW      (input) DOUBLE PRECISION array, dimension (LDAW,NW)
+C     AW      (input) REAL*16 array, dimension (LDAW,NW)
 C             If WEIGHT = 'R' or 'B', the leading NW-by-NW part of this
 C             array must contain the state matrix AW (of the system with
 C             the transfer-function matrix W) in a real Schur form.
@@ -184,7 +184,7 @@ C             The leading dimension of array AW.
 C             LDAW >= MAX(1,NW), if WEIGHT = 'R' or 'B';
 C             LDAW >= 1,         if WEIGHT = 'L' or 'N'.
 C
-C     BW      (input) DOUBLE PRECISION array, dimension (LDBW,MW)
+C     BW      (input) REAL*16 array, dimension (LDBW,MW)
 C             If WEIGHT = 'R' or 'B', the leading NW-by-MW part of this
 C             array must contain the input matrix BW of the system with
 C             the transfer-function matrix W.
@@ -195,7 +195,7 @@ C             The leading dimension of array BW.
 C             LDBW >= MAX(1,NW), if WEIGHT = 'R' or 'B';
 C             LDBW >= 1,         if WEIGHT = 'L' or 'N'.
 C
-C     CW      (input) DOUBLE PRECISION array, dimension (LDCW,NW)
+C     CW      (input) REAL*16 array, dimension (LDCW,NW)
 C             If WEIGHT = 'R' or 'B', the leading M-by-NW part of this
 C             array must contain the output matrix CW of the system with
 C             the transfer-function matrix W.
@@ -206,7 +206,7 @@ C             The leading dimension of array CW.
 C             LDCW >= MAX(1,M), if WEIGHT = 'R' or 'B';
 C             LDCW >= 1,        if WEIGHT = 'L' or 'N'.
 C
-C     DW      (input) DOUBLE PRECISION array, dimension (LDDW,MW)
+C     DW      (input) REAL*16 array, dimension (LDDW,MW)
 C             If WEIGHT = 'R' or 'B', the leading M-by-MW part of this
 C             array must contain the feedthrough matrix DW of the system
 C             with the transfer-function matrix W.
@@ -217,15 +217,15 @@ C             The leading dimension of array DW.
 C             LDDW >= MAX(1,M), if WEIGHT = 'R' or 'B';
 C             LDDW >= 1,        if WEIGHT = 'L' or 'N'.
 C
-C     SCALEC  (output) DOUBLE PRECISION
+C     SCALEC  (output) REAL*16
 C             Scaling factor for the controllability Grammian in (1)
 C             or (3). See METHOD.
 C
-C     SCALEO  (output) DOUBLE PRECISION
+C     SCALEO  (output) REAL*16
 C             Scaling factor for the observability Grammian in (2)
 C             or (4). See METHOD.
 C
-C     S       (output) DOUBLE PRECISION array, dimension (LDS,N)
+C     S       (output) REAL*16 array, dimension (LDS,N)
 C             The leading N-by-N upper triangular part of this array
 C             contains the Cholesky factor S of the frequency-weighted
 C             cotrollability Grammian P = S*S'. See METHOD.
@@ -233,7 +233,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,N).
 C
-C     R       (output) DOUBLE PRECISION array, dimension (LDR,N)
+C     R       (output) REAL*16 array, dimension (LDR,N)
 C             The leading N-by-N upper triangular part of this array
 C             contains the Cholesky factor R of the frequency-weighted
 C             observability Grammian Q = R'*R. See METHOD.
@@ -243,7 +243,7 @@ C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -370,16 +370,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION ZERO, ONE
+      REAL*16 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, JOBC, JOBO, WEIGHT
       INTEGER          INFO, LDA, LDAV, LDAW, LDB, LDBV, LDBW,
      $                 LDC, LDCV, LDCW, LDDV, LDDW, LDR, LDS, LDWORK,
      $                 M, MW, N, NV, NW, P, PV
-      DOUBLE PRECISION ALPHAC, ALPHAO, SCALEC, SCALEO
+      REAL*16 ALPHAC, ALPHAO, SCALEC, SCALEO
 C     .. Array Arguments ..
-      DOUBLE PRECISION A(LDA,*), AV(LDAV,*), AW(LDAW,*),
+      REAL*16 A(LDA,*), AV(LDAV,*), AW(LDAW,*),
      $                 B(LDB,*), BV(LDBV,*), BW(LDBW,*),
      $                 C(LDC,*), CV(LDCV,*), CW(LDCW,*),
      $                           DV(LDDV,*), DW(LDDW,*),
@@ -388,12 +388,12 @@ C     .. Local Scalars ..
       LOGICAL          DISCR, FRWGHT, LEFTW, RIGHTW
       INTEGER          I, IERR, J, KAW, KTAU, KU, KW, LDU, LW, MBBAR,
      $                 NNV, NNW, PCBAR
-      DOUBLE PRECISION T, TOL, WORK
+      REAL*16 T, TOL, WORK
 C     .. Local Arrays ..
-      DOUBLE PRECISION DUM(1)
+      REAL*16 DUM(1)
 C     .. External Functions ..
       LOGICAL          LSAME
-      DOUBLE PRECISION DLAMCH
+      REAL*16 DLAMCH
       EXTERNAL         DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL         DCOPY, DGEMM, DLACPY, DLASET, DSCAL, DSYEV,

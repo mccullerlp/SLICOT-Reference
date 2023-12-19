@@ -51,7 +51,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A and X.  N >= 0.
 C
-C     T       (input) DOUBLE PRECISION array, dimension (LDT,N)
+C     T       (input) REAL*16 array, dimension (LDT,N)
 C             The leading N-by-N upper Hessenberg part of this array
 C             must contain the upper quasi-triangular matrix T in Schur
 C             canonical form from a Schur factorization of A.
@@ -59,7 +59,7 @@ C
 C     LDT     INTEGER
 C             The leading dimension of array T.  LDT >= MAX(1,N).
 C
-C     U       (input) DOUBLE PRECISION array, dimension (LDU,N)
+C     U       (input) REAL*16 array, dimension (LDU,N)
 C             The leading N-by-N part of this array must contain the
 C             orthogonal matrix U from a real Schur factorization of A.
 C             If LYAPUN = 'R', the array U is not referenced.
@@ -69,7 +69,7 @@ C             The leading dimension of array U.
 C             LDU >= 1,        if LYAPUN = 'R';
 C             LDU >= MAX(1,N), if LYAPUN = 'O'.
 C
-C     X       (input) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (input) REAL*16 array, dimension (LDX,N)
 C             The leading N-by-N part of this array must contain the
 C             solution matrix X of the Lyapunov equation (reduced
 C             Lyapunov equation if LYAPUN = 'R').
@@ -80,12 +80,12 @@ C             The leading dimension of array X.
 C             LDX >= 1,        if JOB = 'S';
 C             LDX >= MAX(1,N), if JOB = 'T' or 'B'.
 C
-C     SEP     (output) DOUBLE PRECISION
+C     SEP     (output) REAL*16
 C             If JOB = 'S' or JOB = 'B', and INFO >= 0, SEP contains the
 C             estimated separation of the matrices op(A) and -op(A)'.
 C             If JOB = 'T' or N = 0, SEP is not referenced.
 C
-C     THNORM  (output) DOUBLE PRECISION
+C     THNORM  (output) REAL*16
 C             If JOB = 'T' or JOB = 'B', and INFO >= 0, THNORM contains
 C             the estimated 1-norm of operator Theta.
 C             If JOB = 'S' or N = 0, THNORM is not referenced.
@@ -94,7 +94,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N*N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= 2*N*N.
@@ -167,31 +167,31 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, HALF
+      REAL*16   ZERO, ONE, HALF
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, HALF = 0.5D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          JOB, LYAPUN, TRANA
       INTEGER            INFO, LDT, LDU, LDWORK, LDX, N
-      DOUBLE PRECISION   SEP, THNORM
+      REAL*16   SEP, THNORM
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   DWORK( * ), T( LDT, * ), U( LDU, * ),
+      REAL*16   DWORK( * ), T( LDT, * ), U( LDU, * ),
      $                   X( LDX, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            NOTRNA, UPDATE, WANTS, WANTT
       CHARACTER          TRANAT, UPLO
       INTEGER            INFO2, ITMP, KASE, NN
-      DOUBLE PRECISION   BIGNUM, EST, SCALE
+      REAL*16   BIGNUM, EST, SCALE
 C     ..
 C     .. Local Arrays ..
       INTEGER            ISAVE( 3 )
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH, DLANSY
+      REAL*16   DLAMCH, DLANSY
       EXTERNAL           DLAMCH, DLANSY, LSAME
 C     ..
 C     .. External Subroutines ..

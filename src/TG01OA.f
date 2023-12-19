@@ -30,7 +30,7 @@ C             The dimension of the descriptor state vector; also the
 C             order of square matrices A and E, the number of rows of
 C             matrix B, and the number of columns of matrix C.  N >= 0.
 C
-C     DCBA    (input/output) DOUBLE PRECISION array, dimension
+C     DCBA    (input/output) REAL*16 array, dimension
 C             (LDDCBA,N+1)
 C             On entry, the leading (N+1)-by-(N+1) part of this array
 C             must contain the original system matrices A, B, C, and D,
@@ -47,7 +47,7 @@ C     LDDCBA  INTEGER
 C             The leading dimension of the array DCBA.
 C             LDDCBA >= N+1.
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,*)
+C     E       (input/output) REAL*16 array, dimension (LDE,*)
 C             On entry, if JOBE = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the descriptor matrix E. The lower
@@ -95,17 +95,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBE
       INTEGER           INFO, LDDCBA, LDE, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DCBA(LDDCBA,*), E(LDE,*)
+      REAL*16  DCBA(LDDCBA,*), E(LDE,*)
 C     .. Local Scalars ..
       LOGICAL           UNITE
       INTEGER           K, N1
-      DOUBLE PRECISION  CS, SN, TEMP
+      REAL*16  CS, SN, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

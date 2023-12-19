@@ -90,7 +90,7 @@ C     M       (input) INTEGER
 C             The order of the matrix R, and the number of columns of
 C             the matrices B and L.  M >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, if JOBL = 'N', the leading N-by-N part of this
 C             array must contain the matrix A.
 C             On exit, if JOBL = 'N', and INFO = 0, the leading N-by-N
@@ -103,7 +103,7 @@ C             The leading dimension of array A.
 C             LDA >= MAX(1,N) if JOBL = 'N';
 C             LDA >= 1        if JOBL = 'Z'.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix B.
 C             On exit, if OUFACT = 1, and INFO = 0, the leading N-by-M
@@ -115,7 +115,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
 C             On entry, if JOBL = 'N', the leading N-by-N upper
 C             triangular part (if UPLO = 'U') or lower triangular part
 C             (if UPLO = 'L') of this array must contain the upper
@@ -136,7 +136,7 @@ C             The leading dimension of array Q.
 C             LDQ >= MAX(1,N) if JOBL = 'N';
 C             LDQ >= 1        if JOBL = 'Z'.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,M)
+C     R       (input/output) REAL*16 array, dimension (LDR,M)
 C             On entry, if FACT = 'N', the leading M-by-M upper
 C             triangular part (if UPLO = 'U') or lower triangular part
 C             (if UPLO = 'L') of this array must contain the upper
@@ -174,7 +174,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,M).
 C
-C     L       (input/output) DOUBLE PRECISION array, dimension (LDL,M)
+C     L       (input/output) REAL*16 array, dimension (LDL,M)
 C             On entry, if JOBL = 'N', the leading N-by-M part of this
 C             array must contain the matrix L.
 C             On exit, if JOBL = 'N', OUFACT = 1, and INFO = 0, the
@@ -208,7 +208,7 @@ C             OUFACT = 1:  Cholesky factorization of R has been used;
 C             OUFACT = 2:  UdU' (if UPLO = 'U') or LdL' (if UPLO = 'L')
 C                          factorization of R has been used.
 C
-C     G       (output) DOUBLE PRECISION array, dimension (LDG,N)
+C     G       (output) REAL*16 array, dimension (LDG,N)
 C             If JOBG = 'G', and INFO = 0, the leading N-by-N upper
 C             triangular part (if UPLO = 'U') or lower triangular part
 C             (if UPLO = 'L') of this array contains the upper
@@ -227,7 +227,7 @@ C
 C     IWORK   INTEGER array, dimension (M)
 C             If FACT = 'C' or FACT = 'U', this array is not referenced.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or LDWORK = -1, DWORK(1) returns the
 C             optimal value of LDWORK; if FACT = 'N' and LDWORK is set
 C             as specified below, DWORK(2) contains the reciprocal
@@ -311,7 +311,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DEF, FACT, FLAG, JOBG, JOBL, TRANS, UPLO
@@ -319,17 +319,17 @@ C     .. Scalar Arguments ..
      $                  N, OUFACT
 C     .. Array Arguments ..
       INTEGER           IPIV(*), IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), DWORK(*), G(LDG,*),
+      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), G(LDG,*),
      $                  L(LDL,*), Q(LDQ,*), R(LDR,*)
 C     .. Local Scalars ..
       LOGICAL           BNZER, LDEF, LFACTC, LFACTU, LFLAG, LJOBG,
      $                  LJOBL, LNFACT, LTRANS, LUPLOU
       CHARACTER         NT, TR, TRANSU
       INTEGER           J, WRKMIN, WRKOPT
-      DOUBLE PRECISION  EPS, RCOND, RNORM, TEMP
+      REAL*16  EPS, RCOND, RNORM, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE, DLANSY
+      REAL*16  DLAMCH, DLANGE, DLANSY
       EXTERNAL          DLAMCH, DLANGE, DLANSY, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEMM, DLASET, DPOCON, DPOTRF, DSYCON,

@@ -130,7 +130,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bH.  N >= 0, even.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ, N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix Z.
 C             On exit, if JOB = 'T', the leading N-by-N part of this
@@ -144,7 +144,7 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1, N).
 C
-C     H       (input/output) DOUBLE PRECISION array, dimension (LDH, N)
+C     H       (input/output) REAL*16 array, dimension (LDH, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the Hamiltonian matrix H (H22 = -H11', H12 = H12',
 C             H21 = H21').
@@ -156,7 +156,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of the array H.  LDH >= MAX(1, N).
 C
-C     Q1      (input/output) DOUBLE PRECISION array, dimension (LDQ1, N)
+C     Q1      (input/output) REAL*16 array, dimension (LDQ1, N)
 C             On entry, if COMPQ1 = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q01, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -172,7 +172,7 @@ C             The leading dimension of the array Q1.
 C             LDQ1 >= 1,         if COMPQ1 = 'N';
 C             LDQ1 >= MAX(1, N), if COMPQ1 = 'I' or COMPQ1 = 'U'.
 C
-C     Q2      (input/output) DOUBLE PRECISION array, dimension (LDQ2, N)
+C     Q2      (input/output) REAL*16 array, dimension (LDQ2, N)
 C             On entry, if COMPQ2 = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q02, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -188,7 +188,7 @@ C             The leading dimension of the array Q2.
 C             LDQ2 >= 1,         if COMPQ2 = 'N';
 C             LDQ2 >= MAX(1, N), if COMPQ2 = 'I' or COMPQ2 = 'U'.
 C
-C     U11     (input/output) DOUBLE PRECISION array, dimension
+C     U11     (input/output) REAL*16 array, dimension
 C                            (LDU11, N/2)
 C             On entry, if COMPU1 = 'U', then the leading N/2-by-N/2
 C             part of this array must contain the upper left block of a
@@ -206,7 +206,7 @@ C             The leading dimension of the array U11.
 C             LDU11 >= 1,           if COMPU1 = 'N';
 C             LDU11 >= MAX(1, N/2), if COMPU1 = 'I' or COMPU1 = 'U'.
 C
-C     U12     (input/output) DOUBLE PRECISION array, dimension
+C     U12     (input/output) REAL*16 array, dimension
 C                            (LDU12, N/2)
 C             On entry, if COMPU1 = 'U', then the leading N/2-by-N/2
 C             part of this array must contain the upper right block of a
@@ -225,7 +225,7 @@ C             The leading dimension of the array U12.
 C             LDU12 >= 1,           if COMPU1 = 'N';
 C             LDU12 >= MAX(1, N/2), if COMPU1 = 'I' or COMPU1 = 'U'.
 C
-C     U21     (input/output) DOUBLE PRECISION array, dimension
+C     U21     (input/output) REAL*16 array, dimension
 C                            (LDU21, N/2)
 C             On entry, if COMPU2 = 'U', then the leading N/2-by-N/2
 C             part of this array must contain the upper left block of a
@@ -243,7 +243,7 @@ C             The leading dimension of the array U21.
 C             LDU21 >= 1,           if COMPU2 = 'N';
 C             LDU21 >= MAX(1, N/2), if COMPU2 = 'I' or COMPU2 = 'U'.
 C
-C     U22     (input/output) DOUBLE PRECISION array, dimension
+C     U22     (input/output) REAL*16 array, dimension
 C                            (LDU22, N/2)
 C             On entry, if COMPU2 = 'U', then the leading N/2-by-N/2
 C             part of this array must contain the upper right block of a
@@ -262,7 +262,7 @@ C             The leading dimension of the array U22.
 C             LDU22 >= 1,           if COMPU2 = 'N';
 C             LDU22 >= MAX(1, N/2), if COMPU2 = 'I' or COMPU2 = 'U'.
 C
-C     T       (output) DOUBLE PRECISION array, dimension (LDT, N)
+C     T       (output) REAL*16 array, dimension (LDT, N)
 C             If JOB = 'T', the leading N-by-N part of this array
 C             contains the matrix Tout; otherwise, it contains the
 C             matrix T obtained just before the application of the
@@ -271,16 +271,16 @@ C
 C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= MAX(1, N).
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N/2)
+C     ALPHAR  (output) REAL*16 array, dimension (N/2)
 C             The real parts of each scalar alpha defining an eigenvalue
 C             of the pencil aS - bH.
 C
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N/2)
+C     ALPHAI  (output) REAL*16 array, dimension (N/2)
 C             The imaginary parts of each scalar alpha defining an
 C             eigenvalue of the pencil aS - bH.
 C             If ALPHAI(j) is zero, then the j-th eigenvalue is real.
 C
-C     BETA    (output) DOUBLE PRECISION array, dimension (N/2)
+C     BETA    (output) REAL*16 array, dimension (N/2)
 C             The scalars beta defining the eigenvalues of the pencil
 C             aS - bH.
 C             Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
@@ -326,7 +326,7 @@ C
 C     LIWORK  INTEGER
 C             The dimension of the array IWORK.   LIWORK >= N+18.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = 3, DWORK(1) returns the
 C             optimal LDWORK, and DWORK(2), ..., DWORK(7) contain the
 C             Frobenius norms of the factors of the formal matrix
@@ -419,7 +419,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, HALF, ONE, SEVEN
+      REAL*16   ZERO, HALF, ONE, SEVEN
       PARAMETER          ( ZERO  = 0.0D+0, HALF = 0.5D+0, ONE = 1.0D+0,
      $                     SEVEN = 7.0D+0 )
 C
@@ -430,7 +430,7 @@ C     .. Scalar Arguments ..
 C
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   ALPHAI( * ), ALPHAR( * ), BETA( * ),
+      REAL*16   ALPHAI( * ), ALPHAR( * ), BETA( * ),
      $                   DWORK( * ), H( LDH, * ), Q1( LDQ1, * ),
      $                   Q2( LDQ2, * ), T( LDT, * ), U11( LDU11, * ),
      $                   U12( LDU12, * ), U21( LDU21, * ),
@@ -444,17 +444,17 @@ C     .. Local Scalars ..
       INTEGER            EMAX, EMIN, I, I11, I22, I2X2, IMAT, IQ, ITAU,
      $                   IW, IWARN, IWRK, J, K, L, M, MINDW, MM, NBETA0,
      $                   NINF, OPTDW, P
-      DOUBLE PRECISION   BASE, CO, SI, TEMP, TMP1, TMP2
-      COMPLEX*16         EIG
+      REAL*16   BASE, CO, SI, TEMP, TMP1, TMP2
+      COMPLEX*32         EIG
 C
 C     .. Local Arrays ..
       INTEGER            IDUM( 1 )
-      DOUBLE PRECISION   DUM(  6 )
+      REAL*16   DUM(  6 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DLAMCH, DLANTR, DLAPY2
+      REAL*16   DLAMCH, DLANTR, DLAPY2
       EXTERNAL           DLAMCH, DLAPY2, IDAMAX, LSAME
 C
 C     .. External Subroutines ..

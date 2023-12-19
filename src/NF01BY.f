@@ -67,7 +67,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the vector IPAR.  LIPAR >= 1.
 C
-C     WB      (input) DOUBLE PRECISION array, dimension (LWB)
+C     WB      (input) REAL*16 array, dimension (LWB)
 C             The leading NWB = IPAR(1)*(NZ+2)+1 part of this array
 C             must contain the weights and biases of the network,
 C             WB = ( w(1,1), ..., w(1,NZ), ..., w(n,1), ...,  w(n,NZ),
@@ -79,7 +79,7 @@ C
 C     LWB     (input) INTEGER
 C             The length of array WB.  LWB >= NWB.
 C
-C     Z       (input) DOUBLE PRECISION array, dimension (LDZ, NZ)
+C     Z       (input) REAL*16 array, dimension (LDZ, NZ)
 C             The leading NSMP-by-NZ part of this array must contain the
 C             set of input samples,
 C             Z = ( Z(1,1),...,Z(1,NZ); ...; Z(NSMP,1),...,Z(NSMP,NZ) ).
@@ -87,11 +87,11 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of array Z.  LDZ >= MAX(1,NSMP).
 C
-C     E       (input) DOUBLE PRECISION array, dimension (NSMP)
+C     E       (input) REAL*16 array, dimension (NSMP)
 C             If CJTE = 'C', this array must contain the error vector e.
 C             If CJTE = 'N', this array is not referenced.
 C
-C     J       (output) DOUBLE PRECISION array, dimension (LDJ, NWB)
+C     J       (output) REAL*16 array, dimension (LDJ, NWB)
 C             The leading NSMP-by-NWB part of this array contains the
 C             Jacobian of the error function.
 C
@@ -100,14 +100,14 @@ C             The leading dimension of array J.  LDJ >= MAX(1,NSMP).
 C             Note that LDJ is an input parameter, except for
 C             IPAR(1) < 0 on entry, when it is an output parameter.
 C
-C     JTE     (output) DOUBLE PRECISION array, dimension (NWB)
+C     JTE     (output) REAL*16 array, dimension (NWB)
 C             If CJTE = 'C', this array contains the matrix-vector
 C             product J'*e.
 C             If CJTE = 'N', this array is not referenced.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             This argument is included for combatibility with SLICOT
 C             Library routine NF01BD.
 C
@@ -143,21 +143,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO
+      REAL*16  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         CJTE
       INTEGER           INFO, L, LDJ, LDWORK, LDZ, LIPAR, LWB, NSMP, NZ
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(*), E(*), J(LDJ,*), JTE(*), WB(*),
+      REAL*16  DWORK(*), E(*), J(LDJ,*), JTE(*), WB(*),
      $                  Z(LDZ,*)
       INTEGER           IPAR(*)
 C     .. Local Scalars ..
       LOGICAL           WJTE
       INTEGER           BP1, DI, I, IB, K, M, NN, NWB, WS
-      DOUBLE PRECISION  BIGNUM, SMLNUM, TMP
+      REAL*16  BIGNUM, SMLNUM, TMP
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..

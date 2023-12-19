@@ -39,7 +39,7 @@ C     N       (input) INTEGER
 C             The number of columns in the matrices A, E and the order
 C             of the matrix Z.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the A matrix of the pencil sE-A.
 C             On exit, the leading M-by-N part of this array contains
@@ -48,7 +48,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the E matrix of the pencil sE-A, to be reduced to
 C             column echelon form.
@@ -59,7 +59,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,M).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,*)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,*)
 C             On entry, if JOBQ = 'U', then the leading M-by-M part of
 C             this array must contain a given matrix Q (e.g. from a
 C             previous call to another SLICOT routine), and on exit, the
@@ -77,7 +77,7 @@ C     LDQ     INTEGER
 C             The leading dimension of array Q. If JOBQ = 'U' or
 C             JOBQ = 'I', LDQ >= MAX(1,M); if JOBQ = 'N', LDQ >= 1.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,*)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,*)
 C             On entry, if JOBZ = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Z (e.g. from a
 C             previous call to another SLICOT routine), and on exit, the
@@ -106,7 +106,7 @@ C             is a corner point and -j otherwise, for i = 1,2,...,M.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             A tolerance below which matrix elements are considered
 C             to be zero. If the user sets TOL to be less than (or
 C             equal to) zero then the tolerance is taken as
@@ -116,7 +116,7 @@ C             I = 1,2,...,M and J = 1,2,...,N.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (MAX(M,N))
+C     DWORK   REAL*16 array, dimension (MAX(M,N))
 C
 C     Error Indicator
 C
@@ -169,23 +169,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBQ, JOBZ
       INTEGER           INFO, LDA, LDE, LDQ, LDZ, M, N, RANKE
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           ISTAIR(*)
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
+      REAL*16  A(LDA,*), DWORK(*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBQI, LJOBZI, LZERO, UPDATQ, UPDATZ
       INTEGER           I, K, KM1, L, LK, MNK, NR1
-      DOUBLE PRECISION  EMX, EMXNRM, TAU, TOLER
+      REAL*16  EMX, EMXNRM, TAU, TOLER
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           IDAMAX
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DLARF, DLARFG, DLASET, DSWAP, XERBLA

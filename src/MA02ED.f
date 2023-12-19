@@ -20,7 +20,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N upper triangular part
 C             (if UPLO = 'U'), or lower triangular part (if UPLO = 'L'),
 C             of this array must contain the corresponding upper or
@@ -46,7 +46,7 @@ C     .. Scalar Arguments ..
       CHARACTER          UPLO
       INTEGER            LDA, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*)
+      REAL*16   A(LDA,*)
 C     .. Local Scalars ..
       INTEGER            J
 C     .. External Functions ..

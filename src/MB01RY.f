@@ -47,15 +47,15 @@ C
 C     M       (input) INTEGER           _
 C             The order of the matrices R, R, H and B.  M >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry.
 C
-C     BETA    (input) DOUBLE PRECISION
+C     BETA    (input) REAL*16
 C             The scalar beta. When beta is zero then H and B are not
 C             referenced.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,M)
+C     R       (input/output) REAL*16 array, dimension (LDR,M)
 C             On entry with UPLO = 'U', the leading M-by-M upper
 C             triangular part of this array must contain the upper
 C             triangular part of the matrix R; the strictly lower
@@ -73,7 +73,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,M).
 C
-C     H       (input) DOUBLE PRECISION array, dimension (LDH,M)
+C     H       (input) REAL*16 array, dimension (LDH,M)
 C             On entry, the leading M-by-M upper Hessenberg part of
 C             this array must contain the upper Hessenberg part of the
 C             matrix H.
@@ -84,7 +84,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of array H.  LDH >= MAX(1,M).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain the matrix B.
 C
@@ -93,7 +93,7 @@ C             The leading dimension of array B.  LDB >= MAX(1,M).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             LDWORK >= M, if  beta <> 0 and SIDE = 'L';
 C             LDWORK >= 0, if  beta =  0 or  SIDE = 'R'.
 C             This array is not referenced when beta = 0 or SIDE = 'R'.
@@ -134,20 +134,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SIDE, TRANS, UPLO
       INTEGER           INFO, LDB, LDH, LDR, M
-      DOUBLE PRECISION  ALPHA, BETA
+      REAL*16  ALPHA, BETA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  B(LDB,*), DWORK(*), H(LDH,*), R(LDR,*)
+      REAL*16  B(LDB,*), DWORK(*), H(LDH,*), R(LDR,*)
 C     .. Local Scalars ..
       LOGICAL           LSIDE, LTRANS, LUPLO
       INTEGER           I, J
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       EXTERNAL          DDOT, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEMV, DLASCL, DLASET, DSCAL, DSWAP,

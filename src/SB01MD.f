@@ -28,7 +28,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix Z.  N >= NCONT.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C             (LDA,NCONT)
 C             On entry, the leading NCONT-by-NCONT part of this array
 C             must contain the canonical form of the state dynamics
@@ -43,21 +43,21 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,NCONT).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (NCONT)
+C     B       (input/output) REAL*16 array, dimension (NCONT)
 C             On entry, this array must contain the canonical form of
 C             the input/state vector B as produced by SLICOT Library
 C             routine AB01MD.
 C             On exit, this array contains the transformed vector Z * B
 C             of the closed-loop system.
 C
-C     WR      (input) DOUBLE PRECISION array, dimension (NCONT)
-C     WI      (input) DOUBLE PRECISION array, dimension (NCONT)
+C     WR      (input) REAL*16 array, dimension (NCONT)
+C     WI      (input) REAL*16 array, dimension (NCONT)
 C             These arrays must contain the real and imaginary parts,
 C             respectively, of the desired poles of the closed-loop
 C             system. The poles can be unordered, except that complex
 C             conjugate pairs of poles must appear consecutively.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the orthogonal transformation matrix as produced
 C             by SLICOT Library routine AB01MD, which reduces the system
@@ -70,13 +70,13 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of array Z.  LDZ >= MAX(1,N).
 C
-C     G       (output) DOUBLE PRECISION array, dimension (NCONT)
+C     G       (output) REAL*16 array, dimension (NCONT)
 C             This array contains the one-dimensional state feedback
 C             matrix G of the original system.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (3*NCONT)
+C     DWORK   REAL*16 array, dimension (3*NCONT)
 C
 C     Error Indicator
 C
@@ -131,19 +131,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDZ, N, NCONT
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(*), DWORK(*), G(*), WI(*), WR(*),
+      REAL*16  A(LDA,*), B(*), DWORK(*), G(*), WI(*), WR(*),
      $                  Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL           COMPL
       INTEGER           I, IM1, K, L, LL, LP1, NCONT2, NI, NJ
-      DOUBLE PRECISION  B1, P, Q, R, S, T
+      REAL*16  B1, P, Q, R, S, T
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       EXTERNAL          DDOT
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMV, DLARTG, DLASET, DROT,

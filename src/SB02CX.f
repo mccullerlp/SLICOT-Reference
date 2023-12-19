@@ -9,10 +9,10 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     REIG    (input) DOUBLE PRECISION
+C     REIG    (input) REAL*16
 C             The real part of the current eigenvalue considered.
 C
-C     IEIG    (input) DOUBLE PRECISION
+C     IEIG    (input) REAL*16
 C             The imaginary part of the current eigenvalue considered.
 C
 C     METHOD
@@ -43,17 +43,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  HUNDRD
+      REAL*16  HUNDRD
       PARAMETER         ( HUNDRD = 100.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION  IEIG, REIG
+      REAL*16  IEIG, REIG
 C     ..
 C     .. Local Scalars ..
-      DOUBLE PRECISION  EPS, TOL
+      REAL*16  EPS, TOL
 C     ..
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       EXTERNAL          DLAMCH
 C     ..
 C     .. Intrinsic Functions ..

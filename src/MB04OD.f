@@ -34,7 +34,7 @@ C
 C     P       (input) INTEGER
 C             The number of rows of the matrices A and C.  P >= 0.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,N)
+C     R       (input/output) REAL*16 array, dimension (LDR,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix R.
 C             On exit, the leading N-by-N upper triangular part of this
@@ -46,7 +46,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, if UPLO = 'F', the leading P-by-N part of this
 C             array must contain the matrix A. If UPLO = 'U', the
 C             leading MIN(P,N)-by-N part of this array must contain the
@@ -60,7 +60,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,P).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -70,7 +70,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,M)
+C     C       (input/output) REAL*16 array, dimension (LDC,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the matrix C.
 C             On exit, the leading P-by-M part of this array contains
@@ -80,12 +80,12 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension (N)
+C     TAU     (output) REAL*16 array, dimension (N)
 C             The scalar factors of the elementary reflectors used.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (MAX(N-1,M))
+C     DWORK   REAL*16 array, dimension (MAX(N-1,M))
 C
 C     METHOD
 C
@@ -127,7 +127,7 @@ C     .. Scalar Arguments ..
       CHARACTER         UPLO
       INTEGER           LDA, LDB, LDC, LDR, M, N, P
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
      $                  R(LDR,*), TAU(*)
 C     .. Local Scalars ..
       LOGICAL           LUPLO

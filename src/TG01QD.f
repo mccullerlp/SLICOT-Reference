@@ -68,7 +68,7 @@ C
 C     P       (input) INTEGER
 C             The number of rows of the matrix C.  P >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The boundary of the domain of interest for the finite
 C             generalized eigenvalues of the pair (A,E). For a
 C             continuous-time system (DICO = 'C'), ALPHA is the boundary
@@ -77,7 +77,7 @@ C             while for a discrete-time system (DICO = 'D'), ALPHA >= 0
 C             represents the boundary value for the moduli of the
 C             generalized eigenvalues.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -108,7 +108,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, the leading N-by-N part of this array contains
@@ -120,7 +120,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -129,7 +129,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -156,7 +156,7 @@ C     IBLCK   (output) INTEGER array, dimension (N)
 C             IBLCK(i) contains the dimension of the i-th block in the
 C             staircase form (2), where i = 1,2,...,NIBLCK.
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (output) REAL*16 array, dimension (LDQ,N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal matrix Q, where Q' is the product of orthogonal
 C             transformations applied to A, E, and B on the left.
@@ -164,7 +164,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     Z       (output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (output) REAL*16 array, dimension (LDZ,N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal matrix Z, which is the product of orthogonal
 C             transformations applied to A, E, and C on the right.
@@ -172,9 +172,9 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1,N).
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             On exit, (ALPHAR(j) + ALPHAI(j)*i)/BETA(j), j = 1, ..., N,
 C             are the generalized eigenvalues.
 C             ALPHAR(j) + ALPHAI(j)*i, and BETA(j), j = 1, ..., N, are
@@ -188,7 +188,7 @@ C             complex conjugate pair, with ALPHAI(j+1) negative.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -203,7 +203,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -298,16 +298,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION ZERO, ONE
+      REAL*16 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, JOBFI, STDOM
       INTEGER          INFO, LDA, LDB, LDC, LDE, LDQ, LDWORK, LDZ, M, N,
      $                 N1, N2, N3, ND, NIBLCK, P
-      DOUBLE PRECISION ALPHA, TOL
+      REAL*16 ALPHA, TOL
 C     .. Array Arguments ..
       INTEGER          IBLCK( * ), IWORK(*)
-      DOUBLE PRECISION A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
+      REAL*16 A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
      $                 BETA(*), C(LDC,*), DWORK(*), E(LDE,*), Q(LDQ,*),
      $                 Z(LDZ,*)
 C     .. Local Scalars ..

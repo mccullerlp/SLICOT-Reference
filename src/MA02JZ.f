@@ -1,4 +1,4 @@
-      DOUBLE PRECISION FUNCTION MA02JZ( LTRAN1, LTRAN2, N, Q1, LDQ1, Q2,
+      REAL*16 FUNCTION MA02JZ( LTRAN1, LTRAN2, N, Q1, LDQ1, Q2,
      $                                  LDQ2, RES, LDRES )
 C
 C     PURPOSE
@@ -14,7 +14,7 @@ C     test wether Q is numerically a unitary symplectic matrix.
 C
 C     FUNCTION VALUE
 C
-C     MA02JZ  DOUBLE PRECISION
+C     MA02JZ  REAL*16
 C             The computed residual.
 C
 C     ARGUMENTS
@@ -36,14 +36,14 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices Q1 and Q2.  N >= 0.
 C
-C     Q1      (input) COMPLEX*16 array, dimension (LDQ1,N)
+C     Q1      (input) COMPLEX*32 array, dimension (LDQ1,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix op( Q1 ).
 C
 C     LDQ1    INTEGER
 C             The leading dimension of the array Q1.  LDQ1 >= MAX(1,N).
 C
-C     Q2      (input) COMPLEX*16 array, dimension (LDQ2,N)
+C     Q2      (input) COMPLEX*32 array, dimension (LDQ2,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix op( Q2 ).
 C
@@ -52,7 +52,7 @@ C             The leading dimension of the array Q2.  LDQ2 >= MAX(1,N).
 C
 C     Workspace
 C
-C     RES     DOUBLE PRECISION array, dimension (LDRES,N)
+C     RES     REAL*16 array, dimension (LDRES,N)
 C
 C     LDRES   INTEGER
 C             The leading dimension of the array RES.
@@ -78,24 +78,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16        ZERO, ONE
+      COMPLEX*32        ZERO, ONE
       PARAMETER        ( ZERO = (0.0D0,0.0D0), ONE = (1.0D0,0.0D0) )
-      DOUBLE PRECISION  TWO
+      REAL*16  TWO
       PARAMETER         ( TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           LTRAN1, LTRAN2
       INTEGER           LDQ1, LDQ2, LDRES, N
 C     .. Array Arguments ..
-      COMPLEX*16        Q1(LDQ1,*), Q2(LDQ2,*), RES(LDRES,*)
+      COMPLEX*32        Q1(LDQ1,*), Q2(LDQ2,*), RES(LDRES,*)
 C     .. Local Scalars ..
       INTEGER           I
-      DOUBLE PRECISION  TEMP
+      REAL*16  TEMP
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUMMY(1)
+      REAL*16  DUMMY(1)
 C     .. External Subroutines ..
       EXTERNAL          ZGEMM
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAPY2, ZLANGE
+      REAL*16  DLAPY2, ZLANGE
       EXTERNAL          DLAPY2, ZLANGE
 C     .. Intrinsic Functions ..
       INTRINSIC         SQRT

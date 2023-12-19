@@ -33,7 +33,7 @@ C             The dimension of the descriptor state vector; also the
 C             order of square matrices A and E, the number of rows of
 C             matrix B, and the number of columns of matrix C.  N >= 0.
 C
-C     DCBA    (input/output) DOUBLE PRECISION array, dimension
+C     DCBA    (input/output) REAL*16 array, dimension
 C             (LDDCBA,N+1)
 C             On entry, the leading (N+1)-by-(N+1) part of this array
 C             must contain the original system matrices A, B, C, and D,
@@ -48,7 +48,7 @@ C
 C     LDDCBA  INTEGER
 C             The leading dimension of the array DCBA.  LDDCBA >= N+1.
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,*)
+C     E       (input/output) REAL*16 array, dimension (LDE,*)
 C             On entry, if JOBE = 'G', the leading N-by-N part of this
 C             array must contain the nonsingular descriptor matrix E.
 C             On exit, if JOBE = 'G', the leading NZ-by-NZ part of this
@@ -63,12 +63,12 @@ C
 C     NZ      (output) INTEGER
 C             The order of the reduced system.
 C
-C     G       (output) DOUBLE PRECISION
+C     G       (output) REAL*16
 C             The gain of the reduced system.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in determining if the transformed
 C             d has a "sufficiently" large magnitude. If the user sets
 C             TOL > 0, then the given value of TOL is used. If the user
@@ -79,7 +79,7 @@ C             Library routine DLAMCH).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C             On exit, if INFO = -11, DWORK(1) returns the minimum value
@@ -134,25 +134,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, THREE, FOUR, ZERO
+      REAL*16  ONE, THREE, FOUR, ZERO
       PARAMETER         ( ONE  = 1.0D0, THREE = 3.0D0, FOUR = 4.0D0,
      $                    ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBE
       INTEGER           INFO, LDDCBA, LDWORK, LDE, N, NZ
-      DOUBLE PRECISION  G, TOL
+      REAL*16  G, TOL
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DCBA(LDDCBA,*), DWORK(*), E(LDE,*)
+      REAL*16  DCBA(LDDCBA,*), DWORK(*), E(LDE,*)
 C     .. Local Scalars ..
       CHARACTER         JOBT
       LOGICAL           DESCR, LQUERY
       INTEGER           I, IMAX, ITAU, IWRK, J, JF, MAXWRK, MINWRK, N1,
      $                  NC
-      DOUBLE PRECISION  ABSD, MAXA, NRMB, NRMC, TAU, TOLDEF
+      REAL*16  ABSD, MAXA, NRMB, NRMC, TAU, TOLDEF
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           IDAMAX
-      DOUBLE PRECISION  DLAMCH, DLANGE, DNRM2
+      REAL*16  DLAMCH, DLANGE, DNRM2
       EXTERNAL          DLAMCH, DLANGE, DNRM2, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEQRF, DLARF, DLARFG, DLASET, DORMQR,

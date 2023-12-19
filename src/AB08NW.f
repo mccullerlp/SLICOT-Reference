@@ -41,7 +41,7 @@ C
 C     P       (input) INTEGER.
 C             The number of rows of the matrix C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A of the system.
 C             On exit, the leading NFZ-by-NFZ part of this array
@@ -50,7 +50,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix B of the system.
 C             On exit, this matrix does not contain useful information.
@@ -59,7 +59,7 @@ C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= 1, and
 C             LDB >= MAX(1,N), if M > 0.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C of the system.
 C             On exit, this matrix does not contain useful information.
@@ -67,7 +67,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             direct transmission matrix D of the system.
 C
@@ -113,7 +113,7 @@ C     KRONL   (output) INTEGER array, dimension (N+1)
 C             The leading NKROL elements of this array contain the
 C             left Kronecker (row) indices.
 C
-C     E       (output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (output) REAL*16 array, dimension (LDE,N)
 C             The leading NFZ-by-NFZ part of this array contains the
 C             matrix Ef of the reduced pencil.
 C
@@ -122,7 +122,7 @@ C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -137,7 +137,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (MAX(M,P))
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -232,26 +232,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, ZERO
+      REAL*16  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         EQUIL
       INTEGER           DINFZ, INFO, LDA, LDB, LDC, LDD, LDE, LDWORK,
      $                  M, N, NFZ, NINFE, NIZ, NKROL, NKROR, NRANK, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           INFE(*),  INFZ(*),  IWORK(*), KRONL(*), KRONR(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), E(LDE,*)
 C     .. Local Scalars ..
       LOGICAL           LEQUIL, LQUERY, QRET
       INTEGER           I, I0, I1, II, ITAU, J, JWORK, KABCD, LABCD2,
      $                  LDABCD, MM, MPM, MPN, MU, NN, NSINFE, NU, NU1,
      $                  PP, WRKOPT
-      DOUBLE PRECISION  MAXRED, SVLMAX, TOLER
+      REAL*16  MAXRED, SVLMAX, TOLER
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB08NY, DLACPY, DLASET, DORMRZ, DTZRZF, MA02BD,

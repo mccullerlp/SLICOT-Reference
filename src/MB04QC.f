@@ -77,7 +77,7 @@ C     K       (input) INTEGER
 C             The order of the triangular matrices defining R, S and T.
 C             M >= K >= 0.
 C
-C     V       (input) DOUBLE PRECISION array, dimension
+C     V       (input) REAL*16 array, dimension
 C                     (LDV,K) if STOREV = 'C',
 C                     (LDV,M) if STOREV = 'R'
 C             On entry with STOREV = 'C', the leading M-by-K part of
@@ -92,7 +92,7 @@ C             The leading dimension of the array V.
 C             LDV >= MAX(1,M),  if STOREV = 'C';
 C             LDV >= MAX(1,K),  if STOREV = 'R'.
 C
-C     W       (input) DOUBLE PRECISION array, dimension
+C     W       (input) REAL*16 array, dimension
 C                     (LDW,K) if STOREW = 'C',
 C                     (LDW,M) if STOREW = 'R'
 C             On entry with STOREW = 'C', the leading M-by-K part of
@@ -107,7 +107,7 @@ C             The leading dimension of the array W.
 C             LDW >= MAX(1,M),  if STOREW = 'C';
 C             LDW >= MAX(1,K),  if STOREW = 'R'.
 C
-C     RS      (input) DOUBLE PRECISION array, dimension (K,6*K)
+C     RS      (input) REAL*16 array, dimension (K,6*K)
 C             On entry, the leading K-by-6*K part of this array must
 C             contain the upper triangular matrices defining the factors
 C             R and S of the symplectic block reflector Q. The
@@ -117,7 +117,7 @@ C
 C     LDRS    INTEGER
 C             The leading dimension of the array RS.  LDRS >= MAX(1,K).
 C
-C     T       (input) DOUBLE PRECISION array, dimension (K,9*K)
+C     T       (input) REAL*16 array, dimension (K,9*K)
 C             On entry, the leading K-by-9*K part of this array must
 C             contain the upper triangular matrices defining the factor
 C             T of the symplectic block reflector Q. The (strictly)
@@ -126,7 +126,7 @@ C
 C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= MAX(1,K).
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C                     (LDA,N) if TRANA = 'N',
 C                     (LDA,M) if TRANA = 'C' or TRANA = 'T'
 C             On entry with TRANA = 'N', the leading M-by-N part of this
@@ -139,7 +139,7 @@ C             The leading dimension of the array A.
 C             LDA >= MAX(1,M),  if TRANA = 'N';
 C             LDA >= MAX(1,N),  if TRANA = 'C' or TRANA = 'T'.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C                     (LDB,N) if TRANB = 'N',
 C                     (LDB,M) if TRANB = 'C' or TRANB = 'T'
 C             On entry with TRANB = 'N', the leading M-by-N part of this
@@ -154,7 +154,7 @@ C             LDB >= MAX(1,N),  if TRANB = 'C' or TRANB = 'T'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK), where
+C     DWORK   REAL*16 array, dimension (LDWORK), where
 C             LDWORK >= 8*N*K,   if STRAB = 'Z',
 C             LDWORK >= 9*N*K,   if STRAB = 'N'.
 C
@@ -187,14 +187,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DIRECT, STOREV, STOREW, STRAB, TRANA, TRANB,
      $                  TRANQ
       INTEGER           K, LDA, LDB, LDRS, LDT, LDV, LDW, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), DWORK(*), RS(LDRS,*),
+      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), RS(LDRS,*),
      $                  T(LDT,*), V(LDV,*), W(LDW,*)
 C     .. Local Scalars ..
       LOGICAL           LA1B1, LCOLV, LCOLW, LTRA, LTRB, LTRQ
@@ -202,7 +202,7 @@ C     .. Local Scalars ..
      $                  PDW7, PDW8, PDW9, PR1, PR2, PR3, PS1, PS2, PS3,
      $                  PT11, PT12, PT13, PT21, PT22, PT23, PT31, PT32,
      $                  PT33
-      DOUBLE PRECISION  FACT
+      REAL*16  FACT
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

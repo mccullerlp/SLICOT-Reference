@@ -26,10 +26,10 @@ C     DP3     (input/output) INTEGER
 C             On entry, the degree of the polynomial P3(x).  DP3 >= -1.
 C             On exit, the degree of the polynomial P(x).
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar value alpha of the problem.
 C
-C     P1      (input) DOUBLE PRECISION array, dimension (lenp1)
+C     P1      (input) REAL*16 array, dimension (lenp1)
 C             where lenp1 = DP1 + 1 if DP1 >= 0 and 1 otherwise.
 C             If DP1 >= 0, then this array must contain the
 C             coefficients of P1(x) in increasing powers of x.
@@ -37,7 +37,7 @@ C             If DP1 = -1, then P1(x) is taken to be the zero
 C             polynomial, P1 is not referenced and can be supplied
 C             as a dummy array.
 C
-C     P2      (input) DOUBLE PRECISION array, dimension (lenp2)
+C     P2      (input) REAL*16 array, dimension (lenp2)
 C             where lenp2 = DP2 + 1 if DP2 >= 0 and 1 otherwise.
 C             If DP2 >= 0, then this array must contain the
 C             coefficients of P2(x) in increasing powers of x.
@@ -45,7 +45,7 @@ C             If DP2 = -1, then P2(x) is taken to be the zero
 C             polynomial, P2 is not referenced and can be supplied
 C             as a dummy array.
 C
-C     P3      (input/output) DOUBLE PRECISION array, dimension (lenp3)
+C     P3      (input/output) REAL*16 array, dimension (lenp3)
 C             where lenp3 = MAX(DP1+DP2,DP3,0) + 1.
 C             On entry, if DP3 >= 0, then this array must contain the
 C             coefficients of P3(x) in increasing powers of x.
@@ -123,17 +123,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DP1, DP2, DP3, INFO
-      DOUBLE PRECISION  ALPHA
+      REAL*16  ALPHA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  P1(*), P2(*), P3(*)
+      REAL*16  P1(*), P2(*), P3(*)
 C     .. Local Scalars ..
       INTEGER           D1, D2, D3, DMAX, DMIN, DSUM, E3, I, J, K, L
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       EXTERNAL          DDOT
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DSCAL, XERBLA

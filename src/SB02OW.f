@@ -9,15 +9,15 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     ALPHAR  (input) DOUBLE PRECISION
+C     ALPHAR  (input) REAL*16
 C             The real part of the numerator of the current eigenvalue
 C             considered.
 C
-C     ALPHAI  (input) DOUBLE PRECISION
+C     ALPHAI  (input) REAL*16
 C             The imaginary part of the numerator of the current
 C             eigenvalue considered.
 C
-C     BETA    (input) DOUBLE PRECISION
+C     BETA    (input) REAL*16
 C             The (real) denominator of the current eigenvalue
 C             considered. It is assumed that BETA <> 0 (regular case).
 C
@@ -51,10 +51,10 @@ C     system, optimal regulator, Schur form.
 C
 C     ******************************************************************
 C
-      DOUBLE PRECISION   ZERO
+      REAL*16   ZERO
       PARAMETER          ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION   ALPHAR, ALPHAI, BETA
+      REAL*16   ALPHAR, ALPHAI, BETA
 C     .. Executable Statements ..
 C
       SB02OW = ( ALPHAR.LT.ZERO .AND. BETA.GT.ZERO ) .OR.

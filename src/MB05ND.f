@@ -18,10 +18,10 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     DELTA   (input) DOUBLE PRECISION
+C     DELTA   (input) REAL*16
 C             The scalar value delta of the problem.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix A of the problem. (Array A need not be set if
 C             DELTA = 0.)
@@ -29,14 +29,14 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= max(1,N).
 C
-C     EX      (output) DOUBLE PRECISION array, dimension (LDEX,N)
+C     EX      (output) REAL*16 array, dimension (LDEX,N)
 C             The leading N-by-N part of this array contains an
 C             approximation to F(delta).
 C
 C     LDEX    INTEGER
 C             The leading dimension of array EX.  LDEX >= MAX(1,N).
 C
-C     EXINT   (output) DOUBLE PRECISION array, dimension (LDEXIN,N)
+C     EXINT   (output) REAL*16 array, dimension (LDEXIN,N)
 C             The leading N-by-N part of this array contains an
 C             approximation to H(delta).
 C
@@ -45,7 +45,7 @@ C             The leading dimension of array EXINT.  LDEXIN >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in determining the order of the
 C             Pade approximation to H(t), where t is a scale factor
 C             determined by the routine. A reasonable value for TOL may
@@ -56,7 +56,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -127,22 +127,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, HALF, ONE, ONE64, THREE, FOUR8
+      REAL*16  ZERO, HALF, ONE, ONE64, THREE, FOUR8
       PARAMETER         ( ZERO = 0.0D0, HALF = 0.5D0, ONE = 1.0D0,
      $                    ONE64 = 1.64D0, THREE = 3.0D0, FOUR8 = 4.8D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDEX, LDEXIN, LDWORK, N
-      DOUBLE PRECISION  DELTA, TOL
+      REAL*16  DELTA, TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), EX(LDEX,*), EXINT(LDEXIN,*)
+      REAL*16  A(LDA,*), DWORK(*), EX(LDEX,*), EXINT(LDEXIN,*)
 C     .. Local Scalars ..
       INTEGER           I, I2IQ1, IJ, IQ, J, JSCAL, KK, L, NN
-      DOUBLE PRECISION  COEFFD, COEFFN, DELSC, EPS, ERR, F2IQ1,
+      REAL*16  COEFFD, COEFFN, DELSC, EPS, ERR, F2IQ1,
      $                  FNORM, FNORM2, QMAX, SMALL
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMM, DGEMV, DGESV, DLACPY,

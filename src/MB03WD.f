@@ -74,7 +74,7 @@ C             Specify the rows of Z to which the transformations must be
 C             applied if COMPZ = 'I' or COMPZ = 'V'.
 C             1 <= ILOZ <= ILO; IHI <= IHIZ <= N.
 C
-C     H       (input/output) DOUBLE PRECISION array, dimension
+C     H       (input/output) REAL*16 array, dimension
 C             (LDH1,LDH2,P)
 C             On entry, the leading N-by-N part of H(*,*,1) must contain
 C             the upper Hessenberg matrix H_1 and the leading N-by-N
@@ -96,7 +96,7 @@ C     LDH2    INTEGER
 C             The second leading dimension of the array H.
 C             LDH2 >= max(1,N).
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension
+C     Z       (input/output) REAL*16 array, dimension
 C             (LDZ1,LDZ2,P)
 C             On entry, if COMPZ = 'V', the leading N-by-N-by-P part of
 C             this array must contain the current matrix Q of
@@ -120,8 +120,8 @@ C             The second leading dimension of the array Z.
 C             LDZ2 >= 1,        if COMPZ = 'N';
 C             LDZ2 >= max(1,N), if COMPZ = 'I' or COMPZ = 'V'.
 C
-C     WR      (output) DOUBLE PRECISION array, dimension (N)
-C     WI      (output) DOUBLE PRECISION array, dimension (N)
+C     WR      (output) REAL*16 array, dimension (N)
+C     WI      (output) REAL*16 array, dimension (N)
 C             The real and imaginary parts, respectively, of the
 C             computed eigenvalues ILO to IHI are stored in the
 C             corresponding elements of WR and WI. If two eigenvalues
@@ -133,7 +133,7 @@ C             diagonal of the Schur form returned in H.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= IHI-ILO+P-1.
@@ -202,9 +202,9 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, HALF
+      REAL*16  ZERO, ONE, HALF
       PARAMETER         ( ZERO = 0.0D+0, ONE = 1.0D+0, HALF = 0.5D+0 )
-      DOUBLE PRECISION  DAT1, DAT2
+      REAL*16  DAT1, DAT2
       PARAMETER         ( DAT1 = 0.75D+0, DAT2 = -0.4375D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -213,24 +213,24 @@ C     .. Scalar Arguments ..
      $                  LDZ1, LDZ2, N, P
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK( * ), H( LDH1, LDH2, * ), WI( * ),
+      REAL*16  DWORK( * ), H( LDH1, LDH2, * ), WI( * ),
      $                  WR( * ), Z( LDZ1, LDZ2, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL           INITZ, WANTT, WANTZ
       INTEGER           I, I1, I2, ITN, ITS, J, JMAX, JMIN, K, L, M,
      $                  NH, NR, NROW, NZ
-      DOUBLE PRECISION  AVE, CS, DISC, H11, H12, H21, H22, H33, H33S,
+      REAL*16  AVE, CS, DISC, H11, H12, H21, H22, H33, H33S,
      $                  H43H34, H44, H44S, HH10, HH11, HH12, HH21, HH22,
      $                  HP00, HP01, HP02, HP11, HP12, HP22, OVFL, S,
      $                  SMLNUM, SN, TAU, TST1, ULP, UNFL, V1, V2, V3
 C     ..
 C     .. Local Arrays ..
-      DOUBLE PRECISION  V( 3 )
+      REAL*16  V( 3 )
 C     ..
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANHS, DLANTR
+      REAL*16  DLAMCH, DLANHS, DLANTR
       EXTERNAL          DLAMCH, DLANHS, DLANTR, LSAME
 C     ..
 C     .. External Subroutines ..

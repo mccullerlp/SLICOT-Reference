@@ -44,7 +44,7 @@ C             columns 1:ILO-1. ILO is normally set by a previous call
 C             to MB04DD; otherwise it should be set to 1.
 C             1 <= ILO <= N, if N > 0; ILO=1, if N=0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -55,7 +55,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,N)
+C     B       (input/output) REAL*16 array, dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix B.
 C             On exit, the leading N-by-N part of this array contains
@@ -66,7 +66,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     G       (input/output) DOUBLE PRECISION array, dimension (LDG,N)
+C     G       (input/output) REAL*16 array, dimension (LDG,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix G.
 C             On exit, the leading N-by-N part of this array contains
@@ -75,7 +75,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= MAX(1,N).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix Q.
 C             On exit, the leading N-by-N part of this array contains
@@ -85,31 +85,31 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDG >= MAX(1,N).
 C
-C     CSL     (output) DOUBLE PRECISION array, dimension (2N)
+C     CSL     (output) REAL*16 array, dimension (2N)
 C             On exit, the first 2N elements of this array contain the
 C             cosines and sines of the symplectic Givens rotations
 C             applied from the left-hand side used to compute the SURV
 C             decomposition.
 C
-C     CSR     (output) DOUBLE PRECISION array, dimension (2N-2)
+C     CSR     (output) REAL*16 array, dimension (2N-2)
 C             On exit, the first 2N-2 elements of this array contain the
 C             cosines and sines of the symplectic Givens rotations
 C             applied from the right-hand side used to compute the SURV
 C             decomposition.
 C
-C     TAUL    (output) DOUBLE PRECISION array, dimension (N)
+C     TAUL    (output) REAL*16 array, dimension (N)
 C             On exit, the first N elements of this array contain the
 C             scalar factors of some of the elementary reflectors
 C             applied from the left-hand side.
 C
-C     TAUR    (output) DOUBLE PRECISION array, dimension (N-1)
+C     TAUR    (output) REAL*16 array, dimension (N-1)
 C             On exit, the first N-1 elements of this array contain the
 C             scalar factors of some of the elementary reflectors
 C             applied from the right-hand side.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -16,  DWORK(1)  returns the minimum
@@ -211,18 +211,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANA, TRANB
       INTEGER           ILO, INFO, LDA, LDB, LDG, LDQ, LDWORK, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), CSL(*), CSR(*), DWORK(*),
+      REAL*16  A(LDA,*), B(LDB,*), CSL(*), CSR(*), DWORK(*),
      $                  G(LDG,*), Q(LDQ,*), TAUL(*), TAUR(*)
 C     .. Local Scalars ..
       LOGICAL           LTRA, LTRB
       INTEGER           I
-      DOUBLE PRECISION  ALPHA, C, NU, S, TEMP
+      REAL*16  ALPHA, C, NU, S, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

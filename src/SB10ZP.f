@@ -25,7 +25,7 @@ C     N       (input/output) INTEGER
 C             On entry, the order of the original system.  N >= 0.
 C             On exit, the order of the transformed, minimal system.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original system matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -34,18 +34,18 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (N)
+C     B       (input/output) REAL*16 array, dimension (N)
 C             On entry, this array must contain the original system
 C             vector B.
 C             On exit, this array contains the transformed vector B.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (N)
+C     C       (input/output) REAL*16 array, dimension (N)
 C             On entry, this array must contain the original system
 C             vector C.
 C             On exit, this array contains the transformed vector C.
 C             The first N-1 elements are zero (for the exit value of N).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (1)
+C     D       (input/output) REAL*16 array, dimension (1)
 C             On entry, this array must contain the original system
 C             scalar D.
 C             On exit, this array contains the transformed scalar D.
@@ -54,7 +54,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (max(2,N+1))
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -113,7 +113,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -121,12 +121,12 @@ C     .. Scalar Arguments ..
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), B( * ), C( * ), D( * ), DWORK( * )
+      REAL*16   A( LDA, * ), B( * ), C( * ), D( * ), DWORK( * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            I, IDW1, IDW2, IDW3, IMP, IMZ, INFO2, IWA, IWP,
      $                   IWPS, IWQ, IWQS, LDW1, MAXWRK, REP, REZ
-      DOUBLE PRECISION   RCOND, SCALB, SCALC, SCALD
+      REAL*16   RCOND, SCALB, SCALC, SCALD
 C     ..
 C     .. Local Arrays ..
       INTEGER            INDEX(1)

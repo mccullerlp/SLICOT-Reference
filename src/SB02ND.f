@@ -68,7 +68,7 @@ C             P >= M for DICO = 'C';
 C             P >= 0 for DICO = 'D'.
 C             This parameter must be specified only for FACT = 'D'.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             If DICO = 'D', the leading N-by-N part of this array must
 C             contain the state matrix A of the system.
 C             If DICO = 'C', this array is not referenced.
@@ -78,7 +78,7 @@ C             The leading dimension of array A.
 C             LDA >= MAX(1,N) if DICO = 'D';
 C             LDA >= 1        if DICO = 'C'.
 C
-C     B       (input/worksp.) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/worksp.) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input matrix B of the system.
 C             If DICO = 'D' and FACT = 'D' or 'C', the contents of this
@@ -94,7 +94,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,M)
+C     R       (input/output) REAL*16 array, dimension (LDR,M)
 C             On entry, if FACT = 'N', the leading M-by-M upper
 C             triangular part (if UPLO = 'U') or lower triangular part
 C             (if UPLO = 'L') of this array must contain the upper
@@ -152,7 +152,7 @@ C             R + B'XB, as produced by LAPACK routine DSYTRF.
 C             This array is not referenced if FACT = 'D', or FACT = 'C',
 C             or N = 0.
 C
-C     L       (input) DOUBLE PRECISION array, dimension (LDL,M)
+C     L       (input) REAL*16 array, dimension (LDL,M)
 C             If JOBL = 'N', the leading N-by-M part of this array must
 C             contain the cross weighting matrix L.
 C             If JOBL = 'Z', this array is not referenced.
@@ -162,7 +162,7 @@ C             The leading dimension of array L.
 C             LDL >= MAX(1,N) if JOBL = 'N';
 C             LDL >= 1        if JOBL = 'Z'.
 C
-C     X       (input/output) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (input/output) REAL*16 array, dimension (LDX,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the solution matrix X of the algebraic Riccati
 C             equation as produced by SLICOT Library routines SB02MD or
@@ -184,12 +184,12 @@ C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= MAX(1,N).
 C
-C     RNORM   (input) DOUBLE PRECISION
+C     RNORM   (input) REAL*16
 C             If FACT = 'U', this parameter must contain the 1-norm of
 C             the original matrix R (before factoring it).
 C             Otherwise, this parameter is not used.
 C
-C     F       (output) DOUBLE PRECISION array, dimension (LDF,N)
+C     F       (output) REAL*16 array, dimension (LDF,N)
 C             The leading M-by-N part of this array contains the
 C             optimal feedback matrix F.
 C             This array is not referenced if DICO = 'C' and FACT = 'D'
@@ -215,7 +215,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or LDWORK = -1, DWORK(1) returns the
 C             optimal value of LDWORK, and for LDWORK set as specified
 C             below, DWORK(2) contains the reciprocal condition number
@@ -318,28 +318,28 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO
+      REAL*16  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, JOBL, UPLO
       INTEGER           INFO, LDA, LDB, LDF, LDL, LDR, LDWORK, LDX, M,
      $                  N, P
-      DOUBLE PRECISION  RNORM
+      REAL*16  RNORM
 C     .. Array Arguments ..
       INTEGER           IPIV(*), IWORK(*), OUFACT(2)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), DWORK(*), F(LDF,*),
+      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), F(LDF,*),
      $                  L(LDL,*), R(LDR,*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           DISCR, LFACTA, LFACTC, LFACTD, LFACTU, LNFACT,
      $                  LUPLOU, SUFWRK, WITHL
       CHARACTER         NT, NUPLO, TR, TRL
       INTEGER           I, IFAIL, JW, JZ, MS, NR, WRKMIN, WRKOPT
-      DOUBLE PRECISION  EPS, RCOND, RNORMP, TEMP
+      REAL*16  EPS, RCOND, RNORMP, TEMP
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUMMY(1)
+      REAL*16  DUMMY(1)
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANSY
+      REAL*16  DLAMCH, DLANSY
       EXTERNAL          DLAMCH, DLANSY, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMM, DGEQRF, DLACPY, DLASET,

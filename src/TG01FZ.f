@@ -63,7 +63,7 @@ C
 C     P       (input) INTEGER
 C             The number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) COMPLEX*16 array, dimension (LDA,N)
+C     A       (input/output) COMPLEX*32 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading L-by-N part of this array contains
@@ -81,7 +81,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) COMPLEX*16 array, dimension (LDE,N)
+C     E       (input/output) COMPLEX*32 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, the leading L-by-N part of this array contains
@@ -97,7 +97,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) COMPLEX*16 array, dimension (LDB,M)
+C     B       (input/output) COMPLEX*32 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the input/state matrix B.
 C             On exit, the leading L-by-M part of this array contains
@@ -107,7 +107,7 @@ C     LDB     INTEGER
 C             The leading dimension of array B.
 C             LDB >= MAX(1,L) if M > 0 or LDB >= 1 if M = 0.
 C
-C     C       (input/output) COMPLEX*16 array, dimension (LDC,N)
+C     C       (input/output) COMPLEX*32 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -116,7 +116,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     Q       (input/output) COMPLEX*16 array, dimension (LDQ,L)
+C     Q       (input/output) COMPLEX*32 array, dimension (LDQ,L)
 C             If COMPQ = 'N':  Q is not referenced.
 C             If COMPQ = 'I':  on entry, Q need not be set;
 C                              on exit, the leading L-by-L part of this
@@ -134,7 +134,7 @@ C             The leading dimension of array Q.
 C             LDQ >= 1,        if COMPQ = 'N';
 C             LDQ >= MAX(1,L), if COMPQ = 'U' or 'I'.
 C
-C     Z       (input/output) COMPLEX*16 array, dimension (LDZ,N)
+C     Z       (input/output) COMPLEX*32 array, dimension (LDZ,N)
 C             If COMPZ = 'N':  Z is not referenced.
 C             If COMPZ = 'I':  on entry, Z need not be set;
 C                              on exit, the leading N-by-N part of this
@@ -164,7 +164,7 @@ C             If JOBA = 'N', then RNKA22 is not referenced.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in determining the rank of E
 C             and of A22. If the user sets TOL > 0, then the given
 C             value of TOL is used as a lower bound for the
@@ -182,9 +182,9 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (2*N)
+C     DWORK   REAL*16 array, dimension (2*N)
 C
-C     ZWORK   DOUBLE PRECISION array, dimension (LZWORK)
+C     ZWORK   REAL*16 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal value
 C             of LZWORK.
 C
@@ -277,32 +277,32 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16         ONE, ZERO
+      COMPLEX*32         ONE, ZERO
       PARAMETER          ( ONE  = ( 1.0D+0, 0.0D+0 ),
      $                     ZERO = ( 0.0D+0, 0.0D+0 ) )
-      DOUBLE PRECISION   DONE, DZERO
+      REAL*16   DONE, DZERO
       PARAMETER          ( DONE = 1.0D+0, DZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ, JOBA
       INTEGER            INFO, L, LDA, LDB, LDC, LDE, LDQ, LDZ, LZWORK,
      $                   M, N, P, RANKE, RNKA22
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      COMPLEX*16         A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      COMPLEX*32         A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   E( LDE, * ), Q( LDQ, * ), Z( LDZ, * ),
      $                   ZWORK( * )
-      DOUBLE PRECISION   DWORK( * )
+      REAL*16   DWORK( * )
 C     .. Local Scalars ..
       LOGICAL            ILQ, ILZ, LQUERY, REDA, REDTR, WITHB, WITHC
       INTEGER            I, ICOMPQ, ICOMPZ, IR1, IRE1, J, K, KW, LA22,
      $                   LH, LN, LWR, NA22, WRKOPT
-      DOUBLE PRECISION   SVLMAX, TOLDEF
+      REAL*16   SVLMAX, TOLDEF
 C     .. Local Arrays ..
-      DOUBLE PRECISION   SVAL(3)
+      REAL*16   SVAL(3)
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH, ZLANGE
+      REAL*16   DLAMCH, ZLANGE
       EXTERNAL           DLAMCH, LSAME, ZLANGE
 C     .. External Subroutines ..
       EXTERNAL           MB3OYZ, XERBLA, ZLASET, ZSWAP, ZTZRZF, ZUNMQR,

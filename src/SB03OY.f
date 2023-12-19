@@ -56,7 +56,7 @@ C             ISGN may only be 1 or -1.
 C
 C     Input/Output Parameters
 C
-C     S       (input/output) DOUBLE PRECISION array, dimension (LDS,2)
+C     S       (input/output) REAL*16 array, dimension (LDS,2)
 C             On entry, S must contain a 2-by-2 matrix.
 C             On exit, S contains a 2-by-2 matrix B such that B*U = U*S,
 C             if LTRANS = .FALSE., or U*B = S*U, if LTRANS = .TRUE..
@@ -67,7 +67,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= 2.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,2)
+C     R       (input/output) REAL*16 array, dimension (LDR,2)
 C             On entry, R must contain a 2-by-2 upper triangular matrix.
 C             The element R( 2, 1 ) is not referenced.
 C             On exit, R contains U, the 2-by-2 upper triangular
@@ -76,7 +76,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= 2.
 C
-C     A       (output) DOUBLE PRECISION array, dimension (LDA,2)
+C     A       (output) REAL*16 array, dimension (LDA,2)
 C             A contains a 2-by-2 upper triangular matrix A satisfying
 C             A*U/scale = scale*R, if LTRANS = .FALSE., or
 C             U*A/scale = scale*R, if LTRANS = .TRUE..
@@ -87,7 +87,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= 2.
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
@@ -156,26 +156,26 @@ C
 C     *****************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO, FOUR
+      REAL*16  ZERO, ONE, TWO, FOUR
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                    FOUR = 4.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           DISCR, LTRANS
       INTEGER           INFO, ISGN, LDA, LDR, LDS
-      DOUBLE PRECISION  SCALE
+      REAL*16  SCALE
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), R(LDR,*), S(LDS,*)
+      REAL*16  A(LDA,*), R(LDR,*), S(LDS,*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  ABSB, ABSG, ABST, ALPHA, BIGNUM, E1, E2, EPS,
+      REAL*16  ABSB, ABSG, ABST, ALPHA, BIGNUM, E1, E2, EPS,
      $                  ETA, P1, P3, P3I, P3R, S11, S12, S21, S22,
      $                  SCALOC, SGN, SMIN, SMLNUM, SNP, SNQ, SNT, TEMPI,
      $                  TEMPR, V1, V3
 C     .. Local Arrays ..
-      DOUBLE PRECISION  CSP(2), CSQ(2), CST(2), DELTA(2), DP(2), DT(2),
+      REAL*16  CSP(2), CSQ(2), CST(2), DELTA(2), DP(2), DT(2),
      $                  G(2), GAMMA(2), P2(2), T(2), TEMP(2), V2(2),
      $                  X11(2), X12(2), X21(2), X22(2), Y(2)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, DLAPY2, DLAPY3
+      REAL*16  DLAMCH, DLAPY2, DLAPY3
       EXTERNAL          DLAMCH, DLAPY2, DLAPY3
 C     .. External Subroutines ..
       EXTERNAL          DLABAD, DLANV2, SB03OV

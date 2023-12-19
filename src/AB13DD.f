@@ -54,7 +54,7 @@ C
 C     P       (input) INTEGER
 C             The row size of the matrix C.  P >= 0.
 C
-C     FPEAK   (input/output) DOUBLE PRECISION array, dimension (2)
+C     FPEAK   (input/output) REAL*16 array, dimension (2)
 C             On entry, this parameter must contain an estimate of the
 C             frequency where the gain of the frequency response would
 C             achieve its peak value. Setting FPEAK(2) = 0 indicates an
@@ -74,14 +74,14 @@ C
 C             where OMEGA = FPEAK(1), if FPEAK(2) > 0, and OMEGA is
 C             infinite, if FPEAK(2) = 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state dynamics matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input) REAL*16 array, dimension (LDE,N)
 C             If JOBE = 'G', the leading N-by-N part of this array must
 C             contain the descriptor matrix E of the system.
 C             If JOBE = 'I', then E is assumed to be the identity
@@ -92,21 +92,21 @@ C             The leading dimension of the array E.
 C             LDE >= MAX(1,N), if JOBE = 'G';
 C             LDE >= 1,        if JOBE = 'I'.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             system output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,P).
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             If JOBD = 'D', the leading P-by-M part of this array must
 C             contain the direct transmission matrix D.
 C             The array D is not referenced if JOBD = 'Z'.
@@ -116,7 +116,7 @@ C             The leading dimension of array D.
 C             LDD >= MAX(1,P), if JOBD = 'D';
 C             LDD >= 1,        if JOBD = 'Z'.
 C
-C     GPEAK   (output) DOUBLE PRECISION array, dimension (2)
+C     GPEAK   (output) REAL*16 array, dimension (2)
 C             The L-infinity norm of the system, i.e., the peak gain
 C             of the frequency response (as measured by the largest
 C             singular value in the MIMO case), coded in the same way
@@ -124,7 +124,7 @@ C             as FPEAK.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             Tolerance used to set the accuracy in determining the
 C             norm.  0 <= TOL < 1.
 C
@@ -132,7 +132,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal value
 C             of LDWORK.
 C
@@ -215,7 +215,7 @@ C
 C             K = MAX( 1, 6*N*N + N*P + 2*N*M + P*M + 11*N + MAX(P,M) +
 C                         6*MIN(P,M) ).
 C
-C     CWORK   COMPLEX*16 array, dimension (LCWORK)
+C     CWORK   COMPLEX*32 array, dimension (LCWORK)
 C             On exit, if INFO = 0, CWORK(1) contains the optimal
 C             LCWORK.
 C
@@ -289,10 +289,10 @@ C
 C     .. Parameters ..
       INTEGER            MAXIT
       PARAMETER          ( MAXIT = 30 )
-      DOUBLE PRECISION   ZERO, ONE, TWO, FOUR, P25
+      REAL*16   ZERO, ONE, TWO, FOUR, P25
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0,
      $                     FOUR = 4.0D+0, P25 = 0.25D+0 )
-      DOUBLE PRECISION   TEN, HUNDRD, THOUSD
+      REAL*16   TEN, HUNDRD, THOUSD
       PARAMETER          ( TEN    = 1.0D+1, HUNDRD = 1.0D+2,
      $                     THOUSD = 1.0D+3 )
 C     ..
@@ -300,11 +300,11 @@ C     .. Scalar Arguments ..
       CHARACTER          DICO, EQUIL, JOBD, JOBE
       INTEGER            INFO, LCWORK, LDA, LDB, LDC, LDD, LDE, LDWORK,
      $                   M, N, P
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C     ..
 C     .. Array Arguments ..
-      COMPLEX*16         CWORK(  * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      COMPLEX*32         CWORK(  * )
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   D( LDD, * ), DWORK(  * ), E( LDE, * ),
      $                   FPEAK(  2 ), GPEAK(  2 )
       INTEGER            IWORK(  * )
@@ -319,17 +319,17 @@ C     .. Local Scalars ..
      $                   ITER, IU, IV, IWRK, J, K, LW, MAXCWK, MAXWRK,
      $                   MINCWR, MINPM, MINWRK, N2, N2PM, NEI, NN, NWS,
      $                   NY, PM
-      DOUBLE PRECISION   ANRM, ANRMTO, BIGNUM, BNORM, BOUND, CNORM,
+      REAL*16   ANRM, ANRMTO, BIGNUM, BNORM, BOUND, CNORM,
      $                   ENRM, ENRMTO, EPS, FPEAKI, FPEAKS, GAMMA,
      $                   GAMMAL, GAMMAS, MAXRED, OMEGA, PI, RAT, RCOND,
      $                   RTOL, SAFMAX, SAFMIN, SMLNUM, TM, TOLER, WMAX,
      $                   WRMIN
 C     ..
 C     .. Local Arrays ..
-      DOUBLE PRECISION   TEMP( 1 )
+      REAL*16   TEMP( 1 )
 C     ..
 C     .. External Functions ..
-      DOUBLE PRECISION   AB13DX, DLAMCH, DLANGE, DLAPY2
+      REAL*16   AB13DX, DLAMCH, DLANGE, DLAPY2
       LOGICAL            LSAME
       EXTERNAL           AB13DX, DLAMCH, DLANGE, DLAPY2, LSAME
 C     ..

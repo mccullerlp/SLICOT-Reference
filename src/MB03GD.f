@@ -22,7 +22,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil a J B' J' B - b D. N = 2 or N = 4.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB, N)
+C     B       (input) REAL*16 array, dimension (LDB, N)
 C             The leading N-by-N part of this array must contain the
 C             non-trivial factor of the decomposition of the
 C             skew-Hamiltonian input matrix J B' J' B. The (2,1) block
@@ -31,7 +31,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= N.
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD, N)
+C     D       (input) REAL*16 array, dimension (LDD, N)
 C             The leading N/2-by-N part of this array must contain the
 C             first block row of the second matrix of a J B' J' B - b D.
 C             The matrix D has to be Hamiltonian. The strict lower
@@ -40,20 +40,20 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= N/2.
 C
-C     MACPAR  (input)  DOUBLE PRECISION array, dimension (2)
+C     MACPAR  (input)  REAL*16 array, dimension (2)
 C             Machine parameters:
 C             MACPAR(1)  (machine precision)*base, DLAMCH( 'P' );
 C             MACPAR(2)  safe minimum,             DLAMCH( 'S' ).
 C             This argument is not used for N = 2.
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ, N)
+C     Q       (output) REAL*16 array, dimension (LDQ, N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal transformation matrix Q.
 C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= N.
 C
-C     U       (output) DOUBLE PRECISION array, dimension (LDU, N)
+C     U       (output) REAL*16 array, dimension (LDU, N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal symplectic transformation matrix U.
 C
@@ -62,7 +62,7 @@ C             The leading dimension of the array U.  LDU >= N.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             If N = 2 then DWORK is not referenced.
 C
 C     LDWORK  INTEGER
@@ -111,19 +111,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO
+      REAL*16   ZERO, ONE, TWO
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0 )
 C
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDB, LDD, LDQ, LDU, LDWORK, N
 C
 C     .. Array Arguments ..
-      DOUBLE PRECISION   B( LDB, * ), D( LDD, * ), DWORK( * ),
+      REAL*16   B( LDB, * ), D( LDD, * ), DWORK( * ),
      $                   MACPAR( * ), Q( LDQ, * ), U( LDU, * )
 C
 C     .. Local Scalars ..
       INTEGER            I, ICS, IR, ITAU, IWRK1, IWRK2
-      DOUBLE PRECISION   CL1, CL2, CO, CO2, CR1, CR2, EPS, F, F1, G, G1,
+      REAL*16   CL1, CL2, CO, CO2, CR1, CR2, EPS, F, F1, G, G1,
      $                   R, R1, S, SFMIN, SI, SI2, SL1, SL2, SMAX1,
      $                   SMAX2, SMIN1, SMIN2, SR1, SR2, T, T1
 C

@@ -71,7 +71,7 @@ C     K       (input) INTEGER
 C             The number of elementary reflectors whose product defines
 C             the matrix Q.  M >= K >= 0.
 C
-C     V       (input) DOUBLE PRECISION array, dimension
+C     V       (input) REAL*16 array, dimension
 C                     (LDV,K) if STOREV = 'C',
 C                     (LDV,M) if STOREV = 'R'
 C             On entry with STOREV = 'C', the leading M-by-K part of
@@ -86,7 +86,7 @@ C             The leading dimension of the array V.
 C             LDV >= MAX(1,M),  if STOREV = 'C';
 C             LDV >= MAX(1,K),  if STOREV = 'R'.
 C
-C     W       (input) DOUBLE PRECISION array, dimension
+C     W       (input) REAL*16 array, dimension
 C                     (LDW,K) if STOREW = 'C',
 C                     (LDW,M) if STOREW = 'R'
 C             On entry with STOREW = 'C', the leading M-by-K part of
@@ -101,7 +101,7 @@ C             The leading dimension of the array W.
 C             LDW >= MAX(1,M),  if STOREW = 'C';
 C             LDW >= MAX(1,K),  if STOREW = 'R'.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension
+C     C       (input/output) REAL*16 array, dimension
 C                     (LDC,N) if TRANC = 'N',
 C                     (LDC,M) if TRANC = 'T' or TRANC = 'C'
 C             On entry with TRANC = 'N', the leading M-by-N part of
@@ -120,7 +120,7 @@ C             The leading dimension of the array C.
 C             LDC >= MAX(1,M),  if TRANC = 'N';
 C             LDC >= MAX(1,N),  if TRANC = 'T' or TRANC = 'C'.
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension
+C     D       (input/output) REAL*16 array, dimension
 C                     (LDD,N) if TRAND = 'N',
 C                     (LDD,M) if TRAND = 'T' or TRAND = 'C'
 C             On entry with TRAND = 'N', the leading M-by-N part of
@@ -139,19 +139,19 @@ C             The leading dimension of the array D.
 C             LDD >= MAX(1,M),  if TRAND = 'N';
 C             LDD >= MAX(1,N),  if TRAND = 'T' or TRAND = 'C'.
 C
-C     CS      (input) DOUBLE PRECISION array, dimension (2*K)
+C     CS      (input) REAL*16 array, dimension (2*K)
 C             On entry, the first 2*K elements of this array must
 C             contain the cosines and sines of the symplectic Givens
 C             rotations G(i).
 C
-C     TAU     (input) DOUBLE PRECISION array, dimension (K)
+C     TAU     (input) REAL*16 array, dimension (K)
 C             On entry, the first K elements of this array must
 C             contain the scalar factors of the elementary reflectors
 C             F(i).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -20,  DWORK(1)  returns the minimum
@@ -196,13 +196,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER         STOREV, STOREW, TRANC, TRAND, TRANQ
       INTEGER           INFO, K, LDC, LDD, LDV, LDW, LDWORK, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  C(LDC,*), CS(*), D(LDD,*), DWORK(*), TAU(*),
+      REAL*16  C(LDC,*), CS(*), D(LDD,*), DWORK(*), TAU(*),
      $                  V(LDV,*), W(LDW,*)
 C     .. Local Scalars ..
       CHARACTER*1       SIDE

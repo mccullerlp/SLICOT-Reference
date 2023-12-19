@@ -19,7 +19,7 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     A       (input) COMPLEX*16 array, dimension (LDA, 2)
+C     A       (input) COMPLEX*32 array, dimension (LDA, 2)
 C             On entry, the leading 2-by-2 upper triangular part of
 C             this array must contain the matrix A of the pencil.
 C             The (2,1) entry is not referenced.
@@ -27,7 +27,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= 2.
 C
-C     B       (input) COMPLEX*16 array, dimension (LDB, 2)
+C     B       (input) COMPLEX*32 array, dimension (LDB, 2)
 C             On entry, the leading 2-by-2 upper triangular part of
 C             this array must contain the matrix B of the pencil.
 C             The (2,1) entry is not referenced.
@@ -35,7 +35,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= 2.
 C
-C     D       (input) COMPLEX*16 array, dimension (LDD, 2)
+C     D       (input) COMPLEX*32 array, dimension (LDD, 2)
 C             On entry, the leading 2-by-2 upper triangular part of
 C             this array must contain the matrix D of the pencil.
 C             The (2,1) entry is not referenced.
@@ -43,22 +43,22 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= 2.
 C
-C     CO1     (output) DOUBLE PRECISION
+C     CO1     (output) REAL*16
 C             The upper left element of the unitary matrix Q1.
 C
-C     SI1     (output) COMPLEX*16
+C     SI1     (output) COMPLEX*32
 C             The upper right element of the unitary matrix Q1.
 C
-C     CO2     (output) DOUBLE PRECISION
+C     CO2     (output) REAL*16
 C             The upper left element of the unitary matrix Q2.
 C
-C     SI2     (output) COMPLEX*16
+C     SI2     (output) COMPLEX*32
 C             The upper right element of the unitary matrix Q2.
 C
-C     CO3     (output) DOUBLE PRECISION
+C     CO3     (output) REAL*16
 C             The upper left element of the unitary matrix Q3.
 C
-C     SI3     (output) COMPLEX*16
+C     SI3     (output) COMPLEX*32
 C             The upper right element of the unitary matrix Q3.
 C
 C     METHOD
@@ -97,14 +97,14 @@ C     ******************************************************************
 C
 C     .. Scalar Arguments ..
       INTEGER            LDA, LDB, LDD
-      DOUBLE PRECISION   CO1, CO2, CO3
-      COMPLEX*16         SI1, SI2, SI3
+      REAL*16   CO1, CO2, CO3
+      COMPLEX*32         SI1, SI2, SI3
 C
 C     .. Array Arguments ..
-      COMPLEX*16         A( LDA, * ), B( LDB, * ), D( LDD, * )
+      COMPLEX*32         A( LDA, * ), B( LDB, * ), D( LDD, * )
 C
 C     .. Local Scalars ..
-      COMPLEX*16         F, G, TMP
+      COMPLEX*32         F, G, TMP
 C
 C     .. External Subroutines ..
       EXTERNAL           ZLARTG

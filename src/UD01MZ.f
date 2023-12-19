@@ -23,7 +23,7 @@ C     NOUT    (input) INTEGER
 C             The output channel to which the results are sent.
 C             NOUT >= 0.
 C
-C     A       (input) COMPLEX*16 array, dimension (LDA,N)
+C     A       (input) COMPLEX*32 array, dimension (LDA,N)
 C             The leading M-by-N part of this array must contain the
 C             matrix to be printed.
 C
@@ -82,7 +82,7 @@ C     .. Scalar Arguments ..
       INTEGER           INFO, L, LDA, M, N, NOUT
       CHARACTER*(*)     TEXT
 C     .. Array Arguments ..
-      COMPLEX*16        A(LDA,*)
+      COMPLEX*32        A(LDA,*)
 C     .. Local Scalars ..
       INTEGER           I, J, J1, J2, JJ, LENTXT, LTEXT, N1
 C     .. External Subroutines ..

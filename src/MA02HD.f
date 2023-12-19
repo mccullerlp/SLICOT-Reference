@@ -30,10 +30,10 @@ C
 C     N      (input) INTEGER
 C            The number of columns of the matrix A.  N >= 0.
 C
-C     DIAG   (input) DOUBLE PRECISION
+C     DIAG   (input) REAL*16
 C            The scalar DIAG.
 C
-C     A      (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A      (input) REAL*16 array, dimension (LDA,N)
 C            The leading M-by-N part of this array must contain the
 C            matrix A.  If JOB = 'U', only the upper triangle or
 C            trapezoid is accessed; if JOB = 'L', only the lower
@@ -65,14 +65,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO
+      REAL*16   ZERO
       PARAMETER          ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          JOB
       INTEGER            LDA, M, N
-      DOUBLE PRECISION   DIAG
+      REAL*16   DIAG
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*)
+      REAL*16   A(LDA,*)
 C     .. Local Scalars ..
       INTEGER            I, J
 C     .. External Functions

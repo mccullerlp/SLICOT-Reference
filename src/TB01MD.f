@@ -38,7 +38,7 @@ C     M       (input) INTEGER
 C             The actual input dimension, i.e. the number of columns of
 C             the matrix B.  M >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state transition matrix A to be transformed.
 C             On exit, the leading N-by-N part of this array contains
@@ -48,7 +48,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B to be transformed.
 C             On exit, the leading N-by-M part of this array contains
@@ -58,7 +58,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     U       (input/output) DOUBLE PRECISION array, dimension (LDU,*)
+C     U       (input/output) REAL*16 array, dimension (LDU,*)
 C             On entry, if JOBU = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix U (e.g. from a
 C             previous call to another SLICOT routine), and on exit, the
@@ -80,7 +80,7 @@ C             JOBU = 'I', LDU >= MAX(1,N); if JOBU = 'N', LDU >= 1.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (MAX(N,M-1))
+C     DWORK   REAL*16 array, dimension (MAX(N,M-1))
 C
 C     Error Indicator
 C
@@ -155,18 +155,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBU, UPLO
       INTEGER           INFO, LDA, LDB, LDU, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), DWORK(*), U(LDU,*)
+      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), U(LDU,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBA, LJOBI,  LUPLO
       INTEGER           II, J, M1, N1, NJ, PAR1, PAR2, PAR3, PAR4, PAR5,
      $                  PAR6
-      DOUBLE PRECISION  DZ
+      REAL*16  DZ
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

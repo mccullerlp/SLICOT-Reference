@@ -75,7 +75,7 @@ C             The dimension of the input vector, if JOB = 'W', or of
 C             the output vector, if JOB = 'C', of the system with the
 C             transfer-function matrix W.  MW >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state matrix A of the system with the transfer-function
 C             matrix G in a real Schur form.
@@ -83,7 +83,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array,
+C     B       (input/output) REAL*16 array,
 C             dimension (LDB,MAX(M,MW))
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B of the system with the
@@ -95,7 +95,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain
 C             the output/state matrix C of the system with the
 C             transfer-function matrix G. The matrix CS is equal to C.
@@ -103,7 +103,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array,
+C     D       (input/output) REAL*16 array,
 C             dimension (LDB,MAX(M,MW))
 C             On entry, the leading P-by-M part of this array must
 C             contain the feedthrough matrix D of the system with
@@ -116,7 +116,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1,P).
 C
-C     AW      (input/output) DOUBLE PRECISION array, dimension (LDAW,NW)
+C     AW      (input/output) REAL*16 array, dimension (LDAW,NW)
 C             On entry, the leading NW-by-NW part of this array must
 C             contain the state matrix AW of the system with the
 C             transfer-function matrix W.
@@ -136,7 +136,7 @@ C
 C     LDAW    INTEGER
 C             The leading dimension of the array AW.  LDAW >= MAX(1,NW).
 C
-C     EW      (input/output) DOUBLE PRECISION array, dimension (LDEW,NW)
+C     EW      (input/output) REAL*16 array, dimension (LDEW,NW)
 C             On entry, if JOBEW = 'G', the leading NW-by-NW part of
 C             this array must contain the descriptor matrix EW of the
 C             system with the transfer-function matrix W.
@@ -159,7 +159,7 @@ C             The leading dimension of the array EW.
 C             LDEW >= MAX(1,NW), if JOBEW = 'G';
 C             LDEW >= 1,         if JOBEW = 'I'.
 C
-C     BW      (input/output) DOUBLE PRECISION array,
+C     BW      (input/output) REAL*16 array,
 C             dimension (LDBW,MBW), where MBW = MW, if JOB = 'W', and
 C             MBW = M, if JOB = 'C'.
 C             On entry, the leading NW-by-MBW part of this array must
@@ -174,7 +174,7 @@ C
 C     LDBW    INTEGER
 C             The leading dimension of the array BW.  LDBW >= MAX(1,NW).
 C
-C     CW      (input/output) DOUBLE PRECISION array, dimension (LDCW,NW)
+C     CW      (input/output) REAL*16 array, dimension (LDCW,NW)
 C             On entry, the leading PCW-by-NW part of this array must
 C             contain the output matrix CW of the system with the
 C             transfer-function matrix W, where PCW = M if JOB = 'W' or
@@ -190,7 +190,7 @@ C             The leading dimension of the array CW.
 C             LDCW >= MAX(1,PCW), where PCW = M if JOB = 'W', or
 C             PCW = MW if JOB = 'C'.
 C
-C     DW      (input) DOUBLE PRECISION array,
+C     DW      (input) REAL*16 array,
 C             dimension (LDDW,MBW), where MBW = MW if JOB = 'W', and
 C             MBW = M if JOB = 'C'.
 C             The leading PCW-by-MBW part of this array must contain
@@ -208,7 +208,7 @@ C     IWORK   INTEGER array, dimension (LIWORK)
 C             LIWORK =   0,    if JOBEW = 'I';
 C             LIWORK = NW+N+6, if JOBEW = 'G'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -323,7 +323,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, JOB, JOBEW, STBCHK
@@ -331,20 +331,20 @@ C     .. Scalar Arguments ..
      $                  LDD, LDDW, LDEW, LDWORK, M, MW, N, NW, P
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), AW(LDAW,*), B(LDB,*), BW(LDBW,*),
+      REAL*16  A(LDA,*), AW(LDAW,*), B(LDB,*), BW(LDBW,*),
      $                  C(LDC,*), CW(LDCW,*), D(LDD,*), DW(LDDW,*),
      $                  DWORK(*), EW(LDEW,*)
 C     .. Local Scalars ..
       CHARACTER*1       EVTYPE, STDOM
       LOGICAL           CONJS, DISCR, STABCK, UNITEW
-      DOUBLE PRECISION  ALPHA, DIF, SCALE, TOLINF, WORK
+      REAL*16  ALPHA, DIF, SCALE, TOLINF, WORK
       INTEGER           I, IA, IERR, KAI, KAR, KB, KC, KE, KF, KQ, KW,
      $                  KZ, LDW, LDWM, LDWN, LDWP, LW, SDIM
 C     .. Local Arrays ..
       LOGICAL           BWORK(1)
 C     .. External Functions ..
       LOGICAL           DELCTG, LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          DELCTG, DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB09JX, DGEMM, DGGES, DLACPY, DLASET, DSWAP,

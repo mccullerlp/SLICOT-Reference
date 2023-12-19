@@ -55,14 +55,14 @@ C             e = 0,  if  JOBX0 = 'X'  and  JOB = 'B';
 C             e = 1,  if  JOBX0 = 'N'  and  JOB = 'B';
 C             e = M,  if  JOB   = 'D'.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix  A  in a real Schur form.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading L-by-N part of this array must contain the
 C             system output matrix  C  (corresponding to the real Schur
 C             form of  A).
@@ -70,7 +70,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= L.
 C
-C     U       (input/output) DOUBLE PRECISION array, dimension (LDU,M)
+C     U       (input/output) REAL*16 array, dimension (LDU,M)
 C             On entry, the leading NSMP-by-M part of this array must
 C             contain the t-by-m input-data sequence matrix  U,
 C             U = [u_1 u_2 ... u_m].  Column  j  of  U  contains the
@@ -88,7 +88,7 @@ C             The leading dimension of the array U.
 C             LDU >= MAX(1,NSMP),  if M > 0;
 C             LDU >= 1,            if M = 0.
 C
-C     Y       (input) DOUBLE PRECISION array, dimension (LDY,L)
+C     Y       (input) REAL*16 array, dimension (LDY,L)
 C             The leading NSMP-by-L part of this array must contain the
 C             t-by-l output-data sequence matrix  Y,
 C             Y = [y_1 y_2 ... y_l].  Column  j  of  Y  contains the
@@ -98,13 +98,13 @@ C
 C     LDY     INTEGER
 C             The leading dimension of the array Y.  LDY >= MAX(1,NSMP).
 C
-C     X0      (output) DOUBLE PRECISION array, dimension (N)
+C     X0      (output) REAL*16 array, dimension (N)
 C             If  JOBX0 = 'X',  the estimated initial state of the
 C             system,  x(0).
 C             If  JOBX0 = 'N',  x(0)  is set to zero without any
 C             calculations.
 C
-C     B       (output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (output) REAL*16 array, dimension (LDB,M)
 C             If  N > 0,  M > 0,  and  INFO = 0,  the leading N-by-M
 C             part of this array contains the system input matrix  B
 C             in the coordinates corresponding to the real Schur form
@@ -116,7 +116,7 @@ C             The leading dimension of the array B.
 C             LDB >= N,  if  N > 0  and  M > 0;
 C             LDB >= 1,  if  N = 0  or   M = 0.
 C
-C     D       (output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (output) REAL*16 array, dimension (LDD,M)
 C             If  M > 0,  JOB = 'D',  and  INFO = 0,  the leading
 C             L-by-M part of this array contains the system input-output
 C             matrix  D.
@@ -129,7 +129,7 @@ C             LDD >= 1,  if  M = 0  or   JOB = 'B'.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used for estimating the rank of
 C             matrices. If the user sets  TOL > 0,  then the given value
 C             of  TOL  is used as a lower bound for the reciprocal
@@ -147,7 +147,7 @@ C             LIWORK >= max( N*M + a, M ),  if  JOB = 'D',
 C             with  a = 0,  if  JOBX0 = 'N';
 C                   a = N,  if  JOBX0 = 'X'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK;  DWORK(2)  contains the reciprocal condition
 C             number of the triangular factor of the QR factorization of
@@ -321,20 +321,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO, THREE
+      REAL*16   ZERO, ONE, TWO, THREE
       PARAMETER          ( ZERO  = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                     THREE = 3.0D0 )
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
       INTEGER            INFO, IWARN, L, LDA, LDB, LDC, LDD, LDU,
      $                   LDWORK, LDY, M, N, NSMP
       CHARACTER          JOB, JOBX0
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA, *), B(LDB, *), C(LDC, *), D(LDD, *),
+      REAL*16   A(LDA, *), B(LDB, *), C(LDC, *), D(LDD, *),
      $                   DWORK(*),  U(LDU, *), X0(*), Y(LDY, *)
       INTEGER            IWORK(*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION   RCOND, RCONDU, TOLL
+      REAL*16   RCOND, RCONDU, TOLL
       INTEGER            I, I2, IA, IAS, IC, ICYCLE, IE, IERR, IEXPON,
      $                   IG, IGAM, IGS, INI, INIH, INIR, INIS, INY,
      $                   INYGAM, IQ, IREM, IRHS, ISIZE, ISV, ITAU,
@@ -344,11 +344,11 @@ C     .. Local Scalars ..
      $                   NCP1, NCYCLE, NM, NN, NOBS, NROW, NSMPL, RANK
       LOGICAL            FIRST, NCYC, POWER2, WITHB, WITHD, WITHX0
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM(1)
+      REAL*16   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            ILAENV
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, ILAENV, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DGELSS, DGEMV, DGEQRF, DLACPY,

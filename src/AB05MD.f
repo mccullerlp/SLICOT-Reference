@@ -55,21 +55,21 @@ C     P2      (input) INTEGER
 C             The number of output variables from the second system.
 C             P2 >= 0.
 C
-C     A1      (input) DOUBLE PRECISION array, dimension (LDA1,N1)
+C     A1      (input) REAL*16 array, dimension (LDA1,N1)
 C             The leading N1-by-N1 part of this array must contain the
 C             state transition matrix A1 for the first system.
 C
 C     LDA1    INTEGER
 C             The leading dimension of array A1.  LDA1 >= MAX(1,N1).
 C
-C     B1      (input) DOUBLE PRECISION array, dimension (LDB1,M1)
+C     B1      (input) REAL*16 array, dimension (LDB1,M1)
 C             The leading N1-by-M1 part of this array must contain the
 C             input/state matrix B1 for the first system.
 C
 C     LDB1    INTEGER
 C             The leading dimension of array B1.  LDB1 >= MAX(1,N1).
 C
-C     C1      (input) DOUBLE PRECISION array, dimension (LDC1,N1)
+C     C1      (input) REAL*16 array, dimension (LDC1,N1)
 C             The leading P1-by-N1 part of this array must contain the
 C             state/output matrix C1 for the first system.
 C
@@ -78,28 +78,28 @@ C             The leading dimension of array C1.
 C             LDC1 >= MAX(1,P1) if N1 > 0.
 C             LDC1 >= 1 if N1 = 0.
 C
-C     D1      (input) DOUBLE PRECISION array, dimension (LDD1,M1)
+C     D1      (input) REAL*16 array, dimension (LDD1,M1)
 C             The leading P1-by-M1 part of this array must contain the
 C             input/output matrix D1 for the first system.
 C
 C     LDD1    INTEGER
 C             The leading dimension of array D1.  LDD1 >= MAX(1,P1).
 C
-C     A2      (input) DOUBLE PRECISION array, dimension (LDA2,N2)
+C     A2      (input) REAL*16 array, dimension (LDA2,N2)
 C             The leading N2-by-N2 part of this array must contain the
 C             state transition matrix A2 for the second system.
 C
 C     LDA2    INTEGER
 C             The leading dimension of array A2.  LDA2 >= MAX(1,N2).
 C
-C     B2      (input) DOUBLE PRECISION array, dimension (LDB2,P1)
+C     B2      (input) REAL*16 array, dimension (LDB2,P1)
 C             The leading N2-by-P1 part of this array must contain the
 C             input/state matrix B2 for the second system.
 C
 C     LDB2    INTEGER
 C             The leading dimension of array B2.  LDB2 >= MAX(1,N2).
 C
-C     C2      (input) DOUBLE PRECISION array, dimension (LDC2,N2)
+C     C2      (input) REAL*16 array, dimension (LDC2,N2)
 C             The leading P2-by-N2 part of this array must contain the
 C             state/output matrix C2 for the second system.
 C
@@ -108,7 +108,7 @@ C             The leading dimension of array C2.
 C             LDC2 >= MAX(1,P2) if N2 > 0.
 C             LDC2 >= 1 if N2 = 0.
 C
-C     D2      (input) DOUBLE PRECISION array, dimension (LDD2,P1)
+C     D2      (input) REAL*16 array, dimension (LDD2,P1)
 C             The leading P2-by-P1 part of this array must contain the
 C             input/output matrix D2 for the second system.
 C
@@ -120,7 +120,7 @@ C             The number of state variables (N1 + N2) in the resulting
 C             system, i.e. the order of the matrix A, the number of rows
 C             of B and the number of columns of C.
 C
-C     A       (output) DOUBLE PRECISION array, dimension (LDA,N1+N2)
+C     A       (output) REAL*16 array, dimension (LDA,N1+N2)
 C             The leading N-by-N part of this array contains the state
 C             transition matrix A for the cascaded system.
 C             If OVER = 'O', the array A can overlap A1, if UPLO = 'L',
@@ -129,7 +129,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N1+N2).
 C
-C     B       (output) DOUBLE PRECISION array, dimension (LDB,M1)
+C     B       (output) REAL*16 array, dimension (LDB,M1)
 C             The leading N-by-M1 part of this array contains the
 C             input/state matrix B for the cascaded system.
 C             If OVER = 'O', the array B can overlap B1, if UPLO = 'L',
@@ -138,7 +138,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N1+N2).
 C
-C     C       (output) DOUBLE PRECISION array, dimension (LDC,N1+N2)
+C     C       (output) REAL*16 array, dimension (LDC,N1+N2)
 C             The leading P2-by-N part of this array contains the
 C             state/output matrix C for the cascaded system.
 C             If OVER = 'O', the array C can overlap C1, if UPLO = 'L',
@@ -149,7 +149,7 @@ C             The leading dimension of array C.
 C             LDC >= MAX(1,P2) if N1+N2 > 0.
 C             LDC >= 1 if N1+N2 = 0.
 C
-C     D       (output) DOUBLE PRECISION array, dimension (LDD,M1)
+C     D       (output) REAL*16 array, dimension (LDD,M1)
 C             The leading P2-by-M1 part of this array contains the
 C             input/output matrix D for the cascaded system.
 C             If OVER = 'O', the array D can overlap D1, if UPLO = 'L',
@@ -160,7 +160,7 @@ C             The leading dimension of array D.  LDD >= MAX(1,P2).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             The array DWORK is not referenced if OVER = 'N'.
 C
 C     LDWORK  INTEGER
@@ -256,7 +256,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         OVER, UPLO
@@ -264,7 +264,7 @@ C     .. Scalar Arguments ..
      $                  LDC1, LDC2, LDD, LDD1, LDD2, LDWORK, M1, N, N1,
      $                  N2, P1, P2
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), A1(LDA1,*), A2(LDA2,*), B(LDB,*),
+      REAL*16  A(LDA,*), A1(LDA1,*), A2(LDA2,*), B(LDB,*),
      $                  B1(LDB1,*), B2(LDB2,*), C(LDC,*), C1(LDC1,*),
      $                  C2(LDC2,*), D(LDD,*), D1(LDD1,*), D2(LDD2,*),
      $                  DWORK(*)

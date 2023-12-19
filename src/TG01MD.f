@@ -48,7 +48,7 @@ C
 C     P       (input) INTEGER
 C             The number of rows of the matrix C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N state matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -67,7 +67,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N descriptor matrix E.
 C             On exit, the leading N-by-N part of this array contains
@@ -84,7 +84,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the N-by-M input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -93,7 +93,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -102,7 +102,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
 C             ALPHAR(1:NF) will be set to the real parts of the diagonal
 C             elements of Af that would result from reducing A and E to
 C             the Schur form, and then further reducing both of them to
@@ -114,7 +114,7 @@ C             values (ALPHAR(j) + i*ALPHAI(j))/BETA(j), j=1,...,NF, are
 C             the finite generalized eigenvalues of the matrix pencil
 C             A - lambda*E.
 C
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
 C             ALPHAI(1:NF) will be set to the imaginary parts of the
 C             diagonal elements of Af that would result from reducing A
 C             and E to Schur form, and then further reducing both of
@@ -126,7 +126,7 @@ C             (ALPHAR(j) + i*ALPHAI(j))/BETA(j), j=1,...,NF, are the
 C             finite generalized eigenvalues of the matrix pencil
 C             A - lambda*E.
 C
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             BETA(1:NF) will be set to the (real) diagonal elements of
 C             Ef that would result from reducing A and E to Schur form,
 C             and then further reducing both of them to triangular form
@@ -138,7 +138,7 @@ C             (ALPHAR(j) + i*ALPHAI(j))/BETA(j), j=1,...,NF, are the
 C             finite generalized eigenvalues of the matrix pencil
 C             A - lambda*E.
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (output) REAL*16 array, dimension (LDQ,N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal matrix Q, which is the accumulated product of
 C             the transformations applied to A, E, and B on the left.
@@ -146,7 +146,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     Z       (output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (output) REAL*16 array, dimension (LDZ,N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal matrix Z, which is the accumulated product of
 C             the transformations applied to A, E, and C on the right.
@@ -173,7 +173,7 @@ C             staircase form (3), where i = 1,2,...,NIBLCK.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -188,7 +188,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -275,23 +275,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE, ZERO
+      REAL*16   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          JOB
       INTEGER            INFO, LDA, LDB, LDC, LDE, LDQ, LDWORK, LDZ, M,
      $                   N, ND, NF, NIBLCK, P
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C     .. Array Arguments ..
       INTEGER            IBLCK( * ), IWORK(*)
-      DOUBLE PRECISION   A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
+      REAL*16   A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
      $                   BETA(*),  C(LDC,*),  DWORK(*),  E(LDE,*),
      $                   Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL            LQUERY, TRINF
       INTEGER            I, IHI, ILO, MINWRK, NBC, NC, NR, WRKOPT
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM(1)
+      REAL*16   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

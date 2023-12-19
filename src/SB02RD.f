@@ -132,7 +132,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, Q, G, and X.  N >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             If JOB = 'X' or JOB = 'A' or FACT = 'N' or LYAPUN = 'O',
 C             the leading N-by-N part of this array must contain the
 C             coefficient matrix A of the equation.
@@ -145,7 +145,7 @@ C             LDA >= MAX(1,N), if JOB  = 'X' or JOB = 'A' or
 C                                 FACT = 'N' or LYAPUN = 'O'.
 C             LDA >= 1,        otherwise.
 C
-C     T       (input or output) DOUBLE PRECISION array, dimension
+C     T       (input or output) REAL*16 array, dimension
 C             (LDT,N)
 C             If JOB <> 'X' and FACT = 'F', then T is an input argument
 C             and on entry, the leading N-by-N upper Hessenberg part of
@@ -164,7 +164,7 @@ C             The leading dimension of the array T.
 C             LDT >= 1,        if JOB =  'X';
 C             LDT >= MAX(1,N), if JOB <> 'X'.
 C
-C     V       (input or output) DOUBLE PRECISION array, dimension
+C     V       (input or output) REAL*16 array, dimension
 C             (LDV,N)
 C             If JOB <> 'X' and FACT = 'F', then V is an input argument
 C             and on entry, the leading N-by-N part of this array must
@@ -181,7 +181,7 @@ C             The leading dimension of the array V.
 C             LDV >= 1,        if JOB =  'X';
 C             LDV >= MAX(1,N), if JOB <> 'X'.
 C
-C     G       (input/output) DOUBLE PRECISION array, dimension (LDG,N)
+C     G       (input/output) REAL*16 array, dimension (LDG,N)
 C             On entry, the leading N-by-N upper triangular part (if
 C             UPLO = 'U') or lower triangular part (if UPLO = 'L') of
 C             this array must contain the upper triangular part or lower
@@ -195,7 +195,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= MAX(1,N).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
 C             On entry, the leading N-by-N upper triangular part (if
 C             UPLO = 'U') or lower triangular part (if UPLO = 'L') of
 C             this array must contain the upper triangular part or lower
@@ -209,7 +209,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     X       (input or output) DOUBLE PRECISION array, dimension
+C     X       (input or output) REAL*16 array, dimension
 C             (LDX,N)
 C             If JOB = 'C' or JOB = 'E', then X is an input argument
 C             and on entry, the leading N-by-N part of this array must
@@ -225,7 +225,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= MAX(1,N).
 C
-C     SEP     (output) DOUBLE PRECISION
+C     SEP     (output) REAL*16
 C             If JOB = 'C' or JOB = 'A', and INFO = 0 or INFO = 7, the
 C             estimated quantity
 C                sep(op(Ac),-op(Ac)'), if DICO = 'C', or
@@ -238,14 +238,14 @@ C             multiply the (2,1) submatrix of U to recover X from the
 C             first N columns of U (see METHOD). If SCAL = 'N', SEP is
 C             set to 1.
 C
-C     RCOND   (output) DOUBLE PRECISION
+C     RCOND   (output) REAL*16
 C             If JOB = 'C' or JOB = 'A', and INFO = 0 or INFO = 7, an
 C             estimate of the reciprocal condition number of the
 C             algebraic Riccati equation.
 C             If N = 0 or X = 0, RCOND is set to 1 or 0, respectively.
 C             If JOB = 'X', or JOB = 'E', RCOND is not referenced.
 C
-C     FERR    (output) DOUBLE PRECISION
+C     FERR    (output) REAL*16
 C             If JOB = 'E' or JOB = 'A', and INFO = 0 or INFO = 7, an
 C             estimated forward error bound for the solution X. If XTRUE
 C             is the true solution, FERR bounds the magnitude of the
@@ -254,8 +254,8 @@ C             the largest entry in X.
 C             If N = 0 or X = 0, FERR is set to 0.
 C             If JOB = 'X', or JOB = 'C', FERR is not referenced.
 C
-C     WR      (output) DOUBLE PRECISION array, dimension (2*N)
-C     WI      (output) DOUBLE PRECISION array, dimension (2*N)
+C     WR      (output) REAL*16 array, dimension (2*N)
+C     WI      (output) REAL*16 array, dimension (2*N)
 C             If JOB = 'X' or JOB = 'A', and INFO = 0 or INFO >= 5,
 C             these arrays contain the real and imaginary parts,
 C             respectively, of the eigenvalues of the 2N-by-2N matrix S,
@@ -268,7 +268,7 @@ C                lambda(k) = WR(k) + j*WI(k), for k = 1,2,...,N.
 C             If JOB = 'C' or JOB = 'E', these arrays are not
 C             referenced.
 C
-C     S       (output) DOUBLE PRECISION array, dimension (LDS,2*N)
+C     S       (output) REAL*16 array, dimension (LDS,2*N)
 C             If JOB = 'X' or JOB = 'A', and INFO = 0 or INFO >= 5, the
 C             leading 2N-by-2N part of this array contains the ordered
 C             real Schur form S of the (scaled, if SCAL = 'G')
@@ -296,7 +296,7 @@ C             LIWORK >= 2*N,          if JOB = 'X';
 C             LIWORK >= N*N,          if JOB = 'C' or JOB = 'E';
 C             LIWORK >= MAX(2*N,N*N), if JOB = 'A'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, or INFO = 7, DWORK(1) returns the
 C             optimal value of LDWORK. If INFO = 0, or INFO >= 5, and
 C             JOB = 'X', or JOB = 'A', then DWORK(2) returns an estimate
@@ -540,18 +540,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, HALF, ONE
+      REAL*16  ZERO, HALF, ONE
       PARAMETER         ( ZERO = 0.0D0, HALF = 0.5D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, HINV, JOB, LYAPUN, SCAL, SORT,
      $                  TRANA, UPLO
       INTEGER           INFO, LDA, LDG, LDQ, LDS, LDT, LDV, LDWORK, LDX,
      $                  N
-      DOUBLE PRECISION  FERR, RCOND, SEP
+      REAL*16  FERR, RCOND, SEP
 C     .. Array Arguments ..
       LOGICAL           BWORK(*)
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), G(LDG,*), Q(LDQ,*),
+      REAL*16  A(LDA,*), DWORK(*), G(LDG,*), Q(LDQ,*),
      $                  S(LDS,*), T(LDT,*), V(LDV,*), WI(*), WR(*),
      $                  X(LDX,*)
 C     .. Local Scalars ..
@@ -561,11 +561,11 @@ C     .. Local Scalars ..
       CHARACTER         EQUED, JOBS, LOFACT, LOUP, TRANAT
       INTEGER           I, IERR, IU, IW, IWB, IWC, IWF, IWI, IWR, LDW,
      $                  LWE, LWN, LWS, N2, NN, NP1, NROT
-      DOUBLE PRECISION  GNORM, QNORM, PIVOTA, PIVOTU, RCONDA, RCONDU,
+      REAL*16  GNORM, QNORM, PIVOTA, PIVOTU, RCONDA, RCONDU,
      $                  WRKOPT
 C     .. External Functions ..
       LOGICAL           LSAME, SB02MR, SB02MS, SB02MV, SB02MW
-      DOUBLE PRECISION  DLAMCH, DLANGE, DLANSY
+      REAL*16  DLAMCH, DLANGE, DLANSY
       EXTERNAL          DLAMCH, DLANGE, DLANSY, LSAME, SB02MR, SB02MS,
      $                  SB02MV, SB02MW
 C     .. External Subroutines ..

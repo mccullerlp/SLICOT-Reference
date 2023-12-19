@@ -36,18 +36,18 @@ C     -
 C
 C     ******************************************************************
 C
-      DOUBLE PRECISION  ONE
+      REAL*16  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           IOFF, JOFF, LDX, MODE, NCOL, NROW
-      DOUBLE PRECISION  SIZE
+      REAL*16  SIZE
 C     .. Array Arguments ..
-      DOUBLE PRECISION  BVECT(*), X(LDX,*)
+      REAL*16  BVECT(*), X(LDX,*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  ABSSUM, DIV, EPS, EXPT, SCALE, TEST
+      REAL*16  ABSSUM, DIV, EPS, EXPT, SCALE, TEST
       INTEGER           BASE, I, IEXPT, J
 C     .. External Functions ..
-      DOUBLE PRECISION  DASUM, DLAMCH
+      REAL*16  DASUM, DLAMCH
       EXTERNAL          DASUM, DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          DSCAL

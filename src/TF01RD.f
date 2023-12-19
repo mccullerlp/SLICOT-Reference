@@ -27,28 +27,28 @@ C     N       (input) INTEGER
 C             The number of Markov parameters M(k) to be computed.
 C             N >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,NA)
+C     A       (input) REAL*16 array, dimension (LDA,NA)
 C             The leading NA-by-NA part of this array must contain the
 C             state matrix A of the system.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,NA).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,NB)
+C     B       (input) REAL*16 array, dimension (LDB,NB)
 C             The leading NA-by-NB part of this array must contain the
 C             input matrix B of the system.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,NA).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,NA)
+C     C       (input) REAL*16 array, dimension (LDC,NA)
 C             The leading NC-by-NA part of this array must contain the
 C             output matrix C of the system.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,NC).
 C
-C     H       (output) DOUBLE PRECISION array, dimension (LDH,N*NB)
+C     H       (output) REAL*16 array, dimension (LDH,N*NB)
 C             The leading NC-by-N*NB part of this array contains the
 C             multivariable parameters M(k), where each parameter M(k)
 C             is an NC-by-NB matrix and k = 1,2,...,N. The Markov
@@ -61,7 +61,7 @@ C             The leading dimension of array H.  LDH >= MAX(1,NC).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -126,12 +126,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, LDH, LDWORK, N, NA, NB, NC
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), H(LDH,*)
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), H(LDH,*)
 C     .. Local Scalars ..
       INTEGER           I, JWORK, K, LDW
 C     .. External Subroutines ..

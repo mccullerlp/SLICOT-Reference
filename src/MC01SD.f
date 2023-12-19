@@ -13,7 +13,7 @@ C
 C     DP      (input) INTEGER
 C             The degree of the polynomial P(x).  DP >= 0.
 C
-C     P       (input/output) DOUBLE PRECISION array, dimension (DP+1)
+C     P       (input/output) REAL*16 array, dimension (DP+1)
 C             On entry, this array must contain the coefficients of P(x)
 C             in increasing powers of x.
 C             On exit, this array contains the coefficients of the
@@ -29,7 +29,7 @@ C     T       (output) INTEGER
 C             The exponent of the floating-point representation of the
 C             scaling factor t = BASE**T.
 C
-C     MANT    (output) DOUBLE PRECISION array, dimension (DP+1)
+C     MANT    (output) REAL*16 array, dimension (DP+1)
 C             This array contains the mantissas of the standard
 C             floating-point representation of the coefficients of the
 C             scaled polynomial Q(x) in increasing powers of x.
@@ -120,19 +120,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DP, INFO, S, T
 C     .. Array Arguments ..
       INTEGER           E(*), IWORK(*)
-      DOUBLE PRECISION  MANT(*), P(*)
+      REAL*16  MANT(*), P(*)
 C     .. Local Scalars ..
       LOGICAL           OVFLOW
       INTEGER           BETA, DV, I, INC, J, LB, M, UB, V0, V1
 C     .. External Functions ..
       INTEGER           MC01SX
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       EXTERNAL          DLAMCH, MC01SX
 C     .. External Subroutines ..
       EXTERNAL          MC01SW, MC01SY, XERBLA

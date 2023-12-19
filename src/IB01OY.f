@@ -24,7 +24,7 @@ C             could be identical with the input value of  N.
 C             Note that the output value of  N  should be less than
 C             or equal to  NMAX.
 C
-C     SV      (input) DOUBLE PRECISION array, dimension ( NS )
+C     SV      (input) REAL*16 array, dimension ( NS )
 C             The singular values, in descending order, used for
 C             determining the system order.
 C
@@ -60,7 +60,7 @@ C     .. Scalar Arguments ..
       INTEGER            INFO, N, NMAX, NS
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   SV( * )
+      REAL*16   SV( * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            YES

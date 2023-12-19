@@ -133,7 +133,7 @@ C             HSV(NR-NU) > HSV(NR+1-NU);
 C             if ORDSEL = 'A', NR is the sum of NU and the number of
 C             Hankel singular values greater than MAX(TOL1,NS*EPS*S1).
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             Specifies the ALPHA-stability boundary for the eigenvalues
 C             of the state dynamics matrix A. For a continuous-time
 C             system (DICO = 'C'), ALPHA <= 0 is the boundary value for
@@ -142,17 +142,17 @@ C             system (DICO = 'D'), 0 <= ALPHA <= 1 represents the
 C             boundary value for the moduli of eigenvalues.
 C             The ALPHA-stability domain does not include the boundary.
 C
-C     ALPHAC  (input) DOUBLE PRECISION
+C     ALPHAC  (input) REAL*16
 C             Combination method parameter for defining the
 C             frequency-weighted controllability Grammian (see METHOD);
 C             ABS(ALPHAC) <= 1.
 C
-C     ALPHAO  (input) DOUBLE PRECISION
+C     ALPHAO  (input) REAL*16
 C             Combination method parameter for defining the
 C             frequency-weighted observability Grammian (see METHOD);
 C             ABS(ALPHAO) <= 1.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, if INFO = 0, the leading NR-by-NR part of this
@@ -170,7 +170,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -180,7 +180,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -190,7 +190,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the original input/output matrix D.
 C             On exit, if INFO = 0, the leading P-by-M part of this
@@ -200,7 +200,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     AV      (input/output) DOUBLE PRECISION array, dimension (LDAV,NV)
+C     AV      (input/output) REAL*16 array, dimension (LDAV,NV)
 C             On entry, if WEIGHT = 'L' or 'B', the leading NV-by-NV
 C             part of this array must contain the state matrix AV of
 C             the system with the transfer-function matrix V.
@@ -216,7 +216,7 @@ C             The leading dimension of array AV.
 C             LDAV >= MAX(1,NV), if WEIGHT = 'L' or 'B';
 C             LDAV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     BV      (input/output) DOUBLE PRECISION array, dimension (LDBV,P)
+C     BV      (input/output) REAL*16 array, dimension (LDBV,P)
 C             On entry, if WEIGHT = 'L' or 'B', the leading NV-by-P part
 C             of this array must contain the input matrix BV of the
 C             system with the transfer-function matrix V.
@@ -231,7 +231,7 @@ C             The leading dimension of array BV.
 C             LDBV >= MAX(1,NV), if WEIGHT = 'L' or 'B';
 C             LDBV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     CV      (input/output) DOUBLE PRECISION array, dimension (LDCV,NV)
+C     CV      (input/output) REAL*16 array, dimension (LDCV,NV)
 C             On entry, if WEIGHT = 'L' or 'B', the leading PV-by-NV
 C             part of this array must contain the output matrix CV of
 C             the system with the transfer-function matrix V.
@@ -246,7 +246,7 @@ C             The leading dimension of array CV.
 C             LDCV >= MAX(1,PV), if WEIGHT = 'L' or 'B';
 C             LDCV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     DV      (input) DOUBLE PRECISION array, dimension (LDDV,P)
+C     DV      (input) REAL*16 array, dimension (LDDV,P)
 C             If WEIGHT = 'L' or 'B', the leading PV-by-P part of this
 C             array must contain the feedthrough matrix DV of the system
 C             with the transfer-function matrix V.
@@ -258,7 +258,7 @@ C             The leading dimension of array DV.
 C             LDDV >= MAX(1,PV), if WEIGHT = 'L' or 'B';
 C             LDDV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     AW      (input/output) DOUBLE PRECISION array, dimension (LDAW,NW)
+C     AW      (input/output) REAL*16 array, dimension (LDAW,NW)
 C             On entry, if WEIGHT = 'R' or 'B', the leading NW-by-NW
 C             part of this array must contain the state matrix AW of
 C             the system with the transfer-function matrix W.
@@ -274,7 +274,7 @@ C             The leading dimension of array AW.
 C             LDAW >= MAX(1,NW), if WEIGHT = 'R' or 'B';
 C             LDAW >= 1,         if WEIGHT = 'L' or 'N'.
 C
-C     BW      (input/output) DOUBLE PRECISION array, dimension (LDBW,MW)
+C     BW      (input/output) REAL*16 array, dimension (LDBW,MW)
 C             On entry, if WEIGHT = 'R' or 'B', the leading NW-by-MW
 C             part of this array must contain the input matrix BW of the
 C             system with the transfer-function matrix W.
@@ -289,7 +289,7 @@ C             The leading dimension of array BW.
 C             LDBW >= MAX(1,NW), if WEIGHT = 'R' or 'B';
 C             LDBW >= 1,         if WEIGHT = 'L' or 'N'.
 C
-C     CW      (input/output) DOUBLE PRECISION array, dimension (LDCW,NW)
+C     CW      (input/output) REAL*16 array, dimension (LDCW,NW)
 C             On entry, if WEIGHT = 'R' or 'B', the leading M-by-NW part
 C             of this array must contain the output matrix CW of the
 C             system with the transfer-function matrix W.
@@ -304,7 +304,7 @@ C             The leading dimension of array CW.
 C             LDCW >= MAX(1,M), if WEIGHT = 'R' or 'B';
 C             LDCW >= 1,        if WEIGHT = 'L' or 'N'.
 C
-C     DW      (input) DOUBLE PRECISION array, dimension (LDDW,MW)
+C     DW      (input) REAL*16 array, dimension (LDDW,MW)
 C             If WEIGHT = 'R' or 'B', the leading M-by-MW part of this
 C             array must contain the feedthrough matrix DW of the system
 C             with the transfer-function matrix W.
@@ -319,7 +319,7 @@ C
 C     NS      (output) INTEGER
 C             The dimension of the ALPHA-stable subsystem.
 C
-C     HSV     (output) DOUBLE PRECISION array, dimension (N)
+C     HSV     (output) REAL*16 array, dimension (N)
 C             If INFO = 0, the leading NS elements of this array contain
 C             the frequency-weighted Hankel singular values, ordered
 C             decreasingly, of the ALPHA-stable part of the original
@@ -327,7 +327,7 @@ C             system.
 C
 C     Tolerances
 C
-C     TOL1    DOUBLE PRECISION
+C     TOL1    REAL*16
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of reduced system.
 C             For model reduction, the recommended value is
@@ -342,7 +342,7 @@ C             ALPHA-stable eigenvalues of A and EPS is the machine
 C             precision (see LAPACK Library Routine DLAMCH).
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C
-C     TOL2    DOUBLE PRECISION
+C     TOL2    REAL*16
 C             The tolerance for determining the order of a minimal
 C             realization of the ALPHA-stable part of the given system.
 C             The recommended value is TOL2 = NS*EPS*S1.
@@ -365,7 +365,7 @@ C             minimal realization of the stable part of the system,
 C             IWORK(2) and IWORK(3) contain the actual orders
 C             of the state space realizations of V and W, respectively.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -597,17 +597,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  C100, ONE, ZERO
+      REAL*16  C100, ONE, ZERO
       PARAMETER         ( C100 = 100.0D0, ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL, JOB, JOBC, JOBO, ORDSEL, WEIGHT
       INTEGER           INFO, IWARN, LDA, LDAV, LDAW, LDB, LDBV, LDBW,
      $                  LDC, LDCV, LDCW, LDD, LDDV, LDDW, LDWORK, M, MW,
      $                  N, NR, NS, NV, NW, P, PV
-      DOUBLE PRECISION  ALPHA, ALPHAC, ALPHAO, TOL1, TOL2
+      REAL*16  ALPHA, ALPHAC, ALPHAO, TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), AV(LDAV,*), AW(LDAW,*),
+      REAL*16  A(LDA,*), AV(LDAV,*), AW(LDAW,*),
      $                  B(LDB,*), BV(LDBV,*), BW(LDBW,*),
      $                  C(LDC,*), CV(LDCV,*), CW(LDCW,*),
      $                  D(LDD,*), DV(LDDV,*), DW(LDDW,*), DWORK(*),
@@ -619,10 +619,10 @@ C     .. Local Scalars ..
      $                  KDV, KI, KL, KT, KTI, KU, KW, LCF, LDW, LW, NMR,
      $                  NN, NNQ, NNR, NNV, NNW, NRA, NU, NU1, NVR, NWR,
      $                  PPV, WRKOPT
-      DOUBLE PRECISION  ALPWRK, MAXRED, SCALEC, SCALEO
+      REAL*16  ALPWRK, MAXRED, SCALEC, SCALEO
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB09IX, AB09IY, DLACPY, SB08CD, SB08DD, TB01ID,

@@ -41,7 +41,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix A.
 C             On exit, if JOBP = 'V', the leading N-by-N part of this
@@ -54,7 +54,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (output) REAL*16 array, dimension (LDQ,N)
 C             If JOBQ = 'V', the leading N-by-N part of this array
 C             contains the orthogonal matrix Q.
 C             If JOBQ = 'N', Q is not referenced.
@@ -63,13 +63,13 @@ C     LDQ     INTEGER
 C             The leading dimension of array Q.
 C             LDQ >= 1,  and when JOBQ = 'V',  LDQ >= MAX(1,N).
 C
-C     SV      (output) DOUBLE PRECISION array, dimension (N)
+C     SV      (output) REAL*16 array, dimension (N)
 C             The N singular values of the matrix A, sorted in
 C             descending order.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK;
 C             if INFO > 0, DWORK(2:N) contains the unconverged
 C             superdiagonal elements of an upper bidiagonal matrix B
@@ -122,23 +122,23 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, ZERO
+      REAL*16  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBP, JOBQ
       INTEGER           INFO, LDA, LDQ, LDWORK, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), Q(LDQ,*), SV(*)
+      REAL*16  A(LDA,*), DWORK(*), Q(LDQ,*), SV(*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY, WANTQ, WANTP
       INTEGER           I, IE, ISCL, ITAUP, ITAUQ, JWORK, MAXWRK,
      $                  MINWRK, NCOLP, NCOLQ
-      DOUBLE PRECISION  ANRM, BIGNUM, EPS, SMLNUM
+      REAL*16  ANRM, BIGNUM, EPS, SMLNUM
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUM(1)
+      REAL*16  DUM(1)
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANTR
+      REAL*16  DLAMCH, DLANTR
       EXTERNAL          DLAMCH, DLANTR, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DBDSQR, DGEBRD, DLACPY, DLASCL, DLASET, DORGBR,

@@ -44,11 +44,11 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar alpha. When alpha is zero then T is not
 C             referenced and A need not be set before entry.
 C
-C     T       (input) DOUBLE PRECISION array, dimension (LDT,k)
+C     T       (input) REAL*16 array, dimension (LDT,k)
 C             where k is M when SIDE = 'L' and is N when SIDE = 'R'.
 C             On entry with UPLO = 'U', the leading k-by-k upper
 C             Hessenberg part of this array must contain the upper
@@ -63,7 +63,7 @@ C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= max(1,k),
 C             where k is M when SIDE = 'L' and is N when SIDE = 'R'.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading M-by-N part of this array contains
@@ -74,7 +74,7 @@ C             The leading dimension of the array A.  LDA >= max(1,M).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 and ALPHA<>0,  DWORK(1)  returns the
 C             optimal value of LDWORK.
 C             On exit, if  INFO = -12,  DWORK(1)  returns the minimum
@@ -140,20 +140,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SIDE, TRANS, UPLO
       INTEGER           INFO, LDA, LDT, LDWORK, M, N
-      DOUBLE PRECISION  ALPHA
+      REAL*16  ALPHA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), T(LDT,*)
+      REAL*16  A(LDA,*), DWORK(*), T(LDT,*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY, LSIDE, LTRAN, LUP
       CHARACTER         ATRAN
       INTEGER           I, IERR, J, K, NOFF, PDW, PSAV, WRKMIN, WRKOPT,
      $                  XDIF
-      DOUBLE PRECISION  TEMP
+      REAL*16  TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

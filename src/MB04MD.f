@@ -20,7 +20,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     MAXRED  (input/output) DOUBLE PRECISION
+C     MAXRED  (input/output) REAL*16
 C             On entry, the maximum allowed reduction in the 1-norm of
 C             A (in an iteration) if zero rows or columns are
 C             encountered.
@@ -34,7 +34,7 @@ C             1-norm of the balanced matrix. Usually, this ratio will be
 C             larger than one, but it can sometimes be one, or even less
 C             than one (for instance, for some companion matrices).
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the input matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -43,7 +43,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     SCALE   (output) DOUBLE PRECISION array, dimension (N)
+C     SCALE   (output) REAL*16 array, dimension (N)
 C             The scaling factors applied to A.  If D(j) is the scaling
 C             factor applied to row and column j, then SCALE(j) = D(j),
 C             for j = 1,...,N.
@@ -97,29 +97,29 @@ C
 C  *********************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
-      DOUBLE PRECISION   SCLFAC
+      REAL*16   SCLFAC
       PARAMETER          ( SCLFAC = 1.0D+1 )
-      DOUBLE PRECISION   FACTOR, MAXR
+      REAL*16   FACTOR, MAXR
       PARAMETER          ( FACTOR = 0.95D+0, MAXR = 10.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, N
-      DOUBLE PRECISION   MAXRED
+      REAL*16   MAXRED
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), SCALE( * )
+      REAL*16   A( LDA, * ), SCALE( * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            NOCONV
       INTEGER            I, ICA, IRA, J
-      DOUBLE PRECISION   ANORM, C, CA, F, G, MAXNRM, R, RA, S, SFMAX1,
+      REAL*16   ANORM, C, CA, F, G, MAXNRM, R, RA, S, SFMAX1,
      $                   SFMAX2, SFMIN1, SFMIN2, SRED
 C     ..
 C     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DLAMCH, DLANGE
+      REAL*16   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE, IDAMAX
 C     ..
 C     .. External Subroutines ..

@@ -47,14 +47,14 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, G, Q, and X.  N >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             coefficient matrix A of the equation.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     G       (input) DOUBLE PRECISION array, dimension (LDG,N)
+C     G       (input) REAL*16 array, dimension (LDG,N)
 C             If UPLO = 'U', the leading N-by-N upper triangular part of
 C             this array must contain the upper triangular part of the
 C             matrix G.
@@ -65,7 +65,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= max(1,N).
 C
-C     Q       (input) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input) REAL*16 array, dimension (LDQ,N)
 C             If UPLO = 'U', the leading N-by-N upper triangular part of
 C             this array must contain the upper triangular part of the
 C             matrix Q.
@@ -76,7 +76,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= max(1,N).
 C
-C     X       (output) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (output) REAL*16 array, dimension (LDX,N)
 C             If INFO = 0, INFO = 2, or INFO = 4, the leading N-by-N
 C             part of this array contains the symmetric solution matrix
 C             X of the algebraic Riccati equation.
@@ -84,18 +84,18 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= max(1,N).
 C
-C     RCOND   (output) DOUBLE PRECISION
+C     RCOND   (output) REAL*16
 C             If JOB = 'A', the estimate of the reciprocal condition
 C             number of the Riccati equation.
 C
-C     FERR    (output) DOUBLE PRECISION
+C     FERR    (output) REAL*16
 C             If JOB = 'A', the estimated forward error bound for the
 C             solution X. If XTRUE is the true solution, FERR bounds the
 C             magnitude of the largest entry in (X - XTRUE) divided by
 C             the magnitude of the largest entry in X.
 C
-C     WR      (output) DOUBLE PRECISION array, dimension (N)
-C     WI      (output) DOUBLE PRECISION array, dimension (N)
+C     WR      (output) REAL*16 array, dimension (N)
+C     WI      (output) REAL*16 array, dimension (N)
 C             If JOB = 'A' and TRANA = 'N', WR and WI contain the real
 C             and imaginary parts, respectively, of the eigenvalues of
 C             the matrix A - G*X, i.e., the closed-loop system poles.
@@ -110,7 +110,7 @@ C     IWORK   INTEGER array, dimension (LIWORK), where
 C             LIWORK >= 2*N,          if JOB = 'X';
 C             LIWORK >= max(2*N,N*N), if JOB = 'A'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = 2, DWORK(1) contains the
 C             optimal value of LDWORK. If JOB = 'A', then DWORK(2:N*N+1)
 C             and DWORK(N*N+2:2*N*N+1) contain a real Schur form of the
@@ -232,18 +232,18 @@ C
 C     .. Parameters ..
       INTEGER            MAXIT
       PARAMETER          ( MAXIT = 50 )
-      DOUBLE PRECISION   ZERO, HALF, ONE, TWO, TEN
+      REAL*16   ZERO, HALF, ONE, TWO, TEN
       PARAMETER          ( ZERO = 0.0D+0, HALF = 0.5D+0, ONE = 1.0D+0,
      $                     TWO  = 2.0D+0, TEN  = 10.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          JOB, TRANA, UPLO
       INTEGER            INFO, LDA, LDG, LDQ, LDWORK, LDX, N
-      DOUBLE PRECISION   FERR, RCOND
+      REAL*16   FERR, RCOND
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), DWORK( * ), G( LDG, * ),
+      REAL*16   A( LDA, * ), DWORK( * ), G( LDG, * ),
      $                   Q( LDQ, * ), WI( * ), WR( * ), X( LDX, * )
 C     ..
 C     .. Local Scalars ..
@@ -252,7 +252,7 @@ C     .. Local Scalars ..
       INTEGER            I, IAF, IB, IBR, IC, IFR, IJ, IJ1, IJ2, INFO2,
      $                   INI, IR, ISCL, ISV, IT, ITAU, ITER, IU, IWRK,
      $                   J, JI, LWAMAX, MINWRK, N2, SDIM
-      DOUBLE PRECISION   CONV, GNORM2, EPS, HNORM, HINNRM, QNORM2,
+      REAL*16   CONV, GNORM2, EPS, HNORM, HINNRM, QNORM2,
      $                   SCALE, SEP, TEMP, TOL
 C     ..
 C     .. Local Arrays ..
@@ -260,7 +260,7 @@ C     .. Local Arrays ..
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME, SELECT
-      DOUBLE PRECISION   DLAMCH, DLANSY
+      REAL*16   DLAMCH, DLANSY
       EXTERNAL           DLAMCH, DLANSY, LSAME, SELECT
 C     ..
 C     .. External Subroutines ..

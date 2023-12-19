@@ -38,7 +38,7 @@ C     P       (input) INTEGER
 C             The number of rows of the matrix C.
 C             also the dimension of the output vector.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, if NR < N, the leading LR-by-NR part of this
@@ -50,7 +50,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, if INFRED >= 0, the leading LR-by-NR part of this
@@ -65,7 +65,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading LR-by-M part of this array contains
@@ -76,7 +76,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,L).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-NR part of this array contains
@@ -87,7 +87,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the original feedthrough matrix D.
 C             On exit, the leading P-by-M part of this array contains
@@ -117,7 +117,7 @@ C                         system has been restored.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in rank determinations when
 C             transforming (A-lambda*E). If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -133,7 +133,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -221,23 +221,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE, ZERO
+      REAL*16   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBS
       INTEGER           INFO, INFRED, L, LDA, LDB, LDC, LDD, LDE,
      $                  LDWORK, LR, M, N, NR, P, RANKE
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), E(LDE,*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY, LSPACE, SSTYPE
       INTEGER           K, K1, KWA, KWB, KWC, KWE, KWR, LS, LWRMIN, NS,
      $                  RNKA22, WRKOPT
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUM(1)
+      REAL*16  DUM(1)
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

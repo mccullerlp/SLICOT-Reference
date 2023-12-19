@@ -38,14 +38,14 @@ C             = M  for the pertransposed system.
 C             On exit, SIGMA contains the last computed value sigma in
 C             the algorithm.
 C
-C     SVLMAX  (input) DOUBLE PRECISION
+C     SVLMAX  (input) REAL*16
 C             During each reduction step, the rank-revealing QR
 C             factorization of a matrix stops when the estimated minimum
 C             singular value is smaller than TOL * MAX(SVLMAX,EMSV),
 C             where EMSV is the estimated maximum singular value.
 C             SVLMAX >= 0.
 C
-C     ABCD    (input/output) DOUBLE PRECISION array, dimension
+C     ABCD    (input/output) REAL*16 array, dimension
 C             (LDABCD,M+N)
 C             On entry, the leading (N+P)-by-(M+N) part of this array
 C             must contain the compound input matrix of the system.
@@ -91,7 +91,7 @@ C             The number of left Kronecker indices.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -104,7 +104,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (MAX(M,P))
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -161,22 +161,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDABCD, LDWORK, M, MU, N, NINFZ, NKROL,
      $                  NU, P, RO, SIGMA
-      DOUBLE PRECISION  SVLMAX, TOL
+      REAL*16  SVLMAX, TOL
 C     .. Array Arguments ..
       INTEGER           INFZ(*), IWORK(*), KRONL(*)
-      DOUBLE PRECISION  ABCD(LDABCD,*), DWORK(*)
+      REAL*16  ABCD(LDABCD,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I1, IK, IROW, ITAU, IZ, JWORK, MM1, MNTAU, MNU,
      $                  MPM, NP, RANK, RO1, TAU, WRKOPT
-      DOUBLE PRECISION  T
+      REAL*16  T
 C     .. Local Arrays ..
-      DOUBLE PRECISION  SVAL(3)
+      REAL*16  SVAL(3)
 C     .. External Subroutines ..
       EXTERNAL          DLAPMT, DLARFG, DLASET, DLATZM, DORMQR, DORMRQ,
      $                  MB03OY, MB03PY, XERBLA

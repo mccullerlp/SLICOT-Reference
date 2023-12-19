@@ -97,7 +97,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 4.
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR, NC)
+C     R       (input/output) REAL*16 array, dimension (LDR, NC)
 C             where NC = N if BN <= 1, and NC = BSN+ST, if BN > 1.
 C             On entry, the leading N-by-NC part of this array must
 C             contain the (compressed) representation (Rc) of the upper
@@ -122,18 +122,18 @@ C             This array must define the permutation matrix P such that
 C             J*P = Q*R. Column j of P is column IPVT(j) of the identity
 C             matrix.
 C
-C     DIAG    (input) DOUBLE PRECISION array, dimension (N)
+C     DIAG    (input) REAL*16 array, dimension (N)
 C             This array must contain the diagonal elements of the
 C             matrix D.  DIAG(I) <> 0, I = 1,...,N.
 C
-C     QTB     (input) DOUBLE PRECISION array, dimension (N)
+C     QTB     (input) REAL*16 array, dimension (N)
 C             This array must contain the first n elements of the
 C             vector Q'*b.
 C
-C     DELTA   (input) DOUBLE PRECISION
+C     DELTA   (input) REAL*16
 C             An upper bound on the Euclidean norm of D*x.  DELTA > 0.
 C
-C     PAR     (input/output) DOUBLE PRECISION
+C     PAR     (input/output) REAL*16
 C             On entry, PAR must contain an initial estimate of the
 C             Levenberg-Marquardt parameter.  PAR >= 0.
 C             On exit, it contains the final estimate of this parameter.
@@ -148,16 +148,16 @@ C             the numerical ranks of the submatrices R_k, k = 1:l(+1).
 C             On exit, if N > 0, this array contains the numerical ranks
 C             of the submatrices S_k, k = 1:l(+1).
 C
-C     X       (output) DOUBLE PRECISION array, dimension (N)
+C     X       (output) REAL*16 array, dimension (N)
 C             This array contains the least squares solution of the
 C             system J*x = b, sqrt(PAR)*D*x = 0.
 C
-C     RX      (output) DOUBLE PRECISION array, dimension (N)
+C     RX      (output) REAL*16 array, dimension (N)
 C             This array contains the matrix-vector product -R*P'*x.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             If COND = 'E', the tolerance to be used for finding the
 C             ranks of the submatrices R_k and S_k. If the user sets
 C             TOL > 0, then the given value of TOL is used as a lower
@@ -171,7 +171,7 @@ C             This parameter is not relevant if COND = 'U' or 'N'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, the first N elements of this array contain the
 C             diagonal elements of the upper triangular matrix S.
 C             If BN > 1 and BSN > 0, the elements N+1 : N+ST*(N-ST)
@@ -257,25 +257,25 @@ C
 C     .. Parameters ..
       INTEGER           ITMAX
       PARAMETER         ( ITMAX = 10 )
-      DOUBLE PRECISION  P1, P001, ZERO, ONE
+      REAL*16  P1, P001, ZERO, ONE
       PARAMETER         ( P1  = 1.0D-1, P001 = 1.0D-3, ZERO = 0.0D0,
      $                    ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COND
       INTEGER           INFO, LDR, LDWORK, LIPAR, N
-      DOUBLE PRECISION  DELTA, PAR, TOL
+      REAL*16  DELTA, PAR, TOL
 C     .. Array Arguments ..
       INTEGER           IPAR(*), IPVT(*), RANKS(*)
-      DOUBLE PRECISION  DIAG(*), DWORK(*), QTB(*), R(LDR,*), RX(*), X(*)
+      REAL*16  DIAG(*), DWORK(*), QTB(*), R(LDR,*), RX(*), X(*)
 C     .. Local Scalars ..
       INTEGER           BN, BSM, BSN, I, IBSN, ITER, J, JW, K, L, LDS,
      $                  N2, NTHS, RANK, ST
-      DOUBLE PRECISION  DMINO, DWARF, DXNORM, FP, GNORM, PARC, PARL,
+      REAL*16  DMINO, DWARF, DXNORM, FP, GNORM, PARC, PARL,
      $                  PARU, SUM, TEMP, TOLDEF
       LOGICAL           BADRK, ECOND, NCOND, SING, UCOND
       CHARACTER         CONDL
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT, DLAMCH, DNRM2
+      REAL*16  DDOT, DLAMCH, DNRM2
       LOGICAL           LSAME
       EXTERNAL          DDOT, DLAMCH, DNRM2, LSAME
 C     .. External Subroutines ..

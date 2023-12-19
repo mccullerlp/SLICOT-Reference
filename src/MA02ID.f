@@ -1,4 +1,4 @@
-      DOUBLE PRECISION FUNCTION MA02ID( TYP, NORM, N, A, LDA, QG,
+      REAL*16 FUNCTION MA02ID( TYP, NORM, N, A, LDA, QG,
      $                                  LDQG, DWORK )
 C
 C     PURPOSE
@@ -24,7 +24,7 @@ C     to the one norm.
 C
 C     FUNCTION VALUE
 C
-C     MA02ID  DOUBLE PRECISION
+C     MA02ID  REAL*16
 C             The computed norm.
 C
 C     ARGUMENTS
@@ -48,14 +48,14 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     QG      (input) DOUBLE PRECISION array, dimension (LDQG,N+1)
+C     QG      (input) REAL*16 array, dimension (LDQG,N+1)
 C             On entry, the leading N-by-N+1 part of this array must
 C             contain in columns 1:N the lower triangular part of the
 C             matrix Q and in columns 2:N+1 the upper triangular part
@@ -68,7 +68,7 @@ C             The leading dimension of the array QG.  LDQG >= MAX(1,N).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             where LDWORK >= 2*N when NORM = '1', NORM = 'I' or
 C             NORM = 'O'; otherwise, DWORK is not referenced.
 C
@@ -90,20 +90,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE, TWO, ZERO
+      REAL*16   ONE, TWO, ZERO
       PARAMETER          ( ONE = 1.0D+0, TWO = 2.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          NORM, TYP
       INTEGER            LDA, LDQG, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*), DWORK(*), QG(LDQG,*)
+      REAL*16   A(LDA,*), DWORK(*), QG(LDQG,*)
 C     .. Local Scalars ..
       LOGICAL            LSH
       INTEGER            I, J
-      DOUBLE PRECISION   DSCL, DSUM, SCALE, SUM, TEMP, VALUE
+      REAL*16   DSCL, DSUM, SCALE, SUM, TEMP, VALUE
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLANGE, DLAPY2
+      REAL*16   DLANGE, DLAPY2
       EXTERNAL           DLANGE, DLAPY2, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DLASSQ

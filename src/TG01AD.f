@@ -55,12 +55,12 @@ C
 C     P       (input) INTEGER
 C             The number of rows of matrix C.  P >= 0.
 C
-C     THRESH  (input) DOUBLE PRECISION
+C     THRESH  (input) REAL*16
 C             Threshold value for magnitude of elements:
 C             elements with magnitude less than or equal to
 C             THRESH are ignored for balancing. THRESH >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading L-by-N part of this array contains
@@ -69,7 +69,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, the leading L-by-N part of this array contains
@@ -78,7 +78,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the input/state matrix B.
 C             On exit, if M > 0, the leading L-by-M part of this array
@@ -89,7 +89,7 @@ C     LDB     INTEGER
 C             The leading dimension of array B.
 C             LDB >= MAX(1,L) if M > 0 or LDB >= 1 if M = 0.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, if P > 0, the leading P-by-N part of this array
@@ -99,19 +99,19 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     LSCALE  (output) DOUBLE PRECISION array, dimension (L)
+C     LSCALE  (output) REAL*16 array, dimension (L)
 C             The scaling factors applied to S from left.  If Dl(j) is
 C             the scaling factor applied to row j, then
 C             SCALE(j) = Dl(j), for j = 1,...,L.
 C
-C     RSCALE  (output) DOUBLE PRECISION array, dimension (N)
+C     RSCALE  (output) REAL*16 array, dimension (N)
 C             The scaling factors applied to S from right.  If Dr(j) is
 C             the scaling factor applied to column j, then
 C             SCALE(j) = Dr(j), for j = 1,...,N.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (3*(L+N))
+C     DWORK   REAL*16 array, dimension (3*(L+N))
 C
 C     Error Indicator
 C
@@ -167,16 +167,16 @@ C
 C  *********************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   HALF, ONE, ZERO
+      REAL*16   HALF, ONE, ZERO
       PARAMETER          ( HALF = 0.5D+0, ONE = 1.0D+0, ZERO = 0.0D+0 )
-      DOUBLE PRECISION   SCLFAC, THREE
+      REAL*16   SCLFAC, THREE
       PARAMETER          ( SCLFAC = 1.0D+1, THREE = 3.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          JOB
       INTEGER            INFO, L, LDA, LDB, LDC, LDE, M, N, P
-      DOUBLE PRECISION   THRESH
+      REAL*16   THRESH
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK( * ), E( LDE, * ), LSCALE( * ),
      $                   RSCALE( * )
 C     .. Local Scalars ..
@@ -184,15 +184,15 @@ C     .. Local Scalars ..
       INTEGER            I, ICAB, IR, IRAB, IT, J, JC, KOUNT, KW1, KW2,
      $                   KW3, KW4, KW5, LCAB, LRAB, LSFMAX, LSFMIN,
      $                   NRP2
-      DOUBLE PRECISION   ALPHA, BASL, BETA, CAB, CMAX, COEF, COEF2,
+      REAL*16   ALPHA, BASL, BETA, CAB, CMAX, COEF, COEF2,
      $                   COEF5, COR, EPS, EW, EWC, GAMMA, PGAMMA, RAB,
      $                   SFMAX, SFMIN, SUM, T, TA, TB, TC, TE
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM( 1 )
+      REAL*16   DUM( 1 )
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DDOT, DLAMCH
+      REAL*16   DDOT, DLAMCH
       EXTERNAL           DDOT, DLAMCH, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DSCAL, XERBLA

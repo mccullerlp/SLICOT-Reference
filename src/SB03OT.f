@@ -44,7 +44,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices S and R.  N >= 0.
 C
-C     S       (input) DOUBLE PRECISION array of dimension (LDS,N)
+C     S       (input) REAL*16 array of dimension (LDS,N)
 C             The leading N-by-N upper Hessenberg part of this array
 C             must contain the block upper triangular matrix.
 C             The elements below the upper Hessenberg part of the array
@@ -55,7 +55,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,N).
 C
-C     R       (input/output) DOUBLE PRECISION array of dimension (LDR,N)
+C     R       (input/output) REAL*16 array of dimension (LDR,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix R.
 C             On exit, the leading N-by-N upper triangular part of this
@@ -65,13 +65,13 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (4*N)
+C     DWORK   REAL*16 array, dimension (4*N)
 C
 C     Error Indicator
 C
@@ -166,25 +166,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO
+      REAL*16  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           DISCR, LTRANS
       INTEGER           INFO, LDR, LDS, N
-      DOUBLE PRECISION  SCALE
+      REAL*16  SCALE
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(*), R(LDR,*), S(LDS,*)
+      REAL*16  DWORK(*), R(LDR,*), S(LDS,*)
 C     .. Local Scalars ..
       LOGICAL           CONT, TBYT
       INTEGER           INFOM, ISGN, J, J1, J2, J3, K, K1, K2, K3,
      $                  KOUNT, KSIZE
-      DOUBLE PRECISION  ABSSKK, ALPHA, BIGNUM, D1, D2, DR, EPS, SCALOC,
+      REAL*16  ABSSKK, ALPHA, BIGNUM, D1, D2, DR, EPS, SCALOC,
      $                  SMIN, SMLNUM, SUM, T1, T2, T3, T4, TAU1, TAU2,
      $                  TEMP, V1, V2, V3, V4
 C     .. Local Arrays ..
-      DOUBLE PRECISION  A(2,2), B(2,2), U(2,2)
+      REAL*16  A(2,2), B(2,2), U(2,2)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, DLANHS
+      REAL*16  DLAMCH, DLANHS
       EXTERNAL          DLAMCH, DLANHS
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DLABAD, DLARFG, DSCAL, DSWAP,

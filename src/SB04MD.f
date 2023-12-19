@@ -20,7 +20,7 @@ C
 C     M       (input) INTEGER
 C             The order of the matrix B.  M >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the coefficient matrix A of the equation.
 C             On exit, the leading N-by-N upper Hessenberg part of this
@@ -32,7 +32,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain the coefficient matrix B of the equation.
 C             On exit, the leading M-by-M part of this array contains
@@ -41,7 +41,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,M).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,M)
+C     C       (input/output) REAL*16 array, dimension (LDC,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the coefficient matrix C of the equation.
 C             On exit, the leading N-by-M part of this array contains
@@ -50,7 +50,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,N).
 C
-C     Z       (output) DOUBLE PRECISION array, dimension (LDZ,M)
+C     Z       (output) REAL*16 array, dimension (LDZ,M)
 C             The leading M-by-M part of this array contains the
 C             orthogonal matrix Z used to transform B' to real upper
 C             Schur form.
@@ -62,7 +62,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (4*N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK, and DWORK(2), DWORK(3),..., DWORK(N) contain
 C             the scalar factors of the elementary reflectors used to
@@ -138,13 +138,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, LDWORK, LDZ, M, N
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), Z(LDZ,*)
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I, IEIG, IFAIL, IHI, ILO, IND, ITAU, JWORK,

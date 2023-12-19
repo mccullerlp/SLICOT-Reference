@@ -29,7 +29,7 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     A       (input/output) COMPLEX*16 array, dimension ( LDA, N )
+C     A       (input/output) COMPLEX*32 array, dimension ( LDA, N )
 C             On entry, the leading M-by-N part of this array must
 C             contain the given matrix A.
 C             On exit, the leading RANK-by-RANK upper triangular part
@@ -43,7 +43,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     RCOND   (input) DOUBLE PRECISION
+C     RCOND   (input) REAL*16
 C             RCOND is used to determine the effective rank of A, which
 C             is defined as the order of the largest leading triangular
 C             submatrix R11 in the QR factorization with pivoting of A,
@@ -52,7 +52,7 @@ C             0 <= RCOND <= 1.
 C             NOTE that when SVLMAX > 0, the estimated rank could be
 C             less than that defined above (see SVLMAX).
 C
-C     SVLMAX  (input) DOUBLE PRECISION
+C     SVLMAX  (input) REAL*16
 C             If A is a submatrix of another matrix B, and the rank
 C             decision should be related to that matrix, then SVLMAX
 C             should be an estimate of the largest singular value of B
@@ -64,7 +64,7 @@ C     RANK    (output) INTEGER
 C             The effective (estimated) rank of A, i.e., the order of
 C             the submatrix R11.
 C
-C     SVAL    (output) DOUBLE PRECISION array, dimension ( 3 )
+C     SVAL    (output) REAL*16 array, dimension ( 3 )
 C             The estimates of some of the singular values of the
 C             triangular factor R:
 C             SVAL(1): largest singular value of R(1:RANK,1:RANK);
@@ -87,15 +87,15 @@ C     JPVT    (output) INTEGER array, dimension ( N )
 C             If JPVT(i) = k, then the i-th column of A*P was the k-th
 C             column of A.
 C
-C     TAU     (output) COMPLEX*16 array, dimension ( MIN( M, N ) )
+C     TAU     (output) COMPLEX*32 array, dimension ( MIN( M, N ) )
 C             The leading  RANK  elements of TAU contain the scalar
 C             factors of the elementary reflectors.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension ( 2*N )
+C     DWORK   REAL*16 array, dimension ( 2*N )
 C
-C     ZWORK   COMPLEX*16 array, dimension ( 3*N-1 )
+C     ZWORK   COMPLEX*32 array, dimension ( 3*N-1 )
 C
 C     Error Indicator
 C
@@ -169,27 +169,27 @@ C
 C     .. Parameters ..
       INTEGER            IMAX, IMIN
       PARAMETER          ( IMAX = 1, IMIN = 2 )
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
-      COMPLEX*16         CZERO, CONE
+      COMPLEX*32         CZERO, CONE
       PARAMETER          ( CZERO = ( 0.0D+0, 0.0D+0 ),
      $                     CONE  = ( 1.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, M, N, RANK
-      DOUBLE PRECISION   RCOND, SVLMAX
+      REAL*16   RCOND, SVLMAX
 C     .. Array Arguments ..
       INTEGER            JPVT( * )
-      COMPLEX*16         A( LDA, * ), TAU( * ), ZWORK( * )
-      DOUBLE PRECISION   DWORK( * ), SVAL( 3 )
+      COMPLEX*32         A( LDA, * ), TAU( * ), ZWORK( * )
+      REAL*16   DWORK( * ), SVAL( 3 )
 C     ..
 C     .. Local Scalars ..
       INTEGER            I, ISMAX, ISMIN, ITEMP, J, MN, PVT
-      COMPLEX*16         AII, C1, C2, S1, S2
-      DOUBLE PRECISION   SMAX, SMAXPR, SMIN, SMINPR, TEMP, TEMP2, TOLZ
+      COMPLEX*32         AII, C1, C2, S1, S2
+      REAL*16   SMAX, SMAXPR, SMIN, SMINPR, TEMP, TEMP2, TOLZ
 C     ..
 C     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DLAMCH, DZNRM2
+      REAL*16   DLAMCH, DZNRM2
       EXTERNAL           DLAMCH, DZNRM2, IDAMAX
 C     .. External Subroutines ..
       EXTERNAL           XERBLA, ZLAIC1, ZLARF, ZLARFG, ZSCAL, ZSWAP

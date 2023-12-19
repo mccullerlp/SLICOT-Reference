@@ -65,7 +65,7 @@ C
 C     N       (input) INTEGER
 C             Order of the pencil aA*B - bD.  N >= 0, even.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA, N)
+C     A       (input/output) REAL*16 array, dimension (LDA, N)
 C             On entry, the leading N-by-N block diagonal part of this
 C             array must contain the matrix A in (1). The off-diagonal
 C             blocks need not be set to zero.
@@ -75,7 +75,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1, N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB, N)
+C     B       (input/output) REAL*16 array, dimension (LDB, N)
 C             On entry, the leading N-by-N block diagonal part of this
 C             array must contain the matrix B in (1). The off-diagonal
 C             blocks need not be set to zero.
@@ -85,7 +85,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD, N)
+C     D       (input/output) REAL*16 array, dimension (LDD, N)
 C             On entry, the leading N-by-N block anti-diagonal part of
 C             this array must contain the matrix D in (1). The diagonal
 C             blocks need not be set to zero.
@@ -95,7 +95,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1, N).
 C
-C     Q1      (input/output) DOUBLE PRECISION array, dimension (LDQ1, N)
+C     Q1      (input/output) REAL*16 array, dimension (LDQ1, N)
 C             On entry, if COMPQ1 = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q01, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -110,7 +110,7 @@ C     LDQ1    INTEGER
 C             LDQ1 >= 1,         if COMPQ1 = 'N';
 C             LDQ1 >= MAX(1, N), if COMPQ1 = 'I' or COMPQ1 = 'U'.
 C
-C     Q2      (input/output) DOUBLE PRECISION array, dimension (LDQ2, N)
+C     Q2      (input/output) REAL*16 array, dimension (LDQ2, N)
 C             On entry, if COMPQ2 = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q02, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -126,7 +126,7 @@ C             The leading dimension of the array Q2.
 C             LDQ2 >= 1,         if COMPQ2 = 'N';
 C             LDQ2 >= MAX(1, N), if COMPQ2 = 'I' or COMPQ2 = 'U'.
 C
-C     Q3      (input/output) DOUBLE PRECISION array, dimension (LDQ3, N)
+C     Q3      (input/output) REAL*16 array, dimension (LDQ3, N)
 C             On entry, if COMPQ3 = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q03, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -150,7 +150,7 @@ C     LIWORK  INTEGER
 C             The dimension of the array IWORK.
 C             LIWORK >= MAX( N/2+1, 48 ).
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C             On exit, if INFO = -20, DWORK(1) returns the minimum value
 C             of LDWORK.
@@ -316,7 +316,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, HUND2
+      REAL*16   ZERO, ONE, HUND2
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, HUND2 = 2.0D+2 )
 C
 C     .. Scalar Arguments ..
@@ -327,7 +327,7 @@ C
 C     .. Array Arguments ..
       LOGICAL            BWORK( * )
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), D( LDD, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), D( LDD, * ),
      $                   DWORK( * ), Q1( LDQ1, * ), Q2( LDQ2, * ),
      $                   Q3( LDQ3, * )
 C
@@ -344,16 +344,16 @@ C     .. Local Scalars ..
      $                   IV3, IV4, IV5, IV6, IWRK, J, K, KSCHUR, M, M1,
      $                   M2, M4, MINWRK, MM, MP1, NR, NROW, OPTWRK, R,
      $                   SDIM
-      DOUBLE PRECISION   BASE, LGBAS, TMP2, TMP3, ULP
+      REAL*16   BASE, LGBAS, TMP2, TMP3, ULP
 C
 C     .. Local Arrays ..
       LOGICAL            BW(   4 )
       INTEGER            IDUM( 1 )
-      DOUBLE PRECISION   DUM(  1 )
+      REAL*16   DUM(  1 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME, SB02OW
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, LSAME, SB02OW
 C
 C     .. External Subroutines ..

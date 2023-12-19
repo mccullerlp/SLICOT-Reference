@@ -40,7 +40,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bH.  N >= 0, even.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C                            (LDA, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix A.
@@ -53,7 +53,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1, N/2).
 C
-C     DE      (input/output) DOUBLE PRECISION array, dimension
+C     DE      (input/output) REAL*16 array, dimension
 C                            (LDDE, N/2+1)
 C             On entry, the leading N/2-by-N/2 lower triangular part of
 C             this array must contain the lower triangular part of the
@@ -84,7 +84,7 @@ C     LDDE    INTEGER
 C             The leading dimension of the array DE.
 C             LDDE >= MAX(1, N/2).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C                            (LDB, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix B.
@@ -97,7 +97,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N/2).
 C
-C     FG      (input/output) DOUBLE PRECISION array, dimension
+C     FG      (input/output) REAL*16 array, dimension
 C                            (LDFG, N/2+1)
 C             On entry, the leading N/2-by-N/2 lower triangular part of
 C             this array must contain the lower triangular part of the
@@ -119,7 +119,7 @@ C     NEIG    (output) INTEGER
 C             If COMPQ = 'C', the number of eigenvalues in aS - bH with
 C             strictly negative real part.
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ, 2*N)
+C     Q       (output) REAL*16 array, dimension (LDQ, 2*N)
 C             On exit, if COMPQ = 'C', the leading N-by-NEIG part of
 C             this array contains an orthogonal basis of the right
 C             deflating subspace corresponding to the eigenvalues of
@@ -132,16 +132,16 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,           if COMPQ = 'N';
 C             LDQ >= MAX(1, 2*N), if COMPQ = 'C'.
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N/2)
+C     ALPHAR  (output) REAL*16 array, dimension (N/2)
 C             The real parts of each scalar alpha defining an eigenvalue
 C             of the pencil aS - bH.
 C
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N/2)
+C     ALPHAI  (output) REAL*16 array, dimension (N/2)
 C             The imaginary parts of each scalar alpha defining an
 C             eigenvalue of the pencil aS - bH.
 C             If ALPHAI(j) is zero, then the j-th eigenvalue is real.
 C
-C     BETA    (output) DOUBLE PRECISION array, dimension (N/2)
+C     BETA    (output) REAL*16 array, dimension (N/2)
 C             The scalars beta that define the eigenvalues of the pencil
 C             aS - bH.
 C             Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
@@ -169,7 +169,7 @@ C             The dimension of the array IWORK.  LIWORK = 1, if N = 0,
 C             LIWORK >= MAX( N + 12, 2*N + 3 ),     if COMPQ = 'N',
 C             LIWORK >= MAX( 32, 2*N + 3 ),         if COMPQ = 'C'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C             On exit, if INFO = -21, DWORK(1) returns the minimum value
 C             of LDWORK.
@@ -292,7 +292,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO
+      REAL*16   ZERO, ONE, TWO
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0 )
 C
 C     .. Scalar Arguments ..
@@ -303,7 +303,7 @@ C
 C     .. Array Arguments ..
       LOGICAL            BWORK( * )
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), ALPHAI( * ), ALPHAR( * ),
+      REAL*16   A( LDA, * ), ALPHAI( * ), ALPHAR( * ),
      $                   B( LDB, * ), BETA( * ), DE( LDDE, * ),
      $                   DWORK( * ), FG( LDFG, * ), Q( LDQ, * )
 C
@@ -315,7 +315,7 @@ C     .. Local Scalars ..
      $                   MM, N2, NM, NMM, NN, OPTDW
 C
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM( 4 )
+      REAL*16   DUM( 4 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME

@@ -34,7 +34,7 @@ C     NMEAS   (input) INTEGER
 C             The number of measurements (NP2).  NP >= NMEAS >= 0.
 C             M-NCON >= NMEAS.
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             The leading NP-by-M part of this array must contain the
 C             system input/output matrix D. Only the trailing
 C             NMEAS-by-NCON submatrix D22 is used.
@@ -42,7 +42,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     TU      (input) DOUBLE PRECISION array, dimension (LDTU,M2)
+C     TU      (input) REAL*16 array, dimension (LDTU,M2)
 C             The leading M2-by-M2 part of this array must contain the
 C             control transformation matrix TU, as obtained by the
 C             SLICOT Library routine SB10PD.
@@ -50,7 +50,7 @@ C
 C     LDTU    INTEGER
 C             The leading dimension of the array TU.  LDTU >= max(1,M2).
 C
-C     TY      (input) DOUBLE PRECISION array, dimension (LDTY,NP2)
+C     TY      (input) REAL*16 array, dimension (LDTY,NP2)
 C             The leading NP2-by-NP2 part of this array must contain the
 C             measurement transformation matrix TY, as obtained by the
 C             SLICOT Library routine SB10PD.
@@ -59,7 +59,7 @@ C     LDTY    INTEGER
 C             The leading dimension of the array TY.
 C             LDTY >= max(1,NP2).
 C
-C     AK      (input/output) DOUBLE PRECISION array, dimension (LDAK,N)
+C     AK      (input/output) REAL*16 array, dimension (LDAK,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain controller state matrix for the normalized system
 C             as obtained by the SLICOT Library routine SB10SD.
@@ -69,7 +69,7 @@ C
 C     LDAK    INTEGER
 C             The leading dimension of the array AK.  LDAK >= max(1,N).
 C
-C     BK      (input/output) DOUBLE PRECISION array, dimension
+C     BK      (input/output) REAL*16 array, dimension
 C             (LDBK,NMEAS)
 C             On entry, the leading N-by-NMEAS part of this array must
 C             contain controller input matrix for the normalized system
@@ -80,7 +80,7 @@ C
 C     LDBK    INTEGER
 C             The leading dimension of the array BK.  LDBK >= max(1,N).
 C
-C     CK      (input/output) DOUBLE PRECISION array, dimension (LDCK,N)
+C     CK      (input/output) REAL*16 array, dimension (LDCK,N)
 C             On entry, the leading NCON-by-N part of this array must
 C             contain controller output matrix for the normalized
 C             system as obtained by the SLICOT Library routine SB10SD.
@@ -91,7 +91,7 @@ C     LDCK    INTEGER
 C             The leading dimension of the array CK.
 C             LDCK >= max(1,NCON).
 C
-C     DK      (input/output) DOUBLE PRECISION array, dimension
+C     DK      (input/output) REAL*16 array, dimension
 C             (LDDK,NMEAS)
 C             On entry, the leading NCON-by-NMEAS part of this array
 C             must contain controller matrix DK for the normalized
@@ -103,14 +103,14 @@ C     LDDK    INTEGER
 C             The leading dimension of the array DK.
 C             LDDK >= max(1,NCON).
 C
-C     RCOND   (output) DOUBLE PRECISION
+C     RCOND   (output) REAL*16
 C             RCOND contains an estimate of the reciprocal condition
 C             number of the matrix Im2 + DKHAT*D22 which must be
 C             inverted in the computation of the controller.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             Tolerance used in determining the nonsingularity of the
 C             matrix which must be inverted. If TOL <= 0, then a default
 C             value equal to sqrt(EPS) is used, where EPS is the
@@ -120,7 +120,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*M2)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The dimension of the array DWORK.
@@ -175,26 +175,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDAK, LDBK, LDCK, LDD, LDDK, LDTU, LDTY,
      $                   LDWORK, M, N, NCON, NMEAS, NP
-      DOUBLE PRECISION   RCOND, TOL
+      REAL*16   RCOND, TOL
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   AK( LDAK, * ), BK( LDBK, * ), CK( LDCK, * ),
+      REAL*16   AK( LDAK, * ), BK( LDBK, * ), CK( LDCK, * ),
      $                   D( LDD, * ), DK( LDDK, * ), DWORK( * ),
      $                   TU( LDTU, * ), TY( LDTY, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            INFO2, IWRK, M1, M2, MINWRK, NP1, NP2
-      DOUBLE PRECISION   ANORM, TOLL
+      REAL*16   ANORM, TOLL
 C     ..
 C     .. External Functions
-      DOUBLE PRECISION   DLAMCH, DLANGE
+      REAL*16   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE
 C     ..
 C     .. External Subroutines ..

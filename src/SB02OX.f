@@ -9,15 +9,15 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     ALPHAR  (input) DOUBLE PRECISION
+C     ALPHAR  (input) REAL*16
 C             The real part of the numerator of the current eigenvalue
 C             considered.
 C
-C     ALPHAI  (input) DOUBLE PRECISION
+C     ALPHAI  (input) REAL*16
 C             The imaginary part of the numerator of the current
 C             eigenvalue considered.
 C
-C     BETA    (input) DOUBLE PRECISION
+C     BETA    (input) REAL*16
 C             The (real) denominator of the current eigenvalue
 C             considered.
 C
@@ -52,9 +52,9 @@ C
 C     ******************************************************************
 C
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION   ALPHAR, ALPHAI, BETA
+      REAL*16   ALPHAR, ALPHAI, BETA
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAPY2
+      REAL*16   DLAPY2
       EXTERNAL           DLAPY2
 C     .. Intrinsic Functions ..
       INTRINSIC          ABS

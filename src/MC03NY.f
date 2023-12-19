@@ -65,8 +65,8 @@ C             Number of columns of the subpencil s*E(eps)-A(eps) in
 C             s*E-A.
 C             NCA = mu(1) + mu(2) + ... + mu(NBLCKS).  NCA >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,NCA)
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,NCA)
+C     A       (input/output) REAL*16 array, dimension (LDA,NCA)
+C     E       (input/output) REAL*16 array, dimension (LDE,NCA)
 C             On entry, the leading NRA-by-NCA part of these arrays must
 C             contain the matrices A and E, where s*E-A is the
 C             transformed pencil s*E0-A0 which is the pencil associated
@@ -91,7 +91,7 @@ C             This array must contain the row dimensions nu(k) of the
 C             full row rank blocks in the subpencil s*E(eps)-A(eps) of
 C             s*E-A.
 C
-C     VEPS    (output) DOUBLE PRECISION array, dimension (LDVEPS,ncv)
+C     VEPS    (output) REAL*16 array, dimension (LDVEPS,ncv)
 C             Let nrv = Sum(i=1,...,NBLCKS) mu(i) = NCA,
 C                 ncv = Sum(i=1,...,NBLCKS) i*(mu(i)-nu(i)).
 C             The leading nrv-by-ncv part of this array contains the
@@ -141,19 +141,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDE, LDVEPS, NBLCKS, NCA, NRA
 C     .. Array Arguments ..
       INTEGER           IMUK(*), INUK(*)
-      DOUBLE PRECISION  A(LDA,*), E(LDE,*), VEPS(LDVEPS,*)
+      REAL*16  A(LDA,*), E(LDE,*), VEPS(LDVEPS,*)
 C     .. Local Scalars ..
       INTEGER           AC1, AC2, AR1, ARI, ARK, DIF, EC1, ER1, I, J, K,
      $                  MUI, NCV, NRV, NUI, SMUI, SMUI1, VC1, VC2, VR1,
      $                  VR2, WC1, WR1
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUMMY(1)
+      REAL*16  DUMMY(1)
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEMM, DLASET, DSCAL, DTRTRS, XERBLA
 C     .. Executable Statements ..

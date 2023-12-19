@@ -47,7 +47,7 @@ C     K       (input) INTEGER
 C             The number of symplectic Givens rotations whose product
 C             partly defines the matrix Q. N >= K >= 0.
 C
-C     Q1      (input/output) DOUBLE PRECISION array, dimension
+C     Q1      (input/output) REAL*16 array, dimension
 C                     (LDQ1,N) if TRANQ1 = 'N',
 C                     (LDQ1,M) if TRANQ1 = 'T' or TRANQ1 = 'C'
 C             On entry with TRANQ1 = 'N', the leading M-by-K part of
@@ -66,7 +66,7 @@ C             The leading dimension of the array Q1.
 C             LDQ1 >= MAX(1,M),  if TRANQ1 = 'N';
 C             LDQ1 >= MAX(1,N),  if TRANQ1 = 'T' or TRANQ1 = 'C'.
 C
-C     Q2      (input/output) DOUBLE PRECISION array, dimension
+C     Q2      (input/output) REAL*16 array, dimension
 C                     (LDQ2,N) if TRANQ2 = 'N',
 C                     (LDQ2,M) if TRANQ2 = 'T' or TRANQ2 = 'C'
 C             On entry with TRANQ2 = 'N', the leading M-by-K part of
@@ -87,19 +87,19 @@ C             The leading dimension of the array Q2.
 C             LDQ2 >= MAX(1,M),  if TRANQ2 = 'N';
 C             LDQ2 >= MAX(1,N),  if TRANQ2 = 'T' or TRANQ2 = 'C'.
 C
-C     CS      (input) DOUBLE PRECISION array, dimension (2*K)
+C     CS      (input) REAL*16 array, dimension (2*K)
 C             On entry, the first 2*K elements of this array must
 C             contain the cosines and sines of the symplectic Givens
 C             rotations G(i).
 C
-C     TAU     (input) DOUBLE PRECISION array, dimension (K)
+C     TAU     (input) REAL*16 array, dimension (K)
 C             On entry, the first K elements of this array must
 C             contain the scalar factors of the elementary reflectors
 C             F(i).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -13,  DWORK(1)  returns the minimum
@@ -137,17 +137,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANQ1, TRANQ2
       INTEGER           INFO, K, LDQ1, LDQ2, LDWORK, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  CS(*), DWORK(*), Q1(LDQ1,*), Q2(LDQ2,*), TAU(*)
+      REAL*16  CS(*), DWORK(*), Q1(LDQ1,*), Q2(LDQ2,*), TAU(*)
 C     .. Local Scalars ..
       LOGICAL           LTRQ1, LTRQ2
       INTEGER           I, J
-      DOUBLE PRECISION  NU
+      REAL*16  NU
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

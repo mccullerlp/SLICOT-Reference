@@ -44,7 +44,7 @@ C
 C     IFICA   (input) INTEGER
 C             Index of the first column in A to be transformed.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the elements of A(IFIRA:ma,IFICA:na) must
 C             contain the submatrix A(k) of full row rank to be reduced
 C             to upper triangular form.
@@ -53,7 +53,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,NRA).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the elements of E(1:IFIRA-1,IFICA:na) must
 C             contain the submatrix E(k).
 C             On exit, it contains the transformed matrix E.
@@ -61,7 +61,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,IFIRA-1).
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,*)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,*)
 C             On entry, if UPDATZ = .TRUE., then the leading N-by-N
 C             part of this array must contain a given matrix Z (e.g.
 C             from a previous call to another SLICOT routine), and on
@@ -108,16 +108,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           UPDATZ
       INTEGER           IFICA, IFIRA, LDA, LDE, LDZ, N, NCA, NRA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), E(LDE,*), Z(LDZ,*)
+      REAL*16  A(LDA,*), E(LDE,*), Z(LDZ,*)
 C     .. Local Scalars ..
       INTEGER           I, IFIRA1, J, JPVT
-      DOUBLE PRECISION  SC, SS
+      REAL*16  SC, SS
 C     .. External Subroutines ..
       EXTERNAL          DROT, DROTG
 C     .. Executable Statements ..

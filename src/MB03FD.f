@@ -26,11 +26,11 @@ C
 C     N       (input) INTEGER
 C             The order of the input pencil, N = 2 or N = 4.
 C
-C     PREC    (input) DOUBLE PRECISION
+C     PREC    (input) REAL*16
 C             The machine precision, (relative machine precision)*base.
 C             See the LAPACK Library routine DLAMCH.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA, N)
+C     A       (input/output) REAL*16 array, dimension (LDA, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A of the pencil aA - bB.
 C             If N = 2, the diagonal elements only are referenced.
@@ -42,7 +42,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= N.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB, N)
+C     B       (input/output) REAL*16 array, dimension (LDB, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix B of the pencil aA - bB.
 C             If N = 2, the anti-diagonal elements only are referenced.
@@ -54,14 +54,14 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= N.
 C
-C     Q1      (output) DOUBLE PRECISION array, dimension (LDQ1, N)
+C     Q1      (output) REAL*16 array, dimension (LDQ1, N)
 C             The leading N-by-N part of this array contains the first
 C             orthogonal transformation matrix.
 C
 C     LDQ1    INTEGER
 C             The leading dimension of the array Q1.  LDQ1 >= N.
 C
-C     Q2      (output) DOUBLE PRECISION array, dimension (LDQ2, N)
+C     Q2      (output) REAL*16 array, dimension (LDQ2, N)
 C             The leading N-by-N part of this array contains the second
 C             orthogonal transformation matrix.
 C
@@ -70,7 +70,7 @@ C             The leading dimension of the array Q2.  LDQ2 >= N.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             If N = 2, then DWORK is not referenced.
 C
 C     LDWORK  INTEGER
@@ -128,29 +128,29 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LDQ1, LDQ2, LDWORK, N
-      DOUBLE PRECISION   PREC
+      REAL*16   PREC
 C
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), DWORK( * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), DWORK( * ),
      $                   Q1( LDQ1, * ), Q2( LDQ2, * )
 C
 C     .. Local Scalars ..
       INTEGER            IDUM, IERR, IHI, ILO
-      DOUBLE PRECISION   A11, A22, B12, B21, CO, SAFMIN, SCALA, SCALB,
+      REAL*16   A11, A22, B12, B21, CO, SAFMIN, SCALA, SCALB,
      $                   SI, TMP
 C
 C     .. Local Arrays ..
       LOGICAL            BWORK( 4 )
-      DOUBLE PRECISION   AS( 4, 4 ), BS( 4, 4 ), C( 4 ), R( 4 )
+      REAL*16   AS( 4, 4 ), BS( 4, 4 ), C( 4 ), R( 4 )
 C
 C     .. External Functions ..
       LOGICAL            SB02OW
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, SB02OW
 C
 C     .. External Subroutines ..

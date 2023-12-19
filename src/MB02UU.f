@@ -15,7 +15,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA, N)
+C     A       (input) REAL*16 array, dimension (LDA, N)
 C             The leading N-by-N part of this array must contain
 C             the LU part of the factorization of the matrix A computed
 C             by SLICOT Library routine MB02UV:  A = P * L * U * Q.
@@ -23,7 +23,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1, N).
 C
-C     RHS     (input/output) DOUBLE PRECISION array, dimension (N)
+C     RHS     (input/output) REAL*16 array, dimension (N)
 C             On entry, this array must contain the right hand side
 C             of the system.
 C             On exit, this array contains the solution of the system.
@@ -36,7 +36,7 @@ C     JPIV    (input) INTEGER array, dimension (N)
 C             The pivot indices; for 1 <= j <= N, column j of the
 C             matrix has been interchanged with column JPIV(j).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor, chosen 0 < SCALE <= 1 to prevent
 C             overflow in the solution.
 C
@@ -58,20 +58,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE, TWO
+      REAL*16   ONE, TWO
       PARAMETER          ( ONE = 1.0D+0, TWO = 2.0D+0 )
 C     .. Scalar Arguments ..
       INTEGER            LDA, N
-      DOUBLE PRECISION   SCALE
+      REAL*16   SCALE
 C     .. Array Arguments ..
       INTEGER            IPIV( * ), JPIV( * )
-      DOUBLE PRECISION   A( LDA, * ), RHS( * )
+      REAL*16   A( LDA, * ), RHS( * )
 C     .. Local Scalars ..
       INTEGER            I, IP, J
-      DOUBLE PRECISION   BIGNUM, EPS, FACTOR, SMLNUM, TEMP
+      REAL*16   BIGNUM, EPS, FACTOR, SMLNUM, TEMP
 C     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, IDAMAX
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DLABAD, DSCAL

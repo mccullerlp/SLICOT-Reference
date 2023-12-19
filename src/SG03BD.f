@@ -71,7 +71,7 @@ C
 C     M       (input) INTEGER
 C             The number of rows in the matrix op(B).  M >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, if FACT = 'F', then the leading N-by-N upper
 C             Hessenberg part of this array must contain the generalized
 C             Schur factor A_s of the matrix A (see definition (3) in
@@ -89,7 +89,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, if FACT = 'F', then the leading N-by-N upper
 C             triangular part of this array must contain the generalized
 C             Schur factor E_s of the matrix E (see definition (4) in
@@ -107,7 +107,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
 C             On entry, if FACT = 'F', then the leading N-by-N part of
 C             this array must contain the orthogonal matrix Q from the
 C             generalized Schur factorization (see definitions (3) and
@@ -122,7 +122,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
 C             On entry, if FACT = 'F', then the leading N-by-N part of
 C             this array must contain the orthogonal matrix Z from the
 C             generalized Schur factorization (see definitions (3) and
@@ -137,7 +137,7 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,N1)
+C     B       (input/output) REAL*16 array, dimension (LDB,N1)
 C             On entry, if TRANS = 'T', the leading N-by-M part of this
 C             array must contain the matrix B and N1 >= MAX(M,N).
 C             If TRANS = 'N', the leading M-by-N part of this array
@@ -152,13 +152,13 @@ C             The leading dimension of the array B.
 C             If TRANS = 'T',  LDB >= MAX(1,N).
 C             If TRANS = 'N',  LDB >= MAX(1,M,N).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor set to avoid overflow in U.
 C             0 < SCALE <= 1.
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             If INFO = 0, 3, 5, 6, or 7, then
 C             (ALPHAR(j) + ALPHAI(j)*i)/BETA(j), j = 1, ... ,N, are the
 C             eigenvalues of the matrix pencil A - lambda * E.
@@ -169,7 +169,7 @@ C             than and usually comparable with norm(B).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C             On exit, if INFO = -21, DWORK(1) returns the minimum value
@@ -452,17 +452,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  MONE, ONE, ZERO
+      REAL*16  MONE, ONE, ZERO
       PARAMETER         ( MONE = -1.0D+0, ONE = 1.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION  SCALE
+      REAL*16  SCALE
       INTEGER           INFO, LDA, LDB, LDE, LDQ, LDWORK, LDZ, M, N
       CHARACTER         DICO, FACT, TRANS
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
+      REAL*16  A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
      $                  BETA(*), DWORK(*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  BIGNMS, BIGNUM, EPS, MA, MATO, MB, MBTO, ME,
+      REAL*16  BIGNMS, BIGNUM, EPS, MA, MATO, MB, MBTO, ME,
      $                  METO, MN, MX, S1, S2, SAFMIN, SMLNUM, T, TMP,
      $                  WI, WR1, WR2
       INTEGER           BL, I, INFO1, J, K, L, MAXMN, MINGG, MINMN,
@@ -470,10 +470,10 @@ C     .. Local Scalars ..
       LOGICAL           ISDISC, ISFACT, ISTRAN, LASCL, LBSCL, LESCL,
      $                  LQUERY, LSCL, NUNITQ, NUNITZ, SCALB
 C     .. Local Arrays ..
-      DOUBLE PRECISION  E1(2,2)
+      REAL*16  E1(2,2)
       LOGICAL           BWORK(1)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, DLANGE, DLANHS, DLANTR, DLAPY2
+      REAL*16  DLAMCH, DLANGE, DLANHS, DLANTR, DLAPY2
       LOGICAL           DELCTG, LSAME, MA02HD
       EXTERNAL          DELCTG, DLAMCH, DLANGE, DLANHS, DLANTR, DLAPY2,
      $                  LSAME, MA02HD

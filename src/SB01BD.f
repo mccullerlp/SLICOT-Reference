@@ -33,14 +33,14 @@ C     NP      (input) INTEGER
 C             The number of given eigenvalues. At most N eigenvalues
 C             can be assigned.  0 <= NP.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             Specifies the maximum admissible value, either for real
 C             parts, if DICO = 'C', or for moduli, if DICO = 'D',
 C             of the eigenvalues of A which will not be modified by
 C             the eigenvalue assignment algorithm.
 C             ALPHA >= 0 if DICO = 'D'.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -56,14 +56,14 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input/state matrix.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     WR,WI   (input/output) DOUBLE PRECISION array, dimension (NP)
+C     WR,WI   (input/output) REAL*16 array, dimension (NP)
 C             On entry, these arrays must contain the real and imaginary
 C             parts, respectively, of the desired eigenvalues of the
 C             closed-loop system state-matrix A+B*F. The eigenvalues
@@ -88,7 +88,7 @@ C     NUP     (output) INTEGER
 C             The number of uncontrollable eigenvalues detected by the
 C             eigenvalue assignment algorithm (see METHOD).
 C
-C     F       (output) DOUBLE PRECISION array, dimension (LDF,N)
+C     F       (output) REAL*16 array, dimension (LDF,N)
 C             The leading M-by-N part of this array contains the state
 C             feedback F, which assigns NAP closed-loop eigenvalues and
 C             keeps unaltered N-NAP open-loop eigenvalues.
@@ -96,7 +96,7 @@ C
 C     LDF     INTEGER
 C             The leading dimension of array F.  LDF >= MAX(1,M).
 C
-C     Z       (output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (output) REAL*16 array, dimension (LDZ,N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal matrix Z which reduces the closed-loop
 C             system state matrix A + B*F to upper real Schur form.
@@ -106,7 +106,7 @@ C             The leading dimension of array Z.  LDZ >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The absolute tolerance level below which the elements of A
 C             or B are considered zero (used for controllability tests).
 C             If the user sets TOL <= 0, then the default tolerance
@@ -116,7 +116,7 @@ C             and NORM(A) denotes the 1-norm of A.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -245,29 +245,29 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION HUNDR, ONE, TWO, ZERO
+      REAL*16 HUNDR, ONE, TWO, ZERO
       PARAMETER        ( HUNDR = 1.0D2, ONE = 1.0D0, TWO = 2.0D0,
      $                   ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO
       INTEGER          INFO, IWARN, LDA, LDB, LDF, LDWORK, LDZ, M, N,
      $                 NAP, NFP, NP, NUP
-      DOUBLE PRECISION ALPHA, TOL
+      REAL*16 ALPHA, TOL
 C     .. Array Arguments ..
-      DOUBLE PRECISION A(LDA,*), B(LDB,*), DWORK(*), F(LDF,*),
+      REAL*16 A(LDA,*), B(LDB,*), DWORK(*), F(LDF,*),
      $                 WI(*), WR(*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL          CEIG, DISCR, SIMPLB
       INTEGER          I, IB, IB1, IERR, IPC, J, K, KFI, KG, KW, KWI,
      $                 KWR, NCUR, NCUR1, NL, NLOW, NMOVES, NPC, NPR,
      $                 NSUP, WRKOPT
-      DOUBLE PRECISION ANORM, BNORM, C, P, RMAX, S, X, Y, TOLER, TOLERB
+      REAL*16 ANORM, BNORM, C, P, RMAX, S, X, Y, TOLER, TOLERB
 C     .. Local Arrays ..
       LOGICAL          BWORK(1)
-      DOUBLE PRECISION A2(2,2)
+      REAL*16 A2(2,2)
 C     .. External Functions ..
       LOGICAL          LSAME, SELECT
-      DOUBLE PRECISION DLAMCH, DLANGE
+      REAL*16 DLAMCH, DLANGE
       EXTERNAL         DLAMCH, DLANGE, LSAME, SELECT
 C     .. External Subroutines ..
       EXTERNAL         DCOPY, DGEES, DGEMM, DLAEXC, DLASET, DROT,

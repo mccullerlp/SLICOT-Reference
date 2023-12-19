@@ -82,7 +82,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A. N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper quasi-triangular matrix A in Schur
 C             canonical form.
@@ -93,7 +93,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     G       (input/output) DOUBLE PRECISION array, dimension (LDG,N)
+C     G       (input/output) REAL*16 array, dimension (LDG,N)
 C             On entry, if TYP = 'S', the leading N-by-N part of this
 C             array must contain the strictly upper triangular part of
 C             the skew-symmetric matrix G. The rest of this array is not
@@ -114,7 +114,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= MAX(1,N).
 C
-C     U1      (input/output) DOUBLE PRECISION array, dimension (LDU1,N)
+C     U1      (input/output) REAL*16 array, dimension (LDU1,N)
 C             On entry, if COMPU = 'U', the leading N-by-N part of this
 C             array must contain U1, the (1,1) block of an orthogonal
 C             symplectic matrix U = [ U1, U2; -U2, U1 ].
@@ -130,7 +130,7 @@ C             The leading dimension of the array U1.
 C             LDU1 >= MAX(1,N),  if COMPU = 'U';
 C             LDU1 >= 1,         otherwise.
 C
-C     U2      (input/output) DOUBLE PRECISION array, dimension (LDU2,N)
+C     U2      (input/output) REAL*16 array, dimension (LDU2,N)
 C             On entry, if COMPU = 'U', the leading N-by-N part of this
 C             array must contain U2, the (1,2) block of an orthogonal
 C             symplectic matrix U = [ U1, U2; -U2, U1 ].
@@ -145,8 +145,8 @@ C             The leading dimension of the array U2.
 C             LDU2 >= MAX(1,N),  if COMPU = 'U';
 C             LDU2 >= 1,         otherwise.
 C
-C     WR      (output) DOUBLE PRECISION array, dimension (N)
-C     WI      (output) DOUBLE PRECISION array, dimension (N)
+C     WR      (output) REAL*16 array, dimension (N)
+C     WI      (output) REAL*16 array, dimension (N)
 C             The real and imaginary parts, respectively, of the
 C             reordered eigenvalues of A. The eigenvalues are stored
 C             in the same order as on the diagonal of A, with
@@ -161,7 +161,7 @@ C             0 <= M <= N.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -18,  DWORK(1)  returns the minimum
@@ -208,14 +208,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COMPU, TYP
       INTEGER           INFO, LDA, LDG, LDU1, LDU2, LDWORK, M, N
 C     .. Array Arguments ..
       LOGICAL           LOWER(*), SELECT(*)
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), G(LDG,*), U1(LDU1,*),
+      REAL*16  A(LDA,*), DWORK(*), G(LDG,*), U1(LDU1,*),
      $                  U2(LDU2,*), WI(*), WR(*)
 C     .. Local Scalars ..
       LOGICAL           FLOW, ISHAM, PAIR, SWAP, WANTU

@@ -50,7 +50,7 @@ C
 C     P       (input) INTEGER
 C             The number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading L-by-N part of this array contains
@@ -68,7 +68,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, the leading L-by-N part of this array contains
@@ -85,7 +85,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the input/state matrix B.
 C             On exit, the leading L-by-M part of this array contains
@@ -95,7 +95,7 @@ C     LDB     INTEGER
 C             The leading dimension of array B.
 C             LDB >= MAX(1,L) if M > 0 or LDB >= 1 if M = 0.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -104,7 +104,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ,L)
+C     Q       (output) REAL*16 array, dimension (LDQ,L)
 C             The leading L-by-L part of this array contains the
 C             orthogonal matrix Q, which is the accumulated product of
 C             transformations applied to A, E, and B on the left.
@@ -112,7 +112,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of array Q.  LDQ >= MAX(1,L).
 C
-C     Z       (output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (output) REAL*16 array, dimension (LDZ,N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal matrix Z, which is the accumulated product of
 C             transformations applied to A, E, and C on the right.
@@ -138,7 +138,7 @@ C             If JOBA = 'N', then RNKA22 is not referenced.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in determining the rank of E
 C             and of A22. If TOL > 0, then singular values less than
 C             TOL*SVMAX are treated as zero, where SVMAX is the maximum
@@ -149,7 +149,7 @@ C             (see LAPACK Library routine DLAMCH). TOL < 1.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -224,24 +224,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE, ZERO
+      REAL*16   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          JOBA
       INTEGER            INFO, L, LDA, LDB, LDC, LDE, LDQ, LDWORK,
      $                   LDZ, M, N, P, RNKA22, RANKE
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK( * ),  E( LDE, * ), Q( LDQ, * ),
      $                   Z( LDZ, * )
 C     .. Local Scalars ..
       LOGICAL            REDA
       INTEGER            I, IR1, J, KW, LA22, LN, LN2, LWR, NA22, WRKOPT
-      DOUBLE PRECISION   EPSM, SVEMAX, SVLMAX, TOLDEF
+      REAL*16   EPSM, SVEMAX, SVLMAX, TOLDEF
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH, DLANGE
+      REAL*16   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DGEMM, DGEMV, DGEQRF, DGELQF, DGESVD,

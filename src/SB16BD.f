@@ -88,7 +88,7 @@ C             extended system (computed in HSV(1));
 C             if ORDSEL = 'A', NCR is equal to the number of Hankel
 C             singular values greater than MAX(TOL1,N*EPS*HNORM(Ge)).
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, if INFO = 0, the leading NCR-by-NCR part of this
@@ -98,21 +98,21 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             If JOBD = 'D', the leading P-by-M part of this
 C             array must contain the system direct input/output
 C             transmission matrix D.
@@ -123,7 +123,7 @@ C             The leading dimension of array D.
 C             LDD >= MAX(1,P), if JOBD = 'D';
 C             LDD >= 1,        if JOBD = 'Z'.
 C
-C     F       (input/output) DOUBLE PRECISION array, dimension (LDF,N)
+C     F       (input/output) REAL*16 array, dimension (LDF,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain a stabilizing state feedback matrix.
 C             On exit, if INFO = 0, the leading M-by-NCR part of this
@@ -133,7 +133,7 @@ C
 C     LDF     INTEGER
 C             The leading dimension of array F.  LDF >= MAX(1,M).
 C
-C     G       (input/output) DOUBLE PRECISION array, dimension (LDG,P)
+C     G       (input/output) REAL*16 array, dimension (LDG,P)
 C             On entry, the leading N-by-P part of this array must
 C             contain a stabilizing observer gain matrix.
 C             On exit, if INFO = 0, the leading NCR-by-P part of this
@@ -143,7 +143,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of array G.  LDG >= MAX(1,N).
 C
-C     DC      (output) DOUBLE PRECISION array, dimension (LDDC,P)
+C     DC      (output) REAL*16 array, dimension (LDDC,P)
 C             If INFO = 0, the leading M-by-P part of this array
 C             contains the input/output matrix Dc of the reduced
 C             controller.
@@ -151,13 +151,13 @@ C
 C     LDDC    INTEGER
 C             The leading dimension of array DC.  LDDC >= MAX(1,M).
 C
-C     HSV     (output) DOUBLE PRECISION array, dimension (N)
+C     HSV     (output) REAL*16 array, dimension (N)
 C             If INFO = 0, it contains the N Hankel singular values
 C             of the extended system ordered decreasingly (see METHOD).
 C
 C     Tolerances
 C
-C     TOL1    DOUBLE PRECISION
+C     TOL1    REAL*16
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of the reduced extended system.
 C             For model reduction, the recommended value is
@@ -169,7 +169,7 @@ C             TOL1 <= 0 on entry, where EPS is the machine precision
 C             (see LAPACK Library Routine DLAMCH).
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C
-C     TOL2    DOUBLE PRECISION
+C     TOL2    REAL*16
 C             The tolerance for determining the order of a minimal
 C             realization of the coprime factorization controller
 C             (see METHOD). The recommended value is
@@ -188,7 +188,7 @@ C             PM = 0,             if JOBMR = 'B',
 C             PM = N,             if JOBMR = 'F',
 C             PM = MAX(1,2*N),    if JOBMR = 'S' or 'P'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -353,16 +353,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, ZERO
+      REAL*16  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL, JOBCF, JOBD, JOBMR, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDD, LDDC,
      $                  LDF, LDG, LDWORK, M, N, NCR, P
-      DOUBLE PRECISION  TOL1, TOL2
+      REAL*16  TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DC(LDDC,*), DWORK(*), F(LDF,*), G(LDG,*), HSV(*)
 C     .. Local Scalars ..
       CHARACTER         JOB

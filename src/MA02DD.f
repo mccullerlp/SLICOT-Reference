@@ -27,7 +27,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input or output) DOUBLE PRECISION array, dimension
+C     A       (input or output) REAL*16 array, dimension
 C             (LDA,N)
 C             This array is an input parameter if JOB = 'P', and an
 C             output parameter if JOB = 'U'.
@@ -46,7 +46,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     AP      (output or input) DOUBLE PRECISION array, dimension
+C     AP      (output or input) REAL*16 array, dimension
 C             (N*(N+1)/2)
 C             This array is an output parameter if JOB = 'P', and an
 C             input parameter if JOB = 'U'.
@@ -76,7 +76,7 @@ C     .. Scalar Arguments ..
       CHARACTER          JOB, UPLO
       INTEGER            LDA, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*), AP(*)
+      REAL*16   A(LDA,*), AP(*)
 C     .. Local Scalars ..
       LOGICAL            LUPLO
       INTEGER            IJ, J

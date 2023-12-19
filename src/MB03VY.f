@@ -25,7 +25,7 @@ C             The values of the indices ilo and ihi, respectively, used
 C             in the previous call of the SLICOT Library routine MB03VD.
 C             1 <= ILO <= max(1,N); min(ILO,N) <= IHI <= N.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C             (LDA1,LDA2,N)
 C             On entry, the leading N-by-N strictly lower triangular
 C             part of A(*,*,j) must contain the vectors which define the
@@ -42,7 +42,7 @@ C     LDA2    INTEGER
 C             The second leading dimension of the array A.
 C             LDA2 >= max(1,N).
 C
-C     TAU     (input) DOUBLE PRECISION array, dimension (LDTAU,P)
+C     TAU     (input) REAL*16 array, dimension (LDTAU,P)
 C             The leading N-1 elements in the j-th column must contain
 C             the scalar factors of the elementary reflectors used to
 C             form the matrix Q_j, as returned by SLICOT Library routine
@@ -54,7 +54,7 @@ C             LDTAU >= max(1,N-1).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -118,14 +118,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C
 C     .. Scalar Arguments ..
       INTEGER           IHI, ILO, INFO, LDA1, LDA2, LDTAU, LDWORK, N, P
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A( LDA1, LDA2, * ), DWORK( * ), TAU( LDTAU, * )
+      REAL*16  A( LDA1, LDA2, * ), DWORK( * ), TAU( LDTAU, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL           LQUERY

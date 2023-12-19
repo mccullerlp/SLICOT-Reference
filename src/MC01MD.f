@@ -16,18 +16,18 @@ C
 C     DP      (input) INTEGER
 C             The degree of the polynomial P(x).  DP >= 0.
 C
-C     ALPHA   (input) DOUBLE PRECISION
+C     ALPHA   (input) REAL*16
 C             The scalar value alpha of the problem.
 C
 C     K       (input) INTEGER
 C             The number of coefficients of the shifted polynomial to be
 C             computed.  1 <= K <= DP+1.
 C
-C     P       (input) DOUBLE PRECISION array, dimension (DP+1)
+C     P       (input) REAL*16 array, dimension (DP+1)
 C             This array must contain the coefficients of P(x) in
 C             increasing powers of x.
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (DP+1)
+C     Q       (output) REAL*16 array, dimension (DP+1)
 C             The leading K elements of this array contain the first
 C             K coefficients of the shifted polynomial in increasing
 C             powers of (x - alpha), and the next (DP-K+1) elements
@@ -97,13 +97,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DP, INFO, K
-      DOUBLE PRECISION  ALPHA
+      REAL*16  ALPHA
 C     .. Array Arguments ..
-      DOUBLE PRECISION  P(*), Q(*)
+      REAL*16  P(*), Q(*)
 C     .. Local Scalars ..
       INTEGER           I, J
 C     .. External Subroutines ..

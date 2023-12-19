@@ -15,7 +15,7 @@ C
 C     M       (input) INTEGER
 C             The number of system inputs and outputs.  M >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state matrix A of the original system.
 C             On exit, the leading N-by-N part of this array contains
@@ -24,7 +24,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B of the original system.
 C             On exit, the leading N-by-M part of this array contains
@@ -33,7 +33,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the output matrix C of the original system.
 C             On exit, the leading M-by-N part of this array contains
@@ -42,7 +42,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,M).
 C
-C     D       (input/output) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input/output) REAL*16 array, dimension (LDD,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain the feedthrough matrix D of the original system.
 C             On exit, the leading M-by-M part of this array contains
@@ -51,7 +51,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1,M).
 C
-C     RCOND   (output) DOUBLE PRECISION
+C     RCOND   (output) REAL*16
 C             The estimated reciprocal condition number of the
 C             feedthrough matrix D of the original system.
 C
@@ -59,7 +59,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*M)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or M+1, DWORK(1) returns the optimal
 C             value of LDWORK.
 C
@@ -118,21 +118,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION   RCOND
+      REAL*16   RCOND
       INTEGER            INFO, LDA, LDB, LDC, LDD, LDWORK, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*16   A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                   DWORK(*)
       INTEGER            IWORK(*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION   DNORM
+      REAL*16   DNORM
       INTEGER            BL, CHUNK, I, IERR, J, MAXWRK, MINWRK
       LOGICAL            BLAS3, BLOCK, LQUERY
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAMCH, DLANGE
+      REAL*16   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DGECON, DGEMM, DGEMV, DGETRF, DGETRI,

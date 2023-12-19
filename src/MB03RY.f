@@ -22,11 +22,11 @@ C     N       (input) INTEGER
 C             The order of the matrix B and the number of columns of the
 C             matrices C and X.  N >= 0.
 C
-C     PMAX    (input) DOUBLE PRECISION
+C     PMAX    (input) REAL*16
 C             An upper bound for the infinity norm of an elementary
 C             submatrix of X (see METHOD).
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,M)
+C     A       (input) REAL*16 array, dimension (LDA,M)
 C             The leading M-by-M part of this array must contain the
 C             matrix A of the Sylvester equation, in real Schur form.
 C             The elements below the real Schur form are not referenced.
@@ -34,7 +34,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,N)
+C     B       (input) REAL*16 array, dimension (LDB,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix B of the Sylvester equation, in real Schur form.
 C             The elements below the real Schur form are not referenced.
@@ -42,7 +42,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix C of the Sylvester equation.
 C             On exit, if INFO = 0, the leading M-by-N part of this
@@ -135,20 +135,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, M, N
-      DOUBLE PRECISION  PMAX
+      REAL*16  PMAX
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), C(LDC,*)
+      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*)
 C     .. Local Scalars ..
       INTEGER           DK, DL, I, IERR, J, K, KK, KK1, L, LL, LM1
-      DOUBLE PRECISION  PNORM, SCALE
+      REAL*16  PNORM, SCALE
 C     .. Local Arrays ..
-      DOUBLE PRECISION  P(4)
+      REAL*16  P(4)
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT
+      REAL*16  DDOT
       EXTERNAL          DDOT
 C     .. External Subroutines ..
       EXTERNAL          DGEMM, DGEMV, DLASY2

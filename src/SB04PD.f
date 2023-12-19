@@ -78,7 +78,7 @@ C     N       (input) INTEGER
 C             The order of the matrix B, and the number of columns in
 C             the matrices X and C.  N >= 0.
 C
-C     A       (input or input/output) DOUBLE PRECISION array,
+C     A       (input or input/output) REAL*16 array,
 C             dimension (LDA,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain the matrix A. If FACTA = 'S', then A contains
@@ -94,7 +94,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     U       (input or output) DOUBLE PRECISION array, dimension
+C     U       (input or output) REAL*16 array, dimension
 C             (LDU,M)
 C             If FACTA = 'F', then U is an input argument and on entry
 C             the leading M-by-M part of this array must contain the
@@ -109,7 +109,7 @@ C             The leading dimension of array U.
 C             LDU >= MAX(1,M), if FACTA = 'F' or 'N';
 C             LDU >= 1,        if FACTA = 'S'.
 C
-C     B       (input or input/output) DOUBLE PRECISION array,
+C     B       (input or input/output) REAL*16 array,
 C             dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix B. If FACTB = 'S', then B contains
@@ -125,7 +125,7 @@ C
 C     LDB     (input) INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     V       (input or output) DOUBLE PRECISION array, dimension
+C     V       (input or output) REAL*16 array, dimension
 C             (LDV,N)
 C             If FACTB = 'F', then V is an input argument and on entry
 C             the leading N-by-N part of this array must contain the
@@ -140,7 +140,7 @@ C             The leading dimension of array V.
 C             LDV >= MAX(1,N), if FACTB = 'F' or 'N';
 C             LDV >= 1,        if FACTB = 'S'.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right hand side matrix C.
 C             On exit, if INFO = 0 or INFO = M+N+1, the leading M-by-N
@@ -149,13 +149,13 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,M).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or M+N+1, then: DWORK(1) returns the
 C             optimal value of LDWORK; if FACTA = 'N', DWORK(1+i) and
 C             DWORK(1+M+i), i = 1,...,M, contain the real and imaginary
@@ -283,17 +283,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          DICO, FACTA, FACTB, TRANA, TRANB
       INTEGER            INFO, ISGN, LDA, LDB, LDC, LDU, LDV, LDWORK, M,
      $                   N
-      DOUBLE PRECISION   SCALE
+      REAL*16   SCALE
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK( * ),  U( LDU, * ), V( LDV, * )
 C     ..
 C     .. Local Scalars ..

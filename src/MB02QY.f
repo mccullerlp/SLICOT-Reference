@@ -28,7 +28,7 @@ C     RANK    (input) INTEGER
 C             The effective rank of  A,  as returned by SLICOT Library
 C             routine  MB03OD.  min(M,N) >= RANK >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C             ( LDA, N )
 C             On entry, the leading min(M,N)-by-N upper trapezoidal
 C             part of this array contains the triangular factor  R,  as
@@ -52,7 +52,7 @@ C             The recorded permutations performed by SLICOT Library
 C             routine  MB03OD;  if  JPVT(i) = k,  then the i-th column
 C             of  A*P  was the k-th column of the original matrix  A.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C             ( LDB, NRHS )
 C             On entry, if  NRHS > 0,  the leading M-by-NRHS part of
 C             this array must contain the matrix  B  (corresponding to
@@ -70,13 +70,13 @@ C             The leading dimension of the array B.
 C             LDB >= max(1,M,N),  if  NRHS > 0.
 C             LDB >= 1,           if  NRHS = 0.
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension ( min(M,N) )
+C     TAU     (output) REAL*16 array, dimension ( min(M,N) )
 C             The scalar factors of the elementary reflectors.
 C             If  RANK = N,  the array  TAU  is not referenced.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension ( LDWORK )
+C     DWORK   REAL*16 array, dimension ( LDWORK )
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -146,19 +146,19 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LDWORK, M, N, NRHS, RANK
 C     .. Array Arguments ..
       INTEGER            JPVT( * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), DWORK( * ), TAU( * )
+      REAL*16   A( LDA, * ), B( LDB, * ), DWORK( * ), TAU( * )
 C     .. Local Scalars ..
       LOGICAL            LQUERY
       INTEGER            I, IASCL, IBSCL, J, MN
-      DOUBLE PRECISION   ANRM, BIGNUM, BNRM, MAXWRK, SMLNUM
+      REAL*16   ANRM, BIGNUM, BNRM, MAXWRK, SMLNUM
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAMCH, DLANGE, DLANTR
+      REAL*16   DLAMCH, DLANGE, DLANTR
       EXTERNAL           DLAMCH, DLANGE, DLANTR
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DLABAD, DLASCL, DLASET, DORMRZ, DTRSM,

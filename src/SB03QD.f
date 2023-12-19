@@ -61,11 +61,11 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, X and C.  N >= 0.
 C
-C     SCALE   (input) DOUBLE PRECISION
+C     SCALE   (input) REAL*16
 C             The scale factor, scale, set by a Lyapunov solver.
 C             0 <= SCALE <= 1.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             If FACT = 'N' or LYAPUN = 'O', the leading N-by-N part of
 C             this array must contain the original matrix A.
 C             If FACT = 'F' and LYAPUN = 'R', A is not referenced.
@@ -75,7 +75,7 @@ C             The leading dimension of the array A.
 C             LDA >= MAX(1,N), if FACT = 'N' or  LYAPUN = 'O';
 C             LDA >= 1,        if FACT = 'F' and LYAPUN = 'R'.
 C
-C     T       (input/output) DOUBLE PRECISION array, dimension
+C     T       (input/output) REAL*16 array, dimension
 C             (LDT,N)
 C             If FACT = 'F', then on entry the leading N-by-N upper
 C             Hessenberg part of this array must contain the upper
@@ -90,7 +90,7 @@ C
 C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= MAX(1,N).
 C
-C     U       (input or output) DOUBLE PRECISION array, dimension
+C     U       (input or output) REAL*16 array, dimension
 C             (LDU,N)
 C             If LYAPUN = 'O' and FACT = 'F', then U is an input
 C             argument and on entry, the leading N-by-N part of this
@@ -107,7 +107,7 @@ C             The leading dimension of the array U.
 C             LDU >= 1,        if LYAPUN = 'R';
 C             LDU >= MAX(1,N), if LYAPUN = 'O'.
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             If UPLO = 'U', the leading N-by-N upper triangular part of
 C             this array must contain the upper triangular part of the
 C             matrix C of the original Lyapunov equation (with
@@ -122,7 +122,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,N).
 C
-C     X       (input) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (input) REAL*16 array, dimension (LDX,N)
 C             The leading N-by-N part of this array must contain the
 C             symmetric solution matrix X of the original Lyapunov
 C             equation (with matrix A), if LYAPUN = 'O', or of the
@@ -132,18 +132,18 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= MAX(1,N).
 C
-C     SEP     (output) DOUBLE PRECISION
+C     SEP     (output) REAL*16
 C             If JOB = 'C' or JOB = 'B', the estimated quantity
 C             sep(op(A),-op(A)').
 C             If N = 0, or X = 0, or JOB = 'E', SEP is not referenced.
 C
-C     RCOND   (output) DOUBLE PRECISION
+C     RCOND   (output) REAL*16
 C             If JOB = 'C' or JOB = 'B', an estimate of the reciprocal
 C             condition number of the continuous-time Lyapunov equation.
 C             If N = 0 or X = 0, RCOND is set to 1 or 0, respectively.
 C             If JOB = 'E', RCOND is not referenced.
 C
-C     FERR    (output) DOUBLE PRECISION
+C     FERR    (output) REAL*16
 C             If JOB = 'E' or JOB = 'B', an estimated forward error
 C             bound for the solution X. If XTRUE is the true solution,
 C             FERR bounds the magnitude of the largest entry in
@@ -156,7 +156,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N*N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = N+1, DWORK(1) returns the
 C             optimal value of LDWORK.
 C
@@ -255,18 +255,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO, THREE
+      REAL*16   ZERO, ONE, TWO, THREE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D0,
      $                     THREE = 3.0D0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          FACT, JOB, LYAPUN, TRANA, UPLO
       INTEGER            INFO, LDA, LDC, LDT, LDU, LDWORK, LDX, N
-      DOUBLE PRECISION   FERR, RCOND, SCALE, SEP
+      REAL*16   FERR, RCOND, SCALE, SEP
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), C( LDC, * ), DWORK( * ),
+      REAL*16   A( LDA, * ), C( LDC, * ), DWORK( * ),
      $                   T( LDT, * ), U( LDU, * ), X( LDX, * )
 C     ..
 C     .. Local Scalars ..
@@ -275,7 +275,7 @@ C     .. Local Scalars ..
       CHARACTER          SJOB, TRANAT
       INTEGER            I, IABS, IRES, IWRK, IXBS, J, JJ, JX, LDW, NN,
      $                   SDIM, WRKOPT
-      DOUBLE PRECISION   ANORM, CNORM, DENOM, EPS, EPSN, TEMP, THNORM,
+      REAL*16   ANORM, CNORM, DENOM, EPS, EPSN, TEMP, THNORM,
      $                   TMAX, XANORM, XNORM
 C     ..
 C     .. Local Arrays ..
@@ -283,7 +283,7 @@ C     .. Local Arrays ..
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME, SELECT
-      DOUBLE PRECISION   DLAMCH, DLANGE, DLANHS, DLANSY
+      REAL*16   DLAMCH, DLANGE, DLANHS, DLANSY
       EXTERNAL           DLAMCH, DLANGE, DLANHS, DLANSY, LSAME, SELECT
 C     ..
 C     .. External Subroutines ..

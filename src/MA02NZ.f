@@ -41,7 +41,7 @@ C     L       (input) INTEGER
 C             The larger index of the pair of rows and columns to be
 C             permuted.  K <= L <= N.
 C
-C     A       (input/output) COMPLEX*16 array, dimension (LDA,N)
+C     A       (input/output) COMPLEX*32 array, dimension (LDA,N)
 C             On entry, the leading N-by-N upper triangular part
 C             (if UPLO = 'U'), or lower triangular part (if UPLO = 'L'),
 C             of this array must contain the corresponding upper or
@@ -75,10 +75,10 @@ C     .. Scalar Arguments ..
       CHARACTER          SKEW, TRANS, UPLO
       INTEGER            K, L, LDA, N
 C     .. Array Arguments ..
-      COMPLEX*16         A(LDA,*)
+      COMPLEX*32         A(LDA,*)
 C     .. Local Scalars ..
       INTEGER            I
-      COMPLEX*16         T
+      COMPLEX*32         T
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

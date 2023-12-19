@@ -41,12 +41,12 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A and X.  N >= 0.
 C
-C     PMAX    (input) DOUBLE PRECISION
+C     PMAX    (input) REAL*16
 C             An upper bound for the absolute value of the elements of
 C             the individual transformations used for reduction
 C             (see METHOD). PMAX >= 1.0D0.
 C
-C     A       (input/output) COMPLEX*16 array, dimension (LDA,N)
+C     A       (input/output) COMPLEX*32 array, dimension (LDA,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix A to be
 C             block-diagonalized.
@@ -59,7 +59,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     X       (input/output) COMPLEX*16 array, dimension (LDX,*)
+C     X       (input/output) COMPLEX*32 array, dimension (LDX,*)
 C             On entry, if JOBX = 'U', the leading N-by-N part of this
 C             array must contain a given matrix X.
 C             On exit, if JOBX = 'U', the leading N-by-N part of this
@@ -82,12 +82,12 @@ C     BLSIZE  (output) INTEGER array, dimension (N)
 C             The first NBLCKS elements of this array contain the orders
 C             of the resulting diagonal blocks of the matrix A.
 C
-C     W       (output) COMPLEX*16 array, dimension (N)
+C     W       (output) COMPLEX*32 array, dimension (N)
 C             This array contains the eigenvalues of the matrix A.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used in the ordering of the diagonal
 C             elements of the upper triangular matrix.
 C             If the user sets TOL > 0, then the given value of TOL is
@@ -236,28 +236,28 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
-      COMPLEX*16        CZERO, CONE
+      COMPLEX*32        CZERO, CONE
       PARAMETER         ( CZERO = ( 0.0D+0, 0.0D+0 ),
      $                    CONE  = ( 1.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       CHARACTER         JOBX, SORT
       INTEGER           INFO, LDA, LDX, N, NBLCKS
-      DOUBLE PRECISION  PMAX, TOL
+      REAL*16  PMAX, TOL
 C     .. Array Arguments ..
       INTEGER           BLSIZE(*)
-      COMPLEX*16        A(LDA,*), W(*), X(LDX,*)
+      COMPLEX*32        A(LDA,*), W(*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBX, LSORN, LSORS, LSORT
       CHARACTER         JOBV
       INTEGER           DA11, DA22, I, IERR, J, K, L, L11, L22, L22M1
-      DOUBLE PRECISION  BIGNUM, C, D, EDIF, SAFEMN, THRESH
-      COMPLEX*16        AV, SC
+      REAL*16  BIGNUM, C, D, EDIF, SAFEMN, THRESH
+      COMPLEX*32        AV, SC
 C     .. External Functions ..
       INTEGER           IZAMAX
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DZNRM2
+      REAL*16  DLAMCH, DZNRM2
       EXTERNAL          DLAMCH, DZNRM2, IZAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DLABAD, MA02AZ, MB03RW, XERBLA, ZCOPY, ZGEMM,

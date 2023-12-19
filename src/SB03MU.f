@@ -36,32 +36,32 @@ C
 C     N2      (input) INTEGER
 C             The order of matrix TR.  N2 may only be 0, 1 or 2.
 C
-C     TL      (input) DOUBLE PRECISION array, dimension (LDTL,2)
+C     TL      (input) REAL*16 array, dimension (LDTL,2)
 C             The leading N1-by-N1 part of this array must contain the
 C             matrix TL.
 C
 C     LDTL    INTEGER
 C             The leading dimension of array TL.  LDTL >= MAX(1,N1).
 C
-C     TR      (input) DOUBLE PRECISION array, dimension (LDTR,2)
+C     TR      (input) REAL*16 array, dimension (LDTR,2)
 C             The leading N2-by-N2 part of this array must contain the
 C             matrix TR.
 C
 C     LDTR    INTEGER
 C             The leading dimension of array TR.  LDTR >= MAX(1,N2).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,2)
+C     B       (input) REAL*16 array, dimension (LDB,2)
 C             The leading N1-by-N2 part of this array must contain the
 C             right-hand side of the equation.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N1).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor. SCALE is chosen less than or equal to 1
 C             to prevent the solution overflowing.
 C
-C     X       (output) DOUBLE PRECISION array, dimension (LDX,N2)
+C     X       (output) REAL*16 array, dimension (LDX,N2)
 C             The leading N1-by-N2 part of this array contains the
 C             solution of the equation.
 C             Note that X may be identified with B in the calling
@@ -70,7 +70,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= MAX(1,N1).
 C
-C     XNORM   (output) DOUBLE PRECISION
+C     XNORM   (output) REAL*16
 C             The infinity-norm of the solution.
 C
 C     Error Indicator
@@ -118,34 +118,34 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO, HALF, EIGHT
+      REAL*16   ZERO, ONE, TWO, HALF, EIGHT
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0,
      $                     TWO = 2.0D+0, HALF = 0.5D+0, EIGHT = 8.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       LOGICAL            LTRANL, LTRANR
       INTEGER            INFO, ISGN, LDB, LDTL, LDTR, LDX, N1, N2
-      DOUBLE PRECISION   SCALE, XNORM
+      REAL*16   SCALE, XNORM
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   B( LDB, * ), TL( LDTL, * ), TR( LDTR, * ),
+      REAL*16   B( LDB, * ), TL( LDTL, * ), TR( LDTR, * ),
      $                   X( LDX, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            BSWAP, XSWAP
       INTEGER            I, IP, IPIV, IPSV, J, JP, JPSV, K
-      DOUBLE PRECISION   BET, EPS, GAM, L21, SGN, SMIN, SMLNUM, TAU1,
+      REAL*16   BET, EPS, GAM, L21, SGN, SMIN, SMLNUM, TAU1,
      $                   TEMP, U11, U12, U22, XMAX
 C     ..
 C     .. Local Arrays ..
       LOGICAL            BSWPIV( 4 ), XSWPIV( 4 )
       INTEGER            JPIV( 4 ), LOCL21( 4 ), LOCU12( 4 ),
      $                   LOCU22( 4 )
-      DOUBLE PRECISION   BTMP( 4 ), T16( 4, 4 ), TMP( 4 ), X2( 2 )
+      REAL*16   BTMP( 4 ), T16( 4, 4 ), TMP( 4 ), X2( 2 )
 C     ..
 C     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, IDAMAX
 C     ..
 C     .. External Subroutines ..

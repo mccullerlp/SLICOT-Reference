@@ -58,10 +58,10 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 4.
 C
-C     FNORM   (input) DOUBLE PRECISION
+C     FNORM   (input) REAL*16
 C             The Euclidean norm of the vector e.  FNORM >= 0.
 C
-C     J       (input/output) DOUBLE PRECISION array, dimension (LDJ, NC)
+C     J       (input/output) REAL*16 array, dimension (LDJ, NC)
 C             where NC = N if BN <= 1, and NC = BSN+ST, if BN > 1.
 C             On entry, the leading NR-by-NC part of this array must
 C             contain the (compressed) representation (Jc) of the
@@ -81,7 +81,7 @@ C             The leading dimension of array J.
 C             On entry, LDJ >= MAX(1,NR).
 C             On exit,  LDJ >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (NR)
+C     E       (input/output) REAL*16 array, dimension (NR)
 C             On entry, this array contains the vector e,
 C             e = vec( Y - y ), where Y is set of output samples, and
 C             vec denotes the concatenation of the columns of a matrix.
@@ -89,11 +89,11 @@ C             On exit, this array contains the updated vector Z*Q'*e,
 C             where Z is the block row permutation matrix used in the
 C             QR factorization of J (see METHOD).
 C
-C     JNORMS  (output) DOUBLE PRECISION array, dimension (N)
+C     JNORMS  (output) REAL*16 array, dimension (N)
 C             This array contains the Euclidean norms of the columns
 C             of the Jacobian matrix, considered in the initial order.
 C
-C     GNORM   (output) DOUBLE PRECISION
+C     GNORM   (output) REAL*16
 C             If FNORM > 0, the 1-norm of the scaled vector J'*e/FNORM,
 C             with each element i further divided by JNORMS(i) (if
 C             JNORMS(i) is nonzero).
@@ -106,7 +106,7 @@ C             matrix.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -189,20 +189,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDJ, LDWORK, LIPAR, N
-      DOUBLE PRECISION  FNORM, GNORM
+      REAL*16  FNORM, GNORM
 C     .. Array Arguments ..
       INTEGER           IPAR(*), IPVT(*)
-      DOUBLE PRECISION  DWORK(*), E(*), J(*), JNORMS(*)
+      REAL*16  DWORK(*), E(*), J(*), JNORMS(*)
 C     .. Local Scalars ..
       INTEGER           BN, BSM, BSN, I, IBSM, IBSN, IBSNI, ITAU, JL,
      $                  JLM, JWORK, K, L, M, MMN, NTHS, ST, WRKOPT
-      DOUBLE PRECISION  SUM
+      REAL*16  SUM
 C     .. External Functions ..
-      DOUBLE PRECISION  DDOT, DNRM2
+      REAL*16  DDOT, DNRM2
       EXTERNAL          DDOT, DNRM2
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEQP3, DLACPY, DLAPMT, DORMQR, DSWAP,

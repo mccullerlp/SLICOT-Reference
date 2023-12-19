@@ -32,7 +32,7 @@ C             QCOEFF(.,.,K) are to be transposed.
 C             K = kpcoef + 1, where kpcoef is the maximum degree of the
 C             polynomials in P(s).  INDLIM >= 1.
 C
-C     PCOEFF  (input/output) DOUBLE PRECISION array, dimension
+C     PCOEFF  (input/output) REAL*16 array, dimension
 C             (LDPCO1,LDPCO2,INDLIM)
 C             If LERI = 'L' then porm = P, otherwise porm = M.
 C             On entry, the leading porm-by-porm-by-INDLIM part of this
@@ -54,7 +54,7 @@ C             The second dimension of array PCOEFF.
 C             LDPCO2 >= MAX(1,P) if LERI = 'L',
 C             LDPCO2 >= MAX(1,M) if LERI = 'R'.
 C
-C     QCOEFF  (input/output) DOUBLE PRECISION array, dimension
+C     QCOEFF  (input/output) REAL*16 array, dimension
 C             (LDQCO1,LDQCO2,INDLIM)
 C             On entry, the leading P-by-M-by-INDLIM part of this array
 C             must contain the coefficients of the numerator matrix
@@ -118,7 +118,7 @@ C     .. Scalar Arguments ..
       INTEGER           INFO, INDLIM, LDPCO1, LDPCO2, LDQCO1, LDQCO2, M,
      $                  P
 C     .. Array Arguments ..
-      DOUBLE PRECISION  PCOEFF(LDPCO1,LDPCO2,*), QCOEFF(LDQCO1,LDQCO2,*)
+      REAL*16  PCOEFF(LDPCO1,LDPCO2,*), QCOEFF(LDQCO1,LDQCO2,*)
 C     .. Local Scalars ..
       LOGICAL           LLERI
       INTEGER           J, K, MINMP, MPLIM, PORM

@@ -39,50 +39,50 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state matrix A of the open-loop system.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input/state matrix B of the open-loop system.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             state/output matrix C of the open-loop system.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     F       (input) DOUBLE PRECISION array, dimension (LDF,N)
+C     F       (input) REAL*16 array, dimension (LDF,N)
 C             The leading M-by-N part of this array must contain a
 C             stabilizing state feedback matrix.
 C
 C     LDF     INTEGER
 C             The leading dimension of array F.  LDF >= MAX(1,M).
 C
-C     G       (input) DOUBLE PRECISION array, dimension (LDG,P)
+C     G       (input) REAL*16 array, dimension (LDG,P)
 C             The leading N-by-P part of this array must contain a
 C             stabilizing observer gain matrix.
 C
 C     LDG     INTEGER
 C             The leading dimension of array G.  LDG >= MAX(1,N).
 C
-C     SCALEC  (output) DOUBLE PRECISION
+C     SCALEC  (output) REAL*16
 C             Scaling factor for the controllability Grammian.
 C             See METHOD.
 C
-C     SCALEO  (output) DOUBLE PRECISION
+C     SCALEO  (output) REAL*16
 C             Scaling factor for the observability Grammian.
 C             See METHOD.
 C
-C     S       (output) DOUBLE PRECISION array, dimension (LDS,N)
+C     S       (output) REAL*16 array, dimension (LDS,N)
 C             The leading N-by-N upper triangular part of this array
 C             contains the Cholesky factor Su of frequency-weighted
 C             cotrollability Grammian P = Su*Su'. See METHOD.
@@ -90,7 +90,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of the array S.  LDS >= MAX(1,N).
 C
-C     R       (output) DOUBLE PRECISION array, dimension (LDR,N)
+C     R       (output) REAL*16 array, dimension (LDR,N)
 C             The leading N-by-N upper triangular part of this array
 C             contains the Cholesky factor Ru of the frequency-weighted
 C             observability Grammian Q = Ru'*Ru. See METHOD.
@@ -100,7 +100,7 @@ C             The leading dimension of the array R.  LDR >= MAX(1,N).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -189,15 +189,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION ONE
+      REAL*16 ONE
       PARAMETER        ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, JOBCF
       INTEGER          INFO, LDA, LDB, LDC, LDF, LDG, LDR, LDS, LDWORK,
      $                 M, N, P
-      DOUBLE PRECISION SCALEC, SCALEO
+      REAL*16 SCALEC, SCALEO
 C     .. Array Arguments ..
-      DOUBLE PRECISION A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
+      REAL*16 A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
      $                 F(LDF,*), G(LDG,*), R(LDR,*), S(LDS,*)
 C     .. Local Scalars ..
       LOGICAL          DISCR, LEFTW

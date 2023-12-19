@@ -109,13 +109,13 @@ C     ILO     (input) INTEGER
 C             If BALANC <> 'N', then ILO is the integer returned by
 C             MB03XD.  1 <= ILO <= N+1.
 C
-C     SCALE   (input) DOUBLE PRECISION array, dimension (N)
+C     SCALE   (input) REAL*16 array, dimension (N)
 C             If BALANC <> 'N', the leading N elements of this array
 C             must contain details of the permutation and scaling
 C             factors, as returned by MB03XD.
 C             This array is not referenced if BALANC = 'N'.
 C
-C     S       (input/output) DOUBLE PRECISION array, dimension (LDS,N)
+C     S       (input/output) REAL*16 array, dimension (LDS,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix S in real Schur form.
 C             On exit, the leading N-by-N part of this array is
@@ -124,7 +124,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of the array S.  LDS >= max(1,N).
 C
-C     T       (input/output) DOUBLE PRECISION array, dimension (LDT,N)
+C     T       (input/output) REAL*16 array, dimension (LDT,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper triangular matrix T.
 C             On exit, the leading N-by-N part of this array is
@@ -133,7 +133,7 @@ C
 C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= max(1,N).
 C
-C     G       (input/output) DOUBLE PRECISION array, dimension (LDG,N)
+C     G       (input/output) REAL*16 array, dimension (LDG,N)
 C             On entry, if METH = 'L' or METH = 'R', the leading N-by-N
 C             part of this array must contain a general matrix G.
 C             On exit, if METH = 'L' or METH = 'R', the leading N-by-N
@@ -144,7 +144,7 @@ C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= 1.
 C             LDG >= max(1,N) if METH = 'L' or METH = 'R'.
 C
-C     U1      (input/output) DOUBLE PRECISION array, dimension (LDU1,N)
+C     U1      (input/output) REAL*16 array, dimension (LDU1,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the (1,1) block of an orthogonal symplectic
 C             matrix U.
@@ -153,7 +153,7 @@ C
 C     LDU1    INTEGER
 C             The leading dimension of the array U1.  LDU1 >= MAX(1,N).
 C
-C     U2      (input/output) DOUBLE PRECISION array, dimension (LDU2,N)
+C     U2      (input/output) REAL*16 array, dimension (LDU2,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the (2,1) block of an orthogonal symplectic
 C             matrix U.
@@ -162,7 +162,7 @@ C
 C     LDU2    INTEGER
 C             The leading dimension of the array U2.  LDU2 >= MAX(1,N).
 C
-C     V1      (input/output) DOUBLE PRECISION array, dimension (LDV1,N)
+C     V1      (input/output) REAL*16 array, dimension (LDV1,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the (1,1) block of an orthogonal symplectic
 C             matrix V.
@@ -171,7 +171,7 @@ C
 C     LDV1    INTEGER
 C             The leading dimension of the array V1.  LDV1 >= MAX(1,N).
 C
-C     V2      (input/output) DOUBLE PRECISION array, dimension (LDV1,N)
+C     V2      (input/output) REAL*16 array, dimension (LDV1,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the (2,1) block of an orthogonal symplectic
 C             matrix V.
@@ -183,8 +183,8 @@ C
 C     M       (output) INTEGER
 C             The number of selected eigenvalues.
 C
-C     WR      (output) DOUBLE PRECISION array, dimension (M)
-C     WI      (output) DOUBLE PRECISION array, dimension (M)
+C     WR      (output) REAL*16 array, dimension (M)
+C     WI      (output) REAL*16 array, dimension (M)
 C             On exit, the leading M elements of WR and WI contain the
 C             real and imaginary parts, respectively, of the selected
 C             eigenvalues that have nonpositive real part. Complex
@@ -194,7 +194,7 @@ C             having the positive imaginary part first. Note that, due
 C             to roundoff errors, these numbers may differ from the
 C             eigenvalues computed by MB03XD.
 C
-C     US      (output) DOUBLE PRECISION array, dimension (LDUS,MM)
+C     US      (output) REAL*16 array, dimension (LDUS,MM)
 C             On exit, if STAB = 'S' or STAB = 'B', the leading
 C             2*N-by-MM part of this array contains a basis for the
 C             stable invariant subspace belonging to the selected
@@ -206,7 +206,7 @@ C     LDUS    INTEGER
 C             The leading dimension of the array US.  LDUS >= 1.
 C             If STAB = 'S' or STAB = 'B',  LDUS >= 2*N.
 C
-C     UU      (output) DOUBLE PRECISION array, dimension (LDUU,MM)
+C     UU      (output) REAL*16 array, dimension (LDUU,MM)
 C             On exit, if STAB = 'U' or STAB = 'B', the leading
 C             2*N-by-MM part of this array contains a basis for the
 C             unstable invariant subspace belonging to the selected
@@ -230,7 +230,7 @@ C             LIWORK = N,   if WHICH = 'A' and METH = 'S';
 C             LIWORK = 0,   if WHICH = 'A' and METH = 'Q' or METH = 'R';
 C             LIWORK = M,   if WHICH = 'S'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -35,  DWORK(1)  returns the minimum
@@ -316,7 +316,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, HUNDRD
+      REAL*16  ZERO, ONE, HUNDRD
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, HUNDRD = 1.0D2 )
 C     .. Scalar Arguments ..
       CHARACTER         BALANC, METH, ORTBAL, STAB, WHICH
@@ -325,7 +325,7 @@ C     .. Scalar Arguments ..
 C     .. Array Arguments ..
       LOGICAL           LWORK(*), SELECT(*)
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  DWORK(*), G(LDG,*), S(LDS,*), SCALE(*),
+      REAL*16  DWORK(*), G(LDG,*), S(LDS,*), SCALE(*),
      $                  T(LDT,*), U1(LDU1,*), U2(LDU2,*), US(LDUS,*),
      $                  UU(LDUU,*), V1(LDV1,*), V2(LDV2,*), WI(*),
      $                  WR(*)
@@ -333,10 +333,10 @@ C     .. Local Scalars ..
       LOGICAL           LALL, LBAL, LBEF, LEXT, LQUERY, LRIC, LUS, LUU,
      $                  PAIR
       INTEGER           I, IERR, J, K, PDW, PW, WRKMIN, WRKOPT
-      DOUBLE PRECISION  NRMIN, RCOND, TEMP, TOL
+      REAL*16  NRMIN, RCOND, TEMP, TOL
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DASUM, DLAMCH, DLANGE
+      REAL*16  DASUM, DLAMCH, DLANGE
       EXTERNAL          DASUM, DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DGEMM, DGEQP3, DGEQRF, DLACPY, DLASCL,

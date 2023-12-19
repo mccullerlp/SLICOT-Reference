@@ -60,7 +60,7 @@ C
 C     NCA     (input) INTEGER
 C             NCA is the number of columns of the submatrix Aj in A.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, A(IFIRA : M ; IFICA : IFICA + NCA - 1) contains
 C             the matrix Aj.
 C             On exit, it contains the matrix A with AA that has been
@@ -69,7 +69,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A. LDA >= MAX(1,M).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, E(IFIRA : M ; IFICA + NCA : N) contains the
 C             matrix Ej which is in column echelon form.
 C             On exit, it contains the transformed matrix EE which is
@@ -78,7 +78,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E. LDE >= MAX(1,M).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,*)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,*)
 C             On entry, if UPDATQ = .TRUE., then the leading M-by-M
 C             part of this array must contain a given matrix Q (e.g.
 C             from a previous call to another SLICOT routine), and on
@@ -95,7 +95,7 @@ C     LDQ     INTEGER
 C             The leading dimension of array Q. If UPDATQ = .TRUE.,
 C             LDQ >= MAX(1,M); if UPDATQ = .FALSE., LDQ >= 1.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,*)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,*)
 C             On entry, if UPDATZ = .TRUE., then the leading N-by-N
 C             part of this array must contain a given matrix Z (e.g.
 C             from a previous call to another SLICOT routine), and on
@@ -127,7 +127,7 @@ C             Numerical rank of the submatrix Aj in A (based on TOL).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance used when considering matrix elements
 C             to be zero.
 C
@@ -167,22 +167,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           UPDATQ, UPDATZ
       INTEGER           IFICA, IFIRA, LDA, LDE, LDQ, LDZ, M, N, NCA,
      $                  RANK
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           ISTAIR(*), IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
+      REAL*16  A(LDA,*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL           LZERO
       INTEGER           I, IFICA1, IFIRA1, II, IP, IST1, IST2, ISTPVT,
      $                  ITYPE, JC1, JC2, JPVT, K, KK, L, LL, LSAV, MJ,
      $                  MK1, MXRANK, NJ
-      DOUBLE PRECISION  BMX, BMXNRM, EIJPVT, SC, SS
+      REAL*16  BMX, BMXNRM, EIJPVT, SC, SS
 C     .. External Functions ..
       INTEGER           IDAMAX
       EXTERNAL          IDAMAX

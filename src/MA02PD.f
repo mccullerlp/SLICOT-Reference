@@ -15,7 +15,7 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading M-by-N part of this array must contain the
 C             matrix A.
 C
@@ -43,14 +43,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO
+      REAL*16   ZERO
       PARAMETER          ( ZERO = 0.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER            LDA, M, N, NZC, NZR
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * )
+      REAL*16   A( LDA, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            I, J

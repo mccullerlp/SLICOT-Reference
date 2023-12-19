@@ -115,14 +115,14 @@ C             number of rows of the matrix C and/or D, respectively.
 C             P >= 0, and if JOBB = 'B' and TYPE = 'S', then P = M.
 C             Otherwise, P is not used.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state matrix A of the system.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,*)
+C     B       (input) REAL*16 array, dimension (LDB,*)
 C             If JOBB = 'B', the leading N-by-M part of this array must
 C             contain the input matrix B of the system.
 C             If JOBB = 'G', the leading N-by-N upper triangular part
@@ -137,7 +137,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     Q       (input) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input) REAL*16 array, dimension (LDQ,N)
 C             If FACT = 'N' or 'D', the leading N-by-N upper triangular
 C             part (if UPLO = 'U') or lower triangular part (if UPLO =
 C             'L') of this array must contain the upper triangular part
@@ -153,7 +153,7 @@ C             The leading dimension of array Q.
 C             LDQ >= MAX(1,N) if FACT = 'N' or 'D',
 C             LDQ >= MAX(1,P) if FACT = 'C' or 'B'.
 C
-C     R       (input) DOUBLE PRECISION array, dimension (LDR,M)
+C     R       (input) REAL*16 array, dimension (LDR,M)
 C             If FACT = 'N' or 'C', the leading M-by-M upper triangular
 C             part (if UPLO = 'U') or lower triangular part (if UPLO =
 C             'L') of this array must contain the upper triangular part
@@ -172,7 +172,7 @@ C             LDR >= MAX(1,M) if JOBB = 'B' and FACT = 'N' or 'C';
 C             LDR >= MAX(1,P) if JOBB = 'B' and FACT = 'D' or 'B';
 C             LDR >= 1        if JOBB = 'G'.
 C
-C     L       (input) DOUBLE PRECISION array, dimension (LDL,M)
+C     L       (input) REAL*16 array, dimension (LDL,M)
 C             If JOBL = 'N' (and JOBB = 'B'), the leading N-by-M part of
 C             this array must contain the cross weighting matrix L.
 C             If JOBL = 'Z' or JOBB = 'G', this array is not referenced.
@@ -182,7 +182,7 @@ C             The leading dimension of array L.
 C             LDL >= MAX(1,N) if JOBL = 'N';
 C             LDL >= 1        if JOBL = 'Z' or JOBB = 'G'.
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input) REAL*16 array, dimension (LDE,N)
 C             If JOBE = 'N', the leading N-by-N part of this array must
 C             contain the matrix E of the descriptor system.
 C             If JOBE = 'I', E is taken as identity and this array is
@@ -193,7 +193,7 @@ C             The leading dimension of array E.
 C             LDE >= MAX(1,N) if JOBE = 'N';
 C             LDE >= 1        if JOBE = 'I'.
 C
-C     AF      (output) DOUBLE PRECISION array, dimension (LDAF,*)
+C     AF      (output) REAL*16 array, dimension (LDAF,*)
 C             The leading 2N-by-2N part of this array contains the
 C             matrix A  in the matrix pencil.
 C                     f
@@ -205,7 +205,7 @@ C             The leading dimension of array AF.
 C             LDAF >= MAX(1,2*N+M) if JOBB = 'B',
 C             LDAF >= MAX(1,2*N)   if JOBB = 'G'.
 C
-C     BF      (output) DOUBLE PRECISION array, dimension (LDBF,2*N)
+C     BF      (output) REAL*16 array, dimension (LDBF,2*N)
 C             If DICO = 'D' or JOBB = 'B' or JOBE = 'N', the leading
 C             2N-by-2N part of this array contains the matrix B  in the
 C                                                              f
@@ -224,7 +224,7 @@ C                                                      JOBE = 'I' ).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used to test for near singularity of
 C             the original matrix pencil, specifically of the triangular
 C             factor obtained during the reduction process. If the user
@@ -243,7 +243,7 @@ C     IWORK   INTEGER array, dimension (LIWORK)
 C             LIWORK >= M if JOBB = 'B',
 C             LIWORK >= 1 if JOBB = 'G'.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK. If JOBB = 'B', DWORK(2) returns the reciprocal
 C             of the condition number of the M-by-M lower triangular
@@ -310,26 +310,26 @@ C     system, discrete-time system, optimal regulator, Schur form.
 C
 C     ******************************************************************
 C
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, JOBB, JOBE, JOBL, TYPE, UPLO
       INTEGER           INFO, LDA, LDAF, LDB, LDBF, LDE, LDL, LDQ, LDR,
      $                  LDWORK, M, N, P
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), AF(LDAF,*), B(LDB,*), BF(LDBF,*),
+      REAL*16  A(LDA,*), AF(LDAF,*), B(LDB,*), BF(LDBF,*),
      $                  DWORK(*), E(LDE,*), L(LDL,*), Q(LDQ,*), R(LDR,*)
 C     .. Local Scalars ..
       LOGICAL           DISCR, LFACB, LFACN, LFACQ, LFACR, LJOBB, LJOBE,
      $                  LJOBL, LUPLO, OPTC
       INTEGER           I, ITAU, J, JWORK, N2, N2P1, NM, NNM, NP1,
      $                  WRKOPT
-      DOUBLE PRECISION  RCOND, TOLDEF
+      REAL*16  RCOND, TOLDEF
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH
+      REAL*16  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEQLF, DLACPY, DLASET, DORMQL, DSYRK,

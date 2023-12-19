@@ -89,7 +89,7 @@ C     RANKE   (input) INTEGER
 C             The rank of the matrix E in column echelon form.
 C             RANKE >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix to be row compressed.
 C             On exit, the leading M-by-N part of this array contains
@@ -99,7 +99,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix in column echelon form to be
 C             transformed equivalent to matrix A.
@@ -110,7 +110,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,M).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,*)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,*)
 C             On entry, if JOBQ = 'U', then the leading M-by-M part of
 C             this array must contain a given matrix Q (e.g. from a
 C             previous call to another SLICOT routine), and on exit, the
@@ -128,7 +128,7 @@ C     LDQ     INTEGER
 C             The leading dimension of array Q. If JOBQ = 'U' or
 C             JOBQ = 'I', LDQ >= MAX(1,M); if JOBQ = 'N', LDQ >= 1.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,*)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,*)
 C             On entry, if JOBZ = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Z (e.g. from a
 C             previous call to another SLICOT routine), and on exit, the
@@ -204,7 +204,7 @@ C                     sE(inf)-A(inf).
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             A tolerance below which matrix elements are considered
 C             to be zero. If the user sets TOL to be less than (or
 C             equal to) zero then the tolerance is taken as
@@ -292,27 +292,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBQ, JOBZ, MODE
       INTEGER           INFO, LDA, LDE, LDQ, LDZ, M, N, NBLCKI, NBLCKS,
      $                  RANKE
-      DOUBLE PRECISION  TOL
+      REAL*16  TOL
 C     .. Array Arguments ..
       INTEGER           IMUK(*), IMUK0(*), INUK(*), ISTAIR(*), IWORK(*),
      $                  MNEI(*)
-      DOUBLE PRECISION  A(LDA,*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
+      REAL*16  A(LDA,*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL           FIRST, FIRSTI, LJOBQI, LJOBZI, LMODEB, LMODES,
      $                  LMODET, UPDATQ, UPDATZ
       INTEGER           I, IFICA, IFIRA, ISMUK, ISNUK, JK, K, NCA, RANKA
-      DOUBLE PRECISION  TOLER
+      REAL*16  TOLER
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DWORK(1)
+      REAL*16  DWORK(1)
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DLASET, MB04TT, MB04TY, MB04VX, XERBLA

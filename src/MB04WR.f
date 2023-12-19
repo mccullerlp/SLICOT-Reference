@@ -53,7 +53,7 @@ C             V([ilo+1:n n+ilo+1:2*n], [ilo+1:n n+ilo+1:2*n]),
 C             respectively.
 C             1 <= ILO <= N, if N > 0; ILO = 1, if N = 0.
 C
-C     Q1      (input/output) DOUBLE PRECISION array, dimension (LDQ1,N)
+C     Q1      (input/output) REAL*16 array, dimension (LDQ1,N)
 C             On entry, if  JOB = 'U'  and  TRANS = 'N'  then the
 C             leading N-by-N part of this array must contain in its i-th
 C             column the vector which defines the elementary reflector
@@ -82,7 +82,7 @@ C
 C     LDQ1    INTEGER
 C             The leading dimension of the array Q1.  LDQ1 >= MAX(1,N).
 C
-C     Q2      (input/output) DOUBLE PRECISION array, dimension (LDQ2,N)
+C     Q2      (input/output) REAL*16 array, dimension (LDQ2,N)
 C             On entry, if  JOB = 'U'  then the leading N-by-N part of
 C             this array must contain in its i-th column the vector
 C             which defines the elementary reflector HU(i).
@@ -97,7 +97,7 @@ C
 C     LDQ2    INTEGER
 C             The leading dimension of the array Q2.  LDQ2 >= MAX(1,N).
 C
-C     CS      (input) DOUBLE PRECISION array, dimension (2N)
+C     CS      (input) REAL*16 array, dimension (2N)
 C             On entry, if  JOB = 'U'  then the first 2N elements of
 C             this array must contain the cosines and sines of the
 C             symplectic Givens rotations GU(i).
@@ -105,7 +105,7 @@ C             If  JOB = 'V'  then the first 2N-2 elements of this array
 C             must contain the cosines and sines of the symplectic
 C             Givens rotations GV(i).
 C
-C     TAU     (input) DOUBLE PRECISION array, dimension (N)
+C     TAU     (input) REAL*16 array, dimension (N)
 C             On entry, if  JOB = 'U'  then the first N elements of
 C             this array must contain the scalar factors of the
 C             elementary reflectors FU(i).
@@ -115,7 +115,7 @@ C             reflectors FV(i).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -12,  DWORK(1)  returns the minimum
@@ -167,13 +167,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB, TRANS
       INTEGER           ILO, INFO, LDQ1, LDQ2, LDWORK, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  CS(*), DWORK(*), Q1(LDQ1,*), Q2(LDQ2,*), TAU(*)
+      REAL*16  CS(*), DWORK(*), Q1(LDQ1,*), Q2(LDQ2,*), TAU(*)
 C     .. Local Scalars ..
       LOGICAL           COMPU, LQUERY, LTRAN
       INTEGER           I, IERR, J, MINWRK, NH, WRKOPT

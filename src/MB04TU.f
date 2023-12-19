@@ -35,11 +35,11 @@ C     ******************************************************************
 C
 C     .. Scalar Arguments ..
       INTEGER           INCX, INCY, N
-      DOUBLE PRECISION  C, S
+      REAL*16  C, S
 C     .. Array Arguments ..
-      DOUBLE PRECISION  X(*), Y(*)
+      REAL*16  X(*), Y(*)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  DTEMP
+      REAL*16  DTEMP
       INTEGER           I, IX, IY
 C     .. Executable Statements ..
 C

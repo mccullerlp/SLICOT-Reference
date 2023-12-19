@@ -58,7 +58,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, G, and Q.  N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C             On exit, if DICO = 'D', and INFO = 0, the leading N-by-N
@@ -69,7 +69,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     G       (input) DOUBLE PRECISION array, dimension (LDG,N)
+C     G       (input) REAL*16 array, dimension (LDG,N)
 C             The leading N-by-N upper triangular part (if UPLO = 'U')
 C             or lower triangular part (if UPLO = 'L') of this array
 C             must contain the upper triangular part or lower triangular
@@ -81,7 +81,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of array G.  LDG >= MAX(1,N).
 C
-C     Q       (input) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input) REAL*16 array, dimension (LDQ,N)
 C             The leading N-by-N upper triangular part (if UPLO = 'U')
 C             or lower triangular part (if UPLO = 'L') of this array
 C             must contain the upper triangular part or lower triangular
@@ -93,7 +93,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of array Q.  LDQ >= MAX(1,N).
 C
-C     S       (output) DOUBLE PRECISION array, dimension (LDS,2*N)
+C     S       (output) REAL*16 array, dimension (LDS,2*N)
 C             If INFO = 0, the leading 2N-by-2N part of this array
 C             contains the Hamiltonian or symplectic matrix of the
 C             problem.
@@ -105,7 +105,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*N)
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK; if DICO = 'D', DWORK(2) returns the reciprocal
 C             condition number of the given matrix  A.
@@ -166,22 +166,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, HINV, UPLO
       INTEGER           INFO, LDA, LDG, LDQ, LDS, LDWORK, N
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), G(LDG,*), Q(LDQ,*),
+      REAL*16  A(LDA,*), DWORK(*), G(LDG,*), Q(LDQ,*),
      $                  S(LDS,*)
 C     .. Local Scalars ..
       LOGICAL           DISCR, LHINV, LQUERY, LUPLO
       INTEGER           I, J, MAXWRK, MINWRK, N2, NJ, NP1
-      DOUBLE PRECISION  ANORM, RCOND
+      REAL*16  ANORM, RCOND
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DLANGE
+      REAL*16  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGECON, DGEMM, DGETRF, DGETRI, DGETRS,

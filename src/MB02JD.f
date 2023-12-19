@@ -47,7 +47,7 @@ C     S       (input)  INTEGER
 C             The number of block columns of R to compute.
 C             (P+S)*L < MIN( M*K,N*L ) + L and S >= 0.
 C
-C     TC      (input) DOUBLE PRECISION array, dimension (LDTC, L)
+C     TC      (input) REAL*16 array, dimension (LDTC, L)
 C             On entry, if P = 0, the leading M*K-by-L part of this
 C             array must contain the first block column of T.
 C
@@ -55,7 +55,7 @@ C     LDTC    INTEGER
 C             The leading dimension of the array TC.
 C             LDTC >= MAX(1,M*K).
 C
-C     TR      (input)  DOUBLE PRECISION array, dimension (LDTR,(N-1)*L)
+C     TR      (input)  REAL*16 array, dimension (LDTR,(N-1)*L)
 C             On entry, if P = 0, the leading K-by-(N-1)*L part of this
 C             array must contain the first block row of T without the
 C             leading K-by-L block.
@@ -64,7 +64,7 @@ C     LDTR    INTEGER
 C             The leading dimension of the array TR.
 C             LDTR >= MAX(1,K).
 C
-C     Q       (input/output)  DOUBLE PRECISION array, dimension
+C     Q       (input/output)  REAL*16 array, dimension
 C                             (LDQ,MIN( S*L, MIN( M*K,N*L )-P*L ))
 C             On entry, if JOB = 'Q'  and  P > 0, the leading M*K-by-L
 C             part of this array must contain the last block column of Q
@@ -79,7 +79,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= MAX(1,M*K), if JOB = 'Q';
 C             LDQ >= 1,          if JOB = 'R'.
 C
-C     R       (input/output)  DOUBLE PRECISION array, dimension
+C     R       (input/output)  REAL*16 array, dimension
 C                             (LDR,MIN( S*L, MIN( M*K,N*L )-P*L ))
 C             On entry, if P > 0, the leading (N-P+1)*L-by-L
 C             part of this array must contain the nozero part of the
@@ -99,7 +99,7 @@ C             LDR >= MAX( 1, MIN( N, N-P+1 )*L )
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C             On exit, if INFO = -17,  DWORK(1) returns the minimum
@@ -183,14 +183,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB
       INTEGER           INFO, K, L, LDQ, LDR, LDTC, LDTR, LDWORK,
      $                  M, N, P, S
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(LDWORK), Q(LDQ,*), R(LDR,*), TC(LDTC,*),
+      REAL*16  DWORK(LDWORK), Q(LDQ,*), R(LDR,*), TC(LDTC,*),
      $                  TR(LDTR,*)
 C     .. Local Scalars ..
       INTEGER           COLR, I, IERR, KK, LEN, NB, NBMIN, PDQ, PDW,

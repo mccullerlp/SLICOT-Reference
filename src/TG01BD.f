@@ -75,7 +75,7 @@ C             respectively.
 C             1 <= ILO <= IHI <= N, if N > 0; ILO=1 and IHI=0, if N=0.
 C             If JOBE = 'U', the matrix E is assumed upper triangular.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -85,7 +85,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input/output) REAL*16 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the descriptor matrix E. If JOBE = 'U', this
 C             matrix is assumed upper triangular.
@@ -96,7 +96,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix B.
 C             On exit, if M > 0, the leading N-by-M part of this array
@@ -107,7 +107,7 @@ C     LDB     INTEGER
 C             The leading dimension of array B.
 C             LDB >= MAX(1,N) if M > 0;  LDB >= 1 if M = 0.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, if P > 0, the leading P-by-N part of this array
@@ -117,7 +117,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
 C             If COMPQ = 'N':  Q is not referenced;
 C             If COMPQ = 'I':  on entry, Q need not be set, and on exit
 C                              it contains the orthogonal matrix Q,
@@ -133,7 +133,7 @@ C             The leading dimension of array Q.
 C             LDQ >= 1,        if COMPQ = 'N';
 C             LDQ >= MAX(1,N), if COMPQ = 'I' or 'V'.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
 C             If COMPZ = 'N':  Z is not referenced;
 C             If COMPZ = 'I':  on entry, Z need not be set, and on exit
 C                              it contains the orthogonal matrix Z,
@@ -151,7 +151,7 @@ C             LDZ >= MAX(1,N), if COMPZ = 'I' or 'V'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal value
 C             of LDWORK.
 C
@@ -214,20 +214,20 @@ C
 C  *********************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ONE, ZERO
+      REAL*16   ONE, ZERO
       PARAMETER          ( ONE = 1.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ, JOBE
       INTEGER            IHI, ILO, INFO, LDA, LDB, LDC, LDE, LDQ,
      $                   LDWORK, LDZ, M, N, P
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK(  * ), E( LDE, * ), Q( LDQ, * ),
      $                   Z( LDZ, * )
 C     .. Local Scalars ..
       LOGICAL            ILQ, ILZ, INQ, INZ, UPPER, WITHB, WITHC
       INTEGER            IERR, ITAU, IWRK, JCOL, JROW, MAXWRK, MINWRK
-      DOUBLE PRECISION   CS, S, TEMP
+      REAL*16   CS, S, TEMP
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

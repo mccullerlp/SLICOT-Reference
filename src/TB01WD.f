@@ -22,7 +22,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs, or of rows of C.  P >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -39,7 +39,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input/output) REAL*16 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -48,7 +48,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input/output) REAL*16 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -57,7 +57,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     U       (output) DOUBLE PRECISION array, dimension (LDU,N)
+C     U       (output) REAL*16 array, dimension (LDU,N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal transformation matrix used to reduce A to the
 C             real Schur form. The columns of U are the Schur vectors of
@@ -66,7 +66,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= max(1,N).
 C
-C     WR, WI  (output) DOUBLE PRECISION arrays, dimension (N)
+C     WR, WI  (output) REAL*16 arrays, dimension (N)
 C             WR and WI contain the real and imaginary parts,
 C             respectively, of the computed eigenvalues of A. The
 C             eigenvalues will be in the same order that they appear on
@@ -77,7 +77,7 @@ C             first.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -125,16 +125,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION ZERO, ONE
+      REAL*16 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER          INFO, LDA, LDB, LDC, LDU, LDWORK, M, N, P
 C     .. Array Arguments ..
-      DOUBLE PRECISION A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), U(LDU,*),
+      REAL*16 A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), U(LDU,*),
      $                 WI(*), WR(*)
 C     .. Local Scalars ..
       INTEGER          I, LDWP, SDIM
-      DOUBLE PRECISION WRKOPT
+      REAL*16 WRKOPT
 C     .. Local Arrays ..
       LOGICAL          BWORK( 1 )
 C     .. External Functions ..

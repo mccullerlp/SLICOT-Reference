@@ -55,7 +55,7 @@ C             signatures of the factors. Each entry in S must be either
 C             1 or -1; the value S(k) = -1 corresponds to using the
 C             inverse of the factor A_k.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (*)
+C     A       (input/output) REAL*16 array, dimension (*)
 C             On entry, this array must contain at position IXA(k) =
 C             (k-1)*N*LDA+1 the N-by-N matrix Ae_k stored with leading
 C             dimension LDA.
@@ -66,12 +66,12 @@ C     LDA     INTEGER
 C             Leading dimension of the matrices Ae_k and Te_k in the
 C             one-dimensional array A.  LDA >= N.
 C
-C     V       (output) DOUBLE PRECISION array, dimension (2*K)
+C     V       (output) REAL*16 array, dimension (2*K)
 C             On exit, this array contains the K vectors v_k,
 C             k = 1,...,K, defining the elementary reflectors H_k as
 C             in (1). The k-th reflector is stored in V(2*k-1:2*k).
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension (K)
+C     TAU     (output) REAL*16 array, dimension (K)
 C             On exit, this array contains the K values of tau_k,
 C             k = 1,...,K, defining the elementary reflectors H_k
 C             as in (1).
@@ -103,7 +103,7 @@ C
 C     ******************************************************************
 C
 C  .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -111,13 +111,13 @@ C     .. Scalar Arguments ..
 C     ..
 C     .. Array Arguments ..
       INTEGER            S( * )
-      DOUBLE PRECISION   A( * ), TAU( * ), V( * )
+      REAL*16   A( * ), TAU( * ), V( * )
 C  ..
 C  .. Local Scalars ..
       INTEGER            I, I1, I2, IC, INC, IP1, IR, IX, NO
 C  ..
 C  .. Local Arrays ..
-      DOUBLE PRECISION   TMP( 1 ), WORK( 2 )
+      REAL*16   TMP( 1 ), WORK( 2 )
 C  ..
 C  .. External Subroutines ..
       EXTERNAL           DLARFG, DLARFX

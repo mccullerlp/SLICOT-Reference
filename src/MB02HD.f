@@ -77,7 +77,7 @@ C     S       (input)  INTEGER
 C             The number of block columns of R to compute.
 C             (P+S)*L < MIN( M*K,N*L ) + L and S >= 0.
 C
-C     TC      (input)  DOUBLE PRECISION array, dimension (LDTC,L)
+C     TC      (input)  REAL*16 array, dimension (LDTC,L)
 C             On entry, if P = 0, the leading (ML+1)*K-by-L part of this
 C             array must contain the nonzero blocks in the first block
 C             column of T.
@@ -86,7 +86,7 @@ C     LDTC    INTEGER
 C             The leading dimension of the array TC.
 C             LDTC >= MAX(1,(ML+1)*K),  if P = 0.
 C
-C     TR      (input)  DOUBLE PRECISION array, dimension (LDTR,NU*L)
+C     TR      (input)  REAL*16 array, dimension (LDTR,NU*L)
 C             On entry, if P = 0, the leading K-by-NU*L part of this
 C             array must contain the 2nd to the (NU+1)-st blocks of
 C             the first block row of T.
@@ -95,7 +95,7 @@ C     LDTR    INTEGER
 C             The leading dimension of the array TR.
 C             LDTR >= MAX(1,K),  if P = 0.
 C
-C     RB      (output)  DOUBLE PRECISION array, dimension
+C     RB      (output)  REAL*16 array, dimension
 C             (LDRB,MIN( S*L,MIN( M*K,N*L )-P*L ))
 C             On exit, if INFO = 0 and TRIU = 'N', the leading
 C             MIN( ML+NU+1,N )*L-by-MIN( S*L,MIN( M*K,N*L )-P*L ) part
@@ -115,7 +115,7 @@ C             LDRB >= MAX( MIN( (ML+NU)*L+1,N*L ),1 ),  if TRIU = 'T'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -17,  DWORK(1)  returns the minimum
@@ -191,14 +191,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRIU
       INTEGER           INFO, K, L, LDRB, LDTC, LDTR, LDWORK, M, ML, N,
      $                  NU, P, S
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(LDWORK), RB(LDRB,*), TC(LDTC,*),
+      REAL*16  DWORK(LDWORK), RB(LDRB,*), TC(LDTC,*),
      $                  TR(LDTR,*)
 C     .. Local Scalars ..
       CHARACTER         STRUCT

@@ -53,7 +53,7 @@ C             must be applied if WANTQ = .TRUE. and WANTZ = .TRUE.,
 C             respectively.
 C             1 <= ILOQ <= ILO; IHI <= IHIQ <= N.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper Hessenberg matrix A.
 C             On exit, if WANTT = .TRUE., the leading N-by-N part of
@@ -66,7 +66,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,N)
+C     B       (input/output) REAL*16 array, dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper triangular matrix B.
 C             On exit, if WANTT = .TRUE., the leading N-by-N part of
@@ -82,7 +82,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     Q       (input/output) DOUBLE PRECISION array, dimension (LDQ,N)
+C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
 C             On entry, if WANTQ = .TRUE., then the leading N-by-N part
 C             of this array must contain the current matrix Q of
 C             transformations accumulated by MB03XP.
@@ -95,7 +95,7 @@ C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= 1.
 C             If WANTQ = .TRUE., LDQ >= MAX(1,N).
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
 C             On entry, if WANTZ = .TRUE., then the leading N-by-N part
 C             of this array must contain the current matrix Z of
 C             transformations accumulated by MB03XP.
@@ -108,9 +108,9 @@ C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= 1.
 C             If WANTZ = .TRUE., LDZ >= MAX(1,N).
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             The i-th (ILO <= i <= IHI) computed eigenvalue is given
 C             by BETA(I) * ( ALPHAR(I) + sqrt(-1)*ALPHAI(I) ). If two
 C             eigenvalues are computed as a complex conjugate pair,
@@ -121,7 +121,7 @@ C             A and B.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if  INFO = -19,  DWORK(1)  returns the minimum
 C             value of LDWORK.
 C
@@ -184,25 +184,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       LOGICAL            WANTQ, WANTT, WANTZ
       INTEGER            IHI, IHIQ, ILO, ILOQ, INFO, LDA, LDB, LDQ,
      $                   LDWORK, LDZ, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
+      REAL*16   A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
      $                   BETA(*), DWORK(*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       INTEGER            I, I1, I2, ITN, ITS, K, KK, L, NH, NQ, NR
-      DOUBLE PRECISION   ALPHA, BETAX, CS1, CS2, CS3, DELTA, GAMMA,
+      REAL*16   ALPHA, BETAX, CS1, CS2, CS3, DELTA, GAMMA,
      $                   OVFL, SMLNUM, SN1, SN2, SN3, TAUV, TAUW,
      $                   TEMP, TST, ULP, UNFL
 C     .. Local Arrays ..
       INTEGER            ISEED(4)
-      DOUBLE PRECISION   V(3), W(3)
+      REAL*16   V(3), W(3)
 C     .. External Functions ..
-      DOUBLE PRECISION   DLAMCH, DLANHS
+      REAL*16   DLAMCH, DLANHS
       EXTERNAL           DLAMCH, DLANHS
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DLABAD, DLARFG, DLARFX, DLARNV, DLARTG,

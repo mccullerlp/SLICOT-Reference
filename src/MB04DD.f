@@ -32,7 +32,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A. N >= 0.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input/output) REAL*16 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -43,7 +43,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     QG      (input/output) DOUBLE PRECISION array, dimension
+C     QG      (input/output) REAL*16 array, dimension
 C                            (LDQG,N+1)
 C             On entry, the leading N-by-N+1 part of this array must
 C             contain the lower triangular part of the matrix Q and
@@ -61,7 +61,7 @@ C     ILO     (output) INTEGER
 C             ILO-1 is the number of deflated eigenvalues in the
 C             balanced Hamiltonian matrix.
 C
-C     SCALE   (output) DOUBLE PRECISION array of dimension (N)
+C     SCALE   (output) REAL*16 array of dimension (N)
 C             Details of the permutations and scaling factors applied to
 C             H.  For j = 1,...,ILO-1 let P(j) = SCALE(j). If P(j) <= N,
 C             then rows and columns P(j) and P(j)+N are interchanged
@@ -102,22 +102,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB
       INTEGER           ILO, INFO, LDA, LDQG, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), QG(LDQG,*), SCALE(*)
+      REAL*16  A(LDA,*), QG(LDQG,*), SCALE(*)
 C     .. Local Scalars ..
       LOGICAL           CONV, LPERM, LSCAL
       INTEGER           I, IC, ILOOLD, J
-      DOUBLE PRECISION  C, F, GII, MAXC, MAXR, QII, R, SCLFAC,
+      REAL*16  C, F, GII, MAXC, MAXR, QII, R, SCLFAC,
      $                  SFMAX1, SFMAX2, SFMIN1, SFMIN2, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           IDAMAX
-      DOUBLE PRECISION  DASUM, DLAMCH
+      REAL*16  DASUM, DLAMCH
       EXTERNAL          DASUM, DLAMCH, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DRSCL, DSCAL, DSWAP, XERBLA

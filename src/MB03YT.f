@@ -33,7 +33,7 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension (LDA,2)
+C     A       (input/output) REAL*16 array, dimension (LDA,2)
 C             On entry, the leading 2-by-2 part of this array must
 C             contain the matrix A.
 C             On exit, the leading 2-by-2 part of this array contains
@@ -42,7 +42,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= 2.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension (LDB,2)
+C     B       (input/output) REAL*16 array, dimension (LDB,2)
 C             On entry, the leading 2-by-2 part of this array must
 C             contain the upper triangular matrix B.
 C             On exit, the leading 2-by-2 part of this array contains
@@ -51,22 +51,22 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= 2.
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (2)
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (2)
-C     BETA    (output) DOUBLE PRECISION array, dimension (2)
+C     ALPHAR  (output) REAL*16 array, dimension (2)
+C     ALPHAI  (output) REAL*16 array, dimension (2)
+C     BETA    (output) REAL*16 array, dimension (2)
 C             (ALPHAR(k)+i*ALPHAI(k))*BETA(k) are the eigenvalues of the
 C             pair (A,B), k=1,2, i = sqrt(-1). ALPHAI(1) >= 0.
 C
-C     CSL     (output) DOUBLE PRECISION
+C     CSL     (output) REAL*16
 C             The cosine of the first rotation matrix.
 C
-C     SNL     (output) DOUBLE PRECISION
+C     SNL     (output) REAL*16
 C             The sine of the first rotation matrix.
 C
-C     CSR     (output) DOUBLE PRECISION
+C     CSR     (output) REAL*16
 C             The cosine of the second rotation matrix.
 C
-C     SNR     (output) DOUBLE PRECISION
+C     SNR     (output) REAL*16
 C             The sine of the second rotation matrix.
 C
 C     REFERENCES
@@ -92,19 +92,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           LDA, LDB
-      DOUBLE PRECISION  CSL, CSR, SNL, SNR
+      REAL*16  CSL, CSR, SNL, SNR
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), ALPHAI(2), ALPHAR(2), B(LDB,*),
+      REAL*16  A(LDA,*), ALPHAI(2), ALPHAR(2), B(LDB,*),
      $                  BETA(2)
 C     .. Local Scalars ..
-      DOUBLE PRECISION  ANORM, BNORM, H1, H2, H3, QQ, R, RR, SAFMIN,
+      REAL*16  ANORM, BNORM, H1, H2, H3, QQ, R, RR, SAFMIN,
      $                  SCALE1, SCALE2, T, ULP, WI, WR1, WR2
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, DLAPY2
+      REAL*16  DLAMCH, DLAPY2
       EXTERNAL          DLAMCH, DLAPY2
 C     .. External Subroutines ..
       EXTERNAL          DLAG2, DLARTG, DLASV2, DROT

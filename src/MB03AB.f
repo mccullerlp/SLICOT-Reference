@@ -57,7 +57,7 @@ C     SINV    (input) INTEGER
 C             Signature multiplier. Entries of S are virtually
 C             multiplied by SINV.
 C
-C     A       (input)  DOUBLE PRECISION array, dimension (LDA1,LDA2,K)
+C     A       (input)  REAL*16 array, dimension (LDA1,LDA2,K)
 C             The leading N-by-N-by-K part of this array must contain an
 C             n-by-n product (implicitly represented by its K factors)
 C             in periodic upper Hessenberg form.
@@ -68,21 +68,21 @@ C
 C     LDA2    INTEGER
 C             The second leading dimension of the array A.  LDA2 >= N.
 C
-C     W1      (input)  DOUBLE PRECISION
+C     W1      (input)  REAL*16
 C             The real part of the first eigenvalue.
 C             If SHFT = 'S', this argument is not used.
 C
-C     W2      (input)  DOUBLE PRECISION
+C     W2      (input)  REAL*16
 C             The second eigenvalue, if both eigenvalues are real, else
 C             the imaginary part of the complex conjugate pair.
 C
-C     C1      (output)  DOUBLE PRECISION
-C     S1      (output)  DOUBLE PRECISION
+C     C1      (output)  REAL*16
+C     S1      (output)  REAL*16
 C             On exit, C1 and S1 contain the parameters for the first
 C             Givens rotation.
 C
-C     C2      (output)  DOUBLE PRECISION
-C     S2      (output)  DOUBLE PRECISION
+C     C2      (output)  REAL*16
+C     S2      (output)  REAL*16
 C             On exit, C2 and S2 contain the parameters for the second
 C             Givens rotation. If SHFT = 'S', C2 = 1, S2 = 0.
 C
@@ -107,19 +107,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, ZERO
+      REAL*16  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SHFT
       INTEGER           K, LDA1, LDA2, N, SINV
-      DOUBLE PRECISION  C1, C2, S1, S2, W1, W2
+      REAL*16  C1, C2, S1, S2, W1, W2
 C     .. Array Arguments ..
       INTEGER           AMAP(*), S(*)
-      DOUBLE PRECISION  A(LDA1,LDA2,*)
+      REAL*16  A(LDA1,LDA2,*)
 C     .. Local Scalars ..
       LOGICAL           ISR, SGLE
       INTEGER           AI, I
-      DOUBLE PRECISION  ALPHA, BETA, C23, C3, CX, CY, DELTA, DUM, GAMMA,
+      REAL*16  ALPHA, BETA, C23, C3, CX, CY, DELTA, DUM, GAMMA,
      $                  P, S3, SX, SY, TEMP, TMP
 C     .. External Functions ..
       LOGICAL           LSAME

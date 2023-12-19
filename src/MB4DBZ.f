@@ -41,18 +41,18 @@ C     ILO     (input) INTEGER
 C             The integer ILO determined by MB4DPZ.
 C             1 <= ILO <= N+1.
 C
-C     LSCALE  (input) DOUBLE PRECISION array, dimension (N)
+C     LSCALE  (input) REAL*16 array, dimension (N)
 C             Details of the permutation and scaling factors applied
 C             from the left, as returned by MB4DPZ.
 C
-C     RSCALE  (input) DOUBLE PRECISION array, dimension (N)
+C     RSCALE  (input) REAL*16 array, dimension (N)
 C             Details of the permutation and scaling factors applied
 C             from the right, as returned by MB4DPZ.
 C
 C     M       (input) INTEGER
 C             The number of columns of the matrices V1 and V2.  M >= 0.
 C
-C     V1      (input/output) COMPLEX*16 array, dimension (LDV1,M)
+C     V1      (input/output) COMPLEX*32 array, dimension (LDV1,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix V1.
 C             On exit, the leading N-by-M part of this array is
@@ -62,7 +62,7 @@ C
 C     LDV1    INTEGER
 C             The leading dimension of the array V1. LDV1 >= max(1,N).
 C
-C     V2      (input/output) COMPLEX*16 array, dimension (LDV2,M)
+C     V2      (input/output) COMPLEX*32 array, dimension (LDV2,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix V2.
 C             On exit, the leading N-by-M part of this array is
@@ -107,14 +107,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16        ONE
+      COMPLEX*32        ONE
       PARAMETER         ( ONE = ( 1.0D0, 0.0D0 ) )
 C     .. Scalar Arguments ..
       CHARACTER         JOB, SGN
       INTEGER           ILO, INFO, LDV1, LDV2, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  LSCALE(*), RSCALE(*)
-      COMPLEX*16        V1(LDV1,*), V2(LDV2,*)
+      REAL*16  LSCALE(*), RSCALE(*)
+      COMPLEX*32        V1(LDV1,*), V2(LDV2,*)
 C     .. Local Scalars ..
       LOGICAL           LPERM, LSCAL, LSGN, SYSW
       INTEGER           I, K

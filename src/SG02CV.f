@@ -65,7 +65,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, E, Q, X, and R.  N >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N upper part of this array must contain
 C             the upper real Schur matrix A.
 C             If TRANS = 'N' and (DICO = 'D' or (JOB = 'R' and
@@ -77,7 +77,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,*)
+C     E       (input) REAL*16 array, dimension (LDE,*)
 C             If JOBE = 'G', the leading N-by-N upper triangular part of
 C             this array must contain the upper triangular matrix E.
 C             The strictly lower triangular part of this array is not
@@ -89,7 +89,7 @@ C             The leading dimension of array E.
 C             LDE >= MAX(1,N), if JOBE = 'G';
 C             LDE >= 1,        if JOBE = 'I'.
 C
-C     X       (input/works.) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (input/works.) REAL*16 array, dimension (LDX,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix X and the strictly
@@ -105,7 +105,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= MAX(1,N).
 C
-C     R       (input/output) DOUBLE PRECISION array, dimension (LDR,*)
+C     R       (input/output) REAL*16 array, dimension (LDR,*)
 C             On entry, the leading N-by-N upper or lower triangular
 C             part (depending on UPLO) of this array must contain the
 C             upper or lower triangular part, respectively, of the
@@ -118,7 +118,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     NORMS   (output) DOUBLE PRECISION array, dimension (LN)
+C     NORMS   (output) REAL*16 array, dimension (LN)
 C             If JOB = 'N' or JOB = 'B', LN = 1 or 2, if (DICO = 'C' or
 C             JOBE = 'I'), or (DICO = 'D' and JOBE = 'G'), respectively.
 C             If DICO = 'C',
@@ -134,7 +134,7 @@ C             If JOB <> 'N', this array is not referenced.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = -17 or if LDWORK = -2 on input, then
 C             DWORK(1) returns the minimum value of LDWORK.
 C             On exit, if INFO = 0, or if LDWORK = -1 on input, then
@@ -212,13 +212,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, JOB, JOBE, TRANS, UPLO
       INTEGER           INFO, LDA, LDE, LDR, LDWORK, LDX, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), DWORK(*), E(LDE,*), NORMS(*),
+      REAL*16  A(LDA,*), DWORK(*), E(LDE,*), NORMS(*),
      $                  R(LDR,*), X(LDX,*)
 C     .. Local Scalars ..
       CHARACTER         NTRANS
@@ -227,7 +227,7 @@ C     .. Local Scalars ..
       INTEGER           J, MINWRK, NN, OPTWRK
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLANGE, DLANSY
+      REAL*16  DLANGE, DLANSY
       EXTERNAL          DLANGE, DLANSY, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, MB01OC, MB01OD, MB01OO, MB01OS, MB01RH,

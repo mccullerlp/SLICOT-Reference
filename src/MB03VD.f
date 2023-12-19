@@ -36,7 +36,7 @@ C             If this is not the case, ILO and IHI should be set to 1
 C             and N, respectively.
 C             1 <= ILO <= max(1,N); min(ILO,N) <= IHI <= N.
 C
-C     A       (input/output) DOUBLE PRECISION array, dimension
+C     A       (input/output) REAL*16 array, dimension
 C             (LDA1,LDA2,P)
 C             On entry, the leading N-by-N-by-P part of this array must
 C             contain the matrices of factors to be reduced;
@@ -61,7 +61,7 @@ C     LDA2    INTEGER
 C             The second leading dimension of the array A.
 C             LDA2 >= max(1,N).
 C
-C     TAU     (output) DOUBLE PRECISION array, dimension (LDTAU,P)
+C     TAU     (output) REAL*16 array, dimension (LDTAU,P)
 C             The leading N-1 elements in the j-th column contain the
 C             scalar factors of the elementary reflectors used to form
 C             the matrix Q_j, j = 1, ..., P. See FURTHER COMMENTS.
@@ -72,7 +72,7 @@ C             LDTAU >= max(1,N-1).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (N)
+C     DWORK   REAL*16 array, dimension (N)
 C
 C     Error Indicator
 C
@@ -182,20 +182,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO
+      REAL*16  ZERO
       PARAMETER         ( ZERO = 0.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER           IHI, ILO, INFO, LDA1, LDA2, LDTAU, N, P
 C     ..
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A( LDA1, LDA2, * ), DWORK( * ), TAU( LDTAU, * )
+      REAL*16  A( LDA1, LDA2, * ), DWORK( * ), TAU( LDTAU, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER           I, I1, I2, J, NH
 C     ..
 C     .. Local Arrays ..
-      DOUBLE PRECISION  DUMMY( 1 )
+      REAL*16  DUMMY( 1 )
 C     ..
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DLARFG, MB04PY, XERBLA

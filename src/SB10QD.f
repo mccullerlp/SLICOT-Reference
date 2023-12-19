@@ -55,68 +55,68 @@ C     NMEAS   (input) INTEGER
 C             The number of measurements (NP2).  NP >= NMEAS >= 0,
 C             M-NCON >= NMEAS.
 C
-C     GAMMA   (input) DOUBLE PRECISION
+C     GAMMA   (input) REAL*16
 C             The value of gamma. It is assumed that gamma is
 C             sufficiently large so that the controller is admissible.
 C             GAMMA >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading NP-by-N part of this array must contain the
 C             system output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             The leading NP-by-M part of this array must contain the
 C             system input/output matrix D.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     F       (output) DOUBLE PRECISION array, dimension (LDF,N)
+C     F       (output) REAL*16 array, dimension (LDF,N)
 C             The leading M-by-N part of this array contains the state
 C             feedback matrix F.
 C
 C     LDF     INTEGER
 C             The leading dimension of the array F.  LDF >= max(1,M).
 C
-C     H       (output) DOUBLE PRECISION array, dimension (LDH,NP)
+C     H       (output) REAL*16 array, dimension (LDH,NP)
 C             The leading N-by-NP part of this array contains the output
 C             injection matrix H.
 C
 C     LDH     INTEGER
 C             The leading dimension of the array H.  LDH >= max(1,N).
 C
-C     X       (output) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (output) REAL*16 array, dimension (LDX,N)
 C             The leading N-by-N part of this array contains the matrix
 C             X, solution of the X-Riccati equation.
 C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= max(1,N).
 C
-C     Y       (output) DOUBLE PRECISION array, dimension (LDY,N)
+C     Y       (output) REAL*16 array, dimension (LDY,N)
 C             The leading N-by-N part of this array contains the matrix
 C             Y, solution of the Y-Riccati equation.
 C
 C     LDY     INTEGER
 C             The leading dimension of the array Y.  LDY >= max(1,N).
 C
-C     XYCOND  (output) DOUBLE PRECISION array, dimension (2)
+C     XYCOND  (output) REAL*16 array, dimension (2)
 C             XYCOND(1) contains an estimate of the reciprocal condition
 C                       number of the X-Riccati equation;
 C             XYCOND(2) contains an estimate of the reciprocal condition
@@ -127,7 +127,7 @@ C
 C     IWORK   INTEGER array, dimension
 C             (max(2*max(N,M-NCON,NP-NMEAS),N*N))
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal
 C             LDWORK.
 C
@@ -218,17 +218,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LDC, LDD, LDF, LDH, LDWORK,
      $                   LDX, LDY, M, N, NCON, NMEAS, NP
-      DOUBLE PRECISION   GAMMA
+      REAL*16   GAMMA
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   D( LDD, * ), DWORK( * ),  F( LDF, * ),
      $                   H( LDH, * ), X( LDX, * ), XYCOND( 2 ),
      $                   Y( LDY, * )
@@ -239,11 +239,11 @@ C     .. Local Scalars ..
       INTEGER            INFO2, IW2, IWA, IWG, IWI, IWQ, IWR, IWRK, IWS,
      $                   IWT, IWV, LWAMAX, M1, M2, MINWRK, N2, ND1, ND2,
      $                   NN, NP1, NP2
-      DOUBLE PRECISION   ANORM, EPS, FERR, RCOND, SEP
+      REAL*16   ANORM, EPS, FERR, RCOND, SEP
 C     ..
 C     .. External Functions ..
 C
-      DOUBLE PRECISION   DLAMCH, DLANSY
+      REAL*16   DLAMCH, DLANSY
       EXTERNAL           DLAMCH, DLANSY
 C     ..
 C     .. External Subroutines ..

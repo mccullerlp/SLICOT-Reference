@@ -54,7 +54,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bH.  N >= 0, even.
 C
-C     Z       (input/output) DOUBLE PRECISION array, dimension (LDZ, N)
+C     Z       (input/output) REAL*16 array, dimension (LDZ, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the non-trivial factor Z in the factorization
 C             S = J Z' J' Z of the skew-Hamiltonian matrix S.
@@ -75,14 +75,14 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1, N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB, N/2)
+C     B       (input) REAL*16 array, dimension (LDB, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N/2).
 C
-C     FG      (input) DOUBLE PRECISION array, dimension (LDFG, N/2+1)
+C     FG      (input) REAL*16 array, dimension (LDFG, N/2+1)
 C             On entry, the leading N/2-by-N/2 lower triangular part of
 C             this array must contain the lower triangular part of the
 C             symmetric matrix G, and the N/2-by-N/2 upper triangular
@@ -98,7 +98,7 @@ C     NEIG    (output) INTEGER
 C             If COMPQ = 'C' or COMPU = 'C', the number of eigenvalues
 C             in aS - bH with strictly negative real part.
 C
-C     Q       (output) DOUBLE PRECISION array, dimension (LDQ, 2*N)
+C     Q       (output) REAL*16 array, dimension (LDQ, 2*N)
 C             On exit, if COMPQ = 'C', the leading N-by-NEIG part of
 C             this array contains an orthogonal basis of the right
 C             deflating subspace corresponding to the eigenvalues of
@@ -111,7 +111,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,           if COMPQ = 'N';
 C             LDQ >= MAX(1, 2*N), if COMPQ = 'C'.
 C
-C     U       (output) DOUBLE PRECISION array, dimension (LDU, 2*N)
+C     U       (output) REAL*16 array, dimension (LDU, 2*N)
 C             On exit, if COMPU = 'C', the leading N-by-NEIG part of
 C             this array contains an orthogonal basis of the companion
 C             subspace corresponding to the eigenvalues of aS - bH with
@@ -124,16 +124,16 @@ C             The leading dimension of the array U.
 C             LDU >= 1,         if COMPU = 'N';
 C             LDU >= MAX(1, N), if COMPU = 'C'.
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N/2)
+C     ALPHAR  (output) REAL*16 array, dimension (N/2)
 C             The real parts of each scalar alpha defining an eigenvalue
 C             of the pencil aS - bH.
 C
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N/2)
+C     ALPHAI  (output) REAL*16 array, dimension (N/2)
 C             The imaginary parts of each scalar alpha defining an
 C             eigenvalue of the pencil aS - bH.
 C             If ALPHAI(j) is zero, then the j-th eigenvalue is real.
 C
-C     BETA    (output) DOUBLE PRECISION array, dimension (N/2)
+C     BETA    (output) REAL*16 array, dimension (N/2)
 C             The scalars beta that define the eigenvalues of the pencil
 C             aS - bH.
 C             Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
@@ -163,7 +163,7 @@ C             The dimension of the array IWORK.
 C             LIWORK >= N + 18,      if COMPQ = 'N' and COMPU = 'N';
 C             LIWORK >= MAX( 2*N+1, 48 ), otherwise.
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C             On exit, if INFO = -22, DWORK(1) returns the minimum value
@@ -300,7 +300,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO
+      REAL*16   ZERO, ONE, TWO
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0 )
 C
 C     .. Scalar Arguments ..
@@ -311,7 +311,7 @@ C
 C     .. Array Arguments ..
       LOGICAL            BWORK( * )
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   ALPHAI( * ), ALPHAR( * ), B( LDB, * ),
+      REAL*16   ALPHAI( * ), ALPHAR( * ), B( LDB, * ),
      $                   BETA( * ), DWORK( * ), FG( LDFG, * ),
      $                   Q( LDQ, * ), U( LDU, * ), Z( LDZ, * )
 C
@@ -324,11 +324,11 @@ C     .. Local Scalars ..
      $                   NP1, OPTDW
 C
 C     .. Local Arrays ..
-      DOUBLE PRECISION   DUM( 7 )
+      REAL*16   DUM( 7 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C
 C     .. External Subroutines ..

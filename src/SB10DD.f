@@ -62,54 +62,54 @@ C     NMEAS   (input) INTEGER
 C             The number of measurements (NP2).  NP >= NMEAS >= 0,
 C             M-NCON >= NMEAS.
 C
-C     GAMMA   (input) DOUBLE PRECISION
+C     GAMMA   (input) REAL*16
 C             The value of gamma. It is assumed that gamma is
 C             sufficiently large so that the controller is admissible.
 C             GAMMA > 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading NP-by-N part of this array must contain the
 C             system output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             The leading NP-by-M part of this array must contain the
 C             system input/output matrix D.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     AK      (output) DOUBLE PRECISION array, dimension (LDAK,N)
+C     AK      (output) REAL*16 array, dimension (LDAK,N)
 C             The leading N-by-N part of this array contains the
 C             controller state matrix AK.
 C
 C     LDAK    INTEGER
 C             The leading dimension of the array AK.  LDAK >= max(1,N).
 C
-C     BK      (output) DOUBLE PRECISION array, dimension (LDBK,NMEAS)
+C     BK      (output) REAL*16 array, dimension (LDBK,NMEAS)
 C             The leading N-by-NMEAS part of this array contains the
 C             controller input matrix BK.
 C
 C     LDBK    INTEGER
 C             The leading dimension of the array BK.  LDBK >= max(1,N).
 C
-C     CK      (output) DOUBLE PRECISION array, dimension (LDCK,N)
+C     CK      (output) REAL*16 array, dimension (LDCK,N)
 C             The leading NCON-by-N part of this array contains the
 C             controller output matrix CK.
 C
@@ -117,7 +117,7 @@ C     LDCK    INTEGER
 C             The leading dimension of the array CK.
 C             LDCK >= max(1,NCON).
 C
-C     DK      (output) DOUBLE PRECISION array, dimension (LDDK,NMEAS)
+C     DK      (output) REAL*16 array, dimension (LDDK,NMEAS)
 C             The leading NCON-by-NMEAS part of this array contains the
 C             controller input/output matrix DK.
 C
@@ -125,21 +125,21 @@ C     LDDK    INTEGER
 C             The leading dimension of the array DK.
 C             LDDK >= max(1,NCON).
 C
-C     X       (output) DOUBLE PRECISION array, dimension (LDX,N)
+C     X       (output) REAL*16 array, dimension (LDX,N)
 C             The leading N-by-N part of this array contains the matrix
 C             X, solution of the X-Riccati equation.
 C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= max(1,N).
 C
-C     Z       (output) DOUBLE PRECISION array, dimension (LDZ,N)
+C     Z       (output) REAL*16 array, dimension (LDZ,N)
 C             The leading N-by-N part of this array contains the matrix
 C             Z, solution of the Z-Riccati equation.
 C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= max(1,N).
 C
-C     RCOND   (output) DOUBLE PRECISION array, dimension (8)
+C     RCOND   (output) REAL*16 array, dimension (8)
 C             RCOND contains estimates of the reciprocal condition
 C             numbers of the matrices which are to be inverted and
 C             estimates of the reciprocal condition numbers of the
@@ -165,7 +165,7 @@ C                      Z-Riccati equation.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             Tolerance used in neglecting the small singular values
 C             in rank determination. If TOL <= 0, then a default value
 C             equal to 1000*EPS is used, where EPS is the relative
@@ -175,7 +175,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (max(2*max(M2,N),M,M2+NP2,N*N))
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal
 C             LDWORK.
 C
@@ -268,18 +268,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, THOUSN
+      REAL*16   ZERO, ONE, THOUSN
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0,
      $                     THOUSN = 1.0D+3 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDAK, LDB, LDBK, LDC, LDCK, LDD,
      $                   LDDK, LDWORK, LDX, LDZ, M, N, NCON, NMEAS, NP
-      DOUBLE PRECISION   GAMMA, TOL
+      REAL*16   GAMMA, TOL
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      DOUBLE PRECISION   A( LDA, * ), AK( LDAK, * ), B( LDB, * ),
+      REAL*16   A( LDA, * ), AK( LDAK, * ), B( LDB, * ),
      $                   BK( LDBK, * ), C( LDC, * ), CK( LDCK, * ),
      $                   D( LDD, * ), DK( LDDK, * ), DWORK( * ),
      $                   RCOND( * ), X( LDX, * ), Z( LDZ, * )
@@ -289,10 +289,10 @@ C     .. Local Scalars ..
       INTEGER            INFO2, IR2, IR3, IS2, IS3, IWB, IWC, IWD, IWG,
      $                   IWH, IWI, IWL, IWQ, IWR, IWRK, IWS, IWT, IWU,
      $                   IWV, IWW, J, LWAMAX, M1, M2, MINWRK, NP1, NP2
-      DOUBLE PRECISION   ANORM, FERR, RCOND2, SEPD, TOLL
+      REAL*16   ANORM, FERR, RCOND2, SEPD, TOLL
 C
 C     .. External Functions
-      DOUBLE PRECISION   DLAMCH, DLANGE, DLANSY
+      REAL*16   DLAMCH, DLANGE, DLANSY
       EXTERNAL           DLAMCH, DLANGE, DLANSY
 C     ..
 C     .. External Subroutines ..

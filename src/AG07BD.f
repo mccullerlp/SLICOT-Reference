@@ -29,14 +29,14 @@ C             The number of system inputs and outputs, i.e., the number
 C             of columns of matrices B and D and the number of rows of
 C             matrices C and D.  M >= 0.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,N)
+C     A       (input) REAL*16 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state matrix A of the original system.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,N)
+C     E       (input) REAL*16 array, dimension (LDE,N)
 C             If JOBE = 'G', the leading N-by-N part of this array must
 C             contain the descriptor matrix E of the original system.
 C             If JOBE = 'I', then E is assumed to be the identity
@@ -47,28 +47,28 @@ C             The leading dimension of the array E.
 C             LDE >= MAX(1,N), if JOBE = 'G';
 C             LDE >= 1,        if JOBE = 'I'.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,M)
+C     B       (input) REAL*16 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input matrix B of the original system.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input) DOUBLE PRECISION array, dimension (LDC,N)
+C     C       (input) REAL*16 array, dimension (LDC,N)
 C             The leading M-by-N part of this array must contain the
 C             output matrix C of the original system.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,M).
 C
-C     D       (input) DOUBLE PRECISION array, dimension (LDD,M)
+C     D       (input) REAL*16 array, dimension (LDD,M)
 C             The leading M-by-M part of this array must contain the
 C             feedthrough matrix D of the original system.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1,M).
 C
-C     AI      (output) DOUBLE PRECISION array, dimension (LDAI,N+M)
+C     AI      (output) REAL*16 array, dimension (LDAI,N+M)
 C             The leading (N+M)-by-(N+M) part of this array contains
 C             the state matrix Ai of the inverse system.
 C             If LDAI = LDA >= N+M, then AI and A can share the same
@@ -78,7 +78,7 @@ C     LDAI    INTEGER
 C             The leading dimension of the array AI.
 C             LDAI >= MAX(1,N+M).
 C
-C     EI      (output) DOUBLE PRECISION array, dimension (LDEI,N+M)
+C     EI      (output) REAL*16 array, dimension (LDEI,N+M)
 C             The leading (N+M)-by-(N+M) part of this array contains
 C             the descriptor matrix Ei of the inverse system.
 C             If LDEI = LDE >= N+M, then EI and E can share the same
@@ -88,7 +88,7 @@ C     LDEI    INTEGER
 C             The leading dimension of the array EI.
 C             LDEI >= MAX(1,N+M).
 C
-C     BI      (output) DOUBLE PRECISION array, dimension (LDBI,M)
+C     BI      (output) REAL*16 array, dimension (LDBI,M)
 C             The leading (N+M)-by-M part of this array contains
 C             the input matrix Bi of the inverse system.
 C             If LDBI = LDB >= N+M, then BI and B can share the same
@@ -98,7 +98,7 @@ C     LDBI    INTEGER
 C             The leading dimension of the array BI.
 C             LDBI >= MAX(1,N+M).
 C
-C     CI      (output) DOUBLE PRECISION array, dimension (LDCI,N+M)
+C     CI      (output) REAL*16 array, dimension (LDCI,N+M)
 C             The leading M-by-(N+M) part of this array contains
 C             the output matrix Ci of the inverse system.
 C             If LDCI = LDC, CI and C can share the same storage
@@ -107,7 +107,7 @@ C
 C     LDCI    INTEGER
 C             The leading dimension of the array CI.  LDCI >= MAX(1,M).
 C
-C     DI      (output) DOUBLE PRECISION array, dimension (LDDI,M)
+C     DI      (output) REAL*16 array, dimension (LDDI,M)
 C             The leading M-by-M part of this array contains
 C             the feedthrough matrix Di = 0 of the inverse system.
 C             DI and D can share the same storage locations.
@@ -152,14 +152,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
+      REAL*16   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          JOBE
       INTEGER            INFO, LDA, LDAI, LDB, LDBI, LDC, LDCI,
      $                   LDD, LDDI, LDE, LDEI, M, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION   A(LDA,*), AI(LDAI,*), B(LDB,*), BI(LDBI,*),
+      REAL*16   A(LDA,*), AI(LDAI,*), B(LDB,*), BI(LDBI,*),
      $                   C(LDC,*), CI(LDCI,*), D(LDD,*), DI(LDDI,*),
      $                   E(LDE,*), EI(LDEI,*)
 C     .. Local Scalars ..

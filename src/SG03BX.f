@@ -61,46 +61,46 @@ C             = 'T':  op(K) = K**T,  K = A, B, E, U.
 C
 C     Input/Output Parameters
 C
-C     A       (input) DOUBLE PRECISION array, dimension (LDA,2)
+C     A       (input) REAL*16 array, dimension (LDA,2)
 C             The leading 2-by-2 part of this array must contain the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= 2.
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,2)
+C     E       (input) REAL*16 array, dimension (LDE,2)
 C             The leading 2-by-2 upper triangular part of this array
 C             must contain the matrix E.
 C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= 2.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (LDB,2)
+C     B       (input) REAL*16 array, dimension (LDB,2)
 C             The leading 2-by-2 upper triangular part of this array
 C             must contain the matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= 2.
 C
-C     U       (output) DOUBLE PRECISION array, dimension (LDU,2)
+C     U       (output) REAL*16 array, dimension (LDU,2)
 C             The leading 2-by-2 part of this array contains the upper
 C             triangular matrix U.
 C
 C     LDU     INTEGER
 C             The leading dimension of the array U.  LDU >= 2.
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor set to avoid overflow in U.
 C             0 < SCALE <= 1.
 C
-C     M1      (output) DOUBLE PRECISION array, dimension (LDM1,2)
+C     M1      (output) REAL*16 array, dimension (LDM1,2)
 C             The leading 2-by-2 part of this array contains the
 C             matrix M1.
 C
 C     LDM1    INTEGER
 C             The leading dimension of the array M1.  LDM1 >= 2.
 C
-C     M2      (output) DOUBLE PRECISION array, dimension (LDM2,2)
+C     M2      (output) REAL*16 array, dimension (LDM2,2)
 C             The leading 2-by-2 part of this array contains the
 C             matrix M2.
 C
@@ -157,19 +157,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ONE, TWO, ZERO, SAFETY
+      REAL*16  ONE, TWO, ZERO, SAFETY
       PARAMETER         ( ONE = 1.0D+0, TWO = 2.0D+0, ZERO = 0.0D+0,
      $                    SAFETY = 1.0D+2 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, TRANS
-      DOUBLE PRECISION  SCALE
+      REAL*16  SCALE
       INTEGER           INFO, LDA, LDB, LDE, LDM1, LDM2, LDU
 C     .. Array Arguments ..
-      DOUBLE PRECISION  A(LDA,*), B(LDB,*), E(LDE,*), M1(LDM1,*),
+      REAL*16  A(LDA,*), B(LDB,*), E(LDE,*), M1(LDM1,*),
      $                  M2(LDM2,*), U(LDU,*)
 C     .. Local Scalars ..
-      COMPLEX*16        X, ZS
-      DOUBLE PRECISION  A11, A12, A21, A22, AI11, AI12, AI21, AI22,
+      COMPLEX*32        X, ZS
+      REAL*16  A11, A12, A21, A22, AI11, AI12, AI21, AI22,
      $                  ALPHA, AR11, AR12, AR21, AR22, B11, B12I, B12R,
      $                  BETAI, BETAR, BI11, BI12, BI21, BI22, BIGNUM,
      $                  BR11, BR12, BR21, BR22, C, CL, CQ, CQB, CQBI,
@@ -183,11 +183,11 @@ C     .. Local Scalars ..
       INTEGER           CT
       LOGICAL           ISCONT, ISTRNS
 C     .. Local Arrays ..
-      COMPLEX*16        M3(1), M3C(2,1)
-      DOUBLE PRECISION  AS(2,2), D(2), DWORK(10), ES(2,2), ET(2), EV(2)
+      COMPLEX*32        M3(1), M3C(2,1)
+      REAL*16  AS(2,2), D(2), DWORK(10), ES(2,2), ET(2), EV(2)
       INTEGER           IWORK(7)
 C     .. External Functions ..
-      DOUBLE PRECISION  DLAMCH, DLAPY2, DLAPY3
+      REAL*16  DLAMCH, DLAPY2, DLAPY3
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, DLAPY2, DLAPY3, LSAME
 C     .. External Subroutines ..

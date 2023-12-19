@@ -8,18 +8,18 @@ C     For efficiency, no tests of the input scalar parameters are
 C     performed.
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, HALF, ONE, TWO, EIGHT
+      REAL*16  ZERO, HALF, ONE, TWO, EIGHT
       PARAMETER         ( ZERO=0.0D0, HALF=0.5D0, ONE = 1.0D0,
      $                    TWO=2.0D0, EIGHT=8.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         INDI
       INTEGER           N
 C     .. Array Arguments ..
-      DOUBLE PRECISION  XI(*), XR(*)
+      REAL*16  XI(*), XR(*)
 C     .. Local Scalars ..
       LOGICAL           LINDI
       INTEGER           I, J, N2
-      DOUBLE PRECISION  AI, AR, BI, BR, HELPI, HELPR, PI2, WHELP, WI,
+      REAL*16  AI, AR, BI, BR, HELPI, HELPR, PI2, WHELP, WI,
      $                  WR, WSTPI, WSTPR
 C     .. External Functions ..
       LOGICAL           LSAME

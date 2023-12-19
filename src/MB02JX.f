@@ -39,7 +39,7 @@ C
 C     N       (input)  INTEGER
 C             The number of blocks in one block row of T.  N >= 0.
 C
-C     TC      (input) DOUBLE PRECISION array, dimension (LDTC, L)
+C     TC      (input) REAL*16 array, dimension (LDTC, L)
 C             The leading M*K-by-L part of this array must contain
 C             the first block column of T.
 C
@@ -47,7 +47,7 @@ C     LDTC    INTEGER
 C             The leading dimension of the array TC.
 C             LDTC >= MAX(1,M*K).
 C
-C     TR      (input)  DOUBLE PRECISION array, dimension (LDTR,(N-1)*L)
+C     TR      (input)  REAL*16 array, dimension (LDTR,(N-1)*L)
 C             The leading K-by-(N-1)*L part of this array must contain
 C             the first block row of T without the leading K-by-L
 C             block.
@@ -59,7 +59,7 @@ C     RNK     (output)  INTEGER
 C             The number of columns in R, which is equivalent to the
 C             numerical rank of T.
 C
-C     Q       (output)  DOUBLE PRECISION array, dimension (LDQ,RNK)
+C     Q       (output)  REAL*16 array, dimension (LDQ,RNK)
 C             If JOB = 'Q', then the leading M*K-by-RNK part of this
 C             array contains the factor Q.
 C             If JOB = 'R', then this array is not referenced.
@@ -69,7 +69,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= MAX(1,M*K),  if JOB = 'Q';
 C             LDQ >= 1,           if JOB = 'R'.
 C
-C     R       (output)  DOUBLE PRECISION array, dimension (LDR,RNK)
+C     R       (output)  REAL*16 array, dimension (LDR,RNK)
 C             The leading N*L-by-RNK part of this array contains the
 C             lower trapezoidal factor R.
 C
@@ -84,17 +84,17 @@ C             the k-th column of T.
 C
 C     Tolerances
 C
-C     TOL1    DOUBLE PRECISION
+C     TOL1    REAL*16
 C             If TOL1 >= 0.0, the user supplied diagonal tolerance;
 C             if TOL1 < 0.0, a default diagonal tolerance is used.
 C
-C     TOL2    DOUBLE PRECISION
+C     TOL2    REAL*16
 C             If TOL2 >= 0.0, the user supplied offdiagonal tolerance;
 C             if TOL2 < 0.0, a default offdiagonal tolerance is used.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK;  DWORK(2) and DWORK(3) return the used values
 C             for TOL1 and TOL2, respectively.
@@ -178,15 +178,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB
       INTEGER           INFO, K, L, LDQ, LDR, LDTC, LDTR, LDWORK, M, N,
      $                  RNK
-      DOUBLE PRECISION  TOL1, TOL2
+      REAL*16  TOL1, TOL2
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(LDWORK), Q(LDQ,*), R(LDR,*), TC(LDTC,*),
+      REAL*16  DWORK(LDWORK), Q(LDQ,*), R(LDR,*), TC(LDTC,*),
      $                  TR(LDTR,*)
       INTEGER           JPVT(*)
 C     .. Local Scalars ..
@@ -194,10 +194,10 @@ C     .. Local Scalars ..
       INTEGER           CPCOL, GAP, I, IERR, J, JJ, JWORK, KK, LEN, MK,
      $                  NZC, PDP, PDQ, PDW, PNQ, PNR, PP, PPR, PT, RDEF,
      $                  RRDF, RRNK, WRKMIN, WRKOPT
-      DOUBLE PRECISION  LTOL1, LTOL2, NRM, TEMP
+      REAL*16  LTOL1, LTOL2, NRM, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DLAMCH, DNRM2
+      REAL*16  DLAMCH, DNRM2
       EXTERNAL          DLAMCH, DNRM2, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEQP3, DGEQRF, DLACPY, DLASET,

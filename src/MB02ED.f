@@ -35,7 +35,7 @@ C
 C     NRHS    (input)  INTEGER
 C             The number of right hand sides.  NRHS >= 0.
 C
-C     T       (input/output)  DOUBLE PRECISION array, dimension
+C     T       (input/output)  REAL*16 array, dimension
 C             (LDT,N*K) / (LDT,K)
 C             On entry, the leading K-by-N*K / N*K-by-K part of this
 C             array must contain the first block row / column of an
@@ -49,7 +49,7 @@ C             The leading dimension of the array T.
 C             LDT >= MAX(1,K),    if TYPET = 'R';
 C             LDT >= MAX(1,N*K),  if TYPET = 'C'.
 C
-C     B       (input/output) DOUBLE PRECISION array, dimension
+C     B       (input/output) REAL*16 array, dimension
 C             (LDB,N*K) / (LDB,NRHS)
 C             On entry, the leading NRHS-by-N*K / N*K-by-NRHS part of
 C             this array must contain the right hand side matrix B.
@@ -63,7 +63,7 @@ C             LDB >= MAX(1,N*K),   if TYPET = 'C'.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -10,  DWORK(1)  returns the minimum
@@ -129,13 +129,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TYPET
       INTEGER           INFO, K, LDB, LDT, LDWORK, N, NRHS
 C     .. Array Arguments ..
-      DOUBLE PRECISION  B(LDB,*), DWORK(*), T(LDT,*)
+      REAL*16  B(LDB,*), DWORK(*), T(LDT,*)
 C     .. Local Scalars ..
       INTEGER           I, IERR, MAXWRK, STARTH, STARTI, STARTN,
      $                  STARTR, STARTT

@@ -47,11 +47,11 @@ C             The order of the matrices B(i) and the number of columns
 C             of the matrices C(i) and X(i), i = 1, ..., K.
 C             1 <= N <= 2.
 C
-C     PREC    (input) DOUBLE PRECISION
+C     PREC    (input) REAL*16
 C             The relative machine precision. See the LAPACK Library
 C             routine DLAMCH.
 C
-C     SMIN    (input) DOUBLE PRECISION
+C     SMIN    (input) REAL*16
 C             The machine safe minimum divided by PREC.
 C
 C     S       (input) INTEGER array, dimension (K)
@@ -62,30 +62,30 @@ C             either 1 or -1. Notice that it is assumed that the same
 C             exponents are tied to both A and B on reduction to the
 C             periodic Schur form.
 C
-C     A       (input) DOUBLE PRECISION array, dimension (M*M*K)
+C     A       (input) REAL*16 array, dimension (M*M*K)
 C             On entry, this array must contain the M-by-M matrices
 C             A(i), for i = 1, ..., K, stored with the leading dimension
 C             M. Matrix A(i) is stored starting at position M*M*(i-1)+1.
 C
-C     B       (input) DOUBLE PRECISION array, dimension (N*N*K)
+C     B       (input) REAL*16 array, dimension (N*N*K)
 C             On entry, this array must contain the N-by-N matrices
 C             B(i), for i = 1, ..., K, stored with the leading dimension
 C             N. Matrix B(i) is stored starting at position N*N*(i-1)+1.
 C
-C     C       (input/output) DOUBLE PRECISION array, dimension (M*N*K)
+C     C       (input/output) REAL*16 array, dimension (M*N*K)
 C             On entry, this array must contain the M-by-N matrices
 C             C(i), for i = 1, ..., K, stored with the leading dimension
 C             M. Matrix C(i) is stored starting at position M*N*(i-1)+1.
 C             On exit, the matrices C(i) are overwritten by the solution
 C             sequence X(i).
 C
-C     SCALE   (output) DOUBLE PRECISION
+C     SCALE   (output) REAL*16
 C             The scale factor, scale, set less than or equal to 1 to
 C             avoid overflow in X.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C             On exit, if INFO = -21, DWORK(1) returns the minimum value
 C             of LDWORK.
@@ -147,17 +147,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO
+      REAL*16   ZERO, ONE, TWO
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       LOGICAL            TRANA, TRANB
       INTEGER            INFO, ISGN, K, LDWORK, M, N
-      DOUBLE PRECISION   PREC, SCALE, SMIN
+      REAL*16   PREC, SCALE, SMIN
 C     ..
 C     .. Array Arguments ..
       INTEGER            S( * )
-      DOUBLE PRECISION   A( * ), B( * ), C( * ), DWORK( * )
+      REAL*16   A( * ), B( * ), C( * ), DWORK( * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            DOSCAL, LQUERY
@@ -165,7 +165,7 @@ C     .. Local Scalars ..
      $                   IXB, IXC, IZ, J, KM2, KM3, KMN, L, LDW, LEN,
      $                   MINWRK, MM, MN, MN6, MN7, NN, ZC, ZD, ZI, ZI2,
      $                   ZIS
-      DOUBLE PRECISION   AC, AD, BETA, BIGNUM, DMIN, ELEM, SCALOC, SGN,
+      REAL*16   AC, AD, BETA, BIGNUM, DMIN, ELEM, SCALOC, SGN,
      $                   SPIV, TAU, TEMP
 C     ..
 C     .. External Functions ..

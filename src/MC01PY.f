@@ -14,21 +14,21 @@ C     K       (input) INTEGER
 C             The number of zeros (and hence the degree) of P(x).
 C             K >= 0.
 C
-C     REZ     (input) DOUBLE PRECISION array, dimension (K)
-C     IMZ     (input) DOUBLE PRECISION array, dimension (K)
+C     REZ     (input) REAL*16 array, dimension (K)
+C     IMZ     (input) REAL*16 array, dimension (K)
 C             The real and imaginary parts of the i-th zero of P(x)
 C             must be stored in REZ(i) and IMZ(i), respectively, where
 C             i = 1, 2, ..., K. The zeros may be supplied in any order,
 C             except that complex conjugate zeros must appear
 C             consecutively.
 C
-C     P       (output) DOUBLE PRECISION array, dimension (K+1)
+C     P       (output) REAL*16 array, dimension (K+1)
 C             This array contains the coefficients of P(x) in decreasing
 C             powers of x.
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (K)
+C     DWORK   REAL*16 array, dimension (K)
 C             If K = 0, this array is not referenced.
 C
 C     Error Indicator
@@ -72,15 +72,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE
+      REAL*16  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, K
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(*), IMZ(*), P(*), REZ(*)
+      REAL*16  DWORK(*), IMZ(*), P(*), REZ(*)
 C     .. Local Scalars ..
       INTEGER           I
-      DOUBLE PRECISION  U, V
+      REAL*16  U, V
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, XERBLA
 C     .. Executable Statements ..

@@ -47,11 +47,11 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     ALPHA   (input) COMPLEX*16
+C     ALPHA   (input) COMPLEX*32
 C             The scalar alpha. When alpha is zero then T and A need not
 C             be set before entry.
 C
-C     T       (input/output) COMPLEX*16 array, dimension
+C     T       (input/output) COMPLEX*32 array, dimension
 C             (LDT,max(K,N)), when SIDE = 'L', and
 C             (LDT,K),        when SIDE = 'R',
 C             where K is M if SIDE = 'L' and is N if SIDE = 'R'.
@@ -72,7 +72,7 @@ C             The leading dimension of the array T.
 C             LDT >= max(1,M),    if SIDE = 'L';
 C             LDT >= max(1,M,N),  if SIDE = 'R'.
 C
-C     A       (input) COMPLEX*16 array, dimension (LDA,N)
+C     A       (input) COMPLEX*32 array, dimension (LDA,N)
 C             The leading M-by-N part of this array must contain the
 C             matrix A.
 C
@@ -81,7 +81,7 @@ C             The leading dimension of the array A.  LDA >= max(1,M).
 C
 C     Workspace
 C
-C     ZWORK   COMPLEX*16 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
 C             On exit, if INFO = 0,  ZWORK(1)  returns the optimal value
 C             of LZWORK.
 C             On exit, if  INFO = -12,  ZWORK(1)  returns the minimum
@@ -126,21 +126,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16        ZERO, ONE
+      COMPLEX*32        ZERO, ONE
       PARAMETER         ( ZERO = ( 0.0D0, 0.0D0 ),
      $                    ONE  = ( 1.0D0, 0.0D0 ) )
 C     .. Scalar Arguments ..
       CHARACTER         SIDE, TRANS, UPLO
       INTEGER           INFO, LDA, LDT, LZWORK, M, N
-      COMPLEX*16        ALPHA
+      COMPLEX*32        ALPHA
 C     .. Array Arguments ..
-      COMPLEX*16        A(LDA,*), T(LDT,*), ZWORK(*)
+      COMPLEX*32        A(LDA,*), T(LDT,*), ZWORK(*)
 C     .. Local Scalars ..
       CHARACTER         SKEW, TRANC, UPLOC
       LOGICAL           FILLIN, LQUERY, LSIDE, LTRAN, LUPLO, TTRAN
       INTEGER           BL, I, II, IJ, J, K, L, MN, NB, NC, NR, WRKMIN,
      $                  WRKOPT
-      COMPLEX*16        TEMP
+      COMPLEX*32        TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

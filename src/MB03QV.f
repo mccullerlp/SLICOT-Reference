@@ -12,21 +12,21 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices S and T.  N >= 0.
 C
-C     S       (input) DOUBLE PRECISION array, dimension(LDS,N)
+C     S       (input) REAL*16 array, dimension(LDS,N)
 C             The upper quasi-triangular matrix S.
 C
 C     LDS     INTEGER
 C             The leading dimension of the array S.  LDS >= max(1,N).
 C
-C     T       (input) DOUBLE PRECISION array, dimension(LDT,N)
+C     T       (input) REAL*16 array, dimension(LDT,N)
 C             The upper triangular matrix T.
 C
 C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= max(1,N).
 C
-C     ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
-C     ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
-C     BETA    (output) DOUBLE PRECISION array, dimension (N)
+C     ALPHAR  (output) REAL*16 array, dimension (N)
+C     ALPHAI  (output) REAL*16 array, dimension (N)
+C     BETA    (output) REAL*16 array, dimension (N)
 C             On exit, (ALPHAR(j) + ALPHAI(j)*i)/BETA(j), j=1,...,N,
 C             are the generalized eigenvalues.
 C             ALPHAR(j) + ALPHAI(j)*i, and  BETA(j),j=1,...,N, are the
@@ -56,18 +56,18 @@ C     V. Sima, Dec. 2016.
 C
 C     ******************************************************************
 C     .. Parameters ..
-      DOUBLE PRECISION ZERO
+      REAL*16 ZERO
       PARAMETER        ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER          INFO, LDS, LDT, N
 C     .. Array Arguments ..
-      DOUBLE PRECISION ALPHAI(*), ALPHAR(*), BETA(*), S(LDS,*), T(LDT,*)
+      REAL*16 ALPHAI(*), ALPHAR(*), BETA(*), S(LDS,*), T(LDT,*)
 C     .. Local Scalars ..
       INTEGER          I, INEXT
-      DOUBLE PRECISION SAFMIN
+      REAL*16 SAFMIN
 C     .. External Functions ..
       EXTERNAL         DLAMCH
-      DOUBLE PRECISION DLAMCH
+      REAL*16 DLAMCH
 C     .. External Subroutines ..
       EXTERNAL         DLAG2, XERBLA
 C     .. Intrinsic Functions ..

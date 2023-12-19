@@ -102,7 +102,7 @@ C             the effective rank of the matrix  GaL.  0 <= RANKR1 <= N.
 C             If  JOB = 'N',  or  M = 0,  or  METH = 'N',  this
 C             parameter is not used.
 C
-C     UL      (input/workspace) DOUBLE PRECISION array, dimension
+C     UL      (input/workspace) REAL*16 array, dimension
 C             ( LDUL,L*NOBR )
 C             On entry, if  METH = 'M',  the leading  L*NOBR-by-L*NOBR
 C             part of this array must contain the matrix  Un  of
@@ -120,7 +120,7 @@ C             The leading dimension of the array  UL.
 C             LDUL >= L*NOBR, if  METH = 'M';
 C             LDUL >= N+L,    if  METH = 'N'.
 C
-C     R1      (input) DOUBLE PRECISION array, dimension ( LDR1,N )
+C     R1      (input) REAL*16 array, dimension ( LDR1,N )
 C             If  JOB <> 'N',  M > 0,  METH = 'M',  and  RANKR1 = N,
 C             the leading  L*(NOBR-1)-by-N  part of this array must
 C             contain details of the QR factorization of the matrix
@@ -139,7 +139,7 @@ C             LDR1 >= L*(NOBR-1), if  JOB <> 'N',  M > 0,  METH = 'M',
 C                                 and  RANKR1 = N;
 C             LDR1 >= 1,          otherwise.
 C
-C     TAU1    (input) DOUBLE PRECISION array, dimension ( N )
+C     TAU1    (input) REAL*16 array, dimension ( N )
 C             If  JOB <> 'N',  M > 0,  METH = 'M',  and  RANKR1 = N,
 C             this array must contain the scalar factors of the
 C             elementary reflectors used in the QR factorization of the
@@ -147,7 +147,7 @@ C             matrix  GaL,  computed by SLICOT Library routine IB01PD.
 C             If  JOB = 'N',  or  M = 0,  or  METH = 'N', or  METH = 'M'
 C             and  RANKR1 < N,  this array is not referenced.
 C
-C     PGAL    (input) DOUBLE PRECISION array, dimension
+C     PGAL    (input) REAL*16 array, dimension
 C             ( LDPGAL,L*(NOBR-1) )
 C             If  METH = 'N',  or  JOB <> 'N',  M > 0,  METH = 'M'  and
 C             RANKR1 < N,  the leading  N-by-L*(NOBR-1)  part of this
@@ -162,7 +162,7 @@ C             LDPGAL >= N,  if   METH = 'N',  or  JOB <> 'N',  M > 0,
 C                           and  METH = 'M'  and RANKR1 < N;
 C             LDPGAL >= 1,  otherwise.
 C
-C     K       (input/output) DOUBLE PRECISION array, dimension
+C     K       (input/output) REAL*16 array, dimension
 C             ( LDK,M*NOBR )
 C             On entry, the leading  (p/s)-by-M*NOBR  part of this array
 C             must contain the given matrix  K  defined above.
@@ -172,7 +172,7 @@ C
 C     LDK     INTEGER
 C             The leading dimension of the array  K.  LDK >= p/s.
 C
-C     R       (output) DOUBLE PRECISION array, dimension ( LDR,L*NOBR )
+C     R       (output) REAL*16 array, dimension ( LDR,L*NOBR )
 C             If  JOB = 'N',  or  M = 0,  or  Q  has full rank, the
 C             leading  L*NOBR-by-L*NOBR  upper triangular part of this
 C             array contains the  R  factor of the QR factorization of
@@ -186,7 +186,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of the array  R.  LDR >= L*NOBR.
 C
-C     H       (output) DOUBLE PRECISION array, dimension ( LDH,M )
+C     H       (output) REAL*16 array, dimension ( LDH,M )
 C             If  JOB = 'N'  or  M = 0,  the leading  L*NOBR-by-M  part
 C             of this array contains the updated part of the matrix
 C             Kexpand  corresponding to the upper triangular factor  R
@@ -206,7 +206,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of the array  H.  LDH >= L*NOBR.
 C
-C     B       (output) DOUBLE PRECISION array, dimension ( LDB,M )
+C     B       (output) REAL*16 array, dimension ( LDB,M )
 C             If  M > 0,  JOB = 'B' or 'D'  and  INFO = 0,  the leading
 C             N-by-M part of this array contains the system input
 C             matrix.
@@ -217,7 +217,7 @@ C             The leading dimension of the array B.
 C             LDB >= N, if  M > 0 and JOB = 'B' or 'D';
 C             LDB >= 1, if  M = 0 or  JOB = 'N'.
 C
-C     D       (output) DOUBLE PRECISION array, dimension ( LDD,M )
+C     D       (output) REAL*16 array, dimension ( LDD,M )
 C             If  M > 0,  JOB = 'D'  and  INFO = 0,  the leading
 C             L-by-M part of this array contains the system input-output
 C             matrix.
@@ -231,7 +231,7 @@ C             LDD >= 1, if  M = 0 or  JOB = 'B' or 'N'.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             The tolerance to be used for estimating the rank of
 C             matrices. If the user sets  TOL > 0,  then the given value
 C             of  TOL  is used as a lower bound for the reciprocal
@@ -250,7 +250,7 @@ C     IWORK   INTEGER array, dimension ( LIWORK )
 C             where  LIWORK >= 0,       if  JOB =  'N',  or   M = 0;
 C                    LIWORK >= L*NOBR,  if  JOB <> 'N',  and  M > 0.
 C
-C     DWORK   DOUBLE PRECISION array, dimension ( LDWORK )
+C     DWORK   REAL*16 array, dimension ( LDWORK )
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of  LDWORK,  and, if  JOB <> 'N',  and  M > 0,  DWORK(2)
 C             contains the reciprocal condition number of the triangular
@@ -342,31 +342,31 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE, TWO, THREE
+      REAL*16   ZERO, ONE, TWO, THREE
       PARAMETER          ( ZERO  = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                     THREE = 3.0D0 )
 C     .. Scalar Arguments ..
-      DOUBLE PRECISION   TOL
+      REAL*16   TOL
       INTEGER            INFO, IWARN, L, LDB, LDD, LDH, LDK, LDPGAL,
      $                   LDR, LDR1, LDUL, LDWORK, M, N, NOBR, RANKR1
       CHARACTER          JOB, METH
 C     .. Array Arguments ..
-      DOUBLE PRECISION   B(LDB, *), D(LDD, *), DWORK(*), H(LDH, *),
+      REAL*16   B(LDB, *), D(LDD, *), DWORK(*), H(LDH, *),
      $                   K(LDK, *), PGAL(LDPGAL, *), R(LDR, *),
      $                   R1(LDR1, *), TAU1(*), UL(LDUL, *)
       INTEGER            IWORK( * )
 C     .. Local Scalars ..
-      DOUBLE PRECISION   EPS, RCOND, SVLMAX, THRESH, TOLL
+      REAL*16   EPS, RCOND, SVLMAX, THRESH, TOLL
       INTEGER            I, IERR, ITAU, J, JI, JL, JM, JWORK, LDUN2,
      $                   LNOBR, LP1, MAXWRK, MINWRK, MNOBR, NOBRH,
      $                   NROW, NROWML, RANK
       LOGICAL            MOESP, N4SID, WITHB, WITHD
 C     .. Local Array ..
-      DOUBLE PRECISION   SVAL(3)
+      REAL*16   SVAL(3)
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            ILAENV
-      DOUBLE PRECISION   DLAMCH
+      REAL*16   DLAMCH
       EXTERNAL           DLAMCH, ILAENV, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DGEMM, DGEQRF, DLACPY, DLASET, DORMQR, DSWAP,

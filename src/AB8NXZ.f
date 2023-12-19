@@ -38,14 +38,14 @@ C             = M  for the pertransposed system.
 C             On exit, SIGMA contains the last computed value sigma in
 C             the algorithm.
 C
-C     SVLMAX  (input) DOUBLE PRECISION
+C     SVLMAX  (input) REAL*16
 C             During each reduction step, the rank-revealing QR
 C             factorization of a matrix stops when the estimated minimum
 C             singular value is smaller than TOL * MAX(SVLMAX,EMSV),
 C             where EMSV is the estimated maximum singular value.
 C             SVLMAX >= 0.
 C
-C     ABCD    (input/output) COMPLEX*16 array, dimension (LDABCD,M+N)
+C     ABCD    (input/output) COMPLEX*32 array, dimension (LDABCD,M+N)
 C             On entry, the leading (N+P)-by-(M+N) part of this array
 C             must contain the compound input matrix of the system.
 C             On exit, the leading (NU+MU)-by-(M+NU) part of this array
@@ -90,7 +90,7 @@ C             The number of left Kronecker indices.
 C
 C     Tolerances
 C
-C     TOL     DOUBLE PRECISION
+C     TOL     REAL*16
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -103,9 +103,9 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (MAX(M,P))
 C
-C     DWORK   DOUBLE PRECISION array, dimension (2*MAX(M,P))
+C     DWORK   REAL*16 array, dimension (2*MAX(M,P))
 C
-C     ZWORK   COMPLEX*16 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal value
 C             of LZWORK.
 C
@@ -164,25 +164,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16        ZERO
+      COMPLEX*32        ZERO
       PARAMETER         ( ZERO = ( 0.0D+0, 0.0D+0 ) )
-      DOUBLE PRECISION  DZERO
+      REAL*16  DZERO
       PARAMETER         ( DZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDABCD, LZWORK, M, MU, N, NINFZ, NKROL,
      $                  NU, P, RO, SIGMA
-      DOUBLE PRECISION  SVLMAX, TOL
+      REAL*16  SVLMAX, TOL
 C     .. Array Arguments ..
       INTEGER           INFZ(*), IWORK(*), KRONL(*)
-      COMPLEX*16        ABCD(LDABCD,*), ZWORK(*)
-      DOUBLE PRECISION  DWORK(*)
+      COMPLEX*32        ABCD(LDABCD,*), ZWORK(*)
+      REAL*16  DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I1, IK, IROW, ITAU, IZ, JWORK, MM1, MNTAU, MNU,
      $                  MPM, NP, RANK, RO1, TAU, WRKOPT
-      COMPLEX*16        TC
+      COMPLEX*32        TC
 C     .. Local Arrays ..
-      DOUBLE PRECISION  SVAL(3)
+      REAL*16  SVAL(3)
 C     .. External Subroutines ..
       EXTERNAL          MB3OYZ, MB3PYZ, XERBLA, ZLAPMT, ZLARFG, ZLASET,
      $                  ZLATZM, ZUNMQR, ZUNMRQ

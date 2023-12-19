@@ -38,7 +38,7 @@ C
 C     L       (input) INTEGER
 C             The number of columns of the matrix B.  L >= 0.
 C
-C     A       (input/output) COMPLEX*16 array, dimension (LDA,M)
+C     A       (input/output) COMPLEX*32 array, dimension (LDA,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix A. The elements corresponding to the
 C             zero P-by-MIN(P,M) lower trapezoidal/triangular part
@@ -54,7 +54,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) COMPLEX*16 array, dimension (LDB,L)
+C     B       (input/output) COMPLEX*32 array, dimension (LDB,L)
 C             On entry, the leading N-by-L part of this array must
 C             contain the matrix B.
 C             On exit, the leading N-by-L part of this array contains
@@ -66,12 +66,12 @@ C             The leading dimension of array B.
 C             LDB >= MAX(1,N) if L > 0;
 C             LDB >= 1        if L = 0.
 C
-C     TAU     (output) COMPLEX*16 array, dimension MIN(N,M)
+C     TAU     (output) COMPLEX*32 array, dimension MIN(N,M)
 C             The scalar factors of the elementary reflectors used.
 C
 C     Workspace
 C
-C     ZWORK   COMPLEX*16 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal value
 C             of LZWORK.
 C
@@ -129,17 +129,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*16        ZERO, ONE
+      COMPLEX*32        ZERO, ONE
       PARAMETER         ( ZERO = ( 0.0D+0, 0.0D+0 ),
      $                    ONE  = ( 1.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       INTEGER           INFO, L, LDA, LDB, LZWORK, M, N, P
 C     .. Array Arguments ..
-      COMPLEX*16        A(LDA,*), B(LDB,*), TAU(*), ZWORK(*)
+      COMPLEX*32        A(LDA,*), B(LDB,*), TAU(*), ZWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I, WRKOPT
-      COMPLEX*16        FIRST
+      COMPLEX*32        FIRST
 C     .. External Subroutines ..
       EXTERNAL          XERBLA, ZGEQRF, ZLARF, ZLARFG, ZUNMQR
 C     .. Intrinsic Functions ..

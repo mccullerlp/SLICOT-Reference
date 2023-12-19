@@ -78,7 +78,7 @@ C             If JOBG <> 'G', the number of columns of the matrices D,
 C             F, or K'.  M >= 0.
 C             If JOBG = 'G', the value of M is meaningless.
 C
-C     E       (input) DOUBLE PRECISION array, dimension (LDE,*)
+C     E       (input) REAL*16 array, dimension (LDE,*)
 C             If JOBE = 'G' and (JOBG = 'G' or JOBG = 'D'), the leading
 C             N-by-N part of this array must contain the matrix E.
 C             If JOBE = 'I' or JOBG = 'F' or JOBG = 'H', this array is
@@ -91,7 +91,7 @@ C                                                 JOBG = 'D');
 C             LDE >= 1,        if JOBE = 'I'  or  JOBG = 'F' or
 C                                                 JOBG = 'H'.
 C
-C     R       (input) DOUBLE PRECISION array, dimension (LDR,N)
+C     R       (input) REAL*16 array, dimension (LDR,N)
 C             The leading N-by-N upper or lower triangular part
 C             (depending on UPLO) of this array must contain the upper
 C             or lower triangular part, respectively, of the matrix
@@ -101,7 +101,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     S       (input) DOUBLE PRECISION array, dimension (LDS,*)
+C     S       (input) REAL*16 array, dimension (LDS,*)
 C             If JOBG = 'G' or JOBG = 'D', the leading N-by-N part of
 C             this array must contain the symmetric Newton step
 C             matrix S. If JOBE = 'I', the full matrix must be given.
@@ -118,7 +118,7 @@ C             LDS >= MAX(1,N), if JOBG =  'G' or JOBG =  'D';
 C             LDS >= 1,        if JOBG =  'F';
 C             LDS >= MAX(1,M), if JOBG =  'H'.
 C
-C     G       (input/works.) DOUBLE PRECISION array, dimension (LDG,*)
+C     G       (input/works.) REAL*16 array, dimension (LDG,*)
 C             If JOBG = 'G', the leading N-by-N upper or lower
 C             triangular part (depending on UPLO) of this array must
 C             contain the upper or lower triangular part, respectively,
@@ -135,19 +135,19 @@ C
 C     LDG     INTEGER
 C             The leading dimension of array G.  LDG >= MAX(1,N).
 C
-C     ALPHA   (output) DOUBLE PRECISION
+C     ALPHA   (output) REAL*16
 C             If INFO = 0, ALPHA contains the real number alpha which
 C             minimizes  P(alpha) = norm(R(X+alpha*S), 'fro') in the
 C             interval [0,2].
 C             If INFO = 1 or IWARN = 2, ALPHA is set equal to 1.
 C
-C     RNORM   (output) DOUBLE PRECISION
+C     RNORM   (output) REAL*16
 C             On exit, if INFO >= 0, RNORM contains the Frobenius norm
 C             of the residual R(X+alpha*S).
 C
 C     Workspace
 C
-C     DWORK   DOUBLE PRECISION array, dimension (LDWORK)
+C     DWORK   REAL*16 array, dimension (LDWORK)
 C             On exit, if LDWORK = -1 on input, then DWORK(1) returns
 C             the optimal value of LDWORK.
 C             On exit, if LDWORK = -2 on input or INFO = -19, then
@@ -253,27 +253,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      DOUBLE PRECISION  ZERO, ONE, TWO, THREE, FOUR, SIX
+      REAL*16  ZERO, ONE, TWO, THREE, FOUR, SIX
       PARAMETER         ( ZERO  = 0.0D0, ONE  = 1.0D0, TWO = 2.0D0,
      $                    THREE = 3.0D0, FOUR = 4.0D0, SIX = 6.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         FLAG, JOBE, JOBG, TRANS, UPLO
       INTEGER           INFO, IWARN, LDE, LDG, LDR, LDS, LDWORK, M, N
-      DOUBLE PRECISION  ALPHA, RNORM
+      REAL*16  ALPHA, RNORM
 C     .. Array Arguments ..
-      DOUBLE PRECISION  DWORK(*), E(LDE,*), G(LDG,*), R(LDR,*), S(LDS,*)
+      REAL*16  DWORK(*), E(LDE,*), G(LDG,*), R(LDR,*), S(LDS,*)
 C     .. Local Scalars ..
       CHARACTER         NT, NTRANS, SIDE, TR
       LOGICAL           LCND, LFLAG, LJOBE, LJOBF, LJOBG, LJOBH, LJOBL,
      $                  LQUERY, LTRANS, LUPLO, USE1, WWT
       INTEGER           CRITNR, EVIPOS, EVQPOS, EVRPOS, I, J, NM, NMIN,
      $                  NN, NOPT, RPOS, SP
-      DOUBLE PRECISION  BETA, DELTA, GAMMA, MX, PA, PB, PC, VNORM
+      REAL*16  BETA, DELTA, GAMMA, MX, PA, PB, PC, VNORM
 C     .. Local Arrays ..
-      DOUBLE PRECISION  CRD(2), CRN(2)
+      REAL*16  CRD(2), CRN(2)
 C     .. External Functions ..
       LOGICAL           LSAME
-      DOUBLE PRECISION  DDOT, DLANSY
+      REAL*16  DDOT, DLANSY
       EXTERNAL          DDOT, DLANSY, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DGEMM, DLACPY, DLASCL, DSCAL, DSYMM,
