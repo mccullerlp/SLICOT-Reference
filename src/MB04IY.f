@@ -52,7 +52,7 @@ C             The order of the zero triagle (or the number of rows of
 C             the zero trapezoid) in the matrix triangularized by SLICOT
 C             Library routine MB04ID.  P >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,K)
+C     A       (input) REAL*10 array, dimension (LDA,K)
 C             On input, the elements in the rows  i+1:min(n,n-p-1+i)  of
 C             the  i-th  column, and  TAU(i),  represent the orthogonal
 C             reflector  H(i),  so that matrix  Q  is the product of
@@ -64,10 +64,10 @@ C             The leading dimension of the array  A.
 C             LDA >= max(1,N),  if  SIDE = 'L';
 C             LDA >= max(1,M),  if  SIDE = 'R'.
 C
-C     TAU     (input) REAL*16 array, dimension (K)
+C     TAU     (input) REAL*10 array, dimension (K)
 C             The scalar factors of the elementary reflectors.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,M)
+C     C       (input/output) REAL*10 array, dimension (LDC,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix  C.
 C             On exit, the leading N-by-M part of this array contains
@@ -78,7 +78,7 @@ C             The leading dimension of the array  C.  LDC >= max(1,N).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -125,17 +125,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE
+      REAL*10   ONE
       PARAMETER          ( ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       INTEGER            INFO, K, LDA, LDC, LDWORK, M, N, P
       CHARACTER          SIDE, TRANS
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), C( LDC, * ), DWORK( * ), TAU( * )
+      REAL*10   A( LDA, * ), C( LDC, * ), DWORK( * ), TAU( * )
 C     .. Local Scalars ..
       LOGICAL            LEFT, TRAN
       INTEGER            I
-      REAL*16   AII, WRKOPT
+      REAL*10   AII, WRKOPT
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

@@ -30,10 +30,10 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     DELTA   (input) REAL*16
+C     DELTA   (input) REAL*10
 C             The scalar value delta of the problem.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A of the problem.
 C             On exit, the leading N-by-N part of this array contains
@@ -42,7 +42,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= max(1,N).
 C
-C     V       (output) REAL*16 array, dimension (LDV,N)
+C     V       (output) REAL*10 array, dimension (LDV,N)
 C             The leading N-by-N part of this array contains the
 C             eigenvector matrix for A.
 C             If the k-th eigenvalue is real the k-th column of the
@@ -63,7 +63,7 @@ C
 C     LDV     INTEGER
 C             The leading dimension of array V.  LDV >= max(1,N).
 C
-C     Y       (output) REAL*16 array, dimension (LDY,N)
+C     Y       (output) REAL*10 array, dimension (LDY,N)
 C             The leading N-by-N part of this array contains an
 C             intermediate result for computing the matrix exponential.
 C             Specifically, exp(A*delta) is obtained as the product V*Y,
@@ -77,8 +77,8 @@ C
 C     LDY     INTEGER
 C             The leading dimension of array Y.  LDY >= max(1,N).
 C
-C     VALR    (output) REAL*16 array, dimension (N)
-C     VALI    (output) REAL*16 array, dimension (N)
+C     VALR    (output) REAL*10 array, dimension (N)
+C     VALI    (output) REAL*10 array, dimension (N)
 C             These arrays contain the real and imaginary parts,
 C             respectively, of the eigenvalues of the matrix A. The
 C             eigenvalues are unordered except that complex conjugate
@@ -89,7 +89,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK, and if N > 0, DWORK(2) returns the reciprocal
 C             condition number of the triangular matrix used to obtain
@@ -160,25 +160,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         BALANC
       INTEGER           INFO, LDA, LDV, LDWORK, LDY, N
-      REAL*16  DELTA
+      REAL*10  DELTA
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), DWORK(*), V(LDV,*), VALI(*), VALR(*),
+      REAL*10  A(LDA,*), DWORK(*), V(LDV,*), VALI(*), VALR(*),
      $                  Y(LDY,*)
 C     .. Local Scalars ..
       LOGICAL           SCALE
       INTEGER           I
-      REAL*16  RCOND, TEMPI, TEMPR, WRKOPT
+      REAL*10  RCOND, TEMPI, TEMPR, WRKOPT
 C     .. Local Arrays ..
-      REAL*16  TMP(2,2)
+      REAL*10  TMP(2,2)
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DGEBAK, DGEMM, DLACPY, DSCAL, DSWAP, DTRCON,

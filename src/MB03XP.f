@@ -57,7 +57,7 @@ C             all the rows and columns of the matrices A and B, if
 C             JOB = 'S'.
 C             1 <= ILO <= max(1,N+1); min(ILO,N) <= IHI <= N.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array A must
 C             contain the upper Hessenberg matrix A.
 C             On exit, if JOB = 'S', the leading N-by-N part of this
@@ -71,7 +71,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array B must
 C             contain the upper triangular matrix B.
 C             On exit, if JOB = 'S', the leading N-by-N part of this
@@ -87,7 +87,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,N)
 C             On entry, if COMPQ = 'V', then the leading N-by-N part of
 C             this array must contain a matrix Q which is assumed to be
 C             equal to the unit matrix except for the submatrix
@@ -102,7 +102,7 @@ C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= 1.
 C             If COMPQ <> 'N', LDQ >= MAX(1,N).
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,N)
 C             On entry, if COMPZ = 'V', then the leading N-by-N part of
 C             this array must contain a matrix Z which is assumed to be
 C             equal to the unit matrix except for the submatrix
@@ -117,9 +117,9 @@ C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= 1.
 C             If COMPZ <> 'N', LDZ >= MAX(1,N).
 C
-C     ALPHAR  (output) REAL*16 array, dimension (N)
-C     ALPHAI  (output) REAL*16 array, dimension (N)
-C     BETA    (output) REAL*16 array, dimension (N)
+C     ALPHAR  (output) REAL*10 array, dimension (N)
+C     ALPHAI  (output) REAL*10 array, dimension (N)
+C     BETA    (output) REAL*10 array, dimension (N)
 C             The i-th (1 <= i <= N) computed eigenvalue is given by
 C             BETA(I) * ( ALPHAR(I) + sqrt(-1)*ALPHAI(I) ). If two
 C             eigenvalues are computed as a complex conjugate pair,
@@ -130,7 +130,7 @@ C             and B.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -19,  DWORK(1)  returns the minimum
@@ -195,7 +195,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
       INTEGER            NSMAX, LDAS, LDBS
       PARAMETER          ( NSMAX = 15, LDAS = NSMAX, LDBS = NSMAX )
@@ -203,20 +203,20 @@ C     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ, JOB
       INTEGER            IHI, ILO, INFO, LDA, LDB, LDQ, LDWORK, LDZ, N
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
+      REAL*10   A(LDA,*), ALPHAI(*), ALPHAR(*), B(LDB,*),
      $                   BETA(*), DWORK(*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL            INITQ, INITZ, WANTQ, WANTT, WANTZ
       INTEGER            DUM, I, I1, I2, IERR, ITEMP, ITN, ITS, J, K,
      $                   KK, L, MAXB, NH, NR, NS, NV, PV2, PV3
-      REAL*16   OVFL, SMLNUM, TAUV, TAUW, TEMP, TST, ULP, UNFL
+      REAL*10   OVFL, SMLNUM, TAUV, TAUW, TEMP, TST, ULP, UNFL
 C     .. Local Arrays ..
       INTEGER            ISEED(4)
-      REAL*16   AS(LDAS,LDAS), BS(LDBS,LDBS), V(3*NSMAX+6)
+      REAL*10   AS(LDAS,LDAS), BS(LDBS,LDBS), V(3*NSMAX+6)
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX, UE01MD
-      REAL*16   DLAMCH, DLANHS
+      REAL*10   DLAMCH, DLANHS
       EXTERNAL           DLAMCH, DLANHS, IDAMAX, LSAME, UE01MD
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DGEMV, DLABAD, DLACPY, DLARFG,

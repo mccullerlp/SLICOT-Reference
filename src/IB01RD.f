@@ -42,14 +42,14 @@ C     NSMP    (input) INTEGER
 C             The number of rows of matrices  U  and  Y  (number of
 C             samples used,  t).  NSMP >= N.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix  A  in a real Schur form.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix  B  (corresponding to the real Schur
 C             form of  A).
@@ -60,7 +60,7 @@ C             The leading dimension of the array B.
 C             LDB >= N,  if  N > 0  and  M > 0;
 C             LDB >= 1,  if  N = 0  or   M = 0.
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading L-by-N part of this array must contain the
 C             system output matrix  C  (corresponding to the real Schur
 C             form of  A).
@@ -68,7 +68,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= L.
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading L-by-M part of this array must contain the
 C             system input-output matrix.
 C             If  M = 0  or  JOB = 'Z',  this array is not referenced.
@@ -78,7 +78,7 @@ C             The leading dimension of the array D.
 C             LDD >= L,  if  M > 0  and  JOB = 'N';
 C             LDD >= 1,  if  M = 0  or   JOB = 'Z'.
 C
-C     U       (input) REAL*16 array, dimension (LDU,M)
+C     U       (input) REAL*10 array, dimension (LDU,M)
 C             If  M > 0,  the leading NSMP-by-M part of this array must
 C             contain the t-by-m input-data sequence matrix  U,
 C             U = [u_1 u_2 ... u_m].  Column  j  of  U  contains the
@@ -91,7 +91,7 @@ C             The leading dimension of the array U.
 C             LDU >= MAX(1,NSMP),  if M > 0;
 C             LDU >= 1,            if M = 0.
 C
-C     Y       (input) REAL*16 array, dimension (LDY,L)
+C     Y       (input) REAL*10 array, dimension (LDY,L)
 C             The leading NSMP-by-L part of this array must contain the
 C             t-by-l output-data sequence matrix  Y,
 C             Y = [y_1 y_2 ... y_l].  Column  j  of  Y  contains the
@@ -101,12 +101,12 @@ C
 C     LDY     INTEGER
 C             The leading dimension of the array Y.  LDY >= MAX(1,NSMP).
 C
-C     X0      (output) REAL*16 array, dimension (N)
+C     X0      (output) REAL*10 array, dimension (N)
 C             The estimated initial state of the system,  x(0).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used for estimating the rank of
 C             matrices. If the user sets  TOL > 0,  then the given value
 C             of  TOL  is used as a lower bound for the reciprocal
@@ -120,7 +120,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK and  DWORK(2)  contains the reciprocal condition
 C             number of the triangular factor of the QR factorization of
@@ -211,7 +211,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TWO, THREE
+      REAL*10   ZERO, ONE, TWO, THREE
       PARAMETER          ( ZERO  = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                     THREE = 3.0D0 )
 C     IBLOCK is a threshold value for switching to a block algorithm
@@ -219,16 +219,16 @@ C     for  U  (to avoid row by row passing through  U).
       INTEGER            IBLOCK
       PARAMETER          ( IBLOCK = 16384 )
 C     .. Scalar Arguments ..
-      REAL*16   TOL
+      REAL*10   TOL
       INTEGER            INFO, IWARN, L, LDA, LDB, LDC, LDD, LDU,
      $                   LDWORK, LDY, M, N, NSMP
       CHARACTER          JOB
 C     .. Array Arguments ..
-      REAL*16   A(LDA, *), B(LDB, *), C(LDC, *), D(LDD, *),
+      REAL*10   A(LDA, *), B(LDB, *), C(LDC, *), D(LDD, *),
      $                   DWORK(*),  U(LDU, *), X0(*), Y(LDY, *)
       INTEGER            IWORK(*)
 C     .. Local Scalars ..
-      REAL*16   RCOND, TOLL
+      REAL*10   RCOND, TOLL
       INTEGER            I2, IA, IAS, IC, ICYCLE, IE, IERR, IEXPON,
      $                   IG, INIGAM, INIH, INIR, INIT, IQ, IREM, IRHS,
      $                   ISIZE, ISV, ITAU, IU, IUPNT, IUT, IUTRAN, IX,
@@ -237,11 +237,11 @@ C     .. Local Scalars ..
      $                   NCP1, NCYCLE, NN, NOBS, NRBL, NROW, NSMPL, RANK
       LOGICAL            BLOCK, FIRST, NCYC, POWER2, SWITCH, WITHD
 C     .. Local Arrays ..
-      REAL*16   DUM(1)
+      REAL*10   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            ILAENV
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, ILAENV, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DGELSS, DGEMV, DGEQRF, DLACPY,

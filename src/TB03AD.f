@@ -42,7 +42,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading NR-by-NR part of this array contains
@@ -52,7 +52,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB,MAX(M,P))
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B; the remainder
@@ -64,7 +64,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C; the remainder
 C             of the leading MAX(M,P)-by-N part is used as internal
@@ -75,7 +75,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,M,P).
 C
-C     D       (input) REAL*16 array, dimension (LDD,MAX(M,P))
+C     D       (input) REAL*10 array, dimension (LDD,MAX(M,P))
 C             The leading P-by-M part of this array must contain the
 C             original direct transmission matrix D; the remainder of
 C             the leading MAX(M,P)-by-MAX(M,P) part is used as internal
@@ -103,7 +103,7 @@ C             matrix representation.
 C             These elements are ordered so that
 C             INDEX(1) >= INDEX(2) >= ... >= INDEX(M).
 C
-C     PCOEFF  (output) REAL*16 array, dimension
+C     PCOEFF  (output) REAL*10 array, dimension
 C             (LDPCO1,LDPCO2,N+1)
 C             If LERI = 'L' then porm = P, otherwise porm = M.
 C             The leading porm-by-porm-by-kpcoef part of this array
@@ -125,7 +125,7 @@ C             The second dimension of array PCOEFF.
 C             LDPCO2 >= MAX(1,P), if LERI = 'L';
 C             LDPCO2 >= MAX(1,M), if LERI = 'R'.
 C
-C     QCOEFF  (output) REAL*16 array, dimension
+C     QCOEFF  (output) REAL*10 array, dimension
 C             (LDQCO1,LDQCO2,N+1)
 C             If LERI = 'L' then porp = M, otherwise porp = P.
 C             If LERI = 'L', the leading porm-by-porp-by-kpcoef part
@@ -146,7 +146,7 @@ C             The second dimension of array QCOEFF.
 C             LDQCO2 >= MAX(1,M),   if LERI = 'L';
 C             LDQCO2 >= MAX(1,M,P), if LERI = 'R'.
 C
-C     VCOEFF  (output) REAL*16 array, dimension
+C     VCOEFF  (output) REAL*10 array, dimension
 C             (LDVCO1,LDVCO2,N+1)
 C             The leading porm-by-NR-by-kpcoef part of this array
 C             contains the coefficients of the intermediate matrix V(s).
@@ -162,7 +162,7 @@ C             The second dimension of array VCOEFF.  LDVCO2 >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in rank determination when
 C             transforming (A, B, C). If the user sets TOL > 0, then
 C             the given value of TOL is used as a lower bound for the
@@ -179,7 +179,7 @@ C     IWORK   INTEGER array, dimension (N+MAX(M,P))
 C             On exit, if INFO = 0, the first nonzero elements of
 C             IWORK(1:N) return the orders of the diagonal blocks of A.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -257,17 +257,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         EQUIL, LERI
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDPCO1, LDPCO2,
      $                  LDQCO1, LDQCO2, LDVCO1, LDVCO2, LDWORK, M, N,
      $                  NR, P
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           INDEX(*), IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), PCOEFF(LDPCO1,LDPCO2,*),
      $                  QCOEFF(LDQCO1,LDQCO2,*), VCOEFF(LDVCO1,LDVCO2,*)
 C     .. Local Scalars ..
@@ -276,7 +276,7 @@ C     .. Local Scalars ..
      $                  ISTART, ISTOP, ITAU, IZ, JOFF, JWORK, K, KMAX,
      $                  KPCOEF, KPLUS, KWORK, LDWRIC, MAXMP, MPLIM,
      $                  MWORK, NCOL, NCONT, NREFLC, NROW, PWORK, WRKOPT
-      REAL*16  MAXRED
+      REAL*10  MAXRED
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

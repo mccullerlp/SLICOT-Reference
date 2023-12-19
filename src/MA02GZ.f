@@ -15,7 +15,7 @@ C
 C     N       (input) INTEGER
 C             The number of rows of the matrix A.  N >= 0.
 C
-C     A       (input/output) COMPLEX*32 array, dimension (LDA,*)
+C     A       (input/output) COMPLEX*20 array, dimension (LDA,*)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix A to which the column interchanges will
 C             be applied, where M is the largest element of IPIV(K), for
@@ -83,7 +83,7 @@ C      .. Scalar Arguments ..
 C      ..
 C      .. Array Arguments ..
       INTEGER            IPIV( * )
-      COMPLEX*32         A( LDA, * )
+      COMPLEX*20         A( LDA, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            J, JP, JX

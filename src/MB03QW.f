@@ -21,7 +21,7 @@ C
 C     L       (input) INTEGER
 C             Specifies the position of the block.  1 <= L < N.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper quasi-triangular matrix A whose
 C             selected 2-by-2 diagonal block is to be processed.
@@ -33,7 +33,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= N.
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper triangular matrix E whose selected
 C             2-by-2 diagonal block is to be processed.
@@ -44,7 +44,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= N.
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,N)
+C     U       (input/output) REAL*10 array, dimension (LDU,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain a transformation matrix U.
 C             On exit, the leading N-by-N part of this array contains
@@ -54,7 +54,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of the array U.  LDU >= N.
 C
-C     V       (input/output) REAL*16 array, dimension (LDV,N)
+C     V       (input/output) REAL*10 array, dimension (LDV,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain a transformation matrix V.
 C             On exit, the leading N-by-N part of this array contains
@@ -64,9 +64,9 @@ C
 C     LDV     INTEGER
 C             The leading dimension of the array V.  LDV >= N.
 C
-C     ALPHAR  (output) REAL*16 array, dimension (2)
-C     ALPHAI  (output) REAL*16 array, dimension (2)
-C     BETA    (output) REAL*16 array, dimension (2)
+C     ALPHAR  (output) REAL*10 array, dimension (2)
+C     ALPHAI  (output) REAL*10 array, dimension (2)
+C     BETA    (output) REAL*10 array, dimension (2)
 C             (ALPHAR(k)+i*ALPHAI(k))/BETA(k) are the eigenvalues of the
 C             block pair of the pencil (A,B), k=1,2, i = sqrt(-1).
 C             Note that BETA(k) may be zero.
@@ -114,12 +114,12 @@ C     ******************************************************************
 C
 C     .. Scalar Arguments ..
       INTEGER          INFO, L, LDA, LDE, LDU, LDV, N
-      REAL*16 ALPHAI(*), ALPHAR(*), BETA(*)
+      REAL*10 ALPHAI(*), ALPHAR(*), BETA(*)
 C     .. Array Arguments ..
-      REAL*16 A(LDA,*), E(LDE,*), U(LDU,*), V(LDV,*)
+      REAL*10 A(LDA,*), E(LDE,*), U(LDU,*), V(LDV,*)
 C     .. Local Scalars ..
       INTEGER          L1
-      REAL*16 CSL, CSR, SNL, SNR
+      REAL*10 CSL, CSR, SNL, SNR
 C     .. External Subroutines ..
       EXTERNAL         DLAGV2, DROT, XERBLA
 C     .. Executable Statements ..

@@ -26,18 +26,18 @@ C
 C     M       (input) INTEGER
 C             The order of the matrix A.  M >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,M)
+C     A       (input) REAL*10 array, dimension (LDA,M)
 C             The leading M-by-M part of this array must contain a
 C             matrix A in Hessenberg form.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     LAMBDA  (input) REAL*16
+C     LAMBDA  (input) REAL*10
 C             This variable must contain the value to be multiplied with
 C             the elements of A.
 C
-C     D       (input/output) REAL*16 array, dimension (M)
+C     D       (input/output) REAL*10 array, dimension (M)
 C             On entry, this array must contain the right-hand side
 C             vector of the Hessenberg system.
 C             On exit, if INFO = 0, this array contains the solution
@@ -45,7 +45,7 @@ C             vector of the Hessenberg system.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used to test for near singularity of
 C             the triangular factor R of the Hessenberg matrix. A matrix
 C             whose estimated condition number is less than 1/TOL is
@@ -55,7 +55,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M)
 C
-C     DWORK   REAL*16 array, dimension (LDDWOR,M+3)
+C     DWORK   REAL*10 array, dimension (LDDWOR,M+3)
 C             The leading M-by-M part of this array is used for
 C             computing the triangular factor of the QR decomposition
 C             of the Hessenberg matrix. The remaining 3*M elements are
@@ -109,19 +109,19 @@ C     Sylvester equation.
 C
 C     ******************************************************************
 C
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         RC, UL
       INTEGER           INFO, LDA, LDDWOR, M
-      REAL*16  LAMBDA, TOL
+      REAL*10  LAMBDA, TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), D(*), DWORK(LDDWOR,*)
+      REAL*10  A(LDA,*), D(*), DWORK(LDDWOR,*)
 C     .. Local Scalars ..
       CHARACTER         TRANS
       INTEGER           J, J1, MJ
-      REAL*16  C, R, RCOND, S
+      REAL*10  C, R, RCOND, S
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

@@ -44,7 +44,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices S and R.  N >= 0.
 C
-C     S       (input) COMPLEX*32 array of dimension (LDS,N)
+C     S       (input) COMPLEX*20 array of dimension (LDS,N)
 C             The leading N-by-N upper triangular part of this array
 C             must contain the upper triangular matrix.
 C             The elements below the upper triangular part of the array
@@ -53,7 +53,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,N).
 C
-C     R       (input/output) COMPLEX*32 array of dimension (LDR,N)
+C     R       (input/output) COMPLEX*20 array of dimension (LDR,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix R, with
 C             real non-negative entries on its main diagonal.
@@ -65,15 +65,15 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N-1)
+C     DWORK   REAL*10 array, dimension (N-1)
 C
-C     ZWORK   COMPLEX*32 array, dimension (2*N-2)
+C     ZWORK   COMPLEX*20 array, dimension (2*N-2)
 C
 C     Error Indicator
 C
@@ -143,26 +143,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*32        CZERO, CONE
+      COMPLEX*20        CZERO, CONE
       PARAMETER         ( CZERO = ( 0.0D0, 0.0D0 ),
      $                    CONE  = ( 1.0D0, 0.0D0 ) )
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16  SCALE
+      REAL*10  SCALE
       INTEGER           INFO, LDR, LDS, N
       LOGICAL           DISCR, LTRANS
 C     .. Array Arguments ..
-      COMPLEX*32        R(LDR,*), S(LDS,*), ZWORK(*)
-      REAL*16  DWORK(*)
+      COMPLEX*20        R(LDR,*), S(LDS,*), ZWORK(*)
+      REAL*10  DWORK(*)
 C     .. Local Scalars ..
-      COMPLEX*32        ALPHA, SN, TMP, X, Z
-      REAL*16  ABSSKK, BIGNUM, C, DR, EPS, SCALOC, SMLNUM,
+      COMPLEX*20        ALPHA, SN, TMP, X, Z
+      REAL*10  ABSSKK, BIGNUM, C, DR, EPS, SCALOC, SMLNUM,
      $                  SQTWO, TEMP
       INTEGER           I, J, K, K1, KOUNT, KP1, KSZ
       LOGICAL           SLV
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          DLABAD, XERBLA, ZAXPY, ZCOPY, ZDSCAL, ZLACGV,

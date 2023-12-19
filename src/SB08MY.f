@@ -12,15 +12,15 @@ C
 C     DA      (input) INTEGER
 C             The degree of the polynomials A(s) and B(s).  DA >= 0.
 C
-C     A       (input) REAL*16 array, dimension (DA+1)
+C     A       (input) REAL*10 array, dimension (DA+1)
 C             This array must contain the coefficients of the polynomial
 C             A(s) in increasing powers of s.
 C
-C     B       (output) REAL*16 array, dimension (DA+1)
+C     B       (output) REAL*10 array, dimension (DA+1)
 C             This array contains the coefficients of the polynomial
 C             B(s) in increasing powers of s**2.
 C
-C     EPSB    (input/output) REAL*16
+C     EPSB    (input/output) REAL*10
 C             On entry, EPSB must contain the machine precision (see
 C             LAPACK Library routine DLAMCH).
 C             On exit, EPSB contains an updated value, using a norm
@@ -42,17 +42,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO, THREE
+      REAL*10  ZERO, ONE, TWO, THREE
       PARAMETER         ( ZERO  = 0.0D0, ONE = 1.0D0, TWO=2.0D0,
      $                    THREE = 3.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DA
-      REAL*16  EPSB
+      REAL*10  EPSB
 C     .. Array Arguments ..
-      REAL*16  A(*), B(*)
+      REAL*10  A(*), B(*)
 C     .. Local Scalars ..
       INTEGER           I, K
-      REAL*16  MAXSA, SA, SABS, SIGNI, SIGNK, TERM
+      REAL*10  MAXSA, SA, SABS, SIGNI, SIGNK, TERM
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, MAX, MIN
 C     .. Executable Statements ..

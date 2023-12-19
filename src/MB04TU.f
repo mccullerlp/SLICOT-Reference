@@ -35,11 +35,11 @@ C     ******************************************************************
 C
 C     .. Scalar Arguments ..
       INTEGER           INCX, INCY, N
-      REAL*16  C, S
+      REAL*10  C, S
 C     .. Array Arguments ..
-      REAL*16  X(*), Y(*)
+      REAL*10  X(*), Y(*)
 C     .. Local Scalars ..
-      REAL*16  DTEMP
+      REAL*10  DTEMP
       INTEGER           I, IX, IY
 C     .. Executable Statements ..
 C

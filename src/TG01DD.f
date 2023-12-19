@@ -33,7 +33,7 @@ C
 C     P       (input) INTEGER
 C             The number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading L-by-N part of this array contains
@@ -42,7 +42,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, the leading L-by-N part of this array contains
@@ -62,7 +62,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,L).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -71,7 +71,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,N)
 C             If COMPZ = 'N':  Z is not referenced.
 C             If COMPZ = 'I':  on entry, Z need not be set;
 C                              on exit, the leading N-by-N part of this
@@ -93,7 +93,7 @@ C             LDZ >= MAX(1,N), if COMPZ = 'U' or 'I'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -143,13 +143,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE, ZERO
+      REAL*10   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPZ
       INTEGER            INFO, L, LDA, LDC, LDE, LDWORK, LDZ, N, P
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), C( LDC, * ), DWORK( * ),
+      REAL*10   A( LDA, * ), C( LDC, * ), DWORK( * ),
      $                   E( LDE, * ), Z( LDZ, * )
 C     .. Local Scalars ..
       LOGICAL            ILZ

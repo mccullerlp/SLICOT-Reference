@@ -12,7 +12,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix H.  N >= 0.
 C
-C     H       (input/output) REAL*16 array, dimension (LDH,N)
+C     H       (input/output) REAL*10 array, dimension (LDH,N)
 C             On entry, the n-by-n upper Hessenberg matrix to be
 C             factored.
 C             On exit, the factors L and U from the factorization
@@ -72,13 +72,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDH, N
 C     .. Array Arguments ..
       INTEGER           IPIV(*)
-      REAL*16  H(LDH,*)
+      REAL*10  H(LDH,*)
 C     .. Local Scalars ..
       INTEGER           J, JP
 C     .. External Subroutines ..

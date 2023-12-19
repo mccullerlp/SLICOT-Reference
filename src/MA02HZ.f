@@ -31,10 +31,10 @@ C
 C     N      (input) INTEGER
 C            The number of columns of the matrix A.  N >= 0.
 C
-C     DIAG   (input) COMPLEX*32
+C     DIAG   (input) COMPLEX*20
 C            The scalar DIAG.
 C
-C     A      (input) COMPLEX*32 array, dimension (LDA,N)
+C     A      (input) COMPLEX*20 array, dimension (LDA,N)
 C            The leading M-by-N part of this array must contain the
 C            matrix A.  If JOB = 'U', only the upper triangle or
 C            trapezoid is accessed; if JOB = 'L', only the lower
@@ -64,14 +64,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*32         ZERO
+      COMPLEX*20         ZERO
       PARAMETER          ( ZERO = ( 0.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       CHARACTER          JOB
       INTEGER            LDA, M, N
-      COMPLEX*32         DIAG
+      COMPLEX*20         DIAG
 C     .. Array Arguments ..
-      COMPLEX*32         A(LDA,*)
+      COMPLEX*20         A(LDA,*)
 C     .. Local Scalars ..
       INTEGER            I, J
 C     .. External Functions

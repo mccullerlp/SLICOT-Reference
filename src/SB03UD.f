@@ -66,7 +66,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, X, and C.  N >= 0.
 C
-C     SCALE   (input or output) REAL*16
+C     SCALE   (input or output) REAL*10
 C             If JOB = 'C' or JOB = 'E', SCALE is an input argument:
 C             the scale factor, set by a Lyapunov solver.
 C             0 <= SCALE <= 1.
@@ -75,7 +75,7 @@ C             the scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C             If JOB = 'S', this argument is not used.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             If FACT = 'N' or (LYAPUN = 'O' and JOB <> 'X'), the
 C             leading N-by-N part of this array must contain the
 C             original matrix A.
@@ -88,7 +88,7 @@ C             LDA >= MAX(1,N), if FACT = 'N' or LYAPUN = 'O' and
 C                                               JOB <> 'X';
 C             LDA >= 1,        otherwise.
 C
-C     T       (input/output) REAL*16 array, dimension
+C     T       (input/output) REAL*10 array, dimension
 C             (LDT,N)
 C             If FACT = 'F', then on entry the leading N-by-N upper
 C             Hessenberg part of this array must contain the upper
@@ -104,7 +104,7 @@ C
 C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= MAX(1,N).
 C
-C     U       (input or output) REAL*16 array, dimension
+C     U       (input or output) REAL*10 array, dimension
 C             (LDU,N)
 C             If LYAPUN = 'O' and FACT = 'F', then U is an input
 C             argument and on entry, the leading N-by-N part of this
@@ -121,7 +121,7 @@ C             The leading dimension of the array U.
 C             LDU >= 1,        if LYAPUN = 'R';
 C             LDU >= MAX(1,N), if LYAPUN = 'O'.
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             If JOB <> 'S' and UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the matrix C of the original Lyapunov
@@ -145,7 +145,7 @@ C             The leading dimension of the array C.
 C             LDC >= 1,        if JOB = 'S';
 C             LDC >= MAX(1,N), otherwise.
 C
-C     X       (input or output) REAL*16 array, dimension
+C     X       (input or output) REAL*10 array, dimension
 C             (LDX,N)
 C             If JOB = 'C' or 'E', then X is an input argument and on
 C             entry, the leading N-by-N part of this array must contain
@@ -166,21 +166,21 @@ C             The leading dimension of the array X.
 C             LDX >= 1,        if JOB = 'S';
 C             LDX >= MAX(1,N), otherwise.
 C
-C     SEPD    (output) REAL*16
+C     SEPD    (output) REAL*10
 C             If JOB = 'S' or JOB = 'C' or JOB = 'A', and INFO = 0 or
 C             INFO = N+1, SEPD contains the estimated separation of the
 C             matrices op(A) and op(A)', sepd(op(A),op(A)').
 C             If N = 0, or X = 0, or JOB = 'X' or JOB = 'E', SEPD is not
 C             referenced.
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             If JOB = 'C' or JOB = 'A', an estimate of the reciprocal
 C             condition number of the continuous-time Lyapunov equation.
 C             If N = 0 or X = 0, RCOND is set to 1 or 0, respectively.
 C             If JOB = 'X' or JOB = 'S' or JOB = 'E', RCOND is not
 C             referenced.
 C
-C     FERR    (output) REAL*16
+C     FERR    (output) REAL*10
 C             If JOB = 'E' or JOB = 'A', and INFO = 0 or INFO = N+1,
 C             FERR contains an estimated forward error bound for the
 C             solution X. If XTRUE is the true solution, FERR bounds the
@@ -190,8 +190,8 @@ C             If N = 0 or X = 0, FERR is set to 0.
 C             If JOB = 'X' or JOB = 'S' or JOB = 'C', FERR is not
 C             referenced.
 C
-C     WR      (output) REAL*16 array, dimension (N)
-C     WI      (output) REAL*16 array, dimension (N)
+C     WR      (output) REAL*10 array, dimension (N)
+C     WI      (output) REAL*10 array, dimension (N)
 C             If FACT = 'N', and INFO = 0 or INFO = N+1, WR and WI
 C             contain the real and imaginary parts, respectively, of the
 C             eigenvalues of A.
@@ -202,7 +202,7 @@ C
 C     IWORK   INTEGER array, dimension (N*N)
 C             This array is not referenced if JOB = 'X'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = N+1, DWORK(1) returns the
 C             optimal value of LDWORK.
 C
@@ -320,17 +320,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, HALF
+      REAL*10   ZERO, ONE, HALF
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, HALF = 0.5D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          FACT, JOB, LYAPUN, TRANA, UPLO
       INTEGER            INFO, LDA, LDC, LDT, LDU, LDWORK, LDX, N
-      REAL*16   FERR, RCOND, SCALE, SEPD
+      REAL*10   FERR, RCOND, SCALE, SEPD
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      REAL*16   A( LDA, * ), C( LDC, * ), DWORK( * ),
+      REAL*10   A( LDA, * ), C( LDC, * ), DWORK( * ),
      $                   T( LDT, * ), U( LDU, * ), WI( * ), WR( * ),
      $                   X( LDX, * )
 C     ..
@@ -339,7 +339,7 @@ C     .. Local Scalars ..
      $                   NOTRNA, UPDATE
       CHARACTER          CFACT, JOBL, SJOB
       INTEGER            LDW, NN, SDIM
-      REAL*16   THNORM
+      REAL*10   THNORM
 C     ..
 C     .. Local Arrays ..
       LOGICAL            BWORK( 1 )

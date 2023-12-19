@@ -46,11 +46,11 @@ C             If TRANS = 'N' the number of columns of A and B; and if
 C             TRANS = 'T' or TRANS = 'C' the number of rows of A and B.
 C             K >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. If alpha is zero, or N <= 1, or K = 0,
 C             A and B are not referenced.
 C
-C     A       (input)  REAL*16 array, dimension (LDA,KA),
+C     A       (input)  REAL*10 array, dimension (LDA,KA),
 C             where KA is K when TRANS = 'N', and is N otherwise.
 C             On entry with TRANS = 'N', the leading N-by-K part of
 C             of this array must contain the matrix A.
@@ -62,7 +62,7 @@ C             The leading dimension of the array A.
 C             LDA >= MAX(1,N),  if TRANS = 'N';
 C             LDA >= MAX(1,K),  if TRANS = 'T' or TRANS = 'C'.
 C
-C     B       (input)  REAL*16 array, dimension (LDB,KB),
+C     B       (input)  REAL*10 array, dimension (LDB,KB),
 C             where KB is K when TRANS = 'N', and is N otherwise.
 C             On entry with TRANS = 'N', the leading N-by-K part of
 C             of this array must contain the matrix B.
@@ -74,11 +74,11 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N),  if TRANS = 'N';
 C             LDB >= MAX(1,K),  if TRANS = 'T' or TRANS = 'C'.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The scalar beta. If beta is zero C need not be set before
 C             entry.
 C
-C     C       (input/output)  REAL*16 array, dimension (LDC,N)
+C     C       (input/output)  REAL*10 array, dimension (LDC,N)
 C             On entry with UPLO = 'U', the leading N-by-N part of this
 C             array must contain the strictly upper triangular part of
 C             the matrix C. The lower triangular part of this array is
@@ -127,18 +127,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         UPLO, TRANS
       INTEGER           INFO, K, LDA, LDB, LDC, N
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*)
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*)
 C     .. Local Scalars ..
       LOGICAL           LUP, LTRAN
       INTEGER           I, J, L
-      REAL*16  TEMP1, TEMP2
+      REAL*10  TEMP1, TEMP2
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

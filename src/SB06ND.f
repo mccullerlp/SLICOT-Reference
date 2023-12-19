@@ -28,7 +28,7 @@ C     KMAX    (input) INTEGER
 C             The number of "stairs" in the staircase form as produced
 C             by SLICOT Library routine AB01OD.  0 <= KMAX <= N.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the transformed state-space matrix of the
 C             (A,B)-pair with triangular stairs, as produced by SLICOT
@@ -39,7 +39,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the transformed triangular input matrix of the
 C             (A,B)-pair as produced by SLICOT Library routine AB01OD
@@ -55,7 +55,7 @@ C             The leading KMAX elements of this array must contain the
 C             dimensions of each "stair" as produced by SLICOT Library
 C             routine AB01OD.
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,N)
+C     U       (input/output) REAL*10 array, dimension (LDU,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain either a transformation matrix (e.g. from a
 C             previous call to other SLICOT routine) or be initialised
@@ -68,7 +68,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= MAX(1,N).
 C
-C     F       (output) REAL*16 array, dimension (LDF,N)
+C     F       (output) REAL*10 array, dimension (LDF,N)
 C             The leading M-by-N part of this array contains the
 C             deadbeat feedback matrix F.
 C
@@ -77,7 +77,7 @@ C             The leading dimension of array F.  LDF >= MAX(1,M).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (2*N)
+C     DWORK   REAL*10 array, dimension (2*N)
 C
 C     Error Indicator
 C
@@ -154,13 +154,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, KMAX, LDA, LDB, LDF, LDU, M, N
 C     .. Array Arguments ..
       INTEGER           KSTAIR(*)
-      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), F(LDF,*), U(LDU,*)
+      REAL*10  A(LDA,*), B(LDB,*), DWORK(*), F(LDF,*), U(LDU,*)
 C     .. Local Scalars ..
       INTEGER           J, J0, JCUR, JKCUR, JMKCUR, KCUR, KK, KMIN,
      $                  KSTEP, MKCUR, NCONT

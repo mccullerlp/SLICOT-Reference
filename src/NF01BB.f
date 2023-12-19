@@ -16,20 +16,20 @@ C     .. NOUT is the unit number for printing intermediate results ..
       PARAMETER         ( CJTE = 'C' )
       INTEGER           NOUT
       PARAMETER         ( NOUT = 6 )
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           IFLAG, INFO, LDJ, LDU, LDWORK, LDY, LIPAR, LX,
      $                  NFEVL, NFUN
 C     .. Array Arguments ..
       INTEGER           IPAR(*)
-      REAL*16  DWORK(*), E(*), J(LDJ,*), JTE(*), U(LDU,*),
+      REAL*10  DWORK(*), E(*), J(LDJ,*), JTE(*), U(LDU,*),
      $                  X(*), Y(LDY,*)
 C     .. Local Scalars ..
       INTEGER           BSN, I, JWORK, L, M, N, NN, NSMP, ST
-      REAL*16  ERR
+      REAL*10  ERR
 C     .. External Functions ..
-      REAL*16  DNRM2
+      REAL*10  DNRM2
       EXTERNAL          DNRM2
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, NF01AD, NF01BD

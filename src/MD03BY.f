@@ -49,7 +49,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix R.  N >= 0.
 C
-C     R       (input/output) REAL*16 array, dimension (LDR, N)
+C     R       (input/output) REAL*10 array, dimension (LDR, N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix R.
 C             On exit, the full upper triangle is unaltered, and the
@@ -64,18 +64,18 @@ C             This array must define the permutation matrix P such that
 C             A*P = Q*R. Column j of P is column IPVT(j) of the identity
 C             matrix.
 C
-C     DIAG    (input) REAL*16 array, dimension (N)
+C     DIAG    (input) REAL*10 array, dimension (N)
 C             This array must contain the diagonal elements of the
 C             matrix D.  DIAG(I) <> 0, I = 1,...,N.
 C
-C     QTB     (input) REAL*16 array, dimension (N)
+C     QTB     (input) REAL*10 array, dimension (N)
 C             This array must contain the first n elements of the
 C             vector Q'*b.
 C
-C     DELTA   (input) REAL*16
+C     DELTA   (input) REAL*10
 C             An upper bound on the Euclidean norm of D*x.  DELTA > 0.
 C
-C     PAR     (input/output) REAL*16
+C     PAR     (input/output) REAL*10
 C             On entry, PAR must contain an initial estimate of the
 C             Levenberg-Marquardt parameter.  PAR >= 0.
 C             On exit, it contains the final estimate of this parameter.
@@ -86,16 +86,16 @@ C             (numerical) rank of the matrix R.
 C             On exit, this parameter contains the numerical rank of
 C             the matrix S.
 C
-C     X       (output) REAL*16 array, dimension (N)
+C     X       (output) REAL*10 array, dimension (N)
 C             This array contains the least squares solution of the
 C             system A*x = b, sqrt(PAR)*D*x = 0.
 C
-C     RX      (output) REAL*16 array, dimension (N)
+C     RX      (output) REAL*10 array, dimension (N)
 C             This array contains the matrix-vector product -R*P'*x.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             If COND = 'E', the tolerance to be used for finding the
 C             rank of the matrices R and S. If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -109,7 +109,7 @@ C             This parameter is not relevant if COND = 'U' or 'N'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, the first N elements of this array contain the
 C             diagonal elements of the upper triangular matrix S.
 C
@@ -175,26 +175,26 @@ C
 C     .. Parameters ..
       INTEGER           ITMAX
       PARAMETER         ( ITMAX = 10 )
-      REAL*16  P1, P001, ZERO, SVLMAX
+      REAL*10  P1, P001, ZERO, SVLMAX
       PARAMETER         ( P1  = 1.0D-1, P001 = 1.0D-3, ZERO = 0.0D0,
      $                    SVLMAX = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COND
       INTEGER           INFO, LDR, LDWORK, N, RANK
-      REAL*16  DELTA, PAR, TOL
+      REAL*10  DELTA, PAR, TOL
 C     .. Array Arguments ..
       INTEGER           IPVT(*)
-      REAL*16  DIAG(*), DWORK(*), QTB(*), R(LDR,*), RX(*), X(*)
+      REAL*10  DIAG(*), DWORK(*), QTB(*), R(LDR,*), RX(*), X(*)
 C     .. Local Scalars ..
       INTEGER           ITER, J, L, N2
-      REAL*16  DMINO, DWARF, DXNORM, FP, GNORM, PARC, PARL,
+      REAL*10  DMINO, DWARF, DXNORM, FP, GNORM, PARC, PARL,
      $                  PARU, TEMP, TOLDEF
       LOGICAL           ECOND, NCOND, SING, UCOND
       CHARACTER         CONDL
 C     .. Local Arrays ..
-      REAL*16  DUM(3)
+      REAL*10  DUM(3)
 C     .. External Functions ..
-      REAL*16  DDOT, DLAMCH, DNRM2
+      REAL*10  DDOT, DLAMCH, DNRM2
       LOGICAL           LSAME
       EXTERNAL          DDOT, DLAMCH, DNRM2, LSAME
 C     .. External Subroutines ..

@@ -28,17 +28,17 @@ C
 C     N       (input) INTEGER
 C             The number of samples.  N must be a power of 2.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (N)
+C     A       (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the first signal.
 C             On exit, this array contains the convolution (if
 C             CONV = 'C') or deconvolution (if CONV = 'D') of the two
 C             signals.
 C
-C     B       (input) REAL*16 array, dimension (N)
+C     B       (input) REAL*10 array, dimension (N)
 C             On entry, this array must contain the second signal.
 C             NOTE that this array is overwritten.
 C
-C     W       (input/output) REAL*16 array,
+C     W       (input/output) REAL*10 array,
 C                            dimension (N - LOG2(N))
 C             On entry with WGHT = 'A', this array must contain the long
 C             weight vector computed by a previous call of this routine
@@ -86,17 +86,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  HALF, TWO
+      REAL*10  HALF, TWO
       PARAMETER         ( HALF = 0.5D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         CONV, WGHT
       INTEGER           INFO, N
 C     .. Array Arguments ..
-      REAL*16  A(*), B(*), W(*)
+      REAL*10  A(*), B(*), W(*)
 C     .. Local Scalars ..
       LOGICAL           LCONV, LWGHT
       INTEGER           J, L, LEN, M, P1, R1
-      REAL*16  T1, T2, T3
+      REAL*10  T1, T2, T3
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

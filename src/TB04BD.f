@@ -48,7 +48,7 @@ C     MD      (input) INTEGER
 C             The maximum degree of the polynomials in G, plus 1. An
 C             upper bound for MD is N+1.  MD >= 1.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, if EQUIL = 'S', the leading N-by-N part of this
@@ -59,7 +59,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the contents of B are destroyed: all elements but
@@ -68,7 +68,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, if EQUIL = 'S', the leading P-by-N part of this
@@ -79,7 +79,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             If JOBD = 'D', the leading P-by-M part of this array must
 C             contain the matrix D.
 C             If JOBD = 'Z', the array D is not referenced.
@@ -109,7 +109,7 @@ C
 C     LDIGD   INTEGER
 C             The leading dimension of array IGD.  LDIGD >= max(1,P).
 C
-C     GN      (output) REAL*16 array, dimension (P*M*MD)
+C     GN      (output) REAL*10 array, dimension (P*M*MD)
 C             This array contains the coefficients of the numerator
 C             polynomials, Num(i,j), of the transfer function matrix G.
 C             The polynomials are stored in a column-wise order, i.e.,
@@ -121,7 +121,7 @@ C             location ((j-1)*P+i-1)*MD+1. The coefficients appear in
 C             increasing or decreasing order of the powers of the
 C             indeterminate, according to ORDER.
 C
-C     GD      (output) REAL*16 array, dimension (P*M*MD)
+C     GD      (output) REAL*10 array, dimension (P*M*MD)
 C             This array contains the coefficients of the denominator
 C             polynomials, Den(i,j), of the transfer function matrix G.
 C             The polynomials are stored in the same way as the
@@ -129,7 +129,7 @@ C             numerator polynomials.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in determining the
 C             controllability of a single-input system (A,b) or (A',c'),
 C             where b and c' are columns in B and C' (C transposed). If
@@ -146,7 +146,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -231,28 +231,28 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, C100
+      REAL*10   ZERO, ONE, C100
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0, C100 = 100.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          EQUIL, JOBD, ORDER
-      REAL*16   TOL
+      REAL*10   TOL
       INTEGER            INFO, LDA, LDB, LDC, LDD, LDIGD, LDIGN, LDWORK,
      $                   M, MD, N, P
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10   A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                   DWORK(*), GD(*), GN(*)
       INTEGER            IGD(LDIGD,*), IGN(LDIGN,*), IWORK(*)
 C     .. Local Scalars ..
-      REAL*16   ANORM, DIJ, EPSN, MAXRED, TOLDEF, X
+      REAL*10   ANORM, DIJ, EPSN, MAXRED, TOLDEF, X
       INTEGER            I, IA, IAC, IAS, IB, IC, ICC, IERR, IIP, IM,
      $                   IP, IPM1, IRP, ITAU, ITAU1, IZ, J, JJ, JWORK,
      $                   JWORK1, K, L, NCONT, WRKOPT
       LOGICAL            ASCEND, DIJNZ, FNDEIG, WITHD
 C     .. Local Arrays ..
-      REAL*16   Z(1)
+      REAL*10   Z(1)
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH, DLANGE
+      REAL*10   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DHSEQR, DLACPY, MA02AD, MC01PD,

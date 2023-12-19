@@ -64,14 +64,14 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, G, and Q.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     G       (input/output) REAL*16 array, dimension (LDG,N)
+C     G       (input/output) REAL*10 array, dimension (LDG,N)
 C             On entry, the leading N-by-N upper triangular part (if
 C             UPLO = 'U') or lower triangular part (if UPLO = 'L') of
 C             this array must contain the upper triangular part or lower
@@ -85,7 +85,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= MAX(1,N).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,N)
 C             On entry, the leading N-by-N upper triangular part (if
 C             UPLO = 'U') or lower triangular part (if UPLO = 'L') of
 C             this array must contain the upper triangular part or lower
@@ -99,7 +99,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     S       (output) REAL*16 array, dimension (LDS,2*N)
+C     S       (output) REAL*10 array, dimension (LDS,2*N)
 C             If INFO = 0, the leading 2N-by-2N part of this array
 C             contains the Hamiltonian or symplectic matrix of the
 C             problem.
@@ -113,7 +113,7 @@ C     IWORK   INTEGER array, dimension (LIWORK), where
 C             LIWORK >= 0,   if DICO = 'C';
 C             LIWORK >= 2*N, if DICO = 'D'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if DICO = 'D', DWORK(1) returns the reciprocal
 C             condition number  RCOND  of the given matrix  A,  and
 C             DWORK(2) returns the reciprocal pivot growth factor
@@ -178,20 +178,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, HINV, TRANA, UPLO
       INTEGER           INFO, LDA, LDG, LDQ, LDS, LDWORK, N
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), DWORK(*), G(LDG,*), Q(LDQ,*),
+      REAL*10  A(LDA,*), DWORK(*), G(LDG,*), Q(LDQ,*),
      $                  S(LDS,*)
 C     .. Local Scalars ..
       CHARACTER         EQUED, TRANAT
       LOGICAL           DISCR, LHINV, LUPLO, NOTRNA
       INTEGER           I, J, N2, NJ, NP1
-      REAL*16  PIVOTG, RCOND, RCONDA, TEMP
+      REAL*10  PIVOTG, RCOND, RCONDA, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

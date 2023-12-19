@@ -26,35 +26,35 @@ C     NY      (input) INTEGER
 C             The number of output vectors y(k) to be computed.
 C             NY >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state matrix A of the system.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input matrix B of the system.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             output matrix C of the system.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             direct link matrix D of the system.
 C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     U       (input) REAL*16 array, dimension (LDU,NY)
+C     U       (input) REAL*10 array, dimension (LDU,NY)
 C             The leading M-by-NY part of this array must contain the
 C             input vector sequence u(k), for k = 1,2,...,NY.
 C             Specifically, the k-th column of U must contain u(k).
@@ -62,13 +62,13 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= MAX(1,M).
 C
-C     X       (input/output) REAL*16 array, dimension (N)
+C     X       (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the initial state vector
 C             x(1) which consists of the N initial states of the system.
 C             On exit, this array contains the final state vector
 C             x(NY+1) of the N states of the system at instant NY.
 C
-C     Y       (output) REAL*16 array, dimension (LDY,NY)
+C     Y       (output) REAL*10 array, dimension (LDY,NY)
 C             The leading P-by-NY part of this array contains the output
 C             vector sequence y(1),y(2),...,y(NY) such that the k-th
 C             column of Y contains y(k) (the outputs at instant k),
@@ -79,7 +79,7 @@ C             The leading dimension of array Y.  LDY >= MAX(1,P).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N)
+C     DWORK   REAL*10 array, dimension (N)
 C
 C     Error Indicator
 C
@@ -129,12 +129,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDU, LDY, M, N, NY, P
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), U(LDU,*), X(*), Y(LDY,*)
 C     .. Local Scalars ..
       INTEGER           IK

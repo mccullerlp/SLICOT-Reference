@@ -15,19 +15,19 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     X1      (input/output) REAL*16
+C     X1      (input/output) REAL*10
 C             On entry, the real number x1.
 C             On exit, the real number y1.
 C
-C     X2      (input) REAL*16
+C     X2      (input) REAL*10
 C             The real number x2.
 C             The values x1 and x2 should satisfy either x1 = x2 = 0, or
 C             abs(x2) < abs(x1).
 C
-C     C       (output) REAL*16
+C     C       (output) REAL*10
 C             The cosines c of the modified hyperbolic plane rotation.
 C
-C     S       (output) REAL*16
+C     S       (output) REAL*10
 C             The sines s of the modified hyperbolic plane rotation.
 C
 C     Error Indicator
@@ -51,10 +51,10 @@ C
 C     *****************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16  X1, X2, C, S
+      REAL*10  X1, X2, C, S
       INTEGER           INFO
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, SIGN, SQRT

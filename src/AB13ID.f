@@ -98,7 +98,7 @@ C     P       (input) INTEGER
 C             The dimension of the descriptor system output vector; also
 C             the number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state matrix A.
 C             On exit, if JOBSYS = 'R' and JOBEIG = 'A', the leading
@@ -121,7 +121,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, if JOBSYS = 'R' and JOBEIG = 'A', the leading
@@ -140,7 +140,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB,MAX(M,P))
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B; the remainder of the leading
@@ -163,7 +163,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C; the remainder of the leading
 C             MAX(M,P)-by-N part is used as internal workspace.
@@ -201,7 +201,7 @@ C             The effective (estimated) rank of the reduced matrix Er.
 C
 C     Tolerances
 C
-C     TOL     REAL*16 array, dimension 3
+C     TOL     REAL*10 array, dimension 3
 C             TOL(1) is the tolerance to be used in rank determinations
 C             when transforming (lambda*E-A,B,C). If the user sets
 C             TOL(1) > 0, then the given value of TOL(1) is used as a
@@ -240,7 +240,7 @@ C             resulting system matrices after removing the specified
 C             eigenvalues (see the description of the parameter INFRED
 C             of the SLICOT Library routine TG01JY).
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -373,7 +373,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TEN
+      REAL*10   ZERO, ONE, TEN
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TEN = 1.0D+1 )
 C
 C     .. Scalar Arguments ..
@@ -383,7 +383,7 @@ C     .. Scalar Arguments ..
 C
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK( * ), E( LDE, * ), TOL( * )
 C
 C     .. Local Scalars ..
@@ -392,10 +392,10 @@ C     .. Local Scalars ..
      $                   LUPD, MAXACC
       INTEGER            I, ISV, ITAU, IWRK, IWS, J, K, MAXMP, MAXWRK,
      $                   MINWRK, N1, NA, RANKA
-      REAL*16   PREC, SVLMAX, THRESH, TOLDEF
+      REAL*10   PREC, SVLMAX, THRESH, TOLDEF
 C
 C     .. Local Arrays ..
-      REAL*16   DUM( 2 ), TOLV( 3 )
+      REAL*10   DUM( 2 ), TOLV( 3 )
 C
 C     .. External Subroutines ..
       EXTERNAL           DLACPY, DLASET, DORMQR, DORMRZ, DSWAP, DTZRZF,
@@ -403,7 +403,7 @@ C     .. External Subroutines ..
 C
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH, DLANGE
+      REAL*10   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE, LSAME
 C
 C     .. Intrinsic Functions ..

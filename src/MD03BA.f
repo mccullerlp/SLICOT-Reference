@@ -33,10 +33,10 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 1.
 C
-C     FNORM   (input) REAL*16
+C     FNORM   (input) REAL*10
 C             The Euclidean norm of the vector e.  FNORM >= 0.
 C
-C     J       (input/output) REAL*16 array, dimension (LDJ, N)
+C     J       (input/output) REAL*10 array, dimension (LDJ, N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the Jacobian matrix J.
 C             On exit, the leading N-by-N upper triangular part of this
@@ -51,15 +51,15 @@ C             The leading dimension of array J.
 C             On entry, LDJ >= MAX(1,M).
 C             On exit,  LDJ >= MAX(1,N).
 C
-C     E       (input/output) REAL*16 array, dimension (M)
+C     E       (input/output) REAL*10 array, dimension (M)
 C             On entry, this array must contain the error vector e.
 C             On exit, this array contains the updated vector Q'*e.
 C
-C     JNORMS  (output) REAL*16 array, dimension (N)
+C     JNORMS  (output) REAL*10 array, dimension (N)
 C             This array contains the Euclidean norms of the columns
 C             of the Jacobian matrix, considered in the initial order.
 C
-C     GNORM   (output) REAL*16
+C     GNORM   (output) REAL*10
 C             If FNORM > 0, the 1-norm of the scaled vector
 C             J'*Q'*e/FNORM, with each element i further divided
 C             by JNORMS(i) (if JNORMS(i) is nonzero).
@@ -72,7 +72,7 @@ C             matrix.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -116,10 +116,10 @@ C     ******************************************************************
 C
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDJ, LDWORK, LIPAR, N
-      REAL*16  FNORM, GNORM
+      REAL*10  FNORM, GNORM
 C     .. Array Arguments ..
       INTEGER           IPAR(*), IPVT(*)
-      REAL*16  DWORK(*), E(*), J(*), JNORMS(*)
+      REAL*10  DWORK(*), E(*), J(*), JNORMS(*)
 C     .. External Subroutines ..
       EXTERNAL          MD03BX
 C     ..

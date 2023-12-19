@@ -17,7 +17,7 @@ C     P       (input) INTEGER
 C             The number of matrices in the product T_1*T_2*...*T_p.
 C             P >= 1.
 C
-C     T       (input) REAL*16 array, dimension (LDT1,LDT2,P)
+C     T       (input) REAL*10 array, dimension (LDT1,LDT2,P)
 C             The leading N-by-N part of T(*,*,1) must contain the upper
 C             quasi-triangular matrix T_1 and the leading N-by-N part of
 C             T(*,*,j) for j > 1 must contain the upper-triangular
@@ -34,7 +34,7 @@ C     LDT2    INTEGER
 C             The second leading dimension of the array T.
 C             LDT2 >= max(1,N).
 C
-C     WR, WI  (output) REAL*16 arrays, dimension (N)
+C     WR, WI  (output) REAL*10 arrays, dimension (N)
 C             The real and imaginary parts, respectively, of the
 C             eigenvalues of T. The eigenvalues are stored in the same
 C             order as on the diagonal of T_1. If T(i:i+1,i:i+1,1) is a
@@ -64,15 +64,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ZERO, ONE
+      REAL*10 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       INTEGER          INFO, LDT1, LDT2, N, P
 C     .. Array Arguments ..
-      REAL*16 T( LDT1, LDT2, * ), WI( * ), WR( * )
+      REAL*10 T( LDT1, LDT2, * ), WI( * ), WR( * )
 C     .. Local Scalars ..
       INTEGER          I, I1, INEXT, J
-      REAL*16 A11, A12, A21, A22, CS, SN, T11, T12, T22
+      REAL*10 A11, A12, A21, A22, CS, SN, T11, T12, T22
 C     .. External Subroutines ..
       EXTERNAL         DLANV2, XERBLA
 C     .. Intrinsic Functions ..

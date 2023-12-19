@@ -59,14 +59,14 @@ C             and columns of the principal subpencil  of A - lambda*E
 C             whose diagonal blocks are to be reordered.
 C             0 <= NLOW <= NSUP <= N.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The boundary of the domain of interest for the eigenvalues
 C             of A. If DICO = 'C', ALPHA is the boundary value for the
 C             real parts of the generalized eigenvalues, while for
 C             DICO = 'D', ALPHA >= 0 represents the boundary value for
 C             the moduli of the generalized eigenvalues.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain a matrix in a real Schur form whose 1-by-1 and
 C             2-by-2 diagonal blocks between positions NLOW and NSUP
@@ -93,7 +93,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain a matrix in an upper triangular form.
 C             On exit, the leading N-by-N part of this array contains an
@@ -109,7 +109,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,N)
+C     U       (input/output) REAL*10 array, dimension (LDU,N)
 C             On entry with JOBU = 'U', the leading N-by-N part of this
 C             array must contain a transformation matrix (e.g., from a
 C             previous call to this routine).
@@ -125,7 +125,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of the array U.  LDU >= MAX(1,N).
 C
-C     V       (input/output) REAL*16 array, dimension (LDV,N)
+C     V       (input/output) REAL*10 array, dimension (LDV,N)
 C             On entry with JOBV = 'U', the leading N-by-N part of this
 C             array must contain a transformation matrix (e.g., from a
 C             previous call to this routine).
@@ -154,7 +154,7 @@ C             orthonormal basis for the above deflating subspace.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -230,23 +230,23 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ONE, ZERO
+      REAL*10 ONE, ZERO
       PARAMETER        ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, JOBU, JOBV, STDOM
       INTEGER          INFO, LDA, LDE, LDU, LDV, LDWORK, N, NDIM, NLOW,
      $                 NSUP
-      REAL*16 ALPHA
+      REAL*10 ALPHA
 C     .. Array Arguments ..
-      REAL*16 A(LDA,*), DWORK(*), E(LDE,*), U(LDU,*), V(LDV,*)
+      REAL*10 A(LDA,*), DWORK(*), E(LDE,*), U(LDU,*), V(LDV,*)
 C     .. Local Scalars ..
       LOGICAL          DISCR, LQUERY, LSTDOM
       INTEGER          IB, L, LM1, MINWRK, NUP
-      REAL*16 ALPHAI(2), ALPHAR(2), BETA(2)
-      REAL*16 TLAMBD, TOLE, X
+      REAL*10 ALPHAI(2), ALPHAR(2), BETA(2)
+      REAL*10 TLAMBD, TOLE, X
 C     .. External Functions ..
       LOGICAL          LSAME
-      REAL*16 DLAMCH, DLANTR, DLAPY2
+      REAL*10 DLAMCH, DLANTR, DLAPY2
       EXTERNAL         DLAMCH, DLANTR, DLAPY2, LSAME
 C     .. External Subroutines ..
       EXTERNAL         DLASET, DTGEXC, MB03QW, XERBLA

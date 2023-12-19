@@ -16,18 +16,18 @@ C
 C     DP      (input) INTEGER
 C             The degree of the polynomial P(x).  DP >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar value alpha of the problem.
 C
 C     K       (input) INTEGER
 C             The number of coefficients of the shifted polynomial to be
 C             computed.  1 <= K <= DP+1.
 C
-C     P       (input) REAL*16 array, dimension (DP+1)
+C     P       (input) REAL*10 array, dimension (DP+1)
 C             This array must contain the coefficients of P(x) in
 C             increasing powers of x.
 C
-C     Q       (output) REAL*16 array, dimension (DP+1)
+C     Q       (output) REAL*10 array, dimension (DP+1)
 C             The leading K elements of this array contain the first
 C             K coefficients of the shifted polynomial in increasing
 C             powers of (x - alpha), and the next (DP-K+1) elements
@@ -97,13 +97,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DP, INFO, K
-      REAL*16  ALPHA
+      REAL*10  ALPHA
 C     .. Array Arguments ..
-      REAL*16  P(*), Q(*)
+      REAL*10  P(*), Q(*)
 C     .. Local Scalars ..
       INTEGER           I, J
 C     .. External Subroutines ..

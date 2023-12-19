@@ -1,4 +1,4 @@
-      REAL*16 FUNCTION MB03NY( N, OMEGA, A, LDA, S, DWORK,
+      REAL*10 FUNCTION MB03NY( N, OMEGA, A, LDA, S, DWORK,
      $                                  LDWORK, CWORK, LCWORK, INFO )
 C
 C     PURPOSE
@@ -7,7 +7,7 @@ C     To compute the smallest singular value of A - jwI.
 C
 C     FUNCTION VALUE
 C
-C     MB03NY  REAL*16
+C     MB03NY  REAL*10
 C             The smallest singular value of A - jwI (if INFO = 0).
 C             If N = 0, the function value is set to zero.
 C
@@ -18,10 +18,10 @@ C
 C     N       (input) INTEGER
 C             The order of the the matrix A.  N >= 0.
 C
-C     OMEGA   (input) REAL*16
+C     OMEGA   (input) REAL*10
 C             The constant factor of A - jwI.
 C
-C     A       (input/workspace) REAL*16 array, dimension
+C     A       (input/workspace) REAL*10 array, dimension
 C             (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
@@ -31,12 +31,12 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     S       (output) REAL*16 array, dimension (N)
+C     S       (output) REAL*10 array, dimension (N)
 C             The singular values of A - jwI in decreasing order.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -44,7 +44,7 @@ C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= MAX( 1, 5*N ).
 C             For optimum performance LDWORK should be larger.
 C
-C     CWORK   COMPLEX*32 array, dimension (LCWORK)
+C     CWORK   COMPLEX*20 array, dimension (LCWORK)
 C             On exit, if INFO = 0 and OMEGA <> 0, CWORK(1) returns the
 C             optimal value of LCWORK.
 C             If OMEGA is zero, this array is not referenced.
@@ -96,22 +96,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16       ZERO, ONE
+      REAL*10       ZERO, ONE
       PARAMETER              ( ZERO = 0.0D0, ONE = 1.0D0 )
-      COMPLEX*32             CONE, RTMONE
+      COMPLEX*20             CONE, RTMONE
       PARAMETER              ( CONE   = ( 1.0D0, 0.0D0 ),
      $                         RTMONE = ( 0.0D0, 1.0D0 ) )
 C     .. Scalar Arguments ..
       INTEGER                INFO, LCWORK, LDA, LDWORK, N
-      REAL*16       OMEGA
+      REAL*10       OMEGA
 C     .. Array Arguments ..
-      REAL*16       A(LDA,*), DWORK(*), S(*)
-      COMPLEX*32             CWORK(*)
+      REAL*10       A(LDA,*), DWORK(*), S(*)
+      COMPLEX*20             CWORK(*)
 C     .. Local Scalars ..
       INTEGER                I, IC, J
 C     .. Local Arrays ..
-      REAL*16       DUMMY(1,1)
-      COMPLEX*32             ZDUMMY(1,1)
+      REAL*10       DUMMY(1,1)
+      COMPLEX*20             ZDUMMY(1,1)
 C     .. External Subroutines ..
       EXTERNAL               DGESVD, XERBLA, ZGESVD
 C     .. Intrinsic Functions ..

@@ -62,7 +62,7 @@ C
 C     P       (input) INTEGER
 C             The number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading L-by-N part of this array contains
@@ -80,7 +80,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, the leading L-by-N part of this array contains
@@ -96,7 +96,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the input/state matrix B.
 C             On exit, the leading L-by-M part of this array contains
@@ -106,7 +106,7 @@ C     LDB     INTEGER
 C             The leading dimension of array B.
 C             LDB >= MAX(1,L) if M > 0 or LDB >= 1 if M = 0.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -115,7 +115,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,L)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,L)
 C             If COMPQ = 'N':  Q is not referenced.
 C             If COMPQ = 'I':  on entry, Q need not be set;
 C                              on exit, the leading L-by-L part of this
@@ -135,7 +135,7 @@ C             The leading dimension of array Q.
 C             LDQ >= 1,        if COMPQ = 'N';
 C             LDQ >= MAX(1,L), if COMPQ = 'U' or 'I'.
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,N)
 C             If COMPZ = 'N':  Z is not referenced.
 C             If COMPZ = 'I':  on entry, Z need not be set;
 C                              on exit, the leading N-by-N part of this
@@ -167,7 +167,7 @@ C             If JOBA = 'N', then RNKA22 is not referenced.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in determining the rank of E
 C             and of A22. If the user sets TOL > 0, then the given
 C             value of TOL is used as a lower bound for the
@@ -185,7 +185,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -276,28 +276,28 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE, ZERO
+      REAL*10   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ, JOBA
       INTEGER            INFO, L, LDA, LDB, LDC, LDE, LDQ, LDWORK,
      $                   LDZ, M, N, P, RANKE, RNKA22
-      REAL*16   TOL
+      REAL*10   TOL
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK( * ),  E( LDE, * ), Q( LDQ, * ),
      $                   Z( LDZ, * )
 C     .. Local Scalars ..
       LOGICAL            ILQ, ILZ, LQUERY, REDA, REDTR, WITHB, WITHC
       INTEGER            I, ICOMPQ, ICOMPZ, IR1, IRE1, J, K, KW, LA22,
      $                   LH, LN, LWR, NA22, WRKOPT
-      REAL*16   SVLMAX, TOLDEF
+      REAL*10   SVLMAX, TOLDEF
 C     .. Local Arrays ..
-      REAL*16   SVAL(3)
+      REAL*10   SVAL(3)
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH, DLANGE
+      REAL*10   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DLASET, DORMQR, DORMRZ, DSWAP, DTZRZF, MB03OY,

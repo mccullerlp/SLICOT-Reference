@@ -9,10 +9,10 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     REIG    (input) REAL*16
+C     REIG    (input) REAL*10
 C             The real part of the current eigenvalue considered.
 C
-C     IEIG    (input) REAL*16
+C     IEIG    (input) REAL*10
 C             The imaginary part of the current eigenvalue considered.
 C
 C     METHOD
@@ -44,10 +44,10 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16  IEIG, REIG
+      REAL*10  IEIG, REIG
 C     .. Executable Statements ..
 C
       SB02MR = REIG.GE.ZERO

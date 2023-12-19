@@ -14,7 +14,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A and B.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             upper quasi-triangular matrix A. The elements below the
 C             subdiagonal are not referenced.
@@ -22,7 +22,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper quasi-triangular matrix B, with the same
 C             structure as matrix A.
@@ -36,7 +36,7 @@ C             The leading dimension of the array B.  LDB >= max(1,N).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N-1)
+C     DWORK   REAL*10 array, dimension (N-1)
 C
 C     Error Indicator
 C
@@ -72,12 +72,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), DWORK(*)
+      REAL*10  A(LDA,*), B(LDB,*), DWORK(*)
 C     .. Local Scalars ..
       INTEGER           I, J, JMIN, JMNM
 C     .. External Subroutines ..

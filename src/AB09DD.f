@@ -33,7 +33,7 @@ C
 C     NR      (input) INTEGER
 C             The order of the reduced order system.  N >= NR >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix of the original system.
 C             On exit, the leading NR-by-NR part of this array contains
@@ -42,7 +42,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix of the original system.
 C             On exit, the leading NR-by-M part of this array contains
@@ -51,7 +51,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix of the original system.
 C             On exit, the leading P-by-NR part of this array contains
@@ -60,7 +60,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the input/output matrix of the original system.
 C             On exit, the leading P-by-M part of this array contains
@@ -71,7 +71,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             The reciprocal condition number of the matrix A22-g*I
 C             (see METHOD).
 C
@@ -79,7 +79,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*(N-NR))
 C
-C     DWORK   REAL*16 array, dimension (4*(N-NR))
+C     DWORK   REAL*10 array, dimension (4*(N-NR))
 C
 C     Error Indicator
 C
@@ -127,22 +127,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO
       INTEGER           INFO, LDA, LDB, LDC, LDD, M, N, NR, P
-      REAL*16  RCOND
+      REAL*10  RCOND
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), DWORK(*)
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), DWORK(*)
       INTEGER           IWORK(*)
 C     .. Local Scalars
       LOGICAL           DISCR
       INTEGER           I, J, K, NS
-      REAL*16  A22NRM
+      REAL*10  A22NRM
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLANGE
+      REAL*10  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DGECON, DGEMM, DGETRF, DGETRS, XERBLA

@@ -42,7 +42,7 @@ C     M       (input) INTEGER
 C             The order of the matrix  A  and also the number of columns
 C             of matrices  X and C.  M = 1 or M = 2.
 C
-C     S       (input) REAL*16 array, dimension (LDS,N)
+C     S       (input) REAL*10 array, dimension (LDS,N)
 C             The leading  N-by-N  upper Hessenberg part of the array  S
 C             must contain the block upper triangular matrix. The
 C             elements below the upper Hessenberg part of the array  S
@@ -54,14 +54,14 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,N).
 C
-C     A       (input) REAL*16 array, dimension (LDS,M)
+C     A       (input) REAL*10 array, dimension (LDS,M)
 C             The leading  M-by-M  part of this array must contain a
 C             given matrix, where M = 1 or M = 2.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= M.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,M)
+C     C       (input/output) REAL*10 array, dimension (LDC,M)
 C             On entry, C must contain an N-by-M matrix, where M = 1 or
 C             M = 2.
 C             On exit, C contains the N-by-M matrix X, the solution of
@@ -70,7 +70,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,N).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
@@ -118,25 +118,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       LOGICAL            DISCR, LTRANS
       INTEGER            INFO, LDA, LDS, LDC, M, N
-      REAL*16   SCALE
+      REAL*10   SCALE
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), C( LDC, * ), S( LDS, * )
+      REAL*10   A( LDA, * ), C( LDC, * ), S( LDS, * )
 C     .. Local Scalars ..
       LOGICAL            TBYT
       INTEGER            DL, INFOM, ISGN, J, L, L1, L2, L2P1, LNEXT
-      REAL*16   G11, G12, G21, G22, SCALOC, XNORM
+      REAL*10   G11, G12, G21, G22, SCALOC, XNORM
 C     ..
 C     .. Local Arrays ..
-      REAL*16   AT( 2, 2 ), VEC( 2, 2 ), X( 2, 2 )
+      REAL*10   AT( 2, 2 ), VEC( 2, 2 ), X( 2, 2 )
 C     ..
 C     .. External Functions ..
-      REAL*16   DDOT
+      REAL*10   DDOT
       EXTERNAL           DDOT
 C     ..
 C     .. External Subroutines ..

@@ -63,7 +63,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 0.
 C
-C     R       (input/output) REAL*16 array, dimension (LDR, N)
+C     R       (input/output) REAL*10 array, dimension (LDR, N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix R.
 C             On exit, the full upper triangle is unaltered, and the
@@ -78,18 +78,18 @@ C             This array must define the permutation matrix P such that
 C             A*P = Q*R. Column j of P is column IPVT(j) of the identity
 C             matrix.
 C
-C     DIAG    (input) REAL*16 array, dimension (N)
+C     DIAG    (input) REAL*10 array, dimension (N)
 C             This array must contain the diagonal elements of the
 C             matrix D.  DIAG(I) <> 0, I = 1,...,N.
 C
-C     QTB     (input) REAL*16 array, dimension (N)
+C     QTB     (input) REAL*10 array, dimension (N)
 C             This array must contain the first n elements of the
 C             vector Q'*b.
 C
-C     DELTA   (input) REAL*16
+C     DELTA   (input) REAL*10
 C             An upper bound on the Euclidean norm of D*x.  DELTA > 0.
 C
-C     PAR     (input/output) REAL*16
+C     PAR     (input/output) REAL*10
 C             On entry, PAR must contain an initial estimate of the
 C             Levenberg-Marquardt parameter.  PAR >= 0.
 C             On exit, it contains the final estimate of this parameter.
@@ -102,16 +102,16 @@ C             matrix S.
 C             RANKS is defined as an array for compatibility with SLICOT
 C             Library routine MD03BD.
 C
-C     X       (output) REAL*16 array, dimension (N)
+C     X       (output) REAL*10 array, dimension (N)
 C             This array contains the least squares solution of the
 C             system A*x = b, sqrt(PAR)*D*x = 0.
 C
-C     RX      (output) REAL*16 array, dimension (N)
+C     RX      (output) REAL*10 array, dimension (N)
 C             This array contains the matrix-vector product -R*P'*x.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             If COND = 'E', the tolerance to be used for finding the
 C             rank of the matrices R and S. If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -125,7 +125,7 @@ C             This parameter is not relevant if COND = 'U' or 'N'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, the first N elements of this array contain the
 C             diagonal elements of the upper triangular matrix S.
 C
@@ -168,10 +168,10 @@ C
 C     .. Scalar Arguments ..
       CHARACTER         COND
       INTEGER           INFO, LDR, LDWORK, LIPAR, N
-      REAL*16  DELTA, PAR, TOL
+      REAL*10  DELTA, PAR, TOL
 C     .. Array Arguments ..
       INTEGER           IPAR(*), IPVT(*), RANKS(*)
-      REAL*16  DIAG(*), DWORK(*), QTB(*), R(LDR,*), RX(*), X(*)
+      REAL*10  DIAG(*), DWORK(*), QTB(*), R(LDR,*), RX(*), X(*)
 C     .. External Subroutines ..
       EXTERNAL          MD03BY
 C     ..

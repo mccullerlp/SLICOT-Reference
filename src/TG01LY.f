@@ -71,11 +71,11 @@ C     RANKE   (input) INTEGER
 C             The rank of the matrix E; also, the order of the upper
 C             triangular matrix E11.  0 <= RANKE <= N. 
 C
-C     RNKA22  (input) REAL*16
+C     RNKA22  (input) REAL*10
 C             The order of the nonsingular submatrix A22 of A.
 C             0 <= RNKA22 <= N - RANKE. 
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N state matrix A in the form (1).
 C             On exit, the leading N-by-N part of this array contains
@@ -93,7 +93,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N descriptor matrix E in the form (1).
 C             On exit, the leading N-by-N part of this array contains
@@ -110,7 +110,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the N-by-M input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -119,7 +119,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -128,7 +128,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,N)
 C             If COMPQ = .FALSE., Q is not referenced.
 C             If COMPQ = .TRUE., on entry, the leading N-by-N part of
 C                         this array must contain an orthogonal matrix
@@ -140,7 +140,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,        if COMPQ = .FALSE.;
 C             LDQ >= MAX(1,N), if COMPQ = .TRUE. .
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,N)
 C             If COMPZ = .FALSE., Z is not referenced.
 C             If COMPZ = .TRUE., on entry, the leading N-by-N part of
 C                        this array must contain an orthogonal matrix
@@ -167,7 +167,7 @@ C             staircase form (2), where i = 1, 2, ..., NIBLCK.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -182,7 +182,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N-RANKE)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -255,16 +255,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE, ZERO
+      REAL*10   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL            COMPQ, COMPZ
       INTEGER            INFO, LDA, LDB, LDC, LDE, LDQ, LDWORK, LDZ, M,
      $                   N, NF, NIBLCK, P, RANKE, RNKA22
-      REAL*16   TOL
+      REAL*10   TOL
 C     .. Array Arguments ..
       INTEGER            IBLCK( * ), IWORK(*)
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK(  * ), E( LDE, * ), Q( LDQ, * ),
      $                   Z( LDZ, * )
 C     .. Local Scalars ..
@@ -272,11 +272,11 @@ C     .. Local Scalars ..
       INTEGER            I, I0, I1, ICOL, IPIV, IROW, ITAU, J, JWORK1,
      $                   JWORK2, K, MINWRK, MM1, N1, ND, NR, RANK, RO,
      $                   RO1, SIGMA, WRKOPT
-      REAL*16   CO, RCOND, SI, SVLMAX, T, TOLDEF
+      REAL*10   CO, RCOND, SI, SVLMAX, T, TOLDEF
 C     .. Local Arrays ..
-      REAL*16   DUM(1), SVAL(3)
+      REAL*10   DUM(1), SVAL(3)
 C     .. External Functions ..
-      REAL*16   DLAMCH, DLANGE, DLANTR, DLAPY2, DNRM2
+      REAL*10   DLAMCH, DLANGE, DLANTR, DLAPY2, DNRM2
       EXTERNAL           DLAMCH, DLANGE, DLANTR, DLAPY2, DNRM2
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DLACPY, DLAPMT, DLARFG, DLARTG, DLASET,

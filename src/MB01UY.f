@@ -46,11 +46,11 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then T and A need not
 C             be set before entry.
 C
-C     T       (input/output) REAL*16 array, dimension
+C     T       (input/output) REAL*10 array, dimension
 C             (LDT,max(K,N)), when SIDE = 'L', and
 C             (LDT,K),        when SIDE = 'R',
 C             where K is M if SIDE = 'L' and is N if SIDE = 'R'.
@@ -71,7 +71,7 @@ C             The leading dimension of the array T.
 C             LDT >= max(1,M),    if SIDE = 'L';
 C             LDT >= max(1,M,N),  if SIDE = 'R'.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading M-by-N part of this array must contain the
 C             matrix A.
 C
@@ -80,7 +80,7 @@ C             The leading dimension of the array A.  LDA >= max(1,M).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal value
 C             of LDWORK.
 C             On exit, if  INFO = -12,  DWORK(1)  returns the minimum
@@ -125,14 +125,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SIDE, TRANS, UPLO
       INTEGER           INFO, LDA, LDT, LDWORK, M, N
-      REAL*16  ALPHA
+      REAL*10  ALPHA
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), DWORK(*), T(LDT,*)
+      REAL*10  A(LDA,*), DWORK(*), T(LDT,*)
 C     .. Local Scalars ..
       CHARACTER         TRANC, UPLOC
       LOGICAL           LONT, LOTR, LQUERY, LSIDE, LTRAN, LUPLO, UPNT,

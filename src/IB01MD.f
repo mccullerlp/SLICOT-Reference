@@ -82,7 +82,7 @@ C             sequential data processing, but  NOBR, M,  and  L  should
 C             be kept constant. For efficiency, it is advisable to use
 C             NSMP  as large as possible.
 C
-C     U       (input) REAL*16 array, dimension (LDU,M)
+C     U       (input) REAL*10 array, dimension (LDU,M)
 C             The leading NSMP-by-M part of this array must contain the
 C             t-by-m input-data sequence matrix  U,
 C             U = [u_1 u_2 ... u_m].  Column  j  of  U  contains the
@@ -95,7 +95,7 @@ C             The leading dimension of the array U.
 C             LDU >= NSMP, if M > 0;
 C             LDU >= 1,    if M = 0.
 C
-C     Y       (input) REAL*16 array, dimension (LDY,L)
+C     Y       (input) REAL*10 array, dimension (LDY,L)
 C             The leading NSMP-by-L part of this array must contain the
 C             t-by-l output-data sequence matrix  Y,
 C             Y = [y_1 y_2 ... y_l].  Column  j  of  Y  contains the
@@ -105,7 +105,7 @@ C
 C     LDY     INTEGER
 C             The leading dimension of the array Y.  LDY >= NSMP.
 C
-C     R       (output or input/output) REAL*16 array, dimension
+C     R       (output or input/output) REAL*10 array, dimension
 C             ( LDR,2*(M+L)*NOBR )
 C             On exit, if INFO = 0 and ALG = 'Q', or (ALG = 'C' or 'F',
 C             and BATCH = 'L' or 'O'), the leading
@@ -149,7 +149,7 @@ C             The first three elements of  IWORK  should be preserved
 C             during successive calls of the routine with  BATCH = 'F'
 C             or  BATCH = 'I',  till the final call with   BATCH = 'L'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -17,  DWORK(1)  returns the minimum
@@ -327,7 +327,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
       INTEGER            MAXCYC
       PARAMETER          ( MAXCYC = 100 )
@@ -337,9 +337,9 @@ C     .. Scalar Arguments ..
       CHARACTER          ALG, BATCH, CONCT, METH
 C     .. Array Arguments ..
       INTEGER            IWORK(*)
-      REAL*16   DWORK(*), R(LDR, *), U(LDU, *), Y(LDY, *)
+      REAL*10   DWORK(*), R(LDR, *), U(LDU, *), Y(LDY, *)
 C     .. Local Scalars ..
-      REAL*16   UPD, TEMP
+      REAL*10   UPD, TEMP
       INTEGER            I, ICOL, ICYCLE, ID, IERR, II, INICYC, INIT,
      $                   INITI, INU, INY, IREV, ISHFT2, ISHFTU, ISHFTY,
      $                   ITAU, J, JD, JWORK, LDRWMX, LDRWRK, LLDRW,
@@ -349,7 +349,7 @@ C     .. Local Scalars ..
       LOGICAL            CHALG, CONNEC, FIRST, FQRALG, INTERM, LAST,
      $                   LINR, LQUERY, MOESP, N4SID, ONEBCH, QRALG
 C     .. Local Arrays ..
-      REAL*16   DUM( 1 )
+      REAL*10   DUM( 1 )
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

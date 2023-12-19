@@ -9,22 +9,22 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     A       (input) REAL*16
+C     A       (input) REAL*10
 C             The value of the coefficient of the quadratic term.
 C
-C     B       (input) REAL*16
+C     B       (input) REAL*10
 C             The value of the coefficient of the linear term.
 C
-C     C       (input) REAL*16
+C     C       (input) REAL*10
 C             The value of the coefficient of the constant term.
 C
-C     Z1RE    (output) REAL*16
-C     Z1IM    (output) REAL*16
+C     Z1RE    (output) REAL*10
+C     Z1IM    (output) REAL*10
 C             The real and imaginary parts, respectively, of the largest
 C             root in magnitude.
 C
-C     Z2RE    (output) REAL*16
-C     Z2IM    (output) REAL*16
+C     Z2RE    (output) REAL*10
+C     Z2IM    (output) REAL*10
 C             The real and imaginary parts, respectively, of the
 C             smallest root in magnitude.
 C
@@ -88,18 +88,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, FOUR
+      REAL*10  ZERO, ONE, FOUR
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, FOUR=4.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO
-      REAL*16  A, B, C, Z1IM, Z1RE, Z2IM, Z2RE
+      REAL*10  A, B, C, Z1IM, Z1RE, Z2IM, Z2RE
 C     .. Local Scalars ..
       LOGICAL           OVFLOW
       INTEGER           BETA, EA, EAPLEC, EB, EB2, EC, ED
-      REAL*16  ABSA, ABSB, ABSC, BIG, M1, M2, MA, MB, MC, MD,
+      REAL*10  ABSA, ABSB, ABSC, BIG, M1, M2, MA, MB, MC, MD,
      $                  SFMIN, W
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          MC01SW, MC01SY

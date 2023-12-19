@@ -38,7 +38,7 @@ C             The order of the symmetric matrix A and the number of
 C             columns of the matrix Z, if TRANS = 'N', or the number of
 C             rows of the matrix Z, if TRANS = 'T'.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension
+C     A       (input/output) REAL*10 array, dimension
 C             (LDA,MAX(M,N))
 C             On entry, the leading N-by-N upper or lower triangular
 C             part of this array must contain the upper (UPLO = 'U')
@@ -52,7 +52,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,M,N).
 C
-C     Z       (input) REAL*16 array, dimension (LDQ,K)
+C     Z       (input) REAL*10 array, dimension (LDQ,K)
 C             where K = N if TRANS = 'N' and K = M if TRANS = 'T'.
 C             The leading M-by-N part, if TRANS = 'N', or N-by-M part,
 C             if TRANS = 'T', of this array contains the matrix Z.
@@ -64,7 +64,7 @@ C             LDZ >= MAX(1,N) if TRANS = 'T'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N)
+C     DWORK   REAL*10 array, dimension (N)
 C
 C     Error Indicator
 C
@@ -89,13 +89,13 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS, UPLO
       INTEGER           INFO, LDA, LDZ, M, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), DWORK(*), Z(LDZ,*)
+      REAL*10  A(LDA,*), DWORK(*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL           NOTTRA, UPPER
       INTEGER           I, J

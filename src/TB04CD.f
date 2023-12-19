@@ -42,7 +42,7 @@ C             The maximum number of poles or zeros of the single-input
 C             single-output channels in the system. An upper bound
 C             for NPZ is N.  NPZ >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, if EQUIL = 'S', the leading N-by-N part of this
@@ -53,7 +53,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the contents of B are destroyed: all elements but
@@ -62,7 +62,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, if EQUIL = 'S', the leading P-by-N part of this
@@ -73,7 +73,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             If JOBD = 'D', the leading P-by-M part of this array must
 C             contain the matrix D.
 C             If JOBD = 'Z', the array D is not referenced.
@@ -102,7 +102,7 @@ C
 C     LDNP    INTEGER
 C             The leading dimension of array NP.  LDNP >= max(1,P).
 C
-C     ZEROSR  (output) REAL*16 array, dimension (P*M*NPZ)
+C     ZEROSR  (output) REAL*10 array, dimension (P*M*NPZ)
 C             This array contains the real parts of the zeros of the
 C             transfer function matrix G. The real parts of the zeros
 C             are stored in a column-wise order, i.e., for the transfer
@@ -115,23 +115,23 @@ C             Pairs of complex conjugate zeros are stored in consecutive
 C             memory locations. Note that only the first NZ(i,j) entries
 C             are initialized for the (i,j) transfer function.
 C
-C     ZEROSI  (output) REAL*16 array, dimension (P*M*NPZ)
+C     ZEROSI  (output) REAL*10 array, dimension (P*M*NPZ)
 C             This array contains the imaginary parts of the zeros of
 C             the transfer function matrix G, stored in a similar way
 C             as the real parts of the zeros.
 C
-C     POLESR  (output) REAL*16 array, dimension (P*M*NPZ)
+C     POLESR  (output) REAL*10 array, dimension (P*M*NPZ)
 C             This array contains the real parts of the poles of the
 C             transfer function matrix G, stored in the same way as
 C             the zeros. Note that only the first NP(i,j) entries are
 C             initialized for the (i,j) transfer function.
 C
-C     POLESI  (output) REAL*16 array, dimension (P*M*NPZ)
+C     POLESI  (output) REAL*10 array, dimension (P*M*NPZ)
 C             This array contains the imaginary parts of the poles of
 C             the transfer function matrix G, stored in the same way as
 C             the poles.
 C
-C     GAINS   (output) REAL*16 array, dimension (LDGAIN,M)
+C     GAINS   (output) REAL*10 array, dimension (LDGAIN,M)
 C             The leading P-by-M part of this array contains the gains
 C             of the transfer function matrix G. Specifically,
 C             GAINS(i,j) contains the gain of the transfer function
@@ -142,7 +142,7 @@ C             The leading dimension of array GAINS.  LDGAIN >= max(1,P).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in determining the
 C             controllability of a single-input system (A,b) or (A',c'),
 C             where b and c' are columns in B and C' (C transposed). If
@@ -159,7 +159,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -238,29 +238,29 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, C100
+      REAL*10   ZERO, ONE, C100
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0, C100 = 100.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          EQUIL, JOBD
-      REAL*16   TOL
+      REAL*10   TOL
       INTEGER            INFO, LDA, LDB, LDC, LDD, LDGAIN, LDNP, LDNZ,
      $                   LDWORK, M, N, NPZ, P
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10   A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                   DWORK(*), GAINS(LDGAIN,*), POLESI(*),
      $                   POLESR(*), ZEROSI(*), ZEROSR(*)
       INTEGER            IWORK(*), NP(LDNP,*), NZ(LDNZ,*)
 C     .. Local Scalars ..
-      REAL*16   ANORM, DIJ, EPSN, MAXRED, TOLDEF
+      REAL*10   ANORM, DIJ, EPSN, MAXRED, TOLDEF
       INTEGER            I, IA, IAC, IAS, IB, IC, ICC, IERR, IM, IP,
      $                   IPM1, ITAU, ITAU1, IZ, J, JWK, JWORK, JWORK1,
      $                   K, NCONT, WRKOPT
       LOGICAL            DIJNZ, FNDEIG, WITHD
 C     .. Local Arrays ..
-      REAL*16   Z(1)
+      REAL*10   Z(1)
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH, DLANGE
+      REAL*10   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DHSEQR, DLACPY, MA02AD, TB01ID,

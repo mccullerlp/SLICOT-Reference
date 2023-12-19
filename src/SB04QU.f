@@ -23,21 +23,21 @@ C     IND     (input) INTEGER
 C             IND and IND - 1 specify the indices of the columns in C
 C             to be computed.  IND > 1.
 C
-C     A       (input) REAL*16 array, dimension (LDA,M)
+C     A       (input) REAL*10 array, dimension (LDA,M)
 C             The leading M-by-M part of this array must contain an
 C             upper Hessenberg matrix.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     B       (input) REAL*16 array, dimension (LDB,N)
+C     B       (input) REAL*10 array, dimension (LDB,N)
 C             The leading N-by-N part of this array must contain a
 C             matrix in real Schur form.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the coefficient matrix C of the equation.
 C             On exit, the leading M-by-N part of this array contains
@@ -48,7 +48,7 @@ C             The leading dimension of array C.  LDC >= MAX(1,M).
 C
 C     Workspace
 C
-C     D       REAL*16 array, dimension (2*M*M+8*M)
+C     D       REAL*10 array, dimension (2*M*M+8*M)
 C
 C     IPR     INTEGER array, dimension (4*M)
 C
@@ -94,18 +94,18 @@ C     Sylvester equation.
 C
 C     ******************************************************************
 C
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, IND, LDA, LDB, LDC, M, N
 C     .. Array Arguments ..
       INTEGER           IPR(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(*)
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(*)
 C     .. Local Scalars ..
       INTEGER           I, I2, IND1, J, K, K1, K2, M2
-      REAL*16  TEMP
+      REAL*10  TEMP
 C     .. Local Arrays ..
-      REAL*16  DUM(1)
+      REAL*10  DUM(1)
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DTRMV, SB04QR
 C     .. Intrinsic Functions ..

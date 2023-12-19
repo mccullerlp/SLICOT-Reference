@@ -76,7 +76,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bH.  N >= 0, even.
 C
-C     A       (input/output) REAL*16 array, dimension
+C     A       (input/output) REAL*10 array, dimension
 C                            (LDA, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular matrix A. The elements of the
@@ -87,7 +87,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1, N/2).
 C
-C     C       (input/output) REAL*16 array, dimension
+C     C       (input/output) REAL*10 array, dimension
 C                            (LDC, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the lower triangular matrix C. The elements of the
@@ -98,7 +98,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1, N/2).
 C
-C     D       (input/output) REAL*16 array, dimension
+C     D       (input/output) REAL*10 array, dimension
 C                            (LDD, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix D.
@@ -108,7 +108,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1, N/2).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C                            (LDB, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper quasi-triangular matrix B.
@@ -121,7 +121,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N/2).
 C
-C     F       (input/output) REAL*16 array, dimension
+C     F       (input/output) REAL*10 array, dimension
 C                            (LDF, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the upper triangular part of the symmetric matrix
@@ -136,7 +136,7 @@ C
 C     LDF     INTEGER
 C             The leading dimension of the array F.  LDF >= MAX(1, N/2).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ, N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ, N)
 C             On entry, if COMPQ = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q0, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -152,7 +152,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,         if COMPQ = 'N';
 C             LDQ >= MAX(1, N), if COMPQ = 'I' or COMPQ = 'U'.
 C
-C     U1      (input/output) REAL*16 array, dimension
+C     U1      (input/output) REAL*10 array, dimension
 C                            (LDU1, N/2)
 C             On entry, if COMPU = 'U', then the leading N/2-by-N/2 part
 C             of this array must contain the upper left block of a
@@ -170,7 +170,7 @@ C             The leading dimension of the array U1.
 C             LDU1 >= 1,           if COMPU = 'N';
 C             LDU1 >= MAX(1, N/2), if COMPU = 'I' or COMPU = 'U'.
 C
-C     U2      (input/output) REAL*16 array, dimension
+C     U2      (input/output) REAL*10 array, dimension
 C                            (LDU2, N/2)
 C             On entry, if COMPU = 'U', then the leading N/2-by-N/2 part
 C             of this array must contain the upper right block of a
@@ -200,7 +200,7 @@ C     LIWORK  INTEGER
 C             The dimension of the array IWORK.
 C             LIWORK >= N+1.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The dimension of the array DWORK.
@@ -277,7 +277,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, HALF, TEN
+      REAL*10   ZERO, ONE, HALF, TEN
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, HALF = 0.5D+0,
      $                     TEN = 1.0D+1 )
 C
@@ -288,7 +288,7 @@ C     .. Scalar Arguments ..
 C
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   D( LDD, * ), DWORK( *  ), F( LDF, * ),
      $                   Q( LDQ, * ), U1( LDU1, * ), U2( LDU2, * )
 C
@@ -301,17 +301,17 @@ C     .. Local Scalars ..
      $                   IWRK4, IWRK5, IZLORI, IZUPLE, IZUPRI, J, K,
      $                   LDW, M, MM, MP, NCOL, NCOLS, NROW, NROWS,
      $                   OPTDW, R, SDIM, UPDS
-      REAL*16   A2, BASE, C2, DN, F2, LGBAS, NRMB, PREC, Q11,
+      REAL*10   A2, BASE, C2, DN, F2, LGBAS, NRMB, PREC, Q11,
      $                   Q12, Q21, Q22, TMPA, TMPC, TOL, U11, U12
 C
 C     .. Local Arrays ..
       INTEGER            IDUM( 8 )
-      REAL*16   DUM( 3, 4 ), PAR( 2 ), PRD( 2, 2, 3 )
+      REAL*10   DUM( 3, 4 ), PAR( 2 ), PRD( 2, 2, 3 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            MA01CD
-      REAL*16   DLAMCH, DLANHS
+      REAL*10   DLAMCH, DLANHS
       EXTERNAL           DLAMCH, DLANHS, LSAME, MA01CD
 C
 C     .. External Subroutines ..

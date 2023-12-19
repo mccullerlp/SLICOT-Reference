@@ -37,7 +37,7 @@ C     K       (input)  INTEGER
 C             The number of columns / rows in A and B to be processed.
 C             Normally, the size of the first block.  P >= K >= 0.
 C
-C     A       (input/output)  REAL*16 array, dimension
+C     A       (input/output)  REAL*10 array, dimension
 C             (LDA, K) / (LDA, P)
 C             On entry, the leading P-by-K upper / K-by-P lower
 C             triangular part of this array must contain the rows /
@@ -54,7 +54,7 @@ C             The leading dimension of the array A.
 C             LDA >= MAX(1,P),    if TYPET = 'R';
 C             LDA >= MAX(1,K),    if TYPET = 'C'.
 C
-C     B       (input/output)  REAL*16 array, dimension
+C     B       (input/output)  REAL*10 array, dimension
 C             (LDB, K) / (LDB, Q)
 C             On entry, the leading Q-by-K / K-by-Q part of this array
 C             must contain the rows / columns of the negative part in
@@ -68,7 +68,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,Q),    if TYPET = 'R';
 C             LDB >= MAX(1,K),    if TYPET = 'C'.
 C
-C     CS      (output)  REAL*16 array, dimension (LCS)
+C     CS      (output)  REAL*10 array, dimension (LCS)
 C             On exit, the leading 2*K + MIN(K,Q) part of this array
 C             contains necessary information for the SLICOT Library
 C             routine MB02CY (modified hyperbolic rotation parameters
@@ -79,7 +79,7 @@ C             The length of the array CS.  LCS >= 2*K + MIN(K,Q).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -12,  DWORK(1)  returns the minimum
@@ -132,17 +132,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TYPET
       INTEGER           INFO, K, LDA, LDB, LCS, LDWORK, P, Q
 C     .. Array Arguments ..
-      REAL*16  A(LDA, *), B(LDB, *), CS(*), DWORK(*)
+      REAL*10  A(LDA, *), B(LDB, *), CS(*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           ISROW
       INTEGER           I, IERR
-      REAL*16  ALPHA, BETA, C, MAXWRK, S, TAU
+      REAL*10  ALPHA, BETA, C, MAXWRK, S, TAU
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

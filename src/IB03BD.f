@@ -103,7 +103,7 @@ C             results could be printed by modifying the corresponding
 C             FCN routine (NF01BE and/or NF01BF). If NPRINT <= 0, no
 C             special calls of FCN with IFLAG = 0 are made.
 C
-C     U       (input) REAL*16 array, dimension (LDU, M)
+C     U       (input) REAL*10 array, dimension (LDU, M)
 C             The leading NSMP-by-M part of this array must contain the
 C             set of input samples,
 C             U = ( U(1,1),...,U(1,M); ...; U(NSMP,1),...,U(NSMP,M) ).
@@ -111,7 +111,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= MAX(1,NSMP).
 C
-C     Y       (input) REAL*16 array, dimension (LDY, L)
+C     Y       (input) REAL*10 array, dimension (LDY, L)
 C             The leading NSMP-by-L part of this array must contain the
 C             set of output samples,
 C             Y = ( Y(1,1),...,Y(1,L); ...; Y(NSMP,1),...,Y(NSMP,L) ).
@@ -119,7 +119,7 @@ C
 C     LDY     INTEGER
 C             The leading dimension of array Y.  LDY >= MAX(1,NSMP).
 C
-C     X       (input/output) REAL*16 array dimension (LX)
+C     X       (input/output) REAL*10 array dimension (LX)
 C             On entry, if INIT = 'L', the leading (NN*(L+2) + 1)*L part
 C             of this array must contain the initial parameters for
 C             the nonlinear part of the system.
@@ -151,7 +151,7 @@ C             is unchanged.
 C
 C     Tolerances
 C
-C     TOL1    REAL*16
+C     TOL1    REAL*10
 C             If INIT = 'S' or 'B' and TOL1 >= 0, TOL1 is the tolerance
 C             which measures the relative error desired in the sum of
 C             squares, as well as the relative error desired in the
@@ -164,7 +164,7 @@ C             then  SQRT(EPS)  is used instead TOL1, where EPS is the
 C             machine precision (see LAPACK Library routine DLAMCH).
 C             This parameter is ignored if INIT is 'N' or 'L'.
 C
-C     TOL2    REAL*16
+C     TOL2    REAL*10
 C             If TOL2 >= 0, TOL2 is the tolerance which measures the
 C             relative error desired in the sum of squares, as well as
 C             the relative error desired in the approximate solution,
@@ -202,7 +202,7 @@ C             IWORK(3+j) of the identity matrix. Moreover, the entries
 C             4+NX:3+NX+L of this array contain the ranks of the final
 C             submatrices S_k (see description of LMPARM in MD03BD).
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On entry, if desired, and if INIT = 'S' or 'B', the
 C             entries DWORK(1:4) are set to initialize the random
 C             numbers generator for the nonlinear part parameters (see
@@ -414,10 +414,10 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     FACTOR is a scaling factor for variables (see MD03BD).
-      REAL*16  FACTOR
+      REAL*10  FACTOR
       PARAMETER         ( FACTOR = 100.0D0 )
 C     Condition estimation and internal scaling of variables are used
 C     (see MD03BD).
@@ -426,7 +426,7 @@ C     (see MD03BD).
 C     Default tolerances are used in MD03BD for measuring the
 C     orthogonality between the vector of function values and columns
 C     of the Jacobian (GTOL), and for the rank estimations (TOL).
-      REAL*16  GTOL, TOL
+      REAL*10  GTOL, TOL
       PARAMETER         ( GTOL = 0.0D0, TOL = 0.0D0 )
 C     For INIT = 'L' or 'B', additional parameters are set:
 C     The following six parameters are used in the call of IB01AD;
@@ -444,19 +444,19 @@ C     The following two parameters are used in the call of IB01CD;
       PARAMETER         ( COMUSE = 'Use B, D',
      $                    JOBXD  = 'D also' )
 C     TOLN controls the estimated order in IB01AD (default value);
-      REAL*16  TOLN
+      REAL*10  TOLN
       PARAMETER         ( TOLN = -1.0D0 )
 C     RCOND controls the rank decisions in IB01AD, IB01BD, and IB01CD
 C     (default);
-      REAL*16  RCOND
+      REAL*10  RCOND
       PARAMETER         ( RCOND = -1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         INIT
       INTEGER           INFO, ITMAX1, ITMAX2, IWARN, L, LDU, LDWORK,
      $                  LDY, LX, M, N, NN, NOBR, NPRINT, NSMP
-      REAL*16  TOL1, TOL2
+      REAL*10  TOL1, TOL2
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), U(LDU, *), X(*), Y(LDY, *)
+      REAL*10  DWORK(*), U(LDU, *), X(*), Y(LDY, *)
       INTEGER           IWORK(*)
 C     .. Local Scalars ..
       INTEGER           AC, BD, BSN, I, IA, IB, IDIAG, IK, INFOL, IQ,
@@ -468,7 +468,7 @@ C     .. Local Scalars ..
 C     .. Local Arrays ..
       LOGICAL           BWORK(1)
       INTEGER           IPAR(7)
-      REAL*16  RCND(16), SEED(4), WORK(4)
+      REAL*10  RCND(16), SEED(4), WORK(4)
 C     .. External Functions ..
       EXTERNAL          LSAME
       LOGICAL           LSAME

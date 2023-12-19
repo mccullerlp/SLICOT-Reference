@@ -12,7 +12,7 @@
 #
 #  This is the makefile to create/update the library for SLICOT.
 #  Most SLICOT Library routines are written for double precision.
-#  Some routines have COMPLEX*32 variants.
+#  Some routines have COMPLEX*20 variants.
 #
 #  The command
 #       nmake

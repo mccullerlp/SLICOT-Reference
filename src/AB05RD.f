@@ -52,13 +52,13 @@ C     PZ      (input) INTEGER.
 C             The dimension of the new output vector z, i.e. the number
 C             of rows of matrix H.  PZ >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The coefficient alpha in the output feedback law.
 C
-C     BETA    (input) REAL*16.
+C     BETA    (input) REAL*10.
 C             The coefficient beta in the state feedback law.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the system state transition matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -67,7 +67,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the system input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -76,7 +76,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the system output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -87,7 +87,7 @@ C             The leading dimension of array C.
 C             LDC >= MAX(1,P) if N > 0.
 C             LDC >= 1 if N = 0.
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, if JOBD = 'D', the leading P-by-M part of this
 C             array must contain the system direct input/output
 C             transmission matrix D.
@@ -101,7 +101,7 @@ C             The leading dimension of array D.
 C             LDD >= MAX(1,P) if JOBD = 'D'.
 C             LDD >= 1 if JOBD = 'Z'.
 C
-C     F       (input) REAL*16 array, dimension (LDF,P)
+C     F       (input) REAL*10 array, dimension (LDF,P)
 C             If FBTYPE = 'O', the leading M-by-P part of this array
 C             must contain the output feedback matrix F.
 C             If FBTYPE = 'I', then the feedback matrix is assumed to be
@@ -114,7 +114,7 @@ C             The leading dimension of array F.
 C             LDF >= MAX(1,M) if FBTYPE = 'O' and ALPHA <> 0.
 C             LDF >= 1 if FBTYPE = 'I' or ALPHA = 0.
 C
-C     K       (input) REAL*16 array, dimension (LDK,N)
+C     K       (input) REAL*10 array, dimension (LDK,N)
 C             The leading M-by-N part of this array must contain the
 C             state feedback matrix K.
 C             The array K is not referenced if BETA = 0.
@@ -124,32 +124,32 @@ C             The leading dimension of the array K.
 C             LDK >= MAX(1,M) if BETA <> 0.
 C             LDK >= 1 if BETA = 0.
 C
-C     G       (input) REAL*16 array, dimension (LDG,MV)
+C     G       (input) REAL*10 array, dimension (LDG,MV)
 C             The leading M-by-MV part of this array must contain the
 C             system input scaling matrix G.
 C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= MAX(1,M).
 C
-C     H       (input) REAL*16 array, dimension (LDH,P)
+C     H       (input) REAL*10 array, dimension (LDH,P)
 C             The leading PZ-by-P part of this array must contain the
 C             system output scaling matrix H.
 C
 C     LDH     INTEGER
 C             The leading dimension of the array H.  LDH >= MAX(1,PZ).
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             The reciprocal condition number of the matrix
 C             I - alpha*D*F.
 C
-C     BC      (output) REAL*16 array, dimension (LDBC,MV)
+C     BC      (output) REAL*10 array, dimension (LDBC,MV)
 C             The leading N-by-MV part of this array contains the input
 C             matrix Bc of the closed-loop system.
 C
 C     LDBC    INTEGER
 C             The leading dimension of array BC.  LDBC >= MAX(1,N).
 C
-C     CC      (output) REAL*16 array, dimension (LDCC,N)
+C     CC      (output) REAL*10 array, dimension (LDCC,N)
 C             The leading PZ-by-N part of this array contains the
 C             system output matrix Cc of the closed-loop system.
 C
@@ -158,7 +158,7 @@ C             The leading dimension of array CC.
 C             LDCC >= MAX(1,PZ) if N > 0.
 C             LDCC >= 1 if N = 0.
 C
-C     DC      (output) REAL*16 array, dimension (LDDC,MV)
+C     DC      (output) REAL*10 array, dimension (LDDC,MV)
 C             If JOBD = 'D', the leading PZ-by-MV part of this array
 C             contains the direct input/output transmission matrix Dc
 C             of the closed-loop system.
@@ -176,7 +176,7 @@ C             LIWORK >= MAX(1,2*P) if JOBD = 'D'.
 C             LIWORK >= 1 if JOBD = 'Z'.
 C             IWORK is not referenced if JOBD = 'Z'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -233,16 +233,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         FBTYPE, JOBD
       INTEGER           INFO, LDA, LDB, LDBC, LDC, LDCC, LDD, LDDC,
      $                  LDF, LDG, LDH, LDK, LDWORK, M, MV, N, P, PZ
-      REAL*16  ALPHA, BETA, RCOND
+      REAL*10  ALPHA, BETA, RCOND
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), BC(LDBC,*), C(LDC,*),
+      REAL*10  A(LDA,*), B(LDB,*), BC(LDBC,*), C(LDC,*),
      $                  CC(LDCC,*), D(LDD,*), DC(LDDC,*), DWORK(*),
      $                  F(LDF,*), G(LDG,*), H(LDH,*), K(LDK,*)
 C     .. Local Scalars ..

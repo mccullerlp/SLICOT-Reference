@@ -53,15 +53,15 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices R, A, and T.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then the arrays A
 C             and T are not referenced.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The scalar beta. When beta is zero then the array R need
 C             not be set before entry.
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,N)
+C     R       (input/output) REAL*10 array, dimension (LDR,N)
 C             On entry with UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix R.
@@ -77,7 +77,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A. If HESS = 'H' the elements below the
 C             first subdiagonal, if UPLO = 'U', or above the first
@@ -96,7 +96,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     T       (input) REAL*16 array, dimension (LDT,N)
+C     T       (input) REAL*10 array, dimension (LDT,N)
 C             If UPLO = 'U', the leading N-by-N upper triangular part of
 C             this array must contain the upper triangular matrix T and
 C             the strictly lower triangular part need not be set to zero
@@ -145,14 +145,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, HESS, TRANS, UPLO
       INTEGER           INFO, LDA, LDR, LDT, N
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), R(LDR,*), T(LDT,*)
+      REAL*10  A(LDA,*), R(LDR,*), T(LDT,*)
 C     .. Local Scalars ..
       LOGICAL           DISCR, REDUC, TRANSP, UPPER
       CHARACTER         NEGTRA, SIDE

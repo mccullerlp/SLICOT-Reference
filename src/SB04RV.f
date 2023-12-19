@@ -30,7 +30,7 @@ C
 C     M       (input) INTEGER
 C             The order of the matrix B.  M >= 0.
 C
-C     C       (input) REAL*16 array, dimension (LDC,M)
+C     C       (input) REAL*10 array, dimension (LDC,M)
 C             The leading N-by-M part of this array must contain both
 C             the not yet modified part of the coefficient matrix C of
 C             the Sylvester equation X + AXB = C, and both the currently
@@ -43,7 +43,7 @@ C     INDX    (input) INTEGER
 C             The position of the first column/row of C to be used in
 C             the construction of the right-hand side D.
 C
-C     AB      (input) REAL*16 array, dimension (LDAB,*)
+C     AB      (input) REAL*10 array, dimension (LDAB,*)
 C             The leading N-by-N or M-by-M part of this array must
 C             contain either A or B of the Sylvester equation
 C             X + AXB = C.
@@ -53,7 +53,7 @@ C             The leading dimension of array AB.
 C             LDAB >= MAX(1,N) or LDAB >= MAX(1,M) (depending on
 C             ABSCHR = 'A' or ABSCHR = 'B', respectively).
 C
-C     BA      (input) REAL*16 array, dimension (LDBA,*)
+C     BA      (input) REAL*10 array, dimension (LDBA,*)
 C             The leading N-by-N or M-by-M part of this array must
 C             contain either A or B of the Sylvester equation
 C             X + AXB = C, the matrix not contained in AB.
@@ -63,14 +63,14 @@ C             The leading dimension of array BA.
 C             LDBA >= MAX(1,N) or LDBA >= MAX(1,M) (depending on
 C             ABSCHR = 'B' or ABSCHR = 'A', respectively).
 C
-C     D       (output) REAL*16 array, dimension (*)
+C     D       (output) REAL*10 array, dimension (*)
 C             The leading 2*N or 2*M part of this array (depending on
 C             ABSCHR = 'B' or ABSCHR = 'A', respectively) contains the
 C             right-hand side stored as a matrix with two rows.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             where LDWORK is equal to 2*N or 2*M (depending on
 C             ABSCHR = 'B' or ABSCHR = 'A', respectively).
 C
@@ -94,13 +94,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         ABSCHR, UL
       INTEGER           INDX, LDAB, LDBA, LDC, M, N
 C     .. Array Arguments ..
-      REAL*16  AB(LDAB,*), BA(LDBA,*), C(LDC,*), D(*), DWORK(*)
+      REAL*10  AB(LDAB,*), BA(LDBA,*), C(LDC,*), D(*), DWORK(*)
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

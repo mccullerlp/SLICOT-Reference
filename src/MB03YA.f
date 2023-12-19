@@ -58,7 +58,7 @@ C     POS     (input) INTEGER
 C             The position of the zero element on the diagonal of B.
 C             ILO <= POS <= IHI.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper Hessenberg matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -68,7 +68,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain an upper triangular matrix B with B(POS,POS) = 0.
 C             On exit, the leading N-by-N part of this array contains
@@ -77,7 +77,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,N)
 C             On entry, if WANTQ = .TRUE., then the leading N-by-N part
 C             of this array must contain the current matrix Q of
 C             transformations accumulated by MB03XP.
@@ -90,7 +90,7 @@ C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= 1.
 C             If WANTQ = .TRUE., LDQ >= MAX(1,N).
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,N)
 C             On entry, if WANTZ = .TRUE., then the leading N-by-N part
 C             of this array must contain the current matrix Z of
 C             transformations accumulated by MB03XP.
@@ -165,17 +165,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO
+      REAL*10   ZERO
       PARAMETER          ( ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       LOGICAL            WANTQ, WANTT, WANTZ
       INTEGER            IHI, IHIQ, ILO, ILOQ, INFO, LDA, LDB, LDQ, LDZ,
      $                   N, POS
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), B(LDB,*), Q(LDQ,*), Z(LDZ,*)
+      REAL*10   A(LDA,*), B(LDB,*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       INTEGER            I1, I2, J, NQ
-      REAL*16   CS, SN, TEMP
+      REAL*10   CS, SN, TEMP
 C     .. External Subroutines ..
       EXTERNAL           DLARTG, DROT, XERBLA
 C     .. Intrinsic Functions ..

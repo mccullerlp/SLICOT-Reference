@@ -53,7 +53,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, X, and C.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A. If FACT = 'F', then A contains
 C             an upper quasi-triangular matrix in Schur canonical form;
@@ -68,7 +68,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     U       (input or output) REAL*16 array, dimension
+C     U       (input or output) REAL*10 array, dimension
 C             (LDU,N)
 C             If FACT = 'F', then U is an input argument and on entry
 C             the leading N-by-N part of this array must contain the
@@ -80,7 +80,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry with JOB = 'X' or 'B', the leading N-by-N part of
 C             this array must contain the symmetric matrix C.
 C             On exit with JOB = 'X' or 'B', if INFO = 0 or INFO = N+1,
@@ -93,18 +93,18 @@ C             The leading dimension of array C.
 C             LDC >= 1,        if JOB = 'S';
 C             LDC >= MAX(1,N), otherwise.
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
-C     SEP     (output) REAL*16
+C     SEP     (output) REAL*10
 C             If JOB = 'S' or JOB = 'B', and INFO = 0 or INFO = N+1, SEP
 C             contains the estimated separation of the matrices op(A)
 C             and -op(A)', if DICO = 'C' or of op(A) and op(A)', if
 C             DICO = 'D'.
 C             If JOB = 'X', SEP is not referenced.
 C
-C     FERR    (output) REAL*16
+C     FERR    (output) REAL*10
 C             If JOB = 'B', and INFO = 0 or INFO = N+1, FERR contains an
 C             estimated forward error bound for the solution X.
 C             If XTRUE is the true solution, FERR bounds the relative
@@ -112,8 +112,8 @@ C             error in the computed solution, measured in the Frobenius
 C             norm:  norm(X - XTRUE)/norm(XTRUE).
 C             If JOB = 'X' or JOB = 'S', FERR is not referenced.
 C
-C     WR      (output) REAL*16 array, dimension (N)
-C     WI      (output) REAL*16 array, dimension (N)
+C     WR      (output) REAL*10 array, dimension (N)
+C     WI      (output) REAL*10 array, dimension (N)
 C             If FACT = 'N', and INFO = 0 or INFO = N+1, WR and WI
 C             contain the real and imaginary parts, respectively, of
 C             the eigenvalues of A.
@@ -124,7 +124,7 @@ C
 C     IWORK   INTEGER array, dimension (N*N)
 C             This array is not referenced if JOB = 'X'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = N+1, DWORK(1) returns the
 C             optimal value of LDWORK.
 C
@@ -323,28 +323,28 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, JOB, TRANA
       INTEGER           INFO, LDA, LDC, LDU, LDWORK, N
-      REAL*16  FERR, SCALE, SEP
+      REAL*10  FERR, SCALE, SEP
 C     .. Array Arguments ..
       INTEGER           IWORK( * )
-      REAL*16  A( LDA, * ), C( LDC, * ), DWORK( * ),
+      REAL*10  A( LDA, * ), C( LDC, * ), DWORK( * ),
      $                  U( LDU, * ), WI( * ), WR( * )
 C     .. Local Scalars ..
       LOGICAL           CONT, LQUERY, NOFACT, NOTA, WANTBH, WANTSP,
      $                  WANTX
       CHARACTER         NOTRA, NTRNST, TRANST, UPLO
       INTEGER           I, IERR, KASE, LWA, MINWRK, NN, NN2, SDIM
-      REAL*16  EPS, EST, SCALEF
+      REAL*10  EPS, EST, SCALEF
 C     .. Local Arrays ..
       LOGICAL           BWORK( 1 )
       INTEGER           ISAVE( 3 )
 C     .. External Functions ..
       LOGICAL           LSAME, SELECT
-      REAL*16  DLAMCH, DLANHS
+      REAL*10  DLAMCH, DLANHS
       EXTERNAL          DLAMCH, DLANHS, LSAME, SELECT
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEES, DLACN2, MB01RD, SB03MX, SB03MY,

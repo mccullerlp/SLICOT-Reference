@@ -54,7 +54,7 @@ C             (RANK+1)-th singular values of C = [A|B] are considered
 C             to be equal, or if the upper triangular matrix F (as
 C             defined in METHOD) is (numerically) singular.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N+L)
+C     C       (input/output) REAL*10 array, dimension (LDC,N+L)
 C             On entry, the leading M-by-(N+L) part of this array must
 C             contain the matrices A and B. Specifically, the first N
 C             columns must contain the data matrix A and the last L
@@ -74,12 +74,12 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= max(1,M,N+L).
 C
-C     S       (output) REAL*16 array, dimension (min(M,N+L))
+C     S       (output) REAL*10 array, dimension (min(M,N+L))
 C             If INFO = 0, the singular values of matrix C, ordered
 C             such that S(1) >= S(2) >= ... >= S(p-1) >= S(p) >= 0,
 C             where p = min(M,N+L).
 C
-C     X       (output) REAL*16 array, dimension (LDX,L)
+C     X       (output) REAL*10 array, dimension (LDX,L)
 C             If INFO = 0, the leading N-by-L part of this array
 C             contains the solution X to the TLS problem specified
 C             by A and B.
@@ -89,7 +89,7 @@ C             The leading dimension of array X.  LDX >= max(1,N).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             A tolerance used to determine the rank of the TLS
 C             approximation [A+DA|B+DB] and to check the multiplicity
 C             of the singular values of matrix C. Specifically, S(i)
@@ -112,7 +112,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (L)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK, and DWORK(2) returns the reciprocal of the
 C             condition number of the matrix F.
@@ -295,23 +295,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB
       INTEGER           INFO, IWARN, L, LDC, LDWORK, LDX, M, N, RANK
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  C(LDC,*), DWORK(*), S(*), X(LDX,*)
+      REAL*10  C(LDC,*), DWORK(*), S(*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           CRANK, CTOL, LJOBN, LJOBR, LJOBT, LQUERY
       INTEGER           ITAU, J, JWORK, LDW, K, MINMNL, MINWRK, N1, NL,
      $                  P, R1, WRKOPT
-      REAL*16  FNORM, RCOND, SMAX, TOLTMP
+      REAL*10  FNORM, RCOND, SMAX, TOLTMP
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLANGE, DLANTR
+      REAL*10  DLAMCH, DLANGE, DLANTR
       EXTERNAL          DLAMCH, DLANGE, DLANTR, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DGERQF, DGESVD, DLACPY, DLASET, DORMRQ, DSWAP,

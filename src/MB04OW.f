@@ -34,7 +34,7 @@ C
 C     P      (input) INTEGER
 C            The number of columns of the matrices B and C.  P >= 0.
 C
-C     A      (input/output) REAL*16 array, dimension (LDA,N)
+C     A      (input/output) REAL*10 array, dimension (LDA,N)
 C            On entry, the leading M-by-(M+N) upper trapezoidal part of
 C            this array must contain the upper trapezoidal matrix
 C            ( U1 U2 ).
@@ -45,7 +45,7 @@ C
 C     LDA    INTEGER
 C            The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     T      (input/output) REAL*16 array, dimension (LDT,N)
+C     T      (input/output) REAL*10 array, dimension (LDT,N)
 C            On entry, the leading N-by-N upper triangular part of this
 C            array must contain the upper triangular matrix T.
 C            On exit, the leading N-by-N upper triangular part of this
@@ -55,7 +55,7 @@ C
 C     LDT    INTEGER
 C            The leading dimension of the array T.  LDT >= max(1,N).
 C
-C     X      (input/output) REAL*16 array, dimension
+C     X      (input/output) REAL*10 array, dimension
 C            (1+(M+N-1)*INCX), if M+N > 0, or dimension (0), if M+N = 0.
 C            On entry, the incremented array X must contain the
 C            vector x. On exit, the content of X is changed.
@@ -63,7 +63,7 @@ C
 C     INCX   (input) INTEGER
 C            Specifies the increment for the elements of X.  INCX > 0.
 C
-C     B      (input/output) REAL*16 array, dimension (LDB,P)
+C     B      (input/output) REAL*10 array, dimension (LDB,P)
 C            On entry, the leading M-by-P part of this array must
 C            contain the matrix B.
 C            On exit, the leading M-by-P part of this array contains
@@ -75,7 +75,7 @@ C            The leading dimension of the array B.
 C            LDB >= max(1,M), if P > 0;
 C            LDB >= 1,        if P = 0.
 C
-C     C      (input/output) REAL*16 array, dimension (LDC,P)
+C     C      (input/output) REAL*10 array, dimension (LDC,P)
 C            On entry, the leading N-by-P part of this array must
 C            contain the matrix C.
 C            On exit, the leading N-by-P part of this array contains
@@ -87,7 +87,7 @@ C            The leading dimension of the array C.
 C            LDC >= max(1,N), if P > 0;
 C            LDC >= 1,        if P = 0.
 C
-C     D      (input/output) REAL*16 array, dimension
+C     D      (input/output) REAL*10 array, dimension
 C            (1+(P-1)*INCD), if P > 0, or dimension (0), if P = 0.
 C            On entry, the incremented array D must contain the
 C            vector d.
@@ -132,10 +132,10 @@ C
 C     .. Scalar Arguments ..
       INTEGER            INCD, INCX, LDA, LDB, LDC, LDT, M, N, P
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), B(LDB,*), C(LDC,*), D(*), T(LDT,*),
+      REAL*10   A(LDA,*), B(LDB,*), C(LDC,*), D(*), T(LDT,*),
      $                   X(*)
 C     .. Local Scalars ..
-      REAL*16   CI, SI, TEMP
+      REAL*10   CI, SI, TEMP
       INTEGER            I, IX, MN
 C     .. External Subroutines ..
       EXTERNAL           DLARTG, DROT

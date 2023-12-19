@@ -29,14 +29,14 @@ C
 C     M       (input) INTEGER
 C             The order of the matrices A, D, and E.  M >= 0.
 C
-C     A       (input) COMPLEX*32 array, dimension (LDA,M)
+C     A       (input) COMPLEX*20 array, dimension (LDA,M)
 C             The leading M-by-M part of this array must contain the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     DE      (input) COMPLEX*32 array, dimension (LDDE,M+1)
+C     DE      (input) COMPLEX*20 array, dimension (LDDE,M+1)
 C             The leading M-by-M lower triangular part of this array
 C             must contain the lower triangular part of the (skew-)
 C             Hermitian matrix E, and the M-by-M upper triangular
@@ -67,9 +67,9 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO
+      REAL*10   ZERO
       PARAMETER          ( ZERO = 0.0D+0 )
-      COMPLEX*32         CZERO
+      COMPLEX*20         CZERO
       PARAMETER          ( CZERO = ( 0.0D+0, 0.0D+0 ) )
 C     ..
 C     .. Scalar Arguments ..
@@ -77,7 +77,7 @@ C     .. Scalar Arguments ..
       INTEGER            LDA, LDDE, M
 C     ..
 C     .. Array Arguments ..
-      COMPLEX*32         A( LDA, * ), DE( LDDE, * )
+      COMPLEX*20         A( LDA, * ), DE( LDDE, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            ISSKEW

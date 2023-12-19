@@ -45,24 +45,24 @@ C             The number of state variables in the second system, i.e.
 C             the order of the matrix A2, the number of rows of B2 and
 C             the number of columns of C2.  N2 >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The coefficient multiplying G2.
 C
-C     A1      (input) REAL*16 array, dimension (LDA1,N1)
+C     A1      (input) REAL*10 array, dimension (LDA1,N1)
 C             The leading N1-by-N1 part of this array must contain the
 C             state transition matrix A1 for the first system.
 C
 C     LDA1    INTEGER
 C             The leading dimension of array A1.  LDA1 >= MAX(1,N1).
 C
-C     B1      (input) REAL*16 array, dimension (LDB1,M)
+C     B1      (input) REAL*10 array, dimension (LDB1,M)
 C             The leading N1-by-M part of this array must contain the
 C             input/state matrix B1 for the first system.
 C
 C     LDB1    INTEGER
 C             The leading dimension of array B1.  LDB1 >= MAX(1,N1).
 C
-C     C1      (input) REAL*16 array, dimension (LDC1,N1)
+C     C1      (input) REAL*10 array, dimension (LDC1,N1)
 C             The leading P-by-N1 part of this array must contain the
 C             state/output matrix C1 for the first system.
 C
@@ -71,28 +71,28 @@ C             The leading dimension of array C1.
 C             LDC1 >= MAX(1,P) if N1 > 0.
 C             LDC1 >= 1 if N1 = 0.
 C
-C     D1      (input) REAL*16 array, dimension (LDD1,M)
+C     D1      (input) REAL*10 array, dimension (LDD1,M)
 C             The leading P-by-M part of this array must contain the
 C             input/output matrix D1 for the first system.
 C
 C     LDD1    INTEGER
 C             The leading dimension of array D1.  LDD1 >= MAX(1,P).
 C
-C     A2      (input) REAL*16 array, dimension (LDA2,N2)
+C     A2      (input) REAL*10 array, dimension (LDA2,N2)
 C             The leading N2-by-N2 part of this array must contain the
 C             state transition matrix A2 for the second system.
 C
 C     LDA2    INTEGER
 C             The leading dimension of array A2.  LDA2 >= MAX(1,N2).
 C
-C     B2      (input) REAL*16 array, dimension (LDB2,M)
+C     B2      (input) REAL*10 array, dimension (LDB2,M)
 C             The leading N2-by-M part of this array must contain the
 C             input/state matrix B2 for the second system.
 C
 C     LDB2    INTEGER
 C             The leading dimension of array B2.  LDB2 >= MAX(1,N2).
 C
-C     C2      (input) REAL*16 array, dimension (LDC2,N2)
+C     C2      (input) REAL*10 array, dimension (LDC2,N2)
 C             The leading P-by-N2 part of this array must contain the
 C             state/output matrix C2 for the second system.
 C
@@ -101,7 +101,7 @@ C             The leading dimension of array C2.
 C             LDC2 >= MAX(1,P) if N2 > 0.
 C             LDC2 >= 1 if N2 = 0.
 C
-C     D2      (input) REAL*16 array, dimension (LDD2,M)
+C     D2      (input) REAL*10 array, dimension (LDD2,M)
 C             The leading P-by-M part of this array must contain the
 C             input/output matrix D2 for the second system.
 C
@@ -113,7 +113,7 @@ C             The number of state variables (N1 + N2) in the resulting
 C             system, i.e. the order of the matrix A, the number of rows
 C             of B and the number of columns of C.
 C
-C     A       (output) REAL*16 array, dimension (LDA,N1+N2)
+C     A       (output) REAL*10 array, dimension (LDA,N1+N2)
 C             The leading N-by-N part of this array contains the state
 C             transition matrix A for the resulting system.
 C             The array A can overlap A1 if OVER = 'O'.
@@ -121,7 +121,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N1+N2).
 C
-C     B       (output) REAL*16 array, dimension (LDB,M)
+C     B       (output) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array contains the
 C             input/state matrix B for the resulting system.
 C             The array B can overlap B1 if OVER = 'O'.
@@ -129,7 +129,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N1+N2).
 C
-C     C       (output) REAL*16 array, dimension (LDC,N1+N2)
+C     C       (output) REAL*10 array, dimension (LDC,N1+N2)
 C             The leading P-by-N part of this array contains the
 C             state/output matrix C for the resulting system.
 C             The array C can overlap C1 if OVER = 'O'.
@@ -139,7 +139,7 @@ C             The leading dimension of array C.
 C             LDC >= MAX(1,P) if N1+N2 > 0.
 C             LDC >= 1 if N1+N2 = 0.
 C
-C     D       (output) REAL*16 array, dimension (LDD,M)
+C     D       (output) REAL*10 array, dimension (LDD,M)
 C             The leading P-by-M part of this array contains the
 C             input/output matrix D for the resulting system.
 C             The array D can overlap D1 if OVER = 'O'.
@@ -191,15 +191,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO=0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         OVER
       INTEGER           INFO, LDA, LDA1, LDA2, LDB, LDB1, LDB2, LDC,
      $                  LDC1, LDC2, LDD, LDD1, LDD2, M, N, N1, N2, P
-      REAL*16  ALPHA
+      REAL*10  ALPHA
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), A1(LDA1,*), A2(LDA2,*), B(LDB,*),
+      REAL*10  A(LDA,*), A1(LDA1,*), A2(LDA2,*), B(LDB,*),
      $                  B1(LDB1,*), B2(LDB2,*), C(LDC,*), C1(LDC1,*),
      $                  C2(LDC2,*), D(LDD,*), D1(LDD1,*), D2(LDD2,*)
 C     .. Local Scalars ..

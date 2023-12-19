@@ -20,7 +20,7 @@ C
 C     NB      (input) INTEGER
 C             The number of columns in M1(k) and M2(k).  NB >= 0.
 C
-C     H1      (input) REAL*16 array, dimension (LDH1,N*NB)
+C     H1      (input) REAL*10 array, dimension (LDH1,N*NB)
 C             The leading NC-by-N*NB part of this array must contain
 C             the multivariable sequence M1(k), where k = 1,2,...,N.
 C             Each parameter M1(k) is an NC-by-NB matrix, whose
@@ -30,7 +30,7 @@ C
 C     LDH1    INTEGER
 C             The leading dimension of array H1.  LDH1 >= MAX(1,NC).
 C
-C     H2      (input) REAL*16 array, dimension (LDH2,N*NB)
+C     H2      (input) REAL*10 array, dimension (LDH2,N*NB)
 C             The leading NC-by-N*NB part of this array must contain
 C             the multivariable sequence M2(k), where k = 1,2,...,N.
 C             Each parameter M2(k) is an NC-by-NB matrix, whose
@@ -40,21 +40,21 @@ C
 C     LDH2    INTEGER
 C             The leading dimension of array H2.  LDH2 >= MAX(1,NC).
 C
-C     SS      (output) REAL*16 array, dimension (LDSS,NB)
+C     SS      (output) REAL*10 array, dimension (LDSS,NB)
 C             The leading NC-by-NB part of this array contains the
 C             matrix SS.
 C
 C     LDSS    INTEGER
 C             The leading dimension of array SS.  LDSS >= MAX(1,NC).
 C
-C     SE      (output) REAL*16 array, dimension (LDSE,NB)
+C     SE      (output) REAL*10 array, dimension (LDSE,NB)
 C             The leading NC-by-NB part of this array contains the
 C             quadratic error matrix SE.
 C
 C     LDSE    INTEGER
 C             The leading dimension of array SE.  LDSE >= MAX(1,NC).
 C
-C     PRE     (output) REAL*16 array, dimension (LDPRE,NB)
+C     PRE     (output) REAL*10 array, dimension (LDPRE,NB)
 C             The leading NC-by-NB part of this array contains the
 C             percentage relative error matrix PRE.
 C
@@ -63,7 +63,7 @@ C             The leading dimension of array PRE.  LDPRE >= MAX(1,NC).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in the computation of the error
 C             matrices SE and PRE. If the user sets TOL to be less than
 C             EPS then the tolerance is taken as EPS, where EPS is the
@@ -132,20 +132,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, HUNDRD
+      REAL*10  ZERO, ONE, HUNDRD
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, HUNDRD = 100.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDH1, LDH2, LDPRE, LDSE, LDSS, N, NB, NC
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
-      REAL*16  H1(LDH1,*), H2(LDH2,*), PRE(LDPRE,*),
+      REAL*10  H1(LDH1,*), H2(LDH2,*), PRE(LDPRE,*),
      $                  SE(LDSE,*), SS(LDSS,*)
 C     .. Local Scalars ..
       LOGICAL           NOFLOW
       INTEGER           I, J, K
-      REAL*16  EPSO, SSE, SSS, TOLER, VAR, VARE
+      REAL*10  EPSO, SSE, SSS, TOLER, VAR, VARE
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          XERBLA

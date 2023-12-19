@@ -34,7 +34,7 @@ C             previous call to the SLICOT Library routine MB04DS;
 C             otherwise it should be set to 1.
 C             1 <= ILO <= N+1, if N > 0; ILO = 1, if N = 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -45,7 +45,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     QG      (input/output) REAL*16 array, dimension
+C     QG      (input/output) REAL*10 array, dimension
 C                            (LDQG,N+1)
 C             On entry, the leading N-by-N+1 part of this array must
 C             contain in columns 1:N the strictly lower triangular part
@@ -62,18 +62,18 @@ C
 C     LDQG    INTEGER
 C             The leading dimension of the array QG.  LDQG >= MAX(1,N).
 C
-C     CS      (output) REAL*16 array, dimension (2N-2)
+C     CS      (output) REAL*10 array, dimension (2N-2)
 C             On exit, the first 2N-2 elements of this array contain the
 C             cosines and sines of the symplectic Givens rotations used
 C             to compute the PVL factorization.
 C
-C     TAU     (output) REAL*16 array, dimension (N-1)
+C     TAU     (output) REAL*10 array, dimension (N-1)
 C             On exit, the first N-1 elements of this array contain the
 C             scalar factors of some of the elementary reflectors.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal value
 C             of LDWORK, 8*N*NB + 3*NB, where NB is the optimal
 C             block size.
@@ -161,12 +161,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           ILO, INFO, LDA, LDQG, LDWORK, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), CS(*), DWORK(*), QG(LDQG,*), TAU(*)
+      REAL*10  A(LDA,*), CS(*), DWORK(*), QG(LDQG,*), TAU(*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I, IB, IERR, MINWRK, NB, NBMIN, NH, NIB, NNB,

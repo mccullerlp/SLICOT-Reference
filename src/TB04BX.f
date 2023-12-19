@@ -26,7 +26,7 @@ C
 C     IZ      (input) INTEGER
 C             The number of the system zeros.  IZ >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,IP)
+C     A       (input/output) REAL*10 array, dimension (LDA,IP)
 C             On entry, the leading IP-by-IP part of this array must
 C             contain the state dynamics matrix A in an upper Hessenberg
 C             form. The elements below the second diagonal are not
@@ -38,37 +38,37 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= max(1,IP).
 C
-C     B       (input/output) REAL*16 array, dimension (IP)
+C     B       (input/output) REAL*10 array, dimension (IP)
 C             On entry, this array must contain the system input
 C             vector b.
 C             On exit, this array contains the solution of the linear
 C             system ( A - S0*I )x = b .
 C
-C     C       (input) REAL*16 array, dimension (IP)
+C     C       (input) REAL*10 array, dimension (IP)
 C             This array must contain the system output vector c.
 C
-C     D       (input) REAL*16
+C     D       (input) REAL*10
 C             The variable must contain the system feedthrough scalar d.
 C
-C     PR      (input) REAL*16 array, dimension (IP)
+C     PR      (input) REAL*10 array, dimension (IP)
 C             This array must contain the real parts of the system
 C             poles. Pairs of complex conjugate poles must be stored in
 C             consecutive memory locations.
 C
-C     PI      (input) REAL*16 array, dimension (IP)
+C     PI      (input) REAL*10 array, dimension (IP)
 C             This array must contain the imaginary parts of the system
 C             poles.
 C
-C     ZR      (input) REAL*16 array, dimension (IZ)
+C     ZR      (input) REAL*10 array, dimension (IZ)
 C             This array must contain the real parts of the system
 C             zeros. Pairs of complex conjugate zeros must be stored in
 C             consecutive memory locations.
 C
-C     ZI      (input) REAL*16 array, dimension (IZ)
+C     ZI      (input) REAL*10 array, dimension (IZ)
 C             This array must contain the imaginary parts of the system
 C             zeros.
 C
-C     GAIN    (output) REAL*16
+C     GAIN    (output) REAL*10
 C             The gain of the linear system (A,b,c,d), given by (1).
 C
 C     Workspace
@@ -114,21 +114,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TWO, P1, ONEP1
+      REAL*10   ZERO, ONE, TWO, P1, ONEP1
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                     P1 = 0.1D0, ONEP1 = 1.1D0 )
 C     .. Scalar Arguments ..
-      REAL*16   D, GAIN
+      REAL*10   D, GAIN
       INTEGER            IP, IZ, LDA
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), B(*), C(*), PI(*), PR(*), ZI(*),
+      REAL*10   A(LDA,*), B(*), C(*), PI(*), PR(*), ZI(*),
      $                   ZR(*)
       INTEGER            IWORK(*)
 C     .. Local Scalars ..
       INTEGER            I, INFO
-      REAL*16   S0, S
+      REAL*10   S0, S
 C     .. External Functions ..
-      REAL*16   DDOT
+      REAL*10   DDOT
       EXTERNAL           DDOT
 C     .. External Subroutines ..
       EXTERNAL           MB02RD, MB02SD

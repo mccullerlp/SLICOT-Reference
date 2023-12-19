@@ -28,7 +28,7 @@ C
 C     M       (input) INTEGER
 C             The number of right hand size vectors.
 C
-C     PAR     (input) REAL*16 array, dimension (3)
+C     PAR     (input) REAL*10 array, dimension (3)
 C             Machine related parameters:
 C             PAR(1) =: PREC  (machine precision)*base, DLAMCH( 'P' );
 C             PAR(2) =: SFMIN safe minimum,             DLAMCH( 'S' );
@@ -38,14 +38,14 @@ C                             distance away from underflow or overflow,
 C                             say, between (underflow/machine precision)
 C                             and (machine precision * overflow).
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= N.
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix B (right-hand side).
 C             On exit, the leading N-by-M part of this array contains
@@ -54,7 +54,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= N.
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor that B must be multiplied by to insure
 C             that overflow does not occur when computing X.  Thus,
 C             A X  will be SCALE*B, not B (ignoring perturbations of A).
@@ -105,31 +105,31 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TWO
+      REAL*10   ZERO, ONE, TWO
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C
 C     .. Scalar Arguments ..
       LOGICAL            LTRANS
       INTEGER            IWARN, LDA, LDB, N, M
-      REAL*16   SCALE, SMIN
+      REAL*10   SCALE, SMIN
 C
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), B( LDB, * ), PAR( * )
+      REAL*10   A( LDA, * ), B( LDB, * ), PAR( * )
 C
 C     .. Local Scalars ..
       INTEGER            I, ICMAX, J
-      REAL*16   BBND, BIGNUM, BNORM, B1, B2, CMAX, C21, C22,
+      REAL*10   BBND, BIGNUM, BNORM, B1, B2, CMAX, C21, C22,
      $                   CS, EPS, L21, SCALEP, SMINI, SMLNUM, TEMP, U11,
      $                   U11R, U12, U22, XNORM, X1, X2
 C
 C     .. Local Arrays ..
       LOGICAL            RSWAP( 4 ), ZSWAP( 4 )
       INTEGER            IPIVOT( 4, 4 )
-      REAL*16   C( 2, 2 ), CV( 4 )
+      REAL*10   C( 2, 2 ), CV( 4 )
 C
 C     ..External Functions ..
       INTEGER            IDAMAX
-      REAL*16   DLANGE
+      REAL*10   DLANGE
       EXTERNAL           DLANGE, IDAMAX
 C
 C     .. Intrinsic Functions ..

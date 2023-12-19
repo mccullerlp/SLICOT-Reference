@@ -64,7 +64,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, X, Q, and G.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             If FACT = 'N' or LYAPUN = 'O', the leading N-by-N part of
 C             this array must contain the matrix A.
 C             If FACT = 'F' and LYAPUN = 'R', A is not referenced.
@@ -74,7 +74,7 @@ C             The leading dimension of the array A.
 C             LDA >= max(1,N), if FACT = 'N' or  LYAPUN = 'O';
 C             LDA >= 1,        if FACT = 'F' and LYAPUN = 'R'.
 C
-C     T       (input or output) REAL*16 array, dimension
+C     T       (input or output) REAL*10 array, dimension
 C             (LDT,N)
 C             If FACT = 'F', then T is an input argument and on entry,
 C             the leading N-by-N upper Hessenberg part of this array
@@ -90,7 +90,7 @@ C
 C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= max(1,N).
 C
-C     U       (input or output) REAL*16 array, dimension
+C     U       (input or output) REAL*10 array, dimension
 C             (LDU,N)
 C             If LYAPUN = 'O' and FACT = 'F', then U is an input
 C             argument and on entry, the leading N-by-N part of this
@@ -107,7 +107,7 @@ C             The leading dimension of the array U.
 C             LDU >= 1,        if LYAPUN = 'R';
 C             LDU >= MAX(1,N), if LYAPUN = 'O'.
 C
-C     G       (input) REAL*16 array, dimension (LDG,N)
+C     G       (input) REAL*10 array, dimension (LDG,N)
 C             If UPLO = 'U', the leading N-by-N upper triangular part of
 C             this array must contain the upper triangular part of the
 C             matrix G.
@@ -121,7 +121,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= max(1,N).
 C
-C     Q       (input) REAL*16 array, dimension (LDQ,N)
+C     Q       (input) REAL*10 array, dimension (LDQ,N)
 C             If UPLO = 'U', the leading N-by-N upper triangular part of
 C             this array must contain the upper triangular part of the
 C             matrix Q.
@@ -135,7 +135,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= max(1,N).
 C
-C     X       (input) REAL*16 array, dimension (LDX,N)
+C     X       (input) REAL*10 array, dimension (LDX,N)
 C             The leading N-by-N part of this array must contain the
 C             symmetric solution matrix of the original Riccati
 C             equation (with matrix A), if LYAPUN = 'O', or of the
@@ -145,18 +145,18 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= max(1,N).
 C
-C     SEPD    (output) REAL*16
+C     SEPD    (output) REAL*10
 C             If JOB = 'C' or JOB = 'B', the estimated quantity
 C             sepd(op(Ac),op(Ac)').
 C             If N = 0, or X = 0, or JOB = 'E', SEPD is not referenced.
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             If JOB = 'C' or JOB = 'B', an estimate of the reciprocal
 C             condition number of the discrete-time Riccati equation.
 C             If N = 0 or X = 0, RCOND is set to 1 or 0, respectively.
 C             If JOB = 'E', RCOND is not referenced.
 C
-C     FERR    (output) REAL*16
+C     FERR    (output) REAL*10
 C             If JOB = 'E' or JOB = 'B', an estimated forward error
 C             bound for the solution X. If XTRUE is the true solution,
 C             FERR bounds the magnitude of the largest entry in
@@ -169,7 +169,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N*N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = N+1, DWORK(1) returns the
 C             optimal value of LDWORK.
 C
@@ -316,18 +316,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, FOUR, HALF
+      REAL*10   ZERO, ONE, FOUR, HALF
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, FOUR = 4.0D+0,
      $                     HALF = 0.5D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          FACT, JOB, LYAPUN, TRANA, UPLO
       INTEGER            INFO, LDA, LDG, LDQ, LDT, LDU, LDWORK, LDX, N
-      REAL*16   FERR, RCOND, SEPD
+      REAL*10   FERR, RCOND, SEPD
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      REAL*16   A( LDA, * ), DWORK( * ),  G( LDG, * ),
+      REAL*10   A( LDA, * ), DWORK( * ),  G( LDG, * ),
      $                   Q( LDQ, * ), T( LDT, * ), U( LDU, * ),
      $                   X( LDX, * )
 C     ..
@@ -337,7 +337,7 @@ C     .. Local Scalars ..
       CHARACTER          LOUP, SJOB, TRANAT
       INTEGER            I, IABS, INFO2, IRES, IWRK, IXBS, IXMA, J, JJ,
      $                   KASE, LDW, LWA, LWR, NN, SDIM, WRKOPT
-      REAL*16   ANORM, BIGNUM, DENOM, EPS, EPSN, EPST, EST,
+      REAL*10   ANORM, BIGNUM, DENOM, EPS, EPSN, EPST, EST,
      $                   GNORM, PINORM, QNORM, SCALE, TEMP, THNORM,
      $                   TMAX, XANORM, XNORM
 C     ..
@@ -347,7 +347,7 @@ C     .. Local Arrays ..
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME, SELECT
-      REAL*16   DLAMCH, DLANGE, DLANHS, DLANSY
+      REAL*10   DLAMCH, DLANGE, DLANHS, DLANSY
       EXTERNAL           DLAMCH, DLANGE, DLANHS, DLANSY, LSAME, SELECT
 C     ..
 C     .. External Subroutines ..

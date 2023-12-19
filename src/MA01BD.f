@@ -9,10 +9,10 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     BASE    (input)  REAL*16
+C     BASE    (input)  REAL*10
 C             Machine base.
 C
-C     LGBAS   (input)  REAL*16
+C     LGBAS   (input)  REAL*10
 C             Logarithm of BASE.
 C
 C     K       (input)  INTEGER
@@ -21,20 +21,20 @@ C
 C     S       (input)  INTEGER array, dimension (K)
 C             The signature array. Each entry of S must be 1 or -1.
 C
-C     A       (input)  REAL*16 array, dimension (K)
+C     A       (input)  REAL*10 array, dimension (K)
 C             Vector of real scalars.
 C
 C     INCA    (input)  INTEGER
 C             Increment for the array A. INCA <> 0.
 C
-C     ALPHA   (output)  REAL*16
+C     ALPHA   (output)  REAL*10
 C             ALPHA is a real scalar such that
 C
 C                ALPHA / BETA * BASE**(SCAL)
 C
 C             is the general product of the scalars in the array A.
 C
-C     BETA    (output)  REAL*16
+C     BETA    (output)  REAL*10
 C             BETA is either 0.0 or 1.0.
 C             See also the description of ALPHA.
 C
@@ -58,17 +58,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INCA, K, SCAL
-      REAL*16  ALPHA, BASE, BETA, LGBAS
+      REAL*10  ALPHA, BASE, BETA, LGBAS
 C     .. Array Arguments ..
       INTEGER           S(*)
-      REAL*16  A(*)
+      REAL*10  A(*)
 C     .. Local Scalars ..
       INTEGER           I, SL
-      REAL*16  TEMP
+      REAL*10  TEMP
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, DBLE, INT, LOG, MOD
 C

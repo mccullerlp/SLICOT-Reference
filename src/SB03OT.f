@@ -44,7 +44,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices S and R.  N >= 0.
 C
-C     S       (input) REAL*16 array of dimension (LDS,N)
+C     S       (input) REAL*10 array of dimension (LDS,N)
 C             The leading N-by-N upper Hessenberg part of this array
 C             must contain the block upper triangular matrix.
 C             The elements below the upper Hessenberg part of the array
@@ -55,7 +55,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,N).
 C
-C     R       (input/output) REAL*16 array of dimension (LDR,N)
+C     R       (input/output) REAL*10 array of dimension (LDR,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix R.
 C             On exit, the leading N-by-N upper triangular part of this
@@ -65,13 +65,13 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (4*N)
+C     DWORK   REAL*10 array, dimension (4*N)
 C
 C     Error Indicator
 C
@@ -166,25 +166,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           DISCR, LTRANS
       INTEGER           INFO, LDR, LDS, N
-      REAL*16  SCALE
+      REAL*10  SCALE
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), R(LDR,*), S(LDS,*)
+      REAL*10  DWORK(*), R(LDR,*), S(LDS,*)
 C     .. Local Scalars ..
       LOGICAL           CONT, TBYT
       INTEGER           INFOM, ISGN, J, J1, J2, J3, K, K1, K2, K3,
      $                  KOUNT, KSIZE
-      REAL*16  ABSSKK, ALPHA, BIGNUM, D1, D2, DR, EPS, SCALOC,
+      REAL*10  ABSSKK, ALPHA, BIGNUM, D1, D2, DR, EPS, SCALOC,
      $                  SMIN, SMLNUM, SUM, T1, T2, T3, T4, TAU1, TAU2,
      $                  TEMP, V1, V2, V3, V4
 C     .. Local Arrays ..
-      REAL*16  A(2,2), B(2,2), U(2,2)
+      REAL*10  A(2,2), B(2,2), U(2,2)
 C     .. External Functions ..
-      REAL*16  DLAMCH, DLANHS
+      REAL*10  DLAMCH, DLANHS
       EXTERNAL          DLAMCH, DLANHS
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DLABAD, DLARFG, DSCAL, DSWAP,

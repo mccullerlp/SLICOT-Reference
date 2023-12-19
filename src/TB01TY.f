@@ -36,18 +36,18 @@ C     -
 C
 C     ******************************************************************
 C
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           IOFF, JOFF, LDX, MODE, NCOL, NROW
-      REAL*16  SIZE
+      REAL*10  SIZE
 C     .. Array Arguments ..
-      REAL*16  BVECT(*), X(LDX,*)
+      REAL*10  BVECT(*), X(LDX,*)
 C     .. Local Scalars ..
-      REAL*16  ABSSUM, DIV, EPS, EXPT, SCALE, TEST
+      REAL*10  ABSSUM, DIV, EPS, EXPT, SCALE, TEST
       INTEGER           BASE, I, IEXPT, J
 C     .. External Functions ..
-      REAL*16  DASUM, DLAMCH
+      REAL*10  DASUM, DLAMCH
       EXTERNAL          DASUM, DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          DSCAL

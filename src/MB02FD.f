@@ -49,7 +49,7 @@ C     S       (input)  INTEGER
 C             The number of block rows / columns of R to compute.
 C             0 <= S <= N-P.
 C
-C     T       (input/output)  REAL*16 array, dimension
+C     T       (input/output)  REAL*10 array, dimension
 C             (LDT,(N-P)*K) / (LDT,K)
 C             On entry, if P = 0, then the leading K-by-N*K / N*K-by-K
 C             part of this array must contain the first block row /
@@ -72,7 +72,7 @@ C             The leading dimension of the array T.
 C             LDT >= MAX(1,K),        if TYPET = 'R';
 C             LDT >= MAX(1,(N-P)*K),  if TYPET = 'C'.
 C
-C     R       (input/output)  REAL*16 array, dimension
+C     R       (input/output)  REAL*10 array, dimension
 C             (LDR, N*K)       / (LDR, S*K )     if P = 0;
 C             (LDR, (N-P+1)*K) / (LDR, (S+1)*K ) if P > 0.
 C             On entry, if P > 0, then the leading K-by-(N-P+1)*K /
@@ -101,7 +101,7 @@ C             LDR >= MAX(1, (N-P+1)*K ),  if TYPET = 'C' and P > 0.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -11,  DWORK(1)  returns the minimum
@@ -162,13 +162,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TYPET
       INTEGER           INFO, K, LDR, LDT, LDWORK, N, P, S
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), R(LDR,*), T(LDT,*)
+      REAL*10  DWORK(*), R(LDR,*), T(LDT,*)
 C     .. Local Scalars ..
       INTEGER           COUNTR, I, IERR, MAXWRK, ST, STARTR
       LOGICAL           ISROW

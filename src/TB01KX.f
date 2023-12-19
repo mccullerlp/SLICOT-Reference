@@ -31,7 +31,7 @@ C             The dimension of the leading diagonal block of A having
 C             eigenvalues distinct from those of the trailing diagonal
 C             block.  0 <= NDIM <= N.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A in real Schur form.
 C             On exit, the leading N-by-N part of this array contains a
@@ -43,7 +43,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -52,7 +52,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -61,7 +61,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,N)
+C     U       (input/output) REAL*10 array, dimension (LDU,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain an initial transformation matrix U.
 C             On exit, the leading N-by-N part of this array contains
@@ -75,7 +75,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of the array U.  LDU >= max(1,N).
 C
-C     V       (output) REAL*16 array, dimension (LDV,N)
+C     V       (output) REAL*10 array, dimension (LDV,N)
 C             The leading N-by-N part of this array contains the
 C             inverse of the transformation matrix U used to reduce A
 C             to the block-diagonal form.
@@ -129,15 +129,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ZERO, ONE
+      REAL*10 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER          INFO, LDA, LDB, LDC, LDU, LDV, M, N, NDIM, P
 C     .. Array Arguments ..
-      REAL*16 A(LDA,*), B(LDB,*), C(LDC,*), U(LDU,*), V(LDV,*)
+      REAL*10 A(LDA,*), B(LDB,*), C(LDC,*), U(LDU,*), V(LDV,*)
 C     .. Local Scalars ..
       INTEGER          NDIM1, NR
-      REAL*16 SCALE
+      REAL*10 SCALE
 C     .. External Subroutines ..
       EXTERNAL         DGEMM, DLASET, DTRSYL, MA02AD, XERBLA
 C     .. Intrinsic Functions ..

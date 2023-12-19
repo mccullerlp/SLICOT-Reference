@@ -29,7 +29,7 @@ C     N       (input) INTEGER
 C             The number of columns of the matrix B, and the order of
 C             the matrix A.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the coefficient matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -43,7 +43,7 @@ C     IPIV    (output) INTEGER array, dimension (N)
 C             The pivot indices that define the permutation matrix P;
 C             row i of the matrix was interchanged with row IPIV(i).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right hand side matrix B.
 C             On exit, if INFO = 0, the leading M-by-N part of this
@@ -91,7 +91,7 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          TRANS
@@ -99,7 +99,7 @@ C     .. Scalar Arguments ..
 C     ..
 C     .. Array Arguments ..
       INTEGER            IPIV( * )
-      REAL*16   A( LDA, * ), B( LDB, * )
+      REAL*10   A( LDA, * ), B( LDB, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            TRAN

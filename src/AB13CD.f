@@ -1,4 +1,4 @@
-      REAL*16 FUNCTION AB13CD( N, M, NP, A, LDA, B, LDB, C,
+      REAL*10 FUNCTION AB13CD( N, M, NP, A, LDA, B, LDB, C,
      $                                  LDC, D, LDD, TOL, IWORK, DWORK,
      $                                  LDWORK, CWORK, LCWORK, BWORK,
      $                                  INFO )
@@ -14,7 +14,7 @@ C                          | C | D |
 C
 C     FUNCTION VALUE
 C
-C     AB13CD  REAL*16
+C     AB13CD  REAL*10
 C             If INFO = 0, the H-infinity norm of the system, HNORM,
 C             i.e., the peak gain of the frequency response (as measured
 C             by the largest singular value in the MIMO case).
@@ -32,28 +32,28 @@ C
 C     NP      (input) INTEGER
 C             The row size of the matrix C.  NP >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading NP-by-N part of this array must contain the
 C             system output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading NP-by-M part of this array must contain the
 C             system input/output matrix D.
 C
@@ -62,7 +62,7 @@ C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             Tolerance used to set the accuracy in determining the
 C             norm.
 C
@@ -70,7 +70,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal value
 C             of LDWORK, and DWORK(2) contains the frequency where the
 C             gain of the frequency response achieves its peak value
@@ -82,7 +82,7 @@ C             LDWORK >= max(2,4*N*N+2*M*M+3*M*N+M*NP+2*(N+NP)*NP+10*N+
 C                             6*max(M,NP)).
 C             For good performance, LDWORK must generally be larger.
 C
-C     CWORK   COMPLEX*32 array, dimension (LCWORK)
+C     CWORK   COMPLEX*20 array, dimension (LCWORK)
 C             On exit, if INFO = 0, CWORK(1) contains the optimal value
 C             of LCWORK.
 C
@@ -145,23 +145,23 @@ C
 C     .. Parameters ..
       INTEGER            MAXIT
       PARAMETER          ( MAXIT = 10 )
-      COMPLEX*32         CONE, JIMAG
+      COMPLEX*20         CONE, JIMAG
       PARAMETER          ( CONE  = ( 1.0D0, 0.0D0 ),
      $                     JIMAG = ( 0.0D0, 1.0D0 ) )
-      REAL*16   ZERO, ONE, TWO
+      REAL*10   ZERO, ONE, TWO
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0 )
-      REAL*16   HUGE
+      REAL*10   HUGE
       PARAMETER          ( HUGE = 10.0D+0**30 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LDC, LCWORK, LDD, LDWORK, M, N,
      $                   NP
-      REAL*16   TOL
+      REAL*10   TOL
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      COMPLEX*32         CWORK( * )
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      COMPLEX*20         CWORK( * )
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   D( LDD, * ), DWORK( * )
       LOGICAL            BWORK( * )
 C     ..
@@ -170,12 +170,12 @@ C     .. Local Scalars ..
      $                   IW11, IW12, IW2, IW3, IW4, IW5, IW6, IW7, IW8,
      $                   IW9, IWRK, J, K, L, LCWAMX, LWAMAX, MINCWR,
      $                   MINWRK, SDIM
-      REAL*16   DEN, FPEAK, GAMMA, GAMMAL, GAMMAU, OMEGA, RAT,
+      REAL*10   DEN, FPEAK, GAMMA, GAMMAL, GAMMAU, OMEGA, RAT,
      $                   RATMAX, TEMP, WIMAX, WRMIN
       LOGICAL            COMPLX
 C
 C     .. External Functions ..
-      REAL*16   DLAPY2
+      REAL*10   DLAPY2
       LOGICAL            SB02MV, SB02CX
       EXTERNAL           DLAPY2, SB02MV, SB02CX
 C     ..

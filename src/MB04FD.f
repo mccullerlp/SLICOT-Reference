@@ -58,7 +58,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bT.  N >= 0, even.
 C
-C     A       (input/output) REAL*16 array, dimension
+C     A       (input/output) REAL*10 array, dimension
 C                            (LDA, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix A.
@@ -70,7 +70,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1, N/2).
 C
-C     DE      (input/output) REAL*16 array, dimension
+C     DE      (input/output) REAL*10 array, dimension
 C                            (LDDE, N/2+1)
 C             On entry, the leading N/2-by-N/2 strictly lower triangular
 C             part of this array must contain the strictly lower
@@ -96,7 +96,7 @@ C     LDDE    INTEGER
 C             The leading dimension of the array DE.
 C             LDDE >= MAX(1, N/2).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C                            (LDB, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix B.
@@ -108,7 +108,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N/2).
 C
-C     FG      (input/output) REAL*16 array, dimension
+C     FG      (input/output) REAL*10 array, dimension
 C                            (LDFG, N/2+1)
 C             On entry, the leading N/2-by-N/2 strictly lower triangular
 C             part of this array must contain the strictly lower
@@ -134,7 +134,7 @@ C     LDFG    INTEGER
 C             The leading dimension of the array FG.
 C             LDFG >= MAX(1, N/2).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ, N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ, N)
 C             On entry, if COMPQ = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix Q0, and on exit,
 C             the leading N-by-N part of this array contains the product
@@ -150,18 +150,18 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,         if COMPQ = 'N';
 C             LDQ >= MAX(1, N), if COMPQ = 'I' or COMPQ = 'U'.
 C
-C     ALPHAR  (output) REAL*16 array, dimension (N/2)
+C     ALPHAR  (output) REAL*10 array, dimension (N/2)
 C             The real parts of each scalar alpha defining an eigenvalue
 C             of the pencil aS - bT.
 C
-C     ALPHAI  (output) REAL*16 array, dimension (N/2)
+C     ALPHAI  (output) REAL*10 array, dimension (N/2)
 C             The imaginary parts of each scalar alpha defining an
 C             eigenvalue of the pencil aS - bT.
 C             If ALPHAI(j) is zero, then the j-th eigenvalue is real; if
 C             positive, then the j-th and (j+1)-st eigenvalues are a
 C             complex conjugate pair.
 C
-C     BETA    (output) REAL*16 array, dimension (N/2)
+C     BETA    (output) REAL*10 array, dimension (N/2)
 C             The scalars beta that define the eigenvalues of the pencil
 C             aS - bT.
 C             Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
@@ -185,7 +185,7 @@ C             to negative values in IWORK. One negative value is stored
 C             for each such eigenvalue pair. Its modulus indicates the
 C             starting index of a 2-by-2 block.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK;
 C             DWORK(2) and DWORK(3) contain the Frobenius norms of the
 C             matrices S and T on entry. These norms are used in the
@@ -267,7 +267,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, HALF, ONE, TWO, THREE, TEN
+      REAL*10   ZERO, HALF, ONE, TWO, THREE, TEN
       PARAMETER          ( ZERO = 0.0D+0, HALF  = 0.5D+0, ONE = 1.0D+0,
      $                     TWO  = 2.0D+0, THREE = 3.0D+0, TEN  = 1.0D+1
      $                      )
@@ -277,7 +277,7 @@ C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LDDE, LDFG, LDQ, LDWORK, N
 C
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), ALPHAI( * ), ALPHAR( * ),
+      REAL*10   A( LDA, * ), ALPHAI( * ), ALPHAR( * ),
      $                   B( LDB, * ), BETA( * ), DE( LDDE, * ),
      $                   DWORK( * ), FG( LDFG, * ), Q( LDQ, * )
       INTEGER            IWORK( * )
@@ -288,16 +288,16 @@ C     .. Local Scalars ..
       CHARACTER*16       CMPQ, CMPSC, CMPZ
       INTEGER            IQ1, IQ2, IWRK, J, K, M, M1, MINDW, MJ1, MJ2,
      $                   MJ3, MK2, MK3, MM, NBETA0, NINF, OPTDW, P
-      REAL*16   CO, MU, NRM, NRMS, NRMT, NU, SDET, SI, TMP1,
+      REAL*10   CO, MU, NRM, NRMS, NRMT, NU, SDET, SI, TMP1,
      $                   TMP2, TOLS, TOLT, X1, X2, X3, X4
 C
 C     .. Local Arrays ..
-      REAL*16   DUM( 1 )
+      REAL*10   DUM( 1 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            MA02OD
-      REAL*16   DDOT, DLAMCH, DLANGE, DLANTR, DLAPY2, MA02ID
+      REAL*10   DDOT, DLAMCH, DLANGE, DLANTR, DLAPY2, MA02ID
       EXTERNAL           DDOT, DLAMCH, DLANGE, DLANTR, DLAPY2, LSAME,
      $                   MA02ID, MA02OD
 C

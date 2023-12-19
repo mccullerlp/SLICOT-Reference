@@ -56,11 +56,11 @@ C             If UPLO = 'L', matrix H has L nonzero superdiagonals.
 C             MAX(0,M-1) >= L >= 0, if UPLO = 'U';
 C             MAX(0,N-1) >= L >= 0, if UPLO = 'L'.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then T is not
 C             referenced and H need not be set before entry.
 C
-C     T       (input) REAL*16 array, dimension (LDT,k), where
+C     T       (input) REAL*10 array, dimension (LDT,k), where
 C             k is m when SIDE = 'L' and is n when SIDE = 'R'.
 C             If UPLO = 'U', the leading k-by-k upper triangular part
 C             of this array must contain the upper triangular matrix T
@@ -76,7 +76,7 @@ C             The leading dimension of array T.
 C             LDT >= MAX(1,M), if SIDE = 'L';
 C             LDT >= MAX(1,N), if SIDE = 'R'.
 C
-C     H       (input/output) REAL*16 array, dimension (LDH,N)
+C     H       (input/output) REAL*10 array, dimension (LDH,N)
 C             On entry, if UPLO = 'U', the leading M-by-N upper
 C             Hessenberg part of this array must contain the upper
 C             Hessenberg-like matrix H.
@@ -152,25 +152,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          DIAG, SIDE, TRANST, UPLO
       INTEGER            INFO, L, LDH, LDT, M, N
-      REAL*16   ALPHA
+      REAL*10   ALPHA
 C     ..
 C     .. Array Arguments ..
-      REAL*16   H( LDH, * ), T( LDT, * )
+      REAL*10   H( LDH, * ), T( LDT, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            LSIDE, NOUNIT, TRANS, UPPER
       INTEGER            I, I1, I2, J, K, M2, NROWT
-      REAL*16   TEMP
+      REAL*10   TEMP
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DDOT
+      REAL*10   DDOT
       EXTERNAL           DDOT, LSAME
 C     ..
 C     .. External Subroutines ..

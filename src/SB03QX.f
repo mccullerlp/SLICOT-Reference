@@ -43,11 +43,11 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A and R.  N >= 0.
 C
-C     XANORM  (input) REAL*16
+C     XANORM  (input) REAL*10
 C             The absolute (maximal) norm of the symmetric solution
 C             matrix X of the Lyapunov equation.  XANORM >= 0.
 C
-C     T       (input) REAL*16 array, dimension (LDT,N)
+C     T       (input) REAL*10 array, dimension (LDT,N)
 C             The leading N-by-N upper Hessenberg part of this array
 C             must contain the upper quasi-triangular matrix T in Schur
 C             canonical form from a Schur factorization of A.
@@ -55,7 +55,7 @@ C
 C     LDT     INTEGER
 C             The leading dimension of array T.  LDT >= MAX(1,N).
 C
-C     U       (input) REAL*16 array, dimension (LDU,N)
+C     U       (input) REAL*10 array, dimension (LDU,N)
 C             The leading N-by-N part of this array must contain the
 C             orthogonal matrix U from a real Schur factorization of A.
 C             If LYAPUN = 'R', the array U is not referenced.
@@ -65,7 +65,7 @@ C             The leading dimension of array U.
 C             LDU >= 1,        if LYAPUN = 'R';
 C             LDU >= MAX(1,N), if LYAPUN = 'O'.
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,N)
+C     R       (input/output) REAL*10 array, dimension (LDR,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the absolute residual matrix R, with
@@ -81,7 +81,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     FERR    (output) REAL*16
+C     FERR    (output) REAL*10
 C             An estimated forward error bound for the solution X.
 C             If XTRUE is the true solution, FERR bounds the magnitude
 C             of the largest entry in (X - XTRUE) divided by the
@@ -93,7 +93,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N*N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= 2*N*N.
@@ -157,31 +157,31 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, HALF
+      REAL*10   ZERO, ONE, HALF
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, HALF = 0.5D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          LYAPUN, TRANA, UPLO
       INTEGER            INFO, LDR, LDT, LDU, LDWORK, N
-      REAL*16   FERR, XANORM
+      REAL*10   FERR, XANORM
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      REAL*16   DWORK( * ), R( LDR, * ), T( LDT, * ),
+      REAL*10   DWORK( * ), R( LDR, * ), T( LDT, * ),
      $                   U( LDU, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            LOWER, NOTRNA, UPDATE
       CHARACTER          TRANAT, UPLOW
       INTEGER            I, IJ, INFO2, ITMP, J, KASE, NN
-      REAL*16   EST, SCALE, TEMP
+      REAL*10   EST, SCALE, TEMP
 C     ..
 C     .. Local Arrays ..
       INTEGER            ISAVE( 3 )
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLANSY
+      REAL*10   DLANSY
       EXTERNAL           DLANSY, LSAME
 C     ..
 C     .. External Subroutines ..

@@ -30,13 +30,13 @@ C     LENDAT  (input) INTEGER
 C             The length of the vectors RFRDAT, IFRDAT and OMEGA.
 C             LENDAT >= 2.
 C
-C     RFRDAT  (input) REAL*16 array, dimension (LENDAT)
+C     RFRDAT  (input) REAL*10 array, dimension (LENDAT)
 C             The real part of the frequency data to be fitted.
 C
-C     IFRDAT  (input) REAL*16 array, dimension (LENDAT)
+C     IFRDAT  (input) REAL*10 array, dimension (LENDAT)
 C             The imaginary part of the frequency data to be fitted.
 C
-C     OMEGA   (input) REAL*16 array, dimension (LENDAT)
+C     OMEGA   (input) REAL*10 array, dimension (LENDAT)
 C             The frequencies corresponding to RFRDAT and IFRDAT.
 C             These values must be nonnegative and monotonically
 C             increasing. Additionally, for discrete-time systems
@@ -48,7 +48,7 @@ C             N <= LENDAT-1.
 C             On exit, the order of the obtained system. The value of N
 C             could only be modified if N > 0 and FLAG = 1.
 C
-C     A       (output) REAL*16 array, dimension (LDA,N)
+C     A       (output) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array contains the
 C             matrix A. If FLAG = 1, then A is in an upper Hessenberg
 C             form, and corresponds to a minimal realization.
@@ -56,19 +56,19 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (output) REAL*16 array, dimension (N)
+C     B       (output) REAL*10 array, dimension (N)
 C             The computed vector B.
 C
-C     C       (output) REAL*16 array, dimension (N)
+C     C       (output) REAL*10 array, dimension (N)
 C             The computed vector C. If FLAG = 1, the first N-1 elements
 C             are zero (for the exit value of N).
 C
-C     D       (output) REAL*16 array, dimension (1)
+C     D       (output) REAL*10 array, dimension (1)
 C             The computed scalar D.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used for determining the effective
 C             rank of matrices. If the user sets TOL > 0, then the given
 C             value of TOL is used as a lower bound for the reciprocal
@@ -84,7 +84,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (max(2,2*N+1))
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK and DWORK(2) contains the optimal value of
 C             LZWORK.
@@ -102,7 +102,7 @@ C             LW4 = max( N*N + 5*N, 6*N + 1 + min( 1,N ) ), if FLAG = 1;
 C             LW4 = 0,                                      if FLAG = 0.
 C             For optimum performance LDWORK should be larger.
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C
 C     LZWORK  INTEGER
 C             The length of the array ZWORK.
@@ -184,10 +184,10 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*32         ZZERO, ZONE
+      COMPLEX*20         ZZERO, ZONE
       PARAMETER          ( ZZERO = ( 0.0D+0, 0.0D+0 ),
      $                     ZONE  = ( 1.0D+0, 0.0D+0 ) )
-      REAL*16   ZERO, ONE, TWO, FOUR, TEN
+      REAL*10   ZERO, ONE, TWO, FOUR, TEN
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0,
      $                     FOUR = 4.0D+0, TEN = 1.0D+1 )
       INTEGER            HNPTS
@@ -196,24 +196,24 @@ C     ..
 C     .. Scalar Arguments ..
       INTEGER            DISCFL, FLAG, INFO, LDA, LDWORK, LENDAT,
      $                   LZWORK, N
-      REAL*16   TOL
+      REAL*10   TOL
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK(*)
-      REAL*16   A(LDA, *), B(*), C(*), D(*), DWORK(*),
+      REAL*10   A(LDA, *), B(*), C(*), D(*), DWORK(*),
      $                   IFRDAT(*), OMEGA(*), RFRDAT(*)
-      COMPLEX*32         ZWORK(*)
+      COMPLEX*20         ZWORK(*)
 C     ..
 C     .. Local Scalars ..
       INTEGER            CLWMAX, DLWMAX, I, II, INFO2, IP1, IP2, ISTART,
      $                   ISTOP, IWA0, IWAB, IWBMAT, IWBP, IWBX, IWDME,
      $                   IWDOMO, IWMAG, IWS, IWVAR, IWXI, IWXR, IWYMAG,
      $                   K, LW1, LW2, LW3, LW4, MN, N1, N2, P, RANK
-      REAL*16   P1, P2, PI, PW, RAT, TOLB, TOLL
-      COMPLEX*32         XHAT(HNPTS/2)
+      REAL*10   P1, P2, PI, PW, RAT, TOLB, TOLL
+      COMPLEX*20         XHAT(HNPTS/2)
 C     ..
 C     .. External Functions ..
-      REAL*16   DLAMCH, DLAPY2
+      REAL*10   DLAMCH, DLAPY2
       EXTERNAL           DLAMCH, DLAPY2
 C     ..
 C     .. External Subroutines ..

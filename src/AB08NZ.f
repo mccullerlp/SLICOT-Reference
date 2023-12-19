@@ -34,28 +34,28 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     A       (input) COMPLEX*32 array, dimension (LDA,N)
+C     A       (input) COMPLEX*20 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state dynamics matrix A of the system.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) COMPLEX*32 array, dimension (LDB,M)
+C     B       (input) COMPLEX*20 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input/state matrix B of the system.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) COMPLEX*32 array, dimension (LDC,N)
+C     C       (input) COMPLEX*20 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             state/output matrix C of the system.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) COMPLEX*32 array, dimension (LDD,M)
+C     D       (input) COMPLEX*20 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             direct transmission matrix D of the system.
 C
@@ -91,7 +91,7 @@ C     KRONL   (output) INTEGER array, dimension (MAX(N,P)+1)
 C             The leading NKROL elements of this array contain the
 C             left Kronecker (row) indices.
 C
-C     AF      (output) COMPLEX*32 array, dimension (LDAF,N+MIN(P,M))
+C     AF      (output) COMPLEX*20 array, dimension (LDAF,N+MIN(P,M))
 C             The leading NU-by-NU part of this array contains the
 C             coefficient matrix A  of the reduced pencil. The remainder
 C                                 f
@@ -101,7 +101,7 @@ C
 C     LDAF    INTEGER
 C             The leading dimension of array AF.  LDAF >= MAX(1,N+M).
 C
-C     BF      (output) COMPLEX*32 array, dimension (LDBF,N+M)
+C     BF      (output) COMPLEX*20 array, dimension (LDBF,N+M)
 C             The leading NU-by-NU part of this array contains the
 C             coefficient matrix B  of the reduced pencil. The
 C                                 f
@@ -113,7 +113,7 @@ C             The leading dimension of array BF.  LDBF >= MAX(1,N+P).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -128,9 +128,9 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (MAX(M,P))
 C
-C     DWORK   REAL*16 array, dimension (MAX(N,2*MAX(P,M)))
+C     DWORK   REAL*10 array, dimension (MAX(N,2*MAX(P,M)))
 C
-C     ZWORK   REAL*16 array, dimension (LZWORK)
+C     ZWORK   REAL*10 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal value
 C             of LZWORK.
 C
@@ -232,29 +232,29 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*32        ZERO, ONE
+      COMPLEX*20        ZERO, ONE
       PARAMETER         ( ZERO = ( 0.0D+0, 0.0D+0 ),
      $                    ONE  = ( 1.0D+0, 0.0D+0 ) )
-      REAL*16  DZERO
+      REAL*10  DZERO
       PARAMETER         ( DZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         EQUIL
       INTEGER           DINFZ, INFO, LDA, LDAF, LDB, LDBF, LDC, LDD,
      $                  LZWORK, M, N, NKROL, NKROR, NU, P, RANK
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           INFZ(*), IWORK(*), KRONL(*), KRONR(*)
-      COMPLEX*32        A(LDA,*), AF(LDAF,*), B(LDB,*), BF(LDBF,*),
+      COMPLEX*20        A(LDA,*), AF(LDAF,*), B(LDB,*), BF(LDBF,*),
      $                  C(LDC,*), D(LDD,*), ZWORK(*)
-      REAL*16  DWORK(*)
+      REAL*10  DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LEQUIL, LQUERY
       INTEGER           I, I1, II, J, MM, MNU, MU, NINFZ, NN, NU1, NUMU,
      $                  NUMU1, PP, RO, SIGMA, WRKOPT
-      REAL*16  MAXRED, SVLMAX, THRESH, TOLER
+      REAL*10  MAXRED, SVLMAX, THRESH, TOLER
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, ZLANGE
+      REAL*10  DLAMCH, ZLANGE
       EXTERNAL          DLAMCH, LSAME, ZLANGE
 C     .. External Subroutines ..
       EXTERNAL          AB8NXZ, TB01IZ, XERBLA, ZCOPY, ZLACPY, ZLASET,

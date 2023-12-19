@@ -49,14 +49,14 @@ C
 C     IFICA   (input) INTEGER
 C             Index of first column in A to be transformed.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, this array contains the submatrix A(k).
 C             On exit, it contains the transformed matrix A(k).
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, this array contains the submatrix E(k) of full
 C             column rank to be reduced to upper triangular form.
 C             On exit, it contains the transformed matrix E.
@@ -64,7 +64,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,M).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,*)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,*)
 C             On entry, if UPDATQ = .TRUE., then the leading M-by-M
 C             part of this array must contain a given matrix Q (e.g.
 C             from a previous call to another SLICOT routine), and on
@@ -113,17 +113,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           UPDATQ
       INTEGER           IFICA, IFICE, IFIRE, LDA, LDE, LDQ, M, N, NCE,
      $                  NRE
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), E(LDE,*), Q(LDQ,*)
+      REAL*10  A(LDA,*), E(LDE,*), Q(LDQ,*)
 C     .. Local Scalars ..
       INTEGER           I, IPVT, J
-      REAL*16  SC, SS
+      REAL*10  SC, SS
 C     .. External Subroutines ..
       EXTERNAL          DROT, DROTG
 C     .. Executable Statements ..

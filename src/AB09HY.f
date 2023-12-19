@@ -40,7 +40,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  M >= P >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             stable state dynamics matrix A in a real Schur canonical
 C             form.
@@ -48,14 +48,14 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input/state matrix B, corresponding to the Schur matrix A.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             state/output matrix C, corresponding to the Schur
 C             matrix A.
@@ -63,20 +63,20 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must
 C             contain the full row rank input/output matrix D.
 C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     SCALEC  (output) REAL*16
+C     SCALEC  (output) REAL*10
 C             Scaling factor for the controllability Grammian in (1).
 C
-C     SCALEO  (output) REAL*16
+C     SCALEO  (output) REAL*10
 C             Scaling factor for the observability Grammian in (2).
 C
-C     S       (output) REAL*16 array, dimension (LDS,N)
+C     S       (output) REAL*10 array, dimension (LDS,N)
 C             The leading N-by-N upper triangular part of this array
 C             contains the Cholesky factor Su of the cotrollability
 C             Grammian P = Su*Su' satisfying (1).
@@ -84,7 +84,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,N).
 C
-C     R       (output) REAL*16 array, dimension (LDR,N)
+C     R       (output) REAL*10 array, dimension (LDR,N)
 C             The leading N-by-N upper triangular part of this array
 C             contains the Cholesky factor Ru of the observability
 C             Grammian Q = Ru'*Ru satisfying (2).
@@ -96,7 +96,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK and DWORK(2) contains RCOND, the reciprocal
 C             condition number of the U11 matrix from the expression
@@ -151,23 +151,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ZERO, ONE, TWO
+      REAL*10 ZERO, ONE, TWO
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       INTEGER          INFO, LDA, LDB, LDC, LDD, LDR, LDS, LDWORK, M, N,
      $                 P
-      REAL*16 SCALEC, SCALEO
+      REAL*10 SCALEC, SCALEO
 C     .. Array Arguments ..
       INTEGER          IWORK(*)
-      REAL*16 A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10 A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                 DWORK(*), R(LDR,*), S(LDS,*)
       LOGICAL          BWORK(*)
 C     .. Local Scalars ..
       INTEGER          I, IERR, KBW, KCW, KD, KDW, KG, KQ, KS, KTAU, KU,
      $                 KW, KWI, KWR, LW, N2, WRKOPT
-      REAL*16 RCOND, RTOL
+      REAL*10 RCOND, RTOL
 C     .. External Functions ..
-      REAL*16 DLANGE, DLAMCH
+      REAL*10 DLANGE, DLAMCH
       EXTERNAL         DLANGE, DLAMCH
 C     .. External Subroutines ..
       EXTERNAL         DGEMM, DGERQF, DLACPY, DORGRQ, DSYRK, DTRMM,

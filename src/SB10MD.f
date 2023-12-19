@@ -53,7 +53,7 @@ C             ITYPE(I) = 2 indicates that the corresponding block is a
 C             complex block. THIS IS THE ONLY ALLOWED VALUE NOW!
 C             NBLOCK(I) must be equal to 1 if ITYPE(I) is equal to 1.
 C
-C     QUTOL   (input) REAL*16
+C     QUTOL   (input) REAL*10
 C             The acceptable mean relative error between the D(jw) and
 C             the frequency responce of the estimated block
 C             [ADi,BDi;CDi,DDi]. When it is reached, the result is
@@ -62,7 +62,7 @@ C             A good value is QUTOL = 2.0.
 C             If QUTOL < 0 then only mju(jw) is being estimated,
 C             not D(s).
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,NC)
+C     A       (input/output) REAL*10 array, dimension (LDA,NC)
 C             On entry, the leading NC-by-NC part of this array must
 C             contain the A matrix of the closed-loop system.
 C             On exit, if MP > 0, the leading NC-by-NC part of this
@@ -71,7 +71,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,NC).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,MP)
+C     B       (input/output) REAL*10 array, dimension (LDB,MP)
 C             On entry, the leading NC-by-MP part of this array must
 C             contain the B matrix of the closed-loop system.
 C             On exit, the leading NC-by-MP part of this array contains
@@ -81,7 +81,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,NC).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,NC)
+C     C       (input/output) REAL*10 array, dimension (LDC,NC)
 C             On entry, the leading MP-by-NC part of this array must
 C             contain the C matrix of the closed-loop system.
 C             On exit, the leading MP-by-NC part of this array contains
@@ -91,21 +91,21 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,MP).
 C
-C     D       (input) REAL*16 array, dimension (LDD,MP)
+C     D       (input) REAL*10 array, dimension (LDD,MP)
 C             The leading MP-by-MP part of this array must contain the
 C             D matrix of the closed-loop system.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1,MP).
 C
-C     OMEGA   (input) REAL*16 array, dimension (LENDAT)
+C     OMEGA   (input) REAL*10 array, dimension (LENDAT)
 C             The vector with the frequencies.
 C
 C     TOTORD  (output) INTEGER
 C             The TOTAL order of the D-scaling system.
 C             TOTORD is set to zero, if QUTOL < 0.
 C
-C     AD      (output) REAL*16 array, dimension (LDAD,MP*ORD)
+C     AD      (output) REAL*10 array, dimension (LDAD,MP*ORD)
 C             The leading TOTORD-by-TOTORD part of this array contains
 C             the A matrix of the D-scaling system.
 C             Not referenced if QUTOL < 0.
@@ -115,7 +115,7 @@ C             The leading dimension of the array AD.
 C             LDAD >= MAX(1,MP*ORD), if QUTOL >= 0;
 C             LDAD >= 1,             if QUTOL <  0.
 C
-C     BD      (output) REAL*16 array, dimension (LDBD,MP+F)
+C     BD      (output) REAL*10 array, dimension (LDBD,MP+F)
 C             The leading TOTORD-by-(MP+F) part of this array contains
 C             the B matrix of the D-scaling system.
 C             Not referenced if QUTOL < 0.
@@ -125,7 +125,7 @@ C             The leading dimension of the array BD.
 C             LDBD >= MAX(1,MP*ORD), if QUTOL >= 0;
 C             LDBD >= 1,             if QUTOL <  0.
 C
-C     CD      (output) REAL*16 array, dimension (LDCD,MP*ORD)
+C     CD      (output) REAL*10 array, dimension (LDCD,MP*ORD)
 C             The leading (MP+F)-by-TOTORD part of this array contains
 C             the C matrix of the D-scaling system.
 C             Not referenced if QUTOL < 0.
@@ -135,7 +135,7 @@ C             The leading dimension of the array CD.
 C             LDCD >= MAX(1,MP+F), if QUTOL >= 0;
 C             LDCD >= 1,           if QUTOL <  0.
 C
-C     DD      (output) REAL*16 array, dimension (LDDD,MP+F)
+C     DD      (output) REAL*10 array, dimension (LDDD,MP+F)
 C             The leading (MP+F)-by-(MP+F) part of this array contains
 C             the D matrix of the D-scaling system.
 C             Not referenced if QUTOL < 0.
@@ -145,7 +145,7 @@ C             The leading dimension of the array DD.
 C             LDDD >= MAX(1,MP+F), if QUTOL >= 0;
 C             LDDD >= 1,           if QUTOL <  0.
 C
-C     MJU     (output) REAL*16 array, dimension (LENDAT)
+C     MJU     (output) REAL*10 array, dimension (LENDAT)
 C             The vector with the upper bound of the structured
 C             singular value (mju) for each frequency in OMEGA.
 C
@@ -158,7 +158,7 @@ C             The length of the array IWORK.
 C             LIWORK >= MAX( NC, 4*MNB-2, MP, 2*ORD+1 ), if QUTOL >= 0;
 C             LIWORK >= MAX( NC, 4*MNB-2, MP ),          if QUTOL <  0.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK, DWORK(2) returns the optimal value of LZWORK,
 C             and DWORK(3) returns an estimate of the minimum reciprocal
@@ -182,7 +182,7 @@ C             LW3 = 2*LENDAT*(2*ORD + 1) + MAX( 2*LENDAT, 2*ORD + 1 ) +
 C                   MAX( MN + 6*ORD + 4, 2*MN + 1 );
 C             LW4 = MAX( ORD*ORD + 5*ORD, 6*ORD + 1 + MIN( 1, ORD ) ).
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C
 C     LZWORK  INTEGER
 C             The length of the array ZWORK.
@@ -253,7 +253,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TWO, THREE
+      REAL*10   ZERO, ONE, TWO, THREE
       PARAMETER          ( ZERO  = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0,
      $                     THREE = 3.0D+0 )
       INTEGER            HNPTS
@@ -263,14 +263,14 @@ C     .. Scalar Arguments ..
       INTEGER           F, INFO, LDA, LDAD, LDB, LDBD, LDC, LDCD, LDD,
      $                  LDDD, LDWORK, LENDAT, LIWORK, LZWORK, MNB, MP,
      $                  NC, ORD, TOTORD
-      REAL*16  QUTOL
+      REAL*10  QUTOL
 C     ..
 C     .. Array Arguments ..
       INTEGER           ITYPE(*), IWORK(*), NBLOCK(*)
-      REAL*16  A(LDA, *), AD(LDAD, *), B(LDB, *), BD(LDBD, *),
+      REAL*10  A(LDA, *), AD(LDAD, *), B(LDB, *), BD(LDBD, *),
      $                  C(LDC, *), CD(LDCD, *), D(LDD, *), DD(LDDD, *),
      $                  DWORK(*), MJU(*), OMEGA(*)
-      COMPLEX*32        ZWORK(*)
+      COMPLEX*20        ZWORK(*)
 C     ..
 C     .. Local Scalars ..
       CHARACTER         BALEIG, INITA
@@ -279,12 +279,12 @@ C     .. Local Scalars ..
      $                  IWIFRD, IWRFRD, IWX, K, LCSIZE, LDSIZE, LORD,
      $                  LW1, LW2, LW3, LW4, LWA, LWB, MAXCWR, MAXWRK,
      $                  MN, W
-      REAL*16  MAQE, MEQE, MOD1, MOD2, RCND, RCOND, RQE, TOL,
+      REAL*10  MAQE, MEQE, MOD1, MOD2, RCND, RCOND, RQE, TOL,
      $                  TOLER
-      COMPLEX*32        FREQ
+      COMPLEX*20        FREQ
 C     ..
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH
 C     ..
 C     .. External Subroutines ..

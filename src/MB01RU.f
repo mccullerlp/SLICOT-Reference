@@ -41,16 +41,16 @@ C     N       (input) INTEGER
 C             The order of the matrix X and the number of columns of the
 C             the matrix op( A ).  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry, except when R is identified with X in
 C             the call.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The scalar beta. When beta is zero then A and X are not
 C             referenced.
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,M)
+C     R       (input/output) REAL*10 array, dimension (LDR,M)
 C             On entry with UPLO = 'U', the leading M-by-M upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix R.
@@ -68,7 +68,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,M).
 C
-C     A       (input) REAL*16 array, dimension (LDA,k)
+C     A       (input) REAL*10 array, dimension (LDA,k)
 C             where k is N when TRANS = 'N' and is M when TRANS = 'T' or
 C             TRANS = 'C'.
 C             On entry with TRANS = 'N', the leading M-by-N part of this
@@ -81,7 +81,7 @@ C             The leading dimension of array A.  LDA >= MAX(1,k),
 C             where k is M when TRANS = 'N' and is N when TRANS = 'T' or
 C             TRANS = 'C'.
 C
-C     X       (input) REAL*16 array, dimension (LDX,N)
+C     X       (input) REAL*10 array, dimension (LDX,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix X and the strictly
@@ -98,7 +98,7 @@ C             The leading dimension of array X.  LDX >= MAX(1,N).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             This array is not referenced when beta = 0, or M*N = 0.
 C
 C     LDWORK  The length of the array DWORK.
@@ -159,15 +159,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO, HALF
+      REAL*10  ZERO, ONE, TWO, HALF
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                  HALF = 0.5D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS, UPLO
       INTEGER           INFO, LDA, LDR, LDWORK, LDX, M, N
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), DWORK(*), R(LDR,*), X(LDX,*)
+      REAL*10  A(LDA,*), DWORK(*), R(LDR,*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           LTRANS, LUPLO
 C     .. External Functions ..

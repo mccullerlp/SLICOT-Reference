@@ -31,22 +31,22 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     LOW     (output) REAL*16
+C     LOW     (output) REAL*10
 C             A lower bound for beta(A).
 C
-C     HIGH    (output) REAL*16
+C     HIGH    (output) REAL*10
 C             An upper bound for beta(A).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             Specifies the accuracy with which LOW and HIGH approximate
 C             beta(A). If the user sets TOL to be less than SQRT(EPS),
 C             where EPS is the machine precision (see LAPACK Library
@@ -57,7 +57,7 @@ C             of beta(A) correct to within an order of magnitude.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -142,22 +142,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16  HIGH, LOW, TOL
+      REAL*10  HIGH, LOW, TOL
       INTEGER           INFO, LDA, LDWORK, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), DWORK(*)
+      REAL*10  A(LDA,*), DWORK(*)
 C     .. Local Scalars ..
       INTEGER           I, IA2, IAA, IGF, IHI, ILO, IWI, IWK, IWR,
      $                  JWORK, MINWRK, N2
-      REAL*16  ANRM, SEPS, SFMN, SIGMA, TAU, TEMP, TOL1, TOL2
+      REAL*10  ANRM, SEPS, SFMN, SIGMA, TAU, TEMP, TOL1, TOL2
       LOGICAL           RNEG, SUFWRK
 C     .. Local Arrays ..
-      REAL*16  DUMMY(1), DUMMY2(1,1)
+      REAL*10  DUMMY(1), DUMMY2(1,1)
 C     .. External Functions ..
-      REAL*16  DLAMCH, DLANGE
+      REAL*10  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEBAL, DGEMM, DHSEQR, DLACPY, DSYMM,

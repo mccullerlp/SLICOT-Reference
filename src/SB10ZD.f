@@ -32,70 +32,70 @@ C
 C     NP      (input) INTEGER
 C             The row size of the matrix C.  NP >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix A of the shaped plant.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B of the shaped plant.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading NP-by-N part of this array must contain the
 C             system output matrix C of the shaped plant.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading NP-by-M part of this array must contain the
 C             system input/output matrix D of the shaped plant.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     FACTOR  (input) REAL*16
+C     FACTOR  (input) REAL*10
 C             = 1  implies that an optimal controller is required
 C                  (not recommended);
 C             > 1  implies that a suboptimal controller is required
 C                  achieving a performance FACTOR less than optimal.
 C             FACTOR >= 1.
 C
-C     AK      (output) REAL*16 array, dimension (LDAK,N)
+C     AK      (output) REAL*10 array, dimension (LDAK,N)
 C             The leading N-by-N part of this array contains the
 C             controller state matrix Ak.
 C
 C     LDAK    INTEGER
 C             The leading dimension of the array AK.  LDAK >= max(1,N).
 C
-C     BK      (output) REAL*16 array, dimension (LDBK,NP)
+C     BK      (output) REAL*10 array, dimension (LDBK,NP)
 C             The leading N-by-NP part of this array contains the
 C             controller input matrix Bk.
 C
 C     LDBK    INTEGER
 C             The leading dimension of the array BK.  LDBK >= max(1,N).
 C
-C     CK      (output) REAL*16 array, dimension (LDCK,N)
+C     CK      (output) REAL*10 array, dimension (LDCK,N)
 C             The leading M-by-N part of this array contains the
 C             controller output matrix Ck.
 C
 C     LDCK    INTEGER
 C             The leading dimension of the array CK.  LDCK >= max(1,M).
 C
-C     DK      (output) REAL*16 array, dimension (LDDK,NP)
+C     DK      (output) REAL*10 array, dimension (LDDK,NP)
 C             The leading M-by-NP part of this array contains the
 C             controller matrix Dk.
 C
 C     LDDK    INTEGER
 C             The leading dimension of the array DK.  LDDK >= max(1,M).
 C
-C     RCOND   (output) REAL*16 array, dimension (6)
+C     RCOND   (output) REAL*10 array, dimension (6)
 C             RCOND(1) contains an estimate of the reciprocal condition
 C                      number of the linear system of equations from
 C                      which the solution of the P-Riccati equation is
@@ -117,7 +117,7 @@ C                      number of the matrix Im + Dk*D.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             Tolerance used for checking the nonsingularity of the
 C             matrices to be inverted. If TOL <= 0, then a default value
 C             equal to sqrt(EPS) is used, where EPS is the relative
@@ -127,7 +127,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*max(N,M+NP))
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal value
 C             of LDWORK.
 C
@@ -192,18 +192,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDAK, LDB, LDBK, LDC, LDCK, LDD,
      $                   LDDK, LDWORK, M, N, NP
-      REAL*16   FACTOR, TOL
+      REAL*10   FACTOR, TOL
 C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
       LOGICAL            BWORK( * )
-      REAL*16   A ( LDA,  * ), AK( LDAK, * ), B ( LDB,  * ),
+      REAL*10   A ( LDA,  * ), AK( LDAK, * ), B ( LDB,  * ),
      $                   BK( LDBK, * ), C ( LDC,  * ), CK( LDCK, * ),
      $                   D ( LDD,  * ), DK( LDDK, * ), DWORK( * ),
      $                   RCOND( 6 )
@@ -213,11 +213,11 @@ C     .. Local Scalars ..
      $                   I11, I12, I13, I14, I15, I16, I17, I18, I19,
      $                   I20, I21, I22, I23, I24, I25, I26, INFO2, IWRK,
      $                   J, LWAMAX, MINWRK, N2, NS, SDIM
-      REAL*16   ANORM, GAMMA, TOLL
+      REAL*10   ANORM, GAMMA, TOLL
 C     ..
 C     .. External Functions ..
       LOGICAL            SELECT
-      REAL*16   DLAMCH, DLANGE, DLANSY, DLAPY2
+      REAL*10   DLAMCH, DLANGE, DLANSY, DLAPY2
       EXTERNAL           DLAMCH, DLANGE, DLANSY, DLAPY2, SELECT
 C     ..
 C     .. External Subroutines ..

@@ -27,7 +27,7 @@ C             The actual output dimension, i.e., the order of the matrix
 C             R .  L >= 0.
 C              i
 C
-C     P       (input/output) REAL*16 array, dimension (LDP,N)
+C     P       (input/output) REAL*10 array, dimension (LDP,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain P     , the state covariance matrix at instant
 C                      i|i-1
@@ -43,7 +43,7 @@ C
 C     LDP     INTEGER
 C             The leading dimension of array P.  LDP >= MAX(1,N).
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain A ,
 C                                                                 i
 C             the state transition matrix of the discrete system at
@@ -52,7 +52,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain B ,
 C                                                                 i
 C             the input weight matrix of the discrete system at
@@ -61,7 +61,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading L-by-N part of this array must contain C ,
 C                                                                 i
 C             the output weight matrix of the discrete system at
@@ -70,7 +70,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,L).
 C
-C     Q       (input) REAL*16 array, dimension (LDQ,M)
+C     Q       (input) REAL*10 array, dimension (LDQ,M)
 C             The leading M-by-M part of this array must contain Q ,
 C                                                                 i
 C             the input (process) noise covariance matrix at instant i.
@@ -80,7 +80,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of array Q.  LDQ >= MAX(1,M).
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,L)
+C     R       (input/output) REAL*10 array, dimension (LDR,L)
 C             On entry, the leading L-by-L part of this array must
 C             contain R , the output (measurement) noise covariance
 C                      i
@@ -95,7 +95,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,L).
 C
-C     K       (output) REAL*16 array, dimension (LDK,L)
+C     K       (output) REAL*10 array, dimension (LDK,L)
 C             If INFO = 0, the leading N-by-L part of this array
 C             contains K , the Kalman filter gain matrix at instant i.
 C                       i
@@ -108,7 +108,7 @@ C             The leading dimension of array K.  LDK >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used to test for near singularity of
 C             the matrix RINOV . If the user sets TOL > 0, then the
 C                             i
@@ -124,7 +124,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (L)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, or INFO = L+1, DWORK(1) returns an
 C             estimate of the reciprocal of the condition number (in the
 C             1-norm) of the matrix RINOV .
@@ -213,21 +213,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, L, LDA, LDB, LDC, LDK, LDP, LDQ, LDR,
      $                  LDWORK, M, N
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
      $                  K(LDK,*), P(LDP,*), Q(LDQ,*), R(LDR,*)
 C     .. Local Scalars ..
       INTEGER           J, JWORK, LDW, N1
-      REAL*16  RCOND, RNORM, TOLDEF
+      REAL*10  RCOND, RNORM, TOLDEF
 C     .. External Functions ..
-      REAL*16  DLAMCH, DLANSY
+      REAL*10  DLAMCH, DLANSY
       EXTERNAL          DLAMCH, DLANSY
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMV, DLACPY, DLASET, DPOCON,

@@ -79,7 +79,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs, or of rows of C.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -92,7 +92,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB,M1+M2)
 C             On entry, the leading N-by-(M1+M2) part of this array must
 C             contain the compound input matrix B = [B1,B2], where B1 is
@@ -108,7 +108,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -131,7 +131,7 @@ C             an even number, and the INDCON/2 odd and even components
 C             of NBLK have decreasing values, respectively.
 C             Note that some elements of NBLK can be zero.
 C
-C     Z       (output) REAL*16 array, dimension (LDZ,N)
+C     Z       (output) REAL*10 array, dimension (LDZ,N)
 C             If JOBZ = 'I', then the leading N-by-N part of this
 C             array contains the matrix of accumulated orthogonal
 C             similarity transformations which reduces the given system
@@ -149,14 +149,14 @@ C     LDZ     INTEGER
 C             The leading dimension of the array Z. If JOBZ = 'I' or
 C             JOBZ = 'F', LDZ >= MAX(1,N); if JOBZ = 'N', LDZ >= 1.
 C
-C     TAU     (output) REAL*16 array, dimension (MIN(N,M1+M2))
+C     TAU     (output) REAL*10 array, dimension (MIN(N,M1+M2))
 C             The elements of TAU contain the scalar factors of the
 C             elementary reflectors used in the reduction of [B1,B2]
 C             and A.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in rank determinations when
 C             transforming (A, [B1,B2]). If the user sets TOL > 0, then
 C             the given value of TOL is used as a lower bound for the
@@ -173,7 +173,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (MAX(M1,M2))
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -239,27 +239,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBZ
       INTEGER           INDCON, INFO, LDA, LDB, LDC, LDWORK, LDZ, M1,
      $                  M2, N, NCONT, P
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), TAU(*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), TAU(*),
      $                  Z(LDZ,*)
       INTEGER           IWORK(*), NBLK(*)
 C     .. Local Scalars ..
       LOGICAL           B1RED, LJOBF, LJOBI, LJOBZ, LQUERY
       INTEGER           IQR, ITAU, J, JB2, JQR, M, MCRT, MCRT1,
      $                  MCRT2, MINWRK, NCRT, NI, NJ, RANK, WRKOPT
-      REAL*16  ANORM, BNORM, FNRM, FNRM2, FNRMA, TOLDEF
+      REAL*10  ANORM, BNORM, FNRM, FNRM2, FNRMA, TOLDEF
 C     .. Local Arrays ..
-      REAL*16  SVAL(3)
+      REAL*10  SVAL(3)
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLANGE
+      REAL*10  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DLACPY, DLAPMT, DLASET, DORGQR, DORMQR,

@@ -72,7 +72,7 @@ C             The leading K elements of this array must contain the
 C             signatures of the factors. Each entry in S must be either
 C             1 or -1. By definition, S(1) must be set to 1.
 C
-C     A       (input/output) COMPLEX*32 array, dimension (LDA1,LDA2,K)
+C     A       (input/output) COMPLEX*20 array, dimension (LDA1,LDA2,K)
 C             On entry, the leading N-by-N-by-K part of this array
 C             must contain the factors in upper Hessenberg-triangular
 C             form, that is, A(:,:,1) is upper Hessenberg and the other
@@ -94,7 +94,7 @@ C     LDA2    INTEGER
 C             The second leading dimension of the array A.
 C             LDA2 >= MAX(1,N).
 C
-C     Q       (input/output) COMPLEX*32 array, dimension (LDQ1,LDQ2,K)
+C     Q       (input/output) COMPLEX*20 array, dimension (LDQ1,LDQ2,K)
 C             On entry, if COMPQ = 'V', the leading N-by-N-by-K part
 C             of this array must contain the initial unitary factors
 C             as described in (1) and (2).
@@ -111,7 +111,7 @@ C     LDQ2    INTEGER
 C             The second leading dimension of the array Q.  LDQ2 >= 1,
 C             and, if COMPQ <> 'N', LDQ2 >= MAX(1,N).
 C
-C     ALPHA   (output) COMPLEX*32 array, dimension (N)
+C     ALPHA   (output) COMPLEX*20 array, dimension (N)
 C             On exit, if INFO = 0, the leading N elements of this
 C             array contain the scaled eigenvalues of the matrix
 C             product A. The i-th eigenvalue of A is given by
@@ -121,7 +121,7 @@ C
 C             where ABS(ALPHA(I)) = 0.0 or 1.0 <= ABS(ALPHA(I)) < BASE,
 C             and BASE is the machine base (normally 2.0).
 C
-C     BETA    (output) COMPLEX*32 array, dimension (N)
+C     BETA    (output) COMPLEX*20 array, dimension (N)
 C             On exit, if INFO = 0, the leading N elements of this
 C             array contain indicators for infinite eigenvalues. That
 C             is, if BETA(I) = 0.0, then the i-th eigenvalue is
@@ -134,14 +134,14 @@ C             of A.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the minimal value
 C             of LDWORK.
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= MAX(1,N).
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the minimal value
 C             of LZWORK.
 C
@@ -202,9 +202,9 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D+0, ONE = 1.0D+0 )
-      COMPLEX*32        CONE, CZERO
+      COMPLEX*20        CONE, CZERO
       PARAMETER         ( CONE  = ( 1.0D+0, 0.0D+0 ),
      $                    CZERO = ( 0.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
@@ -213,22 +213,22 @@ C     .. Scalar Arguments ..
      $                  LDWORK, LZWORK, N
 C     .. Array Arguments ..
       INTEGER           S(*), SCAL(*)
-      REAL*16  DWORK(*)
-      COMPLEX*32        A(LDA1, LDA2, *), ALPHA(*), BETA(*),
+      REAL*10  DWORK(*)
+      COMPLEX*20        A(LDA1, LDA2, *), ALPHA(*), BETA(*),
      $                  Q(LDQ1, LDQ2, *), ZWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LINIQ, LSCHR, SOK, WANTQ
       INTEGER           IFIRST, IFRSTM, IITER, ILAST, ILASTM, IN, J, J1,
      $                  JDEF, JITER, JLO, L, LDEF, LN, MAXIT, NTRA,
      $                  ZITER
-      REAL*16  ABST, BASE, CS, SAFMAX, SAFMIN, SMLNUM, TOL, ULP
-      COMPLEX*32        SN, TEMP
+      REAL*10  ABST, BASE, CS, SAFMAX, SAFMIN, SMLNUM, TOL, ULP
+      COMPLEX*20        SN, TEMP
 C     .. Local Arrays ..
       INTEGER           ISEED(4)
-      COMPLEX*32        RND(4)
+      COMPLEX*20        RND(4)
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, ZLANHS, ZLANTR
+      REAL*10  DLAMCH, ZLANHS, ZLANTR
       EXTERNAL          DLAMCH, LSAME, ZLANHS, ZLANTR
 C     .. External Subroutines ..
       EXTERNAL          DLABAD, MA01BZ, XERBLA, ZLARNV, ZLARTG, ZLASET,

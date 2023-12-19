@@ -24,7 +24,7 @@ C     NC      (input) INTEGER
 C             The number of parameters required in each row of the
 C             block Hankel expansion matrix T.  NC >= 0.
 C
-C     H       (input) REAL*16 array, dimension
+C     H       (input) REAL*10 array, dimension
 C             (LDH,(NR+NC-1)*NH2)
 C             The leading NH1-by-(NR+NC-1)*NH2 part of this array must
 C             contain the multivariable sequence M(k), where k = 1,2,
@@ -35,7 +35,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of array H.  LDH >= MAX(1,NH1).
 C
-C     T       (output) REAL*16 array, dimension (LDT,NH2*NC)
+C     T       (output) REAL*10 array, dimension (LDT,NH2*NC)
 C             The leading NH1*NR-by-NH2*NC part of this array contains
 C             the block Hankel expansion of the multivariable sequence
 C             M(k).
@@ -96,7 +96,7 @@ C
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDH, LDT, NC, NH1, NH2, NR
 C     .. Array Arguments ..
-      REAL*16  H(LDH,*), T(LDT,*)
+      REAL*10  H(LDH,*), T(LDT,*)
 C     .. Local Scalars ..
       INTEGER           IH, IT, JT, NROW
 C     .. External Subroutines ..

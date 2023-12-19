@@ -58,7 +58,7 @@ C
 C     M       (input) INTEGER
 C             The number of system inputs, or of columns of B.  M >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading NCONT-by-NCONT part contains the
@@ -70,7 +70,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading NCONT-by-M part of this array
@@ -92,7 +92,7 @@ C     NBLK    (output) INTEGER array, dimension (N)
 C             The leading INDCON elements of this array contain the
 C             the orders of the diagonal blocks of Acont.
 C
-C     Z       (output) REAL*16 array, dimension (LDZ,N)
+C     Z       (output) REAL*10 array, dimension (LDZ,N)
 C             If JOBZ = 'I', then the leading N-by-N part of this
 C             array contains the matrix of accumulated orthogonal
 C             similarity transformations which reduces the given system
@@ -110,13 +110,13 @@ C     LDZ     INTEGER
 C             The leading dimension of array Z. If JOBZ = 'I' or
 C             JOBZ = 'F', LDZ >= MAX(1,N); if JOBZ = 'N', LDZ >= 1.
 C
-C     TAU     (output) REAL*16 array, dimension (N)
+C     TAU     (output) REAL*10 array, dimension (N)
 C             The elements of TAU contain the scalar factors of the
 C             elementary reflectors used in the reduction of B and A.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in rank determination when
 C             transforming (A, B). If the user sets TOL > 0, then
 C             the given value of TOL is used as a lower bound for the
@@ -133,7 +133,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -209,25 +209,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBZ
       INTEGER           INDCON, INFO, LDA, LDB, LDWORK, LDZ, M, N, NCONT
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), TAU(*), Z(LDZ,*)
+      REAL*10  A(LDA,*), B(LDB,*), DWORK(*), TAU(*), Z(LDZ,*)
       INTEGER           IWORK(*), NBLK(*)
 C     .. Local Scalars ..
       LOGICAL           LJOBF, LJOBI, LJOBZ
       INTEGER           IQR, ITAU, J, MCRT, NBL, NCRT, NI, NJ, RANK,
      $                  WRKOPT
-      REAL*16  ANORM, BNORM, FNRM, TOLDEF
+      REAL*10  ANORM, BNORM, FNRM, TOLDEF
 C     .. Local Arrays ..
-      REAL*16  SVAL(3)
+      REAL*10  SVAL(3)
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLANGE
+      REAL*10  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DLACPY, DLAPMT, DLASET, DORGQR, DORMQR,

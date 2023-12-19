@@ -21,10 +21,10 @@ C     N       (input) INTEGER
 C             The number of samples.  N must be a power of 2 plus 1.
 C             N >= 5.
 C
-C     DT      (input) REAL*16
+C     DT      (input) REAL*10
 C             The sampling time of the signal.
 C
-C     A       (input/output) REAL*16 array, dimension (N)
+C     A       (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the signal to be
 C             processed.
 C             On exit, this array contains either the sine transform, if
@@ -33,7 +33,7 @@ C             given signal.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N+1)
+C     DWORK   REAL*10 array, dimension (N+1)
 C
 C     Error Indicator
 C
@@ -142,19 +142,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO, FOUR
+      REAL*10  ZERO, ONE, TWO, FOUR
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                    FOUR = 4.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SICO
       INTEGER           INFO, N
-      REAL*16  DT
+      REAL*10  DT
 C     .. Array Arguments ..
-      REAL*16  A(*), DWORK(*)
+      REAL*10  A(*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LSICO, LSIG
       INTEGER           I, I2, IND1, IND2, M, MD2
-      REAL*16  A0, PIBYM, W1, W2, W3
+      REAL*10  A0, PIBYM, W1, W2, W3
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

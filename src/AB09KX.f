@@ -79,7 +79,7 @@ C             systems with the transfer-function matrices G and V and
 C             also the dimension of the input vector of the system
 C             with the transfer-function matrix V.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must
 C             contain the state matrix A of the system with the
 C             transfer-function matrix G in a real Schur form.
@@ -87,7 +87,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B of the system with the
 C             transfer-function matrix G.
@@ -99,7 +99,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C of the system with the
 C             transfer-function matrix G.
@@ -111,7 +111,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the feedthrough matrix D of the system with the
 C             transfer-function matrix G.
@@ -123,7 +123,7 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1,P).
 C
-C     AV      (input/output) REAL*16 array, dimension (LDAV,NV)
+C     AV      (input/output) REAL*10 array, dimension (LDAV,NV)
 C             On entry, if WEIGHT = 'L' or 'B', the leading NV-by-NV
 C             part of this array must contain the state matrix AV of
 C             the system with the transfer-function matrix V.
@@ -137,7 +137,7 @@ C             The leading dimension of the array AV.
 C             LDAV >= MAX(1,NV), if WEIGHT = 'L' or 'B';
 C             LDAV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     BV      (input/output) REAL*16 array, dimension (LDBV,P)
+C     BV      (input/output) REAL*10 array, dimension (LDBV,P)
 C             On entry, if WEIGHT = 'L' or 'B', the leading NV-by-P part
 C             of this array must contain the input matrix BV of the
 C             system with the transfer-function matrix V.
@@ -151,7 +151,7 @@ C             The leading dimension of the array BV.
 C             LDBV >= MAX(1,NV), if WEIGHT = 'L' or 'B';
 C             LDBV >= 1,         if WEIGHT = 'R' or 'N'.
 C
-C     CV      (input/output) REAL*16 array, dimension (LDCV,NV)
+C     CV      (input/output) REAL*10 array, dimension (LDCV,NV)
 C             On entry, if WEIGHT = 'L' or 'B', the leading P-by-NV part
 C             of this array must contain the output matrix CV of the
 C             system with the transfer-function matrix V.
@@ -165,7 +165,7 @@ C             The leading dimension of the array CV.
 C             LDCV >= MAX(1,P), if WEIGHT = 'L' or 'B';
 C             LDCV >= 1,        if WEIGHT = 'R' or 'N'.
 C
-C     DV      (input) REAL*16 array, dimension (LDDV,P)
+C     DV      (input) REAL*10 array, dimension (LDDV,P)
 C             If WEIGHT = 'L' or 'B', the leading P-by-P part of this
 C             array must contain the feedthrough matrix DV of the system
 C             with the transfer-function matrix V.
@@ -176,7 +176,7 @@ C             The leading dimension of the array DV.
 C             LDDV >= MAX(1,P), if WEIGHT = 'L' or 'B';
 C             LDDV >= 1,        if WEIGHT = 'R' or 'N'.
 C
-C     AW      (input/output) REAL*16 array, dimension (LDAW,NW)
+C     AW      (input/output) REAL*10 array, dimension (LDAW,NW)
 C             On entry, if WEIGHT = 'R' or 'B', the leading NW-by-NW
 C             part of this array must contain the state matrix AW of
 C             the system with the transfer-function matrix W.
@@ -190,7 +190,7 @@ C             The leading dimension of the array AW.
 C             LDAW >= MAX(1,NW), if WEIGHT = 'R' or 'B';
 C             LDAW >= 1,         if WEIGHT = 'L' or 'N'.
 C
-C     BW      (input/output) REAL*16 array, dimension (LDBW,M)
+C     BW      (input/output) REAL*10 array, dimension (LDBW,M)
 C             On entry, if WEIGHT = 'R' or 'B', the leading NW-by-M part
 C             of this array must contain the input matrix BW of the
 C             system with the transfer-function matrix W.
@@ -204,7 +204,7 @@ C             The leading dimension of the array BW.
 C             LDBW >= MAX(1,NW), if WEIGHT = 'R' or 'B';
 C             LDBW >= 1,         if WEIGHT = 'L' or 'N'.
 C
-C     CW      (input/output) REAL*16 array, dimension (LDCW,NW)
+C     CW      (input/output) REAL*10 array, dimension (LDCW,NW)
 C             On entry, if WEIGHT = 'R' or 'B', the leading M-by-NW part
 C             of this array must contain the output matrix CW of the
 C             system with the transfer-function matrix W.
@@ -218,7 +218,7 @@ C             The leading dimension of the array CW.
 C             LDCW >= MAX(1,M), if WEIGHT = 'R' or 'B';
 C             LDCW >= 1,        if WEIGHT = 'L' or 'N'.
 C
-C     DW      (input) REAL*16 array, dimension (LDDW,M)
+C     DW      (input) REAL*10 array, dimension (LDDW,M)
 C             If WEIGHT = 'R' or 'B', the leading M-by-M part of this
 C             array must contain the feedthrough matrix DW of the system
 C             with the transfer-function matrix W.
@@ -231,7 +231,7 @@ C             LDDW >= 1,        if WEIGHT = 'L' or 'N'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -353,7 +353,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ZERO, ONE
+      REAL*10 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, JOB, WEIGHT
@@ -361,17 +361,17 @@ C     .. Scalar Arguments ..
      $                 LDC, LDCV, LDCW, LDD, LDDV, LDDW, LDWORK, M, N,
      $                 NV, NW, P
 C     .. Array Arguments ..
-      REAL*16 A(LDA,*),   B(LDB,*),   C(LDC,*),   D(LDD,*),
+      REAL*10 A(LDA,*),   B(LDB,*),   C(LDC,*),   D(LDD,*),
      $                 AV(LDAV,*), BV(LDBV,*), CV(LDCV,*), DV(LDDV,*),
      $                 AW(LDAW,*), BW(LDBW,*), CW(LDCW,*), DW(LDDW,*),
      $                 DWORK(*)
 C     .. Local Scalars
       LOGICAL          CONJS, DISCR, FRWGHT, LEFTW, RIGHTW
-      REAL*16 SCALE, WORK
+      REAL*10 SCALE, WORK
       INTEGER          I, IA, IB, IERR, KW, LDW, LDWN, LW
 C     .. External Functions ..
       LOGICAL          LSAME
-      REAL*16 DLAPY2
+      REAL*10 DLAPY2
       EXTERNAL         DLAPY2, LSAME
 C     .. External Subroutines ..
       EXTERNAL         DGEMM, DLACPY, DTRSYL, SB04PY, TB01WD, XERBLA

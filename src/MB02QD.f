@@ -46,14 +46,14 @@ C     NRHS    (input) INTEGER
 C             The number of right hand sides, i.e., the number of
 C             columns of the matrices B and X.  NRHS >= 0.
 C
-C     RCOND   (input) REAL*16
+C     RCOND   (input) REAL*10
 C             RCOND is used to determine the effective rank of A, which
 C             is defined as the order of the largest leading triangular
 C             submatrix R11 in the QR factorization with pivoting of A,
 C             whose estimated condition number is less than 1/RCOND.
 C             0 <= RCOND <= 1.
 C
-C     SVLMAX  (input) REAL*16
+C     SVLMAX  (input) REAL*10
 C             If A is a submatrix of another matrix C, and the rank
 C             decision should be related to that matrix, then SVLMAX
 C             should be an estimate of the largest singular value of C
@@ -61,7 +61,7 @@ C             (for instance, the Frobenius norm of C).  If this is not
 C             the case, the input value SVLMAX = 0 should work.
 C             SVLMAX >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the given matrix A.
 C             On exit, the leading M-by-N part of this array contains
@@ -80,7 +80,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB,NRHS)
 C             On entry, the leading M-by-NRHS part of this array must
 C             contain the right hand side matrix B.
@@ -95,7 +95,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,M,N).
 C
-C     Y       (input) REAL*16 array, dimension ( N*NRHS )
+C     Y       (input) REAL*10 array, dimension ( N*NRHS )
 C             If JOB = 'F', the elements Y(1:(N-RANK)*NRHS) are used as
 C             free elements in computing the solution (see METHOD).
 C             The remaining elements are not referenced.
@@ -117,7 +117,7 @@ C             The effective rank of A, i.e., the order of the submatrix
 C             R11.  This is the same as the order of the submatrix T11
 C             in the complete orthogonal factorization of A.
 C
-C     SVAL    (output) REAL*16 array, dimension ( 3 )
+C     SVAL    (output) REAL*10 array, dimension ( 3 )
 C             The estimates of some of the singular values of the
 C             triangular factor R11:
 C             SVAL(1): largest singular value of  R(1:RANK,1:RANK);
@@ -138,7 +138,7 @@ C             number of R(1:RANK,1:RANK).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK, and the entries 2 to min(M,N) + RANK + 1
 C             contain the scalar factors of the elementary reflectors
@@ -210,28 +210,28 @@ C     Least squares problems, QR factorization.
 C
 C     ******************************************************************
 C
-      REAL*16   ZERO, ONE, DONE, NTDONE
+      REAL*10   ZERO, ONE, DONE, NTDONE
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0, DONE = ZERO,
      $                     NTDONE = ONE )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          INIPER, JOB
       INTEGER            INFO, LDA, LDB, LDWORK, M, N, NRHS, RANK
-      REAL*16   RCOND, SVLMAX
+      REAL*10   RCOND, SVLMAX
 C     ..
 C     .. Array Arguments ..
       INTEGER            JPVT( * )
-      REAL*16   A( LDA, * ), B( LDB, * ), DWORK( * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), DWORK( * ),
      $                   SVAL( 3 ), Y ( * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            LEASTS, PERMUT
       INTEGER            I, IASCL, IBSCL, J, K, MAXWRK, MINWRK, MN
-      REAL*16   ANRM, BIGNUM, BNRM, SMLNUM, T1, T2
+      REAL*10   ANRM, BIGNUM, BNRM, SMLNUM, T1, T2
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH, DLANGE
+      REAL*10   DLAMCH, DLANGE
       EXTERNAL           DLAMCH, DLANGE, LSAME
 C     ..
 C     .. External Subroutines ..

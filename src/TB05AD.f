@@ -61,11 +61,11 @@ C     P       (input) INTEGER
 C             The number of outputs, i.e. the number of rows in the
 C             matrix C.  P >= 0.
 C
-C     FREQ    (input) COMPLEX*32
+C     FREQ    (input) COMPLEX*20
 C             The frequency freq at which the frequency response matrix
 C             (transfer matrix) is to be evaluated.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state transition matrix A.
 C             If INITA = 'G', then, on exit, the leading N-by-N part of
@@ -77,7 +77,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix B.
 C             If INITA = 'G', then, on exit, the leading N-by-M part of
@@ -88,7 +88,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             If INITA = 'G', then, on exit, the leading P-by-N part of
@@ -99,25 +99,25 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             If BALEIG = 'C' or BALEIG = 'A', then RCOND contains an
 C             estimate of the reciprocal of the condition number of
 C             matrix H with respect to inversion (see METHOD).
 C
-C     G       (output) COMPLEX*32 array, dimension (LDG,M)
+C     G       (output) COMPLEX*20 array, dimension (LDG,M)
 C             The leading P-by-M part of this array contains the
 C             frequency response matrix G(freq).
 C
 C     LDG     INTEGER
 C             The leading dimension of array G.  LDG >= MAX(1,P).
 C
-C     EVRE,   (output) REAL*16 arrays, dimension (N)
+C     EVRE,   (output) REAL*10 arrays, dimension (N)
 C     EVIM    If INITA = 'G' and BALEIG = 'B' or 'E' or BALEIG = 'A',
 C             then these arrays contain the real and imaginary parts,
 C             respectively, of the eigenvalues of the matrix A.
 C             Otherwise, these arrays are not referenced.
 C
-C     HINVB   (output) COMPLEX*32 array, dimension (LDHINV,M)
+C     HINVB   (output) COMPLEX*20 array, dimension (LDHINV,M)
 C             The leading N-by-M part of this array contains the
 C                      -1
 C             product H  B.
@@ -129,7 +129,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -145,7 +145,7 @@ C             LDWORK >= 1, otherwise.
 C             For optimum performance when INITA = 'G' LDWORK should be
 C             larger.
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C
 C     LZWORK  INTEGER
 C             The length of the array ZWORK.
@@ -214,30 +214,30 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
-      COMPLEX*32        CZERO
+      COMPLEX*20        CZERO
       PARAMETER         ( CZERO = ( 0.0D0, 0.0D0 ) )
 C     .. Scalar Arguments ..
       CHARACTER         BALEIG, INITA
       INTEGER           INFO, LDA, LDB, LDC, LDG, LDHINV, LDWORK,
      $                  LZWORK, M, N, P
-      REAL*16  RCOND
-      COMPLEX*32        FREQ
+      REAL*10  RCOND
+      COMPLEX*20        FREQ
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), EVIM(*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), EVIM(*),
      $                  EVRE(*)
-      COMPLEX*32        ZWORK(*), G(LDG,*), HINVB(LDHINV,*)
+      COMPLEX*20        ZWORK(*), G(LDG,*), HINVB(LDHINV,*)
 C     .. Local Scalars ..
       CHARACTER         BALANC
       LOGICAL           LBALBA, LBALEA, LBALEB, LBALEC, LINITA
       INTEGER           I, IGH, IJ, ITAU, J, JJ, JP, JWORK, K, LOW,
      $                  WRKOPT
-      REAL*16  HNORM, T
+      REAL*10  HNORM, T
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DASUM, DLAMCH
+      REAL*10  DASUM, DLAMCH
       EXTERNAL          DASUM, DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DGEBAL, DGEHRD, DHSEQR, DORMHR, DSCAL, DSWAP,

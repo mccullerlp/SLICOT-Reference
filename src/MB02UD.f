@@ -55,11 +55,11 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix B.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then B need not be
 C             set before entry.
 C
-C     RCOND   (input) REAL*16
+C     RCOND   (input) REAL*10
 C             RCOND is used to determine the effective rank of R.
 C             Singular values of R satisfying Sv(i) <= RCOND*Sv(1) are
 C             treated as zero. If RCOND <= 0, then EPS is used instead,
@@ -72,7 +72,7 @@ C             The rank of matrix R.
 C             RANK is an input parameter when FACT = 'F', and an output
 C             parameter when FACT = 'N'.  L >= RANK >= 0.
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,L)
+C     R       (input/output) REAL*10 array, dimension (LDR,L)
 C             On entry, if FACT = 'F', the leading L-by-L part of this
 C             array must contain the L-by-L orthogonal matrix P' from
 C             singular value decomposition, R = Q*S*P', of the matrix R;
@@ -89,7 +89,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,L).
 C
-C     Q       (input or output) REAL*16 array, dimension
+C     Q       (input or output) REAL*10 array, dimension
 C             (LDQ,L)
 C             On entry, if FACT = 'F', the leading L-by-L part of this
 C             array must contain the L-by-L orthogonal matrix Q from
@@ -101,7 +101,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of array Q.  LDQ >= MAX(1,L).
 C
-C     SV      (input or output) REAL*16 array, dimension (L)
+C     SV      (input or output) REAL*10 array, dimension (L)
 C             On entry, if FACT = 'F', the first RANK entries of this
 C             array must contain the reciprocal of the largest RANK
 C             singular values of the matrix R, and the last L-RANK
@@ -114,7 +114,7 @@ C             of the matrix R, and the last L-RANK entries of this array
 C             contain the remaining singular values of R sorted in
 C             descending order.
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, if ALPHA <> 0, the leading M-by-N part of this
 C             array must contain the matrix B.
 C             On exit, if INFO = 0 and RANK > 0, the leading M-by-N part
@@ -123,7 +123,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,M).
 C
-C     RP      (input or output) REAL*16 array, dimension
+C     RP      (input or output) REAL*10 array, dimension
 C             (LDRP,L)
 C             On entry, if FACT = 'F', JOBP = 'P', and RANK > 0, the
 C             leading L-by-L part of this array must contain the L-by-L
@@ -140,7 +140,7 @@ C             LDRP >= 1,        if JOBP = 'N'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK;
 C             if INFO = i, 1 <= i <= L, then DWORK(2:L) contain the
 C             unconverged superdiagonal elements of an upper bidiagonal
@@ -210,23 +210,23 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         FACT, JOBP, SIDE, TRANS
       INTEGER           INFO, LDB, LDQ, LDR, LDRP, LDWORK, M, N, RANK
-      REAL*16  ALPHA, RCOND
+      REAL*10  ALPHA, RCOND
 C     .. Array Arguments ..
-      REAL*16  B(LDB,*), DWORK(*), Q(LDQ,*), R(LDR,*),
+      REAL*10  B(LDB,*), DWORK(*), Q(LDQ,*), R(LDR,*),
      $                  RP(LDRP,*), SV(*)
 C     .. Local Scalars ..
       LOGICAL           LEFT, LQUERY, NFCT, PINV, TRAN
       CHARACTER*1       NTRAN
       INTEGER           I, L, MAXWRK, MINWRK, MN
-      REAL*16  TOLL
+      REAL*10  TOLL
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEMM, DGEMV, DLACPY, DLASET, MB01SD,

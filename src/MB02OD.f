@@ -65,11 +65,11 @@ C
 C     N       (input) INTEGER
 C             The number of columns of B.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar  alpha. When alpha is zero then A is not
 C             referenced and B need not be set before entry.
 C
-C     A       (input) REAL*16 array, dimension (LDA,k),
+C     A       (input) REAL*10 array, dimension (LDA,k),
 C             where k is M when SIDE = 'L' and is N when SIDE = 'R'.
 C             On entry with UPLO = 'U', the leading k-by-k upper
 C             triangular part of this array must contain the upper
@@ -87,7 +87,7 @@ C             The leading dimension of array A.
 C             LDA >= max(1,M) when SIDE = 'L';
 C             LDA >= max(1,N) when SIDE = 'R'.
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right-hand side matrix B.
 C             On exit, if INFO = 0, the leading M-by-N part of this
@@ -97,13 +97,13 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= max(1,M).
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             The reciprocal of the condition number of the matrix A,
 C             computed as RCOND = 1/(norm(A) * norm(inv(A))).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used to test for near singularity of
 C             the matrix A. If the user sets TOL > 0, then the given
 C             value of TOL is used as a lower bound for the reciprocal
@@ -118,7 +118,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (k)
 C
-C     DWORK   REAL*16 array, dimension (3*k)
+C     DWORK   REAL*10 array, dimension (3*k)
 C
 C     Error Indicator
 C
@@ -162,22 +162,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          DIAG, NORM, SIDE, TRANS, UPLO
       INTEGER            INFO, LDA, LDB, M, N
-      REAL*16   ALPHA, RCOND, TOL
+      REAL*10   ALPHA, RCOND, TOL
 C     .. Array Arguments ..
       INTEGER            IWORK(*)
-      REAL*16   A(LDA,*), B(LDB,*), DWORK(*)
+      REAL*10   A(LDA,*), B(LDB,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL            LSIDE, ONENRM
       INTEGER            NROWA
-      REAL*16   TOLDEF
+      REAL*10   TOLDEF
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DTRCON, DTRSM, XERBLA

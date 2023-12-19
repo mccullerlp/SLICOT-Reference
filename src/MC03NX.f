@@ -35,7 +35,7 @@ C
 C     DP      (input) INTEGER
 C             The degree of the polynomial matrix P(s).  DP >= 1.
 C
-C     P       (input) REAL*16 array, dimension (LDP1,LDP2,DP+1)
+C     P       (input) REAL*10 array, dimension (LDP1,LDP2,DP+1)
 C             The leading MP-by-NP-by-(DP+1) part of this array must
 C             contain the coefficients of the polynomial matrix P(s)
 C             in (1) in increasing powers of s.
@@ -46,7 +46,7 @@ C
 C     LDP2    INTEGER
 C             The second dimension of array P.   LDP2 >= MAX(1,NP).
 C
-C     A       (output) REAL*16 array, dimension
+C     A       (output) REAL*10 array, dimension
 C             (LDA,(DP-1)*MP+NP)
 C             The leading DP*MP-by-((DP-1)*MP+NP) part of this array
 C             contains the matrix A as described in (2).
@@ -54,7 +54,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,DP*MP).
 C
-C     E       (output) REAL*16 array, dimension
+C     E       (output) REAL*10 array, dimension
 C             (LDE,(DP-1)*MP+NP)
 C             The leading DP*MP-by-((DP-1)*MP+NP) part of this array
 C             contains the matrix E as described in (2).
@@ -83,12 +83,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DP, LDA, LDE, LDP1, LDP2, MP, NP
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), E(LDE,*), P(LDP1,LDP2,*)
+      REAL*10  A(LDA,*), E(LDE,*), P(LDP1,LDP2,*)
 C     .. Local Scalars ..
       INTEGER           H1, HB, HE, HI, J, K
 C     .. External Subroutines ..

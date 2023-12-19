@@ -37,11 +37,11 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then H is not
 C             referenced and A need not be set before entry.
 C
-C     H       (input) REAL*16 array, dimension (LDH,k)
+C     H       (input) REAL*10 array, dimension (LDH,k)
 C             where k is M when SIDE = 'L' and is N when SIDE = 'R'.
 C             On entry with SIDE = 'L', the leading M-by-M upper
 C             Hessenberg part of this array must contain the upper
@@ -57,7 +57,7 @@ C     LDH     INTEGER
 C             The leading dimension of the array H.  LDH >= max(1,k),
 C             where k is M when SIDE = 'L' and is N when SIDE = 'R'.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading M-by-N part of this array contains
@@ -68,7 +68,7 @@ C             The leading dimension of the array A.  LDA >= max(1,M).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, alpha <> 0, and LDWORK >= M*N > 0,
 C             DWORK contains a copy of the matrix A, having the leading
 C             dimension M.
@@ -110,14 +110,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SIDE, TRANS
       INTEGER           INFO, LDA, LDH, LDWORK, M, N
-      REAL*16  ALPHA
+      REAL*10  ALPHA
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), DWORK(*), H(LDH,*)
+      REAL*10  A(LDA,*), DWORK(*), H(LDH,*)
 C     .. Local Scalars ..
       LOGICAL           LSIDE, LTRANS
       INTEGER           I, J, JW

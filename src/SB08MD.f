@@ -35,7 +35,7 @@ C
 C     DA      (input) INTEGER
 C             The degree of the polynomials A(s) and E(s).  DA >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (DA+1)
+C     A       (input/output) REAL*10 array, dimension (DA+1)
 C             On entry, this array must contain either the coefficients
 C             of the polynomial A(s) in increasing powers of s if
 C             ACONA = 'A', or the coefficients of the polynomial B(s) in
@@ -44,18 +44,18 @@ C             'B'.
 C             On exit, this array contains the coefficients of the
 C             polynomial B(s) in increasing powers of s**2.
 C
-C     RES     (output) REAL*16
+C     RES     (output) REAL*10
 C             An estimate of the accuracy with which the coefficients of
 C             the polynomial E(s) have been computed (see also METHOD
 C             and NUMERICAL ASPECTS).
 C
-C     E       (output) REAL*16 array, dimension (DA+1)
+C     E       (output) REAL*10 array, dimension (DA+1)
 C             The coefficients of the spectral factor E(s) in increasing
 C             powers of s.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= 5*DA+5.
@@ -170,24 +170,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, HALF, ONE
+      REAL*10  ZERO, HALF, ONE
       PARAMETER         ( ZERO = 0.0D0, HALF = 0.5D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         ACONA
       INTEGER           DA, INFO, LDWORK
-      REAL*16  RES
+      REAL*10  RES
 C     .. Array Arguments ..
-      REAL*16  A(*), DWORK(*), E(*)
+      REAL*10  A(*), DWORK(*), E(*)
 C     .. Local Scalars ..
       LOGICAL           CONV, LACONA, STABLE
       INTEGER           BINC, DA1, I, I0, J, K, LAMBDA, LAY, LAYEND,
      $                  LDIF, LPHEND, LPHI, LQ, M, NC
-      REAL*16  A0, EPS, MU, MUJ, SI, SIGNI, SIGNI0, SIGNJ,
+      REAL*10  A0, EPS, MU, MUJ, SI, SIGNI, SIGNI0, SIGNJ,
      $                  SIMIN1, SQRTA0, SQRTMJ, SQRTMU, TOLPHI, W, XDA
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           IDAMAX
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, SB08MY, XERBLA

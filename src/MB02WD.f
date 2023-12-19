@@ -45,14 +45,14 @@ C
 C             LIPAR   (input) INTEGER
 C                     The length of the array IPAR.  LIPAR >= 0.
 C
-C             DPAR    (input) REAL*16 array, dimension (LDPAR)
+C             DPAR    (input) REAL*10 array, dimension (LDPAR)
 C                     The real parameters needed for solving the
 C                     problem.
 C
 C             LDPAR   (input) INTEGER
 C                     The length of the array DPAR.  LDPAR >= 0.
 C
-C             A       (input) REAL*16 array, dimension
+C             A       (input) REAL*10 array, dimension
 C                     (LDA, NC), where NC is the number of columns.
 C                     The leading NR-by-NC part of this array must
 C                     contain the (compressed) representation of the
@@ -63,7 +63,7 @@ C             LDA     (input) INTEGER
 C                     The leading dimension of the array A.
 C                     LDA >= MAX(1,NR).
 C
-C             X       (input/output) REAL*16 array, dimension
+C             X       (input/output) REAL*10 array, dimension
 C                     (1+(N-1)*INCX)
 C                     On entry, this incremented array must contain the
 C                     vector x.
@@ -73,7 +73,7 @@ C
 C             INCX    (input) INTEGER
 C                     The increment for the elements of X.  INCX > 0.
 C
-C             DWORK   REAL*16 array, dimension (LDWORK)
+C             DWORK   REAL*10 array, dimension (LDWORK)
 C                     The workspace array for subroutine F.
 C
 C             LDWORK  (input) INTEGER
@@ -106,7 +106,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 0.
 C
-C     DPAR    (input) REAL*16 array, dimension (LDPAR)
+C     DPAR    (input) REAL*10 array, dimension (LDPAR)
 C             If FORM = 'F', the real parameters needed for solving
 C             the problem.
 C             This parameter is ignored if FORM = 'U' or FORM = 'L'.
@@ -117,7 +117,7 @@ C
 C     ITMAX   (input) INTEGER
 C             The maximal number of iterations to do.  ITMAX >= 0.
 C
-C     A       (input) REAL*16 array,
+C     A       (input) REAL*10 array,
 C                     dimension (LDA, NC), if FORM = 'F',
 C                     dimension (LDA, N),  otherwise.
 C             If FORM = 'F', the leading NR-by-NC part of this array
@@ -135,13 +135,13 @@ C             The leading dimension of array A.
 C             LDA >= MAX(1,NR), if FORM = 'F';
 C             LDA >= MAX(1,N),  if FORM = 'U' or FORM = 'L'.
 C
-C     B       (input) REAL*16 array, dimension (1+(N-1)*INCB)
+C     B       (input) REAL*10 array, dimension (1+(N-1)*INCB)
 C             The incremented vector b.
 C
 C     INCB    (input) INTEGER
 C             The increment for the elements of B.  INCB > 0.
 C
-C     X       (input/output) REAL*16 array, dimension
+C     X       (input/output) REAL*10 array, dimension
 C             (1+(N-1)*INCX)
 C             On entry, this incremented array must contain an initial
 C             approximation of the solution. If an approximation is not
@@ -154,7 +154,7 @@ C             The increment for the elements of X.  INCX > 0.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             If TOL > 0, absolute tolerance for the iterative process.
 C             The algorithm will stop if || Ax - b ||_2 <= TOL. Since
 C             it is advisable to use a relative tolerance, say TOLER,
@@ -165,7 +165,7 @@ C             machine precision (see LAPACK Library routine DLAMCH).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the number of
 C             iterations performed and DWORK(2) returns the remaining
 C             residual, || Ax - b ||_2.
@@ -260,22 +260,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         FORM
       INTEGER           INCB, INCX, INFO, ITMAX, IWARN, LDA, LDPAR,
      $                  LDWORK, LIPAR, N
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(*), DPAR(*), DWORK(*), X(*)
+      REAL*10  A(LDA,*), B(*), DPAR(*), DWORK(*), X(*)
       INTEGER           IPAR(*)
 C     .. Local Scalars ..
-      REAL*16  ALPHA, BETA, RES, RESOLD, TOLDEF
+      REAL*10  ALPHA, BETA, RES, RESOLD, TOLDEF
       INTEGER           AQ, DWLEFT, K, R
       LOGICAL           MAT
 C     .. External Functions ..
-      REAL*16  DDOT, DLAMCH, DNRM2
+      REAL*10  DDOT, DLAMCH, DNRM2
       LOGICAL           LSAME
       EXTERNAL          DDOT, DLAMCH, DNRM2, LSAME
 C     .. External Subroutines ..

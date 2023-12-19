@@ -130,7 +130,7 @@ C             P >= M for DICO = 'C';
 C             P >= 0 for DICO = 'D'.
 C             This parameter is relevant only for FACT = 'D'.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             If DICO = 'D', the leading N-by-N part of this array must
 C             contain the state matrix A of the system.
 C             If DICO = 'C', this array is not referenced.
@@ -140,7 +140,7 @@ C             The leading dimension of array A.
 C             LDA >= MAX(1,N) if DICO = 'D';
 C             LDA >= 1        if DICO = 'C'.
 C
-C     E       (input) REAL*16 array, dimension (LDE,*)
+C     E       (input) REAL*10 array, dimension (LDE,*)
 C             If JOBE = 'G' and DICO = 'C', the leading N-by-N part of
 C             this array must contain the matrix E.
 C             If JOBE = 'I' or DICO = 'D', this array is not referenced.
@@ -150,7 +150,7 @@ C             The leading dimension of array E.
 C             LDE >= MAX(1,N), if JOBE = 'G' and DICO = 'C';
 C             LDE >= 1,        if JOBE = 'I'  or DICO = 'D'.
 C
-C     B       (input/worksp.) REAL*16 array, dimension (LDB,M)
+C     B       (input/worksp.) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input matrix B of the system, transformed by SB02MT or
 C             SB02MX, if JOB = 'D' or JOB = 'C'.
@@ -167,7 +167,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,M)
+C     R       (input/output) REAL*10 array, dimension (LDR,M)
 C             On entry, if FACT = 'N', the leading M-by-M upper
 C             triangular part (if UPLO = 'U') or lower triangular part
 C             (if UPLO = 'L') of this array must contain the upper
@@ -226,7 +226,7 @@ C             R + B'XB, as produced by LAPACK routine DSYTRF.
 C             This array is not referenced if FACT = 'D', or FACT = 'C',
 C             or N = 0.
 C
-C     L       (input) REAL*16 array, dimension (LDL,M)
+C     L       (input) REAL*10 array, dimension (LDL,M)
 C             If JOBL = 'N', the leading N-by-M part of this array must
 C             contain the cross weighting matrix L, transformed by
 C             SB02MT or SB02MX, if JOB = 'D' or JOB = 'C'.
@@ -237,7 +237,7 @@ C             The leading dimension of array L.
 C             LDL >= MAX(1,N) if JOBL = 'N';
 C             LDL >= 1        if JOBL = 'Z'.
 C
-C     X       (input/output) REAL*16 array, dimension (LDX,N)
+C     X       (input/output) REAL*10 array, dimension (LDX,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the (approximate) solution matrix X of the
 C             algebraic Riccati equation as produced by SLICOT Library
@@ -270,12 +270,12 @@ C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= MAX(1,N).
 C
-C     RNORM   (input) REAL*16
+C     RNORM   (input) REAL*10
 C             If FACT = 'U', this parameter must contain the 1-norm of
 C             the original matrix R (before factoring it).
 C             Otherwise, this parameter is not used.
 C
-C     K       (output) REAL*16 array, dimension (LDK,N)
+C     K       (output) REAL*10 array, dimension (LDK,N)
 C             If JOB = 'K' or JOB = 'H' or JOB = 'D' or OUFACT(1) = 2,
 C             the leading M-by-N part of this array contains the gain
 C             matrix K.
@@ -283,7 +283,7 @@ C
 C     LDK     INTEGER
 C             The leading dimension of array K.  LDK >= MAX(1,M).
 C
-C     H       (output) REAL*16 array, dimension (LDH,*)
+C     H       (output) REAL*10 array, dimension (LDH,*)
 C             If JOB = 'H' or JOB = 'D' or (JOB = 'F' and
 C             OUFACT(1) = 2), the leading N-by-M part of this array
 C             contains the matrix H.
@@ -296,7 +296,7 @@ C             The leading dimension of array H.
 C             LDH >= MAX(1,N), if JOB <> 'K';
 C             LDH >= 1,        if JOB =  'K'.
 C
-C     XE      (output) REAL*16 array, dimension (LDXE,*)
+C     XE      (output) REAL*10 array, dimension (LDXE,*)
 C             If JOBX = 'C', DICO = 'C', and JOBE = 'G', the leading
 C             N-by-N part of this array contains the matrix product X*E,
 C             if TRANS = 'N', or E*X, if TRANS = 'T' or TRANS = 'C'.
@@ -333,7 +333,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or LDWORK = -1, DWORK(1) returns the
 C             optimal value of LDWORK, and for LDWORK set as specified
 C             below, DWORK(2) contains the reciprocal condition number
@@ -440,16 +440,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, JOB, JOBE, JOBL, JOBX, TRANS, UPLO
       INTEGER           INFO, LDA, LDB, LDE, LDH, LDK, LDL, LDR, LDWORK,
      $                  LDX, LDXE, M, N, P
-      REAL*16  RNORM
+      REAL*10  RNORM
 C     .. Array Arguments ..
       INTEGER           IPIV(*), IWORK(*), OUFACT(2)
-      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), E(LDE,*),
+      REAL*10  A(LDA,*), B(LDB,*), DWORK(*), E(LDE,*),
      $                  H(LDH,*), K(LDK,*), L(LDL,*), R(LDR,*),
      $                  X(LDX,*), XE(LDXE,*)
 C     .. Local Scalars ..
@@ -458,12 +458,12 @@ C     .. Local Scalars ..
      $                  WITHCD, WITHD, WITHF, WITHH, WITHL, WITHXE
       CHARACTER         NT, NTRANS, NUPLO, SIDE, TR, TRL
       INTEGER           I, IFAIL, JW, JZ, MS, NM, NR, WRKMIN, WRKOPT
-      REAL*16  EPS, RCOND, RNORMP, TEMP, TMP
+      REAL*10  EPS, RCOND, RNORMP, TEMP, TMP
 C     .. Local Arrays ..
-      REAL*16  DUMMY(1)
+      REAL*10  DUMMY(1)
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLANSY
+      REAL*10  DLAMCH, DLANSY
       EXTERNAL          DLAMCH, DLANSY, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMM, DGEQRF, DLACPY, DLASET,

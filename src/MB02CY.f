@@ -45,7 +45,7 @@ C
 C     K       (input)  INTEGER
 C             The number of columns / rows in H.  P >= K >= 0.
 C
-C     A       (input/output)  REAL*16 array, dimension
+C     A       (input/output)  REAL*10 array, dimension
 C             (LDA, N) / (LDA, P)
 C             On entry, the leading P-by-N / N-by-P part of this array
 C             must contain the positive part of the generator.
@@ -57,7 +57,7 @@ C             The leading dimension of the array A.
 C             LDA >= MAX(1,P),    if TYPET = 'R';
 C             LDA >= MAX(1,N),    if TYPET = 'C'.
 C
-C     B       (input/output)  REAL*16 array, dimension
+C     B       (input/output)  REAL*10 array, dimension
 C             (LDB, N) / (LDB, Q)
 C             On entry, the leading Q-by-N / N-by-Q part of this array
 C             must contain the negative part of the generator.
@@ -69,7 +69,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,Q),    if TYPET = 'R';
 C             LDB >= MAX(1,N),    if TYPET = 'C'.
 C
-C     H       (input)  REAL*16 array, dimension
+C     H       (input)  REAL*10 array, dimension
 C             (LDH, K) / (LDH, Q)
 C             The leading Q-by-K / K-by-Q part of this array must
 C             contain part of the necessary information for the
@@ -81,7 +81,7 @@ C             The leading dimension of the array H.
 C             LDH >= MAX(1,Q),    if TYPET = 'R';
 C             LDH >= MAX(1,K),    if TYPET = 'C'.
 C
-C     CS      (input)  REAL*16 array, dimension (LCS)
+C     CS      (input)  REAL*10 array, dimension (LCS)
 C             The leading 2*K + MIN(K,Q) part of this array must
 C             contain the necessary information for modified hyperbolic
 C             rotations and the scalar factors of the Householder
@@ -92,7 +92,7 @@ C             The length of the array CS.  LCS >= 2*K + MIN(K,Q).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -16,  DWORK(1)  returns the minimum
@@ -132,17 +132,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, K, LDA, LDB, LCS, LDH, LDWORK, N, P, Q
       CHARACTER         STRUCG, TYPET
 C     .. Array Arguments ..
-      REAL*16  A(LDA, *), B(LDB, *), CS(*), DWORK(*), H(LDH,*)
+      REAL*10  A(LDA, *), B(LDB, *), CS(*), DWORK(*), H(LDH,*)
 C     .. Local Scalars ..
       LOGICAL           ISLWR, ISROW
       INTEGER           I, IERR, CI, MAXWRK
-      REAL*16  C, S, TAU
+      REAL*10  C, S, TAU
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

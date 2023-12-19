@@ -104,7 +104,7 @@ C             matrix sequence. Each entry in S must be either 1 or -1;
 C             the value S(k) = -1 corresponds to using the inverse of
 C             the factor T_k.
 C
-C     T       (input/output) REAL*16 array, dimension (*)
+C     T       (input/output) REAL*10 array, dimension (*)
 C             On entry, this array must contain at position IXT(k) the
 C             matrix T_k, which is at least N(k+1)-by-N(k), if S(k) = 1,
 C             or at least N(k)-by-N(k+1), if S(k) = -1, in periodic
@@ -122,7 +122,7 @@ C     IXT     INTEGER array, dimension (K)
 C             Start indices of the matrices T_k in the one-dimensional
 C             array T.
 C
-C     Q       (input/output) REAL*16 array, dimension (*)
+C     Q       (input/output) REAL*10 array, dimension (*)
 C             On entry, this array must contain at position IXQ(k) a
 C             matrix Q_k of size at least N(k)-by-N(k), provided that
 C             COMPQ = 'U', or COMPQ = 'W' and WHICHQ(k) > 0.
@@ -145,7 +145,7 @@ C             This array is not referenced if COMPQ = 'N'.
 C
 C     Tolerances
 C
-C     TOL     REAL*16 array, dimension (3)
+C     TOL     REAL*10 array, dimension (3)
 C             This array contains tolerance parameters. The weak and
 C             strong stability tests use a threshold computed by the
 C             formula  MAX( c*EPS*NRM, SMLNUM ),  where c is a constant,
@@ -163,7 +163,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (4*K)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C
 C     LDWORK  INTEGER
@@ -226,7 +226,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -237,7 +237,7 @@ C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * ), IXQ( * ), IXT( * ), LDQ( * ),
      $                   LDT( * ), N( * ), NI( * ), S( * ), WHICHQ( * )
-      REAL*16   DWORK( * ), Q( * ), T( * ), TOL( * )
+      REAL*10   DWORK( * ), Q( * ), T( * ), TOL( * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            FILL21, FILL43, FILLIN, SPECQ, WANTQ, WANTQL
@@ -249,16 +249,16 @@ C     .. Local Scalars ..
      $                   LTAU, LTAU1, LTAU2, LTT, MINWRK, MN, ND, ND2,
      $                   TAU, TAU1, TAU1P1, TAU2, TAU2P1, TT, V, V1, V2,
      $                   VLOC, VLOC1, VLOC2, W, WE
-      REAL*16   DNRM, DTAU1, DTAU2, EPS, SCALOC, SMLNUM,
+      REAL*10   DNRM, DTAU1, DTAU2, EPS, SCALOC, SMLNUM,
      $                   STRONG, TAULOC, THRESH, TMP, TMP1, TMP2, V_1,
      $                   V_2, V_3, W_2, W_3, X_11, X_12, X_21, X_22
 C     ..
 C     .. Local Arrays ..
-      REAL*16   TAUS( 2 ), TEMP( 16 ), TEMPM1( 16 )
+      REAL*10   TAUS( 2 ), TEMP( 16 ), TEMPM1( 16 )
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLANGE, DLANTR, DLAPY2
+      REAL*10   DLANGE, DLANTR, DLAPY2
       EXTERNAL           DLANGE, DLANTR, DLAPY2, LSAME
 C     ..
 C     .. External Subroutines ..

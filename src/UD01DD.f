@@ -18,7 +18,7 @@ C     NIN     (input) INTEGER
 C             The input channel from which the elements of A are read.
 C             NIN >= 0.
 C
-C     A       (output) REAL*16 array, dimension (LDA,N)
+C     A       (output) REAL*10 array, dimension (LDA,N)
 C             The leading M-by-N part of this array contains the sparse
 C             matrix A. The not assigned elements are set to zero.
 C
@@ -64,15 +64,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, M, N, NIN
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*)
+      REAL*10  A(LDA,*)
 C     .. Local Scalars ..
       INTEGER           I, J
-      REAL*16  AIJ
+      REAL*10  AIJ
 C     .. External Subroutines ..
       EXTERNAL          DLASET, XERBLA
 C     .. Intrinsic Functions ..

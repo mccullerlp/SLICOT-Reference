@@ -17,7 +17,7 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     A       (input) COMPLEX*32 array, dimension (LDA, 2)
+C     A       (input) COMPLEX*20 array, dimension (LDA, 2)
 C             On entry, the leading 2-by-2 upper triangular part of
 C             this array must contain the matrix A of the pencil.
 C             The (2,1) entry is not referenced.
@@ -25,7 +25,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= 2.
 C
-C     B       (input) COMPLEX*32 array, dimension (LDB, 2)
+C     B       (input) COMPLEX*20 array, dimension (LDB, 2)
 C             On entry, the leading 2-by-2 upper triangular part of
 C             this array must contain the matrix B of the pencil.
 C             The (2,1) entry is not referenced.
@@ -33,16 +33,16 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= 2.
 C
-C     CO1     (output) REAL*16
+C     CO1     (output) REAL*10
 C             The upper left element of the unitary matrix Q1.
 C
-C     SI1     (output) COMPLEX*32
+C     SI1     (output) COMPLEX*20
 C             The upper right element of the unitary matrix Q1.
 C
-C     CO2     (output) REAL*16
+C     CO2     (output) REAL*10
 C             The upper left element of the unitary matrix Q2.
 C
-C     SI2     (output) COMPLEX*32
+C     SI2     (output) COMPLEX*20
 C             The upper right element of the unitary matrix Q2.
 C
 C     METHOD
@@ -81,14 +81,14 @@ C     ******************************************************************
 C
 C     .. Scalar Arguments ..
       INTEGER            LDA, LDB
-      REAL*16   CO1, CO2
-      COMPLEX*32         SI1, SI2
+      REAL*10   CO1, CO2
+      COMPLEX*20         SI1, SI2
 C
 C     .. Array Arguments ..
-      COMPLEX*32         A( LDA, * ), B( LDB, * )
+      COMPLEX*20         A( LDA, * ), B( LDB, * )
 C
 C     .. Local Scalars ..
-      COMPLEX*32         D, G, TMP
+      COMPLEX*20         D, G, TMP
 C
 C     .. External Subroutines ..
       EXTERNAL           ZLARTG

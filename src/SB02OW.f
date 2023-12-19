@@ -9,15 +9,15 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     ALPHAR  (input) REAL*16
+C     ALPHAR  (input) REAL*10
 C             The real part of the numerator of the current eigenvalue
 C             considered.
 C
-C     ALPHAI  (input) REAL*16
+C     ALPHAI  (input) REAL*10
 C             The imaginary part of the numerator of the current
 C             eigenvalue considered.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The (real) denominator of the current eigenvalue
 C             considered. It is assumed that BETA <> 0 (regular case).
 C
@@ -51,10 +51,10 @@ C     system, optimal regulator, Schur form.
 C
 C     ******************************************************************
 C
-      REAL*16   ZERO
+      REAL*10   ZERO
       PARAMETER          ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16   ALPHAR, ALPHAI, BETA
+      REAL*10   ALPHAR, ALPHAI, BETA
 C     .. Executable Statements ..
 C
       SB02OW = ( ALPHAR.LT.ZERO .AND. BETA.GT.ZERO ) .OR.

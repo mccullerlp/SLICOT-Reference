@@ -75,7 +75,7 @@ C             Hankel singular values greater than MAX(TOL1,NS*EPS);
 C             NR can be further reduced to ensure that
 C             HSV(NR-NU) > HSV(NR+1-NU).
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             Specifies the ALPHA-stability boundary for the eigenvalues
 C             of the state dynamics matrix A. For a continuous-time
 C             system (DICO = 'C'), ALPHA <= 0 is the boundary value for
@@ -84,7 +84,7 @@ C             system (DICO = 'D'), 0 <= ALPHA <= 1 represents the
 C             boundary value for the moduli of eigenvalues.
 C             The ALPHA-stability domain does not include the boundary.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             BETA > 0 specifies the absolute/relative error weighting
 C             parameter. A large positive value of BETA favours the
 C             minimization of the absolute approximation error, while a
@@ -93,7 +93,7 @@ C             of the relative error.
 C             BETA = 0 means a pure relative error method and can be
 C             used only if rank(D) = P.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, if INFO = 0, the leading NR-by-NR part of this
@@ -112,7 +112,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -122,7 +122,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -132,7 +132,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the original input/output matrix D.
 C             On exit, if INFO = 0, the leading P-by-M part of this
@@ -145,7 +145,7 @@ C
 C     NS      (output) INTEGER
 C             The dimension of the ALPHA-stable subsystem.
 C
-C     HSV     (output) REAL*16 array, dimension (N)
+C     HSV     (output) REAL*10 array, dimension (N)
 C             If INFO = 0, the leading NS elements of HSV contain the
 C             Hankel singular values of the phase system corresponding
 C             to the ALPHA-stable part of the original system.
@@ -153,7 +153,7 @@ C             The Hankel singular values are ordered decreasingly.
 C
 C     Tolerances
 C
-C     TOL1    REAL*16
+C     TOL1    REAL*10
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of reduced system.
 C             For model reduction, the recommended value of TOL1 lies
@@ -165,7 +165,7 @@ C             precision (see LAPACK Library Routine DLAMCH).
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C             TOL1 < 1.
 C
-C     TOL2    REAL*16
+C     TOL2    REAL*10
 C             The tolerance for determining the order of a minimal
 C             realization of the phase system (see METHOD) corresponding
 C             to the ALPHA-stable part of the given system.
@@ -180,7 +180,7 @@ C     IWORK   INTEGER array, dimension (MAX(1,2*N))
 C             On exit with INFO = 0, IWORK(1) contains the order of the
 C             minimal realization of the system.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK and DWORK(2) contains RCOND, the reciprocal
 C             condition number of the U11 matrix from the expression
@@ -386,27 +386,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO, TWOBY3, C100
+      REAL*10  ZERO, ONE, TWO, TWOBY3, C100
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                    TWOBY3 = TWO/3.0D0, C100 = 100.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL, JOB, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDD, LDWORK,
      $                  M, N, NR, NS, P
-      REAL*16  ALPHA, BETA, TOL1, TOL2
+      REAL*10  ALPHA, BETA, TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), HSV(*)
       LOGICAL           BWORK(*)
 C     .. Local Scalars ..
       LOGICAL           BTA, DISCR, FIXORD, LEQUIL, SPA
       INTEGER           IERR, IWARNL, KB, KD, KT, KTI, KU, KW, KWI, KWR,
      $                  LW, LWR, MB, NMR, NN, NRA, NU, NU1, WRKOPT
-      REAL*16  EPSM, MAXRED, RICOND, SCALEC, SCALEO
+      REAL*10  EPSM, MAXRED, RICOND, SCALEC, SCALEO
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB04MD, AB09HY, AB09IX, DLACPY, DLASET, TB01ID,

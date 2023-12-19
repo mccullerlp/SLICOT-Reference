@@ -46,14 +46,14 @@ C
 C     P       (input) INTEGER
 C             The number of rows of matrices C and D.  P >= 0.
 C
-C     SVLMAX  (input) REAL*16
+C     SVLMAX  (input) REAL*10
 C             During each reduction step, the rank-revealing QR
 C             factorization of a matrix stops when the estimated minimum
 C             singular value is smaller than TOL * MAX(SVLMAX,EMSV),
 C             where EMSV is the estimated maximum singular value.
 C             SVLMAX >= 0.
 C
-C     ABCD    (input/output) REAL*16 array, dimension
+C     ABCD    (input/output) REAL*10 array, dimension
 C             (LDABCD,M+N)
 C             On entry, the leading (N+P)-by-(M+N) part of this array
 C             must contain the compound matrix
@@ -76,7 +76,7 @@ C     LDABCD  INTEGER
 C             The leading dimension of array ABCD.
 C             LDABCD >= MAX(1,N+P).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper triangular nonsingular matrix E.
 C             On exit, the leading NR-by-NR part contains the reduced
@@ -117,7 +117,7 @@ C             blocks of dimension i-by-(i-1), where i = 1,2,...,NKRONL.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -135,7 +135,7 @@ C
 C     IWORK   INTEGER array, dimension (M)
 C             If FIRST = .FALSE., IWORK is not referenced.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -224,29 +224,29 @@ C
 C     .. Parameters ..
       INTEGER            IMAX, IMIN
       PARAMETER          ( IMAX = 1, IMIN = 2 )
-      REAL*16   ONE, ZERO
+      REAL*10   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER            DINFZ, INFO, LDABCD, LDE, LDWORK, M, N, NINFZ,
      $                   NKRONL, NR, P, PR
-      REAL*16   SVLMAX, TOL
+      REAL*10   SVLMAX, TOL
       LOGICAL            FIRST
 C     .. Array Arguments ..
       INTEGER            INFZ( * ), IWORK(*), KRONL( * )
-      REAL*16   ABCD( LDABCD, * ), DWORK( * ), E( LDE, * )
+      REAL*10   ABCD( LDABCD, * ), DWORK( * ), E( LDE, * )
 C     .. Local Scalars ..
       LOGICAL            LQUERY
       INTEGER            I, ICOL, ILAST, IRC, IROW, ISMAX, ISMIN, ITAU,
      $                   J, JLAST, JWORK1, JWORK2, K, MN, MN1, MNR,
      $                   MNTAU, MP1, MPM, MUI, MUIM1, N1, NBLCKS, PN,
      $                   RANK, RO, RO1, SIGMA, TAUI, WRKOPT
-      REAL*16   C, C1, C2, RCOND, S, S1, S2, SMAX, SMAXPR,
+      REAL*10   C, C1, C2, RCOND, S, S1, S2, SMAX, SMAXPR,
      $                   SMIN, SMINPR, T, TOLZ, TT
 C     .. Local Arrays ..
-      REAL*16   DUM(1), SVAL(3)
+      REAL*10   DUM(1), SVAL(3)
 C     .. External Functions ..
       INTEGER            IDAMAX
-      REAL*16   DLAMCH, DNRM2
+      REAL*10   DLAMCH, DNRM2
       EXTERNAL           DLAMCH, DNRM2, IDAMAX
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DLAIC1, DLAPMT, DLARFG, DLARTG, DLASET,

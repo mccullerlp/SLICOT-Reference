@@ -112,7 +112,7 @@ C
 C             LIPAR   (input) INTEGER
 C                     The length of the array IPAR.  LIPAR >= 5.
 C
-C             DPAR1   (input/output) REAL*16 array, dimension
+C             DPAR1   (input/output) REAL*10 array, dimension
 C                     (LDPAR1,*) or (LDPAR1)
 C                     A first set of real parameters needed for
 C                     describing or solving the problem.
@@ -126,7 +126,7 @@ C                     The leading dimension or the length of the array
 C                     DPAR1, as convenient.  LDPAR1 >= 0.  (LDPAR1 >= 1,
 C                     if leading dimension.)
 C
-C             DPAR2   (input/output) REAL*16 array, dimension
+C             DPAR2   (input/output) REAL*10 array, dimension
 C                     (LDPAR2,*) or (LDPAR2)
 C                     A second set of real parameters needed for
 C                     describing or solving the problem.
@@ -140,7 +140,7 @@ C                     The leading dimension or the length of the array
 C                     DPAR2, as convenient.  LDPAR2 >= 0.  (LDPAR2 >= 1,
 C                     if leading dimension.)
 C
-C             X       (input) REAL*16 array, dimension (N)
+C             X       (input) REAL*10 array, dimension (N)
 C                     This array must contain the value of the
 C                     variables x where the functions or the Jacobian
 C                     must be evaluated.
@@ -154,14 +154,14 @@ C                     output parameter if IFLAG = 2. If the Jacobian is
 C                     computed analytically, NFEVL should be set to a
 C                     non-positive value.
 C
-C             E       (input/output) REAL*16 array,
+C             E       (input/output) REAL*10 array,
 C                     dimension (M)
 C                     This array contains the value of the (error)
 C                     functions e evaluated at X.
 C                     E is an input parameter if IFLAG = 0 or 2, or an
 C                     output parameter if IFLAG = 1.
 C
-C             J       (input/output) REAL*16 array, dimension
+C             J       (input/output) REAL*10 array, dimension
 C                     (LDJ,NC), where NC is the number of columns
 C                     needed.
 C                     This array contains a possibly compressed
@@ -179,10 +179,10 @@ C                     on entry, when it is an output parameter.
 C                     It is assumed in MD03AD that LDJ is not larger
 C                     than needed.
 C
-C             JTE     (output) REAL*16 array, dimension (N)
+C             JTE     (output) REAL*10 array, dimension (N)
 C                     If IFLAG = 2, the matrix-vector product J'*e.
 C
-C             DWORK   REAL*16 array, dimension (LDWORK)
+C             DWORK   REAL*10 array, dimension (LDWORK)
 C                     The workspace array for subroutine FCN.
 C                     On exit, if INFO = 0, DWORK(1) returns the optimal
 C                     value of LDWORK.
@@ -241,14 +241,14 @@ C
 C             LIPAR   (input) INTEGER
 C                     The length of the array IPAR.  LIPAR >= 0.
 C
-C             DPAR    (input) REAL*16 array, dimension (LDPAR)
+C             DPAR    (input) REAL*10 array, dimension (LDPAR)
 C                     DPAR(1) must contain an initial estimate of the
 C                     Levenberg-Marquardt parameter, par.  DPAR(1) >= 0.
 C
 C             LDPAR   (input) INTEGER
 C                     The length of the array DPAR.  LDPAR >= 1.
 C
-C             J       (input) REAL*16 array, dimension
+C             J       (input) REAL*10 array, dimension
 C                     (LDJ, NC), where NC is the number of columns.
 C                     The leading NR-by-NC part of this array must
 C                     contain the (compressed) representation of the
@@ -259,7 +259,7 @@ C             LDJ     (input) INTEGER
 C                     The leading dimension of array J.
 C                     LDJ >= MAX(1,NR).
 C
-C             JTJ     (output) REAL*16 array,
+C             JTJ     (output) REAL*10 array,
 C                              dimension (LDJTJ,N),    if STOR = 'F',
 C                              dimension (N*(N+1)/2),  if STOR = 'P'.
 C                     The leading N-by-N (if STOR = 'F'), or N*(N+1)/2
@@ -274,7 +274,7 @@ C                     The leading dimension of the array JTJ.
 C                     LDJTJ >= MAX(1,N), if STOR = 'F'.
 C                     LDJTJ >= 1,        if STOR = 'P'.
 C
-C             DWORK   REAL*16 array, dimension (LDWORK)
+C             DWORK   REAL*10 array, dimension (LDWORK)
 C                     The workspace array for subroutine JPJ.
 C
 C             LDWORK  (input) INTEGER
@@ -294,7 +294,7 @@ C             If ALG = 'I', the parameters in common with those for
 C             ALG = 'D', have the same meaning, and the additional
 C             parameters are:
 C
-C             X       (input/output) REAL*16 array, dimension
+C             X       (input/output) REAL*10 array, dimension
 C                     (1+(N-1)*INCX)
 C                     On entry, this incremented array must contain the
 C                     vector x.
@@ -336,7 +336,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 5.
 C
-C     DPAR1   (input/output) REAL*16 array, dimension
+C     DPAR1   (input/output) REAL*10 array, dimension
 C             (LDPAR1,*) or (LDPAR1)
 C             A first set of real parameters needed for describing or
 C             solving the problem. This argument is not used by MD03AD
@@ -347,7 +347,7 @@ C             The leading dimension or the length of the array DPAR1, as
 C             convenient.  LDPAR1 >= 0.  (LDPAR1 >= 1, if leading
 C             dimension.)
 C
-C     DPAR2   (input/output) REAL*16 array, dimension
+C     DPAR2   (input/output) REAL*10 array, dimension
 C             (LDPAR2,*) or (LDPAR2)
 C             A second set of real parameters needed for describing or
 C             solving the problem. This argument is not used by MD03AD
@@ -358,7 +358,7 @@ C             The leading dimension or the length of the array DPAR2, as
 C             convenient.  LDPAR2 >= 0.  (LDPAR2 >= 1, if leading
 C             dimension.)
 C
-C     X       (input/output) REAL*16 array, dimension (N)
+C     X       (input/output) REAL*10 array, dimension (N)
 C             On entry, if XINIT = 'G', this array must contain the
 C             vector of initial variables x to be optimized.
 C             If XINIT = 'R', this array need not be set before entry,
@@ -379,7 +379,7 @@ C             The number of calls to FCN with IFLAG = 2.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             If TOL >= 0, the tolerance which measures the relative
 C             error desired in the sum of squares. Termination occurs
 C             when the actual relative reduction in the sum of squares
@@ -387,7 +387,7 @@ C             is at most TOL. If the user sets  TOL < 0, then  SQRT(EPS)
 C             is used instead TOL, where EPS is the machine precision
 C             (see LAPACK Library routine DLAMCH).
 C
-C     CGTOL   REAL*16
+C     CGTOL   REAL*10
 C             If ALG = 'I' and CGTOL > 0, the tolerance which measures
 C             the relative residual of the solutions computed by the
 C             conjugate gradients (CG) algorithm. Termination of a
@@ -397,7 +397,7 @@ C             is used instead CGTOL.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK, DWORK(2) returns the residual error norm (the
 C             sum of squares), DWORK(3) returns the number of iterations
@@ -538,18 +538,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, FIVE
+      REAL*10  ZERO, ONE, FIVE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, FIVE = 5.0D0 )
-      REAL*16  FACTOR, MARQF, MINIMP, PARMAX
+      REAL*10  FACTOR, MARQF, MINIMP, PARMAX
       PARAMETER         ( FACTOR = 10.0D0**2,    MARQF  = 2.0D0**2,
      $                    MINIMP =  2.0D0**(-3), PARMAX = 1.0D20 )
 C     .. Scalar Arguments ..
       CHARACTER         ALG, STOR, UPLO, XINIT
       INTEGER           INFO, ITMAX, IWARN, LDPAR1, LDPAR2, LDWORK,
      $                  LIPAR, M, N, NFEV, NJEV, NPRINT
-      REAL*16  CGTOL, TOL
+      REAL*10  CGTOL, TOL
 C     .. Array Arguments ..
-      REAL*16  DPAR1(LDPAR1,*), DPAR2(LDPAR2,*), DWORK(*), X(*)
+      REAL*10  DPAR1(LDPAR1,*), DPAR2(LDPAR2,*), DWORK(*), X(*)
       INTEGER           IPAR(*)
 C     .. Local Scalars ..
       LOGICAL           CHOL, FULL, INIT, UPPER
@@ -557,12 +557,12 @@ C     .. Local Scalars ..
      $                  IW2, IWARNL, JAC, JTE, JW1, JW2, JWORK, LDJ,
      $                  LDW, LFCN1, LFCN2, LJTJ, LJTJD, LJTJI, NFEVL,
      $                  SIZEJ, WRKOPT
-      REAL*16  ACTRED, BIGNUM, CGTDEF, EPSMCH, FNORM, FNORM1,
+      REAL*10  ACTRED, BIGNUM, CGTDEF, EPSMCH, FNORM, FNORM1,
      $                  GNORM, GSMIN, PAR, SMLNUM, SQREPS, TOLDEF
 C     .. Local Arrays ..
       INTEGER           SEED(4)
 C     .. External Functions ..
-      REAL*16  DDOT, DLAMCH, DNRM2
+      REAL*10  DDOT, DLAMCH, DNRM2
       LOGICAL           LSAME
       EXTERNAL          DDOT, DLAMCH, DNRM2, LSAME
 C     .. External Subroutines ..

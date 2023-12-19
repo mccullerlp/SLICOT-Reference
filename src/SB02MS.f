@@ -9,10 +9,10 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     REIG    (input) REAL*16
+C     REIG    (input) REAL*10
 C             The real part of the current eigenvalue considered.
 C
-C     IEIG    (input) REAL*16
+C     IEIG    (input) REAL*10
 C             The imaginary part of the current eigenvalue considered.
 C
 C     METHOD
@@ -45,12 +45,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16  IEIG, REIG
+      REAL*10  IEIG, REIG
 C     .. External Functions ..
-      REAL*16   DLAPY2
+      REAL*10   DLAPY2
       EXTERNAL           DLAPY2
 C     .. Executable Statements ..
 C

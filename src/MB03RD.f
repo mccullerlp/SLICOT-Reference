@@ -42,12 +42,12 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A and X.  N >= 0.
 C
-C     PMAX    (input) REAL*16
+C     PMAX    (input) REAL*10
 C             An upper bound for the infinity norm of elementary
 C             submatrices of the individual transformations used for
 C             reduction (see METHOD).  PMAX >= 1.0D0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A to be block-diagonalized, in real
 C             Schur form.
@@ -58,7 +58,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     X       (input/output) REAL*16 array, dimension (LDX,N)
+C     X       (input/output) REAL*10 array, dimension (LDX,N)
 C             On entry, if JOBX = 'U', the leading N-by-N part of this
 C             array must contain a given matrix X.
 C             On exit, if JOBX = 'U', the leading N-by-N part of this
@@ -81,13 +81,13 @@ C     BLSIZE  (output) INTEGER array, dimension (N)
 C             The first NBLCKS elements of this array contain the orders
 C             of the resulting diagonal blocks of the matrix A.
 C
-C     WR,     (output) REAL*16 arrays, dimension (N)
+C     WR,     (output) REAL*10 arrays, dimension (N)
 C     WI      These arrays contain the real and imaginary parts,
 C             respectively, of the eigenvalues of the matrix A.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in the ordering of the diagonal
 C             blocks of the real Schur form matrix.
 C             If the user sets TOL > 0, then the given value of TOL is
@@ -113,7 +113,7 @@ C             If SORT = 'N' or 'C', this parameter is not referenced.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N)
+C     DWORK   REAL*10 array, dimension (N)
 C
 C     Error Indicator
 C
@@ -244,23 +244,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBX, SORT
       INTEGER           INFO, LDA, LDX, N, NBLCKS
-      REAL*16  PMAX, TOL
+      REAL*10  PMAX, TOL
 C     .. Array Arguments ..
       INTEGER           BLSIZE(*)
-      REAL*16  A(LDA,*), DWORK(*), WI(*), WR(*), X(LDX,*)
+      REAL*10  A(LDA,*), DWORK(*), WI(*), WR(*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBX, LSORN, LSORS, LSORT
       CHARACTER         JOBV
       INTEGER           DA11, DA22, I, IERR, J, K, L, L11, L22, L22M1
-      REAL*16  C, CAV, D, EDIF, EMAX, RAV, SAFEMN, SC, THRESH
+      REAL*10  C, CAV, D, EDIF, EMAX, RAV, SAFEMN, SC, THRESH
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLAPY2, DNRM2
+      REAL*10  DLAMCH, DLAPY2, DNRM2
       EXTERNAL          DLAMCH, DLAPY2, DNRM2, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DGEMM, DLABAD, DLASET, DSCAL, MA02AD, MB03QX,

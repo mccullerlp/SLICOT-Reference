@@ -50,7 +50,7 @@ C
 C     K       (input) INTEGER
 C             The number of Givens rotations.  K >= 1.
 C
-C     V       (input) REAL*16 array, dimension
+C     V       (input) REAL*10 array, dimension
 C                     (LDV,K) if STOREV = 'C',
 C                     (LDV,N) if STOREV = 'R'
 C             On entry with STOREV = 'C', the leading N-by-K part of
@@ -65,7 +65,7 @@ C             The leading dimension of the array V.
 C             LDV >= MAX(1,N),  if STOREV = 'C';
 C             LDV >= K,         if STOREV = 'R'.
 C
-C     W       (input) REAL*16 array, dimension
+C     W       (input) REAL*10 array, dimension
 C                     (LDW,K) if STOREW = 'C',
 C                     (LDW,N) if STOREW = 'R'
 C             On entry with STOREW = 'C', the leading N-by-K part of
@@ -80,17 +80,17 @@ C             The leading dimension of the array W.
 C             LDW >= MAX(1,N),  if STOREW = 'C';
 C             LDW >= K,         if STOREW = 'R'.
 C
-C     CS      (input) REAL*16 array, dimension (2*K)
+C     CS      (input) REAL*10 array, dimension (2*K)
 C             On entry, the first 2*K elements of this array must
 C             contain the cosines and sines of the symplectic Givens
 C             rotations G(i).
 C
-C     TAU     (input) REAL*16 array, dimension (K)
+C     TAU     (input) REAL*10 array, dimension (K)
 C             On entry, the first K elements of this array must
 C             contain the scalar factors of the elementary reflectors
 C             F(i).
 C
-C     RS      (output) REAL*16 array, dimension (K,6*K)
+C     RS      (output) REAL*10 array, dimension (K,6*K)
 C             On exit, the leading K-by-6*K part of this array contains
 C             the upper triangular matrices defining the factors R and
 C             S of the symplectic block reflector SH. The (strictly)
@@ -99,7 +99,7 @@ C
 C     LDRS    INTEGER
 C             The leading dimension of the array RS.  LDRS >= K.
 C
-C     T       (output) REAL*16 array, dimension (K,9*K)
+C     T       (output) REAL*10 array, dimension (K,9*K)
 C             On exit, the leading K-by-9*K part of this array contains
 C             the upper triangular matrices defining the factor T of the
 C             symplectic block reflector SH. The (strictly) lower
@@ -110,7 +110,7 @@ C             The leading dimension of the array T.  LDT >= K.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (3*K)
+C     DWORK   REAL*10 array, dimension (3*K)
 C
 C     REFERENCES
 C
@@ -139,19 +139,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DIRECT, STOREV, STOREW
       INTEGER           K, LDRS, LDT, LDV, LDW, N
 C     .. Array Arguments ..
-      REAL*16  CS(*), DWORK(*), RS(LDRS,*), T(LDT,*),
+      REAL*10  CS(*), DWORK(*), RS(LDRS,*), T(LDT,*),
      $                  TAU(*), V(LDV,*), W(LDW,*)
 C     .. Local Scalars ..
       LOGICAL           LCOLV, LCOLW
       INTEGER           I, J, K2, PR1, PR2, PR3, PS1, PS2, PS3, PT11,
      $                  PT12, PT13, PT21, PT22, PT23, PT31, PT32, PT33
-      REAL*16  CM1, TAUI, VII, WII
+      REAL*10  CM1, TAUI, VII, WII
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

@@ -33,14 +33,14 @@ C     NY      (input) INTEGER
 C             The number of output vectors y(k) to be computed.
 C             NY >= 0.
 C
-C     S       (input) REAL*16 array, dimension (LDS,N+M)
+C     S       (input) REAL*10 array, dimension (LDS,N+M)
 C             The leading (N+P)-by-(N+M) part of this array must contain
 C             the system matrix S.
 C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,N+P).
 C
-C     U       (input) REAL*16 array, dimension (LDU,M)
+C     U       (input) REAL*10 array, dimension (LDU,M)
 C             The leading NY-by-M part of this array must contain the
 C             input vector sequence u(k), for k = 1,2,...,NY.
 C             Specifically, the k-th row of U must contain u(k)'.
@@ -48,13 +48,13 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= MAX(1,NY).
 C
-C     X       (input/output) REAL*16 array, dimension (N)
+C     X       (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the initial state vector
 C             x(1) which consists of the N initial states of the system.
 C             On exit, this array contains the final state vector
 C             x(NY+1) of the N states of the system at instant NY+1.
 C
-C     Y       (output) REAL*16 array, dimension (LDY,P)
+C     Y       (output) REAL*10 array, dimension (LDY,P)
 C             The leading NY-by-P part of this array contains the output
 C             vector sequence y(1),y(2),...,y(NY) such that the k-th
 C             row of Y contains y(k)' (the outputs at instant k),
@@ -65,7 +65,7 @@ C             The leading dimension of array Y.  LDY >= MAX(1,NY).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -126,12 +126,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDS, LDU, LDWORK, LDY, M, N, NY, P
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), S(LDS,*), U(LDU,*), X(*), Y(LDY,*)
+      REAL*10  DWORK(*), S(LDS,*), U(LDU,*), X(*), Y(LDY,*)
 C     .. Local Scalars ..
       INTEGER           I, IC, IU, IW, IY, J, JW, K, N2M, N2P, NB, NF,
      $                  NM, NP, NS

@@ -18,23 +18,23 @@ C     .. Parameters ..
 C     .. NOUT is the unit number for printing intermediate results ..
       INTEGER           NOUT
       PARAMETER         ( NOUT = 6 )
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           IFLAG, INFO, LDJ, LDPAR1, LDPAR2, LDWORK, LIPAR,
      $                  M, N, NFEVL
 C     .. Array Arguments ..
       INTEGER           IPAR(*)
-      REAL*16  DPAR1(*), DPAR2(*), DWORK(*), E(*), J(LDJ,*),
+      REAL*10  DPAR1(*), DPAR2(*), DWORK(*), E(*), J(LDJ,*),
      $                  X(*)
 C     .. Local Scalars ..
       INTEGER           I
-      REAL*16  ERR, TMP1, TMP2, TMP3, TMP4
+      REAL*10  ERR, TMP1, TMP2, TMP3, TMP4
 C     .. External Functions ..
-      REAL*16  DNRM2
+      REAL*10  DNRM2
       EXTERNAL          DNRM2
 C     .. DATA Statements ..
-      REAL*16  Y(15)
+      REAL*10  Y(15)
       DATA              Y(1), Y(2), Y(3), Y(4), Y(5), Y(6), Y(7), Y(8),
      $                  Y(9), Y(10), Y(11), Y(12), Y(13), Y(14), Y(15)
      $                  / 1.4D-1, 1.8D-1, 2.2D-1, 2.5D-1, 2.9D-1,

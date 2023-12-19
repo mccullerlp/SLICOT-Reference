@@ -25,24 +25,24 @@ C     L       (input) INTEGER
 C             The length of the impulse response of the equivalent
 C             transversal filter model.  L >= 1.
 C
-C     LAMBDA  (input) REAL*16
+C     LAMBDA  (input) REAL*10
 C             Square root of the forgetting factor.
 C             For tracking capabilities and exponentially stable error
 C             propagation, LAMBDA < 1.0 (strict inequality) should
 C             be used.  0.0 < LAMBDA <= 1.0.
 C
-C     XIN     (input) REAL*16
+C     XIN     (input) REAL*10
 C             The input sample at instant n.
 C             (The situation just before and just after the call of
 C             the routine are denoted by instant (n-1) and instant n,
 C             respectively.)
 C
-C     YIN     (input) REAL*16
+C     YIN     (input) REAL*10
 C             If JP = 'B', then YIN must contain the reference sample
 C             at instant n.
 C             Otherwise, YIN is not referenced.
 C
-C     EFOR    (input/output) REAL*16
+C     EFOR    (input/output) REAL*10
 C             On entry, this parameter must contain the square root of
 C             exponentially weighted forward prediction error energy
 C             at instant (n-1).  EFOR >= 0.0.
@@ -50,13 +50,13 @@ C             On exit, this parameter contains the square root of the
 C             exponentially weighted forward prediction error energy
 C             at instant n.
 C
-C     XF      (input/output) REAL*16 array, dimension (L)
+C     XF      (input/output) REAL*10 array, dimension (L)
 C             On entry, this array must contain the transformed forward
 C             prediction variables at instant (n-1).
 C             On exit, this array contains the transformed forward
 C             prediction variables at instant n.
 C
-C     EPSBCK  (input/output) REAL*16 array, dimension (L+1)
+C     EPSBCK  (input/output) REAL*10 array, dimension (L+1)
 C             On entry, the leading L elements of this array must
 C             contain the normalized a posteriori backward prediction
 C             error residuals of orders zero through L-1, respectively,
@@ -67,19 +67,19 @@ C             On exit, this array contains the normalized a posteriori
 C             backward prediction error residuals, plus the square root
 C             of the conversion factor at instant n.
 C
-C     CTETA   (input/output) REAL*16 array, dimension (L)
+C     CTETA   (input/output) REAL*10 array, dimension (L)
 C             On entry, this array must contain the cosines of the
 C             rotation angles used in time updates, at instant (n-1).
 C             On exit, this array contains the cosines of the rotation
 C             angles at instant n.
 C
-C     STETA   (input/output) REAL*16 array, dimension (L)
+C     STETA   (input/output) REAL*10 array, dimension (L)
 C             On entry, this array must contain the sines of the
 C             rotation angles used in time updates, at instant (n-1).
 C             On exit, this array contains the sines of the rotation
 C             angles at instant n.
 C
-C     YQ      (input/output) REAL*16 array, dimension (L)
+C     YQ      (input/output) REAL*10 array, dimension (L)
 C             On entry, if JP = 'B', then this array must contain the
 C             orthogonally transformed reference vector at instant
 C             (n-1). These elements are also the tap multipliers of an
@@ -90,14 +90,14 @@ C             the calling program).
 C             On exit, if JP = 'B', then this array contains the
 C             orthogonally transformed reference vector at instant n.
 C
-C     EPOS    (output) REAL*16
+C     EPOS    (output) REAL*10
 C             The a posteriori forward prediction error residual.
 C
-C     EOUT    (output) REAL*16
+C     EOUT    (output) REAL*10
 C             If JP = 'B', then EOUT contains the a posteriori output
 C             error residual from the least-squares filter at instant n.
 C
-C     SALPH   (output) REAL*16 array, dimension (L)
+C     SALPH   (output) REAL*10 array, dimension (L)
 C             The element SALPH(i), i=1,...,L, contains the opposite of
 C             the i-(th) reflection coefficient for the least-squares
 C             normalized lattice predictor (whose value is -SALPH(i)).
@@ -230,22 +230,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JP
       INTEGER           INFO, IWARN, L
-      REAL*16  EFOR, EOUT, EPOS, LAMBDA, XIN, YIN
+      REAL*10  EFOR, EOUT, EPOS, LAMBDA, XIN, YIN
 C     .. Array Arguments ..
-      REAL*16  CTETA(*), EPSBCK(*), SALPH(*), STETA(*), XF(*),
+      REAL*10  CTETA(*), EPSBCK(*), SALPH(*), STETA(*), XF(*),
      $                  YQ(*)
 C     .. Local Scalars ..
       LOGICAL           BOTH
       INTEGER           I
-      REAL*16  CTEMP, EPS, FNODE, NORM, TEMP, XFI, YQI
+      REAL*10  CTEMP, EPS, FNODE, NORM, TEMP, XFI, YQI
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLAPY2, DNRM2
+      REAL*10  DLAMCH, DLAPY2, DNRM2
       EXTERNAL          DLAMCH, DLAPY2, DNRM2, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DLARTG, XERBLA

@@ -31,7 +31,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     SVAL    (input) COMPLEX*32
+C     SVAL    (input) COMPLEX*20
 C             The frequency at which the transfer matrix or the
 C             frequency respose matrix is to be evaluated.
 C             For a standard frequency response set the real part
@@ -47,7 +47,7 @@ C             maximum degree of the polynomials in the I-th column of
 C             the denominator matrix P(s) of the given right polynomial
 C             matrix representation.
 C
-C     PCOEFF  (input) REAL*16 array, dimension
+C     PCOEFF  (input) REAL*10 array, dimension
 C             (LDPCO1,LDPCO2,kpcoef), where kpcoef = MAX(INDEX(I)) + 1.
 C             If LERI = 'L' then porm = P, otherwise porm = M.
 C             The leading porm-by-porm-by-kpcoef part of this array must
@@ -70,7 +70,7 @@ C             The second dimension of array PCOEFF.
 C             LDPCO2 >= MAX(1,P) if LERI = 'L',
 C             LDPCO2 >= MAX(1,M) if LERI = 'R'.
 C
-C     QCOEFF  (input) REAL*16 array, dimension
+C     QCOEFF  (input) REAL*10 array, dimension
 C             (LDQCO1,LDQCO2,kpcoef)
 C             If LERI = 'L' then porp = M, otherwise porp = P.
 C             The leading porm-by-porp-by-kpcoef part of this array must
@@ -89,13 +89,13 @@ C             The second dimension of array QCOEFF.
 C             LDQCO2 >= MAX(1,M)   if LERI = 'L',
 C             LDQCO2 >= MAX(1,M,P) if LERI = 'R'.
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             The estimated reciprocal of the condition number of the
 C             denominator matrix P(SVAL).
 C             If RCOND is nearly zero, SVAL is approximately a system
 C             pole.
 C
-C     CFREQR  (output) COMPLEX*32 array, dimension (LDCFRE,MAX(M,P))
+C     CFREQR  (output) COMPLEX*20 array, dimension (LDCFRE,MAX(M,P))
 C             The leading porm-by-porp part of this array contains the
 C             frequency response matrix T(SVAL).
 C
@@ -110,11 +110,11 @@ C     IWORK   INTEGER array, dimension (liwork)
 C             where liwork = P, if LERI = 'L',
 C                   liwork = M, if LERI = 'R'.
 C
-C     DWORK   REAL*16 array, dimension (ldwork)
+C     DWORK   REAL*10 array, dimension (ldwork)
 C             where ldwork = 2*P, if LERI = 'L',
 C                   ldwork = 2*M, if LERI = 'R'.
 C
-C     ZWORK   COMPLEX*32 array, dimension (lzwork),
+C     ZWORK   COMPLEX*20 array, dimension (lzwork),
 C             where lzwork = P*(P+2), if LERI = 'L',
 C                   lzwork = M*(M+2), if LERI = 'R'.
 C
@@ -170,27 +170,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         LERI
       INTEGER           INFO, LDCFRE, LDPCO1, LDPCO2, LDQCO1, LDQCO2, M,
      $                  P
-      REAL*16  RCOND
-      COMPLEX*32        SVAL
+      REAL*10  RCOND
+      COMPLEX*20        SVAL
 C     .. Array Arguments ..
       INTEGER           INDEX(*), IWORK(*)
-      REAL*16  DWORK(*), PCOEFF(LDPCO1,LDPCO2,*),
+      REAL*10  DWORK(*), PCOEFF(LDPCO1,LDPCO2,*),
      $                  QCOEFF(LDQCO1,LDQCO2,*)
-      COMPLEX*32        CFREQR(LDCFRE,*), ZWORK(*)
+      COMPLEX*20        CFREQR(LDCFRE,*), ZWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LLERI
       INTEGER           I, IZWORK, IJ, INFO1, J, K, KPCOEF, LDZWOR,
      $                  MAXIND, MINMP, MPLIM, MWORK, PWORK
-      REAL*16  CNORM
+      REAL*10  CNORM
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, ZLANGE
+      REAL*10  DLAMCH, ZLANGE
       EXTERNAL          DLAMCH, LSAME, ZLANGE
 C     .. External Subroutines ..
       EXTERNAL          TC01OD, XERBLA, ZCOPY, ZGECON, ZGETRF, ZGETRS,

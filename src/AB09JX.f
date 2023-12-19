@@ -35,7 +35,7 @@ C
 C     N       (input) INTEGER
 C             The dimension of vectors ER, EI and ED.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             Specifies the boundary of the domain of interest for the
 C             eigenvalues. For a continuous-time system
 C             (DICO = 'C'), ALPHA is the boundary value for the real
@@ -43,7 +43,7 @@ C             parts of eigenvalues, while for a discrete-time system
 C             (DICO = 'D'), ALPHA >= 0 represents the boundary value for
 C             the moduli of eigenvalues.
 C
-C     ER, EI, (input) REAL*16 arrays, dimension (N)
+C     ER, EI, (input) REAL*10 arrays, dimension (N)
 C     ED      If EVTYPE = 'S', ER(j) + EI(j)*i, j = 1,...,N, are
 C             the eigenvalues of a real matrix.
 C             ED is not referenced and is implicitly considered as
@@ -57,7 +57,7 @@ C             consecutively.
 C
 C     Tolerances
 C
-C     TOLINF  REAL*16
+C     TOLINF  REAL*10
 C             If EVTYPE = 'G' or 'R', TOLINF contains the tolerance for
 C             detecting infinite generalized eigenvalues.
 C             0 <= TOLINF < 1.
@@ -100,21 +100,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ZERO, ONE
+      REAL*10 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, EVTYPE, STDOM
       INTEGER          INFO, N
-      REAL*16 ALPHA, TOLINF
+      REAL*10 ALPHA, TOLINF
 C     .. Array Arguments ..
-      REAL*16 ED(*), EI(*), ER(*)
+      REAL*10 ED(*), EI(*), ER(*)
 C     .. Local Scalars
       LOGICAL          DISCR, RECEVP, STAB, STDEVP
-      REAL*16 ABSEV, RPEV, SCALE
+      REAL*10 ABSEV, RPEV, SCALE
       INTEGER          I
 C     .. External Functions ..
       LOGICAL          LSAME
-      REAL*16 DLAPY2
+      REAL*10 DLAPY2
       EXTERNAL         DLAPY2, LSAME
 C     .. External Subroutines ..
       EXTERNAL         XERBLA

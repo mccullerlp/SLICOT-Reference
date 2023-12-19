@@ -34,14 +34,14 @@ C     NMEAS   (input) INTEGER
 C             The number of measurements (NP2).  NP >= NMEAS >= 0.
 C             M-NCON >= NMEAS.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B. Only the submatrix
 C             B2 = B(:,M-M2+1:M) is used.
@@ -49,7 +49,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading NP-by-N part of this array must contain the
 C             system output matrix C. Only the submatrix
 C             C2 = C(NP-NP2+1:NP,:) is used.
@@ -57,7 +57,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading NP-by-M part of this array must contain the
 C             system input/output matrix D. Only the submatrix
 C             D22 = D(NP-NP2+1:NP,M-M2+1:M) is used.
@@ -65,21 +65,21 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     F       (input) REAL*16 array, dimension (LDF,N)
+C     F       (input) REAL*10 array, dimension (LDF,N)
 C             The leading NCON-by-N part of this array must contain the
 C             state feedback matrix F.
 C
 C     LDF     INTEGER
 C             The leading dimension of the array F.  LDF >= max(1,NCON).
 C
-C     H       (input) REAL*16 array, dimension (LDH,NMEAS)
+C     H       (input) REAL*10 array, dimension (LDH,NMEAS)
 C             The leading N-by-NMEAS part of this array must contain the
 C             output injection matrix H.
 C
 C     LDH     INTEGER
 C             The leading dimension of the array H.  LDH >= max(1,N).
 C
-C     TU      (input) REAL*16 array, dimension (LDTU,M2)
+C     TU      (input) REAL*10 array, dimension (LDTU,M2)
 C             The leading M2-by-M2 part of this array must contain the
 C             control transformation matrix TU, as obtained by the
 C             SLICOT Library routine SB10UD.
@@ -87,7 +87,7 @@ C
 C     LDTU    INTEGER
 C             The leading dimension of the array TU.  LDTU >= max(1,M2).
 C
-C     TY      (input) REAL*16 array, dimension (LDTY,NP2)
+C     TY      (input) REAL*10 array, dimension (LDTY,NP2)
 C             The leading NP2-by-NP2 part of this array must contain the
 C             measurement transformation matrix TY, as obtained by the
 C             SLICOT Library routine SB10UD.
@@ -96,21 +96,21 @@ C     LDTY    INTEGER
 C             The leading dimension of the array TY.
 C             LDTY >= max(1,NP2).
 C
-C     AK      (output) REAL*16 array, dimension (LDAK,N)
+C     AK      (output) REAL*10 array, dimension (LDAK,N)
 C             The leading N-by-N part of this array contains the
 C             controller state matrix AK.
 C
 C     LDAK    INTEGER
 C             The leading dimension of the array AK.  LDAK >= max(1,N).
 C
-C     BK      (output) REAL*16 array, dimension (LDBK,NMEAS)
+C     BK      (output) REAL*10 array, dimension (LDBK,NMEAS)
 C             The leading N-by-NMEAS part of this array contains the
 C             controller input matrix BK.
 C
 C     LDBK    INTEGER
 C             The leading dimension of the array BK.  LDBK >= max(1,N).
 C
-C     CK      (output) REAL*16 array, dimension (LDCK,N)
+C     CK      (output) REAL*10 array, dimension (LDCK,N)
 C             The leading NCON-by-N part of this array contains the
 C             controller output matrix CK.
 C
@@ -118,7 +118,7 @@ C     LDCK    INTEGER
 C             The leading dimension of the array CK.
 C             LDCK >= max(1,NCON).
 C
-C     DK      (output) REAL*16 array, dimension (LDDK,NMEAS)
+C     DK      (output) REAL*10 array, dimension (LDDK,NMEAS)
 C             The leading NCON-by-NMEAS part of this array contains the
 C             controller input/output matrix DK.
 C
@@ -169,7 +169,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -178,7 +178,7 @@ C     .. Scalar Arguments ..
      $                   NP
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), AK( LDAK, * ), B( LDB, * ),
+      REAL*10   A( LDA, * ), AK( LDAK, * ), B( LDB, * ),
      $                   BK( LDBK, * ), C( LDC, * ), CK( LDCK, * ),
      $                   D( LDD, * ), DK( LDDK, * ), F( LDF, * ),
      $                   H( LDH, * ), TU( LDTU, * ), TY( LDTY, * )

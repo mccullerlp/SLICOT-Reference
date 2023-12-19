@@ -152,7 +152,7 @@ C     P       (input) INTEGER
 C             The dimension of descriptor system output vector; also the
 C             number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N state matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -181,7 +181,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the N-by-N descriptor matrix E.
 C             On exit, the leading N-by-N part of this array contains
@@ -210,7 +210,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the N-by-M input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -229,7 +229,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -238,7 +238,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,N)
 C             If COMPQ = 'N': Q is not referenced.
 C             If COMPQ = 'I': on entry, Q need not be set;
 C                             on exit, the leading N-by-N part of this
@@ -258,7 +258,7 @@ C             The leading dimension of array Q.
 C             LDQ >= 1,        if COMPQ = 'N';
 C             LDQ >= MAX(1,N), if COMPQ = 'U' or 'I'.
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,N)
 C             If COMPZ = 'N': Z is not referenced.
 C             If COMPZ = 'I': on entry, Z need not be set;
 C                             on exit, the leading N-by-N part of this
@@ -308,7 +308,7 @@ C             for JOBCON = 'F', respectively.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in rank determinations when
 C             transforming (A-lambda*E, B). If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -324,7 +324,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M)
 C
-C     DWORK   REAL*16 array, dimension (MAX(N,2*M))
+C     DWORK   REAL*10 array, dimension (MAX(N,2*M))
 C
 C     Error Indicator
 C
@@ -372,16 +372,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE
+      REAL*10   ONE
       PARAMETER          ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ, JOBCON
       INTEGER            INFO, LDA, LDB, LDC, LDE, LDQ, LDZ,
      $                   M, N, NCONT, NIUCON, NRBLCK, P
-      REAL*16   TOL
+      REAL*10   TOL
 C     .. Array Arguments ..
       INTEGER            IWORK( * ), RTAU( * )
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, *  ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, *  ),
      $                   DWORK( * ),  E( LDE, * ), Q( LDQ, * ),
      $                   Z( LDZ, * )
 C     .. Local Scalars ..

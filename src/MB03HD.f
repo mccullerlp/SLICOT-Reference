@@ -21,7 +21,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aA - bB.  N = 2 or N = 4.
 C
-C     A       (input) REAL*16 array, dimension (LDA, N)
+C     A       (input) REAL*10 array, dimension (LDA, N)
 C             If N = 4, the leading N/2-by-N upper trapezoidal part of
 C             this array must contain the first block row of the skew-
 C             Hamiltonian matrix A of the pencil aA - bB in structured
@@ -32,7 +32,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= N/2.
 C
-C     B       (input) REAL*16 array, dimension (LDB, N)
+C     B       (input) REAL*10 array, dimension (LDB, N)
 C             The leading N/2-by-N part of this array must contain the
 C             first block row of the Hamiltonian matrix B of the
 C             pencil aA - bB in structured Schur form. The entry (2,3)
@@ -41,13 +41,13 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= N/2.
 C
-C     MACPAR  (input)  REAL*16 array, dimension (2)
+C     MACPAR  (input)  REAL*10 array, dimension (2)
 C             Machine parameters:
 C             MACPAR(1)  (machine precision)*base, DLAMCH( 'P' );
 C             MACPAR(2)  safe minimum,             DLAMCH( 'S' ).
 C             This argument is not used for N = 2.
 C
-C     Q       (output) REAL*16 array, dimension (LDQ, N)
+C     Q       (output) REAL*10 array, dimension (LDQ, N)
 C             The leading N-by-N part of this array contains the
 C             orthogonal transformation matrix Q.
 C
@@ -56,7 +56,7 @@ C             The leading dimension of the array Q.  LDQ >= N.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (24)
+C     DWORK   REAL*10 array, dimension (24)
 C             If N = 2, then DWORK is not referenced.
 C
 C     Error Indicator
@@ -108,22 +108,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TWO
+      REAL*10   ZERO, ONE, TWO
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0 )
 C
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LDQ, N
 C
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), B( LDB, * ), DWORK( * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), DWORK( * ),
      $                   MACPAR( * ), Q( LDQ, * )
 C
 C     .. Local Scalars ..
       INTEGER            ITAU, IWRK
-      REAL*16   CO, D, NRM, S, SI, SMIN, SMLN, T
+      REAL*10   CO, D, NRM, S, SI, SMIN, SMLN, T
 C
 C     .. Local Arrays ..
-      REAL*16   PAR( 3 )
+      REAL*10   PAR( 3 )
 C
 C     .. External Subroutines ..
       EXTERNAL           DGEMM, DGEQR2, DLACPY, DLARTG, DLASCL, DORG2R,

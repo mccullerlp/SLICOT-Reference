@@ -65,7 +65,7 @@ C             changed by the routine on exit if the RANK-th and the
 C             (RANK+1)-th singular values of J are considered to be
 C             equal. See also the parameter TOL.
 C
-C     THETA   (input/output) REAL*16
+C     THETA   (input/output) REAL*10
 C             On entry, if RANK < 0, then THETA must specify an upper
 C             bound on the smallest singular values of J. THETA >= 0.0.
 C             Otherwise, THETA must specify an initial estimate (t say)
@@ -77,7 +77,7 @@ C             computed upper bound such that precisely RANK singular
 C             values of J are greater than THETA + TOL.
 C             Otherwise, THETA is unchanged.
 C
-C     Q       (input/output) REAL*16 array, dimension
+C     Q       (input/output) REAL*10 array, dimension
 C             (MIN(M,N))
 C             On entry, this array must contain the diagonal elements
 C             q(1),q(2),...,q(MIN(M,N)) of the bidiagonal matrix J. That
@@ -85,7 +85,7 @@ C             is, Q(i) = J(i,i) for i = 1,2,...,MIN(M,N).
 C             On exit, this array contains the leading diagonal of the
 C             transformed bidiagonal matrix J.
 C
-C     E       (input/output) REAL*16 array, dimension
+C     E       (input/output) REAL*10 array, dimension
 C             (MIN(M,N)-1)
 C             On entry, this array must contain the superdiagonal
 C             elements e(1),e(2),...,e(MIN(M,N)-1) of the bidiagonal
@@ -94,7 +94,7 @@ C             MIN(M,N)-1.
 C             On exit, this array contains the superdiagonal of the
 C             transformed bidiagonal matrix J.
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,*)
+C     U       (input/output) REAL*10 array, dimension (LDU,*)
 C             On entry, if JOBU = 'U', the leading M-by-MIN(M,N) part
 C             of this array must contain a left transformation matrix
 C             applied to the original matrix of the problem, and
@@ -112,7 +112,7 @@ C     LDU     INTEGER
 C             The leading dimension of array U. If JOBU = 'U' or
 C             JOBU = 'I', LDU >= MAX(1,M); if JOBU = 'N', LDU >= 1.
 C
-C     V       (input/output) REAL*16 array, dimension (LDV,*)
+C     V       (input/output) REAL*10 array, dimension (LDV,*)
 C             On entry, if JOBV = 'U', the leading N-by-MIN(M,N) part
 C             of this array must contain a right transformation matrix
 C             applied to the original matrix of the problem, and
@@ -144,7 +144,7 @@ C             singular values are all less than or equal to THETA.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             This parameter defines the multiplicity of singular values
 C             by considering all singular values within an interval of
 C             length TOL as coinciding. TOL is used in checking how many
@@ -159,7 +159,7 @@ C             EPS * MAX(ABS(Q(i)), ABS(E(k))), where EPS is the
 C             machine precision (see LAPACK Library routine DLAMCH),
 C             i = 1,2,...,MIN(M,N) and k = 1,2,...,MIN(M,N)-1.
 C
-C     RELTOL  REAL*16
+C     RELTOL  REAL*10
 C             This parameter specifies the minimum relative width of an
 C             interval. When an interval is narrower than TOL, or than
 C             RELTOL times the larger (in magnitude) endpoint, then it
@@ -171,7 +171,7 @@ C             tolerance is taken as BASE * EPS.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -267,31 +267,31 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TEN, HNDRD
+      REAL*10  ZERO, ONE, TEN, HNDRD
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TEN = 10.0D0,
      $                    HNDRD = 100.0D0 )
-      REAL*16  MEIGTH
+      REAL*10  MEIGTH
       PARAMETER         ( MEIGTH = -0.125D0 )
       INTEGER           MAXITR
       PARAMETER         ( MAXITR = 30 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBU, JOBV
       INTEGER           INFO, IWARN, LDU, LDV, LDWORK, M, N, RANK
-      REAL*16  RELTOL, THETA, TOL
+      REAL*10  RELTOL, THETA, TOL
 C     .. Array Arguments ..
       LOGICAL           INUL(*)
-      REAL*16  DWORK(*), E(*), Q(*), U(LDU,*), V(LDV,*)
+      REAL*10  DWORK(*), E(*), Q(*), U(LDU,*), V(LDV,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBUA, LJOBUI, LJOBVA, LJOBVI, NOC12, QRIT
       INTEGER           I, I1, IASCL, INFO1, ITER, J, K, MAXIT, NUMEIG,
      $                  OLDI, OLDK, P, R
-      REAL*16  COSL, COSR, EPS, PIVMIN, RMAX, RMIN, SAFEMN,
+      REAL*10  COSL, COSR, EPS, PIVMIN, RMAX, RMIN, SAFEMN,
      $                  SHIFT, SIGMA, SIGMN, SIGMX, SINL, SINR, SMAX,
      $                  SMLNUM, THETAC, THRESH, TOLABS, TOLREL, X
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           MB03ND
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, LSAME, MB03ND
 C     .. External Subroutines ..
       EXTERNAL          DLASET, DLASV2, DROT, DSCAL, MB02NY, MB03MD,

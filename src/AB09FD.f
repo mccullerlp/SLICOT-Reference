@@ -81,7 +81,7 @@ C             extended system (computed in HSV(1));
 C             if ORDSEL = 'A', NR is equal to the number of Hankel
 C             singular values greater than MAX(TOL1,NQ*EPS*HNORM(Ge)).
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             If FACT = 'S', the desired stability degree for the
 C             factors of the coprime factorization (see SLICOT Library
 C             routines SB08ED/SB08FD).
@@ -89,7 +89,7 @@ C             ALPHA < 0 for a continuous-time system (DICO = 'C'), and
 C             0 <= ALPHA < 1 for a discrete-time system (DICO = 'D').
 C             If FACT = 'I', ALPHA is not used.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, if INFO = 0, the leading NR-by-NR part of this
@@ -99,7 +99,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -109,7 +109,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -122,13 +122,13 @@ C
 C     NQ      (output) INTEGER
 C             The order of the computed extended system Ge (see METHOD).
 C
-C     HSV     (output) REAL*16 array, dimension (N)
+C     HSV     (output) REAL*10 array, dimension (N)
 C             If INFO = 0, it contains the NQ Hankel singular values of
 C             the extended system Ge ordered decreasingly (see METHOD).
 C
 C     Tolerances
 C
-C     TOL1    REAL*16
+C     TOL1    REAL*10
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of reduced extended system.
 C             For model reduction, the recommended value is
@@ -140,7 +140,7 @@ C             TOL1 <= 0 on entry, where EPS is the machine precision
 C             (see LAPACK Library Routine DLAMCH).
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C
-C     TOL2    REAL*16
+C     TOL2    REAL*10
 C             The absolute tolerance level below which the elements of
 C             B or C are considered zero (used for controllability or
 C             observability tests).
@@ -159,7 +159,7 @@ C             LIWORK = MAX(N,PM), if JOBMR = 'N', where
 C             PM = P, if JOBCF = 'L',
 C             PM = M, if JOBCF = 'R'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -312,22 +312,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  C100, ONE, ZERO
+      REAL*10  C100, ONE, ZERO
       PARAMETER         ( C100 = 100.0D0, ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL, FACT, JOBCF, JOBMR, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDWORK, M, N, NQ,
      $                  NR, P
-      REAL*16  ALPHA, TOL1, TOL2
+      REAL*10  ALPHA, TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*)
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*)
 C     .. Local Scalars ..
       LOGICAL           DISCR, FIXORD, LEFT, STABD
       INTEGER           IERR, IWARNK, KB, KBR, KBT, KC, KCR, KD, KDR,
      $                  KDT, KT, KTI, KW, LW1, LW2, LW3, LW4, LWR,
      $                  MAXMP, MP, NDR, PM, WRKOPT
-      REAL*16  MAXRED
+      REAL*10  MAXRED
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

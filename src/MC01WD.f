@@ -19,19 +19,19 @@ C
 C     DP      (input) INTEGER
 C             The degree of the polynomial P(x).  DP >= 0.
 C
-C     P       (input) REAL*16 array, dimension (DP+1)
+C     P       (input) REAL*10 array, dimension (DP+1)
 C             This array must contain the coefficients of P(x) in
 C             increasing powers of x.
 C
-C     U1      (input) REAL*16
+C     U1      (input) REAL*10
 C             The value of the constant term of the quadratic
 C             polynomial B(x).
 C
-C     U2      (input) REAL*16
+C     U2      (input) REAL*10
 C             The value of the coefficient of x of the quadratic
 C             polynomial B(x).
 C
-C     Q       (output) REAL*16 array, dimension (DP+1)
+C     Q       (output) REAL*10 array, dimension (DP+1)
 C             If DP >= 1 on entry, then elements Q(1) and Q(2) contain
 C             the coefficients q(1) and q(2), respectively, of the
 C             remainder polynomial R(x), and the next (DP-1) elements
@@ -96,12 +96,12 @@ C     ******************************************************************
 C
 C     .. Scalar Arguments ..
       INTEGER           DP, INFO
-      REAL*16  U1, U2
+      REAL*10  U1, U2
 C     .. Array Arguments ..
-      REAL*16  P(*), Q(*)
+      REAL*10  P(*), Q(*)
 C     .. Local Scalars ..
       INTEGER           I, N
-      REAL*16  A, B, C
+      REAL*10  A, B, C
 C     .. External Subroutines ..
       EXTERNAL          XERBLA
 C     .. Executable Statements ..

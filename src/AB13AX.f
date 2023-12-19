@@ -1,4 +1,4 @@
-      REAL*16 FUNCTION AB13AX( DICO, N, M, P, A, LDA, B, LDB,
+      REAL*10 FUNCTION AB13AX( DICO, N, M, P, A, LDA, B, LDB,
      $                                  C, LDC, HSV, DWORK, LDWORK,
      $                                  INFO )
 C
@@ -11,7 +11,7 @@ C     real Schur form.
 C
 C     FUNCTION VALUE
 C
-C     AB13AX  REAL*16
+C     AB13AX  REAL*10
 C             The Hankel-norm of G (if INFO = 0).
 C
 C     ARGUMENTS
@@ -35,35 +35,35 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state dynamics matrix A in a real Schur canonical form.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input/state matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             state/output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     HSV     (output) REAL*16 array, dimension (N)
+C     HSV     (output) REAL*10 array, dimension (N)
 C             If INFO = 0, this array contains the Hankel singular
 C             values of the given system ordered decreasingly.
 C             HSV(1) is the Hankel norm of the given system.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -128,17 +128,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO
       INTEGER           INFO, LDA, LDB, LDC, LDWORK, M, N, P
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*)
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*)
 C     .. Local Scalars ..
       LOGICAL           DISCR
       INTEGER           I, IERR, J, KR, KS, KTAU, KU, KW, MNMP
-      REAL*16  SCALEC, SCALEO, WRKOPT
+      REAL*10  SCALEC, SCALEO, WRKOPT
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

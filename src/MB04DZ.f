@@ -39,7 +39,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) COMPLEX*32 array, dimension (LDA,N)
+C     A       (input/output) COMPLEX*20 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -50,7 +50,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     QG      (input/output) COMPLEX*32 array, dimension
+C     QG      (input/output) COMPLEX*20 array, dimension
 C                            (LDQG,N+1)
 C             On entry, the leading N-by-N+1 part of this array must
 C             contain the lower triangular part of the matrix Q and
@@ -68,7 +68,7 @@ C     ILO     (output) INTEGER
 C             ILO-1 is the number of deflated eigenvalues in the
 C             balanced Hamiltonian matrix.
 C
-C     SCALE   (output) REAL*16 array of dimension (N)
+C     SCALE   (output) REAL*10 array of dimension (N)
 C             Details of the permutations and scaling factors applied to
 C             H.  For j = 1,...,ILO-1 let P(j) = SCALE(j). If P(j) <= N,
 C             then rows and columns P(j) and P(j)+N are interchanged
@@ -108,31 +108,31 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB
       INTEGER           ILO, INFO, LDA, LDQG, N
 C     .. Array Arguments ..
-      REAL*16  SCALE(*)
-      COMPLEX*32        A(LDA,*), QG(LDQG,*)
+      REAL*10  SCALE(*)
+      COMPLEX*20        A(LDA,*), QG(LDQG,*)
 C     .. Local Scalars ..
       LOGICAL           CONV, LPERM, LSCAL
       INTEGER           I, IC, ILOOLD, J
-      REAL*16  C, F, GII, MAXC, MAXR, QII, R, SCLFAC,
+      REAL*10  C, F, GII, MAXC, MAXR, QII, R, SCLFAC,
      $                  SFMAX1, SFMAX2, SFMIN1, SFMIN2
-      COMPLEX*32        CDUM
+      COMPLEX*20        CDUM
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           IZAMAX
-      REAL*16  DLAMCH, DZASUM
+      REAL*10  DLAMCH, DZASUM
       EXTERNAL          DLAMCH, DZASUM, IZAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL          XERBLA, ZDRSCL, ZDSCAL, ZSWAP
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, DBLE, IMAGPART, MAX, MIN
 C     .. Statement Functions ..
-      REAL*16  CABS1
+      REAL*10  CABS1
 C     ..
 C     .. Statement Function definitions ..
       CABS1( CDUM ) = ABS( DBLE( CDUM ) ) + ABS( IMAGPART( CDUM ) )

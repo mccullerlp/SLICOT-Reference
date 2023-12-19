@@ -106,7 +106,7 @@ C             matrix sequence. Each entry in S must be either 1 or -1;
 C             the value S(k) = -1 corresponds to using the inverse of
 C             the factor T_k.
 C
-C     T       (input/output) REAL*16 array, dimension (*)
+C     T       (input/output) REAL*10 array, dimension (*)
 C             On entry, this array must contain at position IXT(k) the
 C             matrix T_k, which is at least N(k+1)-by-N(k), if S(k) = 1,
 C             or at least N(k)-by-N(k+1), if S(k) = -1, in periodic
@@ -124,7 +124,7 @@ C     IXT     INTEGER array, dimension (K)
 C             Start indices of the matrices T_k in the one-dimensional
 C             array T.
 C
-C     Q       (input/output) REAL*16 array, dimension (*)
+C     Q       (input/output) REAL*10 array, dimension (*)
 C             On entry, this array must contain at position IXQ(k) a
 C             matrix Q_k of size at least N(k)-by-N(k), provided that
 C             COMPQ = 'U', or COMPQ = 'W' and WHICHQ(k) > 0.
@@ -147,7 +147,7 @@ C             This array is not referenced if COMPQ = 'N'.
 C
 C     Tolerances
 C
-C     TOL     REAL*16 array, dimension (3)
+C     TOL     REAL*10 array, dimension (3)
 C             This array contains tolerance parameters. The weak and
 C             strong stability tests use a threshold computed by the
 C             formula  MAX( c*EPS*NRM, SMLNUM ),  where c is a constant,
@@ -165,7 +165,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (4*K)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C
 C     LDWORK  INTEGER
@@ -225,7 +225,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO
+      REAL*10   ZERO
       PARAMETER          ( ZERO = 0.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -236,7 +236,7 @@ C     ..
 C     .. Array Arguments ..
       INTEGER            IWORK( * ), IXQ( * ), IXT( * ), LDQ( * ),
      $                   LDT( * ), N( * ), NI( * ), S( * ), WHICHQ( * )
-      REAL*16   DWORK( * ), Q( * ), T( * ), TOL( * )
+      REAL*10   DWORK( * ), Q( * ), T( * ), TOL( * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            HERE, I, IP1, IT, MINWRK, NBF, NBL, NBNEXT

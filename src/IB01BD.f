@@ -61,7 +61,7 @@ C             for calculating the covariance matrices.
 C             NSMPL >= 2*(M+L)*NOBR.
 C             This parameter is not meaningful if  JOBCK = 'N'.
 C
-C     R       (input/workspace) REAL*16 array, dimension
+C     R       (input/workspace) REAL*10 array, dimension
 C             ( LDR,2*(M+L)*NOBR )
 C             On entry, the leading  2*(M+L)*NOBR-by-2*(M+L)*NOBR  part
 C             of this array must contain the relevant data for the MOESP
@@ -94,7 +94,7 @@ C     LDR     INTEGER
 C             The leading dimension of the array  R.
 C             LDR >= 2*(M+L)*NOBR.
 C
-C     A       (input or output) REAL*16 array, dimension
+C     A       (input or output) REAL*10 array, dimension
 C             (LDA,N)
 C             On entry, if  METH = 'N' or 'C'  and  JOB = 'B' or 'D',
 C             the leading N-by-N part of this array must contain the
@@ -111,7 +111,7 @@ C             LDA >= N,  if  JOB = 'A' or 'C',  or  METH = 'N' or 'C'
 C                            and  JOB = 'B' or 'D';
 C             LDA >= 1,  otherwise.
 C
-C     C       (input or output) REAL*16 array, dimension
+C     C       (input or output) REAL*10 array, dimension
 C             (LDC,N)
 C             On entry, if  METH = 'N' or 'C'  and  JOB = 'B' or 'D',
 C             the leading L-by-N part of this array must contain the
@@ -129,7 +129,7 @@ C             LDC >= L,  if  JOB = 'A' or 'C',  or  METH = 'N' or 'C'
 C                            and  JOB = 'B' or 'D';
 C             LDC >= 1,  otherwise.
 C
-C     B       (output) REAL*16 array, dimension (LDB,M)
+C     B       (output) REAL*10 array, dimension (LDB,M)
 C             If  M > 0,  JOB = 'A', 'B', or 'D'  and  INFO = 0,  the
 C             leading N-by-M part of this array contains the system
 C             input matrix. If  M = 0  or  JOB = 'C',  this array is
@@ -140,7 +140,7 @@ C             The leading dimension of the array B.
 C             LDB >= N,  if M > 0 and JOB = 'A', 'B', or 'D';
 C             LDB >= 1,  if M = 0 or  JOB = 'C'.
 C
-C     D       (output) REAL*16 array, dimension (LDD,M)
+C     D       (output) REAL*10 array, dimension (LDD,M)
 C             If  M > 0,  JOB = 'A' or 'D'  and  INFO = 0,  the leading
 C             L-by-M part of this array contains the system input-output
 C             matrix. If  M = 0  or  JOB = 'C' or 'B',  this array is
@@ -151,7 +151,7 @@ C             The leading dimension of the array D.
 C             LDD >= L,  if M > 0 and JOB = 'A' or 'D';
 C             LDD >= 1,  if M = 0 or  JOB = 'C' or 'B'.
 C
-C     Q       (output) REAL*16 array, dimension (LDQ,N)
+C     Q       (output) REAL*10 array, dimension (LDQ,N)
 C             If  JOBCK = 'C' or 'K',  the leading N-by-N part of this
 C             array contains the positive semidefinite state covariance
 C             matrix. If  JOBCK = 'K',  this matrix has been used as
@@ -163,7 +163,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= N,  if JOBCK = 'C' or 'K';
 C             LDQ >= 1,  if JOBCK = 'N'.
 C
-C     RY      (output) REAL*16 array, dimension (LDRY,L)
+C     RY      (output) REAL*10 array, dimension (LDRY,L)
 C             If  JOBCK = 'C' or 'K',  the leading L-by-L part of this
 C             array contains the positive (semi)definite output
 C             covariance matrix. If  JOBCK = 'K',  this matrix has been
@@ -176,7 +176,7 @@ C             The leading dimension of the array RY.
 C             LDRY >= L,  if JOBCK = 'C' or 'K';
 C             LDRY >= 1,  if JOBCK = 'N'.
 C
-C     S       (output) REAL*16 array, dimension (LDS,L)
+C     S       (output) REAL*10 array, dimension (LDS,L)
 C             If  JOBCK = 'C' or 'K',  the leading N-by-L part of this
 C             array contains the state-output cross-covariance matrix.
 C             If  JOBCK = 'K',  this matrix has been used as state-
@@ -188,7 +188,7 @@ C             The leading dimension of the array S.
 C             LDS >= N,  if JOBCK = 'C' or 'K';
 C             LDS >= 1,  if JOBCK = 'N'.
 C
-C     K       (output) REAL*16 array, dimension ( LDK,L )
+C     K       (output) REAL*10 array, dimension ( LDK,L )
 C             If  JOBCK = 'K',  the leading  N-by-L  part of this array
 C             contains the estimated Kalman gain matrix.
 C             If  JOBCK = 'C' or 'N',  this array is not referenced.
@@ -200,7 +200,7 @@ C             LDK >= 1,  if JOBCK = 'C' or 'N'.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used for estimating the rank of
 C             matrices. If the user sets  TOL > 0,  then the given value
 C             of  TOL  is used as a lower bound for the reciprocal
@@ -229,7 +229,7 @@ C                                           and JOB  <> 'C';
 C             LIW2 = 0,                     if JOBCK <> 'K';
 C             LIW2 = N*N,                   if JOBCK =  'K'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK,  and  DWORK(2),  DWORK(3),  DWORK(4),  and
 C             DWORK(5)  contain the reciprocal condition numbers of the
@@ -412,21 +412,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO  = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16   TOL
+      REAL*10   TOL
       INTEGER            INFO, IWARN, L, LDA, LDB, LDC, LDD, LDK, LDQ,
      $                   LDR, LDRY, LDS, LDWORK, M, N, NOBR, NSMPL
       CHARACTER          JOB, JOBCK, METH
 C     .. Array Arguments ..
-      REAL*16   A(LDA, *), B(LDB, *), C(LDC, *), D(LDD, *),
+      REAL*10   A(LDA, *), B(LDB, *), C(LDC, *), D(LDD, *),
      $                   DWORK(*),  K(LDK, *), Q(LDQ, *), R(LDR, *),
      $                   RY(LDRY, *), S(LDS, *)
       INTEGER            IWORK( * )
       LOGICAL            BWORK( * )
 C     .. Local Scalars ..
-      REAL*16   FERR, RCOND, RCONDR, RNORM, SEP
+      REAL*10   FERR, RCOND, RCONDR, RNORM, SEP
       INTEGER            I, IA, IAW, IC, ID, IERR, IFACT, IG, IK, IO,
      $                   IQ, IR, IS, IT, IV, IWARNL, IWI, IWR, IX,
      $                   JWORK, LDUNN, LL, LMMNOL, LMNOBR, LNOBR,
@@ -436,7 +436,7 @@ C     .. Local Scalars ..
       LOGICAL            COMBIN, MOESP, N4SID, WITHAL, WITHB, WITHC,
      $                   WITHCO, WITHD, WITHK
 C     .. Local Arrays ..
-      REAL*16   RCND(8)
+      REAL*10   RCND(8)
       INTEGER            OUFACT(2)
 C     .. External Functions ..
       LOGICAL            LSAME

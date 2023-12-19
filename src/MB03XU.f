@@ -53,7 +53,7 @@ C
 C     NB      (input) INTEGER
 C             The number of columns/rows to be reduced. N > NB >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension
+C     A       (input/output) REAL*10 array, dimension
 C                     (LDA,N)     if LTRA = .FALSE.
 C                     (LDA,K+N)   if LTRA = .TRUE.
 C             On entry with LTRA = .FALSE., the leading (K+N)-by-N part
@@ -73,7 +73,7 @@ C             The leading dimension of the array A.
 C             LDA >= MAX(1,K+N),  if LTRA = .FALSE.;
 C             LDA >= MAX(1,N),    if LTRA = .TRUE..
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C                     (LDB,K+N)   if LTRB = .FALSE.
 C                     (LDB,N)     if LTRB = .TRUE.
 C             On entry with LTRB = .FALSE., the leading N-by-(K+N) part
@@ -93,7 +93,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N),    if LTRB = .FALSE.;
 C             LDB >= MAX(1,K+N),  if LTRB = .TRUE..
 C
-C     G       (input/output) REAL*16 array, dimension (LDG,N)
+C     G       (input/output) REAL*10 array, dimension (LDG,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix G.
 C             On exit, the leading N-by-N part of this array contains
@@ -102,7 +102,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of the array G.  LDG >= MAX(1,N).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix Q.
 C             On exit, the leading N-by-N part of this array contains
@@ -112,87 +112,87 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     XA      (output) REAL*16 array, dimension (LDXA,2*NB)
+C     XA      (output) REAL*10 array, dimension (LDXA,2*NB)
 C             On exit, the leading N-by-(2*NB) part of this array
 C             contains the matrix XA.
 C
 C     LDXA    INTEGER
 C             The leading dimension of the array XA.  LDXA >= MAX(1,N).
 C
-C     XB      (output) REAL*16 array, dimension (LDXB,2*NB)
+C     XB      (output) REAL*10 array, dimension (LDXB,2*NB)
 C             On exit, the leading (K+N)-by-(2*NB) part of this array
 C             contains the matrix XB.
 C
 C     LDXB    INTEGER
 C             The leading dimension of the array XB. LDXB >= MAX(1,K+N).
 C
-C     XG      (output) REAL*16 array, dimension (LDXG,2*NB)
+C     XG      (output) REAL*10 array, dimension (LDXG,2*NB)
 C             On exit, the leading (K+N)-by-(2*NB) part of this array
 C             contains the matrix XG.
 C
 C     LDXG    INTEGER
 C             The leading dimension of the array XG. LDXG >= MAX(1,K+N).
 C
-C     XQ      (output) REAL*16 array, dimension (LDXQ,2*NB)
+C     XQ      (output) REAL*10 array, dimension (LDXQ,2*NB)
 C             On exit, the leading N-by-(2*NB) part of this array
 C             contains the matrix XQ.
 C
 C     LDXQ    INTEGER
 C             The leading dimension of the array XQ.  LDXQ >= MAX(1,N).
 C
-C     YA      (output) REAL*16 array, dimension (LDYA,2*NB)
+C     YA      (output) REAL*10 array, dimension (LDYA,2*NB)
 C             On exit, the leading (K+N)-by-(2*NB) part of this array
 C             contains the matrix YA.
 C
 C     LDYA    INTEGER
 C             The leading dimension of the array YA. LDYA >= MAX(1,K+N).
 C
-C     YB      (output) REAL*16 array, dimension (LDYB,2*NB)
+C     YB      (output) REAL*10 array, dimension (LDYB,2*NB)
 C             On exit, the leading N-by-(2*NB) part of this array
 C             contains the matrix YB.
 C
 C     LDYB    INTEGER
 C             The leading dimension of the array YB.  LDYB >= MAX(1,N).
 C
-C     YG      (output) REAL*16 array, dimension (LDYG,2*NB)
+C     YG      (output) REAL*10 array, dimension (LDYG,2*NB)
 C             On exit, the leading (K+N)-by-(2*NB) part of this array
 C             contains the matrix YG.
 C
 C     LDYG    INTEGER
 C             The leading dimension of the array YG. LDYG >= MAX(1,K+N).
 C
-C     YQ      (output) REAL*16 array, dimension (LDYQ,2*NB)
+C     YQ      (output) REAL*10 array, dimension (LDYQ,2*NB)
 C             On exit, the leading N-by-(2*NB) part of this array
 C             contains the matrix YQ.
 C
 C     LDYQ    INTEGER
 C             The leading dimension of the array YQ.  LDYQ >= MAX(1,N).
 C
-C     CSL     (output) REAL*16 array, dimension (2*NB)
+C     CSL     (output) REAL*10 array, dimension (2*NB)
 C             On exit, the first 2NB elements of this array contain the
 C             cosines and sines of the symplectic Givens rotations
 C             applied from the left-hand side used to compute the
 C             reduction.
 C
-C     CSR     (output) REAL*16 array, dimension (2*NB)
+C     CSR     (output) REAL*10 array, dimension (2*NB)
 C             On exit, the first 2NB-2 elements of this array contain
 C             the cosines and sines of the symplectic Givens rotations
 C             applied from the right-hand side used to compute the
 C             reduction.
 C
-C     TAUL    (output) REAL*16 array, dimension (NB)
+C     TAUL    (output) REAL*10 array, dimension (NB)
 C             On exit, the first NB elements of this array contain the
 C             scalar factors of some of the elementary reflectors
 C             applied form the left-hand side.
 C
-C     TAUR    (output) REAL*16 array, dimension (NB)
+C     TAUR    (output) REAL*10 array, dimension (NB)
 C             On exit, the first NB-1 elements of this array contain the
 C             scalar factors of some of the elementary reflectors
 C             applied form the right-hand side.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (5*NB)
+C     DWORK   REAL*10 array, dimension (5*NB)
 C
 C     METHOD
 C
@@ -258,22 +258,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           LTRA, LTRB
       INTEGER           K, LDA, LDB, LDG, LDQ, LDXA, LDXB, LDXG, LDXQ,
      $                  LDYA, LDYB, LDYG, LDYQ, N, NB
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), CSL(*), CSR(*), DWORK(*),
+      REAL*10  A(LDA,*), B(LDB,*), CSL(*), CSR(*), DWORK(*),
      $                  G(LDG,*), Q(LDQ,*), TAUL(*), TAUR(*),
      $                  XA(LDXA,*), XB(LDXB,*), XG(LDXG,*), XQ(LDXQ,*),
      $                  YA(LDYA,*), YB(LDYB,*), YG(LDYG,*), YQ(LDYQ,*)
 C     .. Local Scalars ..
       INTEGER           I, J, NB1, NB2, NB3, PDW
-      REAL*16  ALPHA, C, S, TAUQ, TEMP
+      REAL*10  ALPHA, C, S, TAUQ, TEMP
 C     .. External Functions ..
-      REAL*16  DDOT
+      REAL*10  DDOT
       EXTERNAL          DDOT
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DGEMV, DLARFG, DLARTG, DROT, DSCAL

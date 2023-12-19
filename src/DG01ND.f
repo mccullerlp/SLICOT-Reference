@@ -21,7 +21,7 @@ C     N       (input) INTEGER
 C             Half the number of real samples.  N must be a power of 2.
 C             N >= 2.
 C
-C     XR      (input/output) REAL*16 array, dimension (N+1)
+C     XR      (input/output) REAL*10 array, dimension (N+1)
 C             On entry with INDI = 'D', the first N elements of this
 C             array must contain the odd part of the input signal; for
 C             example, XR(I) = A(2*I-1) for I = 1,2,...,N.
@@ -36,7 +36,7 @@ C             On exit with INDI = 'I', the first N elements of this
 C             array contain the odd part of the output signal, that is
 C             of the computed inverse discrete Fourier transform.
 C
-C     XI      (input/output) REAL*16 array, dimension (N+1)
+C     XI      (input/output) REAL*10 array, dimension (N+1)
 C             On entry with INDI = 'D', the first N elements of this
 C             array must contain the even part of the input signal; for
 C             example, XI(I) = A(2*I) for I = 1,2,...,N.
@@ -173,7 +173,7 @@ C     .. Scalar Arguments ..
       CHARACTER         INDI
       INTEGER           INFO, N
 C     .. Array Arguments ..
-      REAL*16  XI(*), XR(*)
+      REAL*10  XI(*), XR(*)
 C     .. Local Scalars ..
       INTEGER           J
       LOGICAL           LINDI

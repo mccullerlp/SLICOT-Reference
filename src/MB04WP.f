@@ -32,7 +32,7 @@ C             submatrix
 C             U([ilo+1:n n+ilo+1:2*n], [ilo+1:n n+ilo+1:2*n]).
 C             1 <= ILO <= N, if N > 0; ILO = 1, if N = 0.
 C
-C     U1      (input/output) REAL*16 array, dimension (LDU1,N)
+C     U1      (input/output) REAL*10 array, dimension (LDU1,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain in its i-th column the vector which defines the
 C             elementary reflector F(i).
@@ -42,7 +42,7 @@ C
 C     LDU1    INTEGER
 C             The leading dimension of the array U1.  LDU1 >= MAX(1,N).
 C
-C     U2      (input/output) REAL*16 array, dimension (LDU2,N)
+C     U2      (input/output) REAL*10 array, dimension (LDU2,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain in its i-th column the vector which defines the
 C             elementary reflector H(i) and, on the subdiagonal, the
@@ -53,19 +53,19 @@ C
 C     LDU2    INTEGER
 C             The leading dimension of the array U2.  LDU2 >= MAX(1,N).
 C
-C     CS      (input) REAL*16 array, dimension (2N-2)
+C     CS      (input) REAL*10 array, dimension (2N-2)
 C             On entry, the first 2N-2 elements of this array must
 C             contain the cosines and sines of the symplectic Givens
 C             rotations G(i).
 C
-C     TAU     (input) REAL*16 array, dimension (N-1)
+C     TAU     (input) REAL*10 array, dimension (N-1)
 C             On entry, the first N-1 elements of this array must
 C             contain the scalar factors of the elementary reflectors
 C             F(i).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -10,  DWORK(1)  returns the minimum
@@ -122,12 +122,12 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       INTEGER           ILO, INFO, LDU1, LDU2, LDWORK, N
 C     .. Array Arguments ..
-      REAL*16  CS(*), DWORK(*), U1(LDU1,*), U2(LDU2,*), TAU(*)
+      REAL*10  CS(*), DWORK(*), U1(LDU1,*), U2(LDU2,*), TAU(*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I, IERR, J, MINWRK, NH, WRKOPT

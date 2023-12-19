@@ -31,15 +31,15 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix C.  N >= 0.
 C
-C     V       (input) REAL*16 array, dimension
+C     V       (input) REAL*10 array, dimension
 C             (M-1), if SIDE = 'L', or
 C             (N-1), if SIDE = 'R'.
 C             The vector v in the representation of H.
 C
-C     TAU     (input) REAL*16
+C     TAU     (input) REAL*10
 C             The scalar factor of the elementary reflector H.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix C.
 C             On exit, the leading M-by-N part of this array contains
@@ -50,7 +50,7 @@ C             The leading dimension of array C.  LDC >= MAX(1,M).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N), if SIDE = 'L', or
+C     DWORK   REAL*10 array, dimension (N), if SIDE = 'L', or
 C                                               (M), if SIDE = 'R'.
 C             DWORK is not referenced if H has order less than 11.
 C
@@ -81,20 +81,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          SIDE
       INTEGER            LDC, M, N
-      REAL*16   TAU
+      REAL*10   TAU
 C     ..
 C     .. Array Arguments ..
-      REAL*16   C( LDC, * ), DWORK( * ), V( * )
+      REAL*10   C( LDC, * ), DWORK( * ), V( * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            J
-      REAL*16   SUM, T1, T2, T3, T4, T5, T6, T7, T8, T9,
+      REAL*10   SUM, T1, T2, T3, T4, T5, T6, T7, T8, T9,
      $                   V1, V2, V3, V4, V5, V6, V7, V8, V9
 C     ..
 C     .. External Functions ..

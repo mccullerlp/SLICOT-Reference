@@ -51,7 +51,7 @@ C     P       (input) INTEGER
 C             The dimension of output vector, i.e. the number of rows
 C             of the matrices C and D.  P >= 0.
 C
-C     ALPHA   (input) REAL*16 array, dimension (2)
+C     ALPHA   (input) REAL*10 array, dimension (2)
 C             ALPHA(1) contains the desired stability degree to be
 C             assigned for the eigenvalues of A+B*F, and ALPHA(2)
 C             the stability margin. The eigenvalues outside the
@@ -61,7 +61,7 @@ C             imaginary parts for a continuous-time system
 C             (DICO = 'C'), or moduli equal to 0 <= ALPHA(2) < 1
 C             for a discrete-time system (DICO = 'D').
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading NQ-by-NQ part of this array contains
@@ -74,7 +74,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix.
 C             On exit, the leading NQ-by-M part of this array contains
@@ -86,7 +86,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-NQ part of this array contains
@@ -96,7 +96,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             input/output matrix. D represents also the input/output
 C             matrix of the numerator factor Q.
@@ -115,7 +115,7 @@ C             Generally, NR is the number of controllable eigenvalues
 C             of A outside the stability region (the number of modified
 C             eigenvalues).
 C
-C     CR      (output) REAL*16 array, dimension (LDCR,N)
+C     CR      (output) REAL*10 array, dimension (LDCR,N)
 C             The leading M-by-NQ part of this array contains the
 C             leading M-by-NQ part of the feedback matrix F*Z, which
 C             moves the eigenvalues of A lying outside the ALPHA-stable
@@ -127,7 +127,7 @@ C
 C     LDCR    INTEGER
 C             The leading dimension of array CR.  LDCR >= MAX(1,M).
 C
-C     DR      (output) REAL*16 array, dimension (LDDR,M)
+C     DR      (output) REAL*10 array, dimension (LDDR,M)
 C             The leading M-by-M part of this array contains an
 C             identity matrix representing the input/output matrix
 C             of the denominator factor R.
@@ -137,7 +137,7 @@ C             The leading dimension of array DR.  LDDR >= MAX(1,M).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The absolute tolerance level below which the elements of
 C             B are considered zero (used for controllability tests).
 C             If the user sets TOL <= 0, then an implicitly computed,
@@ -148,7 +148,7 @@ C             the 1-norm of B.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -216,25 +216,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, TEN, ZERO
+      REAL*10  ONE, TEN, ZERO
       PARAMETER         ( ONE = 1.0D0, TEN = 1.0D1, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDCR, LDD, LDDR,
      $                  LDWORK, M, N, NQ, NR, P
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), ALPHA(*), B(LDB,*), C(LDC,*),
+      REAL*10  A(LDA,*), ALPHA(*), B(LDB,*), C(LDC,*),
      $                  CR(LDCR,*), D(LDD,*), DR(LDDR,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           DISCR
       INTEGER           I, IB, IB1, J, K, KFI, KG, KW, KWI, KWR, KZ, L,
      $                  L1, NB, NCUR, NCUR1, NFP, NLOW, NMOVES, NSUP
-      REAL*16  BNORM, CS, PR, RMAX, SM, SN, TOLER, WRKOPT, X, Y
+      REAL*10  BNORM, CS, PR, RMAX, SM, SN, TOLER, WRKOPT, X, Y
 C     .. Local Arrays ..
-      REAL*16  A2(2,2), Z(4,4)
+      REAL*10  A2(2,2), Z(4,4)
 C     .. External Functions ..
-      REAL*16  DLAMCH, DLANGE, DLAPY2
+      REAL*10  DLAMCH, DLANGE, DLAPY2
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, DLANGE, DLAPY2, LSAME
 C     .. External Subroutines ..

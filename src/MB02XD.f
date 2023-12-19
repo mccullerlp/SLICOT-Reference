@@ -68,14 +68,14 @@ C
 C             LIPAR   (input) INTEGER
 C                     The length of the array IPAR.  LIPAR >= 0.
 C
-C             DPAR    (input) REAL*16 array, dimension (LDPAR)
+C             DPAR    (input) REAL*10 array, dimension (LDPAR)
 C                     The real parameters needed for solving the
 C                     problem.
 C
 C             LDPAR   (input) INTEGER
 C                     The length of the array DPAR.  LDPAR >= 0.
 C
-C             A       (input) REAL*16 array, dimension
+C             A       (input) REAL*10 array, dimension
 C                     (LDA, NC), where NC is the number of columns.
 C                     The leading NR-by-NC part of this array must
 C                     contain the (compressed) representation of the
@@ -86,7 +86,7 @@ C             LDA     (input) INTEGER
 C                     The leading dimension of the array A.
 C                     LDA >= MAX(1,NR).
 C
-C             ATA     (output) REAL*16 array,
+C             ATA     (output) REAL*10 array,
 C                              dimension (LDATA,N),    if STOR = 'F',
 C                              dimension (N*(N+1)/2),  if STOR = 'P'.
 C                     The leading N-by-N (if STOR = 'F'), or N*(N+1)/2
@@ -101,7 +101,7 @@ C                     The leading dimension of the array ATA.
 C                     LDATA >= MAX(1,N), if STOR = 'F'.
 C                     LDATA >= 1,        if STOR = 'P'.
 C
-C             DWORK   REAL*16 array, dimension (LDWORK)
+C             DWORK   REAL*10 array, dimension (LDWORK)
 C                     The workspace array for subroutine F.
 C
 C             LDWORK  (input) INTEGER
@@ -139,7 +139,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 0.
 C
-C     DPAR    (input) REAL*16 array, dimension (LDPAR)
+C     DPAR    (input) REAL*10 array, dimension (LDPAR)
 C             If FORM = 'F', the real parameters needed for solving
 C             the problem.
 C             This parameter is ignored if FORM = 'S'.
@@ -147,7 +147,7 @@ C
 C     LDPAR   (input) INTEGER
 C             The length of the array DPAR.  LDPAR >= 0.
 C
-C     A       (input) REAL*16 array,
+C     A       (input) REAL*10 array,
 C                     dimension (LDA, N),  if FORM = 'S',
 C                     dimension (LDA, NC), if FORM = 'F', where NC is
 C                     the number of columns.
@@ -164,7 +164,7 @@ C             The leading dimension of array A.
 C             LDA >= MAX(1,M),  if FORM = 'S';
 C             LDA >= MAX(1,NR), if FORM = 'F'.
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB, NRHS)
 C             On entry, the leading N-by-NRHS part of this array must
 C             contain the right hand side matrix B.
@@ -176,7 +176,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     ATA     (output) REAL*16 array,
+C     ATA     (output) REAL*10 array,
 C                      dimension (LDATA,N),    if STOR = 'F',
 C                      dimension (N*(N+1)/2),  if STOR = 'P'.
 C             The leading N-by-N (if STOR = 'F'), or N*(N+1)/2 (if
@@ -193,7 +193,7 @@ C             LDATA >= 1,        if STOR = 'P'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -256,14 +256,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         FORM, STOR, UPLO
       INTEGER           INFO, LDA, LDATA, LDB, LDPAR, LDWORK, LIPAR, M,
      $                  N, NRHS
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), ATA(*), B(LDB,*), DPAR(*), DWORK(*)
+      REAL*10  A(LDA,*), ATA(*), B(LDB,*), DPAR(*), DWORK(*)
       INTEGER           IPAR(*)
 C     .. Local Scalars ..
       INTEGER           IERR, J, J1

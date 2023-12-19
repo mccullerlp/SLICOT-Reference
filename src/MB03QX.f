@@ -11,13 +11,13 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix T.  N >= 0.
 C
-C     T       (input) REAL*16 array, dimension(LDT,N)
+C     T       (input) REAL*10 array, dimension(LDT,N)
 C             The upper quasi-triangular matrix T.
 C
 C     LDT     INTEGER
 C             The leading dimension of the array T.  LDT >= max(1,N).
 C
-C     WR, WI  (output) REAL*16 arrays, dimension (N)
+C     WR, WI  (output) REAL*10 arrays, dimension (N)
 C             The real and imaginary parts, respectively, of the
 C             eigenvalues of T. The eigenvalues are stored in the same
 C             order as on the diagonal of T. If T(i:i+1,i:i+1) is a
@@ -38,15 +38,15 @@ C     March 1998. Based on the RASP routine SEIG.
 C
 C     ******************************************************************
 C     .. Parameters ..
-      REAL*16 ZERO
+      REAL*10 ZERO
       PARAMETER        ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER          INFO, LDT, N
 C     .. Array Arguments ..
-      REAL*16 T(LDT, *), WI(*), WR(*)
+      REAL*10 T(LDT, *), WI(*), WR(*)
 C     .. Local Scalars ..
       INTEGER          I, I1, INEXT
-      REAL*16 A11, A12, A21, A22, CS, SN
+      REAL*10 A11, A12, A21, A22, CS, SN
 C     .. External Subroutines ..
       EXTERNAL         DLANV2, XERBLA
 C     .. Intrinsic Functions ..

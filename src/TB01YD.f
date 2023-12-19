@@ -27,7 +27,7 @@ C     P       (input) INTEGER.
 C             The number of rows of matrix C.
 C             P represents the dimension of output vector.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the system state matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -36,7 +36,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the system input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -47,7 +47,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N) if M > 0.
 C             LDB >= 1        if M = 0.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the system output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -92,7 +92,7 @@ C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LDC, M, N, P
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * )
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            J, NBY2

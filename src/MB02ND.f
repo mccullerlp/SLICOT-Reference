@@ -45,7 +45,7 @@ C             (RANK+1)-th singular values of C = [A|B] are considered
 C             to be equal, or if the upper triangular matrix F (as
 C             defined in METHOD) is (numerically) singular.
 C
-C     THETA   (input/output) REAL*16
+C     THETA   (input/output) REAL*10
 C             On entry, if RANK < 0, then the rank of the TLS
 C             approximation [A+DA|B+DB] is computed using THETA as
 C             (min(M,N+L) - d), where d is the number of singular
@@ -59,7 +59,7 @@ C             computed bound such that precisely RANK singular values
 C             of C = [A|B] are greater than THETA + TOL.
 C             Otherwise, THETA is unchanged.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N+L)
+C     C       (input/output) REAL*10 array, dimension (LDC,N+L)
 C             On entry, the leading M-by-(N+L) part of this array must
 C             contain the matrices A and B. Specifically, the first N
 C             columns must contain the data matrix A and the last L
@@ -80,7 +80,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= max(1,M,N+L).
 C
-C     X       (output) REAL*16 array, dimension (LDX,L)
+C     X       (output) REAL*10 array, dimension (LDX,L)
 C             If INFO = 0, the leading N-by-L part of this array
 C             contains the solution X to the TLS problem specified by
 C             A and B.
@@ -88,7 +88,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= max(1,N).
 C
-C     Q       (output) REAL*16 array, dimension
+C     Q       (output) REAL*10 array, dimension
 C             (max(1,2*min(M,N+L)-1))
 C             This array contains the partially diagonalized bidiagonal
 C             matrix J computed from C, at the moment that the desired
@@ -106,7 +106,7 @@ C             the TLS solution has been computed.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             This parameter defines the multiplicity of singular values
 C             by considering all singular values within an interval of
 C             length TOL as coinciding. TOL is used in checking how many
@@ -119,7 +119,7 @@ C             QR/QL iterations. If the user sets TOL to be less than or
 C             equal to 0, then the tolerance is taken as specified in
 C             SLICOT Library routine MB04YD document.
 C
-C     RELTOL  REAL*16
+C     RELTOL  REAL*10
 C             This parameter specifies the minimum relative width of an
 C             interval. When an interval is narrower than TOL, or than
 C             RELTOL times the larger (in magnitude) endpoint, then it
@@ -133,7 +133,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N+2*L)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK, and DWORK(2) returns the reciprocal of the
 C             condition number of the matrix F.
@@ -370,28 +370,28 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, IWARN, L, LDC, LDWORK, LDX, M, N, RANK
-      REAL*16  RELTOL, THETA, TOL
+      REAL*10  RELTOL, THETA, TOL
 C     .. Array Arguments ..
       LOGICAL           BWORK(*), INUL(*)
       INTEGER           IWORK(*)
-      REAL*16  C(LDC,*), DWORK(*), Q(*), X(LDX,*)
+      REAL*10  C(LDC,*), DWORK(*), Q(*), X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           LFIRST, LQUERY, SUFWRK, USEQR
       INTEGER           I, I1, IFAIL, IHOUSH, IJ, IOFF, ITAUP, ITAUQ,
      $                  IWARM, J, J1, JF, JV, JWORK, K, KF, KJ, LDF, LW,
      $                  MC, MINWRK, MJ, MNL, N1, NJ, NL, P, WRKOPT
-      REAL*16  CS, EPS, FIRST, FNORM, HH, INPROD, RCOND, SN,
+      REAL*10  CS, EPS, FIRST, FNORM, HH, INPROD, RCOND, SN,
      $                  TEMP
 C     .. Local Arrays ..
-      REAL*16  DUMMY(2)
+      REAL*10  DUMMY(2)
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           ILAENV
-      REAL*16  DLAMCH, DLANGE, DLANTR
+      REAL*10  DLAMCH, DLANGE, DLANTR
       EXTERNAL          DLAMCH, DLANGE, DLANTR, ILAENV, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEBRD, DGEQRF, DGERQF, DLARF, DLARFG,

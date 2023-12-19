@@ -26,7 +26,7 @@ C
 C     N       (input) INTEGER
 C             The order of the triangular matrices U or L.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, if UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular matrix U.
@@ -77,7 +77,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     ..
 C     .. Scalar Arguments ..
@@ -85,16 +85,16 @@ C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, N
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * )
+      REAL*10   A( LDA, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            UPPER
       INTEGER            I
-      REAL*16   AII
+      REAL*10   AII
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DDOT
+      REAL*10   DDOT
       EXTERNAL           DDOT, LSAME
 C     ..
 C     .. External Subroutines ..

@@ -37,7 +37,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices C and D.  N = 1 or N = 2.
 C
-C     A       (input) REAL*16 array, dimension (LDA,M)
+C     A       (input) REAL*10 array, dimension (LDA,M)
 C             The leading M-by-M part of this array must contain the
 C             upper quasitriangular matrix A. The elements below the
 C             upper Hessenberg part are not referenced.
@@ -45,14 +45,14 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,M).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,N).
 C
-C     E       (input) REAL*16 array, dimension (LDE,M)
+C     E       (input) REAL*10 array, dimension (LDE,M)
 C             The leading M-by-M part of this array must contain the
 C             upper triangular matrix E. The elements below the main
 C             diagonal are not referenced.
@@ -60,14 +60,14 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,M).
 C
-C     D       (input) REAL*16 array, dimension (LDD,N)
+C     D       (input) REAL*10 array, dimension (LDD,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix D.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1,N).
 C
-C     X       (input/output) REAL*16 array, dimension (LDX,N)
+C     X       (input/output) REAL*10 array, dimension (LDX,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right hand side matrix Y.
 C             On exit, the leading M-by-N part of this array contains
@@ -76,7 +76,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= MAX(1,M).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor set to avoid overflow in X.
 C             0 < SCALE <= 1.
 C
@@ -144,20 +144,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  MONE, ONE, ZERO
+      REAL*10  MONE, ONE, ZERO
       PARAMETER         ( MONE = -1.0D+0, ONE = 1.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS
-      REAL*16  SCALE
+      REAL*10  SCALE
       INTEGER           INFO, LDA, LDC, LDD, LDE, LDX, M, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), C(LDC,*), D(LDD,*), E(LDE,*), X(LDX,*)
+      REAL*10  A(LDA,*), C(LDC,*), D(LDD,*), E(LDE,*), X(LDX,*)
 C     .. Local Scalars ..
-      REAL*16  SCALE1
+      REAL*10  SCALE1
       INTEGER           DIMMAT, I, INFO1, J, MA, MAI, MAJ, MB, ME
       LOGICAL           NOTRNS
 C     .. Local Arrays ..
-      REAL*16  MAT(4,4), RHS(4), TM(2,2)
+      REAL*10  MAT(4,4), RHS(4), TM(2,2)
       INTEGER           PIV1(4), PIV2(4)
 C     .. External Functions ..
       LOGICAL           LSAME

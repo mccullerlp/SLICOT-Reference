@@ -47,15 +47,15 @@ C
 C     R       (input) INTEGER
 C             The number of columns in B and C.  R >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then TC, TR and B
 C             are not referenced.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The scalar beta. When beta is zero then C need not be set
 C             before entry.
 C
-C     TC      (input)  REAL*16 array, dimension (LDTC,L)
+C     TC      (input)  REAL*10 array, dimension (LDTC,L)
 C             On entry with LDBLK = 'C', the leading M*K-by-L part of
 C             this array must contain the first block column of T.
 C             On entry with LDBLK = 'R', the leading (M-1)*K-by-L part
@@ -67,7 +67,7 @@ C             The leading dimension of the array TC.
 C             LDTC >= MAX(1,M*K),      if LDBLK = 'C';
 C             LDTC >= MAX(1,(M-1)*K),  if LDBLK = 'R'.
 C
-C     TR      (input)  REAL*16 array, dimension (LDTR,k)
+C     TR      (input)  REAL*10 array, dimension (LDTR,k)
 C             where k is (N-1)*L when LDBLK = 'C' and is N*L when
 C             LDBLK = 'R'.
 C             On entry with LDBLK = 'C', the leading K-by-(N-1)*L part
@@ -79,7 +79,7 @@ C
 C     LDTR    INTEGER
 C             The leading dimension of the array TR.  LDTR >= MAX(1,K).
 C
-C     B       (input)  REAL*16 array, dimension (LDB,R)
+C     B       (input)  REAL*10 array, dimension (LDB,R)
 C             On entry with TRANS = 'N', the leading N*L-by-R part of
 C             this array must contain the matrix B.
 C             On entry with TRANS = 'T' or TRANS = 'C', the leading
@@ -90,7 +90,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N*L),  if TRANS = 'N';
 C             LDB >= MAX(1,M*K),  if TRANS = 'T' or TRANS = 'C'.
 C
-C     C       (input/output)  REAL*16 array, dimension (LDC,R)
+C     C       (input/output)  REAL*10 array, dimension (LDC,R)
 C             On entry with TRANS = 'N', the leading M*K-by-R part of
 C             this array must contain the matrix C.
 C             On entry with TRANS = 'T' or TRANS = 'C', the leading
@@ -107,7 +107,7 @@ C             LDC >= MAX(1,N*L),  if TRANS = 'T' or TRANS = 'C'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -19,  DWORK(1)  returns the minimum
@@ -166,16 +166,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO, THREE, FOUR, THOM50
+      REAL*10  ZERO, ONE, TWO, THREE, FOUR, THOM50
       PARAMETER         ( ZERO  = 0.0D0, ONE  = 1.0D0, TWO    = 2.0D0,
      $                    THREE = 3.0D0, FOUR = 4.0D0, THOM50 = .95D3 )
 C     .. Scalar Arguments ..
       CHARACTER         LDBLK, TRANS
       INTEGER           INFO, K, L, LDB, LDC, LDTC, LDTR, LDWORK, M, N,
      $                  R
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
 C     .. Array Arguments ..
-      REAL*16  B(LDB,*), C(LDC,*), DWORK(*), TC(LDTC,*),
+      REAL*10  B(LDB,*), C(LDC,*), DWORK(*), TC(LDTC,*),
      $                  TR(LDTR,*)
 C     .. Local Scalars ..
       LOGICAL           FULLC, LMULT, LQUERY, LTRAN
@@ -184,7 +184,7 @@ C     .. Local Scalars ..
      $                  LEN, LL, LN, METH, MK, NL, P, P1, P2, PB, PC,
      $                  PDW, PP, PT, Q1, Q2, R1, R2, S1, S2, SHFT, WPOS,
      $                  WRKOPT
-      REAL*16  CF, COEF, PARAM, SCAL, SF, T1, T2, TH
+      REAL*10  CF, COEF, PARAM, SCAL, SF, T1, T2, TH
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

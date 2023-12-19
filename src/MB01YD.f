@@ -47,15 +47,15 @@ C             MAX(0,NC-1) >= L >= 0, if UPLO = 'L',
 C             where NR and NC are the numbers of rows and columns of the
 C             matrix A, respectively.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then the array A is
 C             not referenced.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The scalar beta. When beta is zero then the array C need
 C             not be set before entry.
 C
-C     A       (input) REAL*16 array, dimension (LDA,NC), where
+C     A       (input) REAL*10 array, dimension (LDA,NC), where
 C             NC is K when TRANS = 'N', and is N otherwise.
 C             If TRANS = 'N', the leading N-by-K part of this array must
 C             contain the matrix A, otherwise the leading K-by-N part of
@@ -71,7 +71,7 @@ C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= max(1,NR),
 C             where NR = N, if TRANS = 'N', and NR = K, otherwise.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry with UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix C.
@@ -145,25 +145,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          TRANS, UPLO
       INTEGER            INFO, LDA, LDC, K, L, N
-      REAL*16   ALPHA, BETA
+      REAL*10   ALPHA, BETA
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), C( LDC, * )
+      REAL*10   A( LDA, * ), C( LDC, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            TRANSP, UPPER
       INTEGER            I, J, M, NCOLA, NROWA
-      REAL*16   TEMP
+      REAL*10   TEMP
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DDOT
+      REAL*10   DDOT
       EXTERNAL           DDOT, LSAME
 C     ..
 C     .. External Subroutines ..

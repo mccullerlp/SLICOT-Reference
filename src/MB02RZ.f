@@ -26,7 +26,7 @@ C     NRHS    (input) INTEGER
 C             The number of right hand sides, i.e., the number of
 C             columns of the matrix B.  NRHS >= 0.
 C
-C     H       (input) COMPLEX*32 array, dimension (LDH,N)
+C     H       (input) COMPLEX*20 array, dimension (LDH,N)
 C             The factors L and U from the factorization H = P*L*U
 C             as computed by MB02SZ.
 C
@@ -37,7 +37,7 @@ C     IPIV    (input) INTEGER array, dimension (N)
 C             The pivot indices from MB02SZ; for 1<=i<=N, row i of the
 C             matrix was interchanged with row IPIV(i).
 C
-C     B       (input/output) COMPLEX*32 array, dimension (LDB,NRHS)
+C     B       (input/output) COMPLEX*20 array, dimension (LDB,NRHS)
 C             On entry, the right hand side matrix B.
 C             On exit, the solution matrix X.
 C
@@ -82,7 +82,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*32         ONE
+      COMPLEX*20         ONE
       PARAMETER          ( ONE = ( 1.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       CHARACTER          TRANS
@@ -90,7 +90,7 @@ C     .. Scalar Arguments ..
 C     ..
 C     .. Array Arguments ..
       INTEGER            IPIV( * )
-      COMPLEX*32         B( LDB, * ), H( LDH, * )
+      COMPLEX*20         B( LDB, * ), H( LDH, * )
 C     .. Local Scalars ..
       LOGICAL            NOTRAN
       INTEGER            J, JP

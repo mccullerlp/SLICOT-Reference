@@ -91,7 +91,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 4.
 C
-C     R       (input) REAL*16 array, dimension (LDR, NC)
+C     R       (input) REAL*10 array, dimension (LDR, NC)
 C             where NC = N if BN <= 1, and NC = BSN+ST, if BN > 1.
 C             If UPLO = 'U', the leading N-by-NC part of this array must
 C             contain the (compressed) representation (Rc) of the upper
@@ -119,13 +119,13 @@ C
 C     LDR     INTEGER
 C             The leading dimension of the array R.  LDR >= MAX(1,N).
 C
-C     SDIAG   (input) REAL*16 array, dimension (N)
+C     SDIAG   (input) REAL*10 array, dimension (N)
 C             If UPLO = 'L', this array must contain the diagonal
 C             entries of R_k, k = 1:l+1. This array is modified
 C             internally, but is restored on exit.
 C             This parameter is not referenced if UPLO = 'U'.
 C
-C     S       (input) REAL*16 array, dimension (LDS,N-ST)
+C     S       (input) REAL*10 array, dimension (LDS,N-ST)
 C             If UPLO = 'L', BN > 1, and BSN > 0, the leading
 C             ST-by-(N-ST) part of this array must contain the transpose
 C             of the rectangular part of the last block column in R,
@@ -139,7 +139,7 @@ C             The leading dimension of the array S.
 C             LDS >= 1,         if UPLO = 'U', or BN <= 1, or BSN = 0;
 C             LDS >= MAX(1,ST), if UPLO = 'L', BN > 1, and BSN > 0.
 C
-C     B       (input/output) REAL*16 array, dimension (N)
+C     B       (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the right hand side
 C             vector b.
 C             On exit, this array contains the (least squares) solution
@@ -158,7 +158,7 @@ C             k = 1:l(+1), estimated according to the value of COND.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             If COND = 'E', the tolerance to be used for finding the
 C             ranks of the submatrices R_k. If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -172,7 +172,7 @@ C             This parameter is not relevant if COND = 'U' or 'N'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -220,24 +220,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, SVLMAX
+      REAL*10  ZERO, ONE, SVLMAX
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, SVLMAX = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COND, TRANS, UPLO
       INTEGER           INFO, LDR, LDS, LDWORK, LIPAR, N
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           IPAR(*), RANKS(*)
-      REAL*16  B(*), DWORK(*), R(LDR,*), S(LDS,*), SDIAG(*)
+      REAL*10  B(*), DWORK(*), R(LDR,*), S(LDS,*), SDIAG(*)
 C     .. Local Scalars ..
-      REAL*16  TOLDEF
+      REAL*10  TOLDEF
       INTEGER           BN, BSM, BSN, I, I1, J, K, L, NC, NTHS, RANK, ST
       CHARACTER         TRANSL, UPLOL
       LOGICAL           ECOND, FULL, LOWER, NCOND, TRANR
 C     .. Local Arrays ..
-      REAL*16  DUM(3)
+      REAL*10  DUM(3)
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..

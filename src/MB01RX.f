@@ -58,15 +58,15 @@ C             columns of the matrix op( A ), for SIDE = 'L', or the
 C             number of rows of the matrix op( A ) and the number of
 C             columns of the matrix B, for SIDE = 'R'.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The scalar beta. When beta is zero then A and B are not
 C             referenced.
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,M)
+C     R       (input/output) REAL*10 array, dimension (LDR,M)
 C             On entry with UPLO = 'U', the leading M-by-M upper
 C             triangular part of this array must contain the upper
 C             triangular part of the matrix R; the strictly lower
@@ -84,7 +84,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,M).
 C
-C     A       (input) REAL*16 array, dimension (LDA,k), where
+C     A       (input) REAL*10 array, dimension (LDA,k), where
 C             k = N  when  SIDE = 'L', and TRANS = 'N', or
 C                          SIDE = 'R', and TRANS = 'T';
 C             k = M  when  SIDE = 'R', and TRANS = 'N', or
@@ -105,7 +105,7 @@ C                          SIDE = 'R', and TRANS = 'T';
 C             l = N  when  SIDE = 'R', and TRANS = 'N', or
 C                          SIDE = 'L', and TRANS = 'T'.
 C
-C     B       (input) REAL*16 array, dimension (LDB,p), where
+C     B       (input) REAL*10 array, dimension (LDB,p), where
 C             p = M  when  SIDE = 'L';
 C             p = N  when  SIDE = 'R'.
 C             On entry, the leading N-by-M part, if SIDE = 'L', or
@@ -153,14 +153,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SIDE, TRANS, UPLO
       INTEGER           INFO, LDA, LDB, LDR, M, N
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), R(LDR,*)
+      REAL*10  A(LDA,*), B(LDB,*), R(LDR,*)
 C     .. Local Scalars ..
       LOGICAL           LSIDE, LTRANS, LUPLO
       INTEGER           J

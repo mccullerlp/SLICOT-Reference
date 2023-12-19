@@ -64,7 +64,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, if FACT = 'F', then the leading N-by-N upper
 C             Hessenberg part of this array must contain the
 C             generalized Schur factor A_s of the matrix A (see
@@ -80,7 +80,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, if FACT = 'F', then the leading N-by-N upper
 C             triangular part of this array must contain the
 C             generalized Schur factor E_s of the matrix E (see
@@ -96,7 +96,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,N)
 C             On entry, if FACT = 'F', then the leading N-by-N part of
 C             this array must contain the orthogonal matrix Q from
 C             the generalized Schur factorization (see definitions (3)
@@ -109,7 +109,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,N)
 C             On entry, if FACT = 'F', then the leading N-by-N part of
 C             this array must contain the orthogonal matrix Z from
 C             the generalized Schur factorization (see definitions (3)
@@ -122,7 +122,7 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1,N).
 C
-C     X       (input/output) REAL*16 array, dimension (LDX,N)
+C     X       (input/output) REAL*10 array, dimension (LDX,N)
 C             On entry, if JOB = 'B' or 'X', then the leading N-by-N
 C             part of this array must contain the right hand side matrix
 C             Y of the equation. Either the lower or the upper
@@ -137,25 +137,25 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= MAX(1,N).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor set to avoid overflow in X.
 C             (0 < SCALE <= 1)
 C
-C     SEP     (output) REAL*16
+C     SEP     (output) REAL*10
 C             If JOB = 'S' or JOB = 'B', and INFO = 0, 3, or 4, then
 C             SEP contains an estimate of the separation of the
 C             Lyapunov operator.
 C
-C     FERR    (output) REAL*16
+C     FERR    (output) REAL*10
 C             If JOB = 'B', and INFO = 0, 3, or 4, then FERR contains an
 C             estimated forward error bound for the solution X. If XTRUE
 C             is the true solution, FERR estimates the relative error
 C             in the computed solution, measured in the Frobenius norm:
 C             norm(X - XTRUE) / norm(XTRUE)
 C
-C     ALPHAR  (output) REAL*16 array, dimension (N)
-C     ALPHAI  (output) REAL*16 array, dimension (N)
-C     BETA    (output) REAL*16 array, dimension (N)
+C     ALPHAR  (output) REAL*10 array, dimension (N)
+C     ALPHAI  (output) REAL*10 array, dimension (N)
+C     BETA    (output) REAL*10 array, dimension (N)
 C             If FACT = 'N' and INFO = 0, 3, or 4, then
 C             (ALPHAR(j) + ALPHAI(j)*i)/BETA(j), j=1,...,N, are the
 C             eigenvalues of the matrix pencil A - lambda * E.
@@ -167,7 +167,7 @@ C
 C     IWORK   INTEGER array, dimension (N**2)
 C             IWORK is not referenced if JOB = 'X'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -357,20 +357,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, TWO, ZERO
+      REAL*10  ONE, TWO, ZERO
       PARAMETER         ( ONE = 1.0D+0, TWO = 2.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, JOB, TRANS, UPLO
-      REAL*16  FERR, SCALE, SEP
+      REAL*10  FERR, SCALE, SEP
       INTEGER           INFO, LDA, LDE, LDQ, LDWORK, LDX, LDZ, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), ALPHAI(*), ALPHAR(*), BETA(*),
+      REAL*10  A(LDA,*), ALPHAI(*), ALPHAR(*), BETA(*),
      $                  DWORK(*), E(LDE,*), Q(LDQ,*), X(LDX,*),
      $                  Z(LDZ,*)
       INTEGER           IWORK(*)
 C     .. Local Scalars ..
       CHARACTER         ETRANS
-      REAL*16  EST, EPS, NORMA, NORME, SCALE1
+      REAL*10  EST, EPS, NORMA, NORME, SCALE1
       INTEGER           I, INFO1, KASE, MINGG, MINWRK, OPTWRK
       LOGICAL           ISDISC, ISFACT, ISTRAN, ISUPPR, LQUERY, WANTBH,
      $                  WANTSP, WANTX
@@ -378,7 +378,7 @@ C     .. Local Arrays ..
       LOGICAL           BWORK(1)
       INTEGER           ISAVE( 3 )
 C     .. External Functions ..
-      REAL*16  DLAMCH, DNRM2
+      REAL*10  DLAMCH, DNRM2
       LOGICAL           DELCTG, LSAME
       EXTERNAL          DELCTG, DLAMCH, DNRM2, LSAME
 C     .. External Subroutines ..

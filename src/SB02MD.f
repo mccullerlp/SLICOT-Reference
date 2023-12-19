@@ -72,7 +72,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, Q, G and X.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the coefficient matrix A of the equation.
 C             On exit, if DICO = 'D', and INFO = 0 or INFO > 1, the
@@ -83,7 +83,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     G       (input) REAL*16 array, dimension (LDG,N)
+C     G       (input) REAL*10 array, dimension (LDG,N)
 C             The leading N-by-N upper triangular part (if UPLO = 'U')
 C             or lower triangular part (if UPLO = 'L') of this array
 C             must contain the upper triangular part or lower triangular
@@ -95,7 +95,7 @@ C
 C     LDG     INTEGER
 C             The leading dimension of array G.  LDG >= MAX(1,N).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,N)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,N)
 C             On entry, the leading N-by-N upper triangular part (if
 C             UPLO = 'U') or lower triangular part (if UPLO = 'L') of
 C             this array must contain the upper triangular part or lower
@@ -109,13 +109,13 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of array N.  LDQ >= MAX(1,N).
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             An estimate of the reciprocal of the condition number (in
 C             the 1-norm) of the N-th order system of algebraic
 C             equations from which the solution matrix X is obtained.
 C
-C     WR      (output) REAL*16 array, dimension (2*N)
-C     WI      (output) REAL*16 array, dimension (2*N)
+C     WR      (output) REAL*10 array, dimension (2*N)
+C     WI      (output) REAL*10 array, dimension (2*N)
 C             If INFO = 0 or INFO = 5, these arrays contain the real and
 C             imaginary parts, respectively, of the eigenvalues of the
 C             2N-by-2N matrix S, ordered as specified by SORT (except
@@ -128,7 +128,7 @@ C                               -1
 C             A - B*(R + B'*X*B)  B'*X*A, if DICO = 'D'. Specifically,
 C                lambda(k) = WR(k) + j*WI(k), for k = 1,2,...,N.
 C
-C     S       (output) REAL*16 array, dimension (LDS,2*N)
+C     S       (output) REAL*10 array, dimension (LDS,2*N)
 C             If INFO = 0 or INFO = 5, the leading 2N-by-2N part of this
 C             array contains the ordered real Schur form S of the
 C             Hamiltonian or symplectic matrix H. That is,
@@ -145,7 +145,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,2*N).
 C
-C     U       (output) REAL*16 array, dimension (LDU,2*N)
+C     U       (output) REAL*10 array, dimension (LDU,2*N)
 C             If INFO = 0 or INFO = 5, the leading 2N-by-2N part of this
 C             array contains the transformation matrix U which reduces
 C             the Hamiltonian or symplectic matrix H to the ordered real
@@ -167,7 +167,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (2*N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK and DWORK(2) returns the scaling factor used
 C             (set to 1 if SCAL = 'N'), also set if INFO = 5;
@@ -305,24 +305,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, HALF, ONE
+      REAL*10  ZERO, HALF, ONE
       PARAMETER         ( ZERO = 0.0D0, HALF = 0.5D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, HINV, SCAL, SORT, UPLO
       INTEGER           INFO, LDA, LDG, LDQ, LDS, LDU, LDWORK, N
-      REAL*16  RCOND
+      REAL*10  RCOND
 C     .. Array Arguments ..
       LOGICAL           BWORK(*)
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), DWORK(*), G(LDG,*), Q(LDQ,*),
+      REAL*10  A(LDA,*), DWORK(*), G(LDG,*), Q(LDQ,*),
      $                  S(LDS,*), U(LDU,*), WR(*), WI(*)
 C     .. Local Scalars ..
       LOGICAL           DISCR, LHINV, LSCAL, LSORT, LUPLO
       INTEGER           I, IERR, ISCL, N2, NP1, NROT
-      REAL*16  GNORM, QNORM, RCONDA, UNORM, WRKOPT
+      REAL*10  GNORM, QNORM, RCONDA, UNORM, WRKOPT
 C     .. External Functions ..
       LOGICAL           LSAME, SB02MR, SB02MS, SB02MV, SB02MW
-      REAL*16  DLAMCH, DLANGE, DLANSY
+      REAL*10  DLAMCH, DLANGE, DLANSY
       EXTERNAL          DLAMCH, DLANGE, DLANSY, LSAME, SB02MR, SB02MS,
      $                  SB02MV, SB02MW
 C     .. External Subroutines ..

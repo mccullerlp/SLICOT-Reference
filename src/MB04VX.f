@@ -83,21 +83,21 @@ C             On exit, this array contains the column dimensions mu(k),
 C             (k=1, 2, ..., NBLCKS) of the submatrices having full
 C             column rank in the pencil s*E(eps)-A(eps).
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, this array contains the matrix A to be reduced.
 C             On exit, it contains the transformed matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, this array contains the matrix E to be reduced.
 C             On exit, it contains the transformed matrix E.
 C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,M).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,*)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,*)
 C             On entry, if UPDATQ = .TRUE., then the leading M-by-M
 C             part of this array must contain a given matrix Q (e.g.
 C             from a previous call to another SLICOT routine), and on
@@ -114,7 +114,7 @@ C     LDQ     INTEGER
 C             The leading dimension of array Q. If UPDATQ = .TRUE.,
 C             LDQ >= MAX(1,M); if UPDATQ = .FALSE., LDQ >= 1.
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,*)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,*)
 C             On entry, if UPDATZ = .TRUE., then the leading N-by-N
 C             part of this array must contain a given matrix Z (e.g.
 C             from a previous call to another SLICOT routine), and on
@@ -170,19 +170,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           UPDATQ, UPDATZ
       INTEGER           LDA, LDE, LDQ, LDZ, M, N, NBLCKS
 C     .. Array Arguments ..
       INTEGER           IMUK(*), INUK(*), MNEI(3)
-      REAL*16  A(LDA,*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
+      REAL*10  A(LDA,*), E(LDE,*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       INTEGER           CA, CJA, CJE, IP, ISMUK, ISNUK, K, MEPS, MINF,
      $                  MUK, MUKP1, MUP, MUP1, NEPS, NUK, NUP, RA, RJE,
      $                  SK1P1, TK1P1, TP1
-      REAL*16  SC, SS
+      REAL*10  SC, SS
 C     .. External Subroutines ..
       EXTERNAL          DROTG, MB04TU
 C     .. Executable Statements ..

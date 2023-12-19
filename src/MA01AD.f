@@ -10,13 +10,13 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     XR      (input) REAL*16
-C     XI      (input) REAL*16
+C     XR      (input) REAL*10
+C     XI      (input) REAL*10
 C             These scalars define the real and imaginary part of the
 C             complex number of which the square root is sought.
 C
-C     YR      (output) REAL*16
-C     YI      (output) REAL*16
+C     YR      (output) REAL*10
+C     YI      (output) REAL*10
 C             These scalars define the real and imaginary part of the
 C             complex square root.
 C
@@ -44,17 +44,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, HALF
+      REAL*10  ZERO, HALF
       PARAMETER         ( ZERO = 0.0D0, HALF = 1.0D0/2.0D0 )
 C     ..
 C     .. Scalar Arguments ..
-      REAL*16  XR, XI, YR, YI
+      REAL*10  XR, XI, YR, YI
 C     ..
 C     .. Local Scalars ..
-      REAL*16  S
+      REAL*10  S
 C     ..
 C     .. External Functions ..
-      REAL*16  DLAPY2
+      REAL*10  DLAPY2
       EXTERNAL          DLAPY2
 C
 C     .. Intrinsic functions ..

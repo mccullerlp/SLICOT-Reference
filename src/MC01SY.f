@@ -15,7 +15,7 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     M       (input) REAL*16
+C     M       (input) REAL*10
 C             The mantissa of the floating-point representation of A.
 C
 C     E       (input) INTEGER
@@ -24,7 +24,7 @@ C
 C     B       (input) INTEGER
 C             The base of the floating-point arithmetic.
 C
-C     A       (output) REAL*16
+C     A       (output) REAL*10
 C             The value of M * B**E.
 C
 C     OVFLOW  (output) LOGICAL
@@ -48,17 +48,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           OVFLOW
       INTEGER           B, E
-      REAL*16  A, M
+      REAL*10  A, M
 C     .. Local Scalars ..
       INTEGER           EMAX, EMIN, ET, EXPON
-      REAL*16  BASE, MT
+      REAL*10  BASE, MT
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, MOD

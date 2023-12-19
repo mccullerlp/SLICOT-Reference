@@ -54,7 +54,7 @@ C             The dimension of output vector, i.e. the number of rows
 C             of the matrices C, D and DR, and the number of columns
 C             of the matrices BR and DR.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A. The matrix A must not
 C             have observable eigenvalues on the imaginary axis, if
@@ -69,7 +69,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB,MAX(M,P))
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix.
@@ -81,7 +81,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-NQ part of this array contains
@@ -97,7 +97,7 @@ C             The leading dimension of array C.
 C             LDC >= MAX(1,M,P), if N > 0.
 C             LDC >= 1,          if N = 0.
 C
-C     D       (input/output) REAL*16 array, dimension
+C     D       (input/output) REAL*10 array, dimension
 C             (LDD,MAX(M,P))
 C             On entry, the leading P-by-M part of this array must
 C             contain the input/output matrix.
@@ -120,7 +120,7 @@ C             Generally, NR is the number of observable eigenvalues
 C             of A outside the stability region (the number of modified
 C             eigenvalues).
 C
-C     BR      (output) REAL*16 array, dimension (LDBR,P)
+C     BR      (output) REAL*10 array, dimension (LDBR,P)
 C             The leading NQ-by-P part of this array contains the
 C             leading NQ-by-P part of the output injection matrix
 C             Z'*H, which reflects the eigenvalues of A lying outside
@@ -133,7 +133,7 @@ C
 C     LDBR    INTEGER
 C             The leading dimension of array BR.  LDBR >= MAX(1,N).
 C
-C     DR      (output) REAL*16 array, dimension (LDDR,P)
+C     DR      (output) REAL*10 array, dimension (LDDR,P)
 C             The leading P-by-P part of this array contains the lower
 C             triangular matrix V representing the input/output matrix
 C             of the denominator factor R.
@@ -143,7 +143,7 @@ C             The leading dimension of array DR.  LDDR >= MAX(1,P).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The absolute tolerance level below which the elements of
 C             C are considered zero (used for observability tests).
 C             If the user sets TOL <= 0, then an implicitly computed,
@@ -154,7 +154,7 @@ C             the infinity-norm of C.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -224,15 +224,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO
       INTEGER           INFO, IWARN, LDA, LDB, LDBR, LDC, LDD, LDDR,
      $                  LDWORK, M, N, NQ, NR, P
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), BR(LDBR,*), C(LDC,*),
+      REAL*10  A(LDA,*), B(LDB,*), BR(LDBR,*), C(LDC,*),
      $                  D(LDD,*), DR(LDDR,*), DWORK(*)
 C     .. Local Scalars ..
       INTEGER           I, KBR, KW

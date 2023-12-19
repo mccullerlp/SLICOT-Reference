@@ -31,7 +31,7 @@ C     IGH     (input) INTEGER
 C             The integers LOW and IGH determined by DGEBAL.
 C             1 <= LOW <= IGH <= N, if N > 0; LOW=1 and IGH=0, if N=0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix to be back-transformed.
 C             On exit, the leading N-by-N part of this array contains
@@ -40,7 +40,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     SCALE   (input) REAL*16 array, dimension (N)
+C     SCALE   (input) REAL*10 array, dimension (N)
 C             Details of the permutation and scaling factors, as
 C             returned by DGEBAL.
 C
@@ -84,13 +84,13 @@ C     Elementary matrix operations, matrix algebra, matrix operations.
 C
 C     ******************************************************************
 C
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB
       INTEGER           IGH, INFO, LDA, LOW, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), SCALE(*)
+      REAL*10  A(LDA,*), SCALE(*)
 C     .. Local Scalars ..
       INTEGER           I, II, J, K
 C     .. External Functions ..

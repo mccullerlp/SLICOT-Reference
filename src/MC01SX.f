@@ -20,13 +20,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16        ZERO
+      REAL*10        ZERO
       PARAMETER               ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER                 LB, UB
 C     .. Array Arguments ..
       INTEGER                 E(*)
-      REAL*16        MANT(*)
+      REAL*10        MANT(*)
 C     .. Local Scalars ..
       INTEGER                 J, MAXE, MINE
 C     .. Intrinsic Functions ..

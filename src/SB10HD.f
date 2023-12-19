@@ -50,49 +50,49 @@ C     NMEAS   (input) INTEGER
 C             The number of measurements (NP2).  NP >= NMEAS >= 0,
 C             M-NCON >= NMEAS.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             system state matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             system input matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading NP-by-N part of this array must contain the
 C             system output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading NP-by-M part of this array must contain the
 C             system input/output matrix D.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     AK      (output) REAL*16 array, dimension (LDAK,N)
+C     AK      (output) REAL*10 array, dimension (LDAK,N)
 C             The leading N-by-N part of this array contains the
 C             controller state matrix AK.
 C
 C     LDAK    INTEGER
 C             The leading dimension of the array AK.  LDAK >= max(1,N).
 C
-C     BK      (output) REAL*16 array, dimension (LDBK,NMEAS)
+C     BK      (output) REAL*10 array, dimension (LDBK,NMEAS)
 C             The leading N-by-NMEAS part of this array contains the
 C             controller input matrix BK.
 C
 C     LDBK    INTEGER
 C             The leading dimension of the array BK.  LDBK >= max(1,N).
 C
-C     CK      (output) REAL*16 array, dimension (LDCK,N)
+C     CK      (output) REAL*10 array, dimension (LDCK,N)
 C             The leading NCON-by-N part of this array contains the
 C             controller output matrix CK.
 C
@@ -100,7 +100,7 @@ C     LDCK    INTEGER
 C             The leading dimension of the array CK.
 C             LDCK >= max(1,NCON).
 C
-C     DK      (output) REAL*16 array, dimension (LDDK,NMEAS)
+C     DK      (output) REAL*10 array, dimension (LDDK,NMEAS)
 C             The leading NCON-by-NMEAS part of this array contains the
 C             controller input/output matrix DK.
 C
@@ -108,7 +108,7 @@ C     LDDK    INTEGER
 C             The leading dimension of the array DK.
 C             LDDK >= max(1,NCON).
 C
-C     RCOND   (output) REAL*16 array, dimension (4)
+C     RCOND   (output) REAL*10 array, dimension (4)
 C             RCOND(1) contains the reciprocal condition number of the
 C                      control transformation matrix;
 C             RCOND(2) contains the reciprocal condition number of the
@@ -120,7 +120,7 @@ C                      number of the Y-Riccati equation.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             Tolerance used for controlling the accuracy of the applied
 C             transformations for computing the normalized form in
 C             SLICOT Library routine SB10UD. Transformation matrices
@@ -133,7 +133,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (max(2*N,N*N))
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal
 C             LDWORK.
 C
@@ -210,18 +210,18 @@ C
 C  *********************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDAK, LDB, LDBK, LDC, LDCK, LDD,
      $                   LDDK, LDWORK, M, N, NCON, NMEAS, NP
-      REAL*16   TOL
+      REAL*10   TOL
 C     ..
 C     .. Array Arguments ..
       LOGICAL            BWORK( * )
       INTEGER            IWORK( * )
-      REAL*16   A( LDA, * ), AK( LDAK, * ), B( LDB, * ),
+      REAL*10   A( LDA, * ), AK( LDAK, * ), B( LDB, * ),
      $                   BK( LDBK, * ), C( LDC, * ), CK( LDCK, * ),
      $                   D( LDD, * ), DK( LDDK, * ), DWORK( * ),
      $                   RCOND( 4 )
@@ -229,10 +229,10 @@ C     ..
 C     .. Local Scalars ..
       INTEGER            INFO2, IWC, IWD, IWF, IWH, IWRK, IWTU, IWTY,
      $                   IWY, LWAMAX, M1, M2, MINWRK, NP1, NP2
-      REAL*16   TOLL
+      REAL*10   TOLL
 C     ..
 C     .. External Functions ..
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH
 C     ..
 C     .. External Subroutines ..

@@ -52,7 +52,7 @@ C     SINV    (input)  INTEGER
 C             Signature multiplier. Entries of S are virtually
 C             multiplied by SINV.
 C
-C     A       (input)  REAL*16 array, dimension (LDA1,LDA2,K)
+C     A       (input)  REAL*10 array, dimension (LDA1,LDA2,K)
 C             The leading N-by-N-by-K part of this array must contain
 C             the product (implicitly represented by its K factors)
 C             in periodic upper Hessenberg form.
@@ -63,19 +63,19 @@ C
 C     LDA2    INTEGER
 C             The second leading dimension of the array A.  LDA2 >= N.
 C
-C     C1      (output)  REAL*16
-C     S1      (output)  REAL*16
+C     C1      (output)  REAL*10
+C     S1      (output)  REAL*10
 C             On exit, C1 and S1 contain the parameters for the first
 C             Givens rotation.
 C
-C     C2      (output)  REAL*16
-C     S2      (output)  REAL*16
+C     C2      (output)  REAL*10
+C     S2      (output)  REAL*10
 C             On exit, if SHFT = 'D', C2 and S2 contain the parameters
 C             for the second Givens rotation. Otherwise, C2 = 1, S2 = 0.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N*(N+2))
+C     DWORK   REAL*10 array, dimension (N*(N+2))
 C
 C     METHOD
 C
@@ -102,24 +102,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, TWO, ZERO
+      REAL*10  ONE, TWO, ZERO
       PARAMETER         ( ONE = 1.0D0, TWO = 2.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SHFT
       INTEGER           K, LDA1, LDA2, N, SINV
-      REAL*16  C1, C2, S1, S2
+      REAL*10  C1, C2, S1, S2
 C     .. Array Arguments ..
       INTEGER           AMAP(*), S(*)
-      REAL*16  A(LDA1,LDA2,*), DWORK(*)
+      REAL*10  A(LDA1,LDA2,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           ISC, SGLE
       INTEGER           I, II, IN1, IN2, IND, IR, J, L, NN
-      REAL*16  E1, E2, MD, MXC, MXR, P1, P2, P3, PR, SM
+      REAL*10  E1, E2, MD, MXC, MXR, P1, P2, P3, PR, SM
 C     .. Local Arrays ..
-      REAL*16  Z(1)
+      REAL*10  Z(1)
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAPY2
+      REAL*10  DLAPY2
       EXTERNAL          LSAME, DLAPY2
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DLAHQR, DLARTG, DLASET, DTRMM, DTRMV,

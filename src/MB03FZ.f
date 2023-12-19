@@ -93,7 +93,7 @@ C
 C     N       (input) INTEGER
 C             Order of the pencil aS - bH.  N >= 0, even.
 C
-C     Z       (input/output) COMPLEX*32 array, dimension (LDZ, N)
+C     Z       (input/output) COMPLEX*20 array, dimension (LDZ, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the non-trivial factor Z in the factorization
 C             S = J Z' J' Z of the skew-Hamiltonian matrix S.
@@ -107,7 +107,7 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1, N).
 C
-C     B       (input/output) COMPLEX*32 array, dimension (LDB, N)
+C     B       (input/output) COMPLEX*20 array, dimension (LDB, N)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix B.
 C             On exit, if COMPQ = 'C' or COMPU = 'C', the leading
@@ -120,7 +120,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N).
 C
-C     FG      (input/output) COMPLEX*32 array, dimension (LDFG, N)
+C     FG      (input/output) COMPLEX*20 array, dimension (LDFG, N)
 C             On entry, the leading N/2-by-N/2 lower triangular part of
 C             this array must contain the lower triangular part of the
 C             Hermitian matrix G, and the N/2-by-N/2 upper triangular
@@ -142,7 +142,7 @@ C     NEIG    (output) INTEGER
 C             If COMPQ = 'C' or COMPU = 'C', the number of eigenvalues
 C             in aS - bH with strictly negative real part.
 C
-C     D       (output) COMPLEX*32 array, dimension (LDD, N)
+C     D       (output) COMPLEX*20 array, dimension (LDD, N)
 C             If COMPQ = 'C' or COMPU = 'C', the leading N-by-N part of
 C             this array contains the matrix BD in (3) (see METHOD).
 C             If COMPQ = 'N' and COMPU = 'N', this array is not
@@ -153,7 +153,7 @@ C             The leading dimension of the array D.
 C             LDD >= 1,         if COMPQ = 'N' and COMPU = 'N';
 C             LDD >= MAX(1, N), if COMPQ = 'C' or  COMPU = 'C'.
 C
-C     C       (output) COMPLEX*32 array, dimension (LDC, N)
+C     C       (output) COMPLEX*20 array, dimension (LDC, N)
 C             If COMPQ = 'C' or COMPU = 'C', the leading N-by-N part of
 C             this array contains the lower triangular matrix BC in (3)
 C             (see also METHOD). The strictly upper triangular part is
@@ -166,7 +166,7 @@ C             The leading dimension of the array C.
 C             LDC >= 1,         if COMPQ = 'N' and COMPU = 'N';
 C             LDC >= MAX(1, N), if COMPQ = 'C' or  COMPU = 'C'.
 C
-C     Q       (output) COMPLEX*32 array, dimension (LDQ, 2*N)
+C     Q       (output) COMPLEX*20 array, dimension (LDQ, 2*N)
 C             On exit, if COMPQ = 'C', the leading N-by-NEIG part of
 C             this array contains an orthonormal basis of the right
 C             deflating subspace corresponding to the eigenvalues of the
@@ -179,7 +179,7 @@ C             The leading dimension of the array Q.
 C             LDQ >= 1,           if COMPQ = 'N';
 C             LDQ >= MAX(1, 2*N), if COMPQ = 'C'.
 C
-C     U       (output) COMPLEX*32 array, dimension (LDU, 2*N)
+C     U       (output) COMPLEX*20 array, dimension (LDU, 2*N)
 C             On exit, if COMPU = 'C', the leading N-by-NEIG part of
 C             this array contains an orthonormal basis of the companion
 C             subspace corresponding to the eigenvalues of the
@@ -192,16 +192,16 @@ C             The leading dimension of the array U.
 C             LDU >= 1,         if COMPU = 'N';
 C             LDU >= MAX(1, N), if COMPU = 'C'.
 C
-C     ALPHAR  (output) REAL*16 array, dimension (N)
+C     ALPHAR  (output) REAL*10 array, dimension (N)
 C             The real parts of each scalar alpha defining an eigenvalue
 C             of the pencil aS - bH.
 C
-C     ALPHAI  (output) REAL*16 array, dimension (N)
+C     ALPHAI  (output) REAL*10 array, dimension (N)
 C             The imaginary parts of each scalar alpha defining an
 C             eigenvalue of the pencil aS - bH.
 C             If ALPHAI(j) is zero, then the j-th eigenvalue is real.
 C
-C     BETA    (output) REAL*16 array, dimension (N)
+C     BETA    (output) REAL*10 array, dimension (N)
 C             The scalars beta that define the eigenvalues of the pencil
 C             aS - bH.
 C             Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
@@ -216,7 +216,7 @@ C
 C     LIWORK  INTEGER
 C             The dimension of the array IWORK.  LIWORK >= 2*N+9.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal LDWORK.
 C             On exit, if INFO = -26, DWORK(1) returns the minimum
 C             value of LDWORK.
@@ -235,7 +235,7 @@ C             DWORK array, returns this value as the first entry of
 C             the DWORK array, and no error message related to LDWORK
 C             is issued by XERBLA.
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal LZWORK.
 C             On exit, if INFO = -28, ZWORK(1) returns the minimum
 C             value of LZWORK.
@@ -349,9 +349,9 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE
+      REAL*10   ONE
       PARAMETER          ( ONE = 1.0D+0 )
-      COMPLEX*32         CZERO, CONE, CIMAG
+      COMPLEX*20         CZERO, CONE, CIMAG
       PARAMETER          ( CZERO = ( 0.0D+0, 0.0D+0 ),
      $                      CONE = ( 1.0D+0, 0.0D+0 ),
      $                     CIMAG = ( 0.0D+0, 1.0D+0 ) )
@@ -364,8 +364,8 @@ C
 C     .. Array Arguments ..
       LOGICAL            BWORK( * )
       INTEGER            IWORK( * )
-      REAL*16   ALPHAI( * ), ALPHAR( * ), BETA( * ), DWORK( * )
-      COMPLEX*32         B( LDB, * ), C( LDC, * ), D( LDD, * ),
+      REAL*10   ALPHAI( * ), ALPHAR( * ), BETA( * ), DWORK( * )
+      COMPLEX*20         B( LDB, * ), C( LDC, * ), D( LDD, * ),
      $                   FG( LDFG, * ), Q( LDQ, * ), U( LDU, * ),
      $                   Z( LDZ, * ), ZWORK( * )
 C
@@ -376,12 +376,12 @@ C     .. Local Scalars ..
      $                   IU, IUB, IW, IW1, IWRK, IZ11, IZ22, J, J1, J2,
      $                   J3, JM1, JP2, M, MINDB, MINDW, MINZW, N2, NB,
      $                   NC, NJ1, NN, OPTDW, OPTZW
-      REAL*16   EPS, NRMB, TOL
-      COMPLEX*32         TMP
+      REAL*10   EPS, NRMB, TOL
+      COMPLEX*20         TMP
 C
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C
 C     .. External Subroutines ..

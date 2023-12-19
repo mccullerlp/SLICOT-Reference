@@ -33,7 +33,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading NR-by-NR part of this array contains
@@ -45,7 +45,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M),
+C     B       (input/output) REAL*10 array, dimension (LDB,M),
 C             if ROWCOL = 'R', and (LDB,MAX(M,P)) if ROWCOL = 'C'.
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B; if
@@ -57,7 +57,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C; if
 C             ROWCOL = 'C', the remainder of the leading MAX(M,P)-by-N
@@ -70,7 +70,7 @@ C             The leading dimension of array C.
 C             LDC >= MAX(1,P)   if ROWCOL = 'R';
 C             LDC >= MAX(1,M,P) if ROWCOL = 'C'.
 C
-C     D       (input) REAL*16 array, dimension (LDD,M),
+C     D       (input) REAL*10 array, dimension (LDD,M),
 C             if ROWCOL = 'R', and (LDD,MAX(M,P)) if ROWCOL = 'C'.
 C             The leading P-by-M part of this array must contain the
 C             original direct transmission matrix D; if ROWCOL = 'C',
@@ -90,7 +90,7 @@ C     INDEX   (output) INTEGER array, dimension (porm), where porm = P,
 C             if ROWCOL = 'R', and porm = M, if ROWCOL = 'C'.
 C             The degrees of the denominator polynomials.
 C
-C     DCOEFF  (output) REAL*16 array, dimension (LDDCOE,N+1)
+C     DCOEFF  (output) REAL*10 array, dimension (LDDCOE,N+1)
 C             The leading porm-by-kdcoef part of this array contains
 C             the coefficients of each denominator polynomial, where
 C             kdcoef = MAX(INDEX(I)) + 1.
@@ -102,7 +102,7 @@ C             The leading dimension of array DCOEFF.
 C             LDDCOE >= MAX(1,P) if ROWCOL = 'R';
 C             LDDCOE >= MAX(1,M) if ROWCOL = 'C'.
 C
-C     UCOEFF  (output) REAL*16 array, dimension
+C     UCOEFF  (output) REAL*10 array, dimension
 C             (LDUCO1,LDUCO2,N+1)
 C             If ROWCOL = 'R' then porp = M, otherwise porp = P.
 C             The leading porm-by-porp-by-kdcoef part of this array
@@ -125,7 +125,7 @@ C             LDUCO2 >= MAX(1,P) if ROWCOL = 'C'.
 C
 C     Tolerances
 C
-C     TOL1    REAL*16
+C     TOL1    REAL*10
 C             The tolerance to be used in determining the i-th row of
 C             T(s), where i = 1,2,...,porm. If the user sets TOL1 > 0,
 C             then the given value of TOL1 is used as an absolute
@@ -134,7 +134,7 @@ C             considered neglijible. If the user sets TOL1 <= 0, then
 C             an implicitly computed, default tolerance, defined in
 C             the SLICOT Library routine TB01ZD, is used instead.
 C
-C     TOL2    REAL*16
+C     TOL2    REAL*10
 C             The tolerance to be used to separate out a controllable
 C             subsystem of (A,B,C). If the user sets TOL2 > 0, then
 C             the given value of TOL2 is used as a lower bound for the
@@ -152,7 +152,7 @@ C     IWORK   INTEGER array, dimension (N+MAX(M,P))
 C             On exit, if INFO = 0, the first nonzero elements of
 C             IWORK(1:N) return the orders of the diagonal blocks of A.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -217,16 +217,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         ROWCOL
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDDCOE, LDUCO1,
      $                  LDUCO2, LDWORK, M, N, NR, P
-      REAL*16  TOL1, TOL2
+      REAL*10  TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           INDEX(*), IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DCOEFF(LDDCOE,*), DWORK(*),
      $                  UCOEFF(LDUCO1,LDUCO2,*)
 C     .. Local Scalars ..

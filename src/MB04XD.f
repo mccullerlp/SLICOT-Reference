@@ -51,7 +51,7 @@ C             by the routine on exit if the RANK-th and the (RANK+1)-th
 C             singular values of A are considered to be equal.
 C             See also the description of parameter TOL below.
 C
-C     THETA   (input/output) REAL*16
+C     THETA   (input/output) REAL*10
 C             On entry, if RANK < 0, then THETA must specify an upper
 C             bound on the smallest singular values of A corresponding
 C             to the singular subspace to be computed.  THETA >= 0.0.
@@ -64,7 +64,7 @@ C             computed upper bound such that precisely RANK singular
 C             values of A are greater than THETA + TOL.
 C             Otherwise, THETA is unchanged.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading M-by-N part of this array must contain the
 C             matrix A from which the basis of a desired singular
 C             subspace is to be computed.
@@ -73,7 +73,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= max(1,M).
 C
-C     U       (output) REAL*16 array, dimension (LDU,*)
+C     U       (output) REAL*10 array, dimension (LDU,*)
 C             If JOBU = 'A', then the leading M-by-M part of this array
 C             contains the (M - RANK) M-dimensional base vectors of the
 C             desired left singular subspace of A corresponding to its
@@ -98,7 +98,7 @@ C             The leading dimension of array U.
 C             LDU >= max(1,M) if JOBU = 'A' or JOBU = 'S',
 C             LDU >= 1        if JOBU = 'N'.
 C
-C     V       (output) REAL*16 array, dimension (LDV,*)
+C     V       (output) REAL*10 array, dimension (LDV,*)
 C             If JOBV = 'A', then the leading N-by-N part of this array
 C             contains the (N - RANK) N-dimensional base vectors of the
 C             desired right singular subspace of A corresponding to its
@@ -123,7 +123,7 @@ C             The leading dimension of array V.
 C             LDV >= max(1,N) if JOBV = 'A' or JOBV = 'S',
 C             LDV >= 1        if JOBV = 'N'.
 C
-C     Q       (output) REAL*16 array, dimension (2*min(M,N)-1)
+C     Q       (output) REAL*10 array, dimension (2*min(M,N)-1)
 C             This array contains the partially diagonalized bidiagonal
 C             matrix J computed from A, at the moment that the desired
 C             singular subspace has been found. Specifically, the
@@ -143,7 +143,7 @@ C             to the computed singular subspaces.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             This parameter defines the multiplicity of singular values
 C             by considering all singular values within an interval of
 C             length TOL as coinciding. TOL is used in checking how many
@@ -156,7 +156,7 @@ C             QR/QL iterations. If the user sets TOL to be less than or
 C             equal to 0, then the tolerance is taken as specified in
 C             SLICOT Library routine MB04YD document.
 C
-C     RELTOL  REAL*16
+C     RELTOL  REAL*10
 C             This parameter specifies the minimum relative width of an
 C             interval. When an interval is narrower than TOL, or than
 C             RELTOL times the larger (in magnitude) endpoint, then it
@@ -168,7 +168,7 @@ C             tolerance is taken as BASE * EPS.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -328,22 +328,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBU, JOBV
       INTEGER           INFO, IWARN, LDA, LDU, LDV, LDWORK, M, N, RANK
-      REAL*16  RELTOL, THETA, TOL
+      REAL*10  RELTOL, THETA, TOL
 C     .. Array Arguments ..
       LOGICAL           INUL(*)
-      REAL*16  A(LDA,*), DWORK(*), Q(*), U(LDU,*), V(LDV,*)
+      REAL*10  A(LDA,*), DWORK(*), Q(*), U(LDU,*), V(LDV,*)
 C     .. Local Scalars ..
       CHARACTER*1       JOBUY, JOBVY
       LOGICAL           ALL, LJOBUA, LJOBUS, LJOBVA, LJOBVS, LQUERY, QR,
      $                  WANTU, WANTV
       INTEGER           I, IHOUSH, IJ, ITAU, ITAUP, ITAUQ, J, JU, JV,
      $                  JWORK, K, LDW, LDY, MA, MINWRK, P, PP1, WRKOPT
-      REAL*16  CS, SN, TEMP
+      REAL*10  CS, SN, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           ILAENV

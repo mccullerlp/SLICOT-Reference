@@ -22,11 +22,11 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix H.  N >= 0.
 C
-C     HNORM   (input) REAL*16
+C     HNORM   (input) REAL*10
 C             If NORM = '1' or 'O', the 1-norm of the original matrix H.
 C             If NORM = 'I', the infinity-norm of the original matrix H.
 C
-C     H       (input) REAL*16 array, dimension (LDH,N)
+C     H       (input) REAL*10 array, dimension (LDH,N)
 C             The factors L and U from the factorization H = P*L*U
 C             as computed by MB02SD.
 C
@@ -37,7 +37,7 @@ C     IPIV    (input) INTEGER array, dimension (N)
 C             The pivot indices; for 1 <= i <= N, row i of the matrix
 C             was interchanged with row IPIV(i).
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             The reciprocal of the condition number of the matrix H,
 C             computed as RCOND = 1/(norm(H) * norm(inv(H))).
 C
@@ -45,7 +45,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (3*N)
+C     DWORK   REAL*10 array, dimension (3*N)
 C
 C     Error Indicator
 C
@@ -83,28 +83,28 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE, ZERO
+      REAL*10   ONE, ZERO
       PARAMETER          ( ONE = 1.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          NORM
       INTEGER            INFO, LDH, N
-      REAL*16   HNORM, RCOND
+      REAL*10   HNORM, RCOND
 C     ..
 C     .. Array Arguments ..
       INTEGER            IPIV( * ), IWORK( * )
-      REAL*16   DWORK( * ), H( LDH, * )
+      REAL*10   DWORK( * ), H( LDH, * )
 C     .. Local Scalars ..
       LOGICAL            ONENRM
       CHARACTER          NORMIN
       INTEGER            IX, J, JP, KASE, KASE1
-      REAL*16   HINVNM, SCALE, SMLNUM, T
+      REAL*10   HINVNM, SCALE, SMLNUM, T
 C     .. Local Arrays ..
       INTEGER            ISAVE( 3 )
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, IDAMAX, LSAME
 C     ..
 C     .. External Subroutines ..

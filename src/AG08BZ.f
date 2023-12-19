@@ -42,7 +42,7 @@ C
 C     P       (input) INTEGER
 C             The number of rows of matrix C.  P >= 0.
 C
-C     A       (input/output) COMPLEX*32 array, dimension (LDA,N)
+C     A       (input/output) COMPLEX*20 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the state dynamics matrix A of the system.
 C             On exit, the leading NFZ-by-NFZ part of this array
@@ -51,7 +51,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) COMPLEX*32 array, dimension (LDE,N)
+C     E       (input/output) COMPLEX*20 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the descriptor matrix E of the system.
 C             On exit, the leading NFZ-by-NFZ part of this array
@@ -60,7 +60,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) COMPLEX*32 array, dimension (LDB,M)
+C     B       (input/output) COMPLEX*20 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the input/state matrix B of the system.
 C             On exit, this matrix does not contain useful information.
@@ -70,7 +70,7 @@ C             The leading dimension of array B.
 C             LDB >= MAX(1,L) if M > 0;
 C             LDB >= 1        if M = 0.
 C
-C     C       (input/output) COMPLEX*32 array, dimension (LDC,N)
+C     C       (input/output) COMPLEX*20 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C of the system.
 C             On exit, this matrix does not contain useful information.
@@ -78,7 +78,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) COMPLEX*32 array, dimension (LDD,M)
+C     D       (input) COMPLEX*20 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             direct transmission matrix D of the system.
 C
@@ -126,7 +126,7 @@ C             left Kronecker (row) indices.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -144,11 +144,11 @@ C     IWORK   INTEGER array, dimension (N+max(1,M))
 C             On output, IWORK(1) contains the normal rank of the
 C             transfer function matrix.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             LDWORK >= max(4*(L+N), 2*max(L+P,M+N))), if EQUIL = 'S',
 C             LDWORK >= 2*max(L+P,M+N)),               if EQUIL = 'N'.
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal value
 C             of LZWORK.
 C
@@ -246,31 +246,31 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
-      COMPLEX*32         CZERO
+      COMPLEX*20         CZERO
       PARAMETER         ( CZERO = ( 0.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       CHARACTER         EQUIL
       INTEGER           DINFZ, INFO, L, LDA, LDB, LDC, LDD, LDE, LZWORK,
      $                  M, N, NFZ, NINFE, NIZ, NKROL, NKROR, NRANK, P
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           INFE(*), INFZ(*), IWORK(*), KRONL(*), KRONR(*)
-      REAL*16  DWORK(*)
-      COMPLEX*32        A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  DWORK(*)
+      COMPLEX*20        A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  E(LDE,*), ZWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LEQUIL, LQUERY
       INTEGER           I, I0, I1, II, IPD, ITAU, J, JWORK, KABCD,
      $                  LABCD2, LDABCD, LZW, MM, MU, N2, NN, NSINFE, NU,
      $                  NUMU, PP, WRKOPT
-      REAL*16  SVLMAX, TOLER
+      REAL*10  SVLMAX, TOLER
 C     .. Local Arrays ..
-      COMPLEX*32        DUM(1)
+      COMPLEX*20        DUM(1)
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, ZLANGE
+      REAL*10  DLAMCH, ZLANGE
       EXTERNAL          DLAMCH, LSAME, ZLANGE
 C     .. External Subroutines ..
       EXTERNAL          AG8BYZ, MA02BZ, MA02CZ, TB01XZ, TG01AZ, TG01FZ,

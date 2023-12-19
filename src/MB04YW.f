@@ -70,22 +70,22 @@ C     K       (input) INTEGER
 C             The index of the last diagonal entry of the considered
 C             unreduced bidiagonal submatrix Jk of J.
 C
-C     SHIFT   (input) REAL*16
+C     SHIFT   (input) REAL*10
 C             Value of the shift used in the QR or QL iteration step.
 C
-C     D       (input/output) REAL*16 array, dimension (p)
+C     D       (input/output) REAL*10 array, dimension (p)
 C             where p = MIN(M,N)
 C             On entry, D must contain the diagonal entries of the
 C             bidiagonal matrix J.
 C             On exit, D contains the diagonal entries of the
 C             transformed bidiagonal matrix S' J T.
 C
-C     E       (input/output) REAL*16 array, dimension (p-1)
+C     E       (input/output) REAL*10 array, dimension (p-1)
 C             On entry, E must contain the superdiagonal entries of J.
 C             On exit, E contains the superdiagonal entries of the
 C             transformed matrix S' J T.
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,p)
+C     U       (input/output) REAL*10 array, dimension (LDU,p)
 C             On entry, if UPDATU = .TRUE., U must contain the M-by-p
 C             left transformation matrix.
 C             On exit, if UPDATU = .TRUE., the Givens rotations S on the
@@ -98,7 +98,7 @@ C             The leading dimension of the array U.
 C             LDU >= max(1,M) if UPDATU = .TRUE.;
 C             LDU >= 1        if UPDATU = .FALSE..
 C
-C     V       (input/output) REAL*16 array, dimension (LDV,p)
+C     V       (input/output) REAL*10 array, dimension (LDV,p)
 C             On entry, if UPDATV = .TRUE., V must contain the N-by-p
 C             right transformation matrix.
 C             On exit, if UPDATV = .TRUE., the Givens rotations T on the
@@ -113,7 +113,7 @@ C             LDV >= 1        if UPDATV = .FALSE..
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (MAX(1,LDWORK))
+C     DWORK   REAL*10 array, dimension (MAX(1,LDWORK))
 C             LDWORK >= 4*MIN(M,N)-4, if UPDATU = UPDATV = .TRUE.;
 C             LDWORK >= 2*MIN(M,N)-2, if
 C                             UPDATU = .TRUE. and UPDATV = .FALSE. or
@@ -171,20 +171,20 @@ C     Bidiagonal matrix, orthogonal transformation, singular values.
 C
 C     ******************************************************************
 C
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           QRIT, UPDATU, UPDATV
       INTEGER           K, L, LDU, LDV, M, N
-      REAL*16  SHIFT
+      REAL*10  SHIFT
 C     ..
 C     .. Array Arguments ..
-      REAL*16  D( * ), DWORK( * ), E( * ), U( LDU, * ),
+      REAL*10  D( * ), DWORK( * ), E( * ), U( LDU, * ),
      $                  V( LDV, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER           I, IROT, NCV, NM1, NM12, NM13
-      REAL*16  COSL, COSR, CS, F, G, H, OLDCS, OLDSN, R, SINL,
+      REAL*10  COSL, COSR, CS, F, G, H, OLDCS, OLDSN, R, SINL,
      $                  SINR, SN
 C     ..
 C     .. External Subroutines ..

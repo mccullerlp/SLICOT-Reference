@@ -22,11 +22,11 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix H.  N >= 0.
 C
-C     HNORM   (input) REAL*16
+C     HNORM   (input) REAL*10
 C             If NORM = '1' or 'O', the 1-norm of the original matrix H.
 C             If NORM = 'I', the infinity-norm of the original matrix H.
 C
-C     H       (input) COMPLEX*32 array, dimension (LDH,N)
+C     H       (input) COMPLEX*20 array, dimension (LDH,N)
 C             The factors L and U from the factorization H = P*L*U
 C             as computed by MB02SZ.
 C
@@ -37,15 +37,15 @@ C     IPIV    (input) INTEGER array, dimension (N)
 C             The pivot indices; for 1 <= i <= N, row i of the matrix
 C             was interchanged with row IPIV(i).
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             The reciprocal of the condition number of the matrix H,
 C             computed as RCOND = 1/(norm(H) * norm(inv(H))).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N)
+C     DWORK   REAL*10 array, dimension (N)
 C
-C     ZWORK   COMPLEX*32 array, dimension (2*N)
+C     ZWORK   COMPLEX*20 array, dimension (2*N)
 C
 C     Error Indicator
 C
@@ -85,29 +85,29 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE, ZERO
+      REAL*10   ONE, ZERO
       PARAMETER          ( ONE = 1.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          NORM
       INTEGER            INFO, LDH, N
-      REAL*16   HNORM, RCOND
+      REAL*10   HNORM, RCOND
 C     ..
 C     .. Array Arguments ..
       INTEGER            IPIV(*)
-      REAL*16   DWORK( * )
-      COMPLEX*32         H( LDH, * ), ZWORK( * )
+      REAL*10   DWORK( * )
+      COMPLEX*20         H( LDH, * ), ZWORK( * )
 C     .. Local Scalars ..
       LOGICAL            ONENRM
       CHARACTER          NORMIN
       INTEGER            IX, J, JP, KASE, KASE1
 C
-      REAL*16   HINVNM, SCALE, SMLNUM
-      COMPLEX*32         T, ZDUM
+      REAL*10   HINVNM, SCALE, SMLNUM
+      COMPLEX*20         T, ZDUM
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IZAMAX
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, IZAMAX, LSAME
 C     ..
 C     .. External Subroutines ..
@@ -117,7 +117,7 @@ C     .. Intrinsic Functions ..
       INTRINSIC          ABS, DBLE, CONJG, IMAGPART, MAX
 C     ..
 C     .. Statement Functions ..
-      REAL*16   CABS1
+      REAL*10   CABS1
 C     ..
 C     .. Statement Function definitions ..
       CABS1( ZDUM ) = ABS( DBLE( ZDUM ) ) + ABS( IMAGPART( ZDUM ) )

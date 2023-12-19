@@ -13,21 +13,21 @@ C     K       (input) INTEGER
 C             The number of zeros (and hence the degree) of P(x).
 C             K >= 0.
 C
-C     REZ     (input) REAL*16 array, dimension (K)
-C     IMZ     (input) REAL*16 array, dimension (K)
+C     REZ     (input) REAL*10 array, dimension (K)
+C     IMZ     (input) REAL*10 array, dimension (K)
 C             The real and imaginary parts of the i-th zero of P(x)
 C             must be stored in REZ(i) and IMZ(i), respectively, where
 C             i = 1, 2, ..., K. The zeros may be supplied in any order,
 C             except that complex conjugate zeros must appear
 C             consecutively.
 C
-C     P       (output) REAL*16 array, dimension (K+1)
+C     P       (output) REAL*10 array, dimension (K+1)
 C             This array contains the coefficients of P(x) in increasing
 C             powers of x. If K = 0, then P(1) is set to one.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (K+1)
+C     DWORK   REAL*10 array, dimension (K+1)
 C             If K = 0, this array is not referenced.
 C
 C     Error Indicator
@@ -72,15 +72,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, K
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), IMZ(*), P(*), REZ(*)
+      REAL*10  DWORK(*), IMZ(*), P(*), REZ(*)
 C     .. Local Scalars ..
       INTEGER           I
-      REAL*16  U, V
+      REAL*10  U, V
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, XERBLA
 C     .. Executable Statements ..

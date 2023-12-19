@@ -30,7 +30,7 @@ C     N       (input) INTEGER
 C             Number of real samples. N must be a power of 2.
 C             N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (N)
+C     A       (input/output) REAL*10 array, dimension (N)
 C             On entry with SCR = 'N' or SCR = 'O', this array must
 C             contain the input signal.
 C             On entry with SCR = 'I', this array must contain the
@@ -40,7 +40,7 @@ C             the Hartley transform of the input signal.
 C             On exit with SCR = 'O', this array contains the
 C             bit-reversed Hartley transform.
 C
-C     W       (input/output) REAL*16 array,
+C     W       (input/output) REAL*10 array,
 C                            dimension (N - LOG2(N))
 C             On entry with WGHT = 'A', this array must contain the long
 C             weight vector computed by a previous call of this routine
@@ -86,18 +86,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, TWO, FOUR
+      REAL*10  ONE, TWO, FOUR
       PARAMETER         ( ONE = 1.0D0, TWO = 2.0D0, FOUR = 4.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SCR, WGHT
       INTEGER           INFO, N
 C     .. Array Arguments ..
-      REAL*16  A(*), W(*)
+      REAL*10  A(*), W(*)
 C     .. Local Scalars ..
       INTEGER           I, J, L, LEN, M, P1, P2, Q1, Q2, R1, R2, S1, S2,
      $                  WPOS
       LOGICAL           LFWD, LSCR, LWGHT
-      REAL*16  CF, SF, T1, T2, TH
+      REAL*10  CF, SF, T1, T2, TH
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

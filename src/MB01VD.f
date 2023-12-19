@@ -41,15 +41,15 @@ C
 C     NB      (input) INTEGER
 C             The number of columns of the matrix op(B).  NB >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then A and B need not
 C             be set before entry.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The scalar beta. When beta is zero then C need not be
 C             set before entry.
 C
-C     A       (input) REAL*16 array, dimension (LDA,ka),
+C     A       (input) REAL*10 array, dimension (LDA,ka),
 C             where ka is NA when TRANA = 'N', and is MA otherwise.
 C             If TRANA = 'N', the leading MA-by-NA part of this array
 C             must contain the matrix A; otherwise, the leading NA-by-MA
@@ -60,7 +60,7 @@ C             The leading dimension of the array A.
 C             LDA >= max(1,MA), if TRANA = 'N';
 C             LDA >= max(1,NA), if TRANA = 'T' or 'C'.
 C
-C     B       (input) REAL*16 array, dimension (LDB,kb)
+C     B       (input) REAL*10 array, dimension (LDB,kb)
 C             where kb is NB when TRANB = 'N', and is MB otherwise.
 C             If TRANB = 'N', the leading MB-by-NB part of this array
 C             must contain the matrix B; otherwise, the leading NB-by-MB
@@ -71,7 +71,7 @@ C             The leading dimension of the array B.
 C             LDB >= max(1,MB), if TRANB = 'N';
 C             LDB >= max(1,NB), if TRANB = 'T' or 'C'.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,NC)
+C     C       (input/output) REAL*10 array, dimension (LDC,NC)
 C             On entry, if beta is nonzero, the leading MC-by-NC part of
 C             this array must contain the given matric C, where
 C             MC = MA*MB and NC = NA*NB.
@@ -127,22 +127,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
-      REAL*16  SPARST
+      REAL*10  SPARST
       PARAMETER         ( SPARST = 0.8D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANA, TRANB
       INTEGER           INFO, LDA, LDB, LDC, MA, MB, MC, NA, NB, NC
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*)
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*)
 C     .. Local Scalars ..
       LOGICAL           SPARSE, TRANSA, TRANSB
       INTEGER           I, IC, J, JC, K, L, LC, NZ
-      REAL*16  AIJ
+      REAL*10  AIJ
 C     .. Local Arrays ..
-      REAL*16  DUM(1)
+      REAL*10  DUM(1)
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

@@ -39,7 +39,7 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix X.  N >= 0.
 C
-C     X       (input) REAL*16 array, dimension (LDX,N)
+C     X       (input) REAL*10 array, dimension (LDX,N)
 C             The leading M-by-N part contains in the columns of its
 C             lower triangle the Householder transformations Pj, and
 C             in the rows of its upper triangle the Householder
@@ -49,13 +49,13 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.   LDX >= MAX(1,M).
 C
-C     TAUP    (input) REAL*16 array, dimension (MIN(M,N))
+C     TAUP    (input) REAL*10 array, dimension (MIN(M,N))
 C             The scalar factors of the Householder transformations Pj.
 C
-C     TAUQ    (input) REAL*16 array, dimension (MIN(M,N))
+C     TAUQ    (input) REAL*10 array, dimension (MIN(M,N))
 C             The scalar factors of the Householder transformations Qj.
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,*)
+C     U       (input/output) REAL*10 array, dimension (LDU,*)
 C             On entry, U contains the M-by-M (if JOBU = 'A') or
 C             M-by-min(M,N) (if JOBU = 'S') matrix U.
 C             On exit, the Householder transformations Pj have been
@@ -68,7 +68,7 @@ C             The leading dimension of the array U.
 C             LDU >= MAX(1,M), if JOBU = 'A' or JOBU = 'S';
 C             LDU >= 1,        if JOBU = 'N'.
 C
-C     V       (input/output) REAL*16 array, dimension (LDV,*)
+C     V       (input/output) REAL*10 array, dimension (LDV,*)
 C             On entry, V contains the N-by-N (if JOBV = 'A') or
 C             N-by-min(M,N) (if JOBV = 'S') matrix V.
 C             On exit, the Householder transformations Qj have been
@@ -120,21 +120,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBU, JOBV
       INTEGER           INFO, LDU, LDV, LDX, M, N
 C     .. Array Arguments ..
       LOGICAL           INUL(*)
-      REAL*16  TAUP(*), TAUQ(*), U(LDU,*), V(LDV,*),
+      REAL*10  TAUP(*), TAUQ(*), U(LDU,*), V(LDV,*),
      $                  X(LDX,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBUA, LJOBUS, LJOBVA, LJOBVS, WANTU, WANTV
       INTEGER           I, IM, IOFF, L, NCOL, P
-      REAL*16  FIRST
+      REAL*10  FIRST
 C     .. Local Arrays ..
-      REAL*16  DWORK(1)
+      REAL*10  DWORK(1)
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

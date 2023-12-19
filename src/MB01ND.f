@@ -30,11 +30,11 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. If alpha is zero X and Y are not
 C             referenced.
 C
-C     X       (input) REAL*16 array, dimension
+C     X       (input) REAL*10 array, dimension
 C             ( 1 + ( N - 1 )*abs( INCX ) ).
 C             On entry, elements 1, INCX+1, .., ( N - 1 )*INCX + 1 of
 C             this array must contain the elements of the vector X.
@@ -43,7 +43,7 @@ C     INCX    (input) INTEGER
 C             The increment for the elements of X. IF INCX < 0 then the
 C             elements of X are accessed in reversed order.  INCX <> 0.
 C
-C     Y       (input) REAL*16 array, dimension
+C     Y       (input) REAL*10 array, dimension
 C             ( 1 + ( N - 1 )*abs( INCY ) ).
 C             On entry, elements 1, INCY+1, .., ( N - 1 )*INCY + 1 of
 C             this array must contain the elements of the vector Y.
@@ -52,7 +52,7 @@ C     INCY    (input) INTEGER
 C             The increment for the elements of Y. IF INCY < 0 then the
 C             elements of Y are accessed in reversed order.  INCY <> 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry with UPLO = 'U', the leading N-by-N part of this
 C             array must contain the strictly upper triangular part of
 C             the matrix A. The lower triangular part of this array is
@@ -94,16 +94,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO
+      REAL*10   ZERO
       PARAMETER          ( ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
-      REAL*16   ALPHA
+      REAL*10   ALPHA
       INTEGER            INCX, INCY, LDA, N
       CHARACTER          UPLO
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), X( * ), Y( * )
+      REAL*10   A( LDA, * ), X( * ), Y( * )
 C     .. Local Scalars ..
-      REAL*16   TEMP1, TEMP2
+      REAL*10   TEMP1, TEMP2
       INTEGER            I, INFO, IX, IY, J, JX, JY, KX, KY
 C     .. External Functions ..
       LOGICAL            LSAME

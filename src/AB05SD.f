@@ -41,10 +41,10 @@ C             The number of output variables, i.e. the number of rows of
 C             matrices C and D, and the number of columns of F.  P >= 0
 C             and P = M if FBTYPE = 'I'.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The coefficient alpha in the output feedback law.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the system state transition matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -53,7 +53,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the system input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -62,7 +62,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the system output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -73,7 +73,7 @@ C             The leading dimension of array C.
 C             LDC >= MAX(1,P) if N > 0.
 C             LDC >= 1 if N = 0.
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the system direct input/output transmission
 C             matrix D.
@@ -87,7 +87,7 @@ C             The leading dimension of array D.
 C             LDD >= MAX(1,P) if JOBD = 'D'.
 C             LDD >= 1 if JOBD = 'Z'.
 C
-C     F       (input) REAL*16 array, dimension (LDF,P)
+C     F       (input) REAL*10 array, dimension (LDF,P)
 C             If FBTYPE = 'O', the leading M-by-P part of this array
 C             must contain the output feedback matrix F.
 C             If FBTYPE = 'I', then the feedback matrix is assumed to be
@@ -100,7 +100,7 @@ C             The leading dimension of array F.
 C             LDF >= MAX(1,M) if FBTYPE = 'O' and ALPHA <> 0.
 C             LDF >= 1 if FBTYPE = 'I' or ALPHA = 0.
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             The reciprocal condition number of the matrix
 C             I - alpha*D*F.
 C
@@ -111,7 +111,7 @@ C             LIWORK >= MAX(1,2*P) if JOBD = 'D'.
 C             LIWORK >= 1 if JOBD = 'Z'.
 C             IWORK is not referenced if JOBD = 'Z'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -162,25 +162,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         FBTYPE, JOBD
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDF, LDWORK, M, N, P
-      REAL*16  ALPHA, RCOND
+      REAL*10  ALPHA, RCOND
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), F(LDF,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBD, OUTPF, UNITF
       INTEGER           I, IW, LDWN, LDWP
-      REAL*16  ENORM
+      REAL*10  ENORM
 C     .. Local Arrays ..
-      REAL*16  DUMMY(1)
+      REAL*10  DUMMY(1)
 C     .. External functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLANGE
+      REAL*10  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGECON, DGEMM, DGEMV, DGETRF,

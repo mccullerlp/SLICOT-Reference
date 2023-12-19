@@ -24,7 +24,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix Z.  N >= 0.
 C
-C     Z       (input) COMPLEX*32 array, dimension (LDZ,N)
+C     Z       (input) COMPLEX*20 array, dimension (LDZ,N)
 C             The leading N-by-N part of this array must contain the
 C             complex matrix Z for which the upper bound on the
 C             structured singular value is to be computed.
@@ -50,7 +50,7 @@ C             ITYPE(I) = 2 indicates that the corresponding block is a
 C                          complex block.
 C             NBLOCK(I) must be equal to 1 if ITYPE(I) is equal to 1.
 C
-C     X       (input/output) REAL*16 array, dimension
+C     X       (input/output) REAL*10 array, dimension
 C             ( M + MR - 1 ), where MR is the number of the real blocks.
 C             On entry, if FACT = 'F' and NBLOCK(1) < N, this array
 C             must contain information from the previous call to AB13MD.
@@ -59,10 +59,10 @@ C             On exit, if NBLOCK(1) < N, this array contains information
 C             that can be used in the next call to AB13MD for a matrix
 C             close to Z.
 C
-C     BOUND   (output) REAL*16
+C     BOUND   (output) REAL*10
 C             The upper bound on the structured singular value.
 C
-C     D, G    (output) REAL*16 arrays, dimension (N)
+C     D, G    (output) REAL*10 arrays, dimension (N)
 C             The vectors of length N containing the diagonal entries
 C             of the diagonal N-by-N matrices D and G, respectively,
 C             such that the matrix
@@ -73,7 +73,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (MAX(4*M-2,N))
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal value
 C             of LDWORK.
 C
@@ -85,7 +85,7 @@ C             LDWORK >= 2*N*N*M - N*N + 9*M*M + N*M + 6*N + 33*M - 11 +
 C                       MAX( 5*N,2*N*NB )
 C             where NB is the optimal blocksize returned by ILAENV.
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) contains the optimal value
 C             of LZWORK.
 C
@@ -145,20 +145,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      COMPLEX*32         CZERO, CONE, CIMAG
+      COMPLEX*20         CZERO, CONE, CIMAG
       PARAMETER          ( CZERO = ( 0.0D+0, 0.0D+0 ),
      $                     CONE  = ( 1.0D+0, 0.0D+0 ),
      $                     CIMAG = ( 0.0D+0, 1.0D+0 ) )
-      REAL*16   ZERO, ONE, TWO, FOUR, FIVE, EIGHT, TEN, FORTY,
+      REAL*10   ZERO, ONE, TWO, FOUR, FIVE, EIGHT, TEN, FORTY,
      $                   FIFTY
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TWO = 2.0D+0,
      $                     FOUR = 4.0D+0, FIVE = 5.0D+0, EIGHT = 8.0D+0,
      $                     TEN  = 1.0D+1, FORTY = 4.0D+1, FIFTY = 5.0D+1
      $                   )
-      REAL*16   ALPHA, BETA, THETA
+      REAL*10   ALPHA, BETA, THETA
       PARAMETER          ( ALPHA = 100.0D+0, BETA = 1.0D-2,
      $                     THETA = 1.0D-2 )
-      REAL*16   C1, C2, C3, C4, C5, C6, C7, C8, C9
+      REAL*10   C1, C2, C3, C4, C5, C6, C7, C8, C9
       PARAMETER          ( C1 = 1.0D-3, C2 = 1.0D-2, C3 = 0.25D+0,
      $                     C4 = 0.9D+0, C5 = 1.5D+0, C6 = 1.0D+1,
      $                     C7 = 1.0D+2, C8 = 1.0D+3, C9 = 1.0D+4 )
@@ -166,12 +166,12 @@ C     ..
 C     .. Scalar Arguments ..
       CHARACTER          FACT
       INTEGER            INFO, LDWORK, LDZ, LZWORK, M, N
-      REAL*16   BOUND
+      REAL*10   BOUND
 C     ..
 C     .. Array Arguments ..
       INTEGER            ITYPE( * ), IWORK( * ), NBLOCK( * )
-      COMPLEX*32         Z( LDZ, * ), ZWORK( * )
-      REAL*16   D( * ), DWORK( * ), G( * ), X( * )
+      COMPLEX*20         Z( LDZ, * ), ZWORK( * )
+      REAL*10   D( * ), DWORK( * ), G( * ), X( * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            I, INFO2, ISUM, ITER, IW2, IW3, IW4, IW5, IW6,
@@ -183,8 +183,8 @@ C     .. Local Scalars ..
      $                   IZ14, IZ15, IZ16, IZ17, IZ18, IZ19, IZ20, IZ21,
      $                   IZ22, IZ23, IZ24, IZWRK, J, K, L, LWA, LWAMAX,
      $                   LZA, LZAMAX, MINWRK, MINZRK, MR, MT, NSUM, SDIM
-      COMPLEX*32         DETF, TEMPIJ, TEMPJI
-      REAL*16   C, COLSUM, DELTA, DLAMBD, E, EMAX, EMIN, EPS,
+      COMPLEX*20         DETF, TEMPIJ, TEMPJI
+      REAL*10   C, COLSUM, DELTA, DLAMBD, E, EMAX, EMIN, EPS,
      $                   HN, HNORM, HNORM1, PHI, PP, PROD, RAT, RCOND,
      $                   REGPAR, ROWSUM, SCALE, SNORM, STSIZE, SVLAM,
      $                   T1, T2, T3, TAU, TEMP, TOL, TOL2, TOL3, TOL4,
@@ -195,7 +195,7 @@ C     .. Local Arrays ..
       LOGICAL            BWORK( 1 )
 C     ..
 C     .. External Functions
-      REAL*16   DDOT, DLAMCH, DLANGE, ZLANGE
+      REAL*10   DDOT, DLAMCH, DLANGE, ZLANGE
       LOGICAL            LSAME, SELECT
       EXTERNAL           DDOT, DLAMCH, DLANGE, LSAME, SELECT, ZLANGE
 C     ..

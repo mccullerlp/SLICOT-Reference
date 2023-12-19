@@ -24,7 +24,7 @@ C
 C     N      (input) INTEGER
 C            The number of columns of the matrix A.  N >= 0.
 C
-C     A      (input) REAL*16 array, dimension (LDA,N)
+C     A      (input) REAL*10 array, dimension (LDA,N)
 C            The m-by-n matrix A.  If JOB = 'U', only the upper
 C            triangle or trapezoid is accessed; if JOB = 'L', only the
 C            lower triangle or trapezoid is accessed.
@@ -32,7 +32,7 @@ C
 C     LDA    INTEGER
 C            The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     B      (output) REAL*16 array, dimension (LDB,M)
+C     B      (output) REAL*10 array, dimension (LDB,M)
 C            B = A' in the locations specified by JOB.
 C
 C     LDB    INTEGER
@@ -54,7 +54,7 @@ C     .. Scalar Arguments ..
       CHARACTER          JOB
       INTEGER            LDA, LDB, M, N
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), B(LDB,*)
+      REAL*10   A(LDA,*), B(LDB,*)
 C     .. Local Scalars ..
       INTEGER            I, J
 C     .. External Functions ..

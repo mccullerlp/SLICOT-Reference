@@ -12,16 +12,16 @@ C
 C     DP      (input) INTEGER
 C             The degree of the polynomial P(x).  DP >= 0.
 C
-C     XR      (input) REAL*16
-C     XI      (input) REAL*16
+C     XR      (input) REAL*10
+C     XI      (input) REAL*10
 C             The real and imaginary parts, respectively, of x0.
 C
-C     P       (input) REAL*16 array, dimension (DP+1)
+C     P       (input) REAL*10 array, dimension (DP+1)
 C             This array must contain the coefficients of the polynomial
 C             P(x) in increasing powers of x.
 C
-C     VR      (output) REAL*16
-C     VI      (output) REAL*16
+C     VR      (output) REAL*10
+C     VI      (output) REAL*10
 C             The real and imaginary parts, respectively, of P(x0).
 C
 C     Error Indicator
@@ -71,16 +71,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DP, INFO
-      REAL*16  VI, VR, XI, XR
+      REAL*10  VI, VR, XI, XR
 C     .. Array Arguments ..
-      REAL*16  P(*)
+      REAL*10  P(*)
 C     .. Local Scalars ..
       INTEGER           I
-      REAL*16  T
+      REAL*10  T
 C     .. External Subroutines ..
       EXTERNAL          XERBLA
 C     .. Executable Statements ..

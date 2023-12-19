@@ -78,7 +78,7 @@ C
 C     L       (input) INTEGER
 C             The number of system outputs.  L > 0.
 C
-C     UF      (input/output) REAL*16 array, dimension
+C     UF      (input/output) REAL*10 array, dimension
 C             ( LDUF,M*NOBR )
 C             On entry, the leading  M*NOBR-by-M*NOBR  upper triangular
 C             part of this array must contain the upper triangular
@@ -93,7 +93,7 @@ C     LDUF    INTEGER
 C             The leading dimension of the array  UF.
 C             LDUF >= MAX( 1, M*NOBR ).
 C
-C     UN      (input) REAL*16 array, dimension ( LDUN,N )
+C     UN      (input) REAL*10 array, dimension ( LDUN,N )
 C             The leading  L*(NOBR-1)-by-N  part of this array must
 C             contain the matrix  GaL,  i.e., the leading part of the
 C             first  N  columns of the matrix  Un  of relevant singular
@@ -103,7 +103,7 @@ C     LDUN    INTEGER
 C             The leading dimension of the array  UN.
 C             LDUN >= L*(NOBR-1).
 C
-C     UL      (input/output) REAL*16 array, dimension
+C     UL      (input/output) REAL*10 array, dimension
 C             ( LDUL,L*NOBR )
 C             On entry, the leading  (N+L)-by-L*NOBR  part of this array
 C             must contain the given matrix  L.
@@ -114,7 +114,7 @@ C
 C     LDUL    INTEGER
 C             The leading dimension of the array  UL.  LDUL >= N+L.
 C
-C     PGAL    (input) REAL*16 array, dimension
+C     PGAL    (input) REAL*10 array, dimension
 C             ( LDPGAL,L*(NOBR-1) )
 C             The leading  N-by-L*(NOBR-1)  part of this array must
 C             contain the pseudoinverse of the matrix  GaL,  computed by
@@ -123,14 +123,14 @@ C
 C     LDPGAL  INTEGER
 C             The leading dimension of the array  PGAL.  LDPGAL >= N.
 C
-C     K       (input) REAL*16 array, dimension ( LDK,M*NOBR )
+C     K       (input) REAL*10 array, dimension ( LDK,M*NOBR )
 C             The leading  (N+L)-by-M*NOBR  part of this array must
 C             contain the given matrix  K.
 C
 C     LDK     INTEGER
 C             The leading dimension of the array  K.  LDK >= N+L.
 C
-C     R       (output) REAL*16 array, dimension ( LDR,M*(N+L) )
+C     R       (output) REAL*10 array, dimension ( LDR,M*(N+L) )
 C             The leading  (N+L)*M*NOBR-by-M*(N+L)  part of this array
 C             contains details of the complete orthogonal factorization
 C             of the coefficient matrix  T  of the least squares problem
@@ -140,21 +140,21 @@ C     LDR     INTEGER
 C             The leading dimension of the array  R.
 C             LDR >= MAX( 1, (N+L)*M*NOBR ).
 C
-C     X       (output) REAL*16 array, dimension
+C     X       (output) REAL*10 array, dimension
 C             ( (N+L)*M*NOBR )
 C             The leading  M*(N+L)  elements of this array contain the
 C             least squares solution of the system  T*X = Kv.
 C             The remaining elements are used as workspace (to store the
 C             corresponding part of the vector Kv = vec(K)).
 C
-C     B       (output) REAL*16 array, dimension ( LDB,M )
+C     B       (output) REAL*10 array, dimension ( LDB,M )
 C             The leading N-by-M part of this array contains the system
 C             input matrix.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= N.
 C
-C     D       (output) REAL*16 array, dimension ( LDD,M )
+C     D       (output) REAL*10 array, dimension ( LDD,M )
 C             If  JOB = 'D',  the leading L-by-M part of this array
 C             contains the system input-output matrix.
 C             If  JOB = 'B',  this array is not referenced.
@@ -166,7 +166,7 @@ C             LDD >= 1, if  JOB = 'B'.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used for estimating the rank of
 C             matrices. If the user sets  TOL > 0,  then the given value
 C             of  TOL  is used as a lower bound for the reciprocal
@@ -182,7 +182,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension ( M*(N+L) )
 C
-C     DWORK   REAL*16 array, dimension ( LDWORK )
+C     DWORK   REAL*10 array, dimension ( LDWORK )
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK,  and, if  M > 0,  DWORK(2)  contains the
 C             reciprocal condition number of the triangular factor of
@@ -254,26 +254,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO  = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16   TOL
+      REAL*10   TOL
       INTEGER            INFO, IWARN, L, LDB, LDD, LDK, LDPGAL, LDR,
      $                   LDUF, LDUL, LDUN, LDWORK, M, N, NOBR
       CHARACTER          JOB
 C     .. Array Arguments ..
-      REAL*16   B(LDB, *), D(LDD, *), DWORK(*), K(LDK, *),
+      REAL*10   B(LDB, *), D(LDD, *), DWORK(*), K(LDK, *),
      $                   PGAL(LDPGAL, *), R(LDR, *), UF(LDUF, *),
      $                   UL(LDUL, *), UN(LDUN, *), X(*)
       INTEGER            IWORK( * )
 C     .. Local Scalars ..
-      REAL*16   RCOND, TOLL
+      REAL*10   RCOND, TOLL
       INTEGER            I, IERR, J, JWORK, LDUN2, LNOBR, LP1, MAXWRK,
      $                   MINWRK, MKRON, MNOBR, NKRON, NP1, NPL, RANK
       LOGICAL            WITHB, WITHD
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DGELSY, DGEMM, DLACPY, DLASET, DTRCON, MB01VD,

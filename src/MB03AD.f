@@ -49,7 +49,7 @@ C     SINV    (input)  INTEGER
 C             Signature multiplier. Entries of S are virtually
 C             multiplied by SINV.
 C
-C     A       (input)  REAL*16 array, dimension (LDA1,LDA2,K)
+C     A       (input)  REAL*10 array, dimension (LDA1,LDA2,K)
 C             The leading N-by-N-by-K part of this array must contain
 C             the product (implicitly represented by its K factors)
 C             in periodic upper Hessenberg form.
@@ -60,13 +60,13 @@ C
 C     LDA2    INTEGER
 C             The second leading dimension of the array A.  LDA2 >= N.
 C
-C     C1      (output)  REAL*16
-C     S1      (output)  REAL*16
+C     C1      (output)  REAL*10
+C     S1      (output)  REAL*10
 C             On exit, C1 and S1 contain the parameters for the first
 C             Givens rotation.
 C
-C     C2      (output)  REAL*16
-C     S2      (output)  REAL*16
+C     C2      (output)  REAL*10
+C     S2      (output)  REAL*10
 C             On exit, if SHFT = 'D' and N > 2, C2 and S2 contain the
 C             parameters for the second Givens rotation. Otherwise,
 C             C2 = 1, S2 = 0.
@@ -93,19 +93,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SHFT
       INTEGER           K, LDA1, LDA2, N, SINV
-      REAL*16  C1, C2, S1, S2
+      REAL*10  C1, C2, S1, S2
 C     .. Array Arguments ..
       INTEGER           AMAP(*), S(*)
-      REAL*16  A(LDA1,LDA2,*)
+      REAL*10  A(LDA1,LDA2,*)
 C     .. Local Scalars ..
       LOGICAL           SGLE
       INTEGER           AI, I
-      REAL*16  ALPHA, BETA, C3, DELTA, GAMMA, S3, TEMP
+      REAL*10  ALPHA, BETA, C3, DELTA, GAMMA, S3, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

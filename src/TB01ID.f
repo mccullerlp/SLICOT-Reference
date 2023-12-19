@@ -49,7 +49,7 @@ C     P       (input) INTEGER.
 C             The number of rows of matrix C.
 C             P represents the dimension of output vector.  P >= 0.
 C
-C     MAXRED  (input/output) REAL*16
+C     MAXRED  (input/output) REAL*10
 C             On entry, the maximum allowed reduction in the 1-norm of
 C             S (in an iteration) if zero rows or columns are
 C             encountered.
@@ -61,7 +61,7 @@ C             On exit, if the 1-norm of the given matrix S is non-zero,
 C             the ratio between the 1-norm of the given matrix and the
 C             1-norm of the balanced matrix.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the system state matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -70,7 +70,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, if M > 0, the leading N-by-M part of this array
 C             must contain the system input matrix B.
 C             On exit, if M > 0, the leading N-by-M part of this array
@@ -82,7 +82,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N) if M > 0.
 C             LDB >= 1        if M = 0.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, if P > 0, the leading P-by-N part of this array
 C             must contain the system output matrix C.
 C             On exit, if P > 0, the leading P-by-N part of this array
@@ -92,7 +92,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,P).
 C
-C     SCALE   (output) REAL*16 array, dimension (N)
+C     SCALE   (output) REAL*10 array, dimension (N)
 C             The scaling factors applied to S.  If D(j) is the scaling
 C             factor applied to row and column j, then SCALE(j) = D(j),
 C             for j = 1,...,N.
@@ -147,32 +147,32 @@ C
 C  *********************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
-      REAL*16   SCLFAC
+      REAL*10   SCLFAC
       PARAMETER          ( SCLFAC = 1.0D+1 )
-      REAL*16   FACTOR, MAXR
+      REAL*10   FACTOR, MAXR
       PARAMETER          ( FACTOR = 0.95D+0, MAXR = 10.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          JOB
       INTEGER            INFO, LDA, LDB, LDC, M, N, P
-      REAL*16   MAXRED
+      REAL*10   MAXRED
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   SCALE( * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            NOCONV, WITHB, WITHC
       INTEGER            I, ICA, IRA, J
-      REAL*16   CA, CO, F, G, MAXNRM, RA, RO, S, SFMAX1,
+      REAL*10   CA, CO, F, G, MAXNRM, RA, RO, S, SFMAX1,
      $                   SFMAX2, SFMIN1, SFMIN2, SNORM, SRED
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      REAL*16   DASUM, DLAMCH
+      REAL*10   DASUM, DLAMCH
       EXTERNAL           DASUM, DLAMCH, IDAMAX, LSAME
 C     ..
 C     .. External Subroutines ..

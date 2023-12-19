@@ -103,7 +103,7 @@ C             sequential data processing, but  NOBR, M,  and  L  should
 C             be kept constant. For efficiency, it is advisable to use
 C             NSMP  as large as possible.
 C
-C     U       (input) REAL*16 array, dimension (LDU,M)
+C     U       (input) REAL*10 array, dimension (LDU,M)
 C             The leading NSMP-by-M part of this array must contain the
 C             t-by-m input-data sequence matrix  U,
 C             U = [u_1 u_2 ... u_m].  Column  j  of  U  contains the
@@ -116,7 +116,7 @@ C             The leading dimension of the array U.
 C             LDU >= NSMP, if M > 0;
 C             LDU >= 1,    if M = 0.
 C
-C     Y       (input) REAL*16 array, dimension (LDY,L)
+C     Y       (input) REAL*10 array, dimension (LDY,L)
 C             The leading NSMP-by-L part of this array must contain the
 C             t-by-l output-data sequence matrix  Y,
 C             Y = [y_1 y_2 ... y_l].  Column  j  of  Y  contains the
@@ -131,7 +131,7 @@ C             The estimated order of the system.
 C             If  CTRL = 'C',  the estimated order has been reset to a
 C             value specified by the user.
 C
-C     R       (output or input/output) REAL*16 array, dimension
+C     R       (output or input/output) REAL*10 array, dimension
 C             ( LDR,2*(M+L)*NOBR )
 C             On exit, if ALG = 'C' and BATCH = 'F' or 'I', the leading
 C             2*(M+L)*NOBR-by-2*(M+L)*NOBR upper triangular part of this
@@ -180,12 +180,12 @@ C                                  for METH = 'M' and JOBD = 'M';
 C             LDR >= 2*(M+L)*NOBR, for METH = 'M' and JOBD = 'N' or
 C                                  for METH = 'N'.
 C
-C     SV      (output) REAL*16 array, dimension ( L*NOBR )
+C     SV      (output) REAL*10 array, dimension ( L*NOBR )
 C             The singular values used to estimate the system order.
 C
 C     Tolerances
 C
-C     RCOND   REAL*16
+C     RCOND   REAL*10
 C             The tolerance to be used for estimating the rank of
 C             matrices. If the user sets  RCOND > 0,  the given value
 C             of  RCOND  is used as a lower bound for the reciprocal
@@ -198,7 +198,7 @@ C             relative machine precision (see LAPACK Library routine
 C             DLAMCH).
 C             This parameter is not used for  METH = 'M'.
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             Absolute tolerance used for determining an estimate of
 C             the system order. If  TOL >= 0,  the estimate is
 C             indicated by the index of the last singular value greater
@@ -230,7 +230,7 @@ C             The first three elements of  IWORK  should be preserved
 C             during successive calls of the routine with  BATCH = 'F'
 C             or  BATCH = 'I',  till the final call with   BATCH = 'L'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK,  and, for  METH = 'N',  and  BATCH = 'L'  or
 C             'O',  DWORK(2)  and  DWORK(3)  contain the reciprocal
@@ -455,13 +455,13 @@ C
 C     ******************************************************************
 C
 C     .. Scalar Arguments ..
-      REAL*16   RCOND, TOL
+      REAL*10   RCOND, TOL
       INTEGER            INFO, IWARN, L, LDR, LDU, LDWORK, LDY, M, N,
      $                   NOBR, NSMP
       CHARACTER          ALG, BATCH, CONCT, CTRL, JOBD, METH
 C     .. Array Arguments ..
       INTEGER            IWORK(*)
-      REAL*16   DWORK(*), R(LDR, *), SV(*), U(LDU, *),
+      REAL*10   DWORK(*), R(LDR, *), SV(*), U(LDU, *),
      $                   Y(LDY, *)
 C     .. Local Scalars ..
       INTEGER            ICYCLE, IWARNL, LMNOBR, LNOBR, MAXWRK, MINWRK,

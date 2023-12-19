@@ -39,7 +39,7 @@ C
 C     L       (input) INTEGER
 C             The number of system outputs.  L > 0.
 C
-C     R       (input/output) REAL*16 array, dimension
+C     R       (input/output) REAL*10 array, dimension
 C             ( LDR,2*(M+L)*NOBR )
 C             On entry, the leading 2*(M+L)*NOBR-by-2*(M+L)*NOBR upper
 C             triangular part of this array must contain the upper
@@ -72,14 +72,14 @@ C                                  for METH = 'M' and JOBD = 'M';
 C             LDR >= 2*(M+L)*NOBR, for METH = 'M' and JOBD = 'N' or
 C                                  for METH = 'N'.
 C
-C     SV      (output) REAL*16 array, dimension ( L*NOBR )
+C     SV      (output) REAL*10 array, dimension ( L*NOBR )
 C             The singular values of the relevant part of the triangular
 C             factor from the QR factorization of the concatenated block
 C             Hankel matrices.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used for estimating the rank of
 C             matrices. If the user sets  TOL > 0,  then the given value
 C             of  TOL  is used as a lower bound for the reciprocal
@@ -97,7 +97,7 @@ C
 C     IWORK   INTEGER array, dimension ((M+L)*NOBR)
 C             This parameter is not referenced for METH = 'M'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK,  and, for  METH = 'N',  DWORK(2)  and  DWORK(3)
 C             contain the reciprocal condition numbers of the
@@ -201,29 +201,29 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TWO, THREE
+      REAL*10   ZERO, ONE, TWO, THREE
       PARAMETER          ( ZERO  = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                     THREE = 3.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16   TOL
+      REAL*10   TOL
       INTEGER            INFO, IWARN, L, LDR, LDWORK, M, NOBR
       CHARACTER          JOBD, METH
 C     .. Array Arguments ..
-      REAL*16   DWORK(*), R(LDR, *), SV(*)
+      REAL*10   DWORK(*), R(LDR, *), SV(*)
       INTEGER            IWORK(*)
 C     .. Local Scalars ..
-      REAL*16   EPS, RCOND1, RCOND2, SVLMAX, THRESH, TOLL
+      REAL*10   EPS, RCOND1, RCOND2, SVLMAX, THRESH, TOLL
       INTEGER            I, IERR, ITAU, ITAU2, ITAU3, J, JWORK, LLMNOB,
      $                   LLNOBR, LMMNOB, LMNOBR, LNOBR, MAXWRK, MINWRK,
      $                   MMNOBR, MNOBR, NR, NR2, NR3, NR4, NRSAVE, RANK,
      $                   RANK1
       LOGICAL            JOBDM, MOESP, N4SID
 C     .. Local Arrays ..
-      REAL*16   DUM(1), SVAL(3)
+      REAL*10   DUM(1), SVAL(3)
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            ILAENV
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, ILAENV, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DGEQRF, DLACPY, DLASET, DORMQR, DSWAP,

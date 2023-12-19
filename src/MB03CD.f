@@ -51,11 +51,11 @@ C             If UPLO = 'U' and INFO = 0, or UPLO = 'L' and INFO <> 0,
 C             N1 and N2 are exchanged on exit; otherwise, N2 is
 C             unchanged on exit.
 C
-C     PREC    (input) REAL*16
+C     PREC    (input) REAL*10
 C             The machine precision, (relative machine precision)*base.
 C             See the LAPACK Library routine DLAMCH.
 C
-C     A       (input or input/output) REAL*16 array, dimension
+C     A       (input or input/output) REAL*10 array, dimension
 C                (LDA, N1+N2)
 C             On entry, the leading (N1+N2)-by-(N1+N2) part of this
 C             array must contain the matrix A of the pencil aAB - bD.
@@ -69,7 +69,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= N1+N2.
 C
-C     B       (input or input/output) REAL*16 array, dimension
+C     B       (input or input/output) REAL*10 array, dimension
 C                (LDB, N1+N2)
 C             On entry, the leading (N1+N2)-by-(N1+N2) part of this
 C             array must contain the matrix B of the pencil aAB - bD.
@@ -81,7 +81,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= N1+N2.
 C
-C     D       (input/output) REAL*16 array, dimension
+C     D       (input/output) REAL*10 array, dimension
 C                (LDD, N1+N2)
 C             On entry, the leading (N1+N2)-by-(N1+N2) part of this
 C             array must contain the matrix D of the pencil aAB - bD.
@@ -93,21 +93,21 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= N1+N2.
 C
-C     Q1      (output) REAL*16 array, dimension (LDQ1, N1+N2)
+C     Q1      (output) REAL*10 array, dimension (LDQ1, N1+N2)
 C             The leading (N1+N2)-by-(N1+N2) part of this array contains
 C             the first orthogonal transformation matrix.
 C
 C     LDQ1    INTEGER
 C             The leading dimension of the array Q1.  LDQ1 >= N1+N2.
 C
-C     Q2      (output) REAL*16 array, dimension (LDQ2, N1+N2)
+C     Q2      (output) REAL*10 array, dimension (LDQ2, N1+N2)
 C             The leading (N1+N2)-by-(N1+N2) part of this array contains
 C             the second orthogonal transformation matrix.
 C
 C     LDQ2    INTEGER
 C             The leading dimension of the array Q2.  LDQ2 >= N1+N2.
 C
-C     Q3      (output) REAL*16 array, dimension (LDQ3, N1+N2)
+C     Q3      (output) REAL*10 array, dimension (LDQ3, N1+N2)
 C             The leading (N1+N2)-by-(N1+N2) part of this array contains
 C             the third orthogonal transformation matrix.
 C
@@ -116,7 +116,7 @@ C             The leading dimension of the array Q3.  LDQ3 >= N1+N2.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             If N1+N2 = 2 then DWORK is not referenced.
 C
 C     LDWORK  INTEGER
@@ -179,7 +179,7 @@ C     Block triangular pencil, eigenvalue exchange.
 C
 C     ******************************************************************
 C
-      REAL*16   ZERO, ONE, TEN, HUND
+      REAL*10   ZERO, ONE, TEN, HUND
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, TEN = 1.0D+1,
      $                     HUND = 1.0D+2 )
 C
@@ -187,23 +187,23 @@ C     .. Scalar Arguments ..
       CHARACTER          UPLO
       INTEGER            INFO, LDA, LDB, LDD, LDQ1, LDQ2, LDQ3, LDWORK,
      $                   N1, N2
-      REAL*16   PREC
+      REAL*10   PREC
 C
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), B( LDB, * ), D( LDD, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), D( LDD, * ),
      $                   DWORK( * ), Q1( LDQ1, * ), Q2( LDQ2, * ),
      $                   Q3( LDQ3, * )
 C
 C     .. Local Scalars ..
       LOGICAL            AEVINF, EVINF, LUPLO
       INTEGER            CNT, EVSEL, I, IAEV, IDUM, IEVS, ITMP, J, M
-      REAL*16   ABSAEV, ABSEV, ADIF, CO1, CO2, CO3, E, G, SI1,
+      REAL*10   ABSAEV, ABSEV, ADIF, CO1, CO2, CO3, E, G, SI1,
      $                   SI2, SI3, TMP, TOL, TOLB
 C
 C     .. Local Arrays ..
       LOGICAL            BWORK( 1 ), OUT( 2 ), SLCT( 4 )
       INTEGER            IDM( 1 )
-      REAL*16   DUM( 2 )
+      REAL*10   DUM( 2 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME, SB02OW

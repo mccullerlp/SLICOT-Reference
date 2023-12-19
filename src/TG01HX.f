@@ -103,7 +103,7 @@ C     LBE     (input) INTEGER
 C             The number of nonzero sub-diagonals of submatrix E1.
 C             MAX(0,N1-1) >= LBE >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the L-by-N state matrix A in the partitioned
 C             form
@@ -126,7 +126,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the L-by-N descriptor matrix E in the partitioned
 C             form
@@ -150,7 +150,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the L-by-M input matrix B in the partitioned
 C             form
@@ -173,7 +173,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,L).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -182,7 +182,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,L)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,L)
 C             If COMPQ = 'N': Q is not referenced.
 C             If COMPQ = 'I': on entry, Q need not be set;
 C                             on exit, the leading L-by-L part of this
@@ -201,7 +201,7 @@ C             The leading dimension of array Q.
 C             LDQ >= 1,        if COMPQ = 'N';
 C             LDQ >= MAX(1,L), if COMPQ = 'U' or 'I'.
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ,N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ,N)
 C             If COMPZ = 'N': Z is not referenced.
 C             If COMPZ = 'I': on entry, Z need not be set;
 C                             on exit, the leading N-by-N part of this
@@ -236,7 +236,7 @@ C             the full row rank block Ai,i-1 in the staircase form (1).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in rank determinations when
 C             transforming (A-lambda*E, B). If the user sets TOL > 0,
 C             then the given value of TOL is used as a lower bound for
@@ -252,7 +252,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (M)
 C
-C     DWORK   REAL*16 array, dimension (MAX(N,L,2*M))
+C     DWORK   REAL*10 array, dimension (MAX(N,L,2*M))
 C
 C     Error Indicator
 C
@@ -300,28 +300,28 @@ C
 C     .. Parameters ..
       INTEGER            IMAX, IMIN
       PARAMETER          ( IMAX = 1, IMIN = 2 )
-      REAL*16   ONE, ZERO
+      REAL*10   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ
       INTEGER            INFO, L, LBE, LDA, LDB, LDC, LDE, LDQ, LDZ, M,
      $                   N, N1, NR, NRBLCK, P
-      REAL*16   TOL
+      REAL*10   TOL
 C     .. Array Arguments ..
       INTEGER            IWORK( * ), RTAU( * )
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK( * ), E( LDE, * ), Q( LDQ, * ),
      $                   Z( LDZ, * )
 C     .. Local Scalars ..
       LOGICAL            ILQ, ILZ, WITHC
       INTEGER            I, IC, ICOL, ICOMPQ, ICOMPZ, IROW, ISMAX,
      $                   ISMIN, J, K, MN, NF, NR1, RANK, TAUIM1
-      REAL*16   C1, C2, CO, NRMA, RCOND, S1, S2, SI, SMAX,
+      REAL*10   C1, C2, CO, NRMA, RCOND, S1, S2, SI, SMAX,
      $                   SMAXPR, SMIN, SMINPR, SVLMAX, T, TOLZ, TT
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      REAL*16   DLAMCH, DLANGE, DNRM2
+      REAL*10   DLAMCH, DLANGE, DNRM2
       EXTERNAL           DLAMCH, DLANGE, DNRM2, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DLACPY, DLAIC1, DLARF, DLARFG, DLARTG, DLASET,

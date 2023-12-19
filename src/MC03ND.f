@@ -31,7 +31,7 @@ C
 C     DP      (input) INTEGER
 C             The degree of the polynomial matrix P(s).  DP >= 1.
 C
-C     P       (input) REAL*16 array, dimension (LDP1,LDP2,DP+1)
+C     P       (input) REAL*10 array, dimension (LDP1,LDP2,DP+1)
 C             The leading MP-by-NP-by-(DP+1) part of this array must
 C             contain the coefficients of the polynomial matrix P(s).
 C             Specifically, P(i,j,k) must contain the (i,j)-th element
@@ -54,7 +54,7 @@ C             The leading (DK+1) elements of this array contain
 C             information about the ordering of the right nullspace
 C             vectors stored in array NULLSP.
 C
-C     NULLSP  (output) REAL*16 array, dimension
+C     NULLSP  (output) REAL*10 array, dimension
 C             (LDNULL,(DP*MP+1)*NP)
 C             The leading NP-by-SUM(i*GAM(i)) part of this array
 C             contains the right nullspace vectors of P(s) in condensed
@@ -64,7 +64,7 @@ C     LDNULL  INTEGER
 C             The leading dimension of array NULLSP.
 C             LDNULL >= MAX(1,NP).
 C
-C     KER     (output) REAL*16 array, dimension
+C     KER     (output) REAL*10 array, dimension
 C             (LDKER1,LDKER2,DP*MP+1)
 C             The leading NP-by-nk-by-(DK+1) part of this array contains
 C             the coefficients of the minimal polynomial basis K(s),
@@ -81,7 +81,7 @@ C             The second dimension of array KER.   LDKER2 >= MAX(1,NP).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             A tolerance below which matrix elements are considered
 C             to be zero. If the user sets TOL to be less than
 C             10 * EPS * MAX( ||A|| , ||E|| ), then the tolerance is
@@ -96,7 +96,7 @@ C
 C     IWORK   INTEGER array, dimension (m+2*MAX(n,m+1)+n),
 C             where m = DP*MP and n = (DP-1)*MP + NP.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  The length of the array DWORK.
 C             LDWORK >= m*n*n + 2*m*n + 2*n*n.
@@ -250,26 +250,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TEN
+      REAL*10  ZERO, ONE, TEN
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TEN = 10.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DK, DP, INFO, LDKER1, LDKER2, LDNULL, LDP1,
      $                  LDP2, LDWORK, MP, NP
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           GAM(*), IWORK(*)
-      REAL*16  DWORK(*), KER(LDKER1,LDKER2,*),
+      REAL*10  DWORK(*), KER(LDKER1,LDKER2,*),
      $                  NULLSP(LDNULL,*), P(LDP1,LDP2,*)
 C     .. Local Scalars ..
       INTEGER           GAMJ, H, I, IDIFF, IFIR, J, JWORKA, JWORKE,
      $                  JWORKQ, JWORKV, JWORKZ, K, M, MUK, N, NBLCKS,
      $                  NBLCKI, NCA, NCV, NRA, NUK, RANKE, SGAMK, TAIL,
      $                  VC1, VR2
-      REAL*16  TOLER
+      REAL*10  TOLER
 C     .. Local Arrays ..
       INTEGER           MNEI(3)
 C     .. External Functions ..
-      REAL*16  DLAMCH, DLANGE, DLAPY2
+      REAL*10  DLAMCH, DLANGE, DLAPY2
       EXTERNAL          DLAMCH, DLANGE, DLAPY2
 C     .. External Subroutines ..
       EXTERNAL          DGEMM, DLACPY, DLASET, MB04UD, MB04VD, MC03NX,

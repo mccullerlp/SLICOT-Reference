@@ -72,7 +72,7 @@ C
 C     M       (input) INTEGER
 C             The actual input dimension.  M >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state transition matrix A to be transformed.
 C             If STAGES = 'B', A should be in the orthogonal canonical
@@ -90,7 +90,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B to be transformed.
 C             If STAGES = 'B', B should be in the orthogonal canonical
@@ -106,7 +106,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,N)
+C     U       (input/output) REAL*10 array, dimension (LDU,N)
 C             If STAGES <> 'B' or JOBU = 'N', then U need not be set
 C             on entry.
 C             If STAGES = 'B' and JOBU = 'I', then, on entry, the
@@ -124,7 +124,7 @@ C     LDU     INTEGER
 C             The leading dimension of array U.
 C             If JOBU = 'I', LDU >= MAX(1,N);  if JOBU = 'N', LDU >= 1.
 C
-C     V       (output) REAL*16 array, dimension (LDV,M)
+C     V       (output) REAL*10 array, dimension (LDV,M)
 C             If JOBV = 'I', then the leading M-by-M part of this array
 C             contains the transformation matrix V.
 C             If STAGES = 'F', or JOBV = 'N', the array V is not
@@ -155,7 +155,7 @@ C             KSTAIR is input if STAGES = 'B', and output otherwise.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in rank determination when
 C             transforming (A, B). If the user sets TOL > 0, then
 C             the given value of TOL is used as a lower bound for the
@@ -174,7 +174,7 @@ C
 C     IWORK   INTEGER array, dimension (M)
 C             IWORK is not referenced if STAGES = 'B'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -261,16 +261,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBU, JOBV, STAGES
       INTEGER           INDCON, INFO, LDA, LDB, LDU, LDV, LDWORK, M, N,
      $                  NCONT
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*), KSTAIR(*)
-      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), U(LDU,*), V(LDV,*)
+      REAL*10  A(LDA,*), B(LDB,*), DWORK(*), U(LDU,*), V(LDV,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBUI, LJOBVI, LSTAGB, LSTGAB
       INTEGER           I, I0, IBSTEP, ITAU, J0, JINI, JWORK, MCRT, MM,

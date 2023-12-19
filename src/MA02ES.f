@@ -21,7 +21,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N upper triangular part
 C             (if UPLO = 'U'), or lower triangular part (if UPLO = 'L'),
 C             of this array must contain the corresponding upper or
@@ -44,13 +44,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          UPLO
       INTEGER            LDA, N
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*)
+      REAL*10   A(LDA,*)
 C     .. Local Scalars ..
       INTEGER            J
 C     .. External Functions ..

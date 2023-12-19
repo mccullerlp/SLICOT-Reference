@@ -83,17 +83,17 @@ C             NR can be further reduced to ensure HSV(NR) > HSV(NR+1);
 C             if ORDSEL = 'A', NR is equal to the number of Hankel
 C             singular values greater than MAX(TOL1,N*EPS*S1).
 C
-C     SCALEC  (input) REAL*16
+C     SCALEC  (input) REAL*10
 C             Scaling factor for the Cholesky factor S of the
 C             controllability Grammian, i.e., S/SCALEC is used to
 C             compute the Hankel singular values.  SCALEC > 0.
 C
-C     SCALEO  (input) REAL*16
+C     SCALEO  (input) REAL*10
 C             Scaling factor for the Cholesky factor R of the
 C             observability Grammian, i.e., R/SCALEO is used to
 C             compute the Hankel singular values.  SCALEO > 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A. If FACT = 'S',
 C             A is in a real Schur form.
@@ -104,7 +104,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -114,7 +114,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -124,7 +124,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, if JOB = 'S' or JOB = 'P', the leading P-by-M
 C             part of this array must contain the original input/output
 C             matrix D.
@@ -138,7 +138,7 @@ C             The leading dimension of array D.
 C             LDD >= 1,        if JOB = 'B' or JOB = 'F';
 C             LDD >= MAX(1,P), if JOB = 'S' or JOB = 'P'.
 C
-C     TI      (input/output) REAL*16 array, dimension (LDTI,N)
+C     TI      (input/output) REAL*10 array, dimension (LDTI,N)
 C             On entry, the leading N-by-N upper triangular part of
 C             this array must contain the Cholesky factor S of a
 C             controllability Grammian P = S*S'.
@@ -150,7 +150,7 @@ C
 C     LDTI    INTEGER
 C             The leading dimension of array TI.  LDTI >= MAX(1,N).
 C
-C     T       (input/output) REAL*16 array, dimension (LDT,N)
+C     T       (input/output) REAL*10 array, dimension (LDT,N)
 C             On entry, the leading N-by-N upper triangular part of
 C             this array must contain the Cholesky factor R of an
 C             observability Grammian Q = R'*R.
@@ -170,14 +170,14 @@ C             controllability and observability Grammians of the
 C             original system (A,B,C,D), respectively, then NMINR is
 C             the order of a minimal realization of the original system.
 C
-C     HSV     (output) REAL*16 array, dimension (N)
+C     HSV     (output) REAL*10 array, dimension (N)
 C             If INFO = 0, it contains the Hankel singular values,
 C             ordered decreasingly. The Hankel singular values are
 C             singular values of the product R*S.
 C
 C     Tolerances
 C
-C     TOL1    REAL*16
+C     TOL1    REAL*10
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of the reduced system.
 C             For model reduction, the recommended value lies in the
@@ -188,7 +188,7 @@ C             (see LAPACK Library Routine DLAMCH) and S1 is the largest
 C             Hankel singular value (computed in HSV(1)).
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C
-C     TOL2    REAL*16
+C     TOL2    REAL*10
 C             The tolerance for determining the order of a minimal
 C             realization of the system.
 C             The recommended value is TOL2 = N*EPS*S1.
@@ -202,7 +202,7 @@ C             LIWORK = 0,   if JOB = 'B';
 C             LIWORK = N,   if JOB = 'F';
 C             LIWORK = 2*N, if JOB = 'S' or 'P'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -317,25 +317,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, JOB, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDD, LDT, LDTI,
      $                  LDWORK, M, N, NMINR, NR, P
-      REAL*16  SCALEC, SCALEO, TOL1, TOL2
+      REAL*10  SCALEC, SCALEO, TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DWORK(*), HSV(*), T(LDT,*), TI(LDTI,*)
 C     .. Local Scalars ..
       LOGICAL           BAL, BTA, DISCR, FIXORD, RSF, SPA
       INTEGER           IERR, IJ, J, K, KTAU, KU, KV, KW, LDW, LW,
      $                  NRED, NR1, NS, WRKOPT
-      REAL*16  ATOL, RCOND, SKP, TEMP, TOLDEF
+      REAL*10  ATOL, RCOND, SKP, TEMP, TOLDEF
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB09DD, DGEMM,  DGEMV, DGEQRF, DGETRF, DGETRS,

@@ -22,22 +22,22 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     S11     (input) COMPLEX*32
+C     S11     (input) COMPLEX*20
 C             Upper left element of the skew-Hamiltonian matrix S.
 C
-C     S12     (input) COMPLEX*32
+C     S12     (input) COMPLEX*20
 C             Upper right element of the skew-Hamiltonian matrix S.
 C
-C     H11     (input) COMPLEX*32
+C     H11     (input) COMPLEX*20
 C             Upper left element of the Hamiltonian matrix H.
 C
-C     H12     (input) COMPLEX*32
+C     H12     (input) COMPLEX*20
 C             Upper right element of the Hamiltonian matrix H.
 C
-C     CO      (output) REAL*16
+C     CO      (output) REAL*10
 C             Upper left element of Q.
 C
-C     SI      (output) COMPLEX*32
+C     SI      (output) COMPLEX*20
 C             Upper right element of Q.
 C
 C     METHOD
@@ -76,15 +76,15 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   TWO
+      REAL*10   TWO
       PARAMETER          ( TWO = 2.0D+0 )
 C
 C     .. Scalar Arguments ..
-      REAL*16   CO
-      COMPLEX*32         H11, H12, S11, S12, SI
+      REAL*10   CO
+      COMPLEX*20         H11, H12, S11, S12, SI
 C
 C     .. Local Scalars ..
-      COMPLEX*32         G, TMP
+      COMPLEX*20         G, TMP
 C
 C     .. External Subroutines ..
       EXTERNAL           ZLARTG

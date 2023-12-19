@@ -62,7 +62,7 @@ C             The number of rows of the matrix op(B).  M >= 0.
 C             If M = 0, A is unchanged on exit, and Q, WR and WI are not
 C             set.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A. If FACT = 'F', then A contains
 C             an upper quasi-triangular matrix S in Schur canonical
@@ -76,7 +76,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     Q       (input or output) REAL*16 array, dimension
+C     Q       (input or output) REAL*10 array, dimension
 C             (LDQ,N)
 C             On entry, if FACT = 'F', then the leading N-by-N part of
 C             this array must contain the orthogonal matrix Q of the
@@ -89,7 +89,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             if TRANS = 'N', and dimension (LDB,max(M,N)), if
 C             TRANS = 'T'.
 C             On entry, if TRANS = 'N', the leading M-by-N part of this
@@ -108,18 +108,18 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N,M), if TRANS = 'N';
 C             LDB >= MAX(1,N),   if TRANS = 'T'.
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
-C     WR      (output) REAL*16 array, dimension (N)
-C     WI      (output) REAL*16 array, dimension (N)
+C     WR      (output) REAL*10 array, dimension (N)
+C     WI      (output) REAL*10 array, dimension (N)
 C             If INFO >= 0 and INFO <= 3, WR and WI contain the real and
 C             imaginary parts, respectively, of the eigenvalues of A.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = 1, DWORK(1) returns the
 C             optimal value of LDWORK.
 C             On exit, if INFO = -16, DWORK(1) returns the minimum value
@@ -322,17 +322,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, P95
+      REAL*10  ZERO, ONE, P95
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, P95 = 0.95D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FACT, TRANS
       INTEGER           INFO, LDA, LDB, LDQ, LDWORK, M, N
-      REAL*16  SCALE
+      REAL*10  SCALE
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), Q(LDQ,*), WI(*),
+      REAL*10  A(LDA,*), B(LDB,*), DWORK(*), Q(LDQ,*), WI(*),
      $                  WR(*)
 C     .. Local Scalars ..
-      REAL*16  BIGNMS, BIGNUM, EMAX, EPS, MA, MATO, MB, MBTO,
+      REAL*10  BIGNMS, BIGNUM, EMAX, EPS, MA, MATO, MB, MBTO,
      $                  MN, MX, SAFMIN, SMLNUM, T, TMP
       INTEGER           BL, I, IFAIL, INFORM, ITAU, J, JWORK, K, L,
      $                  MAXMN, MINMN, MINWRK, NC, NM, NR, SDIM, WRKOPT
@@ -342,7 +342,7 @@ C     .. Local Arrays ..
       LOGICAL           BWORK(1)
 C     .. External Functions ..
       LOGICAL           LSAME, MA02HD, SELECT
-      REAL*16  DLAMCH, DLANGE, DLANHS, DLANTR, DLAPY2
+      REAL*10  DLAMCH, DLANGE, DLANHS, DLANTR, DLAPY2
       EXTERNAL          DLAMCH, DLANGE, DLANHS, DLANTR, DLAPY2, LSAME,
      $                  MA02HD, SELECT
 C     .. External Subroutines ..

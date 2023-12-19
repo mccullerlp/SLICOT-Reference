@@ -15,13 +15,13 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     XR, XI, (input) REAL*16
-C     YR, YI  (input) REAL*16
+C     XR, XI, (input) REAL*10
+C     YR, YI  (input) REAL*10
 C             The given real scalars XR, XI, YR, YI.
 C
-C     C,      (output) REAL*16
-C     SR, SI, (output) REAL*16
-C     ZR, ZI  (output) REAL*16
+C     C,      (output) REAL*10
+C     SR, SI, (output) REAL*10
+C     ZR, ZI  (output) REAL*10
 C             The computed real scalars C, SR, SI, ZR, ZI defining the
 C             complex Givens rotation and Z = ZR+ZI*I.
 C
@@ -46,19 +46,19 @@ C
 C     ******************************************************************
 C
 C      .. Parameters ..
-       REAL*16  ONE, TWO, ZERO
+       REAL*10  ONE, TWO, ZERO
        PARAMETER         ( ONE = 1.0D+0, TWO = 2.0D+0, ZERO = 0.0D+0 )
 C      .. Scalar Arguments ..
-       REAL*16  C, SI, SR, XI, XR, YI, YR, ZI, ZR
+       REAL*10  C, SI, SR, XI, XR, YI, YR, ZI, ZR
 C     .. Local Scalars ..
       INTEGER            COUNT, I
-      REAL*16   D, DI, DR, EPS, SAFMIN, SAFMN2, SAFMX2, SCALE,
+      REAL*10   D, DI, DR, EPS, SAFMIN, SAFMN2, SAFMX2, SCALE,
      $                   TI, TR, X2, X2S, XIS, XRS, Y2, Y2S, YIS, YRS
 C     .. External Functions ..
-      REAL*16   DLAMCH, DLAPY2
+      REAL*10   DLAMCH, DLAPY2
       EXTERNAL           DLAMCH, DLAPY2
 C      .. Intrinsic Functions ..
-       REAL*16  ABS, INT, LOG, MAX, SQRT
+       REAL*10  ABS, INT, LOG, MAX, SQRT
 C
 C     Do not check input parameters for errors.
 C

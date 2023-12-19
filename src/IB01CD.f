@@ -97,7 +97,7 @@ C                     e = 0,  if  JOBX0 = 'X'  and  JOB = 'B';
 C                     e = 1,  if  JOBX0 = 'N'  and  JOB = 'B';
 C                     e = M,  if  JOB   = 'D'.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             If  JOBX0 = 'X'  or  COMUSE = 'C',  the leading N-by-N
 C             part of this array must contain the system state matrix A.
 C             If  N = 0,  or  JOBX0 = 'N'  and  COMUSE <> 'C',  this
@@ -108,7 +108,7 @@ C             The leading dimension of the array A.
 C             LDA >= MAX(1,N),  if  JOBX0 = 'X'  or   COMUSE =  'C';
 C             LDA >= 1,         if  JOBX0 = 'N'  and  COMUSE <> 'C'.
 C
-C     B       (input or output) REAL*16 array, dimension
+C     B       (input or output) REAL*10 array, dimension
 C             (LDB,M)
 C             If  JOBX0 = 'X'  and  COMUSE = 'U',  B  is an input
 C             parameter and, on entry, the leading N-by-M part of this
@@ -126,7 +126,7 @@ C                               or  M > 0,  COMUSE = 'C';
 C             LDB >= 1,         if  min(N,M) = 0,  or  COMUSE = 'N',
 C                               or  JOBX0  = 'N'  and  COMUSE = 'U'.
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             If  JOBX0 = 'X'  or  COMUSE = 'C',  the leading L-by-N
 C             part of this array must contain the system output
 C             matrix  C.
@@ -138,7 +138,7 @@ C             The leading dimension of the array C.
 C             LDC >= L,  if  N > 0, and  JOBX0 = 'X'  or  COMUSE = 'C';
 C             LDC >= 1,  if  N = 0, or  JOBX0 = 'N'  and  COMUSE <> 'C'.
 C
-C     D       (input or output) REAL*16 array, dimension
+C     D       (input or output) REAL*10 array, dimension
 C             (LDD,M)
 C             If  JOBX0 = 'X',  COMUSE = 'U',  and  JOB = 'D',  D  is an
 C             input parameter and, on entry, the leading L-by-M part of
@@ -159,7 +159,7 @@ C                        if  M > 0,  COMUSE = 'C',  and  JOB = 'D';
 C             LDD >= 1,  if  M = 0,  or  JOBX0 = 'N'  and  COMUSE = 'U',
 C                        or  COMUSE = 'N',  or  JOB = 'B'.
 C
-C     U       (input or input/output) REAL*16 array, dimension
+C     U       (input or input/output) REAL*10 array, dimension
 C             (LDU,M)
 C             On entry, if  COMUSE = 'C',  or  JOBX0 = 'X'  and
 C             COMUSE = 'U',  the leading NSMP-by-M part of this array
@@ -183,7 +183,7 @@ C                                  JOBX0 = 'X'  and  COMUSE = 'U;
 C             LDU >= 1,            if  M = 0,   or   COMUSE = 'N',  or
 C                                  JOBX0 = 'N'  and  COMUSE = 'U'.
 C
-C     Y       (input) REAL*16 array, dimension (LDY,L)
+C     Y       (input) REAL*10 array, dimension (LDY,L)
 C             On entry, if  JOBX0 = 'X'  or  COMUSE = 'C',  the leading
 C             NSMP-by-L part of this array must contain the t-by-l
 C             output-data sequence matrix  Y,  Y = [y_1 y_2 ... y_l].
@@ -197,7 +197,7 @@ C             The leading dimension of the array Y.
 C             LDY >= MAX(1,NSMP),  if  JOBX0 = 'X'  or   COMUSE = 'C;
 C             LDY >= 1,            if  JOBX0 = 'N'  and  COMUSE <> 'C'.
 C
-C     X0      (output) REAL*16 array, dimension (N)
+C     X0      (output) REAL*10 array, dimension (N)
 C             If  INFO = 0  and  JOBX0 = 'X',  this array contains the
 C             estimated initial state of the system,  x(0).
 C             If  JOBX0 = 'N'  and  COMUSE = 'C',  this array is used as
@@ -207,7 +207,7 @@ C             zero without any calculations.
 C             If  JOBX0 = 'N'  and  COMUSE = 'N',  this array is not
 C             referenced.
 C
-C     V       (output) REAL*16 array, dimension (LDV,N)
+C     V       (output) REAL*10 array, dimension (LDV,N)
 C             On exit, if  INFO = 0  or 2,  JOBX0 = 'X'  or
 C             COMUSE = 'C',  the leading N-by-N part of this array
 C             contains the orthogonal matrix V of a real Schur
@@ -222,7 +222,7 @@ C             LDV >= 1,         if  JOBX0 = 'N'  and  COMUSE <> 'C'.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used for estimating the rank of
 C             matrices. If the user sets  TOL > 0,  then the given value
 C             of  TOL  is used as a lower bound for the reciprocal
@@ -242,7 +242,7 @@ C             LIWORK >= max(N*M + a,M), if COMUSE = 'C' and JOB = 'D',
 C             with  a = 0,  if  JOBX0 = 'N';
 C                   a = N,  if  JOBX0 = 'X'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = 0,  DWORK(1) returns the optimal value
 C             of LDWORK;  DWORK(2)  contains the reciprocal condition
 C             number of the triangular factor of the QR factorization of
@@ -476,21 +476,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TWO, THREE
+      REAL*10   ZERO, ONE, TWO, THREE
       PARAMETER          ( ZERO  = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      $                     THREE = 3.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16   TOL
+      REAL*10   TOL
       INTEGER            INFO, IWARN, L, LDA, LDB, LDC, LDD, LDU, LDV,
      $                   LDWORK, LDY, M, N, NSMP
       CHARACTER          COMUSE, JOB, JOBX0
 C     .. Array Arguments ..
-      REAL*16   A(LDA, *), B(LDB, *), C(LDC, *), D(LDD, *),
+      REAL*10   A(LDA, *), B(LDB, *), C(LDC, *), D(LDD, *),
      $                   DWORK(*),  U(LDU, *), V(LDV, *), X0(*),
      $                   Y(LDY, *)
       INTEGER            IWORK(*)
 C     .. Local Scalars ..
-      REAL*16   RCOND, RCONDU
+      REAL*10   RCOND, RCONDU
       INTEGER            I, IA, IB, IC, IERR, IQ, ISIZE, ITAU, IWARNL,
      $                   IWI, IWR, JWORK, LDW, LDW2, LDW3, LM, LN,
      $                   MAXWRK, MINSMP, MINWLS, MINWRK, MTMP, N2M,
@@ -499,11 +499,11 @@ C     .. Local Scalars ..
      $                   WITHX0
       CHARACTER          JOBD
 C     .. Local Arrays ..
-      REAL*16   DUM(1)
+      REAL*10   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            ILAENV
-      REAL*16   DLAMCH, DLAPY2
+      REAL*10   DLAMCH, DLAPY2
       EXTERNAL           DLAMCH, DLAPY2, ILAENV, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DGEMM, DGEMV, DLACPY, IB01QD, IB01RD,

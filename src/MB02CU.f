@@ -41,7 +41,7 @@ C             On entry, if TYPEG = 'C'  or  TYPEG = 'R', NB specifies
 C             the block size to be used in the blocked parts of the
 C             algorithm. If NB <= 0, an unblocked algorithm is used.
 C
-C     A1      (input/output)  REAL*16 array, dimension
+C     A1      (input/output)  REAL*10 array, dimension
 C             (LDA1, K)
 C             On entry, the leading K-by-K part of this array must
 C             contain the leading submatrix of the positive part of the
@@ -64,7 +64,7 @@ C
 C     LDA1    INTEGER
 C             The leading dimension of the array A1.  LDA1 >= MAX(1,K).
 C
-C     A2      (input/output)  REAL*16 array,
+C     A2      (input/output)  REAL*10 array,
 C             if TYPEG = 'D'  or  TYPEG = 'C',  dimension (LDA2, P-K);
 C             if TYPEG = 'R',                   dimension (LDA2, K).
 C             On entry, if TYPEG = 'D'  or  TYPEG = 'C', the leading
@@ -87,7 +87,7 @@ C             If P > K and (TYPEG = 'D' or TYPEG = 'C'),
 C                                         LDA2 >= MAX(1,K);
 C             if P > K and TYPEG = 'R',   LDA2 >= P-K.
 C
-C     B       (input/output)  REAL*16 array,
+C     B       (input/output)  REAL*10 array,
 C             if TYPEG = 'D'  or  TYPEG = 'C',  dimension (LDB, Q);
 C             if TYPEG = 'R',                   dimension (LDB, K).
 C             On entry, if TYPEG = 'D'  or  TYPEG = 'C', the leading
@@ -120,7 +120,7 @@ C             generator.
 C             If TYPEG = 'C' or TYPEG = 'R', this array is not
 C             referenced.
 C
-C     CS      (output)  REAL*16 array, dimension (x)
+C     CS      (output)  REAL*10 array, dimension (x)
 C             If TYPEG = 'D' and P = K,                   x = 3*K;
 C             if TYPEG = 'D' and P > K,                   x = 5*K;
 C             if (TYPEG = 'C' or TYPEG = 'R') and P = K,  x = 4*K;
@@ -133,7 +133,7 @@ C             transformations).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             If TYPEG = 'D', this number specifies the used tolerance
 C             for handling deficiencies. If the hyperbolic norm
 C             of two diagonal elements in the positive and negative
@@ -142,7 +142,7 @@ C             the corresponding columns are not reduced.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = -17,  DWORK(1) returns the minimum
 C             value of LDWORK.
 C
@@ -208,26 +208,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          TYPEG
       INTEGER            INFO, K, LDA1, LDA2, LDB, LDWORK, NB, P, Q, RNK
-      REAL*16   TOL
+      REAL*10   TOL
 C     .. Array Arguments ..
       INTEGER            IPVT(*)
-      REAL*16   A1(LDA1,*), A2(LDA2,*), B(LDB,*), CS(*),
+      REAL*10   A1(LDA1,*), A2(LDA2,*), B(LDB,*), CS(*),
      $                   DWORK(*)
 C     .. Local Scalars ..
       LOGICAL            LCOL, LRDEF
       INTEGER            COL2, I, IB, IERR, IMAX, ITEMP, J, JJ, LEN,
      $                   NBL, PDW, PHV, POS, PST2, PVT, WRKMIN
-      REAL*16   ALPHA, ALPHA2, BETA, C, DMAX, S, TAU1, TAU2,
+      REAL*10   ALPHA, ALPHA2, BETA, C, DMAX, S, TAU1, TAU2,
      $                   TEMP, TEMP2, TOLZ
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      REAL*16   DLAMCH, DLAPY2, DNRM2
+      REAL*10   DLAMCH, DLAPY2, DNRM2
       EXTERNAL           DLAMCH, DLAPY2, DNRM2, IDAMAX, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DGELQ2, DGEQR2, DLARF, DLARFB, DLARFG,

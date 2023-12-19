@@ -40,14 +40,14 @@ C     ILO     (input) INTEGER
 C             The integer ILO determined by MB04DD or MB04DS.
 C             1 <= ILO <= N+1.
 C
-C     SCALE   (input) REAL*16 array, dimension (N)
+C     SCALE   (input) REAL*10 array, dimension (N)
 C             Details of the permutation and scaling factors, as
 C             returned by MB04DD or MB04DS.
 C
 C     M       (input) INTEGER
 C             The number of columns of the matrices V1 and V2.  M >= 0.
 C
-C     V1      (input/output) REAL*16 array, dimension (LDV1,M)
+C     V1      (input/output) REAL*10 array, dimension (LDV1,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix V1.
 C             On exit, the leading N-by-M part of this array is
@@ -57,7 +57,7 @@ C
 C     LDV1    INTEGER
 C             The leading dimension of the array V1. LDV1 >= max(1,N).
 C
-C     V2      (input/output) REAL*16 array, dimension (LDV2,M)
+C     V2      (input/output) REAL*10 array, dimension (LDV2,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix V2.
 C             On exit, the leading N-by-M part of this array is
@@ -97,13 +97,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB, SGN
       INTEGER           ILO, INFO, LDV1, LDV2, M, N
 C     .. Array Arguments ..
-      REAL*16  SCALE(*), V1(LDV1,*), V2(LDV2,*)
+      REAL*10  SCALE(*), V1(LDV1,*), V2(LDV2,*)
 C     .. Local Scalars ..
       LOGICAL           LPERM, LSCAL, LSGN, SYSW
       INTEGER           I, K

@@ -41,7 +41,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of IPAR.  LIPAR >= 2.
 C
-C     X       (input) REAL*16 array, dimension (LX)
+C     X       (input) REAL*10 array, dimension (LX)
 C             The parameter vector, partitioned as
 C             X = (wb(1), ..., wb(L), theta), where the vectors
 C             wb(i), of length NN*(L+2)+1, are parameters for the
@@ -57,7 +57,7 @@ C     LX      (input) INTEGER
 C             The length of the array X.
 C             LX >= ( NN*(L+2)+1 )*L + N*(M + L + 1) + L*M.
 C
-C     U       (input) REAL*16 array, dimension (LDU, M)
+C     U       (input) REAL*10 array, dimension (LDU, M)
 C             The leading NSMP-by-M part of this array must contain the
 C             set of input samples,
 C             U = ( U(1,1),...,U(1,M); ...; U(NSMP,1),...,U(NSMP,M) ).
@@ -65,7 +65,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of the array U.  LDU >= MAX(1,NSMP).
 C
-C     Y       (output) REAL*16 array, dimension (LDY, L)
+C     Y       (output) REAL*10 array, dimension (LDY, L)
 C             The leading NSMP-by-L part of this array contains the
 C             simulated output.
 C
@@ -74,7 +74,7 @@ C             The leading dimension of the array Y.  LDY >= MAX(1,NSMP).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -118,7 +118,7 @@ C     .. Scalar Arguments ..
       INTEGER           INFO, L, LDU, LDWORK, LDY, LX, LIPAR, M, NSMP
 C     .. Array Arguments ..
       INTEGER           IPAR(*)
-      REAL*16  DWORK(*), U(LDU,*), X(*), Y(LDY,*)
+      REAL*10  DWORK(*), U(LDU,*), X(*), Y(LDY,*)
 C     .. Local Scalars ..
       INTEGER           AC, BD, IX, JW, LDAC, LTHS, N, NN, NTHS, Z
 C     .. External Subroutines ..

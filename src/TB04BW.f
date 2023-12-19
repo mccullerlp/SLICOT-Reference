@@ -49,7 +49,7 @@ C
 C     LDIGD   INTEGER
 C             The leading dimension of array IGD.  LDIGD >= max(1,P).
 C
-C     GN      (input/output) REAL*16 array, dimension (P*M*MD)
+C     GN      (input/output) REAL*10 array, dimension (P*M*MD)
 C             On entry, this array must contain the coefficients of the
 C             numerator polynomials, Num(i,j), of the rational matrix G.
 C             The polynomials are stored in a column-wise order, i.e.,
@@ -64,13 +64,13 @@ C             On exit, this array contains the coefficients of the
 C             numerator polynomials of the rational matrix G + D,
 C             stored similarly.
 C
-C     GD      (input) REAL*16 array, dimension (P*M*MD)
+C     GD      (input) REAL*10 array, dimension (P*M*MD)
 C             This array must contain the coefficients of the
 C             denominator polynomials, Den(i,j), of the rational
 C             matrix G. The polynomials are stored as for the
 C             numerator polynomials.
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             matrix D.
 C
@@ -120,18 +120,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO
+      REAL*10   ZERO
       PARAMETER          ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          ORDER
       INTEGER            INFO, LDD, LDIGD, LDIGN, M, MD, P
 C     .. Array Arguments ..
-      REAL*16   D(LDD,*), GD(*), GN(*)
+      REAL*10   D(LDD,*), GD(*), GN(*)
       INTEGER            IGD(LDIGD,*), IGN(LDIGN,*)
 C     .. Local Scalars ..
       LOGICAL            ASCEND
       INTEGER            I, II, J, K, KK, KM, ND, NN
-      REAL*16   DIJ
+      REAL*10   DIJ
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

@@ -9,10 +9,10 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     REIG    (input) REAL*16
+C     REIG    (input) REAL*10
 C             The real part of the current eigenvalue considered.
 C
-C     IEIG    (input) REAL*16
+C     IEIG    (input) REAL*10
 C             The imaginary part of the current eigenvalue considered.
 C
 C     METHOD
@@ -43,17 +43,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  HUNDRD
+      REAL*10  HUNDRD
       PARAMETER         ( HUNDRD = 100.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
-      REAL*16  IEIG, REIG
+      REAL*10  IEIG, REIG
 C     ..
 C     .. Local Scalars ..
-      REAL*16  EPS, TOL
+      REAL*10  EPS, TOL
 C     ..
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH
 C     ..
 C     .. Intrinsic Functions ..

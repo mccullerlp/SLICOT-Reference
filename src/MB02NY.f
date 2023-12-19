@@ -50,19 +50,19 @@ C             The index of the last diagonal entry of the considered
 C             bidiagonal submatrix of J, i.e., E(K-1) is considered
 C             negligible, K <= p.
 C
-C     Q       (input/output) REAL*16 array, dimension (p)
+C     Q       (input/output) REAL*10 array, dimension (p)
 C             where p = MIN(M,N).
 C             On entry, Q must contain the diagonal entries of the
 C             bidiagonal matrix J.
 C             On exit, Q contains the diagonal entries of the
 C             transformed bidiagonal matrix S' J T.
 C
-C     E       (input/output) REAL*16 array, dimension (p-1)
+C     E       (input/output) REAL*10 array, dimension (p-1)
 C             On entry, E must contain the superdiagonal entries of J.
 C             On exit, E contains the superdiagonal entries of the
 C             transformed bidiagonal matrix S' J T.
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,p)
+C     U       (input/output) REAL*10 array, dimension (LDU,p)
 C             On entry, if UPDATU = .TRUE., U must contain the M-by-p
 C             left transformation matrix.
 C             On exit, if UPDATU = .TRUE., the Givens rotations S on the
@@ -75,7 +75,7 @@ C             The leading dimension of the array U.
 C             LDU >= max(1,M) if UPDATU = .TRUE.;
 C             LDU >= 1        if UPDATU = .FALSE..
 C
-C     V       (input/output) REAL*16 array, dimension (LDV,p)
+C     V       (input/output) REAL*10 array, dimension (LDV,p)
 C             On entry, if UPDATV = .TRUE., V must contain the N-by-p
 C             right transformation matrix.
 C             On exit, if UPDATV = .TRUE., the Givens rotations T on the
@@ -90,7 +90,7 @@ C             LDV >= 1        if UPDATV = .FALSE..
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (MAX(1,LDWORK))
+C     DWORK   REAL*10 array, dimension (MAX(1,LDWORK))
 C             LDWORK >= 2*MAX(K-I,I-1),  if UPDATV = UPDATU = .TRUE.;
 C             LDWORK >= 2*(K-I), if UPDATU = .TRUE., UPDATV = .FALSE.;
 C             LDWORK >= 2*(I-1), if UPDATV = .TRUE., UPDATU = .FALSE.;
@@ -158,16 +158,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           UPDATU, UPDATV
       INTEGER           I, K, LDU, LDV, M, N
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), E(*), Q(*), U(LDU,*), V(LDV,*)
+      REAL*10  DWORK(*), E(*), Q(*), U(LDU,*), V(LDV,*)
 C     .. Local Scalars ..
       INTEGER           I1, IROT, L, L1, NROT
-      REAL*16  C, F, G, R, S
+      REAL*10  C, F, G, R, S
 C     .. External Subroutines ..
       EXTERNAL          DLARTG, DLASR
 C     .. Intrinsic Functions ..

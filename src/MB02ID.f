@@ -51,14 +51,14 @@ C
 C     RC      (input) INTEGER
 C             If JOB = 'U' or 'A', the number of columns in C.  RC >= 0.
 C
-C     TC      (input)  REAL*16 array, dimension (LDTC,L)
+C     TC      (input)  REAL*10 array, dimension (LDTC,L)
 C             On entry, the leading M*K-by-L part of this array must
 C             contain the first block column of T.
 C
 C     LDTC    INTEGER
 C             The leading dimension of the array TC.  LDTC >= MAX(1,M*K)
 C
-C     TR      (input)  REAL*16 array, dimension (LDTR,(N-1)*L)
+C     TR      (input)  REAL*10 array, dimension (LDTR,(N-1)*L)
 C             On entry, the leading K-by-(N-1)*L part of this array must
 C             contain the 2nd to the N-th blocks of the first block row
 C             of T.
@@ -66,7 +66,7 @@ C
 C     LDTR    INTEGER
 C             The leading dimension of the array TR.  LDTR >= MAX(1,K).
 C
-C     B       (input/output)  REAL*16 array, dimension (LDB,RB)
+C     B       (input/output)  REAL*10 array, dimension (LDB,RB)
 C             On entry, if JOB = 'O' or JOB = 'A', the leading M*K-by-RB
 C             part of this array must contain the right hand side
 C             matrix B of the overdetermined system (1).
@@ -80,7 +80,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,M*K),  if JOB = 'O'  or  JOB = 'A';
 C             LDB >= 1,           if JOB = 'U'.
 C
-C     C       (input)  REAL*16 array, dimension (LDC,RC)
+C     C       (input)  REAL*10 array, dimension (LDC,RC)
 C             On entry, if JOB = 'U' or JOB = 'A', the leading N*L-by-RC
 C             part of this array must contain the right hand side
 C             matrix C of the underdetermined system (2).
@@ -96,7 +96,7 @@ C             LDB >= MAX(1,M*K),  if JOB = 'U'  or  JOB = 'A'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -17,  DWORK(1)  returns the minimum
@@ -182,14 +182,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB
       INTEGER           INFO, K, L, LDB, LDC, LDTC, LDTR, LDWORK, M, N,
      $                  RB, RC
 C     .. Array Arguments ..
-      REAL*16  B(LDB,*), C(LDC,*), DWORK(LDWORK), TC(LDTC,*),
+      REAL*10  B(LDB,*), C(LDC,*), DWORK(LDWORK), TC(LDTC,*),
      $                  TR(LDTR,*)
 C     .. Local Scalars ..
       INTEGER           I, IERR, LEN, NB, NBMIN, PDI, PDW, PNI, PNR,

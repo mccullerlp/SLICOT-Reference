@@ -53,7 +53,7 @@ C
 C     N       (input)  INTEGER
 C             The number of blocks in T.  N >= 0.
 C
-C     T       (input/output)  REAL*16 array, dimension
+C     T       (input/output)  REAL*10 array, dimension
 C             (LDT,N*K) / (LDT,K)
 C             On entry, the leading K-by-N*K / N*K-by-K part of this
 C             array must contain the first block row / column of an
@@ -69,7 +69,7 @@ C             The leading dimension of the array T.
 C             LDT >= MAX(1,K),    if TYPET = 'R';
 C             LDT >= MAX(1,N*K),  if TYPET = 'C'.
 C
-C     G       (output)  REAL*16 array, dimension
+C     G       (output)  REAL*10 array, dimension
 C             (LDG,N*K) / (LDG,2*K)
 C             If INFO = 0 and JOB = 'G', 'R', 'L', or 'A', the leading
 C             2*K-by-N*K / N*K-by-2*K part of this array contains, in
@@ -89,7 +89,7 @@ C             LDG >= MAX(1,N*K),  if TYPET = 'C' and
 C                                    JOB = 'G', 'R', 'L', or 'A';
 C             LDG >= 1,           if JOB = 'O'.
 C
-C     R       (output)  REAL*16 array, dimension (LDR,N*K)
+C     R       (output)  REAL*10 array, dimension (LDR,N*K)
 C             If INFO = 0 and JOB = 'R', 'A', or 'O', then the leading
 C             N*K-by-N*K part of this array contains the upper / lower
 C             Cholesky factor of T.
@@ -101,7 +101,7 @@ C             The leading dimension of the array R.
 C             LDR >= MAX(1,N*K),  if JOB = 'R', 'A', or 'O';
 C             LDR >= 1,           if JOB = 'G', or 'L'.
 C
-C     L       (output)  REAL*16 array, dimension (LDL,N*K)
+C     L       (output)  REAL*10 array, dimension (LDL,N*K)
 C             If INFO = 0 and JOB = 'L', or 'A', then the leading
 C             N*K-by-N*K part of this array contains the lower / upper
 C             Cholesky factor of the inverse of T.
@@ -113,7 +113,7 @@ C             The leading dimension of the array L.
 C             LDL >= MAX(1,N*K),  if JOB = 'L', or 'A';
 C             LDL >= 1,           if JOB = 'G', 'R', or 'O'.
 C
-C     CS      (output)  REAL*16 array, dimension (LCS)
+C     CS      (output)  REAL*10 array, dimension (LCS)
 C             If INFO = 0, then the leading 3*(N-1)*K part of this
 C             array contains information about the hyperbolic rotations
 C             and Householder transformations applied during the
@@ -125,7 +125,7 @@ C             The length of the array CS.  LCS >= 3*(N-1)*K.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK.
 C             On exit, if  INFO = -16,  DWORK(1)  returns the minimum
@@ -185,13 +185,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOB, TYPET
       INTEGER           INFO, K, LCS, LDG, LDL, LDR, LDT, LDWORK, N
 C     .. Array Arguments ..
-      REAL*16  CS(*), DWORK(*), G(LDG, *), L(LDL,*), R(LDR,*),
+      REAL*10  CS(*), DWORK(*), G(LDG, *), L(LDL,*), R(LDR,*),
      $                  T(LDT,*)
 C     .. Local Scalars ..
       INTEGER           I, IERR, MAXWRK, STARTI, STARTR, STARTT

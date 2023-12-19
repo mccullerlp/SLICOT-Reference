@@ -78,7 +78,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A. N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper quasi-triangular matrix A of the matrix
 C             pair (A,B) in periodic Schur form.
@@ -88,7 +88,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper triangular matrix B of the matrix pair
 C             (A,B) in periodic Schur form.
@@ -98,7 +98,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, if COMPC = 'U', the leading N-by-N part of this
 C             array must contain a general matrix C.
 C             On exit, if COMPC = 'U', the leading N-by-N part of this
@@ -110,7 +110,7 @@ C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= 1.
 C             LDC >= N,  if COMPC = 'U' and WHICH = 'S'.
 C
-C     U1      (input/output) REAL*16 array, dimension (LDU1,N)
+C     U1      (input/output) REAL*10 array, dimension (LDU1,N)
 C             On entry, if COMPU = 'U' and WHICH = 'S', the leading
 C             N-by-N part of this array must contain U1, the (1,1)
 C             block of an orthogonal symplectic matrix
@@ -124,7 +124,7 @@ C     LDU1    INTEGER
 C             The leading dimension of the array U1.  LDU1 >= 1.
 C             LDU1 >= N,  if COMPU = 'U' and WHICH = 'S'.
 C
-C     U2      (input/output) REAL*16 array, dimension (LDU2,N)
+C     U2      (input/output) REAL*10 array, dimension (LDU2,N)
 C             On entry, if COMPU = 'U' and WHICH = 'S', the leading
 C             N-by-N part of this array must contain U2, the (1,2)
 C             block of an orthogonal symplectic matrix
@@ -138,7 +138,7 @@ C     LDU2    INTEGER
 C             The leading dimension of the array U2.  LDU2 >= 1.
 C             LDU2 >= N,  if COMPU = 'U' and WHICH = 'S'.
 C
-C     V1      (input/output) REAL*16 array, dimension (LDV1,N)
+C     V1      (input/output) REAL*10 array, dimension (LDV1,N)
 C             On entry, if COMPV = 'U' and WHICH = 'S', the leading
 C             N-by-N part of this array must contain V1, the (1,1)
 C             block of an orthogonal symplectic matrix
@@ -152,7 +152,7 @@ C     LDV1    INTEGER
 C             The leading dimension of the array V1.  LDV1 >= 1.
 C             LDV1 >= N,  if COMPV = 'U' and WHICH = 'S'.
 C
-C     V2      (input/output) REAL*16 array, dimension (LDV2,N)
+C     V2      (input/output) REAL*10 array, dimension (LDV2,N)
 C             On entry, if COMPV = 'U' and WHICH = 'S', the leading
 C             N-by-N part of this array must contain V2, the (1,2)
 C             block of an orthogonal symplectic matrix
@@ -166,7 +166,7 @@ C     LDV2    INTEGER
 C             The leading dimension of the array V2.  LDV2 >= 1.
 C             LDV2 >= N,  if COMPV = 'U' and WHICH = 'S'.
 C
-C     W       (input/output) REAL*16 array, dimension (LDW,2*M)
+C     W       (input/output) REAL*10 array, dimension (LDW,2*M)
 C             On entry, if COMPW = 'V', then the leading 2*M-by-2*M part
 C             of this array must contain a matrix W.
 C             If COMPW = 'I', then W need not be set on entry, W is set
@@ -180,8 +180,8 @@ C     LDW     INTEGER
 C             The leading dimension of the array W.  LDW >= 1.
 C             LDW >= 2*M,  if COMPW = 'I' or COMPW = 'V'.
 C
-C     WR      (output) REAL*16 array, dimension (M)
-C     WI      (output) REAL*16 array, dimension (M)
+C     WR      (output) REAL*10 array, dimension (M)
+C     WI      (output) REAL*10 array, dimension (M)
 C             The real and imaginary parts, respectively, of the
 C             eigenvalues of R11. The eigenvalues are stored in the same
 C             order as on the diagonal of R22, with
@@ -197,7 +197,7 @@ C             The number of selected eigenvalues.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if  INFO = -28,  DWORK(1)  returns the minimum
 C             value of LDWORK.
 C
@@ -266,7 +266,7 @@ C
 C     .. Parameters ..
       INTEGER           LDQZ
       PARAMETER         ( LDQZ = 4 )
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COMPC, COMPU, COMPV, COMPW, WHICH
@@ -274,7 +274,7 @@ C     .. Scalar Arguments ..
      $                  LDW, LDWORK, M, N
 C     .. Array Arguments ..
       LOGICAL           SELECT(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*),
      $                  U1(LDU1,*), U2(LDU2,*), V1(LDV1,*), V2(LDV2,*),
      $                  W(LDW,*), WI(*), WR(*)
 C     .. Local Scalars ..
@@ -283,10 +283,10 @@ C     .. Local Scalars ..
       INTEGER           HERE, I, IERR, IFST, ILST, K, KS, L, LEN, MM,
      $                  NB, NBF, NBL, NBNEXT, POS, PW, PWC, PWCK, PWD,
      $                  PWDL, WRKMIN
-      REAL*16  TEMP
+      REAL*10  TEMP
 C     .. Local Arrays ..
       LOGICAL           LDUM(1), SELNEW(4)
-      REAL*16  DW12(12), Q(LDQZ,LDQZ), T(LDQZ,LDQZ), WINEW(4),
+      REAL*10  DW12(12), Q(LDQZ,LDQZ), T(LDQZ,LDQZ), WINEW(4),
      $                  WRNEW(4), Z(LDQZ,LDQZ)
       INTEGER           IDUM(1)
 C     .. External Functions ..
@@ -1347,7 +1347,7 @@ C
 C
 C     Void logical function for DGEES.
 C
-      REAL*16 X, Y
+      REAL*10 X, Y
       LFDUM = .FALSE.
       RETURN
 C *** Last line of LFDUM ***

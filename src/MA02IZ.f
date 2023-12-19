@@ -1,4 +1,4 @@
-      REAL*16 FUNCTION MA02IZ( TYP, NORM, N, A, LDA, QG,
+      REAL*10 FUNCTION MA02IZ( TYP, NORM, N, A, LDA, QG,
      $                                  LDQG, DWORK )
 C
 C     PURPOSE
@@ -24,7 +24,7 @@ C     to the one norm.
 C
 C     FUNCTION VALUE
 C
-C     MA02IZ  REAL*16
+C     MA02IZ  REAL*10
 C             The computed norm.
 C
 C     ARGUMENTS
@@ -48,14 +48,14 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input) COMPLEX*32 array, dimension (LDA,N)
+C     A       (input) COMPLEX*20 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     QG      (input) COMPLEX*32 array, dimension (LDQG,N+1)
+C     QG      (input) COMPLEX*20 array, dimension (LDQG,N+1)
 C             On entry, the leading N-by-N+1 part of this array must
 C             contain in columns 1:N the lower triangular part of the
 C             matrix Q and in columns 2:N+1 the upper triangular part
@@ -72,7 +72,7 @@ C             The leading dimension of the array QG.  LDQG >= MAX(1,N).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             where LDWORK >= 2*N when NORM = '1', NORM = 'I' or
 C             NORM = 'O'; otherwise, DWORK is not referenced.
 C
@@ -93,23 +93,23 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE, TWO, ZERO
+      REAL*10   ONE, TWO, ZERO
       PARAMETER          ( ONE = 1.0D+0, TWO = 2.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER          NORM, TYP
       INTEGER            LDA, LDQG, N
 C     .. Array Arguments ..
-      COMPLEX*32         A(LDA,*), QG(LDQG,*)
-      REAL*16   DWORK(*)
+      COMPLEX*20         A(LDA,*), QG(LDQG,*)
+      REAL*10   DWORK(*)
 C     .. Local Scalars ..
       LOGICAL            LSH
       INTEGER            I, J
-      REAL*16   DSCL, DSUM, SCALE, SUM, TEMP, VALUE
+      REAL*10   DSCL, DSUM, SCALE, SUM, TEMP, VALUE
 C     .. Local Arrays ..
-      REAL*16   DUM(2)
+      REAL*10   DUM(2)
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAPY2, ZLANGE
+      REAL*10   DLAPY2, ZLANGE
       EXTERNAL           DLAPY2, LSAME, ZLANGE
 C     .. External Subroutines ..
       EXTERNAL           DLASSQ, ZLASSQ

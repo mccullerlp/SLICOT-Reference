@@ -29,7 +29,7 @@ C             The dimension of output vector, i.e. the number of rows of
 C             the matrices C, D and DR and the number of columns of the
 C             matrices BR and DR.  P >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix AQR of the systems
 C             Q and R.
@@ -39,7 +39,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix BQ of the system Q.
 C             On exit, the leading N-by-M part of this array contains
@@ -48,7 +48,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix CQR of the systems
 C             Q and R.
@@ -58,7 +58,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the input/output matrix DQ of the system Q.
 C             On exit, the leading P-by-M part of this array contains
@@ -67,14 +67,14 @@ C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     BR      (input) REAL*16 array, dimension (LDBR,P)
+C     BR      (input) REAL*10 array, dimension (LDBR,P)
 C             The leading N-by-P part of this array must contain the
 C             input/state matrix BR of the system R.
 C
 C     LDBR    INTEGER
 C             The leading dimension of array BR.  LDBR >= MAX(1,N).
 C
-C     DR      (input/output) REAL*16 array, dimension (LDDR,P)
+C     DR      (input/output) REAL*10 array, dimension (LDDR,P)
 C             On entry, the leading P-by-P part of this array must
 C             contain the input/output matrix DR of the system R.
 C             On exit, the leading P-by-P part of this array contains
@@ -88,7 +88,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (P)
 C
-C     DWORK   REAL*16 array, dimension (MAX(1,4*P))
+C     DWORK   REAL*10 array, dimension (MAX(1,4*P))
 C             On exit, DWORK(1) contains an estimate of the reciprocal
 C             condition number of the matrix DR.
 C
@@ -138,18 +138,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDBR, LDC, LDD, LDDR, M, N, P
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), BR(LDBR,*), C(LDC,*),
+      REAL*10  A(LDA,*), B(LDB,*), BR(LDBR,*), C(LDC,*),
      $                  D(LDD,*), DR(LDDR,*), DWORK(*)
       INTEGER           IWORK(*)
 C     .. Local Scalars
-      REAL*16  DRNORM, RCOND
+      REAL*10  DRNORM, RCOND
 C     .. External Functions ..
-      REAL*16  DLAMCH, DLANGE
+      REAL*10  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE
 C     .. External Subroutines ..
       EXTERNAL          DGECON, DGEMM, DGETRF, DGETRS, XERBLA

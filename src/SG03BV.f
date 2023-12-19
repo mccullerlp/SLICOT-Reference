@@ -42,7 +42,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N upper Hessenberg part of this array
 C             must contain the quasitriangular matrix A. The elements
 C             below the upper Hessenberg part are not referenced.
@@ -50,7 +50,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input) REAL*16 array, dimension (LDE,N)
+C     E       (input) REAL*10 array, dimension (LDE,N)
 C             The leading N-by-N upper triangular part of this array
 C             must contain the triangular matrix E. The elements below
 C             the main diagonal are not referenced.
@@ -58,7 +58,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the matrix B.
 C             On exit, the leading N-by-N upper triangular part of this
@@ -68,13 +68,13 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor set to avoid overflow in U.
 C             0 < SCALE <= 1.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (6*N-6)
+C     DWORK   REAL*10 array, dimension (6*N-6)
 C
 C     Error indicator
 C
@@ -232,25 +232,25 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  MONE, ONE, TWO, ZERO
+      REAL*10  MONE, ONE, TWO, ZERO
       PARAMETER         ( MONE = -1.0D0, ONE = 1.0D+0, TWO = 2.0D+0,
      $                    ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS
-      REAL*16  SCALE
+      REAL*10  SCALE
       INTEGER           INFO, LDA, LDB, LDE, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), E(LDE,*)
+      REAL*10  A(LDA,*), B(LDB,*), DWORK(*), E(LDE,*)
 C     .. Local Scalars ..
-      REAL*16  BIGNUM, C, DELTA1, EPS, R, S, SCALE1, SMLNUM,
+      REAL*10  BIGNUM, C, DELTA1, EPS, R, S, SCALE1, SMLNUM,
      $                  SQTWO, T, X
       INTEGER           I, INFO1, J, KB, KH, KL, KL1, L, LDWS, UIIPT,
      $                  WPT, YPT
       LOGICAL           NOTRNS
 C     .. Local Arrays ..
-      REAL*16  M1(2,2), M2(2,2), TM(2,2), UI(2,2)
+      REAL*10  M1(2,2), M2(2,2), TM(2,2), UI(2,2)
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..

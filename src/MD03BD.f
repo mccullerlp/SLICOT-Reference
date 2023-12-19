@@ -99,7 +99,7 @@ C
 C             LIPAR   (input) INTEGER
 C                     The length of the array IPAR.  LIPAR >= 5.
 C
-C             DPAR1   (input/output) REAL*16 array, dimension
+C             DPAR1   (input/output) REAL*10 array, dimension
 C                     (LDPAR1,*) or (LDPAR1)
 C                     A first set of real parameters needed for
 C                     describing or solving the problem.
@@ -113,7 +113,7 @@ C                     The leading dimension or the length of the array
 C                     DPAR1, as convenient.  LDPAR1 >= 0.  (LDPAR1 >= 1,
 C                     if leading dimension.)
 C
-C             DPAR2   (input/output) REAL*16 array, dimension
+C             DPAR2   (input/output) REAL*10 array, dimension
 C                     (LDPAR2,*) or (LDPAR2)
 C                     A second set of real parameters needed for
 C                     describing or solving the problem.
@@ -127,7 +127,7 @@ C                     The leading dimension or the length of the array
 C                     DPAR2, as convenient.  LDPAR2 >= 0.  (LDPAR2 >= 1,
 C                     if leading dimension.)
 C
-C             X       (input) REAL*16 array, dimension (N)
+C             X       (input) REAL*10 array, dimension (N)
 C                     This array must contain the value of the
 C                     variables x where the functions or the Jacobian
 C                     must be evaluated.
@@ -141,14 +141,14 @@ C                     output parameter if IFLAG = 2. If the Jacobian is
 C                     computed analytically, NFEVL should be set to a
 C                     non-positive value.
 C
-C             E       (input/output) REAL*16 array,
+C             E       (input/output) REAL*10 array,
 C                     dimension (M)
 C                     This array contains the value of the (error)
 C                     functions e evaluated at X.
 C                     E is an input parameter if IFLAG = 0 or 2, or an
 C                     output parameter if IFLAG = 1.
 C
-C             J       (input/output) REAL*16 array, dimension
+C             J       (input/output) REAL*10 array, dimension
 C                     (LDJ,NC), where NC is the number of columns
 C                     needed.
 C                     This array contains a possibly compressed
@@ -166,7 +166,7 @@ C                     on entry, when it is an output parameter.
 C                     It is assumed in MD03BD that LDJ is not larger
 C                     than needed.
 C
-C             DWORK   REAL*16 array, dimension (LDWORK)
+C             DWORK   REAL*10 array, dimension (LDWORK)
 C                     The workspace array for subroutine FCN.
 C                     On exit, if INFO = 0, DWORK(1) returns the optimal
 C                     value of LDWORK.
@@ -209,10 +209,10 @@ C
 C             LIPAR   (input) INTEGER
 C                     The length of the array IPAR.  LIPAR >= 0.
 C
-C             FNORM   (input) REAL*16
+C             FNORM   (input) REAL*10
 C                     The Euclidean norm of the vector e.  FNORM >= 0.
 C
-C             J       (input/output) REAL*16 array, dimension
+C             J       (input/output) REAL*10 array, dimension
 C                     (LDJ, NC), where NC is the number of columns.
 C                     On entry, the leading NR-by-NC part of this array
 C                     must contain the (compressed) representation
@@ -231,7 +231,7 @@ C                     The leading dimension of array J.
 C                     On entry, LDJ >= MAX(1,NR).
 C                     On exit,  LDJ >= MAX(1,N).
 C
-C             E       (input/output) REAL*16 array, dimension
+C             E       (input/output) REAL*10 array, dimension
 C                     (NR)
 C                     On entry, this array contains the error vector e.
 C                     On exit, this array contains the updated vector
@@ -240,12 +240,12 @@ C                     (possibly identity) used in the QR factorization
 C                     of J. (See, for example, the SLICOT Library
 C                     routine NF01BS, Section METHOD.)
 C
-C             JNORMS  (output) REAL*16 array, dimension (N)
+C             JNORMS  (output) REAL*10 array, dimension (N)
 C                     This array contains the Euclidean norms of the
 C                     columns of the Jacobian matrix (in the original
 C                     order).
 C
-C             GNORM   (output) REAL*16
+C             GNORM   (output) REAL*10
 C                     If FNORM > 0, the 1-norm of the scaled vector
 C                     J'*e/FNORM, with each element i further divided
 C                     by JNORMS(i) (if JNORMS(i) is nonzero).
@@ -256,7 +256,7 @@ C                     This array defines the permutation matrix P such
 C                     that J*P = Q*R. Column j of P is column IPVT(j) of
 C                     the identity matrix.
 C
-C             DWORK   REAL*16 array, dimension (LDWORK)
+C             DWORK   REAL*10 array, dimension (LDWORK)
 C                     The workspace array for subroutine QRFACT.
 C                     On exit, if INFO = 0, DWORK(1) returns the optimal
 C                     value of LDWORK.
@@ -334,7 +334,7 @@ C
 C             LIPAR   (input) INTEGER
 C                     The length of the array IPAR.  LIPAR >= 0.
 C
-C             R       (input/output) REAL*16 array, dimension
+C             R       (input/output) REAL*10 array, dimension
 C                     (LDR, NC), where NC is the number of columns.
 C                     On entry, the leading N-by-NC part of this array
 C                     must contain the (compressed) representation (Rc)
@@ -354,19 +354,19 @@ C                     This array must define the permutation matrix P
 C                     such that J*P = Q*R. Column j of P is column
 C                     IPVT(j) of the identity matrix.
 C
-C             DIAG    (input) REAL*16 array, dimension (N)
+C             DIAG    (input) REAL*10 array, dimension (N)
 C                     This array must contain the diagonal elements of
 C                     the matrix D.  DIAG(I) <> 0, I = 1,...,N.
 C
-C             QTB     (input) REAL*16 array, dimension (N)
+C             QTB     (input) REAL*10 array, dimension (N)
 C                     This array must contain the first n elements of
 C                     the vector Q'*b.
 C
-C             DELTA   (input) REAL*16
+C             DELTA   (input) REAL*10
 C                     An upper bound on the Euclidean norm of D*x.
 C                     DELTA > 0.
 C
-C             PAR     (input/output) REAL*16
+C             PAR     (input/output) REAL*10
 C                     On entry, PAR must contain an initial estimate of
 C                     the Levenberg-Marquardt parameter.  PAR >= 0.
 C                     On exit, it contains the final estimate of this
@@ -382,15 +382,15 @@ C                     the entries of IPAR.
 C                     On exit, if N > 0, this array contains the
 C                     numerical ranks of the submatrices S_k, k = 1:r.
 C
-C             X       (output) REAL*16 array, dimension (N)
+C             X       (output) REAL*10 array, dimension (N)
 C                     This array contains the least squares solution of
 C                     the system J*x = b, sqrt(PAR)*D*x = 0.
 C
-C             RX      (output) REAL*16 array, dimension (N)
+C             RX      (output) REAL*10 array, dimension (N)
 C                     This array contains the matrix-vector product
 C                     -R*P'*x.
 C
-C             TOL     (input) REAL*16
+C             TOL     (input) REAL*10
 C                     If COND = 'E', the tolerance to be used for
 C                     finding the ranks of the submatrices R_k and S_k.
 C                     If the user sets TOL > 0, then the given value of
@@ -405,7 +405,7 @@ C                     Library routine DLAMCH).
 C                     This parameter is not relevant if COND = 'U'
 C                     or 'N'.
 C
-C             DWORK   REAL*16 array, dimension (LDWORK)
+C             DWORK   REAL*10 array, dimension (LDWORK)
 C                     The workspace array for subroutine LMPARM.
 C                     On exit, if INFO = 0, DWORK(1) returns the optimal
 C                     value of LDWORK.
@@ -436,7 +436,7 @@ C
 C     ITMAX   (input) INTEGER
 C             The maximum number of iterations.  ITMAX >= 0.
 C
-C     FACTOR  (input) REAL*16
+C     FACTOR  (input) REAL*10
 C             The value used in determining the initial step bound. This
 C             bound is set to the product of FACTOR and the Euclidean
 C             norm of DIAG*X if nonzero, or else to FACTOR itself.
@@ -465,7 +465,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 5.
 C
-C     DPAR1   (input/output) REAL*16 array, dimension
+C     DPAR1   (input/output) REAL*10 array, dimension
 C             (LDPAR1,*) or (LDPAR1)
 C             A first set of real parameters needed for describing or
 C             solving the problem. This argument is not used by MD03BD
@@ -476,7 +476,7 @@ C             The leading dimension or the length of the array DPAR1, as
 C             convenient.  LDPAR1 >= 0.  (LDPAR1 >= 1, if leading
 C             dimension.)
 C
-C     DPAR2   (input/output) REAL*16 array, dimension
+C     DPAR2   (input/output) REAL*10 array, dimension
 C             (LDPAR2,*) or (LDPAR2)
 C             A second set of real parameters needed for describing or
 C             solving the problem. This argument is not used by MD03BD
@@ -487,7 +487,7 @@ C             The leading dimension or the length of the array DPAR2, as
 C             convenient.  LDPAR2 >= 0.  (LDPAR2 >= 1, if leading
 C             dimension.)
 C
-C     X       (input/output) REAL*16 array, dimension (N)
+C     X       (input/output) REAL*10 array, dimension (N)
 C             On entry, if XINIT = 'G', this array must contain the
 C             vector of initial variables x to be optimized.
 C             If XINIT = 'R', this array need not be set before entry,
@@ -497,7 +497,7 @@ C             values that (approximately) minimize the sum of squares of
 C             error functions. The values returned in IWARN and
 C             DWORK(1:4) give details on the iterative process.
 C
-C     DIAG    (input/output) REAL*16 array, dimension (N)
+C     DIAG    (input/output) REAL*10 array, dimension (N)
 C             On entry, if SCALE = 'S', this array must contain some
 C             positive entries that serve as multiplicative scale
 C             factors for the variables x.  DIAG(I) > 0, I = 1,...,N.
@@ -516,7 +516,7 @@ C             The number of calls to FCN with IFLAG = 2.
 C
 C     Tolerances
 C
-C     FTOL    REAL*16
+C     FTOL    REAL*10
 C             If FTOL >= 0, the tolerance which measures the relative
 C             error desired in the sum of squares. Termination occurs
 C             when both the actual and predicted relative reductions in
@@ -525,14 +525,14 @@ C             FTOL < 0,  then  SQRT(EPS)  is used instead FTOL, where
 C             EPS is the machine precision (see LAPACK Library routine
 C             DLAMCH).
 C
-C     XTOL    REAL*16
+C     XTOL    REAL*10
 C             If XTOL >= 0, the tolerance which measures the relative
 C             error desired in the approximate solution. Termination
 C             occurs when the relative error between two consecutive
 C             iterates is at most XTOL. If the user sets  XTOL < 0,
 C             then  SQRT(EPS)  is used instead XTOL.
 C
-C     GTOL    REAL*16
+C     GTOL    REAL*10
 C             If GTOL >= 0, the tolerance which measures the
 C             orthogonality desired between the function vector e and
 C             the columns of the Jacobian J. Termination occurs when
@@ -540,7 +540,7 @@ C             the cosine of the angle between e and any column of the
 C             Jacobian J is at most GTOL in absolute value. If the user
 C             sets  GTOL < 0,  then  EPS  is used instead GTOL.
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             If COND = 'E', the tolerance to be used for finding the
 C             ranks of the matrices of linear systems to be solved. If
 C             the user sets TOL > 0, then the given value of TOL is used
@@ -565,7 +565,7 @@ C             IWORK(j) of the identity matrix. If INFO = 0, the entries
 C             N+1:N+r of this array contain the ranks of the final
 C             submatrices S_k (see description of LMPARM).
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK, DWORK(2) returns the residual error norm (the
 C             sum of squares), DWORK(3) returns the number of iterations
@@ -712,7 +712,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, FOUR, P1, P5, P25, P75, P0001
+      REAL*10  ZERO, ONE, FOUR, P1, P5, P25, P75, P0001
       PARAMETER         ( ZERO = 0.0D0,  ONE   = 1.0D0,  FOUR = 4.0D0,
      $                    P1   = 1.0D-1, P5    = 5.0D-1, P25 = 2.5D-1,
      $                    P75  = 7.5D-1, P0001 = 1.0D-4 )
@@ -720,22 +720,22 @@ C     .. Scalar Arguments ..
       CHARACTER         COND, SCALE, XINIT
       INTEGER           INFO, ITMAX, IWARN, LDPAR1, LDPAR2, LDWORK,
      $                  LIPAR, M, N, NFEV, NJEV, NPRINT
-      REAL*16  FACTOR, FTOL, GTOL, TOL, XTOL
+      REAL*10  FACTOR, FTOL, GTOL, TOL, XTOL
 C     .. Array Arguments ..
       INTEGER           IPAR(*), IWORK(*)
-      REAL*16  DIAG(*), DPAR1(*), DPAR2(*), DWORK(*), X(*)
+      REAL*10  DIAG(*), DPAR1(*), DPAR2(*), DWORK(*), X(*)
 C     .. Local Scalars ..
       LOGICAL           BADSCL, INIT, ISCAL, SSCAL
       INTEGER           E, IFLAG, INFOL, ITER, IW1, IW2, IW3, J, JAC,
      $                  JW1, JW2, JWORK, L, LDJ, LDJSAV, LFCN1, LFCN2,
      $                  LLMP, LQRF, NC, NFEVL, SIZEJ, WRKOPT
-      REAL*16  ACTRED, DELTA, DIRDER, EPSMCH, FNORM, FNORM1,
+      REAL*10  ACTRED, DELTA, DIRDER, EPSMCH, FNORM, FNORM1,
      $                  FTDEF, GNORM, GTDEF, PAR, PNORM, PRERED, RATIO,
      $                  TEMP, TEMP1, TEMP2, TOLDEF, XNORM, XTDEF
 C     .. Local Arrays ..
       INTEGER           SEED(4)
 C     .. External Functions ..
-      REAL*16  DLAMCH, DNRM2
+      REAL*10  DLAMCH, DNRM2
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, DNRM2, LSAME
 C     .. External Subroutines ..

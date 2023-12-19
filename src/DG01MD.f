@@ -21,14 +21,14 @@ C     N       (input) INTEGER
 C             The number of complex samples.  N must be a power of 2.
 C             N >= 2.
 C
-C     XR      (input/output) REAL*16 array, dimension (N)
+C     XR      (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the real part of either
 C             the complex signal z if INDI = 'D', or f(z) if INDI = 'I'.
 C             On exit, this array contains either the real part of the
 C             computed Fourier transform f(z) if INDI = 'D', or the
 C             inverse Fourier transform z of f(z) if INDI = 'I'.
 C
-C     XI      (input/output) REAL*16 array, dimension (N)
+C     XI      (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the imaginary part of
 C             either z if INDI = 'D', or f(z) if INDI = 'I'.
 C             On exit, this array contains either the imaginary part of
@@ -97,18 +97,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, HALF, ONE, TWO, EIGHT
+      REAL*10  ZERO, HALF, ONE, TWO, EIGHT
       PARAMETER         ( ZERO = 0.0D0, HALF = 0.5D0, ONE = 1.0D0,
      $                    TWO = 2.0D0, EIGHT = 8.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         INDI
       INTEGER           INFO, N
 C     .. Array Arguments ..
-      REAL*16  XI(*), XR(*)
+      REAL*10  XI(*), XR(*)
 C     .. Local Scalars ..
       LOGICAL           LINDI
       INTEGER           I, J, K, L, M
-      REAL*16  PI2, TI, TR, WHELP, WI, WR, WSTPI, WSTPR
+      REAL*10  PI2, TI, TR, WHELP, WI, WR, WSTPI, WSTPR
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

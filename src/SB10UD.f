@@ -37,7 +37,7 @@ C     NMEAS   (input) INTEGER
 C             The number of measurements (NP2).  NP >= NMEAS >= 0,
 C             M-NCON >= NMEAS.
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the system input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -46,7 +46,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading NP-by-N part of this array must
 C             contain the system output matrix C.
 C             On exit, the leading NP-by-N part of this array contains
@@ -55,7 +55,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= max(1,NP).
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, the leading NP-by-M part of this array must
 C             contain the system input/output matrix D.
 C             The (NP-NMEAS)-by-(M-NCON) leading submatrix D11 is not
@@ -70,14 +70,14 @@ C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= max(1,NP).
 C
-C     TU      (output) REAL*16 array, dimension (LDTU,M2)
+C     TU      (output) REAL*10 array, dimension (LDTU,M2)
 C             The leading M2-by-M2 part of this array contains the
 C             control transformation matrix TU.
 C
 C     LDTU    INTEGER
 C             The leading dimension of the array TU.  LDTU >= max(1,M2).
 C
-C     TY      (output) REAL*16 array, dimension (LDTY,NP2)
+C     TY      (output) REAL*10 array, dimension (LDTY,NP2)
 C             The leading NP2-by-NP2 part of this array contains the
 C             measurement transformation matrix TY.
 C
@@ -85,7 +85,7 @@ C     LDTY    INTEGER
 C             The leading dimension of the array TY.
 C             LDTY >= max(1,NP2).
 C
-C     RCOND   (output) REAL*16 array, dimension (2)
+C     RCOND   (output) REAL*10 array, dimension (2)
 C             RCOND(1) contains the reciprocal condition number of the
 C                      control transformation matrix TU;
 C             RCOND(2) contains the reciprocal condition number of the
@@ -95,7 +95,7 @@ C             then RCOND(2) was not computed, but it is set to 0.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             Tolerance used for controlling the accuracy of the applied
 C             transformations. Transformation matrices TU and TY whose
 C             reciprocal condition numbers are less than TOL are not
@@ -105,7 +105,7 @@ C             precision.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) contains the optimal
 C             LDWORK.
 C
@@ -173,26 +173,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDB, LDC, LDD, LDTU, LDTY, LDWORK, M, N,
      $                   NCON, NMEAS, NP
-      REAL*16   TOL
+      REAL*10   TOL
 C     ..
 C     .. Array Arguments ..
-      REAL*16   B( LDB, * ), C( LDC, * ), D( LDD, * ),
+      REAL*10   B( LDB, * ), C( LDC, * ), D( LDD, * ),
      $                   DWORK( * ), RCOND( 2 ), TU( LDTU, * ),
      $                   TY( LDTY, * )
 C     ..
 C     .. Local Scalars ..
       INTEGER            INFO2, IQ, IWRK, J, LWAMAX, M1, M2, MINWRK,
      $                   ND1, ND2, NP1, NP2
-      REAL*16   TOLL
+      REAL*10   TOLL
 C     ..
 C     .. External Functions
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH
 C     ..
 C     .. External Subroutines ..

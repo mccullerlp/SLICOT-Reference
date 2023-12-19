@@ -32,7 +32,7 @@ C     NOUT    (input) INTEGER
 C             The output channel to which the results are sent.
 C             NOUT >= 0.
 C
-C     P       (input) REAL*16 array, dimension (LDP1,LDP2,DP+1)
+C     P       (input) REAL*10 array, dimension (LDP1,LDP2,DP+1)
 C             The leading MP-by-NP-by-(DP+1) part of this array must
 C             contain the coefficients of the matrix polynomial P(s).
 C             Specifically, P(i,j,k) must contain the coefficient of
@@ -96,7 +96,7 @@ C     .. Scalar Arguments ..
       INTEGER           DP, INFO, L, LDP1, LDP2, MP, NP, NOUT
       CHARACTER*(*)     TEXT
 C     .. Array Arguments ..
-      REAL*16  P(LDP1,LDP2,*)
+      REAL*10  P(LDP1,LDP2,*)
 C     .. Local Scalars ..
       INTEGER           I, J, J1, J2, JJ, K, LENTXT, LTEXT, N1
 C     .. External Subroutines ..

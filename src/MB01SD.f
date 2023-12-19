@@ -26,7 +26,7 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrix A.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the M-by-N matrix A.
 C             On exit, the scaled matrix.  See JOBS for the form of the
 C             scaled matrix.
@@ -34,11 +34,11 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     R       (input) REAL*16 array, dimension (M)
+C     R       (input) REAL*10 array, dimension (M)
 C             The row scale factors for A.
 C             R is not referenced if JOBS = 'C'.
 C
-C     C       (input) REAL*16 array, dimension (N)
+C     C       (input) REAL*10 array, dimension (N)
 C             The column scale factors for A.
 C             C is not referenced if JOBS = 'R'.
 C
@@ -55,10 +55,10 @@ C     .. Scalar Arguments ..
       CHARACTER          JOBS
       INTEGER            LDA, M, N
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), C(*), R(*)
+      REAL*10   A(LDA,*), C(*), R(*)
 C     .. Local Scalars ..
       INTEGER            I, J
-      REAL*16   CJ
+      REAL*10   CJ
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

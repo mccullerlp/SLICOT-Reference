@@ -21,7 +21,7 @@ C     N      (input) INTEGER
 C            The number of elements of X and the order of the square
 C            matrix A.  N >= 0.
 C
-C     A      (input/output) REAL*16 array, dimension (LDA,N)
+C     A      (input/output) REAL*10 array, dimension (LDA,N)
 C            On entry, the leading N-by-N upper triangular part of this
 C            array must contain the upper triangular matrix U.
 C            On exit, the leading N-by-N upper triangular part of this
@@ -31,7 +31,7 @@ C
 C     LDA    INTEGER
 C            The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     X      (input/output) REAL*16 array, dimension
+C     X      (input/output) REAL*10 array, dimension
 C            (1+(N-1)*INCX)
 C            On entry, the incremented array X must contain the
 C            vector x. On exit, the content of X is changed.
@@ -60,9 +60,9 @@ C
 C     .. Scalar Arguments ..
       INTEGER            INCX, LDA, N
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), X(*)
+      REAL*10   A(LDA,*), X(*)
 C     .. Local Scalars ..
-      REAL*16   CI, SI, TEMP
+      REAL*10   CI, SI, TEMP
       INTEGER            I, IX
 C     .. External Subroutines ..
       EXTERNAL           DLARTG, DROT

@@ -24,7 +24,7 @@ C     SINV    (input)  INTEGER
 C             Signature multiplier. Entries of S are virtually
 C             multiplied by SINV.
 C
-C     A       (input/output)  REAL*16 array, dimension
+C     A       (input/output)  REAL*10 array, dimension
 C                             (LDA1,LDA2,K)
 C             On entry, the leading 2-by-2-by-K part of this array must
 C             contain a 2-by-2 product (implicitly represented by its K
@@ -62,18 +62,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           K, LDA1, LDA2, SINV
 C     .. Array Arguments ..
       INTEGER           AMAP(*), S(*)
-      REAL*16  A(LDA1,LDA2,*)
+      REAL*10  A(LDA1,LDA2,*)
 C     .. Local Scalars ..
       INTEGER           I, L, AI
-      REAL*16  CS, SN, CT, ST, TEMP, ULP
+      REAL*10  CS, SN, CT, ST, TEMP, ULP
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          DLARTG, DROT, MB03AD

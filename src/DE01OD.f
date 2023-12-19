@@ -20,13 +20,13 @@ C
 C     N       (input) INTEGER
 C             The number of samples.  N must be a power of 2.  N >= 2.
 C
-C     A       (input/output) REAL*16 array, dimension (N)
+C     A       (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the first signal.
 C             On exit, this array contains the convolution (if
 C             CONV = 'C') or deconvolution (if CONV = 'D') of the two
 C             signals.
 C
-C     B       (input) REAL*16 array, dimension (N)
+C     B       (input) REAL*10 array, dimension (N)
 C             On entry, this array must contain the second signal.
 C             NOTE that this array is overwritten.
 C
@@ -71,17 +71,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, HALF, ONE
+      REAL*10  ZERO, HALF, ONE
       PARAMETER         ( ZERO = 0.0D0, HALF=0.5D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         CONV
       INTEGER           INFO, N
 C     .. Array Arguments ..
-      REAL*16  A(*), B(*)
+      REAL*10  A(*), B(*)
 C     .. Local Scalars ..
       LOGICAL           LCONV
       INTEGER           J, KJ, ND2P1
-      REAL*16  AC, AS, AST, BC, BS, CI, CR
+      REAL*10  AC, AS, AST, BC, BS, CI, CR
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

@@ -75,7 +75,7 @@ C
 C     N       (input) INTEGER
 C             The order of the pencil aS - bT.  N >= 0, even.
 C
-C     Z       (input/output) REAL*16 array, dimension (LDZ, N)
+C     Z       (input/output) REAL*10 array, dimension (LDZ, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix Z.
 C             On exit, if JOB = 'T', the leading N-by-N part of this
@@ -87,7 +87,7 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1, N).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C                            (LDB, N/2)
 C             On entry, the leading N/2-by-N/2 part of this array must
 C             contain the matrix B.
@@ -99,7 +99,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1, N/2).
 C
-C     FG      (input/output) REAL*16 array, dimension
+C     FG      (input/output) REAL*10 array, dimension
 C                            (LDFG, N/2+1)
 C             On entry, the leading N/2-by-N/2 strictly lower triangular
 C             part of this array must contain the strictly lower
@@ -127,7 +127,7 @@ C     LDFG    INTEGER
 C             The leading dimension of the array FG.
 C             LDFG >= MAX(1, N/2).
 C
-C     Q       (output) REAL*16 array, dimension (LDQ, N)
+C     Q       (output) REAL*10 array, dimension (LDQ, N)
 C             On exit, if COMPQ = 'I', the leading N-by-N part of this
 C             array contains the orthogonal transformation matrix Q.
 C             On exit, if COMPQ = 'N', the leading N-by-N part of this
@@ -143,7 +143,7 @@ C
 C     LDQ     INTEGER
 C             The leading dimension of the array Q.  LDQ >= MAX(1, N).
 C
-C     U1      (input/output) REAL*16 array, dimension
+C     U1      (input/output) REAL*10 array, dimension
 C                            (LDU1, N/2)
 C             On entry, if COMPU = 'U', then the leading N/2-by-N/2 part
 C             of this array must contain the upper left block of a
@@ -161,7 +161,7 @@ C             The leading dimension of the array U1.
 C             LDU1 >= 1,           if COMPU = 'N';
 C             LDU1 >= MAX(1, N/2), if COMPU = 'I' or COMPU = 'U'.
 C
-C     U2      (input/output) REAL*16 array, dimension
+C     U2      (input/output) REAL*10 array, dimension
 C                            (LDU2, N/2)
 C             On entry, if COMPU = 'U', then the leading N/2-by-N/2 part
 C             of this array must contain the upper right block of a
@@ -179,18 +179,18 @@ C             The leading dimension of the array U2.
 C             LDU2 >= 1,           if COMPU = 'N';
 C             LDU2 >= MAX(1, N/2), if COMPU = 'I' or COMPU = 'U'.
 C
-C     ALPHAR  (output) REAL*16 array, dimension (N/2)
+C     ALPHAR  (output) REAL*10 array, dimension (N/2)
 C             The real parts of each scalar alpha defining an eigenvalue
 C             of the pencil aS - bT.
 C
-C     ALPHAI  (output) REAL*16 array, dimension (N/2)
+C     ALPHAI  (output) REAL*10 array, dimension (N/2)
 C             The imaginary parts of each scalar alpha defining an
 C             eigenvalue of the pencil aS - bT.
 C             If ALPHAI(j) is zero, then the j-th eigenvalue is real; if
 C             positive, then the j-th and (j+1)-st eigenvalues are a
 C             complex conjugate pair, with ALPHAI(j+1) = -ALPHAI(j).
 C
-C     BETA    (output) REAL*16 array, dimension (N/2)
+C     BETA    (output) REAL*10 array, dimension (N/2)
 C             The scalars beta that define the eigenvalues of the pencil
 C             aS - bT.
 C             Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
@@ -228,7 +228,7 @@ C
 C     LIWORK  INTEGER
 C             The dimension of the array IWORK.  LIWORK >= N+9.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0 or INFO = 3, DWORK(1) returns the
 C             optimal LDWORK, and DWORK(2), ..., DWORK(4) contain the
 C             Frobenius norms of the factors of the formal matrix
@@ -320,7 +320,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, FOUR
+      REAL*10   ZERO, ONE, FOUR
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0, FOUR = 4.0D+0 )
 C
 C     .. Scalar Arguments ..
@@ -330,7 +330,7 @@ C     .. Scalar Arguments ..
 C
 C     .. Array Arguments ..
       INTEGER            IWORK( * )
-      REAL*16   ALPHAI( * ), ALPHAR( * ), B( LDB, * ),
+      REAL*10   ALPHAI( * ), ALPHAR( * ), B( LDB, * ),
      $                   BETA( * ), DWORK( * ), FG( LDFG, * ),
      $                   Q( LDQ, * ), U1( LDU1, * ), U2( LDU2, * ),
      $                   Z( LDZ, * )
@@ -342,16 +342,16 @@ C     .. Local Scalars ..
      $                   IQ1, IQ2, ITAU, IU, IW, IWARN, IWRK, IZ11,
      $                   IZ22, J, K, L, M, MINDW, MJ1, MJ2, MJ3, MM,
      $                   NBETA0, NINF, OPTDW, P
-      REAL*16   BASE, CO, SI, TEMP, TMP1, TMP2
+      REAL*10   BASE, CO, SI, TEMP, TMP1, TMP2
 C
 C     .. Local Arrays ..
       INTEGER            IDUM( 1 )
-      REAL*16   DUM(  4 )
+      REAL*10   DUM(  4 )
 C
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      REAL*16   DLAMCH, DLANTR, DLAPY2
+      REAL*10   DLAMCH, DLANTR, DLAPY2
       EXTERNAL           DLAMCH, DLANTR, DLAPY2, IDAMAX, LSAME
 C
 C     .. External Subroutines ..

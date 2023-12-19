@@ -53,7 +53,7 @@ C     SINV    (input) INTEGER
 C             Signature multiplier. Entries of S are virtually
 C             multiplied by SINV.
 C
-C     A       (input)  REAL*16 array, dimension (LDA1,LDA2,K)
+C     A       (input)  REAL*10 array, dimension (LDA1,LDA2,K)
 C             On entry, the leading N-by-N-by-K part of this array must
 C             contain a n-by-n product (implicitly represented by its K
 C             factors) in periodic upper Hessenberg form.
@@ -64,13 +64,13 @@ C
 C     LDA2    INTEGER
 C             The second leading dimension of the array A.  LDA2 >= N.
 C
-C     C1      (output)  REAL*16
-C     S1      (output)  REAL*16
+C     C1      (output)  REAL*10
+C     S1      (output)  REAL*10
 C             On exit, C1 and S1 contain the parameters for the first
 C             Givens rotation.
 C
-C     C2      (output)  REAL*16
-C     S2      (output)  REAL*16
+C     C2      (output)  REAL*10
+C     S2      (output)  REAL*10
 C             On exit, if SHFT = 'D', C2 and S2 contain the parameters
 C             for the second Givens rotation. Otherwise, C2 = 1, S2 = 0.
 C
@@ -95,19 +95,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE
+      REAL*10  ONE
       PARAMETER         ( ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         SHFT
       INTEGER           K, LDA1, LDA2, N, SINV
-      REAL*16  C1, C2, S1, S2
+      REAL*10  C1, C2, S1, S2
 C     .. Array Arguments ..
       INTEGER           AMAP(*), S(*)
-      REAL*16  A(LDA1,LDA2,*)
+      REAL*10  A(LDA1,LDA2,*)
 C     .. Local Scalars ..
       LOGICAL           SGLE
       INTEGER           AI, I, M
-      REAL*16  ALPHA, BETA, C2R, C3, C3R, C4, C4R, C5, C5R, C6,
+      REAL*10  ALPHA, BETA, C2R, C3, C3R, C4, C4R, C5, C5R, C6,
      $                  C6R, CS, CX, DELTA, EPSIL, ETA, GAMMA, S2R, S3,
      $                  S3R, S4, S4R, S5, S5R, S6, S6R, SS, SSS, SSSS,
      $                  SX, TEMP, THETA, VAL1, VAL2, VAL3, VAL4, VAL5,

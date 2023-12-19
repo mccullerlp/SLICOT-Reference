@@ -41,10 +41,10 @@ C             On entry, the degree of the polynomial matrix P3(x).
 C             DP3 >= -1.
 C             On exit, the degree of the polynomial matrix P(x).
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar value alpha of the problem.
 C
-C     P1      (input) REAL*16 array, dimension (LDP11,LDP12,*)
+C     P1      (input) REAL*10 array, dimension (LDP11,LDP12,*)
 C             If DP1 >= 0, then the leading RP1-by-CP1-by-(DP1+1) part
 C             of this array must contain the coefficients of the
 C             polynomial matrix P1(x). Specifically, P1(i,j,k) must
@@ -67,7 +67,7 @@ C             The second dimension of array P1.
 C             LDP12 >= MAX(1,CP1) if DP1 >= 0,
 C             LDP12 >= 1          if DP1 = -1.
 C
-C     P2      (input) REAL*16 array, dimension (LDP21,LDP22,*)
+C     P2      (input) REAL*10 array, dimension (LDP21,LDP22,*)
 C             If DP2 >= 0, then the leading CP1-by-CP2-by-(DP2+1) part
 C             of this array must contain the coefficients of the
 C             polynomial matrix P2(x). Specifically, P2(i,j,k) must
@@ -90,7 +90,7 @@ C             The second dimension of array P2.
 C             LDP22 >= MAX(1,CP2) if DP2 >= 0,
 C             LDP22 >= 1          if DP2 = -1.
 C
-C     P3      (input/output) REAL*16 array, dimension
+C     P3      (input/output) REAL*10 array, dimension
 C             (LDP31,LDP32,n), where n = MAX(DP1+DP2,DP3,0)+1.
 C             On entry, if DP3 >= 0, then the leading
 C             RP1-by-CP2-by-(DP3+1) part of this array must contain the
@@ -118,7 +118,7 @@ C             The second dimension of array P3.   LDP32 >= MAX(1,CP2).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (CP1)
+C     DWORK   REAL*10 array, dimension (CP1)
 C
 C     Error Indicator
 C
@@ -184,20 +184,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           CP1, CP2, DP1, DP2, DP3, INFO, LDP11, LDP12,
      $                  LDP21, LDP22, LDP31, LDP32, RP1
-      REAL*16  ALPHA
+      REAL*10  ALPHA
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), P1(LDP11,LDP12,*), P2(LDP21,LDP22,*),
+      REAL*10  DWORK(*), P1(LDP11,LDP12,*), P2(LDP21,LDP22,*),
      $                  P3(LDP31,LDP32,*)
 C     .. Local Scalars ..
       LOGICAL           CFZERO
       INTEGER           DPOL3, E, H, I, J, K
 C     .. External Functions ..
-      REAL*16  DDOT
+      REAL*10  DDOT
       EXTERNAL          DDOT
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DLASET, DSCAL, XERBLA

@@ -12,7 +12,7 @@ C
 C     M       (input) INTEGER
 C             The order of the system.  M >= 0.
 C
-C     D       (input/output) REAL*16 array, dimension
+C     D       (input/output) REAL*10 array, dimension
 C             (M*(M+1)/2+2*M)
 C             On entry, the first M*(M+1)/2 + M elements of this array
 C             must contain an upper Hessenberg matrix, stored compactly,
@@ -69,16 +69,16 @@ C     Sylvester equation.
 C
 C     ******************************************************************
 C
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, M
 C     .. Array Arguments ..
       INTEGER           IPR(*)
-      REAL*16  D(*)
+      REAL*10  D(*)
 C     .. Local Scalars ..
       INTEGER           I, I1, IPRM, IPRM1, K, M1, M2, MPI
-      REAL*16  D1, D2, MULT
+      REAL*10  D1, D2, MULT
 C     .. External Subroutines ..
       EXTERNAL          DAXPY
 C     .. Intrinsic Functions ..

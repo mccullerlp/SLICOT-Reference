@@ -45,7 +45,7 @@ C
 C     N2      (input) INTEGER
 C             The order of the second block A22*B22. N2 = 0, 1 or 2.
 C
-C     A       (input/output) REAL*16 array, dimension
+C     A       (input/output) REAL*10 array, dimension
 C             (LDA,N1+N2)
 C             On entry, the leading (N1+N2)-by-(N1+N2) part of this
 C             array must contain the matrix A.
@@ -55,7 +55,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A. LDA >= MAX(1,N1+N2).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB,N1+N2)
 C             On entry, the leading (N1+N2)-by-(N1+N2) part of this
 C             array must contain the matrix B.
@@ -65,7 +65,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B. LDB >= MAX(1,N1+N2).
 C
-C     Q       (input/output) REAL*16 array, dimension
+C     Q       (input/output) REAL*10 array, dimension
 C             (LDQ,N1+N2)
 C             On entry, if WANTQ = .TRUE., the leading
 C             (N1+N2)-by-(N1+N2) part of this array must contain the
@@ -79,7 +79,7 @@ C     LDQ     INTEGER
 C             The leading dimension of the array Q. LDQ >= 1.
 C             If WANTQ = .TRUE., LDQ >= N1+N2.
 C
-C     Z       (input/output) REAL*16 array, dimension
+C     Z       (input/output) REAL*10 array, dimension
 C             (LDZ,N1+N2)
 C             On entry, if WANTZ = .TRUE., the leading
 C             (N1+N2)-by-(N1+N2) part of this array must contain the
@@ -138,9 +138,9 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
-      REAL*16   TEN
+      REAL*10   TEN
       PARAMETER          ( TEN = 1.0D+01 )
       INTEGER            LDST
       PARAMETER          ( LDST = 4 )
@@ -150,21 +150,21 @@ C     .. Scalar Arguments ..
       LOGICAL            WANTQ, WANTZ
       INTEGER            INFO, LDA, LDB, LDQ, LDZ, N1, N2
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), B(LDB,*), Q(LDQ,*), Z(LDZ,*)
+      REAL*10   A(LDA,*), B(LDB,*), Q(LDQ,*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL            DTRONG, WEAK
       INTEGER            I, LINFO, M
-      REAL*16   BQRA21, BRQA21, DDUM, DNORM, DSCALE, DSUM, EPS,
+      REAL*10   BQRA21, BRQA21, DDUM, DNORM, DSCALE, DSUM, EPS,
      $                   F, G, SA, SB, SCALE, SMLNUM, SS, THRESH, WS
 C     .. Local Arrays ..
       INTEGER            IWORK( LDST )
-      REAL*16   AI(2), AR(2), BE(2), DWORK(32), IR(LDST,LDST),
+      REAL*10   AI(2), AR(2), BE(2), DWORK(32), IR(LDST,LDST),
      $                   IRCOP(LDST,LDST), LI(LDST,LDST),
      $                   LICOP(LDST,LDST), S(LDST,LDST),
      $                   SCPY(LDST,LDST), T(LDST,LDST), TAUL(LDST),
      $                   TAUR(LDST), TCPY(LDST,LDST)
 C     .. External Functions ..
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH
 C     .. External Subroutines ..
       EXTERNAL           DGEMM, DGEQR2, DGERQ2, DLACPY, DLARTG, DLASET,

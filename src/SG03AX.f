@@ -34,21 +34,21 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N upper Hessenberg part of this array
 C             must contain the quasitriangular matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     E       (input) REAL*16 array, dimension (LDE,N)
+C     E       (input) REAL*10 array, dimension (LDE,N)
 C             The leading N-by-N upper triangular part of this array
 C             must contain the matrix E.
 C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     X       (input/output) REAL*16 array, dimension (LDX,N)
+C     X       (input/output) REAL*10 array, dimension (LDX,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the right hand side matrix Y of the equation. Only
 C             the upper triangular part of this matrix need be given.
@@ -58,7 +58,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of the array X.  LDX >= MAX(1,N).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor set to avoid overflow in X.
 C             (0 < SCALE <= 1)
 C
@@ -116,21 +116,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  MONE, ONE, ZERO
+      REAL*10  MONE, ONE, ZERO
       PARAMETER         ( MONE = -1.0D+0, ONE = 1.0D+0, ZERO = 0.0D+0 )
 C     .. Scalar Arguments ..
       CHARACTER         TRANS
-      REAL*16  SCALE
+      REAL*10  SCALE
       INTEGER           INFO, LDA, LDE, LDX, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), E(LDE,*), X(LDX,*)
+      REAL*10  A(LDA,*), E(LDE,*), X(LDX,*)
 C     .. Local Scalars ..
-      REAL*16  AK11, AK12, AK21, AK22, AL11, AL12, AL21, AL22,
+      REAL*10  AK11, AK12, AK21, AK22, AL11, AL12, AL21, AL22,
      $                  EK11, EK12, EK22, EL11, EL12, EL22, SCALE1
       INTEGER           DIMMAT, I, INFO1, KB, KH, KL, LB, LH, LL
       LOGICAL           NOTRNS
 C     .. Local Arrays ..
-      REAL*16  MAT(4,4), RHS(4), TM(2,2)
+      REAL*10  MAT(4,4), RHS(4), TM(2,2)
       INTEGER           PIV1(4), PIV2(4)
 C     .. External Functions ..
       LOGICAL           LSAME

@@ -25,13 +25,13 @@ C
 C     N       (input) INTEGER
 C             The number of columns of the matrices A and B.  N >= 0.
 C
-C     V       (input) REAL*16 array, dimension (M)
+C     V       (input) REAL*10 array, dimension (M)
 C             The vector v in the representation of H.
 C
-C     TAU     (input) REAL*16
+C     TAU     (input) REAL*10
 C             The scalar factor of the elementary reflector H.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading 1-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading 1-by-N part of this array contains
@@ -40,7 +40,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= 1.
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,N)
+C     B       (input/output) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the matrix B.
 C             On exit, the leading M-by-N part of this array contains
@@ -51,7 +51,7 @@ C             The leading dimension of array B.  LDB >= MAX(1,M).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N)
+C     DWORK   REAL*10 array, dimension (N)
 C             DWORK is not referenced if H has order less than 11.
 C
 C     METHOD
@@ -80,16 +80,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           LDA, LDB, M, N
-      REAL*16  TAU
+      REAL*10  TAU
 C     .. Array Arguments ..
-      REAL*16  A( LDA, * ), B( LDB, * ), DWORK( * ), V( * )
+      REAL*10  A( LDA, * ), B( LDB, * ), DWORK( * ), V( * )
 C     .. Local Scalars ..
       INTEGER           J
-      REAL*16  SUM, T1, T2, T3, T4, T5, T6, T7, T8, T9, V1, V2,
+      REAL*10  SUM, T1, T2, T3, T4, T5, T6, T7, T8, T9, V1, V2,
      $                  V3, V4, V5, V6, V7, V8, V9
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMV, DGER

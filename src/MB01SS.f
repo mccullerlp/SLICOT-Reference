@@ -27,7 +27,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N upper triangular part
 C             (if UPLO = 'U') or lower triangular part (if UPLO = 'L')
 C             of this array must contain the upper triangular part or
@@ -45,7 +45,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,M).
 C
-C     D       (input) REAL*16 array, dimension (N)
+C     D       (input) REAL*10 array, dimension (N)
 C             The diagonal elements of the diagonal matrix D.
 C
 C     CONTRIBUTOR
@@ -55,17 +55,17 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE
+      REAL*10   ONE
       PARAMETER          ( ONE   = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          JOBS, UPLO
       INTEGER            LDA, N
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), D(*)
+      REAL*10   A(LDA,*), D(*)
 C     .. Local Scalars ..
       LOGICAL            UPPER
       INTEGER            I, J
-      REAL*16   DJ
+      REAL*10   DJ
 C     .. External Functions ..
       LOGICAL            LSAME
       EXTERNAL           LSAME

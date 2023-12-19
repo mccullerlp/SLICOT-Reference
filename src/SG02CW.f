@@ -148,14 +148,14 @@ C             If JOBG <> 'G', the number of columns of the matrices D,
 C             F, and/or B, H, and K'.  M >= 0.
 C             If JOBG = 'G', the value of M is meaningless.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     E       (input) REAL*16 array, dimension (LDE,*)
+C     E       (input) REAL*10 array, dimension (LDE,*)
 C             If JOBE = 'G' and (JOB <> 'C' or (DICO = 'C' and
 C             (JOBG = 'G' or JOBG = 'D'))), the leading N-by-N part of
 C             this array must contain the matrix E.
@@ -171,7 +171,7 @@ C             LDE >= 1,        if JOBE = 'I'  or (JOB  = 'C' and
 C                                (DICO = 'D'  or  JOBG = 'F' or
 C                                                 JOBG = 'H')).
 C
-C     G       (input/works.) REAL*16 array, dimension (LDG,*)
+C     G       (input/works.) REAL*10 array, dimension (LDG,*)
 C             If JOBG = 'G', the leading N-by-N upper or lower
 C             triangular part (depending on UPLO) of this array must
 C             contain the upper or lower triangular part, respectively,
@@ -194,7 +194,7 @@ C                                 (JOB <> 'R' and JOB <> 'B');
 C             LDG >= 1,        if (JOBG = 'F' or JOBG = 'H') and
 C                                 (JOB  = 'R' or JOB  = 'B').
 C
-C     X       (input/works.) REAL*16 array, dimension (LDX,N)
+C     X       (input/works.) REAL*10 array, dimension (LDX,N)
 C             The leading N-by-N part of this array must contain the
 C             symmetric matrix X, and it is unchanged on exit.
 C             If DICO = 'D', JOBE = 'G' and JOB <> 'C', the diagonal
@@ -226,7 +226,7 @@ C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= MAX(1,N).
 C
-C     F       (input) REAL*16 array, dimension (LDF,*)
+C     F       (input) REAL*10 array, dimension (LDF,*)
 C             If JOBG = 'F', the leading N-by-M part of this array must
 C             contain the matrix F.
 C             If JOBG = 'H', the leading N-by-M part of this array must
@@ -238,7 +238,7 @@ C             The leading dimension of array F.
 C             LDF >= MAX(1,N), if JOBG = 'F' or JOBG = 'H';
 C             LDF >= 1,        if JOBG = 'G' or JOBG = 'D'.
 C
-C     K       (input) REAL*16 array, dimension (LDK,*)
+C     K       (input) REAL*10 array, dimension (LDK,*)
 C             If JOBG = 'H', the leading M-by-N part of this array must
 C             contain the matrix K.
 C             If JOBG <> 'H', this array is not referenced.
@@ -248,7 +248,7 @@ C             The leading dimension of array K.
 C             LDK >= MAX(1,M), if JOBG =  'H';
 C             LDK >= 1,        if JOBG <> 'H'.
 C
-C     XE      (input) REAL*16 array, dimension (LDXE,*)
+C     XE      (input) REAL*10 array, dimension (LDXE,*)
 C             If (JOBG = 'F' or JOBG = 'H'), JOB <> 'C', DICO = 'C', and
 C             JOBE = 'G', the leading N-by-N part of this array must
 C             contain the matrix product X*E, if TRANS = 'N', or E*X, if
@@ -269,7 +269,7 @@ C                               JOBE = 'G', or DICO = 'D';
 C             LDXE >= 1,        if JOBG = 'G' or JOBG = 'D' or JOB = 'C'
 C                               or (DICO = 'C' and JOBE = 'I').
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,*)
+C     R       (input/output) REAL*10 array, dimension (LDR,*)
 C             On entry, if JOB <> 'C', the leading N-by-N upper or lower
 C             triangular part (depending on UPLO) of this array must
 C             contain the upper or lower triangular part, respectively,
@@ -286,7 +286,7 @@ C             The leading dimension of array R.
 C             LDR >= MAX(1,N), if JOB <> 'C';
 C             LDR >= 1,        if JOB =  'C'.
 C
-C     C       (output) REAL*16 array, dimension (LDC,*)
+C     C       (output) REAL*10 array, dimension (LDC,*)
 C             If JOB <> 'R' and JOB <> 'B' and INFO = 0, the leading
 C             N-by-N part of this array contains the matrix op(C).
 C             If JOB = 'R' or JOB = 'B', this array is not referenced.
@@ -296,7 +296,7 @@ C             The leading dimension of array C.
 C             LDC >= MAX(1,N), if JOB <> 'R' and JOB <> 'B';
 C             LDC >= 1,        if JOB =  'R' or  JOB =  'B'.
 C
-C     NORMS   (output) REAL*16 array, dimension (LN)
+C     NORMS   (output) REAL*10 array, dimension (LN)
 C             If JOB = 'N' or JOB = 'B', LN = 2 or 3, if (DICO = 'C' or
 C             JOBE = 'I'), or (DICO = 'D' and JOBE = 'G'), respectively.
 C             If DICO = 'C',
@@ -321,7 +321,7 @@ C             referenced.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = -30, or if LDWORK = -2 on input, then
 C             DWORK(1) returns the minimum value of LDWORK.
 C             On exit, if INFO = 0, or if LDWORK = -1 on input, then
@@ -448,14 +448,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, FLAG, JOB, JOBE, JOBG, TRANS, UPLO
       INTEGER           INFO, LDA, LDC, LDE, LDF, LDG, LDK, LDR, LDWORK,
      $                  LDX, LDXE, M, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), C(LDC,*), DWORK(*), E(LDE,*),
+      REAL*10  A(LDA,*), C(LDC,*), DWORK(*), E(LDE,*),
      $                  F(LDF,*), G(LDG,*), K(LDK,*), NORMS(*),
      $                  R(LDR,*), X(LDX,*), XE(LDXE,*)
 C     .. Local Scalars ..
@@ -467,10 +467,10 @@ C     .. Local Scalars ..
      $                  WITHD, WITHE
       INTEGER           I, IA, IB, IW, J, L, MINWRK, NM, NN, OPTWRK, WP,
      $                  YP
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLANGE, DLANSY
+      REAL*10  DLANGE, DLANSY
       EXTERNAL          DLANGE, DLANSY, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMM, DLACPY, DSCAL, DSYMM,

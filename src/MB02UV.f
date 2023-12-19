@@ -14,7 +14,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA, N)
+C     A       (input/output) REAL*10 array, dimension (LDA, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A to be factored.
 C             On exit, the leading N-by-N part of this array contains
@@ -62,18 +62,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     .. Scalar Arguments ..
       INTEGER            INFO, LDA, N
 C     .. Array Arguments ..
       INTEGER            IPIV( * ), JPIV( * )
-      REAL*16   A( LDA, * )
+      REAL*10   A( LDA, * )
 C     .. Local Scalars ..
       INTEGER            I, IP, IPV, JP, JPV
-      REAL*16   BIGNUM, EPS, SMIN, SMLNUM, XMAX
+      REAL*10   BIGNUM, EPS, SMIN, SMLNUM, XMAX
 C     .. External Functions ..
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH
 C     .. External Subroutines ..
       EXTERNAL           DGER, DLABAD, DSCAL, DSWAP

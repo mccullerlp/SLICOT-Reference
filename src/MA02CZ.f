@@ -19,7 +19,7 @@ C     KU      (input) INTEGER
 C             The number of superdiagonals of A to be pertransposed.
 C             0 <= KU <= N-1.
 C
-C     A       (input/output) COMPLEX*32 array, dimension (LDA,N)
+C     A       (input/output) COMPLEX*20 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain a square matrix whose central band formed from
 C             the KL subdiagonals, the main diagonal and the KU
@@ -52,7 +52,7 @@ C
 C     .. Scalar Arguments ..
       INTEGER          KL, KU, LDA, N
 C     .. Array Arguments ..
-      COMPLEX*32       A(LDA,*)
+      COMPLEX*20       A(LDA,*)
 C     .. Local Scalars ..
       INTEGER          I, I1, LDA1
 C     .. External Subroutines ..

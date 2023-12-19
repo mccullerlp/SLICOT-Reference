@@ -37,12 +37,12 @@ C
 C     P       (input) INTEGER
 C             The number of rows of the matrices C and D.  P >= 0.
 C
-C     SVLMAX  (input) REAL*16
+C     SVLMAX  (input) REAL*10
 C             An estimate of the largest singular value of the original
 C             matrix ABCD (for instance, the Frobenius norm of ABCD).
 C             SVLMAX >= 0.
 C
-C     ABCD    (input/output) REAL*16 array, dimension
+C     ABCD    (input/output) REAL*10 array, dimension
 C             (LDABCD,M+N)
 C             On entry, the leading (N+P)-by-(M+N) part of this array
 C             must contain the compound matrix
@@ -102,7 +102,7 @@ C             blocks of dimension i-by-(i-1), where i = 1,2,...,NKRONL.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             A tolerance used in rank decisions to determine the
 C             effective rank, which is defined as the order of the
 C             largest leading (or trailing) triangular submatrix in the
@@ -119,7 +119,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (MAX(M,P))
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -204,26 +204,26 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       LOGICAL           FIRST
       INTEGER           DINFZ, INFO, LDABCD, LDWORK, M, N, NINFZ,
      $                  NKRONL, NR, P, PR
-      REAL*16  SVLMAX, TOL
+      REAL*10  SVLMAX, TOL
 C     .. Array Arguments ..
       INTEGER           INFZ(*), IWORK(*), KRONL(*)
-      REAL*16  ABCD(LDABCD,*), DWORK(*)
+      REAL*10  ABCD(LDABCD,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I, I1, ICOL, IRC, IROW, ITAU, JWORK, K, MN, MNR,
      $                  MNTAU, MP1, MPM, MPN, MUI, MUIM1, NBLCKS, PN,
      $                  RANK, RO, RO1, SIGMA, TAUI, WRKOPT
-      REAL*16  RCOND
+      REAL*10  RCOND
 C     .. Local Arrays ..
-      REAL*16  SVAL(3)
+      REAL*10  SVAL(3)
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          DLAPMT, DLASET, DORMQR, DORMRQ, MB03OY, MB03PY,

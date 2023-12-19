@@ -36,7 +36,7 @@ C
 C     N       (input) INTEGER
 C             The order of matrices A, D, E, C, V, and W.  N >= 0.
 C
-C     THRESH  (input) REAL*16
+C     THRESH  (input) REAL*10
 C             If JOB = 'S' or JOB = 'B', and THRESH >= 0, threshold
 C             value for magnitude of the elements to be considered in
 C             the scaling process: elements with magnitude less than or
@@ -70,7 +70,7 @@ C             will be at most VALUE. VALUE should be a power of 10.
 C             If JOB = 'N' or JOB = 'P', the value of THRESH is
 C             irrelevant.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -81,7 +81,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     DE      (input/output) REAL*16 array, dimension
+C     DE      (input/output) REAL*10 array, dimension
 C                            (LDDE, N+1)
 C             On entry, the leading N-by-N strictly lower triangular
 C             part of this array must contain the strictly lower
@@ -104,7 +104,7 @@ C
 C     LDDE    INTEGER
 C             The leading dimension of the array DE.  LDDE >= MAX(1, N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC, N)
+C     C       (input/output) REAL*10 array, dimension (LDC, N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix C.
 C             On exit, the leading N-by-N part of this array contains
@@ -115,7 +115,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1, N).
 C
-C     VW      (input/output) REAL*16 array, dimension
+C     VW      (input/output) REAL*10 array, dimension
 C                            (LDVW, N+1)
 C             On entry, the leading N-by-N lower triangular part of
 C             this array must contain the lower triangular part of the
@@ -139,7 +139,7 @@ C             ILO-1 is the number of deflated eigenvalues in the
 C             balanced skew-Hamiltonian/Hamiltonian matrix pencil.
 C             ILO is set to 1 if JOB = 'N' or JOB = 'S'.
 C
-C     LSCALE  (output) REAL*16 array, dimension (N)
+C     LSCALE  (output) REAL*10 array, dimension (N)
 C             Details of the permutations of S and H and scaling applied
 C             to A, D, C, and V from the left. For j = 1,...,ILO-1 let
 C             P(j) = LSCALE(j). If P(j) <= N, then rows and columns P(j)
@@ -150,7 +150,7 @@ C             symplectic permutation. For j = ILO,...,N the j-th element
 C             of LSCALE contains the factor of the scaling applied to
 C             row j of the matrices A, D, C, and V.
 C
-C     RSCALE  (output) REAL*16 array, dimension (N)
+C     RSCALE  (output) REAL*10 array, dimension (N)
 C             Details of the permutations of S and H and scaling applied
 C             to A, E, C, and W from the right. For j = 1,...,ILO-1 let
 C             P(j) = RSCALE(j). If P(j) <= N, then rows and columns P(j)
@@ -163,7 +163,7 @@ C             column j of the matrices A, E, C, and W.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK) where
+C     DWORK   REAL*10 array, dimension (LDWORK) where
 C             LDWORK = 0,   if  JOB = 'N' or JOB = 'P', or N = 0;
 C             LDWORK = 6*N, if (JOB = 'S' or JOB = 'B') and THRESH >= 0;
 C             LDWORK = 8*N, if (JOB = 'S' or JOB = 'B') and THRESH <  0.
@@ -263,35 +263,35 @@ C
 C  *********************************************************************
 C
 C     .. Parameters ..
-      REAL*16   HALF, ONE, TEN, TWO, ZERO
+      REAL*10   HALF, ONE, TEN, TWO, ZERO
       PARAMETER          ( HALF = 0.5D+0, ONE  = 1.0D+0, TEN = 1.0D+1,
      $                     TWO  = 2.0D+0, ZERO = 0.0D+0 )
-      REAL*16   MXGAIN, SCLFAC
+      REAL*10   MXGAIN, SCLFAC
       PARAMETER          ( MXGAIN = 1.0D+2, SCLFAC = 1.0D+1 )
 C     .. Scalar Arguments ..
       CHARACTER          JOB
       INTEGER            ILO, INFO, IWARN, LDA, LDC, LDDE, LDVW, N
-      REAL*16   THRESH
+      REAL*10   THRESH
 C     .. Array Arguments ..
-      REAL*16   A(LDA,*), C(LDC,*), DE(LDDE,*), DWORK(*),
+      REAL*10   A(LDA,*), C(LDC,*), DE(LDDE,*), DWORK(*),
      $                   LSCALE(*), RSCALE(*), VW(LDVW,*)
 C     .. Local Scalars ..
       LOGICAL            EVNORM, LOOP, LPERM, LSCAL, STORMN
       INTEGER            I, ICAB, ILOOLD, IR, IRAB, IT, ITER, ITH, J,
      $                   JC, K, KOUNT, KS, KW1, KW2, KW3, KW4, KW5, KW6,
      $                   KW7, LRAB, LSFMAX, LSFMIN, NR, NRP2
-      REAL*16   AB, ALPHA, BASL, BETA, CAB, CMAX, COEF, COEF2,
+      REAL*10   AB, ALPHA, BASL, BETA, CAB, CMAX, COEF, COEF2,
      $                   COEF5, COR, DENOM, EPS, EW, GAMMA, GAP, MINPRO,
      $                   MINRAT, MN, MX, MXCOND, MXNORM, MXS, NH, NH0,
      $                   NHS, NS, NS0, NSS, PGAMMA, PROD, RAB, RATIO,
      $                   SFMAX, SFMIN, SUM, T, TA, TC, TD, TE, TH, TH0,
      $                   THS, TV, TW
 C     .. Local Arrays ..
-      REAL*16   DUM(1)
+      REAL*10   DUM(1)
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            IDAMAX
-      REAL*16   DDOT, DLAMCH, MA02ID
+      REAL*10   DDOT, DLAMCH, MA02ID
       EXTERNAL           DDOT, DLAMCH, IDAMAX, LSAME, MA02ID
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DSCAL, DSWAP, XERBLA

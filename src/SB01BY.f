@@ -23,26 +23,26 @@ C     M       (input) INTEGER
 C             The number of columns of the matrix B and also the number
 C             of rows of the matrix F.  M >= 1.
 C
-C     S       (input) REAL*16
+C     S       (input) REAL*10
 C             The sum of the prescribed eigenvalues if N = 2 or the
 C             value of prescribed eigenvalue if N = 1.
 C
-C     P       (input) REAL*16
+C     P       (input) REAL*10
 C             The product of the prescribed eigenvalues if N = 2.
 C             Not referenced if N = 1.
 C
-C     A       (input/output) REAL*16 array, dimension (N,N)
+C     A       (input/output) REAL*10 array, dimension (N,N)
 C             On entry, this array must contain the N-by-N state
 C             dynamics matrix whose eigenvalues have to be moved to
 C             prescribed locations.
 C             On exit, this array contains no useful information.
 C
-C     B       (input/output) REAL*16 array, dimension (N,M)
+C     B       (input/output) REAL*10 array, dimension (N,M)
 C             On entry, this array must contain the N-by-M input/state
 C             matrix B.
 C             On exit, this array contains no useful information.
 C
-C     F       (output) REAL*16 array, dimension (M,N)
+C     F       (output) REAL*10 array, dimension (M,N)
 C             The state feedback matrix F which assigns one pole or two
 C             poles of the closed-loop matrix A + B*F.
 C             If N = 2 and the pair (A,B) is not controllable
@@ -52,13 +52,13 @@ C             uncontrollable part of the pair (A,B).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The absolute tolerance level below which the elements of A
 C             and B are considered zero (used for controllability test).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (M)
+C     DWORK   REAL*10 array, dimension (M)
 C
 C     Error Indicator
 C
@@ -86,22 +86,22 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  FOUR, ONE, THREE, ZERO
+      REAL*10  FOUR, ONE, THREE, ZERO
       PARAMETER         ( FOUR = 4.0D0,  ONE = 1.0D0, THREE = 3.0D0,
      $                    ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, M, N
-      REAL*16  P, S, TOL
+      REAL*10  P, S, TOL
 C     .. Array Arguments ..
-      REAL*16  A(N,*), B(N,*), DWORK(*), F(M,*)
+      REAL*10  A(N,*), B(N,*), DWORK(*), F(M,*)
 C     .. Local Scalars ..
       INTEGER           IR, J
-      REAL*16  ABSR, B1, B2, B21, C, C0, C1, C11, C12, C21,
+      REAL*10  ABSR, B1, B2, B21, C, C0, C1, C11, C12, C21,
      $                  C22, C3, C4, CS, CU, CV, DC0, DC2, DC3, DIFFR,
      $                  R, RN, S12, S21, SIG, SN, SU, SV, TAU1, TAU2,
      $                  WI, WI1, WR, WR1, X, Y, Z
 C     .. External Functions ..
-      REAL*16  DLAMC3, DLAMCH
+      REAL*10  DLAMC3, DLAMCH
       EXTERNAL          DLAMC3, DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          DLANV2, DLARFG, DLASET, DLASV2, DLATZM, DROT

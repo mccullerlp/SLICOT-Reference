@@ -34,7 +34,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, X, and C.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             upper quasi-triangular matrix A, in Schur canonical form.
 C             The part of A below the first sub-diagonal is not
@@ -43,7 +43,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the symmetric matrix C.
 C             On exit, if INFO >= 0, the leading N-by-N part of this
@@ -52,7 +52,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,N).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
@@ -102,30 +102,30 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          TRANA
       INTEGER            INFO, LDA, LDC, N
-      REAL*16   SCALE
+      REAL*10   SCALE
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), C( LDC, * )
+      REAL*10   A( LDA, * ), C( LDC, * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            NOTRNA, LUPPER
       INTEGER            IERR, J, K, K1, K2, KNEXT, L, L1, L2, LNEXT,
      $                   MINK1N, MINK2N, MINL1N, MINL2N
-      REAL*16   A11, BIGNUM, DA11, DB, EPS, SCALOC, SMIN,
+      REAL*10   A11, BIGNUM, DA11, DB, EPS, SCALOC, SMIN,
      $                   SMLNUM, XNORM
 C     ..
 C     .. Local Arrays ..
-      REAL*16   DUM( 1 ), VEC( 2, 2 ), X( 2, 2 )
+      REAL*10   DUM( 1 ), VEC( 2, 2 ), X( 2, 2 )
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DDOT, DLAMCH, DLANHS
+      REAL*10   DDOT, DLAMCH, DLANHS
       EXTERNAL           DDOT, DLAMCH, DLANHS, LSAME
 C     ..
 C     .. External Subroutines ..

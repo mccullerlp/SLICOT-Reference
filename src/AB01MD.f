@@ -34,7 +34,7 @@ C     N       (input) INTEGER
 C             The order of the original state-space representation,
 C             i.e. the order of the matrix A.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the original state dynamics matrix A.
 C             On exit, the leading NCONT-by-NCONT upper Hessenberg
@@ -46,7 +46,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (N)
+C     B       (input/output) REAL*10 array, dimension (N)
 C             On entry, the original input/state vector B.
 C             On exit, the leading NCONT elements of this array contain
 C             canonical form of the input/state vector, given by Z' * B,
@@ -55,7 +55,7 @@ C
 C     NCONT   (output) INTEGER
 C             The order of the controllable state-space representation.
 C
-C     Z       (output) REAL*16 array, dimension (LDZ,N)
+C     Z       (output) REAL*10 array, dimension (LDZ,N)
 C             If JOBZ = 'I', then the leading N-by-N part of this array
 C             contains the matrix of accumulated orthogonal similarity
 C             transformations which reduces the given system to
@@ -73,13 +73,13 @@ C     LDZ     INTEGER
 C             The leading dimension of array Z. If JOBZ = 'I' or
 C             JOBZ = 'F', LDZ >= MAX(1,N); if JOBZ = 'N', LDZ >= 1.
 C
-C     TAU     (output) REAL*16 array, dimension (N)
+C     TAU     (output) REAL*10 array, dimension (N)
 C             The elements of TAU contain the scalar factors of the
 C             elementary reflectors used in the reduction of B and A.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in determining the
 C             controllability of (A,B). If the user sets TOL > 0, then
 C             the given value of TOL is used as an absolute tolerance;
@@ -92,7 +92,7 @@ C             routine DLAMCH).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -160,24 +160,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBZ
       INTEGER           INFO, LDA, LDZ, LDWORK, N, NCONT
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(*), DWORK(*), TAU(*), Z(LDZ,*)
+      REAL*10  A(LDA,*), B(*), DWORK(*), TAU(*), Z(LDZ,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBF, LJOBI, LJOBZ
       INTEGER           ITAU, J
-      REAL*16  ANORM, B1, BNORM, FANORM, FBNORM, H, THRESH,
+      REAL*10  ANORM, B1, BNORM, FANORM, FBNORM, H, THRESH,
      $                  TOLDEF, WRKOPT
 C     .. Local Arrays ..
-      REAL*16  NBLK(1)
+      REAL*10  NBLK(1)
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLANGE
+      REAL*10  DLAMCH, DLANGE
       EXTERNAL          DLAMCH, DLANGE, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DGEHRD, DLACPY, DLARF, DLARFG, DLASET, DORGQR,

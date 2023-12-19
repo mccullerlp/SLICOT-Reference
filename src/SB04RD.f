@@ -47,21 +47,21 @@ C
 C     M       (input) INTEGER
 C             The order of the matrix B.  M >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             coefficient matrix A of the equation.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading M-by-M part of this array must contain the
 C             coefficient matrix B of the equation.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,M).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,M)
+C     C       (input/output) REAL*10 array, dimension (LDC,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the coefficient matrix C of the equation.
 C             On exit, if INFO = 0, the leading N-by-M part of this
@@ -72,7 +72,7 @@ C             The leading dimension of array C.  LDC >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used to test for near singularity in
 C             the Sylvester equation. If the user sets TOL > 0, then the
 C             given value of TOL is used as a lower bound for the
@@ -91,7 +91,7 @@ C     IWORK   INTEGER array, dimension (2*MAX(M,N))
 C             This parameter is not referenced if ABSCHU = 'S',
 C             ULA = 'U', and ULB = 'U'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -156,24 +156,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         ABSCHU, ULA, ULB
       INTEGER           INFO, LDA, LDB, LDC, LDWORK, M, N
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*)
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*)
 C     .. Local Scalars ..
       CHARACTER         ABSCHR
       LOGICAL           LABSCB, LABSCS, LULA, LULB
       INTEGER           FWD, I, IBEG, IEND, INCR, IPINCR, ISTEP, JWORK,
      $                  LDW, MAXMN
-      REAL*16  SCALE, TOL1
+      REAL*10  SCALE, TOL1
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, SB04PY, SB04RV, SB04RW, SB04RX, SB04RY,

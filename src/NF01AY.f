@@ -39,7 +39,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the vector IPAR.  LIPAR >= 1.
 C
-C     WB      (input) REAL*16 array, dimension (LWB)
+C     WB      (input) REAL*10 array, dimension (LWB)
 C             The leading (NN*(NZ+2)+1)*L part of this array must
 C             contain the weights and biases of the network. This vector
 C             is partitioned into L vectors of length NN*(NZ+2)+1,
@@ -55,7 +55,7 @@ C     LWB     (input) INTEGER
 C             The length of the array WB.
 C             LWB >= ( NN*(NZ + 2) + 1 )*L.
 C
-C     Z       (input) REAL*16 array, dimension (LDZ, NZ)
+C     Z       (input) REAL*10 array, dimension (LDZ, NZ)
 C             The leading NSMP-by-NZ part of this array must contain the
 C             set of input samples,
 C             Z = ( Z(1,1),...,Z(1,NZ); ...; Z(NSMP,1),...,Z(NSMP,NZ) ).
@@ -63,7 +63,7 @@ C
 C     LDZ     INTEGER
 C             The leading dimension of the array Z.  LDZ >= MAX(1,NSMP).
 C
-C     Y       (output) REAL*16 array, dimension (LDY, L)
+C     Y       (output) REAL*10 array, dimension (LDY, L)
 C             The leading NSMP-by-L part of this array contains the set
 C             of output samples,
 C             Y = ( Y(1,1),...,Y(1,L); ...; Y(NSMP,1),...,Y(NSMP,L) ).
@@ -73,7 +73,7 @@ C             The leading dimension of the array Y.  LDY >= MAX(1,NSMP).
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= 2*NN.
@@ -108,19 +108,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, L, LDWORK, LDY, LDZ, LIPAR, LWB, NSMP, NZ
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), WB(*), Y(LDY,*), Z(LDZ,*)
+      REAL*10  DWORK(*), WB(*), Y(LDY,*), Z(LDZ,*)
       INTEGER           IPAR(*)
 C     .. Local Scalars ..
       LOGICAL           LAST
       INTEGER           I, IB, J, K, LDWB, LJ, LK, M, MF, NN, NV, WS
-      REAL*16  BIGNUM, DF, SMLNUM, TMP
+      REAL*10  BIGNUM, DF, SMLNUM, TMP
 C     .. External Functions ..
-      REAL*16  DDOT, DLAMCH
+      REAL*10  DDOT, DLAMCH
       EXTERNAL          DDOT, DLAMCH
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEMM, DGEMV, DLABAD, XERBLA

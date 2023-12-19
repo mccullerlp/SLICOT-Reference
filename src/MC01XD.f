@@ -11,15 +11,15 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     ALPHA   (input) REAL*16
-C     BETA    (input) REAL*16
-C     GAMMA   (input) REAL*16
-C     DELTA   (input) REAL*16
+C     ALPHA   (input) REAL*10
+C     BETA    (input) REAL*10
+C     GAMMA   (input) REAL*10
+C     DELTA   (input) REAL*10
 C             The coefficients of the polynomial P.
 C
-C     EVR     (output) REAL*16 array, DIMENSION at least 3
-C     EVI     (output) REAL*16 array, DIMENSION at least 3
-C     EVQ     (output) REAL*16 array, DIMENSION at least 3
+C     EVR     (output) REAL*10 array, DIMENSION at least 3
+C     EVI     (output) REAL*10 array, DIMENSION at least 3
+C     EVQ     (output) REAL*10 array, DIMENSION at least 3
 C             On output, the kth root of P will be equal to
 C             (EVR(K) + i*EVI(K))/EVQ(K) if EVQ(K) .NE. ZERO. Note that
 C             the quotient may over- or underflow. If P has a degree d
@@ -28,7 +28,7 @@ C             EVQ(K) >= 0.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, DIMENSION (LDWORK)
+C     DWORK   REAL*10 array, DIMENSION (LDWORK)
 C             On exit, if LDWORK = -1 on input, then DWORK(1) returns
 C             the optimal value of LDWORK.
 C
@@ -84,16 +84,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TEN
+      REAL*10  ZERO, ONE, TEN
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TEN = 1.0D1 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDWORK
-      REAL*16  ALPHA, BETA, DELTA, GAMMA
+      REAL*10  ALPHA, BETA, DELTA, GAMMA
 C     .. Array Arguments ..
-      REAL*16  DWORK(*), EVI(3), EVQ(3), EVR(3)
+      REAL*10  DWORK(*), EVI(3), EVQ(3), EVR(3)
 C     .. Local Scalars ..
       INTEGER           I, J, M2POS, NMIN, WRKPOS
-      REAL*16  MAXC, MINC, VAR
+      REAL*10  MAXC, MINC, VAR
 C     .. External Subroutines ..
       EXTERNAL          DGEEV, DGGEV, DLADIV, DLASET, XERBLA
 C     .. Intrinsic Functions ..

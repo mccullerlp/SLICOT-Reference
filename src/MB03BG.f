@@ -34,7 +34,7 @@ C     SINV    (input)  INTEGER
 C             Signature multiplier. Entries of S are virtually
 C             multiplied by SINV.
 C
-C     A       (input)  REAL*16 array, dimension (LDA1,LDA2,K)
+C     A       (input)  REAL*10 array, dimension (LDA1,LDA2,K)
 C             The leading N-by-N-by-K part of this array must contain
 C             the product (implicitly represented by its K factors)
 C             in upper Hessenberg form.
@@ -45,8 +45,8 @@ C
 C     LDA2    INTEGER
 C             The second leading dimension of the array A.  LDA2 >= N.
 C
-C     WR      (output)  REAL*16 array, dimension (2)
-C     WI      (output)  REAL*16 array, dimension (2)
+C     WR      (output)  REAL*10 array, dimension (2)
+C     WI      (output)  REAL*10 array, dimension (2)
 C             The real and imaginary parts, respectively, of the
 C             eigenvalues of the 2-by-2 trailing submatrix of the
 C             matrix product.
@@ -81,18 +81,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           K, LDA1, LDA2, N, SINV
 C     .. Array Arguments ..
       INTEGER           AMAP(*), S(*)
-      REAL*16  A(LDA1,LDA2,*), WI(*), WR(*)
+      REAL*10  A(LDA1,LDA2,*), WI(*), WR(*)
 C     .. Local Scalars ..
       INTEGER           I, INFO, L, M
-      REAL*16  P1, P3, P4
+      REAL*10  P1, P3, P4
 C     .. Local Arrays ..
-      REAL*16  DWORK(4), Z(1)
+      REAL*10  DWORK(4), Z(1)
 C     .. External Subroutines ..
       EXTERNAL          DLAHQR
 C

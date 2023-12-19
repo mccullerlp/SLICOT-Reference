@@ -12,15 +12,15 @@ C
 C     DA      (input) INTEGER
 C             The degree of the polynomials A(z) and B(z).  DA >= 0.
 C
-C     A       (input) REAL*16 array, dimension (DA+1)
+C     A       (input) REAL*10 array, dimension (DA+1)
 C             This array must contain the coefficients of the polynomial
 C             A(z) in increasing powers of z.
 C
-C     B       (output) REAL*16 array, dimension (DA+1)
+C     B       (output) REAL*10 array, dimension (DA+1)
 C             This array contains the coefficients of the polynomial
 C             B(z).
 C
-C     EPSB    (output) REAL*16
+C     EPSB    (output) REAL*10
 C             A value used for checking the accuracy of the computed
 C             coefficients.
 C
@@ -40,17 +40,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  THREE
+      REAL*10  THREE
       PARAMETER         ( THREE = 3.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           DA
-      REAL*16  EPSB
+      REAL*10  EPSB
 C     .. Array Arguments ..
-      REAL*16  A(*), B(*)
+      REAL*10  A(*), B(*)
 C     .. Local Scalars ..
       INTEGER           I
 C     .. External Functions ..
-      REAL*16  DDOT, DLAMCH
+      REAL*10  DDOT, DLAMCH
       EXTERNAL          DDOT, DLAMCH
 C     .. Executable Statements ..
 C

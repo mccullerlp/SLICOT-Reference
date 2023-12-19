@@ -72,7 +72,7 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 2.
 C
-C     X       (input) REAL*16 array, dimension (LX)
+C     X       (input) REAL*10 array, dimension (LX)
 C             The leading LPAR entries of this array must contain the
 C             set of system parameters, where
 C                LPAR = (NN*(L + 2) + 1)*L + N*(M + L + 1) + L*M.
@@ -89,7 +89,7 @@ C     LX      (input) INTEGER
 C             The length of X.
 C             LX >= (NN*(L + 2) + 1)*L + N*(M + L + 1) + L*M.
 C
-C     U       (input) REAL*16 array, dimension (LDU, M)
+C     U       (input) REAL*10 array, dimension (LDU, M)
 C             The leading NSMP-by-M part of this array must contain the
 C             set of input samples,
 C             U = ( U(1,1),...,U(1,M); ...; U(NSMP,1),...,U(NSMP,M) ).
@@ -97,14 +97,14 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= MAX(1,NSMP).
 C
-C     E       (input) REAL*16 array, dimension (NSMP*L)
+C     E       (input) REAL*10 array, dimension (NSMP*L)
 C             If CJTE = 'C', this array must contain a vector e, which
 C             will be premultiplied with J', e = vec( Y - y ), where
 C             Y is set of output samples, and vec denotes the
 C             concatenation of the columns of a matrix.
 C             If CJTE = 'N', this array is not referenced.
 C
-C     J       (output) REAL*16 array, dimension (LDJ, *)
+C     J       (output) REAL*10 array, dimension (LDJ, *)
 C             The leading NSMP*L-by-NCOLJ part of this array contains
 C             the Jacobian of the error function stored in a compressed
 C             form, as described above, where
@@ -115,14 +115,14 @@ C             The leading dimension of array J.  LDJ >= MAX(1,NSMP*L).
 C             Note that LDJ is an input parameter, except for
 C             IPAR(1) < 0 on entry, when it is an output parameter.
 C
-C     JTE     (output) REAL*16 array, dimension (LPAR)
+C     JTE     (output) REAL*10 array, dimension (LPAR)
 C             If CJTE = 'C', this array contains the matrix-vector
 C             product J'*e.
 C             If CJTE = 'N', this array is not referenced.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -171,22 +171,22 @@ C     .. Parameters ..
 C     .. EPSFCN is related to the error in computing the functions ..
 C     .. For EPSFCN = 0.0D0, the square root of the machine precision
 C     .. is used for finite difference approximation of the derivatives.
-      REAL*16  ZERO, ONE, EPSFCN
+      REAL*10  ZERO, ONE, EPSFCN
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, EPSFCN = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         CJTE
       INTEGER           INFO, L, LDJ, LDU, LDWORK, LX, LIPAR, M, NSMP
 C     .. Array Arguments ..
       INTEGER           IPAR(*)
-      REAL*16  DWORK(*), E(*), J(LDJ, *), JTE(*), U(LDU,*),
+      REAL*10  DWORK(*), E(*), J(LDJ, *), JTE(*), U(LDU,*),
      $                  X(*)
 C     .. Local Scalars ..
       LOGICAL           WJTE
-      REAL*16  EPS, H, PARSAV
+      REAL*10  EPS, H, PARSAV
       INTEGER           AC, BD, BSN, I, IX, IY, JW, K, KCOL, LDAC, LPAR,
      $                  LTHS, N, NN, NSML, NTHS, Z
 C     .. External Functions ..
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       LOGICAL           LSAME
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..

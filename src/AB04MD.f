@@ -28,12 +28,12 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs.  P >= 0.
 C
-C     ALPHA,  (input) REAL*16
+C     ALPHA,  (input) REAL*10
 C     BETA    Parameters specifying the bilinear transformation.
 C             Recommended values for stable systems: ALPHA = 1,
 C             BETA = 1.  ALPHA <> 0, BETA <> 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state matrix A of the original system.
 C             On exit, the leading N-by-N part of this array contains
@@ -43,7 +43,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B of the original system.
 C             On exit, the leading N-by-M part of this array contains
@@ -53,7 +53,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C of the original system.
 C             On exit, the leading P-by-N part of this array contains
@@ -63,7 +63,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input/output) REAL*16 array, dimension (LDD,M)
+C     D       (input/output) REAL*10 array, dimension (LDD,M)
 C             On entry, the leading P-by-M part of this array must
 C             contain the input/output matrix D for the original system.
 C             On exit, the leading P-by-M part of this array contains
@@ -77,7 +77,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -170,19 +170,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO=0.0D0, ONE=1.0D0, TWO=2.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TYPE
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDWORK, M, N, P
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), DWORK(*)
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), DWORK(*)
 C     .. Local Scalars ..
       LOGICAL           LTYPE
       INTEGER           I, IP
-      REAL*16  AB2, PALPHA, PBETA, SQRAB2
+      REAL*10  AB2, PALPHA, PBETA, SQRAB2
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

@@ -44,7 +44,7 @@ C             be increased by 1 if the moved block was 2-by-2 and it has
 C             been replaced by two 1-by-1 blocks. Otherwise, its input
 C             value is preserved.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A in real Schur canonical form.
 C             On exit, the leading N-by-N part of this array contains
@@ -53,7 +53,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     X       (input/output) REAL*16 array, dimension (LDX,N)
+C     X       (input/output) REAL*10 array, dimension (LDX,N)
 C             On entry, if JOBV = 'V', the leading N-by-N part of this
 C             array must contain a given matrix X.
 C             On exit, if JOBV = 'V', the leading N-by-N part of this
@@ -66,7 +66,7 @@ C             The leading dimension of array X.
 C             LDX >= 1,        if JOBV = 'N';
 C             LDX >= MAX(1,N), if JOBV = 'V'.
 C
-C     WR,     (input/output) REAL*16 arrays, dimension (N)
+C     WR,     (input/output) REAL*10 arrays, dimension (N)
 C     WI      On entry, these arrays must contain the real and imaginary
 C             parts, respectively, of the eigenvalues of the matrix A.
 C             On exit, these arrays contain the real and imaginary
@@ -75,7 +75,7 @@ C             possibly reordered.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N)
+C     DWORK   REAL*10 array, dimension (N)
 C
 C     METHOD
 C
@@ -123,13 +123,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO
+      REAL*10  ZERO
       PARAMETER         ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         JOBV
       INTEGER           KL, KU, LDA, LDX, N
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), DWORK(*), WI(*), WR(*), X(LDX,*)
+      REAL*10  A(LDA,*), DWORK(*), WI(*), WR(*), X(LDX,*)
 C     .. Local Scalars ..
       INTEGER           IERR, IFST, ILST, L
 C     .. External Subroutines ..

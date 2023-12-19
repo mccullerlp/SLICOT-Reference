@@ -38,7 +38,7 @@ C             than TOL.
 C             If L has been increased, then the routine returns with
 C             IWARN set to 1.
 C
-C     THETA   (input/output) REAL*16
+C     THETA   (input/output) REAL*10
 C             On entry, THETA must contain an initial estimate for the
 C             upper bound to be computed. If THETA < 0.0 on entry, then
 C             one of the following default values is used.
@@ -50,27 +50,27 @@ C             On exit, THETA contains the computed upper bound such that
 C             the bidiagonal matrix J has precisely L singular values
 C             less than or equal to THETA + TOL.
 C
-C     Q       (input) REAL*16 array, dimension (N)
+C     Q       (input) REAL*10 array, dimension (N)
 C             This array must contain the diagonal elements q(1),
 C             q(2),...,q(N) of the bidiagonal matrix J. That is,
 C             Q(i) = J(i,i) for i = 1,2,...,N.
 C
-C     E       (input) REAL*16 array, dimension (N-1)
+C     E       (input) REAL*10 array, dimension (N-1)
 C             This array must contain the superdiagonal elements
 C             e(1),e(2),...,e(N-1) of the bidiagonal matrix J. That is,
 C             E(k) = J(k,k+1) for k = 1,2,...,N-1.
 C
-C     Q2      (input) REAL*16 array, dimension (N)
+C     Q2      (input) REAL*10 array, dimension (N)
 C             This array must contain the squares of the diagonal
 C             elements q(1),q(2),...,q(N) of the bidiagonal matrix J.
 C             That is, Q2(i) = J(i,i)**2 for i = 1,2,...,N.
 C
-C     E2      (input) REAL*16 array, dimension (N-1)
+C     E2      (input) REAL*10 array, dimension (N-1)
 C             This array must contain the squares of the superdiagonal
 C             elements e(1),e(2),...,e(N-1) of the bidiagonal matrix J.
 C             That is, E2(k) = J(k,k+1)**2 for k = 1,2,...,N-1.
 C
-C     PIVMIN  (input) REAL*16
+C     PIVMIN  (input) REAL*10
 C             The minimum absolute value of a "pivot" in the Sturm
 C             sequence loop.
 C             PIVMIN >= max( max( |q(i)|, |e(k)| )**2*sf_min, sf_min ),
@@ -81,7 +81,7 @@ C             Note that this condition is not checked by the routine.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             This parameter defines the multiplicity of singular values
 C             by considering all singular values within an interval of
 C             length TOL as coinciding. TOL is used in checking how many
@@ -90,7 +90,7 @@ C             computing an appropriate upper bound THETA by a bisection
 C             method, TOL is used as a stopping criterion defining the
 C             minimum (absolute) subinterval width.  TOL >= 0.
 C
-C     RELTOL  REAL*16
+C     RELTOL  REAL*10
 C             This parameter specifies the minimum relative width of an
 C             interval. When an interval is narrower than TOL, or than
 C             RELTOL times the larger (in magnitude) endpoint, then it
@@ -181,21 +181,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, TWO
+      REAL*10  ZERO, TWO
       PARAMETER         ( ZERO = 0.0D0, TWO = 2.0D0 )
-      REAL*16  FUDGE
+      REAL*10  FUDGE
       PARAMETER         ( FUDGE = TWO )
 C     .. Scalar Arguments ..
       INTEGER           INFO, IWARN, L, N
-      REAL*16  PIVMIN, RELTOL, THETA, TOL
+      REAL*10  PIVMIN, RELTOL, THETA, TOL
 C     .. Array Arguments ..
-      REAL*16  E(*), E2(*), Q(*), Q2(*)
+      REAL*10  E(*), E2(*), Q(*), Q2(*)
 C     .. Local Scalars ..
       INTEGER           I, NUM, NUMZ
-      REAL*16  H, TH, Y, Z
+      REAL*10  H, TH, Y, Z
 C     .. External Functions ..
       INTEGER           MB03ND
-      REAL*16  DLAMCH, MB03MY
+      REAL*10  DLAMCH, MB03MY
       EXTERNAL          DLAMCH, MB03MY, MB03ND
 C     .. External Subroutines ..
       EXTERNAL          XERBLA

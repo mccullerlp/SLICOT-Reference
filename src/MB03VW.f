@@ -98,7 +98,7 @@ C             The leading K elements of this array must contain the
 C             signatures of the factors. Each entry in S must be either
 C             1 or -1.
 C
-C     A       (input/output) REAL*16 array, dimension
+C     A       (input/output) REAL*10 array, dimension
 C                            (LDA1,LDA2,K)
 C             On entry, the leading N-by-N-by-K part of this array must
 C             contain the factors of the general product to be reduced.
@@ -114,7 +114,7 @@ C     LDA2    INTEGER
 C             The second leading dimension of the array A.
 C             LDA2 >= MAX(1,N).
 C
-C     Q       (input/output) REAL*16 array, dimension
+C     Q       (input/output) REAL*10 array, dimension
 C                            (LDQ1,LDQ2,K)
 C             On entry, if COMPQ = 'U', the leading N-by-N-by-K part
 C             of this array must contain the initial orthogonal factors
@@ -148,7 +148,7 @@ C
 C     LIWORK  INTEGER
 C             The length of the array IWORK.  LIWORK >= MAX(1,3*K).
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C             On exit, if  INFO = -19,  DWORK(1)  returns the minimum
@@ -191,7 +191,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         COMPQ, TRIU
@@ -199,15 +199,15 @@ C     .. Scalar Arguments ..
      $                  LDWORK, LIWORK, N
 C     .. Array Arguments ..
       INTEGER           IWORK(*), QIND(*), S(*)
-      REAL*16  A(LDA1,LDA2,*), DWORK(LDWORK), Q(LDQ1,LDQ2,*)
+      REAL*10  A(LDA1,LDA2,*), DWORK(LDWORK), Q(LDQ1,LDQ2,*)
 C     .. Local Scalars ..
       LOGICAL           ALLTRI, LCMPQ, LINDQ, LINIQ, LPARQ, LQUERY
       INTEGER           AIND, AINDP, I, I2, I3, IER, INDQ, IWRK, J, L,
      $                  LT, M, MAPA, MAPQ, MAXSET, MINWRK, OPTWRK, POS,
      $                  SMULT, UPIDX, WMAX
-      REAL*16  ALPHA, TAU, TEMP
+      REAL*10  ALPHA, TAU, TEMP
 C     .. Local Arrays ..
-      REAL*16  DUM(3)
+      REAL*10  DUM(3)
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

@@ -56,7 +56,7 @@ C             NEX1 = 13, NEX2 = 5, NEX3 = 0, NEX4 = 1.
 C             1 <= NR(1) <= 4;
 C             0 <= NR(2) <= NEXi, where i = NR(1).
 C
-C     DPAR    (input/output) REAL*16 array, dimension (4)
+C     DPAR    (input/output) REAL*10 array, dimension (4)
 C             Double precision parameter vector. For explanation of the
 C             parameters see [1].
 C             DPAR(1) defines the parameter 'epsilon' for
@@ -188,14 +188,14 @@ C     P       (output) INTEGER
 C             The number of rows in the matrix C (or the dimension of
 C             the output space of the underlying dynamical system).
 C
-C     A       (output) REAL*16 array, dimension (LDA,N)
+C     A       (output) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array contains the
 C             coefficient matrix A of the DARE.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= N.
 C
-C     B       (output) REAL*16 array, dimension (LDB,M)
+C     B       (output) REAL*10 array, dimension (LDB,M)
 C             If (BPAR(4) = .FALSE.), then the leading N-by-M part
 C             of this array contains the coefficient matrix B of
 C             the DARE.  Otherwise, B is used as workspace.
@@ -203,7 +203,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= N.
 C
-C     C       (output) REAL*16 array, dimension (LDC,N)
+C     C       (output) REAL*10 array, dimension (LDC,N)
 C             If (BPAR(1) = .FALSE.), then the leading P-by-N part
 C             of this array contains the matrix C of the factored
 C             form (I) of Q.  Otherwise, C is used as workspace.
@@ -211,7 +211,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= P.
 C
-C     Q       (output) REAL*16 array, dimension (NQ)
+C     Q       (output) REAL*10 array, dimension (NQ)
 C             If (BPAR(1) = .TRUE.) and (BPAR(2) = .TRUE.), then
 C             NQ = LDQ*N.
 C             IF (BPAR(1) = .TRUE.) and (BPAR(2) = .FALSE.), then
@@ -231,7 +231,7 @@ C             storage mode is used, then LDQ is irrelevant.
 C             LDQ >= N if BPAR(1) = .TRUE.;
 C             LDQ >= P if BPAR(1) = .FALSE..
 C
-C     R       (output) REAL*16 array, dimension (MR)
+C     R       (output) REAL*10 array, dimension (MR)
 C             If (BPAR(4) = .TRUE.) and (BPAR(5) = .TRUE.), then
 C             MR = LDR*N.
 C             IF (BPAR(4) = .TRUE.) and (BPAR(5) = .FALSE.), then
@@ -251,7 +251,7 @@ C             storage mode is used, then LDR is irrelevant.
 C             LDR >= N  if BPAR(4) =  .TRUE.;
 C             LDR >= M  if BPAR(4) = .FALSE..
 C
-C     S       (output) REAL*16 array, dimension (LDS,M)
+C     S       (output) REAL*10 array, dimension (LDS,M)
 C             If (BPAR(7) = .TRUE.), then the leading N-by-M part of
 C             this array contains the coefficient matrix S of the DARE.
 C
@@ -259,7 +259,7 @@ C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= 1, and
 C             LDS >= N if BPAR(7) = .TRUE..
 C
-C     X       (output) REAL*16 array, dimension (LDX,NX)
+C     X       (output) REAL*10 array, dimension (LDX,NX)
 C             If an exact solution is available (NR = 1.1,1.3,1.4,2.1,
 C             2.3,2.4,2.5,4.1), then NX = N and the leading N-by-N part
 C             of this array contains the solution matrix X.
@@ -271,7 +271,7 @@ C             LDX >= N if an exact solution is available.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= N*N.
@@ -331,7 +331,7 @@ C     . # of examples available , # of examples with fixed size. .
       INTEGER          NEX1, NEX2, NEX3, NEX4, NMAX
       PARAMETER        ( NEX1 = 13, NEX2 = 5, NEX3 = 0, NEX4 = 1 )
       PARAMETER        ( NMAX = 13 )
-      REAL*16 ZERO, ONE, TWO, THREE, FOUR, FIVE
+      REAL*10 ZERO, ONE, TWO, THREE, FOUR, FIVE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      1                   THREE = 3.0D0, FOUR = 4.0D0, FIVE = 5.0D0 )
 C
@@ -341,7 +341,7 @@ C     .. Scalar Arguments ..
       CHARACTER        DEF
 C
 C     .. Array Arguments ..
-      REAL*16 A(LDA,*), B(LDB,*), C(LDC,*), DPAR(*), DWORK(*),
+      REAL*10 A(LDA,*), B(LDB,*), C(LDC,*), DPAR(*), DWORK(*),
      1                 Q(*), R(*), S(LDS,*), X(LDX,*)
       INTEGER          IPAR(3), NR(2)
       CHARACTER        CHPAR*255
@@ -350,7 +350,7 @@ C
 C     .. Local Scalars ..
       INTEGER          I, IOS, ISYMM, J, MSYMM, NSYMM, PSYMM, QDIMM,
      1                 RDIMM
-      REAL*16 ALPHA, BETA, TEMP
+      REAL*10 ALPHA, BETA, TEMP
 C
 C     ..Local Arrays ..
       INTEGER          MDEF(2,NMAX), NDEF(4,NMAX), NEX(4), PDEF(2,NMAX)

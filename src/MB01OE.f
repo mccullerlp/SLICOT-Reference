@@ -36,15 +36,15 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices R, E, and H.  N >= 0.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The scalar alpha. When alpha is zero then R need not be
 C             set before entry.
 C
-C     BETA    (input) REAL*16
+C     BETA    (input) REAL*10
 C             The scalar beta. When beta is zero then E and H are not
 C             referenced.
 C
-C     R       (input/output) REAL*16 array, dimension (LDR,N)
+C     R       (input/output) REAL*10 array, dimension (LDR,N)
 C             On entry with UPLO = 'U', the leading N-by-N upper
 C             triangular part of this array must contain the upper
 C             triangular part of the symmetric matrix R.
@@ -61,7 +61,7 @@ C
 C     LDR     INTEGER
 C             The leading dimension of array R.  LDR >= MAX(1,N).
 C
-C     H       (input) REAL*16 array, dimension (LDH,N)
+C     H       (input) REAL*10 array, dimension (LDH,N)
 C             On entry, the leading N-by-N upper Hessenberg part of this
 C             array must contain the upper Hessenberg matrix H.
 C             The remaining part of this array is not referenced.
@@ -69,7 +69,7 @@ C
 C     LDH     INTEGER
 C             The leading dimension of array H.  LDH >= MAX(1,N).
 C
-C     E       (input) REAL*16 array, dimension (LDE,N)
+C     E       (input) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading N-by-N upper triangular part of this
 C             array must contain the upper triangular matrix E.
 C             The remaining part of this array is not referenced.
@@ -101,27 +101,27 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C     ..
 C     .. Scalar Arguments ..
-      REAL*16  ALPHA, BETA
+      REAL*10  ALPHA, BETA
       INTEGER           LDE, LDH, LDR, N
       CHARACTER         TRANS, UPLO
 C     ..
 C     .. Array Arguments ..
-      REAL*16  E(LDE,*), H(LDH,*), R(LDR,*)
+      REAL*10  E(LDE,*), H(LDH,*), R(LDR,*)
 C     ..
 C     .. Local Scalars ..
-      REAL*16  BETA2, TEMP
+      REAL*10  BETA2, TEMP
       INTEGER           I, INFO, J, J1
       LOGICAL           LTRANS, UPPER
 C     ..
 C     .. Local Arrays ..
-      REAL*16  TMP(1)
+      REAL*10  TMP(1)
 C     ..
 C     .. External Functions ..
-      REAL*16  DDOT
+      REAL*10  DDOT
       LOGICAL           LSAME
       EXTERNAL          DDOT, LSAME
 C     ..

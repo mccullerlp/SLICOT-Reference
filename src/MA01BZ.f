@@ -9,7 +9,7 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     BASE    (input)  REAL*16
+C     BASE    (input)  REAL*10
 C             Machine base.
 C
 C     K       (input)  INTEGER
@@ -18,13 +18,13 @@ C
 C     S       (input)  INTEGER array, dimension (K)
 C             The signature array. Each entry of S must be 1 or -1.
 C
-C     A       (input)  COMPLEX*32 array, dimension (K)
+C     A       (input)  COMPLEX*20 array, dimension (K)
 C             Vector of complex scalars.
 C
 C     INCA    (input)  INTEGER
 C             Increment for the array A. INCA <> 0.
 C
-C     ALPHA   (output)  COMPLEX*32
+C     ALPHA   (output)  COMPLEX*20
 C             ALPHA is a complex scalar with ABS(ALPHA) = 0, or
 C             1.0 <= ABS(ALPHA) < BASE, such that
 C
@@ -32,7 +32,7 @@ C                ALPHA / BETA * BASE**(SCAL)
 C
 C             is the general product of the scalars in the array A.
 C
-C     BETA    (output)  COMPLEX*32
+C     BETA    (output)  COMPLEX*20
 C             BETA is either 0.0 or 1.0.
 C             See also the description of ALPHA.
 C
@@ -55,21 +55,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D+0, ZERO = 0.0D+0 )
-      COMPLEX*32        CONE, CZERO
+      COMPLEX*20        CONE, CZERO
       PARAMETER         ( CONE  = ( 1.0D+0, 0.0D+0 ),
      $                    CZERO = ( 0.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       INTEGER           INCA, K, SCAL
-      REAL*16  BASE
-      COMPLEX*32        ALPHA, BETA
+      REAL*10  BASE
+      COMPLEX*20        ALPHA, BETA
 C     .. Array Arguments ..
       INTEGER           S(*)
-      COMPLEX*32        A(*)
+      COMPLEX*20        A(*)
 C     .. Local Scalars ..
       INTEGER           I, INDA
-      COMPLEX*32        CBASE
+      COMPLEX*20        CBASE
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, DCMPLX
 C

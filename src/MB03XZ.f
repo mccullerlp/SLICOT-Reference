@@ -102,7 +102,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.  N >= 0.
 C
-C     A       (input/output) COMPLEX*32 array, dimension (LDA,K)
+C     A       (input/output) COMPLEX*20 array, dimension (LDA,K)
 C             where K = N, if JOB = 'E', and K = 2*N, if JOB <> 'E'.
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.
@@ -117,7 +117,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,K).
 C
-C     QG      (input/output) COMPLEX*32 array, dimension
+C     QG      (input/output) COMPLEX*20 array, dimension
 C                            (LDQG,min(K+1,2*N))
 C             On entry, the leading N-by-N+1 part of this array must
 C             contain in columns 1:N the lower triangular part of the
@@ -134,7 +134,7 @@ C
 C     LDQG    INTEGER
 C             The leading dimension of the array QG.  LDQG >= max(1,K).
 C
-C     U1      (output) COMPLEX*32 array, dimension (LDU1,2*N)
+C     U1      (output) COMPLEX*20 array, dimension (LDU1,2*N)
 C             On exit, if JOB = 'S' or JOB = 'G', and JOBU = 'U', the
 C             leading 2*N-by-2*N part of this array contains the (1,1)
 C             block of the unitary symplectic matrix U of the
@@ -145,7 +145,7 @@ C     LDU1    INTEGER
 C             The leading dimension of the array U1.  LDU1 >= 1.
 C             LDU1 >= 2*N,    if JOBU = 'U'.
 C
-C     U2      (output) COMPLEX*32 array, dimension (LDU2,2*N)
+C     U2      (output) COMPLEX*20 array, dimension (LDU2,2*N)
 C             On exit, if JOB = 'S' or JOB = 'G', and JOBU = 'U', the
 C             leading 2*N-by-2*N part of this array contains the (1,2)
 C             block of the unitary symplectic matrix U of the
@@ -156,8 +156,8 @@ C     LDU2    INTEGER
 C             The leading dimension of the array U2.  LDU2 >= 1.
 C             LDU2 >= 2*N,    if JOBU = 'U'.
 C
-C     WR      (output) REAL*16 array, dimension (2*N)
-C     WI      (output) REAL*16 array, dimension (2*N)
+C     WR      (output) REAL*10 array, dimension (2*N)
+C     WI      (output) REAL*10 array, dimension (2*N)
 C             On exit, the leading 2*N elements of WR and WI contain the
 C             real and imaginary parts, respectively, of the eigenvalues
 C             of the Hamiltonian matrix H.
@@ -168,7 +168,7 @@ C             The balanced A(I,J) = 0 if I > J and J = 1,...,ILO-1.
 C             The balanced Q(I,J) = 0 if J = 1,...,ILO-1 or
 C             I = 1,...,ILO-1.
 C
-C     SCALE   (output) REAL*16 array, dimension (N)
+C     SCALE   (output) REAL*10 array, dimension (N)
 C             On exit, if BALANC <> 'N', the leading N elements of this
 C             array contain details of the permutation and/or scaling
 C             factors applied when balancing H, see MB04DZ.
@@ -176,7 +176,7 @@ C             This array is not referenced if BALANC = 'N'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0,  DWORK(1)  returns the optimal
 C             value of LDWORK, and   DWORK(2)  returns the 1-norm of the
 C             (scaled, if BALANC = 'S' or 'B') Hamiltonian matrix.
@@ -217,7 +217,7 @@ C             DWORK array, returns this value as the first entry of
 C             the DWORK array, and no error message related to LDWORK
 C             is issued by XERBLA.
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C             On exit, if INFO = 0,  ZWORK(1)  returns the optimal
 C             value of LZWORK.
 C             On exit, if  INFO = -20,  ZWORK(1)  returns the minimum
@@ -287,9 +287,9 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE, TWO
+      REAL*10   ZERO, ONE, TWO
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
-      COMPLEX*32         CZERO, CONE
+      COMPLEX*20         CZERO, CONE
       PARAMETER          ( CZERO = ( 0.0D0, 0.0D0 ),
      $                     CONE  = ( 1.0D0, 0.0D0 ) )
 C     .. Scalar Arguments ..
@@ -298,8 +298,8 @@ C     .. Scalar Arguments ..
      $                   LZWORK, N
 C     .. Array Arguments ..
       LOGICAL            BWORK( * )
-      REAL*16   DWORK( * ), SCALE( * ), WI( * ), WR( * )
-      COMPLEX*32         A( LDA, * ), QG( LDQG, * ), U1( LDU1, * ),
+      REAL*10   DWORK( * ), SCALE( * ), WI( * ), WR( * )
+      COMPLEX*20         A( LDA, * ), QG( LDQG, * ), U1( LDU1, * ),
      $                   U2( LDU2, * ), ZWORK( * )
 C     .. Local Scalars ..
       LOGICAL            LQUERY, LSCAL, SCALEH, WANTG, WANTS, WANTU,
@@ -308,11 +308,11 @@ C     .. Local Scalars ..
      $                   IUB, IW, IW1, IWRK, J, J1, J2, JM1, JP2, K,
      $                   MINDB, MINDW, MINZW, N2, NB, NC, NC1, NN, NN2,
      $                   OPTDW, OPTZW
-      REAL*16   BIGNUM, CSCALE, EPS, HNR1, HNRM, NRMB, SMLNUM
-      COMPLEX*32         TMP
+      REAL*10   BIGNUM, CSCALE, EPS, HNR1, HNRM, NRMB, SMLNUM
+      COMPLEX*20         TMP
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH, MA02IZ
+      REAL*10   DLAMCH, MA02IZ
       EXTERNAL           DLAMCH, LSAME, MA02IZ
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DLABAD, DLACPY, DLASCL, MB03XS, MB04DZ,

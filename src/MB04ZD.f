@@ -57,7 +57,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrices A, G, and Q.  N >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On input, the leading N-by-N part of this array must
 C             contain the upper left block A of the Hamiltonian matrix H
 C             in (1).
@@ -68,7 +68,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     QG      (input/output) REAL*16 array, dimension
+C     QG      (input/output) REAL*10 array, dimension
 C             (LDQG,N+1)
 C             On input, the leading N-by-N lower triangular part of this
 C             array must contain the lower triangle of the lower left
@@ -89,7 +89,7 @@ C
 C     LDQG    INTEGER
 C             The leading dimension of the array QG.  LDQG >= MAX(1,N).
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,2*N)
+C     U       (input/output) REAL*10 array, dimension (LDU,2*N)
 C             If COMPU = 'N', then this array is not referenced.
 C             If COMPU = 'I' or 'F', then the input contents of this
 C             array are not specified.  On output, the leading
@@ -112,7 +112,7 @@ C             LDU >= 1,        if COMPU =  'N'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (2*N)
+C     DWORK   REAL*10 array, dimension (2*N)
 C
 C     Error Indicator
 C
@@ -199,7 +199,7 @@ C     ******************************************************************
 C
 C     .. Parameters ..
 C
-      REAL*16  ZERO, ONE, TWO
+      REAL*10  ZERO, ONE, TWO
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0 )
 C
 C     .. Scalar Arguments ..
@@ -207,18 +207,18 @@ C     .. Scalar Arguments ..
       CHARACTER         COMPU
 C     ..
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), DWORK(*), QG(LDQG,*), U(LDU,*)
+      REAL*10  A(LDA,*), DWORK(*), QG(LDQG,*), U(LDU,*)
 C     ..
 C     .. Local Scalars ..
-      REAL*16  COSINE, SINE, TAU, TEMP, X, Y
+      REAL*10  COSINE, SINE, TAU, TEMP, X, Y
       INTEGER           J
       LOGICAL           ACCUM, FORGET, FORM
 C     ..
 C     .. Local Arrays ..
-      REAL*16  DUMMY(1), T(2,2)
+      REAL*10  DUMMY(1), T(2,2)
 C     ..
 C     .. External Functions ..
-      REAL*16  DDOT
+      REAL*10  DDOT
       LOGICAL           LSAME
       EXTERNAL          DDOT, LSAME
 C     ..

@@ -64,7 +64,7 @@ C             in HSV(1));
 C             if ORDSEL = 'A', NR is equal to the number of Hankel
 C             singular values greater than MAX(TOL,N*EPS*HNORM(A,B,C)).
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A in a real Schur
 C             canonical form.
@@ -75,7 +75,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
 C             On exit, if INFO = 0, the leading NR-by-M part of this
@@ -85,7 +85,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, if INFO = 0, the leading P-by-NR part of this
@@ -95,19 +95,19 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     HSV     (output) REAL*16 array, dimension (N)
+C     HSV     (output) REAL*10 array, dimension (N)
 C             If INFO = 0, it contains the Hankel singular values of
 C             the original system ordered decreasingly. HSV(1) is the
 C             Hankel norm of the system.
 C
-C     T       (output) REAL*16 array, dimension (LDT,N)
+C     T       (output) REAL*10 array, dimension (LDT,N)
 C             If INFO = 0 and NR > 0, the leading N-by-NR part of this
 C             array contains the right truncation matrix T.
 C
 C     LDT     INTEGER
 C             The leading dimension of array T.  LDT >= MAX(1,N).
 C
-C     TI      (output) REAL*16 array, dimension (LDTI,N)
+C     TI      (output) REAL*10 array, dimension (LDTI,N)
 C             If INFO = 0 and NR > 0, the leading NR-by-N part of this
 C             array contains the left truncation matrix TI.
 C
@@ -116,7 +116,7 @@ C             The leading dimension of array TI.  LDTI >= MAX(1,N).
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             If ORDSEL = 'A', TOL contains the tolerance for
 C             determining the order of reduced system.
 C             For model reduction, the recommended value is
@@ -135,7 +135,7 @@ C     IWORK   INTEGER array, dimension (LIWORK)
 C             LIWORK = 0, if JOB = 'B', or
 C             LIWORK = N, if JOB = 'N'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -240,24 +240,24 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, JOB, ORDSEL
       INTEGER           INFO, IWARN, LDA, LDB, LDC, LDT, LDTI, LDWORK,
      $                  M, N, NR, P
-      REAL*16  TOL
+      REAL*10  TOL
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), HSV(*),
      $                  T(LDT,*), TI(LDTI,*)
 C     .. Local Scalars ..
       LOGICAL           BAL, DISCR, FIXORD, PACKED
       INTEGER           IERR, IJ, J, K, KTAU, KU, KV, KW, LDW, WRKOPT
-      REAL*16  ATOL, RTOL, SCALEC, SCALEO, TEMP
+      REAL*10  ATOL, RTOL, SCALEC, SCALEO, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          DGEMM, DGEMV, DGEQRF, DGETRF, DGETRS, DLACPY,

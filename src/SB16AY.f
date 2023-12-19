@@ -73,7 +73,7 @@ C     NCS     (input) INTEGER
 C             The dimension of the stable part of the controller, i.e.,
 C             the order of matrix Ac2.  NC >= NCS >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,N)
+C     A       (input) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array must contain the
 C             state matrix A of the system with the transfer-function
 C             matrix G.
@@ -81,28 +81,28 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input) REAL*16 array, dimension (LDB,M)
+C     B       (input) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array must contain the
 C             input/state matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input) REAL*16 array, dimension (LDC,N)
+C     C       (input) REAL*10 array, dimension (LDC,N)
 C             The leading P-by-N part of this array must contain the
 C             state/output matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             input/output matrix D of the open-loop system.
 C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     AC      (input) REAL*16 array, dimension (LDAC,NC)
+C     AC      (input) REAL*10 array, dimension (LDAC,NC)
 C             The leading NC-by-NC part of this array must contain
 C             the state dynamics matrix Ac of the controller in a
 C             block diagonal real Schur form Ac = diag(Ac1,Ac2), where
@@ -113,35 +113,35 @@ C
 C     LDAC    INTEGER
 C             The leading dimension of array AC.  LDAC >= MAX(1,NC).
 C
-C     BC      (input) REAL*16 array, dimension (LDBC,P)
+C     BC      (input) REAL*10 array, dimension (LDBC,P)
 C             The leading NC-by-P part of this array must contain
 C             the input/state matrix Bc of the controller.
 C
 C     LDBC    INTEGER
 C             The leading dimension of array BC.  LDBC >= MAX(1,NC).
 C
-C     CC      (input) REAL*16 array, dimension (LDCC,NC)
+C     CC      (input) REAL*10 array, dimension (LDCC,NC)
 C             The leading M-by-NC part of this array must contain
 C             the state/output matrix Cc of the controller.
 C
 C     LDCC    INTEGER
 C             The leading dimension of array CC.  LDCC >= MAX(1,M).
 C
-C     DC      (input) REAL*16 array, dimension (LDDC,P)
+C     DC      (input) REAL*10 array, dimension (LDDC,P)
 C             The leading M-by-P part of this array must contain
 C             the input/output matrix Dc of the controller.
 C
 C     LDDC    INTEGER
 C             The leading dimension of array DC.  LDDC >= MAX(1,M).
 C
-C     SCALEC  (output) REAL*16
+C     SCALEC  (output) REAL*10
 C             Scaling factor for the controllability Grammian.
 C             See METHOD.
 C
-C     SCALEO  (output) REAL*16
+C     SCALEO  (output) REAL*10
 C             Scaling factor for the observability Grammian. See METHOD.
 C
-C     S       (output) REAL*16 array, dimension (LDS,NCS)
+C     S       (output) REAL*10 array, dimension (LDS,NCS)
 C             The leading NCS-by-NCS upper triangular part of this array
 C             contains the Cholesky factor S of the frequency-weighted
 C             controllability Grammian P = S*S'. See METHOD.
@@ -149,7 +149,7 @@ C
 C     LDS     INTEGER
 C             The leading dimension of array S.  LDS >= MAX(1,NCS).
 C
-C     R       (output) REAL*16 array, dimension (LDR,NCS)
+C     R       (output) REAL*10 array, dimension (LDR,NCS)
 C             The leading NCS-by-NCS upper triangular part of this array
 C             contains the Cholesky factor R of the frequency-weighted
 C             observability Grammian Q = R'*R. See METHOD.
@@ -163,7 +163,7 @@ C     IWORK   INTEGER array, dimension (LIWRK)
 C             LIWRK = 0,       if WEIGHT = 'N';
 C             LIWRK = 2(M+P),  if WEIGHT = 'O', 'I', or 'P'.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -298,16 +298,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ZERO, ONE
+      REAL*10 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, JOBC, JOBO, WEIGHT
       INTEGER          INFO, LDA, LDAC, LDB, LDBC, LDC, LDCC, LDD, LDDC,
      $                 LDR, LDS, LDWORK, M, N, NC, NCS, P
-      REAL*16 SCALEC, SCALEO
+      REAL*10 SCALEC, SCALEO
 C     .. Array Arguments ..
       INTEGER          IWORK(*)
-      REAL*16 A(LDA,*), AC(LDAC,*), B(LDB,*), BC(LDBC,*),
+      REAL*10 A(LDA,*), AC(LDAC,*), B(LDB,*), BC(LDBC,*),
      $                 C(LDC,*), CC(LDCC,*), D(LDD,*), DC(LDDC,*),
      $                 DWORK(*), R(LDR,*),   S(LDS,*)
 C     .. Local Scalars ..
@@ -316,12 +316,12 @@ C     .. Local Scalars ..
       INTEGER          I, IERR, J, JJ, KI, KL, KQ, KR, KTAU, KU, KW,
      $                 KWA, KWB, KWC, KWD, LDU, LW, MBBAR, ME, MP,
      $                 NCU, NCU1, NE, NNC, NNCU, PCBAR, PE, WRKOPT
-      REAL*16 RCOND, T, TOL
+      REAL*10 RCOND, T, TOL
 C     .. Local Arrays ..
-      REAL*16 DUM(1)
+      REAL*10 DUM(1)
 C     .. External Functions ..
       LOGICAL          LSAME
-      REAL*16 DLAMCH
+      REAL*10 DLAMCH
       EXTERNAL         DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL         AB05PD, AB05QD, AB07ND, DCOPY, DLACPY, DLASET,

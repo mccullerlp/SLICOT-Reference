@@ -123,7 +123,7 @@ C             HSVC(NCR-NCU) > HSVC(NCR+1-NCU);
 C             if ORDSEL = 'A', NCR is the sum of NCU and the number of
 C             Hankel singular values greater than MAX(TOL1,NCS*EPS*S1).
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             Specifies the ALPHA-stability boundary for the eigenvalues
 C             of the state dynamics matrix AC. For a continuous-time
 C             controller (DICO = 'C'), ALPHA <= 0 is the boundary value
@@ -132,7 +132,7 @@ C             controller (DICO = 'D'), 0 <= ALPHA <= 1 represents the
 C             boundary value for the moduli of eigenvalues.
 C             The ALPHA-stability domain does not include the boundary.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state dynamics matrix A of the open-loop
 C             system.
@@ -144,7 +144,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input/state matrix B of the open-loop system.
 C             On exit, if INFO = 0 and EQUIL = 'S', the leading N-by-M
@@ -155,7 +155,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the state/output matrix C of the open-loop system.
 C             On exit, if INFO = 0 and EQUIL = 'S', the leading P-by-N
@@ -166,14 +166,14 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             The leading P-by-M part of this array must contain the
 C             input/output matrix D of the open-loop system.
 C
 C     LDD     INTEGER
 C             The leading dimension of array D.  LDD >= MAX(1,P).
 C
-C     AC      (input/output) REAL*16 array, dimension (LDAC,NC)
+C     AC      (input/output) REAL*10 array, dimension (LDAC,NC)
 C             On entry, the leading NC-by-NC part of this array must
 C             contain the state dynamics matrix Ac of the original
 C             controller.
@@ -192,7 +192,7 @@ C
 C     LDAC    INTEGER
 C             The leading dimension of array AC.  LDAC >= MAX(1,NC).
 C
-C     BC      (input/output) REAL*16 array, dimension (LDBC,P)
+C     BC      (input/output) REAL*10 array, dimension (LDBC,P)
 C             On entry, the leading NC-by-P part of this array must
 C             contain the input/state matrix Bc of the original
 C             controller.
@@ -203,7 +203,7 @@ C
 C     LDBC    INTEGER
 C             The leading dimension of array BC.  LDBC >= MAX(1,NC).
 C
-C     CC      (input/output) REAL*16 array, dimension (LDCC,NC)
+C     CC      (input/output) REAL*10 array, dimension (LDCC,NC)
 C             On entry, the leading M-by-NC part of this array must
 C             contain the state/output matrix Cc of the original
 C             controller.
@@ -214,7 +214,7 @@ C
 C     LDCC    INTEGER
 C             The leading dimension of array CC.  LDCC >= MAX(1,M).
 C
-C     DC      (input/output) REAL*16 array, dimension (LDDC,P)
+C     DC      (input/output) REAL*10 array, dimension (LDDC,P)
 C             On entry, the leading M-by-P part of this array must
 C             contain the input/output matrix Dc of the original
 C             controller.
@@ -228,7 +228,7 @@ C
 C     NCS     (output) INTEGER
 C             The dimension of the ALPHA-stable part of the controller.
 C
-C     HSVC    (output) REAL*16 array, dimension (NC)
+C     HSVC    (output) REAL*10 array, dimension (NC)
 C             If INFO = 0, the leading NCS elements of this array
 C             contain the frequency-weighted Hankel singular values,
 C             ordered decreasingly, of the ALPHA-stable part of the
@@ -236,7 +236,7 @@ C             controller.
 C
 C     Tolerances
 C
-C     TOL1    REAL*16
+C     TOL1    REAL*10
 C             If ORDSEL = 'A', TOL1 contains the tolerance for
 C             determining the order of the reduced controller.
 C             For model reduction, the recommended value is
@@ -251,7 +251,7 @@ C             ALPHA-stable eigenvalues of Ac and EPS is the machine
 C             precision (see LAPACK Library Routine DLAMCH).
 C             If ORDSEL = 'F', the value of TOL1 is ignored.
 C
-C     TOL2    REAL*16
+C     TOL2    REAL*10
 C             The tolerance for determining the order of a minimal
 C             realization of the ALPHA-stable part of the given
 C             controller. The recommended value is TOL2 = NCS*EPS*S1.
@@ -270,7 +270,7 @@ C             On exit, if INFO = 0, IWORK(1) contains NCMIN, the order
 C             of the computed minimal realization of the stable part of
 C             the controller.
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -440,16 +440,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  C100, ONE, ZERO
+      REAL*10  C100, ONE, ZERO
       PARAMETER         ( C100 = 100.0D0, ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         DICO, EQUIL, JOBC, JOBO, JOBMR, ORDSEL, WEIGHT
       INTEGER           INFO, IWARN, LDA, LDAC, LDB, LDBC, LDC, LDCC,
      $                  LDD, LDDC, LDWORK, M, N, NC, NCR, NCS, P
-      REAL*16  ALPHA, TOL1, TOL2
+      REAL*10  ALPHA, TOL1, TOL2
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), AC(LDAC,*), B(LDB,*), BC(LDBC,*),
+      REAL*10  A(LDA,*), AC(LDAC,*), B(LDB,*), BC(LDBC,*),
      $                  C(LDC,*), CC(LDCC,*), D(LDD,*), DC(LDDC,*),
      $                  DWORK(*), HSVC(*)
 C     .. Local Scalars ..
@@ -457,10 +457,10 @@ C     .. Local Scalars ..
      $                  PERF, RIGHTW, SPA
       INTEGER           IERR, IWARNL, KI, KR, KT, KTI, KU, KW, LW, MP,
      $                  NCU, NCU1, NMR, NNC, NRA, WRKOPT
-      REAL*16  ALPWRK, MAXRED, SCALEC, SCALEO
+      REAL*10  ALPWRK, MAXRED, SCALEC, SCALEO
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL          AB09IX, SB16AY, TB01ID, TB01KD, XERBLA

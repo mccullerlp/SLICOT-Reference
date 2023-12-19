@@ -15,7 +15,7 @@ C
 C     N       (input) INTEGER
 C             The order of the matrix A.
 C
-C     A       (input) REAL*16 array, dimension (LDA, N)
+C     A       (input) REAL*10 array, dimension (LDA, N)
 C             The leading N-by-N part of this array must contain
 C             the LU part of the factorization of the matrix A computed
 C             by SLICOT Library routine MB02UV:  A = P * L * U * Q.
@@ -23,7 +23,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1, N).
 C
-C     RHS     (input/output) REAL*16 array, dimension (N)
+C     RHS     (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the right hand side
 C             of the system.
 C             On exit, this array contains the solution of the system.
@@ -36,7 +36,7 @@ C     JPIV    (input) INTEGER array, dimension (N)
 C             The pivot indices; for 1 <= j <= N, column j of the
 C             matrix has been interchanged with column JPIV(j).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor, chosen 0 < SCALE <= 1 to prevent
 C             overflow in the solution.
 C
@@ -58,20 +58,20 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE, TWO
+      REAL*10   ONE, TWO
       PARAMETER          ( ONE = 1.0D+0, TWO = 2.0D+0 )
 C     .. Scalar Arguments ..
       INTEGER            LDA, N
-      REAL*16   SCALE
+      REAL*10   SCALE
 C     .. Array Arguments ..
       INTEGER            IPIV( * ), JPIV( * )
-      REAL*16   A( LDA, * ), RHS( * )
+      REAL*10   A( LDA, * ), RHS( * )
 C     .. Local Scalars ..
       INTEGER            I, IP, J
-      REAL*16   BIGNUM, EPS, FACTOR, SMLNUM, TEMP
+      REAL*10   BIGNUM, EPS, FACTOR, SMLNUM, TEMP
 C     .. External Functions ..
       INTEGER            IDAMAX
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, IDAMAX
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DLABAD, DSCAL

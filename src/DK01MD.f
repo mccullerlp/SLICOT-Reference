@@ -20,7 +20,7 @@ C
 C     N       (input) INTEGER
 C             The number of samples.  N >= 1.
 C
-C     A       (input/output) REAL*16 array, dimension (N)
+C     A       (input/output) REAL*10 array, dimension (N)
 C             On entry, this array must contain the signal to be
 C             processed.
 C             On exit, this array contains the windowing function.
@@ -80,18 +80,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  PT46, HALF, PT54, ONE, TWO, FOUR
+      REAL*10  PT46, HALF, PT54, ONE, TWO, FOUR
       PARAMETER         ( PT46=0.46D0, HALF=0.5D0, PT54=0.54D0,
      $                    ONE = 1.0D0, TWO=2.0D0, FOUR=4.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         TYPE
       INTEGER           INFO, N
 C     .. Array Arguments ..
-      REAL*16  A(*)
+      REAL*10  A(*)
 C     .. Local Scalars ..
       LOGICAL           MTYPE, MNTYPE, NTYPE
       INTEGER           I, N1
-      REAL*16  BUF, FN, TEMP
+      REAL*10  BUF, FN, TEMP
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

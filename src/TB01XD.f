@@ -47,7 +47,7 @@ C     KU      (input) INTEGER
 C             The number of superdiagonals of A to be transformed.
 C             MAX( 0, N-1 ) >= KU >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the system state matrix A.
 C             On exit, the leading N-by-N part of this array contains
@@ -56,7 +56,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB,MAX(M,P))
 C             On entry, the leading N-by-M part of this array must
 C             contain the original input/state matrix B.
@@ -68,7 +68,7 @@ C             The leading dimension of the array B.
 C             LDB >= MAX(1,N) if M > 0 or  P > 0.
 C             LDB >= 1        if M = 0 and P = 0.
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the original state/output matrix C.
 C             On exit, the leading M-by-N part of this array contains
@@ -79,7 +79,7 @@ C             The leading dimension of array C.
 C             LDC >= MAX(1,M,P) if N > 0.
 C             LDC >= 1          if N = 0.
 C
-C     D       (input/output) REAL*16 array, dimension
+C     D       (input/output) REAL*10 array, dimension
 C             (LDD,MAX(M,P))
 C             On entry, if JOBD = 'D', the leading P-by-M part of this
 C             array must contain the original direct transmission
@@ -133,7 +133,7 @@ C     .. Scalar Arguments ..
       INTEGER            INFO, KL, KU, LDA, LDB, LDC, LDD, M, N, P
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   D( LDD, * )
 C     ..
 C     .. Local Scalars ..

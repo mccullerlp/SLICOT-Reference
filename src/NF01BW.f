@@ -43,14 +43,14 @@ C
 C     LIPAR   (input) INTEGER
 C             The length of the array IPAR.  LIPAR >= 4.
 C
-C     DPAR    (input) REAL*16 array, dimension (LDPAR)
+C     DPAR    (input) REAL*10 array, dimension (LDPAR)
 C             The real parameters needed for solving the problem.
 C             The entry DPAR(1) must contain the real scalar c.
 C
 C     LDPAR   (input) INTEGER
 C             The length of the array DPAR.  LDPAR >= 1.
 C
-C     J       (input) REAL*16 array, dimension (LDJ, NC)
+C     J       (input) REAL*10 array, dimension (LDJ, NC)
 C             where NC = N if BN <= 1, and NC = BSN+ST, if BN > 1.
 C             The leading NR-by-NC part of this array must contain
 C             the (compressed) representation (Jc) of the Jacobian
@@ -60,7 +60,7 @@ C
 C     LDJ     (input) INTEGER
 C             The leading dimension of array J.  LDJ >= MAX(1,NR).
 C
-C     X       (input/output) REAL*16 array, dimension
+C     X       (input/output) REAL*10 array, dimension
 C             (1+(N-1)*INCX)
 C             On entry, this incremented array must contain the
 C             vector x.
@@ -72,7 +72,7 @@ C             The increment for the elements of X.  INCX >= 1.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.  LDWORK >= NR.
@@ -107,17 +107,17 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INCX, INFO, LDJ, LDPAR, LDWORK, LIPAR, N
 C     .. Array Arguments ..
-      REAL*16  DPAR(*), DWORK(*), J(LDJ,*), X(*)
+      REAL*10  DPAR(*), DWORK(*), J(LDJ,*), X(*)
       INTEGER           IPAR(*)
 C     .. Local Scalars ..
       INTEGER           BN, BSM, BSN, IBSM, IBSN, IX, JL, M, NTHS, ST,
      $                  XL
-      REAL*16  C
+      REAL*10  C
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEMV, DSCAL, XERBLA
 C     .. Intrinsic Functions ..

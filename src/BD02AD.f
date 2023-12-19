@@ -46,7 +46,7 @@ C                   4 : parameter-dependent problems of scalable size
 C             NR(2) defines the number of the benchmark example
 C             within a certain group according to [1].
 C
-C     DPAR    (input/output) REAL*16 array, dimension (7)
+C     DPAR    (input/output) REAL*10 array, dimension (7)
 C             On entry, if DEF = 'N' and the desired example depends on
 C             real parameters, then the array DPAR must contain the
 C             values for these parameters.
@@ -87,7 +87,7 @@ C
 C     P       (output) INTEGER
 C             The number of rows in the matrices C and D.
 C
-C     E       (output) REAL*16 array, dimension (LDE,N)
+C     E       (output) REAL*10 array, dimension (LDE,N)
 C             The leading N-by-N part of this array contains the
 C             matrix E.
 C             NOTE that this array is overwritten (by the identity
@@ -96,28 +96,28 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= N.
 C
-C     A       (output) REAL*16 array, dimension (LDA,N)
+C     A       (output) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array contains the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= N.
 C
-C     B       (output) REAL*16 array, dimension (LDB,M)
+C     B       (output) REAL*10 array, dimension (LDB,M)
 C             The leading N-by-M part of this array contains the
 C             matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= N.
 C
-C     C       (output) REAL*16 array, dimension (LDC,N)
+C     C       (output) REAL*10 array, dimension (LDC,N)
 C             The leading P-by-N part of this array contains the
 C             matrix C.
 C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= P.
 C
-C     D       (output) REAL*16 array, dimension (LDD,M)
+C     D       (output) REAL*10 array, dimension (LDD,M)
 C             The leading P-by-M part of this array contains the
 C             matrix D.
 C             NOTE that this array is overwritten (by the zero
@@ -132,7 +132,7 @@ C             example.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             NOTE that DWORK is not used in the current version
 C             of BD02AD.
 C
@@ -179,7 +179,7 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO, THREE, FOUR
+      REAL*10  ZERO, ONE, TWO, THREE, FOUR
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0, TWO = 2.0D0,
      1                    THREE = 3.0D0, FOUR = 4.0D0 )
 C     .. Scalar Arguments ..
@@ -189,12 +189,12 @@ C     .. Scalar Arguments ..
 C     .. Array Arguments ..
       LOGICAL           VEC(8)
       INTEGER           IPAR(*), NR(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), DPAR(*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*), DPAR(*),
      1                  DWORK(*), E(LDE,*)
 C     .. Local Scalars ..
       CHARACTER*12      DATAF
       INTEGER           I, J, STATUS
-      REAL*16  TEMP
+      REAL*10  TEMP
 C     .. Local Arrays ..
       LOGICAL           VECDEF(8)
 C     .. External Functions ..

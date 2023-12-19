@@ -56,7 +56,7 @@ C                   4 : parameter-dependent problems of scalable size
 C             NR(2) defines the number of the benchmark example
 C             within a certain group according to [1].
 C
-C     DPAR    (input/output) REAL*16 array, dimension 2
+C     DPAR    (input/output) REAL*10 array, dimension 2
 C             On entry, if DEF = 'N' or 'n' and the desired example
 C             depends on real parameters, then the array DPAR must
 C             contain the values for these parameters.
@@ -102,7 +102,7 @@ C     M       (output) INTEGER
 C             The number of rows in the matrix B. If B is not provided
 C             for the desired example, M = 0 is returned.
 C
-C     E       (output) REAL*16 array, dimension (LDE,N)
+C     E       (output) REAL*10 array, dimension (LDE,N)
 C             The leading N-by-N part of this array contains the
 C             matrix E.
 C             NOTE that this array is overwritten (by the identity
@@ -111,35 +111,35 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= N.
 C
-C     A       (output) REAL*16 array, dimension (LDA,N)
+C     A       (output) REAL*10 array, dimension (LDA,N)
 C             The leading N-by-N part of this array contains the
 C             matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= N.
 C
-C     Y       (output) REAL*16 array, dimension (LDY,N)
+C     Y       (output) REAL*10 array, dimension (LDY,N)
 C             The leading N-by-N part of this array contains the
 C             matrix Y.
 C
 C     LDY     INTEGER
 C             The leading dimension of array Y.  LDY >= N.
 C
-C     B       (output) REAL*16 array, dimension (LDB,N)
+C     B       (output) REAL*10 array, dimension (LDB,N)
 C             The leading M-by-N part of this array contains the
 C             matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= M.
 C
-C     X       (output) REAL*16 array, dimension (LDX,N)
+C     X       (output) REAL*10 array, dimension (LDX,N)
 C             The leading N-by-N part of this array contains the
 C             matrix X.
 C
 C     LDX     INTEGER
 C             The leading dimension of array X.  LDX >= N.
 C
-C     U       (output) REAL*16 array, dimension (LDU,N)
+C     U       (output) REAL*10 array, dimension (LDU,N)
 C             The leading N-by-N part of this array contains the
 C             matrix U.
 C
@@ -152,7 +152,7 @@ C             example.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C
 C     LDWORK  INTEGER
 C             The length of the array DWORK.
@@ -200,7 +200,7 @@ C
 C     ********************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE, TWO, FOUR
+      REAL*10  ZERO, ONE, TWO, FOUR
       PARAMETER         (ZERO = .0D0, ONE = .1D1, TWO = .2D1,
      1                   FOUR = .4D1)
 C     .. Scalar Arguments ..
@@ -210,16 +210,16 @@ C     .. Scalar Arguments ..
 C     .. Array Arguments ..
       LOGICAL           VEC(8)
       INTEGER           IPAR(*), NR(*)
-      REAL*16  A(LDA,*), B(LDB,*), DPAR(*), DWORK(LDWORK),
+      REAL*10  A(LDA,*), B(LDB,*), DPAR(*), DWORK(LDWORK),
      1                  E(LDE,*), U(LDU,*), X(LDX,*), Y(LDY,*)
 C     .. Local Scalars ..
       INTEGER           I, J, K
-      REAL*16  TEMP, TTEMP, TWOBYN
+      REAL*10  TEMP, TTEMP, TWOBYN
 C     .. Local Arrays ..
       LOGICAL           VECDEF(8)
 C     .. External Functions ..
 C     . BLAS .
-      REAL*16  DDOT
+      REAL*10  DDOT
       EXTERNAL          DDOT
 C     . LAPACK .
       LOGICAL           LSAME

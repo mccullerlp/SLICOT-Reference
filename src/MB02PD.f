@@ -48,7 +48,7 @@ C     NRHS    (input) INTEGER
 C             The number of right hand sides, i.e., the number of
 C             columns of the matrices B and X.  NRHS >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the matrix A.  If FACT = 'F' and EQUED is not 'N',
 C             then A must have been equilibrated by the scaling factors
@@ -63,7 +63,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= max(1,N).
 C
-C     AF      (input or output) REAL*16 array, dimension
+C     AF      (input or output) REAL*10 array, dimension
 C             (LDAF,N)
 C             If FACT = 'F', then AF is an input argument and on entry
 C             the leading N-by-N part of this array must contain the
@@ -108,14 +108,14 @@ C                     been replaced by diag(R) * A * diag(C).
 C             EQUED is an input argument if FACT = 'F'; otherwise, it is
 C             an output argument.
 C
-C     R       (input or output) REAL*16 array, dimension (N)
+C     R       (input or output) REAL*10 array, dimension (N)
 C             The row scale factors for A.  If EQUED = 'R' or 'B', A is
 C             multiplied on the left by diag(R); if EQUED = 'N' or 'C',
 C             R is not accessed.  R is an input argument if FACT = 'F';
 C             otherwise, R is an output argument.  If FACT = 'F' and
 C             EQUED = 'R' or 'B', each element of R must be positive.
 C
-C     C       (input or output) REAL*16 array, dimension (N)
+C     C       (input or output) REAL*10 array, dimension (N)
 C             The column scale factors for A.  If EQUED = 'C' or 'B',
 C             A is multiplied on the right by diag(C); if EQUED = 'N'
 C             or 'R', C is not accessed.  C is an input argument if
@@ -123,7 +123,7 @@ C             FACT = 'F'; otherwise, C is an output argument.  If
 C             FACT = 'F' and EQUED = 'C' or 'B', each element of C must
 C             be positive.
 C
-C     B       (input/output) REAL*16 array, dimension
+C     B       (input/output) REAL*10 array, dimension
 C             (LDB,NRHS)
 C             On entry, the leading N-by-NRHS part of this array must
 C             contain the right-hand side matrix B.
@@ -137,7 +137,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     X       (output) REAL*16 array, dimension (LDX,NRHS)
+C     X       (output) REAL*10 array, dimension (LDX,NRHS)
 C             If INFO = 0 or INFO = N+1, the leading N-by-NRHS part of
 C             this array contains the solution matrix X to the original
 C             system of equations.  Note that A and B are modified on
@@ -149,7 +149,7 @@ C
 C     LDX     (input) INTEGER
 C             The leading dimension of the array X.  LDX >= max(1,N).
 C
-C     RCOND   (output) REAL*16
+C     RCOND   (output) REAL*10
 C             The estimate of the reciprocal condition number of the
 C             matrix A after equilibration (if done).  If RCOND is less
 C             than the machine precision (in particular, if RCOND = 0),
@@ -160,7 +160,7 @@ C             matrix A is factored, i.e., for FACT = 'N' or 'E'.  For
 C             FACT = 'F', RCOND is not used, but it is assumed that it
 C             has been computed and checked before the routine call.
 C
-C     FERR    (output) REAL*16 array, dimension (NRHS)
+C     FERR    (output) REAL*10 array, dimension (NRHS)
 C             The estimated forward error bound for each solution vector
 C             X(j) (the j-th column of the solution matrix X).
 C             If XTRUE is the true solution corresponding to X(j),
@@ -170,7 +170,7 @@ C             magnitude of the largest element in X(j).  The estimate
 C             is as reliable as the estimate for RCOND, and is almost
 C             always a slight overestimate of the true error.
 C
-C     BERR    (output) REAL*16 array, dimension (NRHS)
+C     BERR    (output) REAL*10 array, dimension (NRHS)
 C             The componentwise relative backward error of each solution
 C             vector X(j) (i.e., the smallest relative change in
 C             any element of A or B that makes X(j) an exact solution).
@@ -179,7 +179,7 @@ C     Workspace
 C
 C     IWORK   INTEGER array, dimension (N)
 C
-C     DWORK   REAL*16 array, dimension (4*N)
+C     DWORK   REAL*10 array, dimension (4*N)
 C             On entry, if FACT = 'F', DWORK(1) contains the reciprocal
 C             pivot growth factor norm(A)/norm(U), computed previously
 C             by this routine, with FACT <> 'N', for the same matrix A.
@@ -289,16 +289,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER         EQUED, FACT, TRANS
       INTEGER           INFO, LDA, LDAF, LDB, LDX, N, NRHS
-      REAL*16  RCOND
+      REAL*10  RCOND
 C     ..
 C     .. Array Arguments ..
       INTEGER           IPIV( * ), IWORK( * )
-      REAL*16  A( LDA, * ), AF( LDAF, * ), B( LDB, * ),
+      REAL*10  A( LDA, * ), AF( LDAF, * ), B( LDB, * ),
      $                  BERR( * ), C( * ), DWORK( * ), FERR( * ),
      $                  R( * ), X( LDX, * )
 C     ..
@@ -306,12 +306,12 @@ C     .. Local Scalars ..
       LOGICAL           COLEQU, EQUIL, NOFACT, NOTRAN, ROWEQU
       CHARACTER         NORM
       INTEGER           I, INFEQU, J
-      REAL*16  AMAX, ANORM, BIGNUM, COLCND, RCMAX, RCMIN,
+      REAL*10  AMAX, ANORM, BIGNUM, COLCND, RCMAX, RCMIN,
      $                  ROWCND, RPVGRW, SMLNUM
 C     ..
 C     .. External Functions ..
       LOGICAL           LSAME
-      REAL*16  DLAMCH, DLANGE, DLANTR
+      REAL*10  DLAMCH, DLANGE, DLANTR
       EXTERNAL          LSAME, DLAMCH, DLANGE, DLANTR
 C     ..
 C     .. External Subroutines ..

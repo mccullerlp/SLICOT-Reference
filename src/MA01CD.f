@@ -21,14 +21,14 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     A       (input)  REAL*16
+C     A       (input)  REAL*10
 C             The first real scalar.
 C
 C     IA      (input)  INTEGER
 C             Exponent of the base for the first real scalar. The scalar
 C             is represented as A * BASE**(IA).
 C
-C     B       (input)  REAL*16
+C     B       (input)  REAL*10
 C             The first real scalar.
 C
 C     IB      (input)  INTEGER
@@ -51,13 +51,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           IA, IB
-      REAL*16  A, B
+      REAL*10  A, B
 C     .. Local Scalars ..
-      REAL*16  S, SA, SB
+      REAL*10  S, SA, SB
 C     .. Intrinsic Functions ..
       INTRINSIC         ABS, LOG, SIGN
 C

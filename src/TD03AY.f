@@ -37,22 +37,22 @@ C     polynomial matrix, state-space representation, transfer matrix.
 C
 C     ******************************************************************
 C
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDDCOE, LDUCO1,
      $                  LDUCO2, MWORK, N, PWORK
 C     .. Array Arguments ..
       INTEGER           INDEX(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  DCOEFF(LDDCOE,*), UCOEFF(LDUCO1,LDUCO2,*)
 C     .. Local Scalars ..
       INTEGER           I, IA, IBIAS, INDCUR, JA, JMAX1, K
-      REAL*16  ABSDIA, ABSDMX, BIGNUM, DIAG, SMLNUM, UMAX1,
+      REAL*10  ABSDIA, ABSDMX, BIGNUM, DIAG, SMLNUM, UMAX1,
      $                  TEMP
 C     .. External Functions ..
       INTEGER           IDAMAX
-      REAL*16  DLAMCH
+      REAL*10  DLAMCH
       EXTERNAL          DLAMCH, IDAMAX
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DLASET, DSCAL

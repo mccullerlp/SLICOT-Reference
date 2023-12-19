@@ -38,7 +38,7 @@ C
 C     L       (input) INTEGER
 C             The number of columns of the matrix B.  L >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,M)
+C     A       (input/output) REAL*10 array, dimension (LDA,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the matrix A. The elements corresponding to the
 C             zero P-by-MIN(P,M) lower trapezoidal/triangular part
@@ -54,7 +54,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,L)
+C     B       (input/output) REAL*10 array, dimension (LDB,L)
 C             On entry, the leading N-by-L part of this array must
 C             contain the matrix B.
 C             On exit, the leading N-by-L part of this array contains
@@ -66,12 +66,12 @@ C             The leading dimension of array B.
 C             LDB >= MAX(1,N) if L > 0;
 C             LDB >= 1        if L = 0.
 C
-C     TAU     (output) REAL*16 array, dimension MIN(N,M)
+C     TAU     (output) REAL*10 array, dimension MIN(N,M)
 C             The scalar factors of the elementary reflectors used.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -127,16 +127,16 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, L, LDA, LDB, LDWORK, M, N, P
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), B(LDB,*), DWORK(*), TAU(*)
+      REAL*10  A(LDA,*), B(LDB,*), DWORK(*), TAU(*)
 C     .. Local Scalars ..
       LOGICAL           LQUERY
       INTEGER           I, WRKOPT
-      REAL*16  FIRST
+      REAL*10  FIRST
 C     .. External Subroutines ..
       EXTERNAL          DGEQRF, DLARF, DLARFG, DORMQR, XERBLA
 C     .. Intrinsic Functions ..

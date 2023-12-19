@@ -31,21 +31,21 @@ C     N       (input) INTEGER
 C             The order of B and E, and the column dimension of C, F, R
 C             and L.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,M)
+C     A       (input) REAL*10 array, dimension (LDA,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain the upper quasi triangular matrix A.
 C
 C     LDA     INTEGER
 C             The leading dimension of the array A.  LDA >= MAX(1,M).
 C
-C     B       (input) REAL*16 array, dimension (LDB,N)
+C     B       (input) REAL*10 array, dimension (LDB,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper quasi triangular matrix B.
 C
 C     LDB     INTEGER
 C             The leading dimension of the array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right-hand-side of the first matrix equation
 C             in (1).
@@ -55,21 +55,21 @@ C
 C     LDC     INTEGER
 C             The leading dimension of the array C.  LDC >= MAX(1,M).
 C
-C     D       (input) REAL*16 array, dimension (LDD,M)
+C     D       (input) REAL*10 array, dimension (LDD,M)
 C             On entry, the leading M-by-M part of this array must
 C             contain the upper triangular matrix D.
 C
 C     LDD     INTEGER
 C             The leading dimension of the array D.  LDD >= MAX(1,M).
 C
-C     E       (input) REAL*16 array, dimension (LDE,N)
+C     E       (input) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the upper triangular matrix E.
 C
 C     LDE     INTEGER
 C             The leading dimension of the array E.  LDE >= MAX(1,N).
 C
-C     F       (input/output) REAL*16 array, dimension (LDF,N)
+C     F       (input/output) REAL*10 array, dimension (LDF,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right-hand-side of the second matrix equation
 C             in (1).
@@ -79,7 +79,7 @@ C
 C     LDF     INTEGER
 C             The leading dimension of the array F.  LDF >= MAX(1,M).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             On exit, 0 <= SCALE <= 1. If 0 < SCALE < 1, the arrays
 C             C and F will hold the solutions R and L, respectively, to
 C             a slightly perturbed system but the input matrices A, B, D
@@ -145,22 +145,22 @@ C
 C     .. Parameters ..
       INTEGER           LDZ
       PARAMETER         ( LDZ = 8 )
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDB, LDC, LDD, LDE, LDF, M, N
-      REAL*16  SCALE
+      REAL*10  SCALE
 C     .. Array Arguments ..
       INTEGER           IWORK(*)
-      REAL*16  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
+      REAL*10  A(LDA,*), B(LDB,*), C(LDC,*), D(LDD,*),
      $                  E(LDE,*), F(LDF,*)
 C     .. Local Scalars ..
       INTEGER           I, IE, IERR, II, IS, ISP1, J, JE, JJ, JS, JSP1,
      $                  K, MB, NB, P, Q, ZDIM
-      REAL*16  SCALOC
+      REAL*10  SCALOC
 C     .. Local Arrays ..
       INTEGER           IPIV(LDZ), JPIV(LDZ)
-      REAL*16  RHS(LDZ), Z(LDZ,LDZ)
+      REAL*10  RHS(LDZ), Z(LDZ,LDZ)
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEMM, DGEMV, DGER, DGESC2,
      $                  DGETC2, DLASET, DSCAL, XERBLA

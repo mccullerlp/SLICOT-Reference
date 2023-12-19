@@ -37,14 +37,14 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INDBLK, INFO, LDA, LDPCO1, LDPCO2, LDVCO1,
      $                  LDVCO2, NR
 C     .. Array Arguments ..
       INTEGER           NBLK(*)
-      REAL*16  A(LDA,*), PCOEFF(LDPCO1,LDPCO2,*),
+      REAL*10  A(LDA,*), PCOEFF(LDPCO1,LDPCO2,*),
      $                  VCOEFF(LDVCO1,LDVCO2,*)
 C     .. Local Scalars ..
       INTEGER           I, INPLUS, IOFF, J, JOFF, K, KPLUS, L, LSTART,

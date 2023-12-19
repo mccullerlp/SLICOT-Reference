@@ -38,7 +38,7 @@ C     P       (input) INTEGER
 C             The actual output dimension, i.e. the number of rows of
 C             the matrix C.  0 <= P <= N.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the state transition matrix A to be transformed.
 C             On exit, the leading N-by-N part of this array contains
@@ -48,7 +48,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C to be transformed.
 C             On exit, the leading P-by-N part of this array contains
@@ -58,7 +58,7 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,P).
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,*)
+C     U       (input/output) REAL*10 array, dimension (LDU,*)
 C             On entry, if JOBU = 'U', then the leading N-by-N part of
 C             this array must contain a given matrix U (e.g. from a
 C             previous call to another SLICOT routine), and on exit, the
@@ -80,7 +80,7 @@ C             JOBU = 'I', LDU >= MAX(1,N); if JOBU = 'N', LDU >= 1.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (MAX(N,P-1))
+C     DWORK   REAL*10 array, dimension (MAX(N,P-1))
 C
 C     Error Indicator
 C
@@ -162,18 +162,18 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ZERO, ONE
+      REAL*10  ZERO, ONE
       PARAMETER         ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       INTEGER           INFO, LDA, LDC, LDU, N, P
       CHARACTER         JOBU, UPLO
 C     .. Array Arguments ..
-      REAL*16  A(LDA,*), C(LDC,*), DWORK(*), U(LDU,*)
+      REAL*10  A(LDA,*), C(LDC,*), DWORK(*), U(LDU,*)
 C     .. Local Scalars ..
       LOGICAL           LJOBA, LJOBI, LUPLO
       INTEGER           II, J, N1, NJ, P1, PAR1, PAR2, PAR3, PAR4, PAR5,
      $                  PAR6
-      REAL*16  DZ
+      REAL*10  DZ
 C     .. External Functions ..
       LOGICAL           LSAME
       EXTERNAL          LSAME

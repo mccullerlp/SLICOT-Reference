@@ -49,7 +49,7 @@ C     N       (input) INTEGER
 C             The order of the matrix B, and the number of columns in
 C             the matrices X and C.  N >= 0.
 C
-C     A       (input) REAL*16 array, dimension (LDA,M)
+C     A       (input) REAL*10 array, dimension (LDA,M)
 C             The leading M-by-M part of this array must contain the
 C             upper quasi-triangular matrix A, in Schur canonical form.
 C             The part of A below the first sub-diagonal is not
@@ -58,7 +58,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,M).
 C
-C     B       (input) REAL*16 array, dimension (LDB,N)
+C     B       (input) REAL*10 array, dimension (LDB,N)
 C             The leading N-by-N part of this array must contain the
 C             upper quasi-triangular matrix B, in Schur canonical form.
 C             The part of B below the first sub-diagonal is not
@@ -67,7 +67,7 @@ C
 C     LDB     (input) INTEGER
 C             The leading dimension of the array B.  LDB >= max(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading M-by-N part of this array must
 C             contain the right hand side matrix C.
 C             On exit, if INFO >= 0, the leading M-by-N part of this
@@ -76,13 +76,13 @@ C
 C     LDC     INTEGER
 C             The leading dimension of array C.  LDC >= MAX(1,M).
 C
-C     SCALE   (output) REAL*16
+C     SCALE   (output) REAL*10
 C             The scale factor, scale, set less than or equal to 1 to
 C             prevent the solution overflowing.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (2*M)
+C     DWORK   REAL*10 array, dimension (2*M)
 C
 C     Error Indicator
 C
@@ -138,31 +138,31 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO, ONE
+      REAL*10   ZERO, ONE
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 C     ..
 C     .. Scalar Arguments ..
       CHARACTER          TRANA, TRANB
       INTEGER            INFO, ISGN, LDA, LDB, LDC, M, N
-      REAL*16   SCALE
+      REAL*10   SCALE
 C     ..
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   DWORK( * )
 C     ..
 C     .. Local Scalars ..
       LOGICAL            NOTRNA, NOTRNB
       INTEGER            IERR, J, K, K1, K2, KNEXT, L, L1, L2, LNEXT,
      $                   MNK1, MNK2, MNL1, MNL2
-      REAL*16   A11, BIGNUM, DA11, DB, EPS, P11, P12, P21, P22,
+      REAL*10   A11, BIGNUM, DA11, DB, EPS, P11, P12, P21, P22,
      $                   SCALOC, SGN, SMIN, SMLNUM, SUMR, XNORM
 C     ..
 C     .. Local Arrays ..
-      REAL*16   DUM( 1 ), VEC( 2, 2 ), X( 2, 2 )
+      REAL*10   DUM( 1 ), VEC( 2, 2 ), X( 2, 2 )
 C     ..
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DDOT, DLAMCH, DLANGE
+      REAL*10   DDOT, DLAMCH, DLANGE
       EXTERNAL           DDOT, DLAMCH, DLANGE, LSAME
 C     ..
 C     .. External Subroutines ..

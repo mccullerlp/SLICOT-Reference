@@ -27,7 +27,7 @@ C             transfer function matrix G(z), stored row by row.
 C             For example, the order of the (i,j)-th element of G(z) is
 C             given by IORD((i-1)xNB+j).
 C
-C     AR      (input) REAL*16 array, dimension (NA), where
+C     AR      (input) REAL*10 array, dimension (NA), where
 C             NA = IORD(1) + IORD(2) + ... + IORD(NC*NB).
 C             The leading NA elements of this array must contain the
 C             denominator coefficients AR(1),...,AR(r) in equation (1)
@@ -38,7 +38,7 @@ C             (NC,1),(NC,2),...,(NC,NB). The coefficients must be given
 C             in decreasing order of powers of z; the coefficient of the
 C             highest order term is assumed to be equal to 1.
 C
-C     MA      (input) REAL*16 array, dimension (NA)
+C     MA      (input) REAL*10 array, dimension (NA)
 C             The leading NA elements of this array must contain the
 C             numerator coefficients MA(1),...,MA(r) in equation (1)
 C             of the (i,j)-th element of the transfer function matrix
@@ -47,7 +47,7 @@ C             (1,1),(1,2),...,(1,NB), (2,1),(2,2),...,(2,NB), ...,
 C             (NC,1),(NC,2),...,(NC,NB). The coefficients must be given
 C             in decreasing order of powers of z.
 C
-C     H       (output) REAL*16 array, dimension (LDH,N*NB)
+C     H       (output) REAL*10 array, dimension (LDH,N*NB)
 C             The leading NC-by-N*NB part of this array contains the
 C             multivariable Markov parameter sequence M(k), where each
 C             parameter M(k) is an NC-by-NB matrix and k = 1,2,...,N.
@@ -141,11 +141,11 @@ C     .. Scalar Arguments ..
       INTEGER           INFO, LDH, N, NB, NC
 C     .. Array Arguments ..
       INTEGER           IORD(*)
-      REAL*16  AR(*), H(LDH,*), MA(*)
+      REAL*10  AR(*), H(LDH,*), MA(*)
 C     .. Local Scalars ..
       INTEGER           I, J, JJ, JK, K, KI, LDHNB, NL, NORD
 C     .. External Functions ..
-      REAL*16  DDOT
+      REAL*10  DDOT
       EXTERNAL          DDOT
 C     .. External Subroutines ..
       EXTERNAL          XERBLA

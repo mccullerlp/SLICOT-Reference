@@ -13,7 +13,7 @@ C     return the imaginary part of  a  is zero.  b  is unaltered.
 C
 C     This routine has A and C declared as REAL, because it is intended
 C     for use within a real Lyapunov solver and the REAL declarations
-C     mean that a standard Fortran REAL*16 version may be
+C     mean that a standard Fortran REAL*10 version may be
 C     readily constructed.  However A and C could safely be declared
 C     COMPLEX in the calling program, although some systems may give a
 C     type mismatch warning.
@@ -22,26 +22,26 @@ C     ARGUMENTS
 C
 C     Input/Output Parameters
 C
-C     A       (input/output) REAL*16 array, dimension (2)
+C     A       (input/output) REAL*10 array, dimension (2)
 C             On entry, A(1) and A(2) must contain the real and
 C             imaginary part, respectively, of the complex number a.
 C             On exit, A(1) contains the real part of d, and A(2) is
 C             set to zero.
 C
-C     B       (input) REAL*16
+C     B       (input) REAL*10
 C             The real number b.
 C
-C     SMALL   (input) REAL*16
+C     SMALL   (input) REAL*10
 C             A small real number. If the norm d of [ a; b ] is smaller
 C             than SMALL, then the rotation is taken as a unit matrix,
 C             and A(1) and A(2) are set to d and 0, respectively.
 C
-C     C       (output) REAL*16 array, dimension (2)
+C     C       (output) REAL*10 array, dimension (2)
 C             C(1) and C(2) contain the real and imaginary part,
 C             respectively, of the complex number c, the cosines of
 C             the plane rotation.
 C
-C     S       (output) REAL*16
+C     S       (output) REAL*10
 C             The real number s, the sines of the plane rotation.
 C
 C     CONTRIBUTOR
@@ -61,16 +61,16 @@ C
 C     *****************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, ZERO
+      REAL*10  ONE, ZERO
       PARAMETER         ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16  B, S, SMALL
+      REAL*10  B, S, SMALL
 C     .. Array Arguments ..
-      REAL*16  A(2), C(2)
+      REAL*10  A(2), C(2)
 C     .. Local Scalars ..
-      REAL*16  D
+      REAL*10  D
 C     .. External Functions ..
-      REAL*16  DLAPY3
+      REAL*10  DLAPY3
       EXTERNAL          DLAPY3
 C     .. Executable Statements ..
 C

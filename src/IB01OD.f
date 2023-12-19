@@ -30,7 +30,7 @@ C
 C     L       (input) INTEGER
 C             The number of system outputs.  L > 0.
 C
-C     SV      (input) REAL*16 array, dimension ( L*NOBR )
+C     SV      (input) REAL*10 array, dimension ( L*NOBR )
 C             The singular values of the relevant part of the triangular
 C             factor from the QR factorization of the concatenated block
 C             Hankel matrices.
@@ -40,7 +40,7 @@ C             The estimated order of the system.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             Absolute tolerance used for determining an estimate of
 C             the system order. If  TOL >= 0,  the estimate is
 C             indicated by the index of the last singular value greater
@@ -89,21 +89,21 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ZERO
+      REAL*10   ZERO
       PARAMETER          ( ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
-      REAL*16   TOL
+      REAL*10   TOL
       INTEGER            INFO, IWARN, L, N, NOBR
       CHARACTER          CTRL
 C     .. Array Arguments ..
-      REAL*16   SV(*)
+      REAL*10   SV(*)
 C     .. Local Scalars ..
-      REAL*16   GAP, RNRM, TOLL
+      REAL*10   GAP, RNRM, TOLL
       INTEGER            I, IERR, LNOBR
       LOGICAL            CONTRL
 C     .. External Functions ..
       LOGICAL            LSAME
-      REAL*16   DLAMCH
+      REAL*10   DLAMCH
       EXTERNAL           DLAMCH, LSAME
 C     .. External Subroutines ..
       EXTERNAL           IB01OY, XERBLA

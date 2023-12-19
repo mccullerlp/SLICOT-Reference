@@ -33,7 +33,7 @@ C
 C     M       (input) INTEGER
 C             The number of columns of matrix B.  M >= 0.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the state dynamics matrix A.
 C             On exit, the leading L-by-N part of this array contains
@@ -42,7 +42,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,L).
 C
-C     E       (input/output) REAL*16 array, dimension (LDE,N)
+C     E       (input/output) REAL*10 array, dimension (LDE,N)
 C             On entry, the leading L-by-N part of this array must
 C             contain the descriptor matrix E.
 C             On exit, the leading L-by-N part of this array contains
@@ -62,7 +62,7 @@ C
 C     LDE     INTEGER
 C             The leading dimension of array E.  LDE >= MAX(1,L).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading L-by-M part of this array must
 C             contain the input/state matrix B.
 C             On exit, the leading L-by-M part of this array contains
@@ -72,7 +72,7 @@ C     LDB     INTEGER
 C             The leading dimension of array B.
 C             LDB >= MAX(1,L) if M > 0 or LDB >= 1 if M = 0.
 C
-C     Q       (input/output) REAL*16 array, dimension (LDQ,L)
+C     Q       (input/output) REAL*10 array, dimension (LDQ,L)
 C             If COMPQ = 'N':  Q is not referenced.
 C             If COMPQ = 'I':  on entry, Q need not be set;
 C                              on exit, the leading L-by-L part of this
@@ -94,7 +94,7 @@ C             LDQ >= MAX(1,L), if COMPQ = 'U' or 'I'.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -145,13 +145,13 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16   ONE, ZERO
+      REAL*10   ONE, ZERO
       PARAMETER          ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER          COMPQ
       INTEGER            INFO, L, LDA, LDB, LDE, LDQ, LDWORK, M, N
 C     .. Array Arguments ..
-      REAL*16   A( LDA, * ), B( LDB, * ), DWORK( * ),
+      REAL*10   A( LDA, * ), B( LDB, * ), DWORK( * ),
      $                   E( LDE, * ), Q( LDQ, * )
 C     .. Local Scalars ..
       LOGICAL            ILQ

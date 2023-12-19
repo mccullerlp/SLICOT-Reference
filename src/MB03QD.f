@@ -47,14 +47,14 @@ C     NSUP    NLOW and NSUP specify the boundary indices for the rows
 C             and columns of the principal submatrix of A whose diagonal
 C             blocks are to be reordered.  1 <= NLOW <= NSUP <= N.
 C
-C     ALPHA   (input) REAL*16
+C     ALPHA   (input) REAL*10
 C             The boundary of the domain of interest for the eigenvalues
 C             of A. If DICO = 'C', ALPHA is the boundary value for the
 C             real parts of eigenvalues, while for DICO = 'D',
 C             ALPHA >= 0 represents the boundary value for the moduli of
 C             eigenvalues.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain a matrix in a real Schur form whose 1-by-1 and
 C             2-by-2 diagonal blocks between positions NLOW and NSUP
@@ -79,7 +79,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= N.
 C
-C     U       (input/output) REAL*16 array, dimension (LDU,N)
+C     U       (input/output) REAL*10 array, dimension (LDU,N)
 C             On entry with JOBU = 'U', the leading N-by-N part of this
 C             array must contain a transformation matrix (e.g. from a
 C             previous call to this routine).
@@ -108,7 +108,7 @@ C             subspace.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (N)
+C     DWORK   REAL*10 array, dimension (N)
 C
 C     Error Indicator
 C
@@ -165,21 +165,21 @@ C
 C    ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ONE, ZERO
+      REAL*10 ONE, ZERO
       PARAMETER        ( ONE = 1.0D0, ZERO = 0.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, JOBU, STDOM
       INTEGER          INFO, LDA, LDU, N, NDIM, NLOW, NSUP
-      REAL*16 ALPHA
+      REAL*10 ALPHA
 C     .. Array Arguments ..
-      REAL*16 A(LDA,*), DWORK(*), U(LDU,*)
+      REAL*10 A(LDA,*), DWORK(*), U(LDU,*)
 C     .. Local Scalars ..
       LOGICAL          DISCR, LSTDOM
       INTEGER          IB, L, LM1, NUP
-      REAL*16 E1, E2, TLAMBD
+      REAL*10 E1, E2, TLAMBD
 C     .. External Functions ..
       LOGICAL          LSAME
-      REAL*16 DLAPY2
+      REAL*10 DLAPY2
       EXTERNAL         DLAPY2, LSAME
 C     .. External Subroutines ..
       EXTERNAL         DLASET, DTREXC, MB03QY, XERBLA

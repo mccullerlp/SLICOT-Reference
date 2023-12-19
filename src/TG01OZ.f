@@ -33,7 +33,7 @@ C             The dimension of the descriptor state vector; also the
 C             order of square matrices A and E, the number of rows of
 C             matrix B, and the number of columns of matrix C.  N >= 0.
 C
-C     DCBA    (input/output) COMPLEX*32 array, dimension (LDDCBA,N+1)
+C     DCBA    (input/output) COMPLEX*20 array, dimension (LDDCBA,N+1)
 C             On entry, the leading (N+1)-by-(N+1) part of this array
 C             must contain the original system matrices A, B, C, and D,
 C             stored as follows
@@ -47,7 +47,7 @@ C
 C     LDDCBA  INTEGER
 C             The leading dimension of the array DCBA.  LDDCBA >= N+1.
 C
-C     E       (input/output) COMPLEX*32 array, dimension (LDE,*)
+C     E       (input/output) COMPLEX*20 array, dimension (LDE,*)
 C             On entry, if JOBE = 'G', the leading N-by-N part of this
 C             array must contain the nonsingular descriptor matrix E.
 C             On exit, if JOBE = 'G', the leading NZ-by-NZ part of this
@@ -62,12 +62,12 @@ C
 C     NZ      (output) INTEGER
 C             The order of the reduced system.
 C
-C     G       (output) COMPLEX*32
+C     G       (output) COMPLEX*20
 C             The gain of the reduced system.
 C
 C     Tolerances
 C
-C     TOL     REAL*16
+C     TOL     REAL*10
 C             The tolerance to be used in determining if the transformed
 C             d has a "sufficiently" large magnitude. If the user sets
 C             TOL > 0, then the given value of TOL is used. If the user
@@ -78,7 +78,7 @@ C             Library routine DLAMCH).
 C
 C     Workspace
 C
-C     ZWORK   COMPLEX*32 array, dimension (LZWORK)
+C     ZWORK   COMPLEX*20 array, dimension (LZWORK)
 C             On exit, if INFO = 0, ZWORK(1) returns the optimal value
 C             of LZWORK.
 C             On exit, if INFO = -11, ZWORK(1) returns the minimum value
@@ -133,33 +133,33 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16  ONE, THREE, FOUR, ZERO
+      REAL*10  ONE, THREE, FOUR, ZERO
       PARAMETER         ( ONE  = 1.0D0, THREE = 3.0D0, FOUR = 4.0D0,
      $                    ZERO = 0.0D0 )
-      COMPLEX*32        CONE, CZERO
+      COMPLEX*20        CONE, CZERO
       PARAMETER         ( CONE  = ( 1.0D+0, 0.0D+0 ),
      $                    CZERO = ( 0.0D+0, 0.0D+0 ) )
 C     .. Scalar Arguments ..
       CHARACTER         JOBE
       INTEGER           INFO, LDDCBA, LDE, LZWORK, N, NZ
-      REAL*16  TOL
-      COMPLEX*32        G
+      REAL*10  TOL
+      COMPLEX*20        G
 C     .. Array Arguments ..
-      COMPLEX*32        DCBA(LDDCBA,*), E(LDE,*), ZWORK(*)
+      COMPLEX*20        DCBA(LDDCBA,*), E(LDE,*), ZWORK(*)
 C     .. Local Scalars ..
       CHARACTER         JOBT
       LOGICAL           DESCR, LQUERY
       INTEGER           I, IMAX, ITAU, IWRK, J, JF, MAXWRK, MINWRK, N1,
      $                  NC
-      REAL*16  ABSD, MAXA, NRMB, NRMC, TOLDEF
-      COMPLEX*32        TAU
+      REAL*10  ABSD, MAXA, NRMB, NRMC, TOLDEF
+      COMPLEX*20        TAU
 C     .. Local Arrays ..
-      REAL*16  DWORK(1)
+      REAL*10  DWORK(1)
 C     .. External Functions ..
       LOGICAL           LSAME
       INTEGER           IZAMAX
-      REAL*16  DLAMCH, DZNRM2, ZLANGE
-      COMPLEX*32        ZLADIV
+      REAL*10  DLAMCH, DZNRM2, ZLANGE
+      COMPLEX*20        ZLADIV
       EXTERNAL          DLAMCH, DZNRM2, IZAMAX, LSAME, ZLADIV, ZLANGE
 C     .. External Subroutines ..
       EXTERNAL          TG01OB, XERBLA, ZCOPY, ZGEQRF, ZLARF, ZLARFG,

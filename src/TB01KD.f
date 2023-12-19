@@ -47,7 +47,7 @@ C
 C     P       (input) INTEGER
 C             The number of system outputs, or of rows of C.  P >= 0.
 C
-C     ALPHA   (input) REAL*16.
+C     ALPHA   (input) REAL*10.
 C             Specifies the boundary of the domain of interest for the
 C             eigenvalues of A. For a continuous-time system
 C             (DICO = 'C'), ALPHA is the boundary value for the real
@@ -55,7 +55,7 @@ C             parts of eigenvalues, while for a discrete-time system
 C             (DICO = 'D'), ALPHA >= 0 represents the boundary value for
 C             the moduli of eigenvalues.
 C
-C     A       (input/output) REAL*16 array, dimension (LDA,N)
+C     A       (input/output) REAL*10 array, dimension (LDA,N)
 C             On entry, the leading N-by-N part of this array must
 C             contain the unreduced state dynamics matrix A.
 C             If JOBA = 'S' then A must be a matrix in real Schur form.
@@ -79,7 +79,7 @@ C
 C     LDA     INTEGER
 C             The leading dimension of array A.  LDA >= MAX(1,N).
 C
-C     B       (input/output) REAL*16 array, dimension (LDB,M)
+C     B       (input/output) REAL*10 array, dimension (LDB,M)
 C             On entry, the leading N-by-M part of this array must
 C             contain the input matrix B.
 C             On exit, the leading N-by-M part of this array contains
@@ -88,7 +88,7 @@ C
 C     LDB     INTEGER
 C             The leading dimension of array B.  LDB >= MAX(1,N).
 C
-C     C       (input/output) REAL*16 array, dimension (LDC,N)
+C     C       (input/output) REAL*10 array, dimension (LDC,N)
 C             On entry, the leading P-by-N part of this array must
 C             contain the output matrix C.
 C             On exit, the leading P-by-N part of this array contains
@@ -101,7 +101,7 @@ C     NDIM    (output) INTEGER
 C             The number of eigenvalues of A lying inside the domain of
 C             interest for eigenvalues.
 C
-C     U       (output) REAL*16 array, dimension (LDU,N)
+C     U       (output) REAL*10 array, dimension (LDU,N)
 C             The leading N-by-N part of this array contains the
 C             transformation matrix used to reduce A to the block-
 C             diagonal form. The first NDIM columns of U span the
@@ -113,7 +113,7 @@ C
 C     LDU     INTEGER
 C             The leading dimension of array U.  LDU >= max(1,N).
 C
-C     WR, WI  (output) REAL*16 arrays, dimension (N)
+C     WR, WI  (output) REAL*10 arrays, dimension (N)
 C             WR and WI contain the real and imaginary parts,
 C             respectively, of the computed eigenvalues of A. The
 C             eigenvalues will be in the same order that they appear on
@@ -124,7 +124,7 @@ C             first.
 C
 C     Workspace
 C
-C     DWORK   REAL*16 array, dimension (LDWORK)
+C     DWORK   REAL*10 array, dimension (LDWORK)
 C             On exit, if INFO = 0, DWORK(1) returns the optimal value
 C             of LDWORK.
 C
@@ -184,19 +184,19 @@ C
 C     ******************************************************************
 C
 C     .. Parameters ..
-      REAL*16 ZERO, ONE
+      REAL*10 ZERO, ONE
       PARAMETER        ( ZERO = 0.0D0, ONE = 1.0D0 )
 C     .. Scalar Arguments ..
       CHARACTER        DICO, JOBA, STDOM
       INTEGER          INFO, LDA, LDB, LDC, LDU, LDWORK, M, N, NDIM, P
-      REAL*16 ALPHA
+      REAL*10 ALPHA
 C     .. Array Arguments ..
-      REAL*16 A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), U(LDU,*),
+      REAL*10 A(LDA,*), B(LDB,*), C(LDC,*), DWORK(*), U(LDU,*),
      $                 WI(*), WR(*)
 C     .. Local Scalars ..
       LOGICAL          DISCR, LJOBG
       INTEGER          NDIM1, NR
-      REAL*16 SCALE
+      REAL*10 SCALE
 C     .. External Functions ..
       LOGICAL          LSAME
       EXTERNAL         LSAME
